@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Offline BFV packed Hamming experiment under `experiments/bfv`, with an isolated public-key server evaluator, correctness tests, a comparison against an exported Paillier Git revision, and a research report. The production Paillier path and dependencies are unchanged.
 - `xtrace_sdk.x_vec.crypto.device.resolve_device` — shared device-resolution helper used by both Paillier clients and intended for future homomorphic clients with optional GPU backends.
 - `test_cross_device_interop` — parametrised test covering CPU↔GPU portability for both `PaillierClient` and `PaillierLookupClient`. Verifies that contexts saved on one device load correctly on the other (hash equality), and that ciphertexts produced on either backend round-trip correctly through the other for both encryption and server-side homomorphic add.
 
