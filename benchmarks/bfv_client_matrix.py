@@ -106,6 +106,7 @@ def benchmark(
                 decomposition_bits=args.decomposition_bits,
                 response_modulus_bits=args.response_modulus_bits,
                 device="cpu",
+                server_backend=args.server_backend,
             )
         )
     elif variant == "paillier-cpu":
@@ -122,7 +123,7 @@ def benchmark(
     if native:
 
         def load_server() -> BFVClient:
-            result = BFVClient(skip_key_gen=True)
+            result = BFVClient(skip_key_gen=True, server_backend=args.server_backend)
             result.load_config(config)
             result.load_stringified_keys(public_json)
             assert result.keys is None
@@ -203,6 +204,7 @@ def benchmark(
     )
     return {
         "variant": variant,
+        "server_backend": args.server_backend if native else None,
         "vectors": n,
         "embed_len": args.embed_len,
         "config": config,
@@ -234,6 +236,7 @@ def main() -> None:
     parser.add_argument("--decomposition-bits", type=int, default=30)
     parser.add_argument("--response-modulus-bits", type=int, default=50)
     parser.add_argument("--no-compact", action="store_true")
+    parser.add_argument("--server-backend", choices=("optimized", "reference"), default="optimized")
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument(
         "--repeats",

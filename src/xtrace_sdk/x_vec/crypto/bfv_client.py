@@ -12,6 +12,7 @@ from typing import Any
 
 from xtrace_sdk.x_vec.crypto.device import DeviceMode
 from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV
+from xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator import BFVEvaluator, BFVServerBackend
 from xtrace_sdk.x_vec.crypto.hamming_client_base import HammingClientBase
 from xtrace_sdk.x_vec.utils.xtrace_types import (
     BFVCiphertext,
@@ -37,6 +38,8 @@ class BFVClient(HammingClientBase):
     :param response_modulus_bits: Smaller modulus used after the Hamming circuit.
     :param skip_key_gen: Construct an empty client for loading saved keys.
     :param device: ``cpu`` or ``auto``; a CUDA implementation is not yet available.
+    :param server_backend: ``optimized`` (cached GMP) or ``reference`` server arithmetic.
+        This runtime choice is independent of the serialized crypto configuration.
     """
 
     def __init__(
@@ -50,12 +53,18 @@ class BFVClient(HammingClientBase):
         response_modulus_bits: int = 50,
         skip_key_gen: bool = False,
         device: DeviceMode = "auto",
+        server_backend: BFVServerBackend = "optimized",
     ) -> None:
         if device not in ("cpu", "auto", "gpu"):
             raise ValueError("device must be 'auto', 'cpu', or 'gpu'")
         if device == "gpu":
             raise NotImplementedError("Native BFV currently supports only the CPU backend")
         self.device = "cpu"
+        if server_backend not in ("optimized", "reference"):
+            raise ValueError("server_backend must be 'optimized' or 'reference'")
+        self.server_backend = server_backend
+        self._server_evaluator: BFVEvaluator | None = None
+        self._evaluator_public_key: BFVPublicKey | None = None
         self.params = BFVParameters(
             poly_modulus_degree, plain_modulus, coeff_modulus_bits, decomposition_bits, error_eta
         )
@@ -108,6 +117,17 @@ class BFVClient(HammingClientBase):
         if self.keys is None:
             raise RuntimeError("Secret key not initialized; public-only clients cannot decrypt")
         return self.keys
+
+    def _evaluator(self) -> BFVEvaluator:
+        pk = self._pk()
+        if (
+            self._server_evaluator is None
+            or self._evaluator_public_key is not pk
+            or self._server_evaluator.backend != self.server_backend
+        ):
+            self._server_evaluator = BFVEvaluator(pk, self.server_backend)
+            self._evaluator_public_key = pk
+        return self._server_evaluator
 
     @staticmethod
     def has_gpu() -> bool:
@@ -162,6 +182,8 @@ class BFVClient(HammingClientBase):
             keys = {"pk": public_key, "sk": BFV.deserialize_secret_key(sk, public_key)}
         self.public_key = public_key
         self.keys = keys
+        self._server_evaluator = None
+        self._evaluator_public_key = None
 
     def _validate_vector(self, embd: Sequence[int]) -> None:
         if len(embd) != self.embed_len:
@@ -215,11 +237,11 @@ class BFVClient(HammingClientBase):
     def _distance_tile(
         self, query: BFVCiphertext, tile: BFVCiphertext, count: int
     ) -> BFVCiphertext:
-        pk = self._pk()
-        distance = BFV.xor(query, tile, pk)
+        evaluator = self._evaluator()
+        distance = evaluator.xor(query, tile)
         for i in range(self.padded_embed_len.bit_length() - 1):
             step = self.lanes_per_row * (1 << i)
-            distance = BFV.add(distance, BFV.rotate_rows(distance, step, pk), pk)
+            distance = evaluator.add(distance, evaluator.rotate_rows(distance, step))
         # The rotate/add tree repeats sums in each dimension block. Retain only
         # the first block in each row and clear unused lanes in a partial tile.
         if count not in self._mask_cache:
@@ -230,7 +252,7 @@ class BFVClient(HammingClientBase):
                 row, col = divmod(lane, self.lanes_per_row)
                 mask[row * (len(mask) // 2) + col] = 1
             self._mask_cache[count] = BFV.batch_encode(mask, self.params)
-        return BFV.multiply_plain(distance, self._mask_cache[count], pk)
+        return evaluator.multiply_plain(distance, self._mask_cache[count])
 
     def encode_hamming_server(
         self,
@@ -266,6 +288,7 @@ class BFVClient(HammingClientBase):
         capacity = self.vectors_per_ciphertext
         self._validate_count(vector_count, len(index), capacity)
         query_ct = BFV.ciphertext_from_ints(query, pk)
+        evaluator = self._evaluator()
         result = []
         tiles_per_response = self.padded_embed_len
         for start in range(0, len(index), tiles_per_response):
@@ -276,7 +299,9 @@ class BFVClient(HammingClientBase):
                 size = 1
                 while stack and stack[-1][1] == size:
                     left, _ = stack.pop()
-                    tile = BFV.add(left, BFV.rotate_rows(tile, -self.lanes_per_row * size, pk), pk)
+                    tile = evaluator.add(
+                        left, evaluator.rotate_rows(tile, -self.lanes_per_row * size)
+                    )
                     size *= 2
                 stack.append((tile, size))
             # Partial groups have a decreasing list of powers of two. Combining
@@ -284,8 +309,8 @@ class BFVClient(HammingClientBase):
             combined, _ = stack.pop()
             while stack:
                 left, size = stack.pop()
-                combined = BFV.add(
-                    left, BFV.rotate_rows(combined, -self.lanes_per_row * size, pk), pk
+                combined = evaluator.add(
+                    left, evaluator.rotate_rows(combined, -self.lanes_per_row * size)
                 )
             if compact:
                 combined = BFV.modulus_switch(combined, self.response_modulus_bits, pk)

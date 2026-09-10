@@ -12,6 +12,14 @@ xtrace\_sdk.crypto.encryption.bfv module
    :show-inheritance:
    :undoc-members:
 
+xtrace\_sdk.crypto.encryption.bfv\_evaluator module
+-------------------------------------------------
+
+.. automodule:: xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 xtrace\_sdk.crypto.encryption.aes module
 ----------------------------------------
 

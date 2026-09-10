@@ -18,8 +18,8 @@ def small_client(dimension: int = 3) -> BFVClient:
     return BFVClient(dimension, 32, 193, 120, 20, response_modulus_bits=40)
 
 
-def public_server(client: BFVClient) -> BFVClient:
-    server = BFVClient(skip_key_gen=True)
+def public_server(client: BFVClient, backend: str = "optimized") -> BFVClient:
+    server = BFVClient(skip_key_gen=True, server_backend=backend)
     server.load_config(json.loads(client.stringify_config()))
     server.load_stringified_keys(client.stringify_pk())
     assert server.keys is None
@@ -70,11 +70,14 @@ def test_packed_tile_row_and_response_boundaries(dimension: int) -> None:
     client = small_client(dimension)
     server = public_server(client)
     c = client.vectors_per_ciphertext
+    reference = public_server(client, "reference")
     for count in sorted({0, 1, c - 1, c, c + 1, 31, 32, 33, 67}):
         vectors, query, expected = data(count, dimension)
         index = client.encrypt_vec_packed(vectors)
         assert len(index) == (count + c - 1) // c
-        result = server.encode_hamming_server_packed(client.encrypt_vec_one(query), index, count)
+        encrypted_query = client.encrypt_vec_one(query)
+        result = server.encode_hamming_server_packed(encrypted_query, index, count)
+        assert result == reference.encode_hamming_server_packed(encrypted_query, index, count)
         assert len(result) == (count + 31) // 32
         distances = client.decode_hamming_client_packed(result, count)
         assert distances == expected
@@ -102,6 +105,8 @@ def test_partial_tile_padding_is_zero_and_compaction_preserves_distances() -> No
     assert all(slots[i] == 0 for i in range(32) if i not in used)
     compact = BFV.ciphertext_to_ints(BFV.modulus_switch(ct, 40, pk), pk)
     assert client.decode_hamming_client_packed([compact], 13) == expected
+    reference = public_server(client, "reference")
+    assert reference.encode_hamming_server_packed(query_ct, index, 13, compact=False) == response
     assert sum(v.bit_length() for v in compact) < sum(v.bit_length() for v in response[0]) / 2
 
 
@@ -168,9 +173,33 @@ def test_invalid_vectors_keys_configuration_and_counts() -> None:
     with pytest.raises(NotImplementedError, match="CPU"):
         BFVClient(device="gpu")
     assert not client.has_gpu()
+    with pytest.raises(ValueError, match="server_backend"):
+        BFVClient(skip_key_gen=True, server_backend="invalid")
     for dimension in (0, -1, 17):
         with pytest.raises(ValueError, match="embed_len"):
             small_client(dimension)
+
+
+def test_backend_and_key_reload_reset_public_evaluator() -> None:
+    client = small_client()
+    server = public_server(client, "reference")
+    assert server.server_backend == "reference"
+    assert "server_backend" not in json.loads(server.stringify_config())
+    query = client.encrypt_vec_one([0, 1, 0])
+    reference = server.encode_hamming_server(query, query)
+    server.server_backend = "optimized"
+    assert server.encode_hamming_server(query, query) == reference
+    old_evaluator = server._evaluator()
+    assert old_evaluator._switch_keys
+    replacement = small_client()
+    server.load_stringified_keys(replacement.stringify_pk())
+    assert server._server_evaluator is None
+    assert server._evaluator() is not old_evaluator
+    assert not server._evaluator()._switch_keys
+    with pytest.raises(ValueError, match="header or key"):
+        server.encode_hamming_server(query, query)
+    query = replacement.encrypt_vec_one([0, 1, 0])
+    assert replacement.decode_hamming_client_one(server.encode_hamming_server(query, query)) == 0
 
 
 @pytest.fixture(scope="module")
@@ -178,7 +207,11 @@ def default_case() -> tuple[BFVClient, list[list[int]], list[int], list[int]]:
     client = BFVClient()
     vectors, query, expected = data(33, 512)
     index = client.encrypt_vec_packed(vectors)
-    result = client.encode_hamming_server_packed(client.encrypt_vec_one(query), index, len(vectors))
+    encrypted_query = client.encrypt_vec_one(query)
+    result = client.encode_hamming_server_packed(encrypted_query, index, len(vectors))
+    reference = BFVClient(skip_key_gen=True, server_backend="reference")
+    reference.public_key = client._pk()
+    assert reference.encode_hamming_server_packed(encrypted_query, index, len(vectors)) == result
     distances = client.decode_hamming_client_packed(result, len(vectors))
     assert distances == expected
     assert BFV.noise_budget(BFV.ciphertext_from_ints(result[0], client._pk()), client._keys()) >= 10

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- Native `BFVClient` server evaluation now defaults to cached GMP key switching: gadget products are accumulated and folded before unpacking, with fewer coefficient checks in Python. `server_backend="reference"` retains the original arithmetic. Parameters, ciphertexts and serialized keys remain compatible. A paired server benchmark checks identical ciphertext outputs and separates first-query from warm-query timings.
 - **Device selection moved from the `DEVICE` environment variable to a `device=` constructor keyword** on `PaillierClient`, `PaillierLookupClient`, `ExecutionContext.create`, `ExecutionContext.load_from_disk`, and `ExecutionContext.load_from_remote`. The new default is `device="auto"`: clients probe for the GPU extension at construction time and fall back to CPU silently when no GPU is present. If a GPU is detected on the host (`/dev/nvidia0`, `nvidia-smi`, or `CUDA_VISIBLE_DEVICES`) but the extension fails to load, a warning is emitted instead of a silent CPU fallback so misconfigured GPU hosts don't quietly run on CPU. `device="gpu"` raises if the extension is unavailable; `device="cpu"` skips probing entirely.
 - The `DEVICE` environment variable is no longer read. Existing callers must migrate to the `device=` kwarg.
 

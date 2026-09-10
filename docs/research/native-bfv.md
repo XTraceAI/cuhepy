@@ -16,11 +16,14 @@ All paths are relative to the repository root.
 | File | Responsibility |
 | --- | --- |
 | `src/xtrace_sdk/x_vec/crypto/encryption/bfv.py` | Polynomial arithmetic, key generation, encryption/decryption, batch encoding, homomorphic operations, evaluation keys, modulus switching, serialization |
+| `src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py` | Cached public-key server arithmetic, with optimized and reference backends |
 | `src/xtrace_sdk/x_vec/crypto/bfv_client.py` | `HammingClientBase` interface, binary-vector layout, public-only server evaluation, packed responses, client decoding |
 | `src/xtrace_sdk/x_vec/utils/xtrace_types.py` | BFV parameter, polynomial, ciphertext and key types alongside the existing scheme types |
 | `tests/x_vec/test_bfv_encryption.py` | Independent polynomial oracle and cryptographic arithmetic tests |
+| `tests/x_vec/test_bfv_evaluator.py` | Fused key-switch oracle, exact reference comparisons, validation and cache lifecycle tests |
 | `tests/x_vec/test_bfv_client.py` | Client, persistence, process separation, packing boundaries, default settings and optional SEAL comparison |
 | `benchmarks/bfv_client_matrix.py` | Native BFV and existing CPU Paillier/Lookup timing and wire-size comparison |
+| `benchmarks/bfv_server.py` | Paired native server comparison on identical encrypted inputs, with first/warm searches and optional profiles |
 
 The only shared cryptographic interface correction is to the return annotations
 in `HomomorphicBase`: encryption returns a ciphertext, and decryption returns a
@@ -39,7 +42,7 @@ query = [0, 1] * 256
 vectors = [query[:], [1 - bit for bit in query], [1 - query[0], *query[1:]]]
 
 # The server gets configuration and public/evaluation keys only.
-server = BFVClient(skip_key_gen=True)
+server = BFVClient(skip_key_gen=True, server_backend="optimized")
 server.load_config(json.loads(client.stringify_config()))
 server.load_stringified_keys(client.stringify_pk())
 assert server.keys is None
@@ -69,6 +72,13 @@ distance per vector. `encrypt_vec_batch` deliberately keeps that contract;
 packing is exposed through separate methods.
 
 `device="auto"` currently resolves to CPU. `device="gpu"` raises a clear error.
+`server_backend="optimized"` is the default; use `"reference"` for the original
+server arithmetic. This is a runtime setting, so it is not stored in
+`stringify_config()` and is preserved when loading a crypto configuration.
+Reuse a server instance across queries to reuse its prepared public keys.
+`load_stringified_keys()` discards the evaluator cache when loading keys. Change
+keys through this method rather than mutating an initialized public-key dictionary.
+
 BFV is available directly as a local client; `ExecutionContext`, `DataLoader`,
 and the current XTrace HTTP endpoints do not implement its index/wire protocol.
 Adding a production server path is separate work. Distances are computed at the
@@ -129,10 +139,58 @@ arithmetic uses a single large modulus; only the plaintext batch transform uses
 an NTT. The small-ring schoolbook oracle tests products through 512-bit
 coefficients, including worst-case all-maximum inputs that exercise radix carries.
 
-Natural next optimizations are cached transform plans, RNS/NTT polynomial
-products, faster gadget decomposition/key switching, then CUDA kernels behind
-the same primitive operations. Any replacement must preserve the unreduced
-product needed by BFV's scale-and-round step.
+The optimized evaluator accelerates gadget decomposition/key switching as
+described below. RNS/NTT polynomial products and then CUDA kernels are possible
+next steps. Any replacement must preserve the unreduced product needed by
+BFV's scale-and-round step.
+
+### Cached and fused server evaluation
+
+The original server profile is dominated by key switching for rotations and
+relinearization. With the default six gadget digits, each switch originally
+made twelve polynomial products. Each product scanned coefficient widths,
+packed both operands, unpacked the convolution, folded its upper half and
+reduced coefficients. Intermediate results were added and reduced again.
+
+`BFVEvaluator` keeps the same arithmetic but performs less repeated work:
+
+1. Lazily pack each public evaluation key once, then reuse it across tiles and
+   queries. Cache entries belong to one public-key snapshot and are limited to
+   the number of evaluation keys in that snapshot.
+2. Pack each ciphertext digit once for both output components. Accumulate all
+   six products for each component inside GMP, before unpacking or reducing.
+3. Fold the accumulated product inside GMP using a guarded radix subtraction.
+   Unpack just two N-coefficient polynomials per switch, instead of twelve
+   ordinary convolutions with up to 2N coefficients each.
+4. Check native integer coefficient types without repeated `Integral` ABC
+   lookups or conversions to Python integers, and check ranges using `min` and
+   `max`. Other integer types still use the reference validator. Wire parsing
+   and validation remain in place.
+
+This follows the same digit/key dot product as the textbook's
+[BFV key switching](https://fhetextbook.github.io/HomomorphicKeySwitching1.html).
+It changes how that dot product is evaluated, not the keys or error terms.
+The packing uses the existing
+[GMP `pack` and `unpack` operations](https://gmpy2.readthedocs.io/en/latest/mpz.html).
+Ciphertext multiplication still uses the reference exact tensor product and
+scale-and-round, followed by the optimized relinearization.
+
+For the packing bound, let L be the number of gadget digits and b their width.
+An ordinary convolution coefficient in the accumulated dot product is less
+than `L*N*2^b*q`. The radix width is
+`w = bit_length(q) + b + bit_length(L*N) + 1`. Thus each coefficient is below
+`H = 2^(w-1)`. Split the packed product at N radix digits, subtract its upper
+half from its lower half, and add H in every digit. Each resulting digit lies
+strictly between zero and `2^w`, so there is no borrow or carry between lanes.
+Unpack N digits, subtract H, and reduce modulo q. Linearity makes this exactly
+the same as folding and reducing every individual product before summation.
+Tests cover zero, sparse, random and maximum coefficients, including a one-bit
+gadget radix, a single gadget digit and 512-bit coefficients.
+
+The tradeoff is extra server RAM for prepared public keys. These are local
+caches; no cache data is serialized or sent to the client. Both backends produce
+identical ciphertext coefficients for identical inputs, including after response
+compaction, so their noise budgets and query/response sizes also match.
 
 ## Packed Hamming layout
 
@@ -188,9 +246,18 @@ occur if an unsupported circuit exhausts its noise.
 ## Tests and benchmarks
 
 ```bash
-.venv/bin/python -m pytest tests/x_vec/test_bfv_encryption.py tests/x_vec/test_bfv_client.py -q
+.venv/bin/python -m pytest tests/x_vec/test_bfv_encryption.py \
+  tests/x_vec/test_bfv_evaluator.py tests/x_vec/test_bfv_client.py -q
 .venv/bin/python benchmarks/bfv_client_matrix.py --num-vectors 1024 \
-  --json-out benchmarks/results/native_bfv_1024.json
+  --json-out /tmp/native_bfv_matrix.json
+
+# Compare original and optimized native servers using the same ciphertexts.
+.venv/bin/python benchmarks/bfv_server.py --num-vectors 1024 --repeats 3 \
+  --json-out /tmp/native_bfv_server_1024.json
+
+# Smaller comparison, plus separate profiles (not included in timing samples).
+.venv/bin/python benchmarks/bfv_server.py --num-vectors 32 --repeats 4 \
+  --profile-dir /tmp/bfv-profiles --json-out /tmp/native_bfv_server_32.json
 
 # Compare both BFV layouts and both existing CPU Paillier clients on a small batch.
 .venv/bin/python benchmarks/bfv_client_matrix.py --num-vectors 16 \
@@ -207,6 +274,13 @@ vectors. No account, network connection or GPU is needed.
 The benchmark reports key generation/export/import, index and query encryption,
 server evaluation, client decryption/decoding, and serialization separately.
 `--repeats` generates independent runs; raw results and median timings are saved.
+Use `--server-backend reference` in the matrix benchmark to run the original
+native evaluator. Its server time includes first-use cache preparation for the
+optimized backend. The focused `bfv_server.py` benchmark instead shares one key
+set and encrypted input between both backends, alternates their execution order,
+and reports first-search and subsequent warm-search times separately. Every
+search must return the same ciphertexts and all plaintext-oracle distances.
+Its profiles are additional runs excluded from reported timings.
 The four size categories are:
 
 | Measurement | What is included | When it is paid |
@@ -238,7 +312,8 @@ inputs. Each decrypted all 1,024 distances correctly and selected positions
 run, not a statistically established performance claim. The JSON includes
 source-file SHA-256 hashes because the implementation was uncommitted during
 measurement; no other test or benchmark was running concurrently. All SDK source
-hashes match this implementation. The benchmark harness received formatting and
+hashes identify the initial reference implementation; the server optimization
+is measured separately below. The benchmark harness received formatting and
 lint fixes outside the measured operations afterward.
 
 | Bytes | Native BFV, packed | Existing Paillier CPU, key_len=1024 |
@@ -267,7 +342,60 @@ Server compute and larger index/key storage are the present costs of moving
 distance decoding off the client. The result is a working optimization baseline,
 not an end-to-end latency improvement.
 
-Validation for this change: 121 offline tests passed across `experiments/bfv`,
+Validation for the initial implementation: 121 offline tests passed across `experiments/bfv`,
 `tests/cli`, and `tests/x_vec`, with the live Hamming/metadata service tests and
 CUDA tests excluded. The new native modules account for 39 of those tests,
 including the optional SEAL oracle in this environment.
+
+### Server optimization measurements
+
+The paired benchmark keeps the same native BFV parameters, public keys, query
+and encrypted index for both backends. Its first search includes lazy cache
+preparation; later searches reuse the prepared keys and plaintext masks. Each
+search checks both exact ciphertext equality and every decoded Hamming distance.
+The server uses only public keys. These are local CPU measurements with no
+concurrent tests or other benchmarks, not network or production latency results.
+
+Saved data and a profile summary:
+
+- [32-vector comparison](../../benchmarks/results/native_bfv_server_32.json):
+  one first search and three warm searches per backend.
+- [1,024-vector comparison](../../benchmarks/results/native_bfv_server_1024.json):
+  one first search and two warm searches per backend.
+- [32-vector profiles](../../benchmarks/results/native_bfv_server_profile_32.txt):
+  separate extra searches after warming both servers. Instrumented timings are
+  excluded from the speedup calculations.
+
+| 512-bit vectors | Search | Reference seconds | Optimized seconds | Speedup |
+| ---: | --- | ---: | ---: | ---: |
+| 32 | First, including preparation | 3.391 | 1.878 | 1.81x |
+| 32 | Warm median, 3 searches | 3.648 | 1.866 | 1.96x |
+| 1,024 | First, including preparation | 121.564 | 60.355 | 2.01x |
+| 1,024 | Warm median, 2 searches | 118.244 | 58.627 | 2.02x |
+
+The earlier 108.296-second result is retained as historical data. Ratios here
+use reference and optimized runs from the same benchmark session, so variation
+between sessions is not counted as an optimization benefit. The saved JSON
+includes the environment, all timing samples, execution order, source hashes,
+cache payload size, wire sizes and correctness results.
+
+In the 32-vector profiles, Python function calls fall from 19,838,069 to
+3,581,974, and GMP unpack calls from 268 to 58. Most remaining evaluation time
+is in the fused gadget dot products, primarily the large GMP integer products.
+The cache trades extra server memory for less repeated work; its recorded byte
+count covers prepared GMP integers and folding constants, not total process
+memory or peak temporary allocations. Ciphertext outputs, noise and transmitted
+sizes match exactly between backends for the same input.
+
+The 1,024-vector run prepared 16 switch keys with 52,083,728 bytes of cached
+GMP values (about 52.1 MB, additional to the original public key). Both backends
+returned one 102,496-byte response; query plus response was 471,250 bytes. All
+1,024 distances matched, top-three positions were `[0, 1023, 81]`, and the
+compacted result retained a 26-bit diagnostic noise budget. These native settings
+remain distinct from SEAL's; this benchmark compares native backends only.
+
+Validation after optimization: 130 offline tests passed, including 48 native BFV
+tests and the optional SEAL oracle. Ruff and mypy passed for the SDK and BFV
+benchmark files. The live service and CUDA tests remain excluded from this CPU
+change. An offline Sphinx build retains the preexisting README cross-reference
+warning in the earlier SEAL research report.
