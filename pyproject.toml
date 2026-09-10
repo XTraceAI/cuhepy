@@ -41,11 +41,12 @@ source = "vcs"
 local_scheme = "no-local-version"
 
 [tool.hatch.build]
-# Force-include the GPU extension binaries even though *.so is in .gitignore.
-# These are produced by build_gpu_binaries.sh prior to `uv build` in CI.
+# Force-include optional native extension binaries even though *.so is ignored.
+# GPU binaries use build_gpu_binaries.sh; BFV CPU kernels use their local Makefile.
 artifacts = [
     "src/xtrace_sdk/x_vec/crypto/paillier_gpu_ext/*.so",
     "src/xtrace_sdk/x_vec/crypto/paillier_lookup_gpu_ext/*.so",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/*.so",
 ]
 
 [tool.hatch.build.targets.wheel]

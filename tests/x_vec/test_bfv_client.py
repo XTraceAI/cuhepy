@@ -66,9 +66,12 @@ def test_base_interface_and_individual_batch() -> None:
 
 
 @pytest.mark.parametrize("dimension", [1, 3, 9, 16])
-def test_packed_tile_row_and_response_boundaries(dimension: int) -> None:
+@pytest.mark.parametrize("backend", ["optimized", "rns"])
+def test_packed_tile_row_and_response_boundaries(dimension: int, backend: str) -> None:
+    if backend == "rns":
+        pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
     client = small_client(dimension)
-    server = public_server(client)
+    server = public_server(client, backend)
     c = client.vectors_per_ciphertext
     reference = public_server(client, "reference")
     for count in sorted({0, 1, c - 1, c, c + 1, 31, 32, 33, 67}):
@@ -110,7 +113,10 @@ def test_partial_tile_padding_is_zero_and_compaction_preserves_distances() -> No
     assert sum(v.bit_length() for v in compact) < sum(v.bit_length() for v in response[0]) / 2
 
 
-def test_public_only_evaluator_in_separate_process(tmp_path: Path) -> None:
+@pytest.mark.parametrize("backend", ["optimized", "rns"])
+def test_public_only_evaluator_in_separate_process(tmp_path: Path, backend: str) -> None:
+    if backend == "rns":
+        pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
     client = small_client(9)
     vectors, query, expected = data(35, 9)
     public = json.loads(client.stringify_pk())
@@ -129,7 +135,7 @@ import json, sys
 from pathlib import Path
 from xtrace_sdk.x_vec.crypto.bfv_client import BFVClient
 p = json.loads(Path(sys.argv[1]).read_text())
-s = BFVClient(skip_key_gen=True)
+s = BFVClient(skip_key_gen=True, server_backend=sys.argv[2])
 s.load_config(p['config'])
 s.load_stringified_keys(p['pk'])
 assert s.keys is None
@@ -140,7 +146,7 @@ response = s.encode_hamming_server_packed(
 print(json.dumps([[format(v, 'x') for v in row] for row in response]))
 """
     run = subprocess.run(
-        [sys.executable, "-c", script, str(path)],
+        [sys.executable, "-c", script, str(path), backend],
         capture_output=True,
         text=True,
         check=True,

@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import cProfile
 import hashlib
+import importlib.metadata
 import json
 import platform
 import statistics
@@ -19,7 +20,7 @@ import sys
 from datetime import UTC, datetime
 from functools import partial
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import gmpy2
 
@@ -47,6 +48,16 @@ def main() -> None:
     )
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
+        "--backends",
+        default="reference,optimized",
+        help="Comma-separated native backends: reference,optimized,rns",
+    )
+    parser.add_argument(
+        "--seal",
+        action="store_true",
+        help="Also measure the preserved SEAL prototype on the same plaintext workload",
+    )
+    parser.add_argument(
         "--profile-dir",
         type=Path,
         help="Run one extra warm search per backend under cProfile, outside reported timings",
@@ -54,6 +65,16 @@ def main() -> None:
     args = parser.parse_args()
     if args.num_vectors < 1 or args.repeats < 1 or args.embed_len < 1:
         parser.error("num-vectors, embed-len and repeats must be positive")
+    names = args.backends.split(",")
+    if (
+        not names
+        or len(set(names)) != len(names)
+        or any(b not in ("reference", "optimized", "rns") for b in names)
+    ):
+        parser.error("backends must be distinct native backend names")
+    if args.seal and (args.poly_modulus_degree != 8192 or args.plain_modulus != 65537):
+        parser.error("the SEAL comparison requires N=8192 and t=65537")
+    backends = tuple(cast(BFVServerBackend, name) for name in names)
     vectors, query, expected = make_data(args.num_vectors, args.embed_len, args.seed)
     print("Generating one key set and encrypting the shared input", file=sys.stderr, flush=True)
     setup: dict[str, float] = {}
@@ -74,7 +95,6 @@ def main() -> None:
     server_index, server_query = unpack_packet(index_wire), unpack_packet(query_wire)[0]
     setup["public_key_export_s"], public_json = time_call(client.stringify_pk)
     config = json.loads(client.stringify_config())
-    backends: tuple[BFVServerBackend, ...] = ("reference", "optimized")
     servers = {}
     for backend in backends:
         server = BFVClient(skip_key_gen=True, server_backend=backend, **config)
@@ -91,22 +111,76 @@ def main() -> None:
             server_query, server_index, len(vectors)
         )
 
-    timings: dict[str, list[float]] = {backend: [] for backend in backends}
+    seal_info: dict[str, Any] | None = None
+    if args.seal:
+        sys.path.insert(0, str(REPO_ROOT / "experiments/bfv"))
+        from packed_hamming import BfvClient, BfvServer
+
+        print(
+            "Preparing the preserved SEAL prototype on the same vectors",
+            file=sys.stderr,
+            flush=True,
+        )
+        seal_client = BfvClient(args.embed_len)
+        seal_bundle = seal_client.server_bundle()
+        seal_server = BfvServer(seal_bundle)
+        seal_index, seal_query = (
+            seal_client.encrypt_index(vectors),
+            seal_client.encrypt_query(query),
+        )
+        seal_info = {
+            "tenseal": importlib.metadata.version("tenseal"),
+            "poly_modulus_degree": 8192,
+            "plain_modulus": 65537,
+            "active_coeff_modulus_bits": [
+                p.bit_count()
+                for p in seal_client.context.first_context_data().parms().coeff_modulus()
+            ],
+            "key_coeff_modulus_bits": [
+                p.bit_count()
+                for p in seal_client.context.key_context_data().parms().coeff_modulus()
+            ],
+            "security_setting": "SEAL TC128; no equivalent-security claim for native parameters",
+            "index_bytes": len(seal_index),
+            "query_bytes": len(seal_query),
+            "public_key_bytes": len(seal_bundle),
+            "timing_notes": "SEAL search includes its serialization, MessagePack and binding temporary-file I/O. Native times exclude outer MessagePack; both include ciphertext decoding, arithmetic, compaction and ciphertext encoding. These are practical server calls with different parameters/formats, not identical arithmetic kernels.",
+        }
+
+    measured_backends = (*backends, "seal") if args.seal else backends
+    timings: dict[str, list[float]] = {backend: [] for backend in measured_backends}
     order = []
     reference_response: list[list[int]] | None = None
     for repeat in range(args.repeats):
         # Alternate ordering to reduce systematic first/last-run effects.
-        for backend in backends if repeat % 2 == 0 else backends[::-1]:
-            print(f"{backend}: search {repeat + 1}/{args.repeats}", file=sys.stderr, flush=True)
-            elapsed, response = time_call(partial(evaluate, backend))
-            timings[backend].append(elapsed)
-            order.append({"backend": backend, "repeat": repeat, "server_compute_s": elapsed})
-            if reference_response is None:
-                reference_response = response
-            assert response == reference_response, "Backend ciphertexts differ"
-            assert client.decode_hamming_client_packed(response, len(vectors)) == expected
+        for backend_name in measured_backends if repeat % 2 == 0 else measured_backends[::-1]:
             print(
-                f"{backend}: {elapsed:.6f} s; ciphertexts and all distances verified",
+                f"{backend_name}: search {repeat + 1}/{args.repeats}", file=sys.stderr, flush=True
+            )
+            if backend_name == "seal":
+                elapsed, seal_response = time_call(
+                    partial(seal_server.search, seal_index, seal_query)
+                )
+                assert [d for _, d in seal_client.decrypt_distances(seal_response)] == expected
+                assert seal_info is not None
+                seal_info["response_bytes"] = len(seal_response)
+                seal_info["all_distances_correct"] = True
+                seal_info["minimum_response_noise_budget_bits"] = min(
+                    seal_client.noise_budgets(seal_response)
+                )
+            else:
+                elapsed, response = time_call(
+                    partial(evaluate, cast(BFVServerBackend, backend_name))
+                )
+                if reference_response is None:
+                    reference_response = response
+                assert response == reference_response, "Native backend ciphertexts differ"
+                assert client.decode_hamming_client_packed(response, len(vectors)) == expected
+            timings[backend_name].append(elapsed)
+            order.append({"backend": backend_name, "repeat": repeat, "server_compute_s": elapsed})
+            print(
+                f"{backend_name}: {elapsed:.6f} s; all distances verified"
+                + ("; identical native ciphertexts" if backend_name != "seal" else ""),
                 file=sys.stderr,
                 flush=True,
             )
@@ -137,8 +211,16 @@ def main() -> None:
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_client.py",
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py",
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py",
+        REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/encryption/bfv_rns.py",
+        *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.cpp"),
+        *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.h"),
+        REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile",
         REPO_ROOT / "src/xtrace_sdk/x_vec/utils/xtrace_types.py",
     ]
+    if "rns" in backends:
+        source_paths.extend((REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.so"))
+    if args.seal:
+        source_paths.append(REPO_ROOT / "experiments/bfv/packed_hamming.py")
     output: dict[str, Any] = {
         "environment": {
             "utc": datetime.now(UTC).isoformat(),
@@ -171,11 +253,24 @@ def main() -> None:
         "setup_timings": setup,
         "runs": order,
         "summary": summary,
-        "first_search_speedup": timings["reference"][0] / timings["optimized"][0],
+        "first_search_speedup": timings["reference"][0] / timings["optimized"][0]
+        if "reference" in timings and "optimized" in timings
+        else None,
         "warm_median_speedup": statistics.median(timings["reference"][1:])
         / statistics.median(timings["optimized"][1:])
-        if args.repeats > 1
+        if args.repeats > 1 and "reference" in timings and "optimized" in timings
         else None,
+        "speedups_relative_to_first_native_backend": {
+            backend: {
+                "first": timings[backends[0]][0] / values[0],
+                "warm_median": statistics.median(timings[backends[0]][1:])
+                / statistics.median(values[1:])
+                if args.repeats > 1
+                else None,
+            }
+            for backend, values in timings.items()
+        },
+        "seal_comparison": seal_info,
         "sizes": {
             "encrypted_index_bytes": len(index_wire),
             "public_keys_bytes": key_bytes,
@@ -183,18 +278,10 @@ def main() -> None:
             "response_bytes": len(response_wire),
             "query_plus_response_bytes": len(query_wire) + len(response_wire),
         },
-        "optimized_cached_switch_keys": len(servers["optimized"]._evaluator()._switch_keys),
-        "optimized_packed_cache_payload_bytes": sum(
-            sys.getsizeof(value)
-            for key in servers["optimized"]._evaluator()._switch_keys.values()
-            for value in (
-                key.low_mask,
-                key.bias_coefficient,
-                key.bias,
-                *(v for pair in key.pairs for v in pair),
-            )
-        ),
-        "cache_size_note": "sys.getsizeof of packed GMP values, including folding constants; additional to the existing public key. Excludes small Python containers and transient arithmetic allocations; not peak RSS.",
+        "caches": {
+            backend: server._evaluator().cache_info() for backend, server in servers.items()
+        },
+        "cache_size_note": "Additional to the existing public key: GMP object payloads including folding constants, or native NTT coefficient arrays and transform tables. Excludes containers, CRT constants and transient allocations; not peak RSS.",
         "minimum_response_noise_budget_bits": min(
             BFV.noise_budget(BFV.ciphertext_from_ints(ct, client._pk()), client._keys())
             for ct in reference_response

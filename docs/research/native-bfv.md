@@ -16,14 +16,15 @@ All paths are relative to the repository root.
 | File | Responsibility |
 | --- | --- |
 | `src/xtrace_sdk/x_vec/crypto/encryption/bfv.py` | Polynomial arithmetic, key generation, encryption/decryption, batch encoding, homomorphic operations, evaluation keys, modulus switching, serialization |
-| `src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py` | Cached public-key server arithmetic, with optimized and reference backends |
+| `src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py` | Cached public-key server arithmetic, with optimized, reference and optional RNS backends |
+| `src/xtrace_sdk/x_vec/crypto/encryption/bfv_rns.py` and `src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/` | Optional native RNS/NTT CPU arithmetic and its Python boundary |
 | `src/xtrace_sdk/x_vec/crypto/bfv_client.py` | `HammingClientBase` interface, binary-vector layout, public-only server evaluation, packed responses, client decoding |
 | `src/xtrace_sdk/x_vec/utils/xtrace_types.py` | BFV parameter, polynomial, ciphertext and key types alongside the existing scheme types |
 | `tests/x_vec/test_bfv_encryption.py` | Independent polynomial oracle and cryptographic arithmetic tests |
 | `tests/x_vec/test_bfv_evaluator.py` | Fused key-switch oracle, exact reference comparisons, validation and cache lifecycle tests |
 | `tests/x_vec/test_bfv_client.py` | Client, persistence, process separation, packing boundaries, default settings and optional SEAL comparison |
 | `benchmarks/bfv_client_matrix.py` | Native BFV and existing CPU Paillier/Lookup timing and wire-size comparison |
-| `benchmarks/bfv_server.py` | Paired native server comparison on identical encrypted inputs, with first/warm searches and optional profiles |
+| `benchmarks/bfv_server.py` | Native comparisons on identical encrypted inputs, with first/warm searches, optional SEAL comparison and profiles |
 
 The only shared cryptographic interface correction is to the return annotations
 in `HomomorphicBase`: encryption returns a ciphertext, and decryption returns a
@@ -78,6 +79,10 @@ server arithmetic. This is a runtime setting, so it is not stored in
 Reuse a server instance across queries to reuse its prepared public keys.
 `load_stringified_keys()` discards the evaluator cache when loading keys. Change
 keys through this method rather than mutating an initialized public-key dictionary.
+
+An optional `server_backend="rns"` uses our compiled CPU RNS/NTT kernels. See
+[native BFV RNS/NTT arithmetic](native-bfv-ntt.md) for the SEAL source review,
+build instructions, exact arithmetic bounds and benchmark comparisons.
 
 BFV is available directly as a local client; `ExecutionContext`, `DataLoader`,
 and the current XTrace HTTP endpoints do not implement its index/wire protocol.
@@ -134,15 +139,16 @@ convolution. Unpacking and subtracting the upper half implements `X^N = -1`.
 The result remains exact, including negative coefficients, until the caller
 scales or reduces it. Squaring reuses the packed operand and one cross product.
 
-This is **Kronecker substitution**, not SEAL's RNS implementation. Ciphertext
-arithmetic uses a single large modulus; only the plaintext batch transform uses
-an NTT. The small-ring schoolbook oracle tests products through 512-bit
+This is **Kronecker substitution**. The reference and optimized GMP backends use
+a single large modulus; only their plaintext batch transform uses an NTT.
+The small-ring schoolbook oracle tests products through 512-bit
 coefficients, including worst-case all-maximum inputs that exercise radix carries.
 
 The optimized evaluator accelerates gadget decomposition/key switching as
-described below. RNS/NTT polynomial products and then CUDA kernels are possible
-next steps. Any replacement must preserve the unreduced product needed by
-BFV's scale-and-round step.
+described below. The optional [RNS/NTT backend](native-bfv-ntt.md) now implements
+an alternative polynomial multiplication path on the CPU. It preserves the
+unreduced product needed by BFV's scale-and-round step. CUDA kernels remain
+future work.
 
 ### Cached and fused server evaluation
 

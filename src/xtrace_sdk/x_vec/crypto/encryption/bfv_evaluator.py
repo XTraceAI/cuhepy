@@ -6,12 +6,14 @@ noise, or wire formats. It shares the scheme's experimental, variable-time statu
 """
 
 from dataclasses import dataclass
-from typing import Literal
+import sys
+from typing import Any, Literal
 
 import gmpy2
 from gmpy2 import mpz
 
 from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV, _automorphism
+from xtrace_sdk.x_vec.crypto.encryption.bfv_rns import BFVRNSArithmetic
 from xtrace_sdk.x_vec.utils.xtrace_types import (
     BFVCiphertext,
     BFVPolynomial,
@@ -19,7 +21,7 @@ from xtrace_sdk.x_vec.utils.xtrace_types import (
     BFVSwitchKey,
 )
 
-BFVServerBackend = Literal["optimized", "reference"]
+BFVServerBackend = Literal["optimized", "reference", "rns"]
 
 
 @dataclass(frozen=True)
@@ -73,11 +75,12 @@ class BFVEvaluator:
     """Reusable native BFV server arithmetic, bound to one public key.
 
     ``optimized`` lazily caches packed evaluation keys and fuses gadget products;
-    ``reference`` delegates to the original BFV routines. Both return identical
+    ``reference`` delegates to the original BFV routines. ``rns`` uses the
+    optional native C++ RNS/NTT kernels. All backends return identical
     ciphertexts. Reuse one evaluator across queries to amortize preparation.
 
     :param pk: Valid public key from key generation or public-key deserialization.
-    :param backend: ``optimized`` (default) or ``reference``.
+    :param backend: ``optimized`` (default), ``reference``, or ``rns``.
 
     The key dictionaries are snapshotted; immutable polynomial tuples are shared.
     Construct a new evaluator when changing keys. The cache is bounded by the
@@ -85,12 +88,32 @@ class BFVEvaluator:
     """
 
     def __init__(self, pk: BFVPublicKey, backend: BFVServerBackend = "optimized") -> None:
-        if backend not in ("optimized", "reference"):
-            raise ValueError("server_backend must be 'optimized' or 'reference'")
+        if backend not in ("optimized", "reference", "rns"):
+            raise ValueError("server_backend must be 'optimized', 'reference', or 'rns'")
         self.backend = backend
         self._pk: BFVPublicKey = {**pk, "galois_keys": dict(pk["galois_keys"])}
         # Exponent zero identifies relinearization; Galois exponents are odd.
         self._switch_keys: dict[int, _PackedSwitchKey] = {}
+        self._rns = BFVRNSArithmetic(self._pk) if backend == "rns" else None
+
+    def cache_info(self) -> dict[str, Any]:
+        """Report prepared public-key payloads; excludes peak temporary allocations."""
+        if self._rns is not None:
+            return self._rns.cache_info()
+        return {
+            "switch_keys": len(self._switch_keys),
+            "key_payload_bytes": sum(
+                sys.getsizeof(value)
+                for key in self._switch_keys.values()
+                for value in (
+                    key.low_mask,
+                    key.bias_coefficient,
+                    key.bias,
+                    *(v for pair in key.pairs for v in pair),
+                )
+            ),
+            "transform_table_bytes": 0,
+        }
 
     def _validate(self, ciphertext: BFVCiphertext) -> None:
         pk = self._pk
@@ -122,6 +145,9 @@ class BFVEvaluator:
 
     def _switch(self, poly: BFVPolynomial, exponent: int) -> tuple[BFVPolynomial, BFVPolynomial]:
         pk, params = self._pk, self._pk["params"]
+        if self._rns is not None:
+            key = pk["relin_key"] if exponent == 0 else pk["galois_keys"][exponent]
+            return self._rns.switch(poly, exponent, key)
         if exponent not in self._switch_keys:
             key = pk["relin_key"] if exponent == 0 else pk["galois_keys"][exponent]
             self._switch_keys[exponent] = _PackedSwitchKey.compile(
@@ -159,6 +185,14 @@ class BFVEvaluator:
 
     def multiply_plain(self, ciphertext: BFVCiphertext, plaintext: BFVPolynomial) -> BFVCiphertext:
         """Apply an unscaled plaintext polynomial, e.g. a distance slot mask."""
+        if self._rns is not None and ciphertext.modulus == self._pk["q"]:
+            self._validate(ciphertext)
+            plaintext = BFV._plaintext(plaintext, self._pk["params"])
+            return BFVCiphertext(
+                tuple(self._rns.product(c, plaintext) for c in ciphertext.components),
+                ciphertext.modulus,
+                ciphertext.key_id,
+            )
         return BFV.multiply_plain(ciphertext, plaintext, self._pk)
 
     def relinearize(self, ciphertext: BFVCiphertext) -> BFVCiphertext:
@@ -185,13 +219,52 @@ class BFVEvaluator:
         )
 
     def multiply(self, lhs: BFVCiphertext, rhs: BFVCiphertext) -> BFVCiphertext:
-        """Keep the reference exact tensor product and scale; accelerate relinearization."""
+        """Exact integer tensor product, scale-and-round, then relinearization."""
+        if self._rns is not None:
+            self._pair(lhs, rhs)
+            if lhs.modulus != self._pk["q"] or len(lhs.components) != 2:
+                raise ValueError("Multiplication requires two components at the original modulus")
+            result = BFVCiphertext(
+                self._rns.multiply(
+                    lhs.components, rhs.components, self._pk["params"].plain_modulus
+                ),
+                lhs.modulus,
+                lhs.key_id,
+            )
+            return self.relinearize(result)
         return self.relinearize(BFV.multiply(lhs, rhs, self._pk, relinearize=False))
 
     def xor(self, lhs: BFVCiphertext, rhs: BFVCiphertext) -> BFVCiphertext:
         """Slotwise binary XOR, (a-b)^2; encrypted inputs cannot be checked for bits."""
         difference = self.subtract(lhs, rhs)
         return self.multiply(difference, difference)
+
+    def hamming_tile(
+        self, query: BFVCiphertext, tile: BFVCiphertext, steps: list[int], mask: BFVPolynomial
+    ) -> BFVCiphertext:
+        """Square the difference, sum dimensions by rotations, then apply a slot mask."""
+        if self._rns is not None:
+            self._pair(query, tile)
+            pk = self._pk
+            if query.modulus != pk["q"] or len(query.components) != 2:
+                raise ValueError("Multiplication requires two components at the original modulus")
+            if not pk["relin_key"]:
+                raise ValueError("Public key has no relinearization key")
+            n = pk["params"].poly_modulus_degree
+            exponents = [pow(3, step % (n // 2), 2 * n) for step in steps]
+            for step, exponent in zip(steps, exponents, strict=True):
+                if exponent != 1 and exponent not in pk["galois_keys"]:
+                    raise ValueError(f"Public key has no rotation key for steps={step}")
+            mask = BFV._plaintext(mask, pk["params"])
+            return BFVCiphertext(
+                self._rns.hamming_tile(query.components, tile.components, exponents, mask),
+                query.modulus,
+                query.key_id,
+            )
+        distance = self.xor(query, tile)
+        for step in steps:
+            distance = self.add(distance, self.rotate_rows(distance, step))
+        return self.multiply_plain(distance, mask)
 
     def rotate_rows(self, ciphertext: BFVCiphertext, steps: int) -> BFVCiphertext:
         """Rotate both slot rows left (right for negative steps) using public keys."""
@@ -207,6 +280,12 @@ class BFVEvaluator:
             return ciphertext
         if exponent not in pk["galois_keys"]:
             raise ValueError(f"Public key has no rotation key for steps={steps}")
+        if self._rns is not None:
+            return BFVCiphertext(
+                self._rns.rotate(ciphertext.components, exponent, pk["galois_keys"][exponent]),
+                q,
+                pk["key_id"],
+            )
         c0, c1 = (_automorphism(c, exponent, q) for c in ciphertext.components)
         k0, k1 = self._switch(c1, exponent)
         return BFVCiphertext(

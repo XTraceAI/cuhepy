@@ -38,7 +38,8 @@ class BFVClient(HammingClientBase):
     :param response_modulus_bits: Smaller modulus used after the Hamming circuit.
     :param skip_key_gen: Construct an empty client for loading saved keys.
     :param device: ``cpu`` or ``auto``; a CUDA implementation is not yet available.
-    :param server_backend: ``optimized`` (cached GMP) or ``reference`` server arithmetic.
+    :param server_backend: ``optimized`` (cached GMP), ``reference``, or ``rns``
+        (optional compiled CPU RNS/NTT extension) server arithmetic.
         This runtime choice is independent of the serialized crypto configuration.
     """
 
@@ -60,8 +61,8 @@ class BFVClient(HammingClientBase):
         if device == "gpu":
             raise NotImplementedError("Native BFV currently supports only the CPU backend")
         self.device = "cpu"
-        if server_backend not in ("optimized", "reference"):
-            raise ValueError("server_backend must be 'optimized' or 'reference'")
+        if server_backend not in ("optimized", "reference", "rns"):
+            raise ValueError("server_backend must be 'optimized', 'reference', or 'rns'")
         self.server_backend = server_backend
         self._server_evaluator: BFVEvaluator | None = None
         self._evaluator_public_key: BFVPublicKey | None = None
@@ -238,10 +239,6 @@ class BFVClient(HammingClientBase):
         self, query: BFVCiphertext, tile: BFVCiphertext, count: int
     ) -> BFVCiphertext:
         evaluator = self._evaluator()
-        distance = evaluator.xor(query, tile)
-        for i in range(self.padded_embed_len.bit_length() - 1):
-            step = self.lanes_per_row * (1 << i)
-            distance = evaluator.add(distance, evaluator.rotate_rows(distance, step))
         # The rotate/add tree repeats sums in each dimension block. Retain only
         # the first block in each row and clear unused lanes in a partial tile.
         if count not in self._mask_cache:
@@ -252,7 +249,10 @@ class BFVClient(HammingClientBase):
                 row, col = divmod(lane, self.lanes_per_row)
                 mask[row * (len(mask) // 2) + col] = 1
             self._mask_cache[count] = BFV.batch_encode(mask, self.params)
-        return evaluator.multiply_plain(distance, self._mask_cache[count])
+        steps = [
+            self.lanes_per_row * (1 << i) for i in range(self.padded_embed_len.bit_length() - 1)
+        ]
+        return evaluator.hamming_tile(query, tile, steps, self._mask_cache[count])
 
     def encode_hamming_server(
         self,

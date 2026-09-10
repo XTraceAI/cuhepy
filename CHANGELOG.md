@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Optional native BFV `server_backend="rns"`, with independently implemented C++ RNS/NTT polynomial arithmetic, cached transformed evaluation keys, exact GMP reconstruction, and a native Hamming tile circuit. Preserves native BFV keys, ciphertext outputs and wire format. Includes native-boundary tests, sanitizer oracles, optional SEAL benchmarks and correctly tagged binary wheels. The previous GMP and reference backends remain available.
 - Native GMP BFV primitives in `crypto/encryption/bfv.py` and a `BFVClient` in `crypto/bfv_client.py`, with CRT batching, ciphertext multiplication/relinearization, public-key Hamming evaluation, packed distance responses, and terminal modulus compaction. Includes CPU benchmarks and tests against plaintext algebra and an optional SEAL oracle. This is an experimental local implementation; the existing Paillier clients and SEAL research example are preserved.
 - Offline BFV packed Hamming experiment under `experiments/bfv`, with an isolated public-key server evaluator, correctness tests, a comparison against an exported Paillier Git revision, and a research report. The production Paillier path and dependencies are unchanged.
 - `xtrace_sdk.x_vec.crypto.device.resolve_device` — shared device-resolution helper used by both Paillier clients and intended for future homomorphic clients with optional GPU backends.

@@ -1,4 +1,4 @@
-"""Hatchling build hook: tag wheels as platform-specific when GPU `.so`
+"""Hatchling build hook: tag wheels as platform-specific when native `.so`
 artifacts are bundled, so pip won't install a `py3-none-any` wheel onto a
 machine whose Python ABI / OS / arch can't actually load the extension.
 
@@ -17,12 +17,13 @@ class CustomBuildHook(BuildHookInterface):
     PLUGIN_NAME = "custom"
 
     def initialize(self, version: str, build_data: dict) -> None:
-        gpu_so_globs = [
+        native_so_globs = [
             "src/xtrace_sdk/x_vec/crypto/paillier_gpu_ext/*.so",
             "src/xtrace_sdk/x_vec/crypto/paillier_lookup_gpu_ext/*.so",
+            "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/*.so",
         ]
         has_binary = any(
-            glob.glob(os.path.join(self.root, pattern)) for pattern in gpu_so_globs
+            glob.glob(os.path.join(self.root, pattern)) for pattern in native_so_globs
         )
         if has_binary:
             build_data["pure_python"] = False

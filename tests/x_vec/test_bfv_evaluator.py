@@ -1,6 +1,7 @@
 """Exact coefficient comparisons and boundary oracles for optimized BFV evaluation."""
 
 import random
+import builtins
 from dataclasses import replace
 
 import numpy as np
@@ -54,9 +55,12 @@ def test_fused_switch_against_schoolbook(q_bits: int, digit_bits: int) -> None:
             assert actual == tuple(tuple(value % q for value in row) for row in expected)
 
 
-def test_operations_identical_to_reference(keys: BFVKeyPair) -> None:
+@pytest.mark.parametrize("backend", ["optimized", "rns"])
+def test_operations_identical_to_reference(keys: BFVKeyPair, backend: str) -> None:
+    if backend == "rns":
+        pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
     pk, rng = keys["pk"], random.Random(20)
-    evaluator = BFVEvaluator(pk)
+    evaluator = BFVEvaluator(pk, backend)
     for _ in range(3):
         pa, pb = (
             BFV.batch_encode([rng.randrange(97) for _ in range(16)], pk["params"]) for _ in range(2)
@@ -78,9 +82,14 @@ def test_operations_identical_to_reference(keys: BFVKeyPair) -> None:
         assert evaluator.subtract(compact, compact) == BFV.subtract(compact, compact, pk)
 
 
-def test_reject_malformed_ciphertexts_and_keep_integral_support(keys: BFVKeyPair) -> None:
+@pytest.mark.parametrize("backend", ["optimized", "rns"])
+def test_reject_malformed_ciphertexts_and_keep_integral_support(
+    keys: BFVKeyPair, backend: str
+) -> None:
+    if backend == "rns":
+        pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
     pk = keys["pk"]
-    evaluator = BFVEvaluator(pk)
+    evaluator = BFVEvaluator(pk, backend)
     ct = BFV.encrypt(BFV.batch_encode([1], pk["params"]), pk)
     malformed = [
         replace(ct, key_id="wrong"),
@@ -102,6 +111,8 @@ def test_reject_malformed_ciphertexts_and_keep_integral_support(keys: BFVKeyPair
             evaluator.rotate_rows(bad, 1)
         with pytest.raises(ValueError):
             evaluator.relinearize(bad)
+        with pytest.raises(ValueError):
+            evaluator.hamming_tile(ct, bad, [1], BFV.batch_encode([1], pk["params"]))
     for value in (0, False, np.int64(0)):
         candidate = replace(ct, components=((value, *ct.components[0][1:]), ct.components[1]))
         assert evaluator.add(ct, candidate) == BFV.add(ct, candidate, pk)
@@ -143,3 +154,21 @@ def test_missing_keys_and_snapshot_cache(keys: BFVKeyPair) -> None:
     assert not reference._switch_keys
     with pytest.raises(ValueError, match="server_backend"):
         BFVEvaluator(keys["pk"], "invalid")
+
+
+def test_unavailable_native_extension_keeps_gmp_fallback(
+    keys: BFVKeyPair, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    original_import = builtins.__import__
+
+    def without_native(name: str, *args, **kwargs):
+        if name == "xtrace_sdk.x_vec.crypto.bfv_cpu_ext":
+            raise ImportError("Native module intentionally unavailable")
+        return original_import(name, *args, **kwargs)
+
+    monkeypatch.setattr(builtins, "__import__", without_native)
+    with pytest.raises(ImportError, match="Build it with"):
+        BFVEvaluator(keys["pk"], "rns")
+    pk = keys["pk"]
+    ct = BFV.encrypt(BFV.batch_encode([1], pk["params"]), pk)
+    assert BFVEvaluator(pk).multiply(ct, ct) == BFV.multiply(ct, ct, pk)
