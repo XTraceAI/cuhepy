@@ -9,4 +9,7 @@
 
     In addition, it provides ``hamming_client_base`` as a base class for crytpographic clients that compute
     hamming distance between two ciphers.
+
+    ``bfv_client`` provides a native GMP BFV implementation of that interface,
+    with additional packed-index and packed-response operations (experimental).
 """

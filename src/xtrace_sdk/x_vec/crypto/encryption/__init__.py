@@ -3,6 +3,7 @@
 Includes:
 
 - ``aes``: AES encryption for chunk content
+- ``bfv``: native GMP BFV with batching and multiplication (experimental)
 - ``paillier``: Paillier homomorphic encryption
 - ``paillier_lookup``: Paillier variant with precomputed lookup tables
 - ``goldwasser_micali``: Goldwasser-Micali homomorphic encryption (experimental)

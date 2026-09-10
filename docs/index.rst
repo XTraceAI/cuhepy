@@ -79,6 +79,13 @@ Choose your path:
 
 .. toctree::
    :maxdepth: 1
+   :caption: Research
+
+   research/native-bfv
+   research/bfv-packed-hamming
+
+.. toctree::
+   :maxdepth: 1
    :caption: API Reference
 
 

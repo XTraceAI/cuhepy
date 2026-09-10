@@ -4,6 +4,14 @@ xtrace\_sdk.crypto.encryption package
 Submodules
 ----------
 
+xtrace\_sdk.crypto.encryption.bfv module
+---------------------------------------
+
+.. automodule:: xtrace_sdk.x_vec.crypto.encryption.bfv
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 xtrace\_sdk.crypto.encryption.aes module
 ----------------------------------------
 
