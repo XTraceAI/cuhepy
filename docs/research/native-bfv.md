@@ -16,6 +16,12 @@ adds request/index binding, private Hamming result checks, encrypted private
 exports and admission limits. It preserves the server arithmetic and raw APIs;
 the follow-up report measures its overhead and records the remaining blockers.
 
+The newer [pre-decryption approval layer](native-bfv-predecryption.md) requires
+an owner-controlled verifier to recompute and approve exact response bytes.
+It also introduces a separate native private decoder and a larger parameter
+review profile. Its report explains the additional trust/compute cost, attack
+regressions and remaining production review requirements.
+
 ## Code map
 
 All paths are relative to the repository root.

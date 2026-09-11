@@ -33,6 +33,7 @@ from xtrace_sdk.x_vec.crypto.bfv_security import (
 )
 from xtrace_sdk.x_vec.crypto.encryption.bfv import _coefficient_modulus, _load_key_json
 from xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator import BFVServerBackend
+from xtrace_sdk.x_vec.crypto.encryption.bfv_private import BFVPrivateBackend, BFVPrivateDecoder
 
 
 _FIELD = (1 << 255) - 19
@@ -168,7 +169,10 @@ class BFVVerifiedClient:
         authentication_key: bytes,
         *,
         policy: BFVExecutionPolicy | None = None,
+        private_backend: BFVPrivateBackend = "python",
     ) -> None:
+        if private_backend not in ("python", "native"):
+            raise ValueError("Invalid BFV private backend")
         self.policy = policy or BFVExecutionPolicy()
         self.policy.check_client(client)
         keys = client._keys()
@@ -180,6 +184,9 @@ class BFVVerifiedClient:
             "pk": self._client.public_key,
             "sk": {"s": keys["sk"]["s"], "key_id": keys["sk"]["key_id"]},
         }
+        self._private_decoder = (
+            BFVPrivateDecoder(self._client) if private_backend == "native" else None
+        )
         self._authentication_key = _key(authentication_key)
         self._session = secrets.token_bytes(16)
         self._setup_digest: bytes | None = None
@@ -312,7 +319,11 @@ class BFVVerifiedClient:
             )
             if any(ct[3] != target for ct in ciphertexts):
                 raise BFVProtocolError("BFV response rejected")
-            distances = self._client.decode_hamming_client_packed(ciphertexts, len(self._ids))
+            distances = (
+                self._client.decode_hamming_client_packed(ciphertexts, len(self._ids))
+                if self._private_decoder is None
+                else self._private_decoder.decode_packed(ciphertexts, len(self._ids))
+            )
             if not self._summary.matches(distances, pending.expected):
                 raise BFVProtocolError("BFV response rejected")
             return distances
@@ -351,6 +362,7 @@ class BFVVerifiedClient:
         wrapping_key: bytes,
         *,
         policy: BFVExecutionPolicy | None = None,
+        private_backend: BFVPrivateBackend = "python",
     ) -> BFVVerifiedClient:
         """Restore only with the exact authenticated setup and a private wrapping key."""
         policy = policy or BFVExecutionPolicy()
@@ -375,7 +387,7 @@ class BFVVerifiedClient:
         client.load_stringified_keys(
             public, secret.decode(), max_public_key_chars=policy.max_public_key_bytes
         )
-        result = cls(client, authentication_key, policy=policy)
+        result = cls(client, authentication_key, policy=policy, private_backend=private_backend)
         result._session, result._setup_digest, result._ids, result._started = (
             session,
             digest,

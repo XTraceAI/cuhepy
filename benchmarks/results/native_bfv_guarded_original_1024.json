@@ -1,0 +1,191 @@
+{
+  "environment": {
+    "utc": "2026-09-11T13:41:44.618087+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "cpu": "AMD Ryzen 7 5800X 8-Core Processor",
+    "gmpy2": "2.3.0",
+    "gmp": "GMP 6.3.0",
+    "pycryptodome": "3.23.0",
+    "msgpack": "1.1.2",
+    "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "revision": "0cd7b41454533ab27082667cb9cb2f3c8040e823",
+    "working_tree_dirty": true
+  },
+  "command": [
+    "benchmarks/bfv_guarded.py",
+    "--profile",
+    "original",
+    "--json-out",
+    "benchmarks/results/native_bfv_guarded_original_1024.json"
+  ],
+  "profile": "original",
+  "config": {
+    "embed_len": 512,
+    "poly_modulus_degree": 8192,
+    "plain_modulus": 65537,
+    "coeff_modulus_bits": 180,
+    "decomposition_bits": 30,
+    "error_eta": 21,
+    "rns_modulus": true,
+    "response_modulus_bits": 50,
+    "device": "cpu"
+  },
+  "vectors": 1024,
+  "seed": 1337,
+  "measurement_notes": "Within each profile all variants use identical keys and evaluated ciphertexts. Server and owner-controlled public-only verifier have independently imported setups and separate residue arithmetic contexts. Server search and verifier approval include authentication, MessagePack and arithmetic; setup import, arithmetic-context creation, query encryption and private decoding are separate. Approval independently recomputes the full result and compares exact bytes before Ed25519 signing. Server then verifier run sequentially; no network or overlap claimed. One cold trial followed by three warm trials by default. Raw Python/native client timers include ciphertext-array parsing and all distance decoding; guarded includes receipt, authentication, replay and private result checks, with alternating client order. No security-level or end-to-end constant-time claim.",
+  "setup_timings": {
+    "key_generation_s": 4.318560369079933,
+    "client_key_snapshot_native_import_s": 0.004531735088676214,
+    "encrypt_index_summary_export_auth_s": 8.078310951124877,
+    "server_setup_import_s": 1.7306867081206292,
+    "verifier_setup_import_s": 1.7689348999410868,
+    "server_arithmetic_context_s": 0.0012989682145416737,
+    "verifier_arithmetic_context_s": 0.0009495900012552738
+  },
+  "runs": [
+    {
+      "repeat": 0,
+      "server": 2.669166201958433,
+      "verifier": 2.656381974928081,
+      "python_raw_client": 0.0393350338563323,
+      "native_raw_client": 0.012509942054748535,
+      "guarded_client": 0.016294020926579833
+    },
+    {
+      "repeat": 1,
+      "server": 2.3515148740261793,
+      "verifier": 2.3537557921372354,
+      "python_raw_client": 0.039415847044438124,
+      "native_raw_client": 0.012399370083585382,
+      "guarded_client": 0.01612957799807191
+    },
+    {
+      "repeat": 2,
+      "server": 2.353946026880294,
+      "verifier": 2.3622144910041243,
+      "python_raw_client": 0.03945690696127713,
+      "native_raw_client": 0.012485342100262642,
+      "guarded_client": 0.016256339848041534
+    },
+    {
+      "repeat": 3,
+      "server": 2.3585687349550426,
+      "verifier": 2.3510658380109817,
+      "python_raw_client": 0.038974247174337506,
+      "native_raw_client": 0.012455580988898873,
+      "guarded_client": 0.016008156118914485
+    }
+  ],
+  "summary": {
+    "server": {
+      "first_s": 2.669166201958433,
+      "warm_samples_s": [
+        2.3515148740261793,
+        2.353946026880294,
+        2.3585687349550426
+      ],
+      "warm_median_s": 2.353946026880294
+    },
+    "verifier": {
+      "first_s": 2.656381974928081,
+      "warm_samples_s": [
+        2.3537557921372354,
+        2.3622144910041243,
+        2.3510658380109817
+      ],
+      "warm_median_s": 2.3537557921372354
+    },
+    "python_raw_client": {
+      "first_s": 0.0393350338563323,
+      "warm_samples_s": [
+        0.039415847044438124,
+        0.03945690696127713,
+        0.038974247174337506
+      ],
+      "warm_median_s": 0.039415847044438124
+    },
+    "native_raw_client": {
+      "first_s": 0.012509942054748535,
+      "warm_samples_s": [
+        0.012399370083585382,
+        0.012485342100262642,
+        0.012455580988898873
+      ],
+      "warm_median_s": 0.012455580988898873
+    },
+    "guarded_client": {
+      "first_s": 0.016294020926579833,
+      "warm_samples_s": [
+        0.01612957799807191,
+        0.016256339848041534,
+        0.016008156118914485
+      ],
+      "warm_median_s": 0.01612957799807191
+    }
+  },
+  "query_encrypt_and_bind_samples_s": [
+    0.09995461604557931,
+    0.10021196096204221,
+    0.10079239308834076,
+    0.10059099900536239
+  ],
+  "sizes": {
+    "public_keys_bytes_per_evaluator": 85602438,
+    "encrypted_index_bytes_per_evaluator": 23598467,
+    "authenticated_setup_bytes_per_evaluator": 109205199,
+    "query_bytes": 368840,
+    "response_bytes": 102614,
+    "receipt_bytes": 198,
+    "client_response_and_receipt_bytes": 102812,
+    "client_query_response_receipt_bytes": 471652,
+    "remote_verifier_additional_query_response_input_bytes": 471454,
+    "private_verification_payload_bytes": 16448,
+    "native_locked_key_bytes": 131072,
+    "native_locked_scratch_bytes_per_active_decode": 196608
+  },
+  "whole_process_peak_rss_kib_linux": 1094104,
+  "noise_bound": {
+    "encrypted": 344085,
+    "difference": 689382,
+    "squared": 6077954481171225104,
+    "key_switch": 1108307719766016,
+    "tile": 1670999460573335352275202771320,
+    "merged": 855551723813548266710148620588680,
+    "compacted": 69633,
+    "original_rounding_error_numerator": 56070293323568512755383010147599750792,
+    "terminal_rounding_error_numerator": 8856539137,
+    "original_modulus": 1532495540865518635130821056977027158796330141975560193,
+    "terminal_modulus": 1125899906842597,
+    "sufficient": true
+  },
+  "identical_ciphertexts_within_profile": true,
+  "all_distances_correct": true,
+  "source_sha256": {
+    "benchmarks/bfv_guarded.py": "1c82dbe809674bc70d6946b0f4a7827c0d8d2c8ce715dc1f2d25356a7a73aa79",
+    "benchmarks/bfv_client_matrix.py": "4962c7cf837a67becb240e48c7af7068def6276f6bf9647d518de3735be58a89",
+    "src/xtrace_sdk/x_vec/crypto/bfv_assurance.py": "ba64de6db3f76031ba9c35627a0a3790244c816937a97a3b65c98b9c699bb33d",
+    "src/xtrace_sdk/x_vec/crypto/bfv_guarded_client.py": "2e684a8a7f2364a1134aa0271ee34fc6e2562367f26ae453f61a03fa80e31db3",
+    "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "becd81b9c41c027fe26de3e675adfba32fae7c0e6b0e1bede73f96a14effc775",
+    "src/xtrace_sdk/x_vec/crypto/bfv_verified_client.py": "6a384b16c347d84f90e40ccc9903b1ae916ae277e6171bd668181366d56e88a0",
+    "src/xtrace_sdk/x_vec/crypto/bfv_security.py": "17149c07384889f994f93bc9e7b209d965176cd916c97a0f6b7a138861a7204e",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py": "51eee672c2d0514146f97c9ddf33c7f4cfb99114a2b7d86654ec7de7422ebca7",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_native.py": "13b0028e889351ade4d9dff2f5605e969c015cebe890aa80fd5489593d4ef0cf",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_rns.py": "74663e4b22d2fc0128ad2572cb10f9d3727b404fc0240661b08d308ba57cad40",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_private.py": "b1291e6d017be84638b054fb84e651734a44b2d54d601eb50dae2e9d2016bdfa",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py": "895fc201b641a1ea5242b0c54a001d9402afcfb4d21668ca33a8b9992b4132dc",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/private_bindings.cpp": "7b48d92e526147d97d9401e868c8d3e9dbf0b8ba567a67e05047e01f2a371fc0",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bindings.cpp": "da003cf5e6553f85fa402c943a762504d661fb16657d25b16116f3f667509cae",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_residue.h": "e77f270c620d432370e8204c24e1dc6f3c0d382d6bd777ad63852dd8a89f575a",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_server.h": "70f96bc7f1fc25827979cea7b350edaf9cffccf2fa5af0a9275b9d514fb400cf",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_ntt.h": "5f46b7490d556a2f314dbb5cda6f022cacac6f952f3eda48640e068f352e3796",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "539e19f0591c9dd375a7cf519569c4777067fb6593f5157d87b7edb37a42eb04",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_private.cpython-312-x86_64-linux-gnu.so": "c55be18d74e56a1d6bb82c9fa31f55cb9ecf568aecf191a26278a660502b6c72",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile": "ee3f7371f92ba9fa3ebb8037906fc23c5f7832f96908d5879f1a4326847ffb53",
+    "src/xtrace_sdk/x_vec/utils/xtrace_types.py": "3d4daa19d5d9d536573b2e2c65aa13d9559a4bc5e6ae01e2b5ffdeeac8bae962"
+  }
+}

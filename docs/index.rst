@@ -88,6 +88,7 @@ Choose your path:
    research/native-bfv-fused-rns
    research/native-bfv-security
    research/native-bfv-verified-sessions
+   research/native-bfv-predecryption
    research/bfv-packed-hamming
 
 .. toctree::

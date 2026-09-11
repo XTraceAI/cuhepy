@@ -16,6 +16,12 @@ with those checks. The findings below describe the original raw BFV APIs;
 the follow-up records the new mitigations, their performance and the remaining
 production blockers.
 
+**Later 2026-09-11 follow-up:** [approval before decryption](native-bfv-predecryption.md)
+adds a guarded API with owner-controlled public recomputation, a separate
+private C++ decoder, pinned lattice estimates and conservative circuit bounds.
+It conditionally blocks the demonstrated oracle at an additional trust and
+compute cost. The historical findings below remain applicable to the raw APIs.
+
 The optimization baseline reviewed is commit `06d8d17`, following
 `e5c0751`. This report and the accompanying hardening are on
 `research/bfv-packed-hamming`. No production endpoint or `main` change is part

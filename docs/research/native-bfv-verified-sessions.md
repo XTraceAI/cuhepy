@@ -9,6 +9,12 @@ recovery from observable accept/reject feedback even through the new result
 checker. This follow-up is internal, AI-assisted engineering and testing, not
 an independent cryptographic audit or production certification.
 
+**Subsequent work:** [the guarded pre-decryption API](native-bfv-predecryption.md)
+now blocks this demonstrated oracle using exact public recomputation by a
+separately trusted owner verifier. That report covers its trust/compute cost,
+native private arithmetic and parameter review. The results and open-status
+table below describe the original result-checked API, which remains available.
+
 This extends the [original audit](native-bfv-security.md). The raw BFV,
 Paillier and SEAL paths remain available. Existing `BFVClient` calls do not
 automatically acquire these protections; applications must explicitly use the
