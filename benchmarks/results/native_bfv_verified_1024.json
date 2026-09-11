@@ -1,0 +1,269 @@
+{
+  "environment": {
+    "utc": "2026-09-11T04:24:09.304787+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "gmpy2": "2.3.0",
+    "gmp": "GMP 6.3.0",
+    "pycryptodome": "3.23.0",
+    "msgpack": "1.1.2",
+    "revision": "b7841e45333772d1e470939a1c2351fea17a639c",
+    "working_tree_dirty": true
+  },
+  "command": [
+    "benchmarks/bfv_verified.py",
+    "--num-vectors",
+    "1024",
+    "--repeats",
+    "6",
+    "--json-out",
+    "benchmarks/results/native_bfv_verified_1024.json"
+  ],
+  "config": {
+    "embed_len": 512,
+    "poly_modulus_degree": 8192,
+    "plain_modulus": 65537,
+    "coeff_modulus_bits": 180,
+    "decomposition_bits": 30,
+    "error_eta": 21,
+    "rns_modulus": true,
+    "response_modulus_bits": 50,
+    "device": "cpu"
+  },
+  "seed": 1337,
+  "vectors": 1024,
+  "measurement_notes": "Identical keys and ciphertexts, independent public-only residue server contexts. Both server timers include MessagePack ciphertext decode/encode and native arithmetic; verified additionally includes authentication, session checks and outer framing. Index import, arithmetic context creation, encryption and private decryption are excluded from server times. First search has cold key/mask caches; five warm samples by default, alternating order. Client timers include ciphertext decode/decrypt/slot decode; verified adds authentication, ticket handling and private result checking. Query encryption is separately timed outside these phases. No network, remote endpoint, SEAL, security-level claim or constant-time claim.",
+  "setup_timings": {
+    "key_generation_s": 4.339769265148789,
+    "encrypt_index_summary_export_auth_s": 8.079525091918185,
+    "authenticate_import_setup_s": 1.7375480628106743,
+    "raw_arithmetic_context_s": 0.0016010950785130262,
+    "verified_arithmetic_context_s": 0.0009621409699320793,
+    "summary_only_preprocess_s": 0.025153255090117455
+  },
+  "runs": [
+    {
+      "repeat": 0,
+      "phase": "raw_server",
+      "seconds": 2.6571030700579286
+    },
+    {
+      "repeat": 0,
+      "phase": "verified_server",
+      "seconds": 2.6737288739532232
+    },
+    {
+      "repeat": 0,
+      "phase": "verified_client",
+      "seconds": 0.041729690972715616
+    },
+    {
+      "repeat": 0,
+      "phase": "raw_client",
+      "seconds": 0.03954386292025447
+    },
+    {
+      "repeat": 1,
+      "phase": "verified_server",
+      "seconds": 2.3735971769783646
+    },
+    {
+      "repeat": 1,
+      "phase": "raw_server",
+      "seconds": 2.371556321159005
+    },
+    {
+      "repeat": 1,
+      "phase": "raw_client",
+      "seconds": 0.03905453206971288
+    },
+    {
+      "repeat": 1,
+      "phase": "verified_client",
+      "seconds": 0.04158204700797796
+    },
+    {
+      "repeat": 2,
+      "phase": "raw_server",
+      "seconds": 2.3573059749323875
+    },
+    {
+      "repeat": 2,
+      "phase": "verified_server",
+      "seconds": 2.3584984519984573
+    },
+    {
+      "repeat": 2,
+      "phase": "verified_client",
+      "seconds": 0.04113910696469247
+    },
+    {
+      "repeat": 2,
+      "phase": "raw_client",
+      "seconds": 0.03929260699078441
+    },
+    {
+      "repeat": 3,
+      "phase": "verified_server",
+      "seconds": 2.3811275989282876
+    },
+    {
+      "repeat": 3,
+      "phase": "raw_server",
+      "seconds": 2.3726596529595554
+    },
+    {
+      "repeat": 3,
+      "phase": "raw_client",
+      "seconds": 0.03970337612554431
+    },
+    {
+      "repeat": 3,
+      "phase": "verified_client",
+      "seconds": 0.04124582908116281
+    },
+    {
+      "repeat": 4,
+      "phase": "raw_server",
+      "seconds": 2.3679882378783077
+    },
+    {
+      "repeat": 4,
+      "phase": "verified_server",
+      "seconds": 2.3805392258800566
+    },
+    {
+      "repeat": 4,
+      "phase": "verified_client",
+      "seconds": 0.041710648918524384
+    },
+    {
+      "repeat": 4,
+      "phase": "raw_client",
+      "seconds": 0.03959750197827816
+    },
+    {
+      "repeat": 5,
+      "phase": "verified_server",
+      "seconds": 2.373485399177298
+    },
+    {
+      "repeat": 5,
+      "phase": "raw_server",
+      "seconds": 2.367954927030951
+    },
+    {
+      "repeat": 5,
+      "phase": "raw_client",
+      "seconds": 0.03955245087854564
+    },
+    {
+      "repeat": 5,
+      "phase": "verified_client",
+      "seconds": 0.04190468299202621
+    }
+  ],
+  "summary": {
+    "raw_server": {
+      "first_s": 2.6571030700579286,
+      "warm_samples_s": [
+        2.371556321159005,
+        2.3573059749323875,
+        2.3726596529595554,
+        2.3679882378783077,
+        2.367954927030951
+      ],
+      "warm_median_s": 2.3679882378783077
+    },
+    "verified_server": {
+      "first_s": 2.6737288739532232,
+      "warm_samples_s": [
+        2.3735971769783646,
+        2.3584984519984573,
+        2.3811275989282876,
+        2.3805392258800566,
+        2.373485399177298
+      ],
+      "warm_median_s": 2.3735971769783646
+    },
+    "raw_client": {
+      "first_s": 0.03954386292025447,
+      "warm_samples_s": [
+        0.03905453206971288,
+        0.03929260699078441,
+        0.03970337612554431,
+        0.03959750197827816,
+        0.03955245087854564
+      ],
+      "warm_median_s": 0.03955245087854564
+    },
+    "verified_client": {
+      "first_s": 0.041729690972715616,
+      "warm_samples_s": [
+        0.04158204700797796,
+        0.04113910696469247,
+        0.04124582908116281,
+        0.041710648918524384,
+        0.04190468299202621
+      ],
+      "warm_median_s": 0.04158204700797796
+    }
+  },
+  "query_encrypt_and_bind_samples_s": [
+    0.10001991898752749,
+    0.09990808507427573,
+    0.09966578800231218,
+    0.09928345982916653,
+    0.10008095717057586,
+    0.09987170086242259
+  ],
+  "summary_only_check_samples_s": [
+    0.002144736936315894,
+    0.0021136258728802204,
+    0.0021337070502340794,
+    0.0021290569566190243,
+    0.002179748145863414,
+    0.002148417057469487
+  ],
+  "protect_private_state_s": 0.0023410909343510866,
+  "sizes": {
+    "public_keys_bytes": 85603219,
+    "index_ciphertext_array_bytes": 23598467,
+    "authenticated_setup_bytes": 109205980,
+    "raw_query_array_bytes": 368727,
+    "raw_response_array_bytes": 102467,
+    "authenticated_query_bytes": 368840,
+    "authenticated_response_bytes": 102614,
+    "authenticated_query_plus_response_bytes": 471454,
+    "query_authentication_and_framing_overhead_bytes": 113,
+    "response_authentication_and_framing_overhead_bytes": 147,
+    "private_verification_payload_bytes": 16448,
+    "protected_private_state_bytes": 36729,
+    "previous_benchmark_encrypted_index_bytes": 23598496,
+    "previous_benchmark_query_bytes": 368754,
+    "previous_benchmark_response_bytes": 102496
+  },
+  "identical_ciphertexts": true,
+  "all_distances_correct": true,
+  "source_sha256": {
+    "benchmarks/bfv_verified.py": "1578cf1c019159a9856bc31d0f3561499ce10b5d024eb2d24682f14a79b6884e",
+    "benchmarks/bfv_client_matrix.py": "4962c7cf837a67becb240e48c7af7068def6276f6bf9647d518de3735be58a89",
+    "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "becd81b9c41c027fe26de3e675adfba32fae7c0e6b0e1bede73f96a14effc775",
+    "src/xtrace_sdk/x_vec/crypto/bfv_verified_client.py": "e781be6172b9f1ad676fa4ac5f706be7035563bc230e285a56b90129bf18b654",
+    "src/xtrace_sdk/x_vec/crypto/bfv_security.py": "17149c07384889f994f93bc9e7b209d965176cd916c97a0f6b7a138861a7204e",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py": "51eee672c2d0514146f97c9ddf33c7f4cfb99114a2b7d86654ec7de7422ebca7",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_native.py": "13b0028e889351ade4d9dff2f5605e969c015cebe890aa80fd5489593d4ef0cf",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_rns.py": "74663e4b22d2fc0128ad2572cb10f9d3727b404fc0240661b08d308ba57cad40",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py": "895fc201b641a1ea5242b0c54a001d9402afcfb4d21668ca33a8b9992b4132dc",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bindings.cpp": "da003cf5e6553f85fa402c943a762504d661fb16657d25b16116f3f667509cae",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_residue.h": "e77f270c620d432370e8204c24e1dc6f3c0d382d6bd777ad63852dd8a89f575a",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_server.h": "70f96bc7f1fc25827979cea7b350edaf9cffccf2fa5af0a9275b9d514fb400cf",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_ntt.h": "5f46b7490d556a2f314dbb5cda6f022cacac6f952f3eda48640e068f352e3796",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "539e19f0591c9dd375a7cf519569c4777067fb6593f5157d87b7edb37a42eb04",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile": "05e30fc3b8191e2fd0f0620ac7dbbc35ccea0a43913fc62f66575b0d44716aeb",
+    "src/xtrace_sdk/x_vec/utils/xtrace_types.py": "3d4daa19d5d9d536573b2e2c65aa13d9559a4bc5e6ae01e2b5ffdeeac8bae962"
+  }
+}

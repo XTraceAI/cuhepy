@@ -7,6 +7,15 @@ implementation assurance remain open. This is an internal, AI-assisted source
 review and regression exercise, not an independent cryptographic audit,
 penetration test of a deployed service, or proof of security.
 
+**2026-09-11 follow-up:** the optional
+[authenticated, result-checked session layer](native-bfv-verified-sessions.md)
+adds whole-setup authentication, one-use requests, a private Hamming result
+check, encrypted private exports and bounded admission. It also demonstrates
+that observable acceptance/rejection can still recover the secret key even
+with those checks. The findings below describe the original raw BFV APIs;
+the follow-up records the new mitigations, their performance and the remaining
+production blockers.
+
 The optimization baseline reviewed is commit `06d8d17`, following
 `e5c0751`. This report and the accompanying hardening are on
 `research/bfv-packed-hamming`. No production endpoint or `main` change is part

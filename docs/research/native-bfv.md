@@ -11,6 +11,11 @@ not undergone an independent cryptographic audit. The
 open production blockers. The parameter settings below are arithmetic defaults,
 not a claim of a particular security level.
 
+The optional [authenticated session layer](native-bfv-verified-sessions.md)
+adds request/index binding, private Hamming result checks, encrypted private
+exports and admission limits. It preserves the server arithmetic and raw APIs;
+the follow-up report measures its overhead and records the remaining blockers.
+
 ## Code map
 
 All paths are relative to the repository root.

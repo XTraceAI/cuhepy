@@ -12,4 +12,8 @@
 
     ``bfv_client`` provides a native GMP BFV implementation of that interface,
     with additional packed-index and packed-response operations (experimental).
+
+    ``bfv_security`` and ``bfv_verified_client`` add optional authenticated
+    sessions, private result checks and encrypted private exports. These remain
+    experimental and do not make observable decryption feedback safe.
 """

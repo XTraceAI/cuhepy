@@ -28,6 +28,7 @@ raise SystemExit(
             "tests/x_vec/test_bfv_native.py",
             "tests/x_vec/test_bfv_residue.py",
             "tests/x_vec/test_bfv_security.py",
+            "tests/x_vec/test_bfv_verified_client.py",
             "-q",
         ]
     )
