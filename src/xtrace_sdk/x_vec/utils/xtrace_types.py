@@ -79,6 +79,7 @@ class BFVParameters:
     coeff_modulus_bits: int = 180
     decomposition_bits: int = 30
     error_eta: int = 21
+    rns_modulus: bool = False
 
 
 @dataclass(frozen=True)

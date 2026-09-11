@@ -21,7 +21,7 @@ from xtrace_sdk.x_vec.utils.xtrace_types import (
     BFVSwitchKey,
 )
 
-BFVServerBackend = Literal["optimized", "reference", "rns", "native"]
+BFVServerBackend = Literal["optimized", "reference", "rns", "native", "residue"]
 
 
 @dataclass(frozen=True)
@@ -77,11 +77,13 @@ class BFVEvaluator:
     ``optimized`` lazily caches packed evaluation keys and fuses gadget products;
     ``reference`` delegates to the original BFV routines. ``rns`` uses the
     optional native C++ RNS/NTT kernels. ``native`` enables their faster exact
-    arithmetic and lets BFVClient run complete searches inside C++. All backends return identical
-    ciphertexts. Reuse one evaluator across queries to amortize preparation.
+    arithmetic and lets BFVClient run complete searches inside C++. ``residue``
+    keeps those searches in RNS after tensor scale-and-round; it requires an
+    RNS product modulus. All backends return identical ciphertexts for the same
+    keys and inputs. Reuse one evaluator across queries to amortize preparation.
 
     :param pk: Valid public key from key generation or public-key deserialization.
-    :param backend: ``optimized`` (default), ``reference``, ``rns``, or ``native``.
+    :param backend: ``optimized`` (default), ``reference``, ``rns``, ``native``, or ``residue``.
 
     The key dictionaries are snapshotted; immutable polynomial tuples are shared.
     Construct a new evaluator when changing keys. The cache is bounded by the
@@ -89,15 +91,19 @@ class BFVEvaluator:
     """
 
     def __init__(self, pk: BFVPublicKey, backend: BFVServerBackend = "optimized") -> None:
-        if backend not in ("optimized", "reference", "rns", "native"):
-            raise ValueError("server_backend must be 'optimized', 'reference', 'rns', or 'native'")
+        if backend not in ("optimized", "reference", "rns", "native", "residue"):
+            raise ValueError(
+                "server_backend must be 'optimized', 'reference', 'rns', 'native', or 'residue'"
+            )
         self.backend = backend
         self._pk: BFVPublicKey = {**pk, "galois_keys": dict(pk["galois_keys"])}
         # Exponent zero identifies relinearization; Galois exponents are odd.
         self._switch_keys: dict[int, _PackedSwitchKey] = {}
         self._rns = (
-            BFVRNSArithmetic(self._pk, fast=backend == "native")
-            if backend in ("rns", "native")
+            BFVRNSArithmetic(
+                self._pk, fast=backend in ("native", "residue"), residue=backend == "residue"
+            )
+            if backend in ("rns", "native", "residue")
             else None
         )
 

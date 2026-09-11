@@ -37,7 +37,7 @@ class BFVNativeServer:
             <= pk["q"].bit_length()
         ):
             raise ValueError("Invalid target modulus bit length")
-        self._target = _coefficient_modulus(response_modulus_bits)
+        self._target = min(_coefficient_modulus(response_modulus_bits), pk["q"])
         self._key_id = int(pk["key_id"], 16)
         self._packed_bytes = (arithmetic.n * pk["q"].bit_length() + 7) // 8
         self._capacity = arithmetic.n // padded_embed_len

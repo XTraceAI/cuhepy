@@ -26,7 +26,7 @@ import gmpy2
 
 from bfv_client_matrix import REPO_ROOT, make_data, packet, time_call, unpack_packet
 from xtrace_sdk.x_vec.crypto.bfv_client import BFVClient
-from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV
+from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV, _rns_coefficient_primes
 from xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator import BFVServerBackend
 
 
@@ -38,6 +38,11 @@ def main() -> None:
     parser.add_argument("--plain-modulus", type=int, default=65537)
     parser.add_argument("--coeff-modulus-bits", type=int, default=180)
     parser.add_argument("--decomposition-bits", type=int, default=30)
+    parser.add_argument(
+        "--rns-modulus",
+        action="store_true",
+        help="Generate fresh keys with a product of 60-bit NTT primes; required by residue",
+    )
     parser.add_argument("--response-modulus-bits", type=int, default=50)
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument(
@@ -50,7 +55,7 @@ def main() -> None:
     parser.add_argument(
         "--backends",
         default="reference,optimized",
-        help="Comma-separated native backends: reference,optimized,rns,native",
+        help="Comma-separated native backends: reference,optimized,rns,native,residue",
     )
     parser.add_argument(
         "--seal",
@@ -74,13 +79,15 @@ def main() -> None:
     if (
         not names
         or len(set(names)) != len(names)
-        or any(b not in ("reference", "optimized", "rns", "native") for b in names)
+        or any(b not in ("reference", "optimized", "rns", "native", "residue") for b in names)
     ):
         parser.error("backends must be distinct native backend names")
     if args.seal and (args.poly_modulus_degree != 8192 or args.plain_modulus != 65537):
         parser.error("the SEAL comparison requires N=8192 and t=65537")
-    if args.native_profile and not any(b in ("rns", "native") for b in names):
-        parser.error("native-profile requires the rns or native backend")
+    if args.native_profile and not any(b in ("rns", "native", "residue") for b in names):
+        parser.error("native-profile requires the rns, native, or residue backend")
+    if "residue" in names and not args.rns_modulus:
+        parser.error("residue requires --rns-modulus (fresh keys and index)")
     backends = tuple(cast(BFVServerBackend, name) for name in names)
     vectors, query, expected = make_data(args.num_vectors, args.embed_len, args.seed)
     print("Generating one key set and encrypting the shared input", file=sys.stderr, flush=True)
@@ -93,6 +100,7 @@ def main() -> None:
             coeff_modulus_bits=args.coeff_modulus_bits,
             decomposition_bits=args.decomposition_bits,
             response_modulus_bits=args.response_modulus_bits,
+            rns_modulus=args.rns_modulus,
             device="cpu",
         )
     )
@@ -209,7 +217,7 @@ def main() -> None:
         from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns
 
         for backend in backends:
-            if backend in ("rns", "native"):
+            if backend in ("rns", "native", "residue"):
                 response, phases = _bfv_rns.profile_call(partial(evaluate, backend))
                 assert response == reference_response
                 native_phases[backend] = phases
@@ -235,7 +243,7 @@ def main() -> None:
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile",
         REPO_ROOT / "src/xtrace_sdk/x_vec/utils/xtrace_types.py",
     ]
-    if any(b in ("rns", "native") for b in backends):
+    if any(b in ("rns", "native", "residue") for b in backends):
         source_paths.extend((REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.so"))
     if args.seal:
         source_paths.append(REPO_ROOT / "experiments/bfv/packed_hamming.py")
@@ -266,6 +274,12 @@ def main() -> None:
         "command": sys.argv,
         "measurement_notes": "One CPU process, identical public keys and encrypted inputs for all native backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
         "config": config,
+        "ciphertext_modulus_hex": format(client._pk()["q"], "x"),
+        "ciphertext_modulus_primes": _rns_coefficient_primes(
+            args.poly_modulus_degree, args.coeff_modulus_bits
+        )
+        if args.rns_modulus
+        else None,
         "seed": args.seed,
         "vectors": len(vectors),
         "setup_timings": setup,
@@ -301,7 +315,9 @@ def main() -> None:
         "caches": {
             backend: {
                 **server._evaluator().cache_info(),
-                "server_plan_bytes": server._native().cache_bytes() if backend == "native" else 0,
+                "server_plan_bytes": server._native().cache_bytes()
+                if backend in ("native", "residue")
+                else 0,
             }
             for backend, server in servers.items()
         },

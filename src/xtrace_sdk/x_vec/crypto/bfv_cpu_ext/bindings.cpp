@@ -3,6 +3,7 @@
 #include <Python.h>
 #include "rns_ntt.h"
 #include "bfv_server.h"
+#include "bfv_residue.h"
 #include "packed_wire.h"
 #include <string>
 
@@ -107,15 +108,15 @@ PyObject* create_ring(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
         PyObject *n_object, *bits_object;
         const char* q_hex;
-        int fast = 0;
-        if (!PyArg_ParseTuple(args, "OsO|p", &n_object, &q_hex, &bits_object, &fast)) return nullptr;
+        int fast = 0, residue = 0;
+        if (!PyArg_ParseTuple(args, "OsO|pp", &n_object, &q_hex, &bits_object, &fast, &residue)) return nullptr;
         auto n = PyLong_AsUnsignedLongLong(n_object), bits = PyLong_AsUnsignedLongLong(bits_object);
         if (PyErr_Occurred()) return nullptr;
         if (n > 32768 || bits > 512) throw std::invalid_argument("Invalid native BFV ring parameters");
         mpz_class q;
         if (q.set_str(q_hex, 16) != 0) throw std::invalid_argument("Invalid ciphertext modulus");
         RingPtr ring;
-        { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, fast); }
+        { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, fast, residue); }
         return capsule(std::move(ring), ring_name);
     });
 }
@@ -246,10 +247,11 @@ PyObject* ring_info(PyObject*, PyObject* argument) {
             if (!value) { Py_DECREF(primes); return nullptr; }
             PyTuple_SET_ITEM(primes, i, value);
         }
-        return Py_BuildValue("{s:N,s:n,s:n,s:s,s:s,s:O}", "primes", primes,
+        return Py_BuildValue("{s:N,s:n,s:n,s:s,s:s,s:O,s:n}", "primes", primes,
                              "switch_prime_count", ring->switch_prime_count,
                              "transform_table_bytes", ring->bytes(), "gmp", gmp_version,
-                             "compiler", __VERSION__, "fast_arithmetic", ring->fast ? Py_True : Py_False);
+                             "compiler", __VERSION__, "fast_arithmetic", ring->fast ? Py_True : Py_False,
+                             "residue_prime_count", ring->residue_prime_count);
     });
 }
 
@@ -286,7 +288,10 @@ PyObject* create_server(PyObject*, PyObject* args) {
             if (!keys.emplace(g, std::move(key)).second) throw std::invalid_argument("Duplicate rotation key");
         }
         ServerPtr server;
-        { WithoutGIL release; server = std::make_shared<HammingServer>(relin, std::move(keys), padded, t, target); }
+        { WithoutGIL release;
+          if (ring.residue_prime_count)
+              server = std::make_shared<ResidueServer>(relin, std::move(keys), padded, t, target);
+          else server = std::make_shared<HammingServer>(relin, std::move(keys), padded, t, target); }
         return capsule(std::move(server), server_name);
     });
 }
@@ -405,7 +410,7 @@ PyModuleDef module = {PyModuleDef_HEAD_INIT, "_bfv_rns", "Native BFV RNS/NTT CPU
 
 PyMODINIT_FUNC PyInit__bfv_rns() {
     PyObject* result = PyModule_Create(&module);
-    if (result && PyModule_AddIntConstant(result, "ABI_VERSION", 2) < 0) {
+    if (result && PyModule_AddIntConstant(result, "ABI_VERSION", 3) < 0) {
         Py_DECREF(result); return nullptr;
     }
     return result;

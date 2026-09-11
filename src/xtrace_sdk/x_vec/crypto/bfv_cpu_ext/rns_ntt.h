@@ -214,8 +214,9 @@ public:
     const bool fast;
     std::vector<PrimeNTT> transforms;
     std::size_t switch_prime_count;
+    std::size_t residue_prime_count = 0;
 
-    Ring(std::size_t n, const mpz_class& q, unsigned bits, bool fast = false)
+    Ring(std::size_t n, const mpz_class& q, unsigned bits, bool fast = false, bool residue = false)
         : n(n), coefficient_bytes((mpz_sizeinbase(q.get_mpz_t(), 2) + 7) / 8),
           digits(bits ? (mpz_sizeinbase(q.get_mpz_t(), 2) + bits - 1) / bits : 0),
           digit_bits(bits), q(q), fast(fast) {
@@ -259,6 +260,16 @@ public:
             bases_.push_back(std::move(base));
         }
         switch_prime_count = prime_count(switch_bound);
+        if (residue) {
+            // The residue backend uses the first L primes as the actual BFV
+            // modulus Q. Products modulo Q then need only those L transforms;
+            // the larger auxiliary base is still needed for BFV scale/round.
+            for (std::size_t count = 1; count <= bases_.size(); ++count)
+                if (bases_[count - 1].product == q) residue_prime_count = count;
+            if (!residue_prime_count || residue_prime_count > 8)
+                throw std::invalid_argument("Residue backend requires Q to be a product of the first 60-bit NTT primes");
+            switch_prime_count = residue_prime_count;
+        }
     }
 
     std::size_t prime_count(const mpz_class& bound) const {
@@ -416,9 +427,6 @@ public:
 
     std::array<Polynomial, 2> apply(const Polynomial& poly) const {
         const auto& r = *ring;
-        std::array<Residues, 2> output;
-        { ProfileScope allocation(Phase::buffers);
-          for (auto& component : output) component.assign(r.switch_prime_count, std::vector<Word>(r.n)); }
         // Decompose once, then reuse each integer digit across auxiliary primes.
         std::vector<Polynomial> decomposition;
         std::vector<std::vector<Word>> small_digits;
@@ -447,22 +455,38 @@ public:
                 }
         }
         }
+        auto output_ntt = apply_digits([&](std::size_t j, std::size_t digit, std::vector<Word>& digit_values) {
+            Word p = r.transforms[j].modulus;
+            for (std::size_t i = 0; i < r.n; ++i) {
+                if (small_digits.empty())
+                    digit_values[i] = mpz_fdiv_ui(decomposition[digit][i].get_mpz_t(), p);
+                else {
+                    Word value = small_digits[digit][i];
+                    digit_values[i] = value >= p ? value - p : value;
+                }
+            }
+        });
+        std::array<Polynomial, 2> result;
+        for (std::size_t k = 0; k < 2; ++k)
+            result[k] = r.decode_mod_q(std::move(output_ntt[k]));
+        return result;
+    }
+
+    // Share the cached key dot product with the persistent-residue evaluator.
+    // Its digit reader uses fixed-size limbs, without constructing GMP objects.
+    // Both readers must supply canonical residues in [0,p).
+    template <class ReadDigit>
+    std::array<Residues, 2> apply_digits(ReadDigit read_digit) const {
+        const auto& r = *ring;
+        std::array<Residues, 2> output;
+        { ProfileScope allocation(Phase::buffers);
+          for (auto& component : output) component.assign(r.switch_prime_count, std::vector<Word>(r.n)); }
         { ProfileScope timing(Phase::pointwise);
         for (std::size_t j = 0; j < r.switch_prime_count; ++j) {
-            Word p = r.transforms[j].modulus;
             std::array<std::vector<Wide>, 2> accum{std::vector<Wide>(r.n), std::vector<Wide>(r.n)};
             std::vector<Word> digit_values(r.n);
             for (std::size_t digit = 0; digit < r.digits; ++digit) {
-                for (std::size_t i = 0; i < r.n; ++i) {
-                    if (small_digits.empty())
-                        digit_values[i] = mpz_fdiv_ui(decomposition[digit][i].get_mpz_t(), p);
-                    else {
-                        // Both the digit and p are at most 60 bits; p is close
-                        // to 2^60, so one conditional subtraction suffices.
-                        Word value = small_digits[digit][i];
-                        digit_values[i] = value >= p ? value - p : value;
-                    }
-                }
+                read_digit(j, digit, digit_values);
                 r.transforms[j].forward(digit_values);
                 for (std::size_t k = 0; k < 2; ++k)
                     for (std::size_t i = 0; i < r.n; ++i)
@@ -477,11 +501,7 @@ public:
                 for (std::size_t i = 0; i < r.n; ++i) output[k][j][i] = r.transforms[j].remainder(accum[k][i]);
         }
         }
-        std::array<Polynomial, 2> result;
-        for (std::size_t k = 0; k < 2; ++k) {
-            result[k] = r.decode_mod_q(std::move(output[k]));
-        }
-        return result;
+        return output;
     }
 
     std::size_t bytes() const { return ring->digits * 2 * ring->switch_prime_count * ring->n * sizeof(Word); }

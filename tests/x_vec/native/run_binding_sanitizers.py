@@ -22,4 +22,6 @@ assert Path(module.__file__).resolve() == library
 
 import pytest  # noqa: E402
 
-raise SystemExit(pytest.main(["tests/x_vec/test_bfv_native.py", "-q"]))
+raise SystemExit(
+    pytest.main(["tests/x_vec/test_bfv_native.py", "tests/x_vec/test_bfv_residue.py", "-q"])
+)

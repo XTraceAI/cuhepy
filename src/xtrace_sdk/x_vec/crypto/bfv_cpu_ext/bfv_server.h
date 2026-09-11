@@ -4,10 +4,45 @@
 #pragma once
 #include "rns_ntt.h"
 #include <map>
+#include <functional>
 #include <string>
 
 namespace xtrace_bfv {
 using KeyHandle = std::shared_ptr<const SwitchKey>;
+
+// The GMP and persistent-residue servers share the same merge order, including
+// partial groups. Only their arithmetic and intermediate ciphertext type differ.
+template <class Value, class Tile, class Rotate, class Add, class Emit>
+void merge_hamming_tiles(std::size_t tiles, std::size_t padded, Tile tile, Rotate rotate,
+                         Add add, Emit emit) {
+    for (std::size_t start = 0; start < tiles; start += padded) {
+        std::vector<std::pair<Value, std::size_t>> stack;
+        for (std::size_t at = start; at < std::min(start + padded, tiles); ++at) {
+            auto result = tile(at);
+            std::size_t size = 1, level = 0;
+            while (!stack.empty() && stack.back().second == size) {
+                auto rotated = rotate(result, level);
+                result = std::move(stack.back().first);
+                stack.pop_back();
+                add(result, rotated);
+                size *= 2; ++level;
+            }
+            stack.emplace_back(std::move(result), size);
+        }
+        auto result = std::move(stack.back().first);
+        stack.pop_back();
+        while (!stack.empty()) {
+            auto size = stack.back().second;
+            std::size_t level = 0;
+            while ((std::size_t(1) << level) < size) ++level;
+            auto rotated = rotate(result, level);
+            result = std::move(stack.back().first);
+            stack.pop_back();
+            add(result, rotated);
+        }
+        emit(std::move(result));
+    }
+}
 
 class PreparedPlain {
     const Ring& ring_;
@@ -29,6 +64,7 @@ public:
 };
 
 class HammingServer {
+protected:
     KeyHandle relin_;
     std::map<Word, KeyHandle> keys_;
     PrimeNTT plaintext_;
@@ -69,7 +105,7 @@ public:
     const mpz_class target;
 
     HammingServer(KeyHandle relin, std::map<Word, KeyHandle> keys,
-                  std::size_t padded, Word t, const mpz_class& target)
+                  std::size_t padded, Word t, const mpz_class& target, bool prepare_mask = true)
         : relin_(std::move(relin)), keys_(std::move(keys)), plaintext_(relin_->ring->n, t, relin_->ring->fast),
           ring(relin_->ring), padded(padded), lanes(ring->n / (2 * padded)),
           capacity(2 * lanes), t(t), target(target) {
@@ -79,8 +115,10 @@ public:
             right_.push_back(exponent(ring->n / 2 - lanes * size));
             key(left_.back()); key(right_.back());
         }
-        full_mask_ = std::make_unique<PreparedPlain>(*ring, mask(capacity));
+        if (prepare_mask) full_mask_ = std::make_unique<PreparedPlain>(*ring, mask(capacity));
     }
+
+    virtual ~HammingServer() = default;
 
     Ciphertext tile(const Ciphertext& query, const Ciphertext& indexed, const PreparedPlain& selected) const {
         Ciphertext difference = query;
@@ -114,41 +152,24 @@ public:
 
     // read_tile/emit allow the binding to stream packed bytes with the GIL
     // released. At most O(log(padded)) intermediate ciphertexts are retained.
-    template <class ReadTile, class Emit>
-    void search(const Ciphertext& query, std::size_t count, ReadTile read_tile, Emit emit, bool compact_result) const {
+    using ReadTile = std::function<Ciphertext(std::size_t)>;
+    using Emit = std::function<void(const Ciphertext&)>;
+    virtual void search(const Ciphertext& query, std::size_t count, ReadTile read_tile, Emit emit, bool compact_result) const {
         const auto tiles = (count + capacity - 1) / capacity;
         std::unique_ptr<PreparedPlain> partial;
         if (count % capacity) partial = std::make_unique<PreparedPlain>(*ring, mask(count % capacity));
-        for (std::size_t start = 0; start < tiles; start += padded) {
-            std::vector<std::pair<Ciphertext, std::size_t>> stack;
-            for (std::size_t at = start; at < std::min(start + padded, tiles); ++at) {
-                const auto& selected = at + 1 == tiles && partial ? *partial : *full_mask_;
-                auto result = tile(query, read_tile(at), selected);
-                std::size_t size = 1, level = 0;
-                while (!stack.empty() && stack.back().second == size) {
-                    auto rotated = rotate(result, right_.at(level), key(right_[level]));
-                    result = std::move(stack.back().first);
-                    stack.pop_back();
-                    add_inplace(result, rotated, *ring);
-                    size *= 2; ++level;
-                }
-                stack.emplace_back(std::move(result), size);
-            }
-            auto result = std::move(stack.back().first);
-            stack.pop_back();
-            while (!stack.empty()) {
-                auto size = stack.back().second;
-                std::size_t level = 0;
-                while ((std::size_t(1) << level) < size) ++level;
-                auto rotated = rotate(result, right_.at(level), key(right_[level]));
-                result = std::move(stack.back().first);
-                stack.pop_back();
-                add_inplace(result, rotated, *ring);
-            }
+        merge_hamming_tiles<Ciphertext>(tiles, padded, [&](std::size_t at) {
+            const auto& selected = at + 1 == tiles && partial ? *partial : *full_mask_;
+            return tile(query, read_tile(at), selected);
+        }, [&](const Ciphertext& result, std::size_t level) {
+            return rotate(result, right_.at(level), key(right_.at(level)));
+        }, [&](Ciphertext& lhs, const Ciphertext& rhs) {
+            add_inplace(lhs, rhs, *ring);
+        }, [&](Ciphertext result) {
             if (compact_result) compact(result);
             emit(result);
-        }
+        });
     }
-    std::size_t bytes() const { return plaintext_.bytes() + full_mask_->bytes(); }
+    virtual std::size_t bytes() const { return plaintext_.bytes() + (full_mask_ ? full_mask_->bytes() : 0); }
 };
 } // namespace xtrace_bfv

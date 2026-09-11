@@ -105,6 +105,7 @@ def benchmark(
                 coeff_modulus_bits=args.coeff_modulus_bits,
                 decomposition_bits=args.decomposition_bits,
                 response_modulus_bits=args.response_modulus_bits,
+                rns_modulus=args.rns_modulus,
                 device="cpu",
                 server_backend=args.server_backend,
             )
@@ -237,7 +238,9 @@ def main() -> None:
     parser.add_argument("--response-modulus-bits", type=int, default=50)
     parser.add_argument("--no-compact", action="store_true")
     parser.add_argument(
-        "--server-backend", choices=("optimized", "reference", "rns", "native"), default="optimized"
+        "--server-backend",
+        choices=("optimized", "reference", "rns", "native", "residue"),
+        default="optimized",
     )
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument(
@@ -252,7 +255,14 @@ def main() -> None:
         help="Comma-separated: " + ", ".join(VARIANTS),
     )
     parser.add_argument("--json-out", type=Path)
+    parser.add_argument(
+        "--rns-modulus",
+        action="store_true",
+        help="Use fresh BFV keys with a product of 60-bit NTT primes",
+    )
     args = parser.parse_args()
+    if args.server_backend == "residue" and not args.rns_modulus:
+        parser.error("residue requires --rns-modulus")
     variants = [v.strip() for v in args.variants.split(",")]
     if args.num_vectors < 1 or args.embed_len < 1 or args.repeats < 1:
         parser.error("num-vectors, embed-len and repeats must be positive")

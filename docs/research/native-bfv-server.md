@@ -14,8 +14,9 @@ experimental leveled BFV without a security audit or bootstrapping.
 
 ## Build and use
 
-Rebuild the extension from the repository root. The new interface is ABI version
-2; an older binary raises a rebuild error.
+Rebuild the extension from the repository root. This backend originally used
+ABI 2; the current extension is ABI 3 after adding the
+[persistent RNS backend](native-bfv-residue.md). An older binary raises a rebuild error.
 
 ```bash
 make -C src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext PYTHON="$PWD/.venv/bin/python"
@@ -243,8 +244,10 @@ Leak checking is disabled for the Python-hosted sanitizer run; the standalone
 CI run retains it. As documented for the earlier backend, the local tracing
 sandbox requires `ASAN_OPTIONS=detect_leaks=0` for standalone runs as well.
 
-Further opportunities include keeping coefficients in RNS across more
-operations, reusing more working buffers and moving client-side operations into
-C++. This backend still uses GMP internally and is not a fully RNS redesign of
-the cryptographic scheme. A rewrite of encryption or key generation would not
-directly improve the server-search timing measured here.
+The [persistent RNS backend](native-bfv-residue.md) now keeps coefficients in RNS
+across key switches, rotations, masks and the merge tree, with an optional new
+ciphertext modulus. The `native` backend described here retains its GMP
+intermediates and existing-key compatibility. Further opportunities include
+reusing more working buffers and moving client-side operations into C++. A
+rewrite of encryption or key generation would not directly improve the
+server-search timing measured here.

@@ -15,7 +15,7 @@ LDLIBS ?= -lgmpxx -lgmp
 .PHONY: all clean
 all: $(TARGET)
 
-$(TARGET): bindings.cpp rns_ntt.h profile.h bfv_server.h packed_wire.h Makefile
+$(TARGET): bindings.cpp rns_ntt.h profile.h bfv_server.h bfv_residue.h packed_wire.h Makefile
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++17 -Wall -Wextra -fPIC -shared \
 		-I$(PY_INC) bindings.cpp $(LDFLAGS) $(LDLIBS) -o $@
 

@@ -84,6 +84,7 @@ Choose your path:
    research/native-bfv
    research/native-bfv-ntt
    research/native-bfv-server
+   research/native-bfv-residue
    research/bfv-packed-hamming
 
 .. toctree::

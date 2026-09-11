@@ -12,9 +12,19 @@ from xtrace_sdk.x_vec.crypto.encryption.bfv_rns import BFVRNSArithmetic
 native = pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
 
 
-@pytest.fixture()
-def client() -> BFVClient:
-    return BFVClient(3, 16, 97, 100, 15, response_modulus_bits=40, server_backend="native")
+@pytest.fixture(params=["native", "residue"])
+def client(request) -> BFVClient:
+    residue = request.param == "residue"
+    return BFVClient(
+        3,
+        16,
+        97,
+        180 if residue else 100,
+        15,
+        response_modulus_bits=40,
+        server_backend=request.param,
+        rns_modulus=residue,
+    )
 
 
 def test_native_individual_wire_bytes_and_backend_changes(client: BFVClient) -> None:
@@ -44,7 +54,7 @@ def test_complete_search_skips_python_polynomial_conversions(
     query = client.encrypt_vec_one([0, 1, 0])
     vectors = [[0, 1, 0], [1, 0, 1], [0, 0, 0]] * 13
     index = client.encrypt_vec_packed(vectors)
-    server = BFVClient(skip_key_gen=True, server_backend="native")
+    server = BFVClient(skip_key_gen=True, server_backend=client.server_backend)
     server.load_config(json.loads(client.stringify_config()))
     server.load_stringified_keys(client.stringify_pk())
     assert server.keys is None
@@ -98,6 +108,7 @@ def test_profile_is_transparent_and_thread_local(client: BFVClient) -> None:
 def test_native_rejects_malformed_wire(client: BFVClient) -> None:
     query = client.encrypt_vec_one([0, 1, 0])
     q = int(client._pk()["q"])
+    packed_bits = 16 * q.bit_length()
     changes = [
         (0, 0),
         (1, 2),
@@ -107,8 +118,8 @@ def test_native_rejects_malformed_wire(client: BFVClient) -> None:
         (5, 3),
         (6, -1),
         (6, 0.5),
-        (6, 1 << 1600),
-        (6, q << 1500),
+        (6, 1 << packed_bits),
+        (6, q << (packed_bits - q.bit_length())),
     ]
     for offset, value in changes:
         malformed = query[:]
@@ -156,7 +167,7 @@ def test_private_native_boundary_and_plan_lifetime(client: BFVClient) -> None:
         with pytest.raises((ValueError, OverflowError)):
             native.packed_search(plan, wire, index, count, True)
     # Use a fresh ring with no BFVClient owner to test the plan's ownership.
-    owned = BFVRNSArithmetic(pk)
+    owned = BFVRNSArithmetic(pk, fast=True, residue=pk["params"].rns_modulus)
     relin = owned._prepare_key(0, pk["relin_key"])
     keys = tuple((g, owned._prepare_key(g, key)) for g, key in pk["galois_keys"].items())
     plan = native.create_server(relin, keys, 4, 97, format(evaluator._target, "x"))

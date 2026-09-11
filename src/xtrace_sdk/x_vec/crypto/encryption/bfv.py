@@ -1,7 +1,7 @@
 """Native, leveled BFV over Z_q[X]/(X^N + 1), using GMP integer arithmetic.
 
-The implementation deliberately keeps a single large ciphertext modulus. GMP
-Kronecker substitution handles polynomial products; a small-modulus NTT handles
+The default uses a single prime ciphertext modulus. An opt-in product of 60-bit
+primes also supports the residue server backend. GMP Kronecker substitution handles polynomial products; a small-modulus NTT handles
 plaintext batching. No SEAL/TenSEAL code is called. This is an experimental,
 variable-time implementation for learning and optimization, not audited crypto.
 """
@@ -127,6 +127,46 @@ def _coefficient_modulus(bits: int) -> mpz:
     return candidate
 
 
+@lru_cache(maxsize=16)
+def _rns_coefficient_primes(n: int, bits: int) -> tuple[int, ...]:
+    """Deterministic 60-bit NTT primes, in the native Ring's auxiliary-base order.
+
+    This first residue layout supports 60, 120, ..., 480 modulus bits. It does
+    not change the gadget, error distribution, encryption or rounding rules.
+    """
+    if bits < 60 or bits > 480 or bits % 60:
+        raise ValueError(
+            "rns_modulus requires coeff_modulus_bits to be a multiple of 60 in [60, 480]"
+        )
+    result = []
+    candidate = (1 << 60) - 2 * n + 1
+    for _ in range(bits // 60):
+        while not gmpy2.is_prime(candidate):
+            candidate -= 2 * n
+        if candidate <= 1 << 59:
+            raise ValueError("No suitable 60-bit RNS prime")
+        result.append(candidate)
+        candidate -= 2 * n
+    return tuple(result)
+
+
+def _parameter_dict(params: BFVParameters) -> dict[str, Any]:
+    # Preserve the original v1 key fingerprints and JSON when the option is off.
+    result = asdict(params)
+    if not params.rns_modulus:
+        del result["rns_modulus"]
+    return result
+
+
+def _parameter_modulus(params: BFVParameters) -> mpz:
+    if params.rns_modulus:
+        q = mpz(1)
+        for prime in _rns_coefficient_primes(params.poly_modulus_degree, params.coeff_modulus_bits):
+            q *= prime
+        return q
+    return _coefficient_modulus(params.coeff_modulus_bits)
+
+
 def _small_poly(n: int, eta: int, q: mpz) -> BFVPolynomial:
     # Centered binomial: sum of eta independent bits minus another eta bits.
     # Each sample uses OS-backed randomness; never use benchmark PRNGs here.
@@ -141,7 +181,7 @@ def _ternary_poly(n: int, q: mpz) -> BFVPolynomial:
 
 
 def _key_id(params: BFVParameters, b: BFVPolynomial, a: BFVPolynomial) -> str:
-    digest = hashlib.sha256(json.dumps(asdict(params), sort_keys=True).encode())
+    digest = hashlib.sha256(json.dumps(_parameter_dict(params), sort_keys=True).encode())
     width = (params.coeff_modulus_bits + 7) // 8
     for poly in (b, a):
         for c in poly:
@@ -163,7 +203,11 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
     @staticmethod
     def validate_parameters(params: BFVParameters) -> None:
         """Check algebraic constraints, independently of a security assessment."""
-        if any(not isinstance(v, int) or isinstance(v, bool) for v in asdict(params).values()):
+        integer_params = asdict(params)
+        rns_modulus = integer_params.pop("rns_modulus")
+        if type(rns_modulus) is not bool:
+            raise ValueError("rns_modulus must be a boolean")
+        if any(not isinstance(v, int) or isinstance(v, bool) for v in integer_params.values()):
             raise ValueError("BFV parameters must be integers")
         n, t = params.poly_modulus_degree, params.plain_modulus
         if n < 8 or n > 32768 or n & (n - 1):
@@ -176,6 +220,8 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
             raise ValueError("decomposition_bits must be in [1, coeff_modulus_bits]")
         if not 1 <= params.error_eta <= 64:
             raise ValueError("error_eta must be in [1, 64]")
+        if rns_modulus:
+            _rns_coefficient_primes(n, params.coeff_modulus_bits)
 
     @staticmethod
     def key_gen(
@@ -186,20 +232,27 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
         error_eta: int = 21,
         rotation_steps: Sequence[int] = (),
         relinearization: bool = True,
+        rns_modulus: bool = False,
     ) -> BFVKeyPair:
         """Generate public/secret keys and requested public evaluation keys.
 
         :param rotation_steps: Left rotations within each of the two N/2-slot rows.
             Negative steps rotate right. Only requested rotations get keys.
         :param relinearization: Generate the key needed to reduce products to two polynomials.
+        :param rns_modulus: Use a product of 60-bit NTT primes; requires fresh keys and ciphertexts.
         :return: PK/SK pair; only the PK (including evaluation keys) goes to the server.
         :rtype: BFVKeyPair
         """
         params = BFVParameters(
-            poly_modulus_degree, plain_modulus, coeff_modulus_bits, decomposition_bits, error_eta
+            poly_modulus_degree,
+            plain_modulus,
+            coeff_modulus_bits,
+            decomposition_bits,
+            error_eta,
+            rns_modulus,
         )
         BFV.validate_parameters(params)
-        n, q = poly_modulus_degree, _coefficient_modulus(coeff_modulus_bits)
+        n, q = poly_modulus_degree, _parameter_modulus(params)
         s = _ternary_poly(n, q)
         a = tuple(mpz(secrets.randbelow(int(q))) for _ in range(n))
         error = _small_poly(n, error_eta, q)
@@ -518,9 +571,9 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
             <= ciphertext.modulus.bit_length()
         ):
             raise ValueError("Invalid target modulus bit length")
-        target = _coefficient_modulus(modulus_bits)
-        if target > ciphertext.modulus:
-            raise ValueError("Modulus switching cannot increase the modulus")
+        target = min(_coefficient_modulus(modulus_bits), ciphertext.modulus)
+        # With a product modulus, the same-bit prime can be larger than Q.
+        # An equal-bit request is a no-op; it must never raise the modulus.
         components = tuple(
             tuple(_round_div(c * target, ciphertext.modulus) % target for c in poly)
             for poly in ciphertext.components
@@ -606,7 +659,7 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
         return json.dumps(
             {
                 "version": 1,
-                "params": asdict(pk["params"]),
+                "params": _parameter_dict(pk["params"]),
                 "key_id": pk["key_id"],
                 "b": poly(pk["b"]),
                 "a": poly(pk["a"]),
@@ -629,7 +682,7 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
                 raise ValueError("Unsupported public key version")
             params = BFVParameters(**data["params"])
             BFV.validate_parameters(params)
-            n, q = params.poly_modulus_degree, _coefficient_modulus(params.coeff_modulus_bits)
+            n, q = params.poly_modulus_degree, _parameter_modulus(params)
             digits = (
                 params.coeff_modulus_bits + params.decomposition_bits - 1
             ) // params.decomposition_bits

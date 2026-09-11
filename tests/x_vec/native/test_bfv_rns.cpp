@@ -1,6 +1,7 @@
 // Standalone kernel oracles; also run under address/undefined-behavior sanitizers.
 #include "rns_ntt.h"
 #include "packed_wire.h"
+#include "bfv_residue.h"
 #include <cassert>
 #include <iostream>
 #include <random>
@@ -116,5 +117,67 @@ int main() {
         values[0] = 0; values[7] = q - 1;
         assert(import_packed(export_packed(values, q), ring) == values);
     }
-    std::cout << "Native NTT, Shoup, signed CRT and gadget oracles passed\n";
+    // Persistent RNS: exact canonical Garner lifts and binary gadget digits at
+    // every supported Q width, including word boundaries and the widest gadget.
+    Ring primes(8, (mpz_class(1) << 480) - 1, 30, true);
+    mpz_class q = 1;
+    for (std::size_t count = 1; count <= 8; ++count) {
+        q *= primes.transforms[count - 1].modulus;
+        for (unsigned bits : {1, 15, 30, 60, 61, 127, 480}) {
+            if (bits > 60 * count) continue;
+            auto ring = std::make_shared<Ring>(8, q, bits, true, true);
+            ResidueArithmetic arithmetic(*ring);
+            assert(ring->switch_prime_count == count);
+            Polynomial a(8);
+            for (auto& c : a) c = big_random.get_z_range(q);
+            a[0] = 0; a[1] = q - 1; a[2] = q / 2;
+            a[3] = primes.transforms[0].modulus % q;
+            a[4] = (mpz_class(1) << (60 * count - 1)) % q;
+            auto residues = arithmetic.split(a);
+            assert(arithmetic.compose(residues) == a);
+            auto words = arithmetic.compose_words(residues);
+            for (std::size_t digit = 0; digit < ring->digits; ++digit)
+                for (std::size_t j = 0; j < count; ++j)
+                    for (std::size_t i = 0; i < 8; ++i) {
+                        mpz_class expected = a[i] >> (digit * bits);
+                        mpz_fdiv_r_2exp(expected.get_mpz_t(), expected.get_mpz_t(), bits);
+                        assert(arithmetic.digit_mod(words[i], digit * bits, bits, j) ==
+                               mpz_fdiv_ui(expected.get_mpz_t(), ring->transforms[j].modulus));
+                    }
+            std::vector<Ciphertext> key(ring->digits, Ciphertext{Polynomial(8), Polynomial(8)});
+            for (auto& pair : key)
+                for (auto& component : pair)
+                    for (auto& c : component) c = big_random.get_z_range(q);
+            SwitchKey prepared(ring, key);
+            Ciphertext expected{Polynomial(8), Polynomial(8)};
+            for (std::size_t digit = 0; digit < ring->digits; ++digit) {
+                Polynomial part(8);
+                for (std::size_t i = 0; i < 8; ++i) {
+                    part[i] = a[i] >> (digit * bits);
+                    mpz_fdiv_r_2exp(part[i].get_mpz_t(), part[i].get_mpz_t(), bits);
+                }
+                for (std::size_t k = 0; k < 2; ++k) {
+                    auto product = schoolbook(part, key[digit][k]);
+                    for (std::size_t i = 0; i < 8; ++i) expected[k][i] += product[i];
+                }
+            }
+            for (auto& component : expected)
+                for (auto& c : component) mpz_mod(c.get_mpz_t(), c.get_mpz_t(), q.get_mpz_t());
+            NativeProfile profile;
+            ResidueCiphertext actual;
+            { ProfileSession session(profile); actual = arithmetic.apply(residues, prepared); }
+            assert(profile.calls[std::size_t(Phase::crt_reconstruct)] == 0);
+            assert(profile.calls[std::size_t(Phase::mod_q)] == 0);
+            assert(arithmetic.compose(actual[0]) == expected[0]);
+            assert(arithmetic.compose(actual[1]) == expected[1]);
+            assert(prepared.apply(a) == expected);
+            for (Word g : {3, 9, 15}) {
+                auto rotated = arithmetic.rotate(actual, g, prepared);
+                auto reference = rotate(expected, g, prepared);
+                assert(arithmetic.compose(rotated[0]) == reference[0]);
+                assert(arithmetic.compose(rotated[1]) == reference[1]);
+            }
+        }
+    }
+    std::cout << "Native NTT, signed CRT, gadget and persistent RNS oracles passed\n";
 }
