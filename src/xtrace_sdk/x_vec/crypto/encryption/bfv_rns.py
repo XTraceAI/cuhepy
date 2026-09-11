@@ -16,7 +16,14 @@ from xtrace_sdk.x_vec.utils.xtrace_types import BFVPolynomial, BFVPublicKey, BFV
 class BFVRNSArithmetic:
     """Bind optional C++ kernels to one validated BFV public-key context."""
 
-    def __init__(self, pk: BFVPublicKey, *, fast: bool = False, residue: bool = False) -> None:
+    def __init__(
+        self,
+        pk: BFVPublicKey,
+        *,
+        fast: bool = False,
+        residue: bool = False,
+        kernel_level: int | None = None,
+    ) -> None:
         try:
             from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns
         except ImportError as error:
@@ -25,7 +32,7 @@ class BFVRNSArithmetic:
                 "make -C src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext PYTHON=/path/to/python; "
                 "or select server_backend='optimized' for the Python/GMP evaluator."
             ) from error
-        if _bfv_rns.ABI_VERSION != 3:
+        if _bfv_rns.ABI_VERSION != 4:
             raise ImportError("BFV RNS CPU extension has an incompatible ABI; rebuild it")
         self._native = _bfv_rns
         self._pk = pk
@@ -36,8 +43,16 @@ class BFVRNSArithmetic:
             )
         self.n = params.poly_modulus_degree
         self.width = (pk["q"].bit_length() + 7) // 8
+        if kernel_level is None:
+            kernel_level = 2 if residue else 0
+        if (
+            type(kernel_level) is not int
+            or kernel_level not in (0, 1, 2)
+            or (kernel_level and not residue)
+        ):
+            raise ValueError("kernel_level must be 0..2; nonzero levels require residue arithmetic")
         self._ring = _bfv_rns.create_ring(
-            self.n, format(pk["q"], "x"), params.decomposition_bits, fast, residue
+            self.n, format(pk["q"], "x"), params.decomposition_bits, fast, residue, kernel_level
         )
         self._keys: dict[int, object] = {}
 

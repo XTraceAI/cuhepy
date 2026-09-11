@@ -52,12 +52,74 @@ struct Multiplier {
 class PrimeNTT {
     std::size_t n_;
     bool lazy_;
+    bool fused_;
     Word reciprocal_low_, reciprocal_high_;
     std::vector<Multiplier> roots_, inverse_roots_, twists_, inverse_scales_;
+    std::vector<Multiplier> stage_roots_, stage_inverse_;
+    std::unique_ptr<Multiplier> inverse_n_, last_inverse_;
+
+    void forward_fused(std::vector<Word>& values) const {
+        const Word twice = 2 * modulus;
+        // Evaluate at odd powers of psi directly. One root per contiguous
+        // butterfly group incorporates the negacyclic twist into the transform.
+        // Stage inputs/outputs are in [0,4p); the fixed multiplier sees <4p.
+        for (std::size_t groups = 1, gap = n_ / 2; groups < n_; groups *= 2, gap /= 2) {
+            for (std::size_t group = 0; group < groups; ++group) {
+                const auto root = stage_roots_[groups + group];
+                Word* a = values.data() + 2 * group * gap;
+                Word* b = a + gap;
+                auto butterfly = [&](std::size_t j) {
+                    Word u = a[j];
+                    if (u >= twice) u -= twice;
+                    Word v = root.multiply_lazy(b[j], modulus);
+                    a[j] = u + v;
+                    b[j] = u + twice - v;
+                };
+                std::size_t j = 0;
+                for (; j + 4 <= gap; j += 4) {
+                    butterfly(j); butterfly(j + 1); butterfly(j + 2); butterfly(j + 3);
+                }
+                for (; j < gap; ++j) butterfly(j);
+            }
+        }
+        for (auto& value : values) {
+            if (value >= twice) value -= twice;
+            if (value >= modulus) value -= modulus;
+        }
+    }
+
+    void inverse_fused(std::vector<Word>& values) const {
+        const Word twice = 2 * modulus;
+        for (std::size_t groups = n_ / 2, gap = 1; groups > 1; groups /= 2, gap *= 2) {
+            for (std::size_t group = 0; group < groups; ++group) {
+                const auto root = stage_inverse_[groups + group];
+                Word* a = values.data() + 2 * group * gap;
+                Word* b = a + gap;
+                auto butterfly = [&](std::size_t j) {
+                    Word u = a[j], v = b[j], sum = u + v;
+                    a[j] = sum >= twice ? sum - twice : sum;
+                    b[j] = root.multiply_lazy(u + twice - v, modulus);
+                };
+                std::size_t j = 0;
+                for (; j + 4 <= gap; j += 4) {
+                    butterfly(j); butterfly(j + 1); butterfly(j + 2); butterfly(j + 3);
+                }
+                for (; j < gap; ++j) butterfly(j);
+            }
+        }
+        // Inverse stages keep [0,2p). Fuse 1/N into the final butterfly, saving
+        // N/2 multiplications and the separate inverse-twist/scaling pass.
+        for (std::size_t j = 0; j < n_ / 2; ++j) {
+            Word u = values[j], v = values[j + n_ / 2];
+            values[j] = inverse_n_->multiply(u + v, modulus);
+            values[j + n_ / 2] = last_inverse_->multiply(u + twice - v, modulus);
+        }
+    }
 
 public:
     const Word modulus;
-    PrimeNTT(std::size_t n, Word prime, bool lazy = false) : n_(n), lazy_(lazy), modulus(prime) {
+    PrimeNTT(std::size_t n, Word prime, bool lazy = false, bool fused = false)
+        : n_(n), lazy_(lazy), fused_(fused), modulus(prime) {
         // For an odd prime, floor((2^128-1)/p) == floor(2^128/p).
         Wide reciprocal = ~Wide(0) / prime;
         reciprocal_low_ = Word(reciprocal);
@@ -70,6 +132,26 @@ public:
         Word omega = Wide(psi) * psi % prime;
         Word inverse_omega = power_mod(omega, prime - 2, prime);
         Word inverse_psi = power_mod(psi, prime - 2, prime);
+        if (fused_) {
+            unsigned log_n = 0;
+            for (auto v = n; v > 1; v /= 2) ++log_n;
+            std::vector<Word> powers(n, 1), inverse_powers(n, 1);
+            for (std::size_t i = 1; i < n; ++i) {
+                powers[i] = Wide(powers[i - 1]) * psi % prime;
+                inverse_powers[i] = Wide(inverse_powers[i - 1]) * inverse_psi % prime;
+            }
+            stage_roots_.reserve(n); stage_inverse_.reserve(n);
+            for (std::size_t i = 0; i < n; ++i) {
+                Word reversed = 0, index = i;
+                for (unsigned bit = 0; bit < log_n; ++bit) { reversed = 2 * reversed + (index & 1); index >>= 1; }
+                stage_roots_.emplace_back(powers[reversed], prime);
+                stage_inverse_.emplace_back(inverse_powers[reversed], prime);
+            }
+            Word inverse_n = power_mod(n, prime - 2, prime);
+            inverse_n_ = std::make_unique<Multiplier>(inverse_n, prime);
+            last_inverse_ = std::make_unique<Multiplier>(Wide(stage_inverse_[1].value) * inverse_n % prime, prime);
+            return;
+        }
         Word root = 1, inverse_root = 1, twist = 1;
         Word scale = power_mod(n, prime - 2, prime);
         roots_.reserve(n / 2);
@@ -95,6 +177,7 @@ public:
     // bit-reversal permutation is needed between forward and inverse NTTs.
     void forward(std::vector<Word>& values) const {
         ProfileScope timing(Phase::forward_ntt);
+        if (fused_) { forward_fused(values); return; }
         if (lazy_) {
             // Internal values stay below 2p. One correction per butterfly;
             // canonicalize only at the boundary so gadget accumulation keeps
@@ -134,6 +217,7 @@ public:
     // negacyclic twist in the final coefficient pass.
     void inverse(std::vector<Word>& values) const {
         ProfileScope timing(Phase::inverse_ntt);
+        if (fused_) { inverse_fused(values); return; }
         if (lazy_) {
             // Inputs to each butterfly are below 4p. Reduce a into [0,2p),
             // obtain b*w in [0,2p), then both outputs fit [0,4p). With p<2^60
@@ -170,7 +254,7 @@ public:
             values[i] = inverse_scales_[i].multiply(values[i], modulus);
     }
 
-    std::size_t bytes() const { return 3 * n_ * sizeof(Multiplier); }
+    std::size_t bytes() const { return (fused_ ? 2 * n_ + 2 : 3 * n_) * sizeof(Multiplier); }
 
     // Barrett reduction for any unsigned 128-bit input. Only the low word of
     // floor(x*floor(2^128/p)/2^128) is needed: subtraction wraps mod 2^64,
@@ -183,6 +267,19 @@ public:
         Word quotient = high * reciprocal_high_ + Word(p01 >> 64) + Word(p10 >> 64) + Word(middle >> 64);
         Word remainder = low - quotient * modulus;
         return remainder >= modulus ? remainder - modulus : remainder;
+    }
+
+    // Quotient and remainder when floor(value/p) fits one word. Tensor scaling
+    // uses value=t*y with t,y<2^60, so the quotient is below 2^61.
+    std::pair<Word, Word> divide(Wide value) const {
+        Word low = Word(value), high = Word(value >> 64);
+        Wide p00 = Wide(low) * reciprocal_low_;
+        Wide p01 = Wide(low) * reciprocal_high_, p10 = Wide(high) * reciprocal_low_;
+        Wide middle = (p00 >> 64) + Word(p01) + Word(p10);
+        Word quotient = high * reciprocal_high_ + Word(p01 >> 64) + Word(p10 >> 64) + Word(middle >> 64);
+        Word remainder = low - quotient * modulus;
+        if (remainder >= modulus) { remainder -= modulus; ++quotient; }
+        return {quotient, remainder};
     }
 
     Word remainder(Wide value) const { return lazy_ ? reduce(value) : value % modulus; }
@@ -212,17 +309,21 @@ public:
     const unsigned digit_bits;
     const mpz_class q;
     const bool fast;
+    const unsigned kernel_level;
     std::vector<PrimeNTT> transforms;
     std::size_t switch_prime_count;
     std::size_t residue_prime_count = 0;
 
-    Ring(std::size_t n, const mpz_class& q, unsigned bits, bool fast = false, bool residue = false)
+    Ring(std::size_t n, const mpz_class& q, unsigned bits, bool fast = false, bool residue = false,
+         unsigned kernel_level = 0)
         : n(n), coefficient_bytes((mpz_sizeinbase(q.get_mpz_t(), 2) + 7) / 8),
           digits(bits ? (mpz_sizeinbase(q.get_mpz_t(), 2) + bits - 1) / bits : 0),
-          digit_bits(bits), q(q), fast(fast) {
+          digit_bits(bits), q(q), fast(fast), kernel_level(kernel_level) {
         if (n < 8 || n > 32768 || (n & (n - 1)) || q < 3 ||
             mpz_sizeinbase(q.get_mpz_t(), 2) > 512 || bits < 1 || bits > mpz_sizeinbase(q.get_mpz_t(), 2))
             throw std::invalid_argument("Invalid native BFV ring parameters");
+        if (kernel_level > 2 || (kernel_level && !residue))
+            throw std::invalid_argument("Kernel level must be 0..2, with nonzero levels requiring the residue backend");
         // A coefficient of a gadget dot product has |c| <= N*L*(2^b-1)*(q-1).
         // A BFV cross component is a sum of two products, bounded by 2N(q-1)^2.
         // Auxiliary modulus M must exceed twice the bound for exact signed CRT.
@@ -238,7 +339,7 @@ public:
                 prime -= 2 * n;
                 candidate = prime;
             }
-            transforms.emplace_back(n, prime, fast);
+            transforms.emplace_back(n, prime, fast, kernel_level >= 1);
             product *= prime;
             prime -= 2 * n;
         }
@@ -367,9 +468,9 @@ public:
         return result;
     }
 
-    std::array<Polynomial, 3> multiply(
+    std::array<Residues, 3> tensor(
         const std::array<Polynomial, 2>& lhs, const std::array<Polynomial, 2>& rhs,
-        Word t, bool square) const {
+        bool square) const {
         std::size_t count = prime_count(2 * n * (q - 1) * (q - 1));
         auto a0 = encode(lhs[0], count), a1 = encode(lhs[1], count);
         Residues b0, b1;
@@ -388,6 +489,13 @@ public:
             }
         }
         }
+        return output;
+    }
+
+    std::array<Polynomial, 3> multiply(
+        const std::array<Polynomial, 2>& lhs, const std::array<Polynomial, 2>& rhs,
+        Word t, bool square) const {
+        auto output = tensor(lhs, rhs, square);
         std::array<Polynomial, 3> result;
         mpz_class denominator = 2 * q;
         for (std::size_t k = 0; k < 3; ++k) {

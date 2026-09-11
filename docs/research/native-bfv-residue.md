@@ -1,5 +1,9 @@
 # Persistent RNS BFV server
 
+The measurements below describe the initial residue backend. The follow-up
+[fused NTT and RNS scaling report](native-bfv-fused-rns.md) documents the current
+default kernels and ABI 4; the earlier kernels remain available as controls.
+
 `BFVClient(rns_modulus=True, server_backend="residue")` keeps ciphertexts as
 arrays of 60-bit residues after the initial BFV tensor scale-and-round. Key
 switching, rotations, additions, plaintext masks and the result merge tree run

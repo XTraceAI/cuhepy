@@ -8,11 +8,11 @@
 namespace xtrace_bfv {
 enum class Phase : std::size_t {
     forward_ntt, inverse_ntt, to_residues, crt_reconstruct, crt_exact_fallback, gadget_decompose,
-    pointwise, scale_round, mod_q, buffers, automorphism, add_sub, wire_import, wire_export, rns_compose, other, count
+    pointwise, scale_round, mod_q, buffers, automorphism, add_sub, wire_import, wire_export, rns_compose, rns_scale, other, count
 };
 inline constexpr const char* phase_names[] = {
     "forward_ntt", "inverse_ntt", "to_residues", "crt_reconstruct", "crt_exact_fallback", "gadget_decompose",
-    "pointwise", "scale_round", "mod_q", "buffers", "automorphism", "add_sub", "wire_import", "wire_export", "rns_compose", "other"
+    "pointwise", "scale_round", "mod_q", "buffers", "automorphism", "add_sub", "wire_import", "wire_export", "rns_compose", "rns_scale", "other"
 };
 struct NativeProfile {
     using Clock = std::chrono::steady_clock;

@@ -106,17 +106,18 @@ template <class Function> PyObject* checked(Function&& function) {
 
 PyObject* create_ring(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
-        PyObject *n_object, *bits_object;
+        PyObject *n_object, *bits_object, *level_object = nullptr;
         const char* q_hex;
         int fast = 0, residue = 0;
-        if (!PyArg_ParseTuple(args, "OsO|pp", &n_object, &q_hex, &bits_object, &fast, &residue)) return nullptr;
+        if (!PyArg_ParseTuple(args, "OsO|ppO", &n_object, &q_hex, &bits_object, &fast, &residue, &level_object)) return nullptr;
         auto n = PyLong_AsUnsignedLongLong(n_object), bits = PyLong_AsUnsignedLongLong(bits_object);
+        auto level = level_object ? PyLong_AsUnsignedLongLong(level_object) : 0;
         if (PyErr_Occurred()) return nullptr;
-        if (n > 32768 || bits > 512) throw std::invalid_argument("Invalid native BFV ring parameters");
+        if (n > 32768 || bits > 512 || level > 2) throw std::invalid_argument("Invalid native BFV ring parameters or kernel level");
         mpz_class q;
         if (q.set_str(q_hex, 16) != 0) throw std::invalid_argument("Invalid ciphertext modulus");
         RingPtr ring;
-        { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, fast, residue); }
+        { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, fast, residue, level); }
         return capsule(std::move(ring), ring_name);
     });
 }
@@ -247,11 +248,11 @@ PyObject* ring_info(PyObject*, PyObject* argument) {
             if (!value) { Py_DECREF(primes); return nullptr; }
             PyTuple_SET_ITEM(primes, i, value);
         }
-        return Py_BuildValue("{s:N,s:n,s:n,s:s,s:s,s:O,s:n}", "primes", primes,
+        return Py_BuildValue("{s:N,s:n,s:n,s:s,s:s,s:O,s:n,s:I}", "primes", primes,
                              "switch_prime_count", ring->switch_prime_count,
                              "transform_table_bytes", ring->bytes(), "gmp", gmp_version,
                              "compiler", __VERSION__, "fast_arithmetic", ring->fast ? Py_True : Py_False,
-                             "residue_prime_count", ring->residue_prime_count);
+                             "residue_prime_count", ring->residue_prime_count, "kernel_level", ring->kernel_level);
     });
 }
 
@@ -410,7 +411,7 @@ PyModuleDef module = {PyModuleDef_HEAD_INIT, "_bfv_rns", "Native BFV RNS/NTT CPU
 
 PyMODINIT_FUNC PyInit__bfv_rns() {
     PyObject* result = PyModule_Create(&module);
-    if (result && PyModule_AddIntConstant(result, "ABI_VERSION", 3) < 0) {
+    if (result && PyModule_AddIntConstant(result, "ABI_VERSION", 4) < 0) {
         Py_DECREF(result); return nullptr;
     }
     return result;

@@ -3,7 +3,8 @@ from typing import Any
 ABI_VERSION: int
 
 def create_ring(
-    n: int, q_hex: str, digit_bits: int, fast: bool = False, residue: bool = False
+    n: int, q_hex: str, digit_bits: int, fast: bool = False, residue: bool = False,
+    kernel_level: int = 0,
 ) -> object: ...
 def compile_key(ring: object, key: tuple[tuple[bytes, bytes], ...]) -> object: ...
 def apply_key(key: object, poly: bytes) -> tuple[bytes, bytes]: ...

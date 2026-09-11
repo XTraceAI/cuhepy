@@ -3,6 +3,7 @@
 // unchanged, so the GMP evaluator is a coefficient-for-coefficient oracle.
 #pragma once
 #include "bfv_server.h"
+#include "rns_scale.h"
 
 namespace xtrace_bfv {
 using ResidueCiphertext = std::array<Residues, 2>;
@@ -186,6 +187,7 @@ public:
 class ResidueServer : public HammingServer {
     ResidueArithmetic arithmetic_;
     Residues full_mask_ntt_;
+    std::unique_ptr<RNSScale> scale_;
 
     ResidueCiphertext tile(const Ciphertext& query, const Ciphertext& indexed, const Residues& selected) const {
         Ciphertext difference = query;
@@ -195,12 +197,15 @@ class ResidueServer : public HammingServer {
                   difference[k][i] -= indexed[k][i];
                   if (difference[k][i] < 0) difference[k][i] += ring->q;
               } }
-        // One exact tensor and scale/round per tile still uses the original
-        // auxiliary base and GMP. After this boundary, ciphertexts remain RNS
-        // through relinearization, all rotations, masks and the merge tree.
-        auto product = ring->multiply(difference, difference, t, true);
-        auto distance = arithmetic_.apply(arithmetic_.split(product[2]), *relin_);
-        arithmetic_.add(distance, {arithmetic_.split(product[0]), arithmetic_.split(product[1])});
+        std::array<Residues, 3> product;
+        if (scale_) product = scale_->multiply(difference, difference, true);
+        else {
+            // Retain the exact GMP route for differential tests and benchmarks.
+            auto canonical = ring->multiply(difference, difference, t, true);
+            for (std::size_t k = 0; k < 3; ++k) product[k] = arithmetic_.split(canonical[k]);
+        }
+        auto distance = arithmetic_.apply(product[2], *relin_);
+        arithmetic_.add(distance, {std::move(product[0]), std::move(product[1])});
         for (auto g : left_) {
             auto rotated = arithmetic_.rotate(distance, g, key(g));
             arithmetic_.add(distance, rotated);
@@ -213,7 +218,9 @@ public:
     ResidueServer(KeyHandle relin, std::map<Word, KeyHandle> keys,
                   std::size_t padded, Word t, const mpz_class& target)
         : HammingServer(std::move(relin), std::move(keys), padded, t, target, false),
-          arithmetic_(*ring), full_mask_ntt_(ring->encode(mask(capacity), arithmetic_.count)) {}
+          arithmetic_(*ring), full_mask_ntt_(ring->encode(mask(capacity), arithmetic_.count)) {
+        if (ring->kernel_level >= 2) scale_ = std::make_unique<RNSScale>(*ring, t);
+    }
 
     void search(const Ciphertext& query, std::size_t count, ReadTile read_tile, Emit emit, bool compact_result) const override {
         const auto tiles = (count + capacity - 1) / capacity;
@@ -233,6 +240,8 @@ public:
         });
     }
 
-    std::size_t bytes() const override { return HammingServer::bytes() + arithmetic_.count * ring->n * sizeof(Word); }
+    std::size_t bytes() const override {
+        return HammingServer::bytes() + arithmetic_.count * ring->n * sizeof(Word) + (scale_ ? scale_->bytes() : 0);
+    }
 };
 } // namespace xtrace_bfv

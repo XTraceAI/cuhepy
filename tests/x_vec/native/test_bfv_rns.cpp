@@ -41,6 +41,9 @@ int main() {
                     assert(transform.reduce(wide) == wide % p);
                     Word y = i ? random() % p : p - 1;
                     assert(transform.fraction(y) == (Wide(y) << 64) / p);
+                    Wide numerator = Wide(y) * (i ? random() % p : p - 1);
+                    auto divided = transform.divide(numerator);
+                    assert(divided.first == numerator / p && divided.second == numerator % p);
                 }
                 std::vector<Word> values(8);
                 for (auto& value : values) value = random() % p;
@@ -179,5 +182,57 @@ int main() {
             }
         }
     }
-    std::cout << "Native NTT, signed CRT, gadget and persistent RNS oracles passed\n";
+    // The fused transform must preserve the existing bit-reversed spectrum,
+    // including maximal residues, not just invert its own forward operation.
+    for (std::size_t n : {8, 16, 64, 8192, 32768}) {
+        Ring ring(n, (mpz_class(1) << 180) - 1, 30, true);
+        for (const auto& original : ring.transforms) {
+            PrimeNTT fused(n, original.modulus, true, true);
+            for (int sample = 0; sample < 3; ++sample) {
+                std::vector<Word> input(n);
+                for (auto& c : input) c = sample == 0 ? 0 : sample == 1 ? original.modulus - 1 : random() % original.modulus;
+                auto old = input, next = input;
+                original.forward(old); fused.forward(next);
+                assert(old == next);
+                fused.inverse(next);
+                assert(next == input);
+            }
+        }
+    }
+    // Independent GMP oracle for exact signed tensor scaling at every Q width.
+    // The +/- convolution bounds and half-integer rounding cases exercise the
+    // certified fixed-point intervals and their fixed-word exact corrections.
+    q = 1;
+    for (std::size_t count = 1; count <= 8; ++count) {
+        q *= primes.transforms[count - 1].modulus;
+        Ring ring(8, q, 30, true, true, 2);
+        ResidueArithmetic arithmetic(ring);
+        mpz_class bound = 2 * ring.n * (q - 1) * (q - 1);
+        auto tensor_count = ring.prime_count(bound);
+        for (Word t : {Word(2), Word(97), Word(65537), (Word(1) << 59) - 1}) {
+            RNSScale scaler(ring, t);
+            NativeProfile profile;
+            for (int sample = 0; sample < 100; ++sample) {
+                Polynomial z(8);
+                for (auto& c : z) { c = big_random.get_z_range(2 * bound + 1); c -= bound; }
+                if (sample == 0) z = {0, 1, -1, mpz_class(q / 2), mpz_class(q / 2 + 1), mpz_class(-q / 2), mpz_class(-q / 2 - 1), bound};
+                if (sample == 1) z = {-bound, q, -q, mpz_class(2 * q), mpz_class(-2 * q), mpz_class(q - 1), mpz_class(1 - q), mpz_class(bound - 1)};
+                Residues scaled;
+                { ProfileSession session(profile); scaled = scaler.scale(ring.encode(z, tensor_count)); }
+                auto result = arithmetic.compose(scaled);
+                for (std::size_t i = 0; i < z.size(); ++i) {
+                    mpz_class expected = 2 * t * z[i] + q, denominator = 2 * q;
+                    mpz_fdiv_q(expected.get_mpz_t(), expected.get_mpz_t(), denominator.get_mpz_t());
+                    mpz_mod(expected.get_mpz_t(), expected.get_mpz_t(), q.get_mpz_t());
+                    assert(result[i] == expected);
+                }
+            }
+            assert(profile.calls[std::size_t(Phase::crt_reconstruct)] == 0);
+            if (count > 1) assert(profile.calls[std::size_t(Phase::crt_exact_fallback)] > 0);
+            bool rejected = false;
+            try { scaler.scale(Residues{}); } catch (const std::invalid_argument&) { rejected = true; }
+            assert(rejected);
+        }
+    }
+    std::cout << "Native NTT, signed CRT, gadget, persistent RNS and exact scaling oracles passed\n";
 }

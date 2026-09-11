@@ -9,6 +9,7 @@ import pytest
 
 from xtrace_sdk.x_vec.crypto.bfv_client import BFVClient
 from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV, _rns_coefficient_primes
+from xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator import BFVEvaluator
 from xtrace_sdk.x_vec.utils.xtrace_types import BFVParameters
 
 
@@ -107,3 +108,36 @@ def test_residue_rejects_existing_prime_modulus_keys() -> None:
         client.encode_hamming_server(query, query)
     with pytest.raises(ValueError, match="product"):
         native.create_ring(16, format(client._pk()["q"], "x"), 15, True, True)
+
+
+@pytest.mark.parametrize("bits", [60, 180, 480])
+def test_residue_kernel_levels_return_identical_ciphertexts(bits: int) -> None:
+    pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
+    client = BFVClient(3, 16, 97, bits, 15, response_modulus_bits=40, rns_modulus=True)
+    vectors = [[0, 0, 0], [1, 1, 1], [0, 1, 0]] * 13
+    query = client.encrypt_vec_one([0, 1, 0])
+    index = client.encrypt_vec_packed(vectors)
+    responses = []
+    for level in range(3):
+        server = BFVClient(skip_key_gen=True, server_backend="residue")
+        server.load_config(json.loads(client.stringify_config()))
+        server.load_stringified_keys(client.stringify_pk())
+        server._server_evaluator = BFVEvaluator(server._pk(), "residue", kernel_level=level)
+        server._evaluator_public_key = server._pk()
+        assert server._evaluator().cache_info()["kernel_level"] == level
+        response = server.encode_hamming_server_packed(query, index, len(vectors))
+        assert client.decode_hamming_client_packed(response, len(vectors)) == [1, 2, 0] * 13
+        responses.append(response)
+    assert responses[0] == responses[1] == responses[2]
+
+
+@pytest.mark.parametrize("level", [-1, 3, True, "2", 1 << 64])
+def test_residue_kernel_level_validation(level) -> None:
+    native = pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
+    keys = BFV.key_gen(16, 97, 120, 15, rns_modulus=True)
+    with pytest.raises(ValueError):
+        BFVEvaluator(keys["pk"], "residue", kernel_level=level)
+    # bool is accepted by the low-level PyLong ABI, but rejected by the wrapper.
+    if level is not True:
+        with pytest.raises((TypeError, ValueError, OverflowError)):
+            native.create_ring(16, format(keys["pk"]["q"], "x"), 15, True, True, level)

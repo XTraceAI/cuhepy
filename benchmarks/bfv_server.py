@@ -27,7 +27,7 @@ import gmpy2
 from bfv_client_matrix import REPO_ROOT, make_data, packet, time_call, unpack_packet
 from xtrace_sdk.x_vec.crypto.bfv_client import BFVClient
 from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV, _rns_coefficient_primes
-from xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator import BFVServerBackend
+from xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator import BFVEvaluator, BFVServerBackend
 
 
 def main() -> None:
@@ -44,6 +44,11 @@ def main() -> None:
         help="Generate fresh keys with a product of 60-bit NTT primes; required by residue",
     )
     parser.add_argument("--response-modulus-bits", type=int, default=50)
+    parser.add_argument(
+        "--residue-levels",
+        default="2",
+        help="Residue controls: 0=previous kernels, 1=fused NTT, 2=also exact RNS scaling",
+    )
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument(
         "--repeats",
@@ -88,7 +93,18 @@ def main() -> None:
         parser.error("native-profile requires the rns, native, or residue backend")
     if "residue" in names and not args.rns_modulus:
         parser.error("residue requires --rns-modulus (fresh keys and index)")
-    backends = tuple(cast(BFVServerBackend, name) for name in names)
+    levels = args.residue_levels.split(",")
+    if len(set(levels)) != len(levels) or any(level not in ("0", "1", "2") for level in levels):
+        parser.error("residue-levels must contain distinct values from 0,1,2")
+    variants: dict[str, tuple[BFVServerBackend, int | None]] = {}
+    for name in names:
+        if name == "residue":
+            for level in levels:
+                label = "residue" if len(levels) == 1 else f"residue-{level}"
+                variants[label] = ("residue", int(level))
+        else:
+            variants[name] = (cast(BFVServerBackend, name), None)
+    backends = tuple(variants)
     vectors, query, expected = make_data(args.num_vectors, args.embed_len, args.seed)
     print("Generating one key set and encrypting the shared input", file=sys.stderr, flush=True)
     setup: dict[str, float] = {}
@@ -111,17 +127,21 @@ def main() -> None:
     setup["public_key_export_s"], public_json = time_call(client.stringify_pk)
     config = json.loads(client.stringify_config())
     servers = {}
-    for backend in backends:
-        server = BFVClient(skip_key_gen=True, server_backend=backend, **config)
-        setup[f"{backend}_public_key_import_s"], _ = time_call(
+    for label, (actual_backend, level) in variants.items():
+        server = BFVClient(skip_key_gen=True, server_backend=actual_backend, **config)
+        setup[f"{label}_public_key_import_s"], _ = time_call(
             partial(server.load_stringified_keys, public_json)
         )
+        setup[f"{label}_arithmetic_context_s"], server._server_evaluator = time_call(
+            partial(BFVEvaluator, server._pk(), actual_backend, kernel_level=level)
+        )
+        server._evaluator_public_key = server._pk()
         assert server.keys is None
-        servers[backend] = server
+        servers[label] = server
     key_bytes = len(public_json.encode())
     del public_json
 
-    def evaluate(backend: BFVServerBackend) -> list[list[int]]:
+    def evaluate(backend: str) -> list[list[int]]:
         return servers[backend].encode_hamming_server_packed(
             server_query, server_index, len(vectors)
         )
@@ -184,9 +204,7 @@ def main() -> None:
                     seal_client.noise_budgets(seal_response)
                 )
             else:
-                elapsed, response = time_call(
-                    partial(evaluate, cast(BFVServerBackend, backend_name))
-                )
+                elapsed, response = time_call(partial(evaluate, backend_name))
                 if reference_response is None:
                     reference_response = response
                 assert response == reference_response, "Native backend ciphertexts differ"
@@ -217,7 +235,7 @@ def main() -> None:
         from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns
 
         for backend in backends:
-            if backend in ("rns", "native", "residue"):
+            if variants[backend][0] in ("rns", "native", "residue"):
                 response, phases = _bfv_rns.profile_call(partial(evaluate, backend))
                 assert response == reference_response
                 native_phases[backend] = phases
@@ -243,7 +261,7 @@ def main() -> None:
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile",
         REPO_ROOT / "src/xtrace_sdk/x_vec/utils/xtrace_types.py",
     ]
-    if any(b in ("rns", "native", "residue") for b in backends):
+    if any(b in ("rns", "native", "residue") for b, _ in variants.values()):
         source_paths.extend((REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.so"))
     if args.seal:
         source_paths.append(REPO_ROOT / "experiments/bfv/packed_hamming.py")
@@ -272,7 +290,8 @@ def main() -> None:
             ),
         },
         "command": sys.argv,
-        "measurement_notes": "One CPU process, identical public keys and encrypted inputs for all native backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
+        "measurement_notes": "One CPU process, identical public keys and encrypted inputs for all native backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, arithmetic context creation (reported under setup), key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
+        "backend_variants": variants,
         "config": config,
         "ciphertext_modulus_hex": format(client._pk()["q"], "x"),
         "ciphertext_modulus_primes": _rns_coefficient_primes(
@@ -316,7 +335,7 @@ def main() -> None:
             backend: {
                 **server._evaluator().cache_info(),
                 "server_plan_bytes": server._native().cache_bytes()
-                if backend in ("native", "residue")
+                if variants[backend][0] in ("native", "residue")
                 else 0,
             }
             for backend, server in servers.items()

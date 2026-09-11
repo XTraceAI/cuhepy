@@ -90,18 +90,29 @@ class BFVEvaluator:
     number of evaluation keys in this snapshot and never stores query results.
     """
 
-    def __init__(self, pk: BFVPublicKey, backend: BFVServerBackend = "optimized") -> None:
+    def __init__(
+        self,
+        pk: BFVPublicKey,
+        backend: BFVServerBackend = "optimized",
+        *,
+        kernel_level: int | None = None,
+    ) -> None:
         if backend not in ("optimized", "reference", "rns", "native", "residue"):
             raise ValueError(
                 "server_backend must be 'optimized', 'reference', 'rns', 'native', or 'residue'"
             )
+        if kernel_level is not None and backend != "residue":
+            raise ValueError("kernel_level is a residue backend experiment control")
         self.backend = backend
         self._pk: BFVPublicKey = {**pk, "galois_keys": dict(pk["galois_keys"])}
         # Exponent zero identifies relinearization; Galois exponents are odd.
         self._switch_keys: dict[int, _PackedSwitchKey] = {}
         self._rns = (
             BFVRNSArithmetic(
-                self._pk, fast=backend in ("native", "residue"), residue=backend == "residue"
+                self._pk,
+                fast=backend in ("native", "residue"),
+                residue=backend == "residue",
+                kernel_level=kernel_level,
             )
             if backend in ("rns", "native", "residue")
             else None
