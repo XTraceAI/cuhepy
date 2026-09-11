@@ -68,7 +68,7 @@ jobs:
           sudo apt-get install -y libgmp-dev
           make -C src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext PYTHON="$PWD/.venv/bin/python"
           uv run python -c 'from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns; assert _bfv_rns.ABI_VERSION == 4'
-          uv run pytest tests/x_vec/test_bfv_encryption.py tests/x_vec/test_bfv_evaluator.py tests/x_vec/test_bfv_rns.py tests/x_vec/test_bfv_native.py tests/x_vec/test_bfv_residue.py tests/x_vec/test_bfv_client.py
+          uv run pytest tests/x_vec/test_bfv_encryption.py tests/x_vec/test_bfv_evaluator.py tests/x_vec/test_bfv_rns.py tests/x_vec/test_bfv_native.py tests/x_vec/test_bfv_residue.py tests/x_vec/test_bfv_client.py tests/x_vec/test_bfv_security.py
 
       - name: BFV native arithmetic sanitizers
         run: |

@@ -33,8 +33,9 @@ error sampling, plaintext modulus, batching, encryption and exact rounding
 algorithms are unchanged. An equal-bit response-compaction request retains Q
 instead of increasing it to the same-bit prime.
 
-This remains experimental leveled BFV with no security audit or security-level
-claim. It uses no SEAL code and performs no bootstrapping. The performance
+This remains experimental leveled BFV with no independent audit or security-level
+claim; see the [internal security review](native-bfv-security.md). It uses no SEAL
+code and performs no bootstrapping. The performance
 comparison below does not establish equivalent security to SEAL's parameters.
 
 ## Build and use

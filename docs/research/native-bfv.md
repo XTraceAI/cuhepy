@@ -6,8 +6,10 @@ existing `gmpy2` dependency; it does not import SEAL or TenSEAL. The earlier
 
 This is a **leveled BFV research implementation** for understanding the scheme and
 developing faster kernels. It has no bootstrapping, is not constant time, and has
-not undergone a security audit. The parameter settings below are arithmetic
-defaults, not a claim of a particular security level.
+not undergone an independent cryptographic audit. The
+[internal security review](native-bfv-security.md) records hardening, tests and
+open production blockers. The parameter settings below are arithmetic defaults,
+not a claim of a particular security level.
 
 ## Code map
 

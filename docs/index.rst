@@ -86,6 +86,7 @@ Choose your path:
    research/native-bfv-server
    research/native-bfv-residue
    research/native-bfv-fused-rns
+   research/native-bfv-security
    research/bfv-packed-hamming
 
 .. toctree::

@@ -6,10 +6,9 @@ Key generation, encryption and decryption use the existing BFV implementation.
 """
 
 from collections.abc import Sequence
-from numbers import Integral
 from typing import Any
 
-from xtrace_sdk.x_vec.crypto.encryption.bfv import _coefficient_modulus
+from xtrace_sdk.x_vec.crypto.encryption.bfv import _coefficient_modulus, _read_ciphertext_wire
 from xtrace_sdk.x_vec.crypto.encryption.bfv_rns import BFVRNSArithmetic
 from xtrace_sdk.x_vec.utils.xtrace_types import EncryptedVector
 
@@ -59,11 +58,7 @@ class BFVNativeServer:
     def _wire(self, values: Sequence[int | bytes]) -> tuple[bytes, bytes]:
         if len(values) != 8:
             raise ValueError("Native server requires two-component BFV ciphertext framing")
-        if any(not isinstance(v, (Integral, bytes)) for v in values):
-            raise ValueError("Ciphertext entries must be nonnegative integers or bytes")
-        data = [int.from_bytes(v, "little") if isinstance(v, bytes) else int(v) for v in values]
-        if any(v < 0 for v in data):
-            raise ValueError("Ciphertext entries must be nonnegative")
+        data = _read_ciphertext_wire(values, self.arithmetic._pk)
         expected = [
             0x58424656,
             1,
@@ -74,8 +69,6 @@ class BFVNativeServer:
         ]
         if data[:6] != expected:
             raise ValueError("Incompatible BFV ciphertext header, modulus or key")
-        if any(v.bit_length() > self._packed_bytes * 8 for v in data[6:]):
-            raise ValueError("Packed polynomial exceeds N coefficients")
         # Coefficient bounds are checked in C++ while importing the bit-packed
         # buffers. Do not construct or validate N Python integers per component.
         return data[6].to_bytes(self._packed_bytes, "little"), data[7].to_bytes(

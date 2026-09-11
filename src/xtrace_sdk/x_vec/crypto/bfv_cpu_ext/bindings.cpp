@@ -104,18 +104,31 @@ template <class Function> PyObject* checked(Function&& function) {
     return nullptr;
 }
 
+mpz_class read_modulus(const char* text, Py_ssize_t length, std::size_t max_digits = 128) {
+    // Bound text before GMP parses it. Leading zero padding, signs, whitespace
+    // and oversized moduli must not turn a tiny context into a large allocation.
+    if (length < 1 || static_cast<std::size_t>(length) > max_digits ||
+        (length > 1 && text[0] == '0') ||
+        !std::all_of(text, text + length, [](char c) {
+            return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
+        })) throw std::invalid_argument("Invalid or oversized native modulus encoding");
+    mpz_class value;
+    if (value.set_str(text, 16) != 0) throw std::invalid_argument("Invalid native modulus");
+    return value;
+}
+
 PyObject* create_ring(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
         PyObject *n_object, *bits_object, *level_object = nullptr;
         const char* q_hex;
+        Py_ssize_t q_length;
         int fast = 0, residue = 0;
-        if (!PyArg_ParseTuple(args, "OsO|ppO", &n_object, &q_hex, &bits_object, &fast, &residue, &level_object)) return nullptr;
+        if (!PyArg_ParseTuple(args, "Os#O|ppO", &n_object, &q_hex, &q_length, &bits_object, &fast, &residue, &level_object)) return nullptr;
         auto n = PyLong_AsUnsignedLongLong(n_object), bits = PyLong_AsUnsignedLongLong(bits_object);
         auto level = level_object ? PyLong_AsUnsignedLongLong(level_object) : 0;
         if (PyErr_Occurred()) return nullptr;
         if (n > 32768 || bits > 512 || level > 2) throw std::invalid_argument("Invalid native BFV ring parameters or kernel level");
-        mpz_class q;
-        if (q.set_str(q_hex, 16) != 0) throw std::invalid_argument("Invalid ciphertext modulus");
+        auto q = read_modulus(q_hex, q_length);
         RingPtr ring;
         { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, fast, residue, level); }
         return capsule(std::move(ring), ring_name);
@@ -266,7 +279,8 @@ PyObject* create_server(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
         PyObject *relin_object, *keys_object, *padded_object, *t_object;
         const char* target_hex;
-        if (!PyArg_ParseTuple(args, "OOOOs", &relin_object, &keys_object, &padded_object, &t_object, &target_hex)) return nullptr;
+        Py_ssize_t target_length;
+        if (!PyArg_ParseTuple(args, "OOOOs#", &relin_object, &keys_object, &padded_object, &t_object, &target_hex, &target_length)) return nullptr;
         auto relin = get_capsule<KeyPtr>(relin_object, key_name);
         const auto& ring = *relin->ring;
         auto padded = PyLong_AsUnsignedLongLong(padded_object);
@@ -276,7 +290,8 @@ PyObject* create_server(PyObject*, PyObject* args) {
         if (!padded || padded > ring.n / 2 || (padded & (padded - 1)) ||
             t % (2 * ring.n) != 1 || !mpz_probab_prime_p(plain.get_mpz_t(), 32))
             throw std::invalid_argument("Invalid native server layout or plaintext modulus");
-        if (target.set_str(target_hex, 16) != 0 || target <= plain || target > ring.q)
+        target = read_modulus(target_hex, target_length, (mpz_sizeinbase(ring.q.get_mpz_t(), 2) + 3) / 4);
+        if (target <= plain || target > ring.q)
             throw std::invalid_argument("Invalid native response modulus");
         if (!PyTuple_Check(keys_object)) throw std::invalid_argument("Rotation keys must be a tuple");
         std::map<Word, KeyPtr> keys;

@@ -209,7 +209,7 @@ int main() {
         ResidueArithmetic arithmetic(ring);
         mpz_class bound = 2 * ring.n * (q - 1) * (q - 1);
         auto tensor_count = ring.prime_count(bound);
-        for (Word t : {Word(2), Word(97), Word(65537), (Word(1) << 59) - 1}) {
+        for (Word t : {Word(2), Word(97), Word(65537), (Word(1) << (count == 1 ? 59 : 60)) - 1}) {
             RNSScale scaler(ring, t);
             NativeProfile profile;
             for (int sample = 0; sample < 100; ++sample) {

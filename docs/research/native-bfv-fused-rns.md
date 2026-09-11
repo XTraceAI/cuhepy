@@ -109,6 +109,14 @@ binary hashes are in `benchmarks/results/native_bfv_fused_1024.json` and
 `benchmarks/results/native_bfv_fused_32.json`. Fresh encryption changes key
 JSON sizes slightly. Old benchmark artifacts are retained.
 
+After the [security hardening](native-bfv-security.md), a fresh interleaved
+1,024-vector run measured 2.7874 s (previous kernels), 2.4236 s (both
+optimizations) and 2.4850 s (SEAL) as warm medians. The improvement remains
+**13.1%**, with identical native ciphertexts and all distances correct.
+`benchmarks/results/native_bfv_security_1024.json` records that final source
+state and all samples. Public-key import, measured separately, took about
+1.48 s with the stricter parser and the default ~86 MB bundle.
+
 ## Validation
 
 The 118 BFV test cases pass, including exact ciphertext equality across the

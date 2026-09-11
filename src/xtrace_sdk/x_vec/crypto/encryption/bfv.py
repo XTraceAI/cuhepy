@@ -8,6 +8,7 @@ variable-time implementation for learning and optimization, not audited crypto.
 
 import hashlib
 import json
+import re
 import secrets
 from collections.abc import Sequence
 from dataclasses import asdict
@@ -29,6 +30,71 @@ from xtrace_sdk.x_vec.utils.xtrace_types import (
     BFVSwitchKey,
     EncryptedVector,
 )
+
+# Local import limits, not cryptographic security parameters. The default
+# public Hamming bundle is about 86 MB; larger trusted experiments may override
+# this explicitly. A transport must bound bytes before buffering/decoding JSON.
+MAX_PUBLIC_KEY_CHARS = 128 * 1024 * 1024
+MAX_SECRET_KEY_CHARS = 1024 * 1024
+_HEX_COEFFICIENT = re.compile(r"(?:0|[1-9a-f][0-9a-f]*)\Z")
+
+
+def _load_key_json(value: str, max_chars: int) -> dict[str, Any]:
+    if type(max_chars) is not int or max_chars < 1:
+        raise ValueError("max_chars must be a positive integer")
+    if not isinstance(value, str) or len(value) > max_chars:
+        raise ValueError("BFV key JSON exceeds the character limit or is not a string")
+
+    def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for name, item in pairs:
+            if name in result:
+                raise ValueError("Duplicate BFV key JSON field")
+            result[name] = item
+        return result
+
+    try:
+        data = json.loads(value, object_pairs_hook=unique_object)
+    except RecursionError as exc:
+        raise ValueError("BFV key JSON is too deeply nested") from exc
+    if not isinstance(data, dict):
+        raise ValueError("BFV key JSON must be an object")
+    return data
+
+
+def _wire_integer(value: int | bytes, max_bits: int) -> int:
+    # Check byte lengths BEFORE allocating a large Python integer, including
+    # numerically small values hidden behind arbitrarily long zero padding.
+    if isinstance(value, bytes):
+        if len(value) > (max_bits + 7) // 8:
+            raise ValueError("BFV ciphertext entry exceeds its byte limit")
+        result = int.from_bytes(value, "little")
+    elif isinstance(value, Integral) and not isinstance(value, bool):
+        result = int(value)
+    else:
+        raise ValueError("Ciphertext entries must be nonnegative integers or bytes")
+    if result < 0 or result.bit_length() > max_bits:
+        raise ValueError("BFV ciphertext entry exceeds its integer bounds")
+    return result
+
+
+def _read_ciphertext_wire(values: Sequence[int | bytes], pk: BFVPublicKey) -> list[int]:
+    """Bound and validate framing shared by the Python and complete C++ paths."""
+    if len(values) not in (8, 9):
+        raise ValueError("Invalid BFV ciphertext framing")
+    n, max_q = pk["params"].poly_modulus_degree, pk["q"]
+    bounds = (32, 1, n.bit_length(), max_q.bit_length(), 256, 2)
+    data = [_wire_integer(v, bits) for v, bits in zip(values[:6], bounds, strict=True)]
+    if (
+        data[:3] != [0x58424656, 1, n]
+        or data[4] != int(pk["key_id"], 16)
+        or data[5] != len(values) - 6
+    ):
+        raise ValueError("Incompatible BFV ciphertext header or key")
+    if not pk["params"].plain_modulus < data[3] <= max_q:
+        raise ValueError("Invalid ciphertext modulus")
+    data.extend(_wire_integer(v, n * data[3].bit_length()) for v in values[6:])
+    return data
 
 
 def _round_div(value: mpz, divisor: mpz) -> mpz:
@@ -343,6 +409,8 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
     def validate_ciphertext(ciphertext: BFVCiphertext, pk: BFVPublicKey) -> None:
         """Reject mixed keys, incompatible shapes, and noncanonical coefficients."""
         n, q = pk["params"].poly_modulus_degree, ciphertext.modulus
+        if not isinstance(ciphertext.modulus, Integral) or isinstance(ciphertext.modulus, bool):
+            raise ValueError("Ciphertext modulus must be an integer")
         if ciphertext.key_id != pk["key_id"]:
             raise ValueError("Ciphertext belongs to a different BFV key")
         if not pk["params"].plain_modulus < q <= pk["q"]:
@@ -395,6 +463,9 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
         """Recover round(t * (c0 + c1*s + ...) / q) modulo t.
 
         Decryption does not authenticate ciphertexts or detect every noise failure.
+        Keep plaintexts and success/failure feedback inside the trusted client:
+        attacker-chosen ciphertexts can expose the secret through a decryption
+        oracle. See docs/research/native-bfv-security.md before protocol use.
         """
         t = keys["pk"]["params"].plain_modulus
         return tuple(
@@ -619,26 +690,10 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
     @staticmethod
     def ciphertext_from_ints(values: Sequence[int | bytes], pk: BFVPublicKey) -> BFVCiphertext:
         """Load native wire v1; byte entries use the same little endian convention as Paillier."""
-        if len(values) not in (8, 9):
-            raise ValueError("Invalid BFV ciphertext framing")
-        if any(not isinstance(v, (Integral, bytes)) for v in values):
-            raise ValueError("Ciphertext entries must be nonnegative integers or bytes")
-        data = [int.from_bytes(v, "little") if isinstance(v, bytes) else int(v) for v in values]
-        if any(v < 0 for v in data):
-            raise ValueError("Ciphertext entries must be nonnegative")
+        data = _read_ciphertext_wire(values, pk)
         n, q = pk["params"].poly_modulus_degree, mpz(data[3])
-        if (
-            data[:3] != [0x58424656, 1, n]
-            or data[4] != int(pk["key_id"], 16)
-            or data[5] != len(data) - 6
-        ):
-            raise ValueError("Incompatible BFV ciphertext header or key")
-        if not pk["params"].plain_modulus < q <= pk["q"]:
-            raise ValueError("Invalid ciphertext modulus")
         components = []
         for packed in data[6:]:
-            if packed.bit_length() > n * q.bit_length():
-                raise ValueError("Packed polynomial exceeds N coefficients")
             coefficients = gmpy2.unpack(mpz(packed), q.bit_length())
             coefficients.extend([mpz(0)] * (n - len(coefficients)))
             components.append(tuple(coefficients))
@@ -670,15 +725,21 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
         )
 
     @staticmethod
-    def deserialize_public_key(value: str) -> BFVPublicKey:
+    def deserialize_public_key(
+        value: str, *, max_chars: int = MAX_PUBLIC_KEY_CHARS
+    ) -> BFVPublicKey:
         """Load public JSON, checking parameters, polynomial shapes and key identity.
 
-        Serialization is intended for trusted local storage/experiments. Its
-        fingerprint detects mixups, not malicious modification or resource abuse.
+        Authenticate the complete bundle before loading it. The fingerprint
+        covers parameters and (b,a), not evaluation keys, and is not a MAC.
+        max_chars bounds JSON text before parsing; callers must separately bound
+        transport buffers and concurrent work. Raising it is a local policy choice.
         """
         try:
-            data = json.loads(value)
-            if data["version"] != 1:
+            data = _load_key_json(value, max_chars)
+            if set(data) != {"version", "params", "key_id", "b", "a", "relin_key", "galois_keys"}:
+                raise ValueError("Invalid public key fields")
+            if type(data["version"]) is not int or data["version"] != 1:
                 raise ValueError("Unsupported public key version")
             params = BFVParameters(**data["params"])
             BFV.validate_parameters(params)
@@ -691,7 +752,12 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
                 if (
                     not isinstance(values, list)
                     or len(values) != n
-                    or any(not isinstance(v, str) for v in values)
+                    or any(
+                        not isinstance(v, str)
+                        or len(v) > (params.coeff_modulus_bits + 3) // 4
+                        or _HEX_COEFFICIENT.fullmatch(v) is None
+                        for v in values
+                    )
                 ):
                     raise ValueError("Invalid key polynomial")
                 result = tuple(mpz(c, 16) for c in values)
@@ -710,9 +776,19 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
             identity = _key_id(params, b, a)
             if data["key_id"] != identity:
                 raise ValueError("Public key fingerprint does not match")
-            galois_keys = {int(g): switch(key) for g, key in data["galois_keys"].items()}
-            if any(not 1 < g < 2 * n or g % 2 == 0 for g in galois_keys):
-                raise ValueError("Invalid Galois exponent")
+            encoded_galois = data["galois_keys"]
+            if not isinstance(encoded_galois, dict) or len(encoded_galois) > n - 1:
+                raise ValueError("Invalid Galois key collection")
+            galois_keys = {}
+            for name, key in encoded_galois.items():
+                if len(name) > len(str(2 * n)) or not name.isascii() or not name.isdecimal():
+                    raise ValueError("Invalid Galois exponent")
+                g = int(name)
+                if str(g) != name or not 1 < g < 2 * n or g % 2 == 0:
+                    raise ValueError("Invalid Galois exponent")
+                galois_keys[g] = switch(key)
+            if not isinstance(data["relin_key"], list):
+                raise ValueError("Invalid relinearization key")
             return {
                 "params": params,
                 "q": q,
@@ -734,11 +810,19 @@ class BFV(HomomorphicBase[BFVCiphertext, BFVPolynomial, BFVKeyPair, BFVPublicKey
         )
 
     @staticmethod
-    def deserialize_secret_key(value: str, pk: BFVPublicKey) -> BFVSecretKey:
+    def deserialize_secret_key(
+        value: str, pk: BFVPublicKey, *, max_chars: int = MAX_SECRET_KEY_CHARS
+    ) -> BFVSecretKey:
         """Load and check a ternary secret against its public RLWE sample."""
         try:
-            data = json.loads(value)
-            if data["version"] != 1 or data["key_id"] != pk["key_id"]:
+            data = _load_key_json(value, max_chars)
+            if set(data) != {"version", "key_id", "s"}:
+                raise ValueError("Invalid secret key fields")
+            if (
+                type(data["version"]) is not int
+                or data["version"] != 1
+                or data["key_id"] != pk["key_id"]
+            ):
                 raise ValueError("Secret key version or identity mismatch")
             values = data["s"]
             if not isinstance(values, list) or len(values) != pk["params"].poly_modulus_degree:

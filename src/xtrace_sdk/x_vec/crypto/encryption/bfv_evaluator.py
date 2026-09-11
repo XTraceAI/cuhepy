@@ -6,6 +6,7 @@ noise, or wire formats. It shares the scheme's experimental, variable-time statu
 """
 
 from dataclasses import dataclass
+from numbers import Integral
 import sys
 from typing import Any, Literal
 
@@ -140,6 +141,8 @@ class BFVEvaluator:
     def _validate(self, ciphertext: BFVCiphertext) -> None:
         pk = self._pk
         n, q = pk["params"].poly_modulus_degree, ciphertext.modulus
+        if not isinstance(ciphertext.modulus, Integral) or isinstance(ciphertext.modulus, bool):
+            raise ValueError("Ciphertext modulus must be an integer")
         if ciphertext.key_id != pk["key_id"]:
             raise ValueError("Ciphertext belongs to a different BFV key")
         if not pk["params"].plain_modulus < q <= pk["q"]:

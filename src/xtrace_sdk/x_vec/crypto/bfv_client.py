@@ -11,7 +11,12 @@ from numbers import Integral
 from typing import Any
 
 from xtrace_sdk.x_vec.crypto.device import DeviceMode
-from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV, _parameter_dict
+from xtrace_sdk.x_vec.crypto.encryption.bfv import (
+    BFV,
+    MAX_PUBLIC_KEY_CHARS,
+    _coefficient_modulus,
+    _parameter_dict,
+)
 from xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator import BFVEvaluator, BFVServerBackend
 from xtrace_sdk.x_vec.crypto.encryption.bfv_native import BFVNativeServer
 from xtrace_sdk.x_vec.crypto.hamming_client_base import HammingClientBase
@@ -32,6 +37,9 @@ class BFVClient(HammingClientBase):
     The explicit ``*_packed`` methods amortize each ciphertext over several
     database vectors and pack up to N distances into each response ciphertext.
     All homomorphic evaluation uses public keys only; top-k stays on the client.
+    This experimental client has no result-authenticity or security-level claim.
+    Keep decrypted results, errors and diagnostics private; see
+    docs/research/native-bfv-security.md before designing a production protocol.
 
     :param embed_len: Binary embedding dimension, at most N/2 and less than t.
     :param poly_modulus_degree: Ring degree N, a power of two.
@@ -199,13 +207,21 @@ class BFVClient(HammingClientBase):
         self.response_modulus_bits = candidate.response_modulus_bits
         self._configure_layout()
 
-    def load_stringified_keys(self, pk: str, sk: str | None = None) -> None:
+    def load_stringified_keys(
+        self,
+        pk: str,
+        sk: str | None = None,
+        *,
+        max_public_key_chars: int = MAX_PUBLIC_KEY_CHARS,
+    ) -> None:
         """Load private client keys, or just public keys for server-side evaluation.
 
         :param pk: ``stringify_pk()`` JSON, including the evaluation keys.
         :param sk: ``stringify_sk()`` JSON. Omit on the server.
+        :param max_public_key_chars: Local JSON import bound; raise explicitly
+            for larger trusted experiments. Authenticate the entire bundle first.
         """
-        public_key = BFV.deserialize_public_key(pk)
+        public_key = BFV.deserialize_public_key(pk, max_chars=max_public_key_chars)
         if public_key["params"] != self.params:
             raise ValueError("Loaded BFV key parameters do not match the client configuration")
         n = self.params.poly_modulus_degree
@@ -362,9 +378,12 @@ class BFVClient(HammingClientBase):
             raise ValueError("vector_count does not match the packed ciphertext count")
 
     def _decode_slots(self, cipher: Sequence[int | bytes]) -> list[int]:
-        return BFV.batch_decode(
-            BFV.decrypt(BFV.ciphertext_from_ints(cipher, self._pk()), self._keys()), self.params
-        )
+        pk = self._pk()
+        ciphertext = BFV.ciphertext_from_ints(cipher, pk)
+        target = min(_coefficient_modulus(self.response_modulus_bits), pk["q"])
+        if len(ciphertext.components) != 2 or ciphertext.modulus not in (pk["q"], target):
+            raise ValueError("Unexpected BFV response modulus or component count")
+        return BFV.batch_decode(BFV.decrypt(ciphertext, self._keys()), self.params)
 
     def _check_distances(self, distances: list[int]) -> list[int]:
         if any(not 0 <= value <= self.embed_len for value in distances):
