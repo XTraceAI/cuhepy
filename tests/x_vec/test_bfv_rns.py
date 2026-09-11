@@ -43,11 +43,12 @@ def schoolbook(a: tuple, b: tuple) -> tuple:
         (100, 100),
     ],
 )
-def test_rns_switch_and_products_against_integer_oracle(q_bits: int, bits: int) -> None:
+@pytest.mark.parametrize("fast", [False, True])
+def test_rns_switch_and_products_against_integer_oracle(q_bits: int, bits: int, fast: bool) -> None:
     keys = BFV.key_gen(8, 17, q_bits, bits)
     pk, rng = keys["pk"], random.Random(bits)
     q = pk["q"]
-    arithmetic = BFVRNSArithmetic(pk)
+    arithmetic = BFVRNSArithmetic(pk, fast=fast)
     maximum = (q - 1,) * 8
     random_poly = tuple(mpz(rng.randrange(q)) for _ in range(8))
     inputs = [(mpz(0),) * 8, maximum, (mpz(0),) * 7 + (q - 1,), random_poly]

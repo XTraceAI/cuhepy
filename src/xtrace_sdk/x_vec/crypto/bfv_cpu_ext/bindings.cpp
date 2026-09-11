@@ -2,14 +2,18 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 #include "rns_ntt.h"
+#include "bfv_server.h"
+#include "packed_wire.h"
 #include <string>
 
 using namespace xtrace_bfv;
 namespace {
 using RingPtr = std::shared_ptr<const Ring>;
 using KeyPtr = std::shared_ptr<const SwitchKey>;
+using ServerPtr = std::shared_ptr<const HammingServer>;
 constexpr const char* ring_name = "xtrace.bfv.rns.ring.v1";
 constexpr const char* key_name = "xtrace.bfv.rns.key.v1";
+constexpr const char* server_name = "xtrace.bfv.server.v1";
 
 struct PythonError {};
 struct WithoutGIL {
@@ -103,14 +107,15 @@ PyObject* create_ring(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
         PyObject *n_object, *bits_object;
         const char* q_hex;
-        if (!PyArg_ParseTuple(args, "OsO", &n_object, &q_hex, &bits_object)) return nullptr;
+        int fast = 0;
+        if (!PyArg_ParseTuple(args, "OsO|p", &n_object, &q_hex, &bits_object, &fast)) return nullptr;
         auto n = PyLong_AsUnsignedLongLong(n_object), bits = PyLong_AsUnsignedLongLong(bits_object);
         if (PyErr_Occurred()) return nullptr;
         if (n > 32768 || bits > 512) throw std::invalid_argument("Invalid native BFV ring parameters");
         mpz_class q;
         if (q.set_str(q_hex, 16) != 0) throw std::invalid_argument("Invalid ciphertext modulus");
         RingPtr ring;
-        { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits); }
+        { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, fast); }
         return capsule(std::move(ring), ring_name);
     });
 }
@@ -241,10 +246,10 @@ PyObject* ring_info(PyObject*, PyObject* argument) {
             if (!value) { Py_DECREF(primes); return nullptr; }
             PyTuple_SET_ITEM(primes, i, value);
         }
-        return Py_BuildValue("{s:N,s:n,s:n,s:s,s:s}", "primes", primes,
+        return Py_BuildValue("{s:N,s:n,s:n,s:s,s:s,s:O}", "primes", primes,
                              "switch_prime_count", ring->switch_prime_count,
                              "transform_table_bytes", ring->bytes(), "gmp", gmp_version,
-                             "compiler", __VERSION__);
+                             "compiler", __VERSION__, "fast_arithmetic", ring->fast ? Py_True : Py_False);
     });
 }
 
@@ -252,6 +257,128 @@ PyObject* key_bytes(PyObject*, PyObject* argument) {
     return checked([&]() -> PyObject* {
         return PyLong_FromSize_t(get_capsule<KeyPtr>(argument, key_name)->bytes());
     });
+}
+
+PyObject* create_server(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *relin_object, *keys_object, *padded_object, *t_object;
+        const char* target_hex;
+        if (!PyArg_ParseTuple(args, "OOOOs", &relin_object, &keys_object, &padded_object, &t_object, &target_hex)) return nullptr;
+        auto relin = get_capsule<KeyPtr>(relin_object, key_name);
+        const auto& ring = *relin->ring;
+        auto padded = PyLong_AsUnsignedLongLong(padded_object);
+        if (PyErr_Occurred()) return nullptr;
+        Word t = read_t(t_object, ring);
+        mpz_class plain(t), target;
+        if (!padded || padded > ring.n / 2 || (padded & (padded - 1)) ||
+            t % (2 * ring.n) != 1 || !mpz_probab_prime_p(plain.get_mpz_t(), 32))
+            throw std::invalid_argument("Invalid native server layout or plaintext modulus");
+        if (target.set_str(target_hex, 16) != 0 || target <= plain || target > ring.q)
+            throw std::invalid_argument("Invalid native response modulus");
+        if (!PyTuple_Check(keys_object)) throw std::invalid_argument("Rotation keys must be a tuple");
+        std::map<Word, KeyPtr> keys;
+        for (Py_ssize_t i = 0; i < PyTuple_GET_SIZE(keys_object); ++i) {
+            auto entry = PyTuple_GET_ITEM(keys_object, i);
+            if (!PyTuple_Check(entry) || PyTuple_GET_SIZE(entry) != 2) throw std::invalid_argument("Invalid rotation key entry");
+            Word g = read_exponent(PyTuple_GET_ITEM(entry, 0), ring);
+            auto key = get_capsule<KeyPtr>(PyTuple_GET_ITEM(entry, 1), key_name);
+            if (key->ring != relin->ring) throw std::invalid_argument("Rotation key belongs to another native ring");
+            if (!keys.emplace(g, std::move(key)).second) throw std::invalid_argument("Duplicate rotation key");
+        }
+        ServerPtr server;
+        { WithoutGIL release; server = std::make_shared<HammingServer>(relin, std::move(keys), padded, t, target); }
+        return capsule(std::move(server), server_name);
+    });
+}
+
+using PackedPair = std::array<std::string_view, 2>;
+PackedPair packed_pair(PyObject* object, const Ring& ring) {
+    if (!PyTuple_Check(object) || PyTuple_GET_SIZE(object) != 2) throw std::invalid_argument("Expected two packed components");
+    PackedPair result;
+    auto bytes = (ring.n * mpz_sizeinbase(ring.q.get_mpz_t(), 2) + 7) / 8;
+    for (std::size_t i = 0; i < 2; ++i) {
+        auto value = PyTuple_GET_ITEM(object, i);
+        if (!PyBytes_Check(value) || PyBytes_GET_SIZE(value) != static_cast<Py_ssize_t>(bytes))
+            throw std::invalid_argument("Incorrect packed polynomial bytes");
+        result[i] = {PyBytes_AS_STRING(value), bytes};
+    }
+    return result;
+}
+
+PyObject* packed_search(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_object, *query_object, *index_object, *count_object;
+        int compact;
+        if (!PyArg_ParseTuple(args, "OOOOp", &server_object, &query_object, &index_object, &count_object, &compact)) return nullptr;
+        auto server = get_capsule<ServerPtr>(server_object, server_name);
+        auto count = PyLong_AsUnsignedLongLong(count_object);
+        if (PyErr_Occurred()) return nullptr;
+        if (!PyTuple_Check(index_object) || count > SIZE_MAX - server->capacity ||
+            (count + server->capacity - 1) / server->capacity != static_cast<std::size_t>(PyTuple_GET_SIZE(index_object)))
+            throw std::invalid_argument("vector_count does not match the packed ciphertext count");
+        auto query_bytes = packed_pair(query_object, *server->ring);
+        std::vector<PackedPair> index;
+        for (Py_ssize_t i = 0; i < PyTuple_GET_SIZE(index_object); ++i)
+            index.push_back(packed_pair(PyTuple_GET_ITEM(index_object, i), *server->ring));
+        std::vector<std::array<std::string, 2>> output;
+        {
+            WithoutGIL release;
+            const auto& ring = *server->ring;
+            Ciphertext query{import_packed(query_bytes[0], ring), import_packed(query_bytes[1], ring)};
+            server->search(query, count, [&](std::size_t at) -> Ciphertext {
+                return {import_packed(index[at][0], ring), import_packed(index[at][1], ring)};
+            }, [&](const Ciphertext& value) {
+                const auto& q = compact ? server->target : ring.q;
+                output.push_back({export_packed(value[0], q), export_packed(value[1], q)});
+            }, compact);
+        }
+        PyObject* result = PyList_New(output.size());
+        if (!result) return nullptr;
+        for (std::size_t i = 0; i < output.size(); ++i) {
+            auto& v = output[i];
+            PyObject* pair = Py_BuildValue("(y#y#)", v[0].data(), static_cast<Py_ssize_t>(v[0].size()),
+                                                    v[1].data(), static_cast<Py_ssize_t>(v[1].size()));
+            if (!pair) { Py_DECREF(result); return nullptr; }
+            PyList_SET_ITEM(result, i, pair);
+        }
+        return result;
+    });
+}
+
+PyObject* server_bytes(PyObject*, PyObject* argument) {
+    return checked([&]() -> PyObject* {
+        return PyLong_FromSize_t(get_capsule<ServerPtr>(argument, server_name)->bytes());
+    });
+}
+
+template <class Function>
+PyObject* profiled(Function function, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        NativeProfile profile;
+        PyObject* result;
+        { ProfileSession session(profile); ProfileScope total(Phase::other);
+          result = function(nullptr, args); }
+        if (!result) return nullptr;
+        PyObject* timings = PyDict_New();
+        if (!timings) { Py_DECREF(result); return nullptr; }
+        for (std::size_t i = 0; i < profile.ns.size(); ++i) {
+            PyObject* entry = Py_BuildValue("{s:d,s:K}", "seconds", profile.ns[i] * 1e-9,
+                                           "calls", static_cast<unsigned long long>(profile.calls[i]));
+            if (!entry || PyDict_SetItemString(timings, phase_names[i], entry) < 0) {
+                Py_XDECREF(entry); Py_DECREF(timings); Py_DECREF(result); return nullptr;
+            }
+            Py_DECREF(entry);
+        }
+        PyObject* output = PyTuple_Pack(2, result, timings);
+        Py_DECREF(result); Py_DECREF(timings);
+        return output;
+    });
+}
+
+PyObject* profile_hamming_tile(PyObject*, PyObject* args) { return profiled(hamming_tile, args); }
+PyObject* profile_packed_search(PyObject*, PyObject* args) { return profiled(packed_search, args); }
+PyObject* profile_call(PyObject*, PyObject* callback) {
+    return profiled([](PyObject*, PyObject* value) { return PyObject_CallNoArgs(value); }, callback);
 }
 
 PyMethodDef methods[] = {
@@ -262,6 +389,12 @@ PyMethodDef methods[] = {
     {"multiply", multiply, METH_VARARGS, "BFV tensor product and exact signed scale-and-round."},
     {"rotate_rows", rotate_rows, METH_VARARGS, "Galois automorphism and public-key switching."},
     {"hamming_tile", hamming_tile, METH_VARARGS, "Evaluate the native Hamming tile circuit."},
+    {"profile_hamming_tile", profile_hamming_tile, METH_VARARGS, "Return a tile and exclusive per-phase native timings."},
+    {"create_server", create_server, METH_VARARGS, "Prepare an immutable public-key native Hamming server."},
+    {"packed_search", packed_search, METH_VARARGS, "Evaluate a complete packed search using native wire buffers."},
+    {"profile_packed_search", profile_packed_search, METH_VARARGS, "Return a search and exclusive per-phase native timings."},
+    {"profile_call", profile_call, METH_O, "Profile native phases of a synchronous callable; other includes Python work."},
+    {"server_bytes", server_bytes, METH_O, "Payload bytes in prepared plaintext tables and mask."},
     {"ring_info", ring_info, METH_O, "Report public auxiliary-prime and table information."},
     {"key_bytes", key_bytes, METH_O, "Size of cached NTT coefficient arrays."},
     {nullptr, nullptr, 0, nullptr}
@@ -272,7 +405,7 @@ PyModuleDef module = {PyModuleDef_HEAD_INIT, "_bfv_rns", "Native BFV RNS/NTT CPU
 
 PyMODINIT_FUNC PyInit__bfv_rns() {
     PyObject* result = PyModule_Create(&module);
-    if (result && PyModule_AddIntConstant(result, "ABI_VERSION", 1) < 0) {
+    if (result && PyModule_AddIntConstant(result, "ABI_VERSION", 2) < 0) {
         Py_DECREF(result); return nullptr;
     }
     return result;

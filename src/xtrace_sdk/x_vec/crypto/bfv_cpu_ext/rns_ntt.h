@@ -9,6 +9,7 @@
 #include <memory>
 #include <stdexcept>
 #include <vector>
+#include "profile.h"
 
 namespace xtrace_bfv {
 static_assert(sizeof(unsigned long) == 8 && sizeof(std::size_t) == 8,
@@ -38,19 +39,29 @@ struct Multiplier {
     // most one below floor(input*value/p). The remainder is in [0,2p), even
     // though both low-word products wrap modulo 2^64. Here p < 2^60.
     Word multiply(Word input, Word modulus) const {
-        Word estimate = (Wide(input) * quotient) >> 64;
-        Word remainder = input * value - estimate * modulus;
+        Word remainder = multiply_lazy(input, modulus);
         return remainder >= modulus ? remainder - modulus : remainder;
+    }
+
+    Word multiply_lazy(Word input, Word modulus) const {
+        Word estimate = (Wide(input) * quotient) >> 64;
+        return input * value - estimate * modulus;
     }
 };
 
 class PrimeNTT {
     std::size_t n_;
+    bool lazy_;
+    Word reciprocal_low_, reciprocal_high_;
     std::vector<Multiplier> roots_, inverse_roots_, twists_, inverse_scales_;
 
 public:
     const Word modulus;
-    PrimeNTT(std::size_t n, Word prime) : n_(n), modulus(prime) {
+    PrimeNTT(std::size_t n, Word prime, bool lazy = false) : n_(n), lazy_(lazy), modulus(prime) {
+        // For an odd prime, floor((2^128-1)/p) == floor(2^128/p).
+        Wide reciprocal = ~Wide(0) / prime;
+        reciprocal_low_ = Word(reciprocal);
+        reciprocal_high_ = Word(reciprocal >> 64);
         Word psi = 0;
         for (Word candidate = 2; !psi; ++candidate) {
             Word root = power_mod(candidate, (prime - 1) / (2 * n), prime);
@@ -83,6 +94,27 @@ public:
     // is bit-reversed; keys and query digits use the same order, so no explicit
     // bit-reversal permutation is needed between forward and inverse NTTs.
     void forward(std::vector<Word>& values) const {
+        ProfileScope timing(Phase::forward_ntt);
+        if (lazy_) {
+            // Internal values stay below 2p. One correction per butterfly;
+            // canonicalize only at the boundary so gadget accumulation keeps
+            // its original <2^120 product and 256-term overflow bounds.
+            const Word twice = 2 * modulus;
+            for (std::size_t i = 0; i < n_; ++i)
+                values[i] = twists_[i].multiply_lazy(values[i], modulus);
+            for (std::size_t length = n_; length > 1; length >>= 1) {
+                std::size_t half = length / 2, stride = n_ / length;
+                for (std::size_t start = 0; start < n_; start += length)
+                    for (std::size_t j = 0; j < half; ++j) {
+                        Word a = values[start + j], b = values[start + j + half];
+                        Word sum = a + b;
+                        values[start + j] = sum >= twice ? sum - twice : sum;
+                        values[start + j + half] = roots_[j * stride].multiply_lazy(a + twice - b, modulus);
+                    }
+            }
+            for (auto& value : values) if (value >= modulus) value -= modulus;
+            return;
+        }
         for (std::size_t i = 0; i < n_; ++i)
             values[i] = twists_[i].multiply(values[i], modulus);
         for (std::size_t length = n_; length > 1; length >>= 1) {
@@ -101,6 +133,27 @@ public:
     // Complementary decimation-in-time inverse, fusing 1/N and the inverse
     // negacyclic twist in the final coefficient pass.
     void inverse(std::vector<Word>& values) const {
+        ProfileScope timing(Phase::inverse_ntt);
+        if (lazy_) {
+            // Inputs to each butterfly are below 4p. Reduce a into [0,2p),
+            // obtain b*w in [0,2p), then both outputs fit [0,4p). With p<2^60
+            // these operations and Shoup's low-word arithmetic cannot overflow.
+            const Word twice = 2 * modulus;
+            for (std::size_t length = 2; length <= n_; length <<= 1) {
+                std::size_t half = length / 2, stride = n_ / length;
+                for (std::size_t start = 0; start < n_; start += length)
+                    for (std::size_t j = 0; j < half; ++j) {
+                        Word a = values[start + j];
+                        if (a >= twice) a -= twice;
+                        Word b = inverse_roots_[j * stride].multiply_lazy(values[start + j + half], modulus);
+                        values[start + j] = a + b;
+                        values[start + j + half] = a + twice - b;
+                    }
+            }
+            for (std::size_t i = 0; i < n_; ++i)
+                values[i] = inverse_scales_[i].multiply(values[i], modulus);
+            return;
+        }
         for (std::size_t length = 2; length <= n_; length <<= 1) {
             std::size_t half = length / 2, stride = n_ / length;
             for (std::size_t start = 0; start < n_; start += length) {
@@ -118,11 +171,37 @@ public:
     }
 
     std::size_t bytes() const { return 3 * n_ * sizeof(Multiplier); }
+
+    // Barrett reduction for any unsigned 128-bit input. Only the low word of
+    // floor(x*floor(2^128/p)/2^128) is needed: subtraction wraps mod 2^64,
+    // while the actual residual lies in [0,2p). The estimate is at most one low.
+    Word reduce(Wide value) const {
+        Word low = Word(value), high = Word(value >> 64);
+        Wide p00 = Wide(low) * reciprocal_low_;
+        Wide p01 = Wide(low) * reciprocal_high_, p10 = Wide(high) * reciprocal_low_;
+        Wide middle = (p00 >> 64) + Word(p01) + Word(p10);
+        Word quotient = high * reciprocal_high_ + Word(p01 >> 64) + Word(p10 >> 64) + Word(middle >> 64);
+        Word remainder = low - quotient * modulus;
+        return remainder >= modulus ? remainder - modulus : remainder;
+    }
+
+    Word remainder(Wide value) const { return lazy_ ? reduce(value) : value % modulus; }
+
+    // Exact floor(y*2^64/p) for y<p, used by certified CRT. The low input word
+    // is zero, so the reciprocal quotient simplifies to two word products.
+    Word fraction(Word y) const {
+        Word quotient = y * reciprocal_high_ + Word((Wide(y) * reciprocal_low_) >> 64);
+        if (Word(0) - quotient * modulus >= modulus) ++quotient;
+        return quotient;
+    }
 };
 
 struct CRTBase {
     mpz_class product, half;
     std::vector<mpz_class> weights;
+    mpz_class product_mod_q;
+    std::vector<mpz_class> partial_mod_q;
+    std::vector<Multiplier> inverses;
 };
 
 class Ring {
@@ -132,13 +211,14 @@ public:
     const std::size_t n, coefficient_bytes, digits;
     const unsigned digit_bits;
     const mpz_class q;
+    const bool fast;
     std::vector<PrimeNTT> transforms;
     std::size_t switch_prime_count;
 
-    Ring(std::size_t n, const mpz_class& q, unsigned bits)
+    Ring(std::size_t n, const mpz_class& q, unsigned bits, bool fast = false)
         : n(n), coefficient_bytes((mpz_sizeinbase(q.get_mpz_t(), 2) + 7) / 8),
           digits(bits ? (mpz_sizeinbase(q.get_mpz_t(), 2) + bits - 1) / bits : 0),
-          digit_bits(bits), q(q) {
+          digit_bits(bits), q(q), fast(fast) {
         if (n < 8 || n > 32768 || (n & (n - 1)) || q < 3 ||
             mpz_sizeinbase(q.get_mpz_t(), 2) > 512 || bits < 1 || bits > mpz_sizeinbase(q.get_mpz_t(), 2))
             throw std::invalid_argument("Invalid native BFV ring parameters");
@@ -157,19 +237,24 @@ public:
                 prime -= 2 * n;
                 candidate = prime;
             }
-            transforms.emplace_back(n, prime);
+            transforms.emplace_back(n, prime, fast);
             product *= prime;
             prime -= 2 * n;
         }
         product = 1;
         for (std::size_t count = 1; count <= transforms.size(); ++count) {
             product *= transforms[count - 1].modulus;
-            CRTBase base{product, product / 2, {}};
+            CRTBase base{product, product / 2, {}, product % q, {}, {}};
             for (std::size_t j = 0; j < count; ++j) {
                 Word p = transforms[j].modulus;
                 mpz_class partial = product / p;
                 Word residue = mpz_fdiv_ui(partial.get_mpz_t(), p);
-                base.weights.push_back(partial * power_mod(residue, p - 2, p));
+                Word inverse = power_mod(residue, p - 2, p);
+                base.weights.push_back(partial * inverse);
+                if (fast) {
+                    base.partial_mod_q.push_back(partial % q);
+                    base.inverses.emplace_back(inverse, p);
+                }
             }
             bases_.push_back(std::move(base));
         }
@@ -183,7 +268,9 @@ public:
     }
 
     Residues encode(const Polynomial& poly, std::size_t count) const {
-        Residues result(count, std::vector<Word>(n));
+        ProfileScope timing(Phase::to_residues);
+        Residues result;
+        { ProfileScope allocation(Phase::buffers); result.assign(count, std::vector<Word>(n)); }
         for (std::size_t j = 0; j < count; ++j) {
             for (std::size_t i = 0; i < n; ++i)
                 result[j][i] = mpz_fdiv_ui(poly[i].get_mpz_t(), transforms[j].modulus);
@@ -193,6 +280,7 @@ public:
     }
 
     Polynomial decode(Residues values) const {
+        ProfileScope timing(Phase::crt_reconstruct);
         std::size_t count = values.size();
         const auto& base = bases_.at(count - 1);
         for (std::size_t j = 0; j < count; ++j) transforms[j].inverse(values[j]);
@@ -211,10 +299,61 @@ public:
         mpz_class bound = n * *std::max_element(lhs.begin(), lhs.end()) * *std::max_element(rhs.begin(), rhs.end());
         std::size_t count = prime_count(bound);
         auto a = encode(lhs, count), b = encode(rhs, count);
+        { ProfileScope timing(Phase::pointwise);
         for (std::size_t j = 0; j < count; ++j)
             for (std::size_t i = 0; i < n; ++i)
-                a[j][i] = Wide(a[j][i]) * b[j][i] % transforms[j].modulus;
+                a[j][i] = transforms[j].remainder(Wide(a[j][i]) * b[j][i]);
+        }
         return decode(std::move(a));
+    }
+
+    Polynomial decode_mod_q(Residues values) const {
+        if (!fast) {
+            auto result = decode(std::move(values));
+            ProfileScope timing(Phase::mod_q);
+            for (auto& value : result) mpz_mod(value.get_mpz_t(), value.get_mpz_t(), q.get_mpz_t());
+            return result;
+        }
+        const auto count = values.size();
+        const auto& base = bases_.at(count - 1);
+        for (std::size_t j = 0; j < count; ++j) transforms[j].inverse(values[j]);
+        Polynomial result(n);
+        {
+            ProfileScope timing(Phase::crt_reconstruct);
+            std::vector<Word> terms(count);
+            for (std::size_t i = 0; i < n; ++i) {
+                // y_j = residue_j / M_j mod p_j; theta = sum(y_j / p_j).
+                // The centered integer is sum(y_j*M_j) - round(theta)*M.
+                // We only need that result modulo q, so use M_j mod q.
+                // Integer fixed-point bounds certify round(theta); no floats
+                // or unproved approximate CRT are used.
+                Wide fraction = 0;
+                for (std::size_t j = 0; j < count; ++j) {
+                    Word p = transforms[j].modulus;
+                    terms[j] = base.inverses[j].multiply(values[j][i], p);
+                    fraction += transforms[j].fraction(terms[j]);
+                }
+                // fraction/2^64 <= theta < (fraction+count)/2^64.
+                // A rounding boundary inside that interval needs exact CRT.
+                const Wide half = Wide(1) << 63;
+                Word nearest = (fraction + half) >> 64;
+                auto& value = result[i];
+                if (nearest != ((fraction + count + half) >> 64)) {
+                    ProfileScope fallback(Phase::crt_exact_fallback);
+                    for (std::size_t j = 0; j < count; ++j)
+                        mpz_addmul_ui(value.get_mpz_t(), base.weights[j].get_mpz_t(), values[j][i]);
+                    value %= base.product;
+                    if (value > base.half) value -= base.product;
+                } else {
+                    for (std::size_t j = 0; j < count; ++j)
+                        mpz_addmul_ui(value.get_mpz_t(), base.partial_mod_q[j].get_mpz_t(), terms[j]);
+                    mpz_submul_ui(value.get_mpz_t(), base.product_mod_q.get_mpz_t(), nearest);
+                }
+            }
+        }
+        { ProfileScope timing(Phase::mod_q);
+          for (auto& value : result) mpz_mod(value.get_mpz_t(), value.get_mpz_t(), q.get_mpz_t()); }
+        return result;
     }
 
     std::array<Polynomial, 3> multiply(
@@ -225,21 +364,24 @@ public:
         Residues b0, b1;
         if (!square) { b0 = encode(rhs[0], count); b1 = encode(rhs[1], count); }
         std::array<Residues, 3> output;
-        for (auto& component : output) component.assign(count, std::vector<Word>(n));
+        { ProfileScope allocation(Phase::buffers);
+          for (auto& component : output) component.assign(count, std::vector<Word>(n)); }
+        { ProfileScope timing(Phase::pointwise);
         for (std::size_t j = 0; j < count; ++j) {
-            Word p = transforms[j].modulus;
             for (std::size_t i = 0; i < n; ++i) {
                 Word x0 = a0[j][i], x1 = a1[j][i];
                 Word y0 = square ? x0 : b0[j][i], y1 = square ? x1 : b1[j][i];
-                output[0][j][i] = Wide(x0) * y0 % p;
-                output[1][j][i] = (Wide(x0) * y1 + Wide(x1) * y0) % p;
-                output[2][j][i] = Wide(x1) * y1 % p;
+                output[0][j][i] = transforms[j].remainder(Wide(x0) * y0);
+                output[1][j][i] = transforms[j].remainder(Wide(x0) * y1 + Wide(x1) * y0);
+                output[2][j][i] = transforms[j].remainder(Wide(x1) * y1);
             }
+        }
         }
         std::array<Polynomial, 3> result;
         mpz_class denominator = 2 * q;
         for (std::size_t k = 0; k < 3; ++k) {
             result[k] = decode(std::move(output[k]));
+            ProfileScope timing(Phase::scale_round);
             for (auto& value : result[k]) {
                 // Preserve the reference's exact signed scale-and-round BEFORE
                 // reducing mod q: floor((2*t*integer_product + q) / (2*q)).
@@ -275,10 +417,12 @@ public:
     std::array<Polynomial, 2> apply(const Polynomial& poly) const {
         const auto& r = *ring;
         std::array<Residues, 2> output;
-        for (auto& component : output) component.assign(r.switch_prime_count, std::vector<Word>(r.n));
+        { ProfileScope allocation(Phase::buffers);
+          for (auto& component : output) component.assign(r.switch_prime_count, std::vector<Word>(r.n)); }
         // Decompose once, then reuse each integer digit across auxiliary primes.
         std::vector<Polynomial> decomposition;
         std::vector<std::vector<Word>> small_digits;
+        { ProfileScope timing(Phase::gadget_decompose);
 #if GMP_NUMB_BITS == 64
         if (r.digit_bits <= 60) {
             small_digits.assign(r.digits, std::vector<Word>(r.n));
@@ -302,6 +446,8 @@ public:
                     mpz_fdiv_r_2exp(value.get_mpz_t(), value.get_mpz_t(), r.digit_bits);
                 }
         }
+        }
+        { ProfileScope timing(Phase::pointwise);
         for (std::size_t j = 0; j < r.switch_prime_count; ++j) {
             Word p = r.transforms[j].modulus;
             std::array<std::vector<Wide>, 2> accum{std::vector<Wide>(r.n), std::vector<Wide>(r.n)};
@@ -325,15 +471,15 @@ public:
                 // Longer gadgets (e.g. 512 one-bit digits) need intermediate reduction.
                 if ((digit + 1) % 256 == 0)
                     for (auto& component : accum)
-                        for (auto& value : component) value %= p;
+                        for (auto& value : component) value = r.transforms[j].remainder(value);
             }
             for (std::size_t k = 0; k < 2; ++k)
-                for (std::size_t i = 0; i < r.n; ++i) output[k][j][i] = accum[k][i] % p;
+                for (std::size_t i = 0; i < r.n; ++i) output[k][j][i] = r.transforms[j].remainder(accum[k][i]);
+        }
         }
         std::array<Polynomial, 2> result;
         for (std::size_t k = 0; k < 2; ++k) {
-            result[k] = r.decode(std::move(output[k]));
-            for (auto& value : result[k]) mpz_mod(value.get_mpz_t(), value.get_mpz_t(), r.q.get_mpz_t());
+            result[k] = r.decode_mod_q(std::move(output[k]));
         }
         return result;
     }
@@ -342,6 +488,7 @@ public:
 };
 
 inline void add_inplace(Ciphertext& lhs, const Ciphertext& rhs, const Ring& ring) {
+    ProfileScope timing(Phase::add_sub);
     for (std::size_t k = 0; k < 2; ++k)
         for (std::size_t i = 0; i < ring.n; ++i) {
             lhs[k][i] += rhs[k][i];
@@ -352,6 +499,7 @@ inline void add_inplace(Ciphertext& lhs, const Ciphertext& rhs, const Ring& ring
 inline Ciphertext rotate(const Ciphertext& ciphertext, Word exponent, const SwitchKey& key) {
     const auto& r = *key.ring;
     Ciphertext permuted{Polynomial(r.n), Polynomial(r.n)};
+    { ProfileScope timing(Phase::automorphism);
     for (std::size_t k = 0; k < 2; ++k)
         for (std::size_t i = 0; i < r.n; ++i) {
             std::size_t index = (i * exponent) % (2 * r.n);
@@ -359,6 +507,7 @@ inline Ciphertext rotate(const Ciphertext& ciphertext, Word exponent, const Swit
             value = ciphertext[k][i];
             if (index >= r.n && value != 0) value = r.q - value;
         }
+    }
     auto switched = key.apply(permuted[1]);
     for (std::size_t i = 0; i < r.n; ++i) {
         switched[0][i] += permuted[0][i];
@@ -375,11 +524,13 @@ inline Ciphertext distance_tile(
     const std::vector<std::pair<Word, std::shared_ptr<const SwitchKey>>>& rotations,
     const Polynomial& mask, Word t) {
     const auto& r = *relin.ring;
+    { ProfileScope timing(Phase::add_sub);
     for (std::size_t k = 0; k < 2; ++k)
         for (std::size_t i = 0; i < r.n; ++i) {
             query[k][i] -= tile[k][i];
             if (query[k][i] < 0) query[k][i] += r.q;
         }
+    }
     auto quadratic = r.multiply(query, query, t, true);
     auto distance = relin.apply(quadratic[2]);
     Ciphertext linear{std::move(quadratic[0]), std::move(quadratic[1])};
@@ -390,6 +541,7 @@ inline Ciphertext distance_tile(
     }
     for (auto& component : distance) {
         component = r.product(component, mask);
+        ProfileScope timing(Phase::mod_q);
         for (auto& value : component) mpz_mod(value.get_mpz_t(), value.get_mpz_t(), r.q.get_mpz_t());
     }
     return distance;

@@ -66,9 +66,9 @@ def test_base_interface_and_individual_batch() -> None:
 
 
 @pytest.mark.parametrize("dimension", [1, 3, 9, 16])
-@pytest.mark.parametrize("backend", ["optimized", "rns"])
+@pytest.mark.parametrize("backend", ["optimized", "rns", "native"])
 def test_packed_tile_row_and_response_boundaries(dimension: int, backend: str) -> None:
-    if backend == "rns":
+    if backend in ("rns", "native"):
         pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
     client = small_client(dimension)
     server = public_server(client, backend)
@@ -113,9 +113,9 @@ def test_partial_tile_padding_is_zero_and_compaction_preserves_distances() -> No
     assert sum(v.bit_length() for v in compact) < sum(v.bit_length() for v in response[0]) / 2
 
 
-@pytest.mark.parametrize("backend", ["optimized", "rns"])
+@pytest.mark.parametrize("backend", ["optimized", "rns", "native"])
 def test_public_only_evaluator_in_separate_process(tmp_path: Path, backend: str) -> None:
-    if backend == "rns":
+    if backend in ("rns", "native"):
         pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
     client = small_client(9)
     vectors, query, expected = data(35, 9)

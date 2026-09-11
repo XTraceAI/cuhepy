@@ -15,7 +15,7 @@ from xtrace_sdk.x_vec.utils.xtrace_types import BFVPolynomial, BFVPublicKey, BFV
 class BFVRNSArithmetic:
     """Bind optional C++ kernels to one validated BFV public-key context."""
 
-    def __init__(self, pk: BFVPublicKey) -> None:
+    def __init__(self, pk: BFVPublicKey, *, fast: bool = False) -> None:
         try:
             from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns
         except ImportError as error:
@@ -24,14 +24,16 @@ class BFVRNSArithmetic:
                 "make -C src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext PYTHON=/path/to/python; "
                 "or select server_backend='optimized' for the Python/GMP evaluator."
             ) from error
-        if _bfv_rns.ABI_VERSION != 1:
+        if _bfv_rns.ABI_VERSION != 2:
             raise ImportError("BFV RNS CPU extension has an incompatible ABI; rebuild it")
         self._native = _bfv_rns
         self._pk = pk
         params = pk["params"]
         self.n = params.poly_modulus_degree
         self.width = (pk["q"].bit_length() + 7) // 8
-        self._ring = _bfv_rns.create_ring(self.n, format(pk["q"], "x"), params.decomposition_bits)
+        self._ring = _bfv_rns.create_ring(
+            self.n, format(pk["q"], "x"), params.decomposition_bits, fast
+        )
         self._keys: dict[int, object] = {}
 
     def _pack(self, poly: BFVPolynomial) -> bytes:

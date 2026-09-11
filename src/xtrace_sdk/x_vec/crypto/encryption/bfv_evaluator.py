@@ -21,7 +21,7 @@ from xtrace_sdk.x_vec.utils.xtrace_types import (
     BFVSwitchKey,
 )
 
-BFVServerBackend = Literal["optimized", "reference", "rns"]
+BFVServerBackend = Literal["optimized", "reference", "rns", "native"]
 
 
 @dataclass(frozen=True)
@@ -76,11 +76,12 @@ class BFVEvaluator:
 
     ``optimized`` lazily caches packed evaluation keys and fuses gadget products;
     ``reference`` delegates to the original BFV routines. ``rns`` uses the
-    optional native C++ RNS/NTT kernels. All backends return identical
+    optional native C++ RNS/NTT kernels. ``native`` enables their faster exact
+    arithmetic and lets BFVClient run complete searches inside C++. All backends return identical
     ciphertexts. Reuse one evaluator across queries to amortize preparation.
 
     :param pk: Valid public key from key generation or public-key deserialization.
-    :param backend: ``optimized`` (default), ``reference``, or ``rns``.
+    :param backend: ``optimized`` (default), ``reference``, ``rns``, or ``native``.
 
     The key dictionaries are snapshotted; immutable polynomial tuples are shared.
     Construct a new evaluator when changing keys. The cache is bounded by the
@@ -88,13 +89,17 @@ class BFVEvaluator:
     """
 
     def __init__(self, pk: BFVPublicKey, backend: BFVServerBackend = "optimized") -> None:
-        if backend not in ("optimized", "reference", "rns"):
-            raise ValueError("server_backend must be 'optimized', 'reference', or 'rns'")
+        if backend not in ("optimized", "reference", "rns", "native"):
+            raise ValueError("server_backend must be 'optimized', 'reference', 'rns', or 'native'")
         self.backend = backend
         self._pk: BFVPublicKey = {**pk, "galois_keys": dict(pk["galois_keys"])}
         # Exponent zero identifies relinearization; Galois exponents are odd.
         self._switch_keys: dict[int, _PackedSwitchKey] = {}
-        self._rns = BFVRNSArithmetic(self._pk) if backend == "rns" else None
+        self._rns = (
+            BFVRNSArithmetic(self._pk, fast=backend == "native")
+            if backend in ("rns", "native")
+            else None
+        )
 
     def cache_info(self) -> dict[str, Any]:
         """Report prepared public-key payloads; excludes peak temporary allocations."""

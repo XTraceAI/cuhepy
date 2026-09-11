@@ -237,7 +237,7 @@ def main() -> None:
     parser.add_argument("--response-modulus-bits", type=int, default=50)
     parser.add_argument("--no-compact", action="store_true")
     parser.add_argument(
-        "--server-backend", choices=("optimized", "reference", "rns"), default="optimized"
+        "--server-backend", choices=("optimized", "reference", "rns", "native"), default="optimized"
     )
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument(

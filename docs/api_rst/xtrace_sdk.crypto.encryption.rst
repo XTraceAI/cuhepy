@@ -28,6 +28,14 @@ xtrace\_sdk.crypto.encryption.bfv\_rns module
    :show-inheritance:
    :undoc-members:
 
+xtrace\_sdk.crypto.encryption.bfv\_native module
+----------------------------------------------
+
+.. automodule:: xtrace_sdk.x_vec.crypto.encryption.bfv_native
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 xtrace\_sdk.crypto.encryption.aes module
 ----------------------------------------
 

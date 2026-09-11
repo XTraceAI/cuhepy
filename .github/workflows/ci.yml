@@ -67,13 +67,21 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgmp-dev
           make -C src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext PYTHON="$PWD/.venv/bin/python"
-          uv run python -c 'from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns; assert _bfv_rns.ABI_VERSION == 1'
-          uv run pytest tests/x_vec/test_bfv_encryption.py tests/x_vec/test_bfv_evaluator.py tests/x_vec/test_bfv_rns.py tests/x_vec/test_bfv_client.py
+          uv run python -c 'from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns; assert _bfv_rns.ABI_VERSION == 2'
+          uv run pytest tests/x_vec/test_bfv_encryption.py tests/x_vec/test_bfv_evaluator.py tests/x_vec/test_bfv_rns.py tests/x_vec/test_bfv_native.py tests/x_vec/test_bfv_client.py
 
       - name: BFV native arithmetic sanitizers
         run: |
           g++ -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext tests/x_vec/native/test_bfv_rns.cpp -lgmpxx -lgmp -o /tmp/test_bfv_rns
           /tmp/test_bfv_rns
+
+      - name: BFV Python binding sanitizers
+        run: |
+          bfv_py_include=$(.venv/bin/python -c 'import sysconfig; print(sysconfig.get_paths()["include"])')
+          g++ -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fPIC -shared -I"$bfv_py_include" src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bindings.cpp -lgmpxx -lgmp -o /tmp/bfv_sanitized.so
+          bfv_asan_runtime=$(g++ -print-file-name=libasan.so)
+          bfv_cpp_runtime=$(g++ -print-file-name=libstdc++.so)
+          ASAN_OPTIONS=detect_leaks=0 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 LD_PRELOAD="$bfv_asan_runtime:$bfv_cpp_runtime" .venv/bin/python tests/x_vec/native/run_binding_sanitizers.py /tmp/bfv_sanitized.so
 
   # ── Integration tests (require XTrace API credentials) ──────────
   # Triggers:

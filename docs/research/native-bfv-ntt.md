@@ -6,6 +6,10 @@ modulus, error distribution, packing layout and wire format. The default
 `"optimized"` GMP evaluator and the original `"reference"` evaluator remain
 available. The earlier SEAL experiment is preserved for comparison.
 
+The subsequent [`native` server backend](native-bfv-server.md) runs complete
+searches inside C++, adds native phase profiling, and further optimizes this
+arithmetic while preserving the same keys and ciphertexts.
+
 ## What we learned from SEAL
 
 The source review used the pinned **SEAL v4.1.2** tag, rather than an unversioned

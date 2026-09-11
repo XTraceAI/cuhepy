@@ -50,7 +50,7 @@ def main() -> None:
     parser.add_argument(
         "--backends",
         default="reference,optimized",
-        help="Comma-separated native backends: reference,optimized,rns",
+        help="Comma-separated native backends: reference,optimized,rns,native",
     )
     parser.add_argument(
         "--seal",
@@ -62,6 +62,11 @@ def main() -> None:
         type=Path,
         help="Run one extra warm search per backend under cProfile, outside reported timings",
     )
+    parser.add_argument(
+        "--native-profile",
+        action="store_true",
+        help="Collect exclusive C++ phase timings in additional warm searches, outside reported timings",
+    )
     args = parser.parse_args()
     if args.num_vectors < 1 or args.repeats < 1 or args.embed_len < 1:
         parser.error("num-vectors, embed-len and repeats must be positive")
@@ -69,11 +74,13 @@ def main() -> None:
     if (
         not names
         or len(set(names)) != len(names)
-        or any(b not in ("reference", "optimized", "rns") for b in names)
+        or any(b not in ("reference", "optimized", "rns", "native") for b in names)
     ):
         parser.error("backends must be distinct native backend names")
     if args.seal and (args.poly_modulus_degree != 8192 or args.plain_modulus != 65537):
         parser.error("the SEAL comparison requires N=8192 and t=65537")
+    if args.native_profile and not any(b in ("rns", "native") for b in names):
+        parser.error("native-profile requires the rns or native backend")
     backends = tuple(cast(BFVServerBackend, name) for name in names)
     vectors, query, expected = make_data(args.num_vectors, args.embed_len, args.seed)
     print("Generating one key set and encrypting the shared input", file=sys.stderr, flush=True)
@@ -197,6 +204,16 @@ def main() -> None:
             profiler.dump_stats(str(args.profile_dir / f"{backend}.prof"))
             assert response == reference_response
 
+    native_phases = {}
+    if args.native_profile:
+        from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns
+
+        for backend in backends:
+            if backend in ("rns", "native"):
+                response, phases = _bfv_rns.profile_call(partial(evaluate, backend))
+                assert response == reference_response
+                native_phases[backend] = phases
+
     summary = {
         backend: {
             "first_search_s": values[0],
@@ -212,12 +229,13 @@ def main() -> None:
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py",
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py",
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/encryption/bfv_rns.py",
+        REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/encryption/bfv_native.py",
         *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.cpp"),
         *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.h"),
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile",
         REPO_ROOT / "src/xtrace_sdk/x_vec/utils/xtrace_types.py",
     ]
-    if "rns" in backends:
+    if any(b in ("rns", "native") for b in backends):
         source_paths.extend((REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.so"))
     if args.seal:
         source_paths.append(REPO_ROOT / "experiments/bfv/packed_hamming.py")
@@ -246,7 +264,7 @@ def main() -> None:
             ),
         },
         "command": sys.argv,
-        "measurement_notes": "One CPU process, identical public keys and encrypted inputs for both backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
+        "measurement_notes": "One CPU process, identical public keys and encrypted inputs for all native backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
         "config": config,
         "seed": args.seed,
         "vectors": len(vectors),
@@ -271,6 +289,8 @@ def main() -> None:
             for backend, values in timings.items()
         },
         "seal_comparison": seal_info,
+        "native_phases": native_phases,
+        "native_profile_note": "Additional warm searches, excluded from performance samples. Exclusive wall times and call counts; other includes Python, binding overhead and unscoped native work. buffers covers explicit buffer setup; GMP allocations remain charged to their arithmetic phases. Profiles are per-thread and restored after exceptions.",
         "sizes": {
             "encrypted_index_bytes": len(index_wire),
             "public_keys_bytes": key_bytes,
@@ -279,7 +299,11 @@ def main() -> None:
             "query_plus_response_bytes": len(query_wire) + len(response_wire),
         },
         "caches": {
-            backend: server._evaluator().cache_info() for backend, server in servers.items()
+            backend: {
+                **server._evaluator().cache_info(),
+                "server_plan_bytes": server._native().cache_bytes() if backend == "native" else 0,
+            }
+            for backend, server in servers.items()
         },
         "cache_size_note": "Additional to the existing public key: GMP object payloads including folding constants, or native NTT coefficient arrays and transform tables. Excludes containers, CRT constants and transient allocations; not peak RSS.",
         "minimum_response_noise_budget_bits": min(

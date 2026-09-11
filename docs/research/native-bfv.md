@@ -84,6 +84,11 @@ An optional `server_backend="rns"` uses our compiled CPU RNS/NTT kernels. See
 [native BFV RNS/NTT arithmetic](native-bfv-ntt.md) for the SEAL source review,
 build instructions, exact arithmetic bounds and benchmark comparisons.
 
+`server_backend="native"` uses the [complete C++ server](native-bfv-server.md)
+with direct packed-buffer import/export, native result merging and compaction,
+and faster exact arithmetic. Client encryption and decryption retain this
+scheme's implementation and format.
+
 BFV is available directly as a local client; `ExecutionContext`, `DataLoader`,
 and the current XTrace HTTP endpoints do not implement its index/wire protocol.
 Adding a production server path is separate work. Distances are computed at the

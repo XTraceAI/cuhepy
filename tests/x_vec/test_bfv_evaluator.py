@@ -55,9 +55,9 @@ def test_fused_switch_against_schoolbook(q_bits: int, digit_bits: int) -> None:
             assert actual == tuple(tuple(value % q for value in row) for row in expected)
 
 
-@pytest.mark.parametrize("backend", ["optimized", "rns"])
+@pytest.mark.parametrize("backend", ["optimized", "rns", "native"])
 def test_operations_identical_to_reference(keys: BFVKeyPair, backend: str) -> None:
-    if backend == "rns":
+    if backend in ("rns", "native"):
         pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
     pk, rng = keys["pk"], random.Random(20)
     evaluator = BFVEvaluator(pk, backend)
@@ -82,11 +82,11 @@ def test_operations_identical_to_reference(keys: BFVKeyPair, backend: str) -> No
         assert evaluator.subtract(compact, compact) == BFV.subtract(compact, compact, pk)
 
 
-@pytest.mark.parametrize("backend", ["optimized", "rns"])
+@pytest.mark.parametrize("backend", ["optimized", "rns", "native"])
 def test_reject_malformed_ciphertexts_and_keep_integral_support(
     keys: BFVKeyPair, backend: str
 ) -> None:
-    if backend == "rns":
+    if backend in ("rns", "native"):
         pytest.importorskip("xtrace_sdk.x_vec.crypto.bfv_cpu_ext._bfv_rns")
     pk = keys["pk"]
     evaluator = BFVEvaluator(pk, backend)

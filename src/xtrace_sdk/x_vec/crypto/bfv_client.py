@@ -13,6 +13,7 @@ from typing import Any
 from xtrace_sdk.x_vec.crypto.device import DeviceMode
 from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV
 from xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator import BFVEvaluator, BFVServerBackend
+from xtrace_sdk.x_vec.crypto.encryption.bfv_native import BFVNativeServer
 from xtrace_sdk.x_vec.crypto.hamming_client_base import HammingClientBase
 from xtrace_sdk.x_vec.utils.xtrace_types import (
     BFVCiphertext,
@@ -38,8 +39,8 @@ class BFVClient(HammingClientBase):
     :param response_modulus_bits: Smaller modulus used after the Hamming circuit.
     :param skip_key_gen: Construct an empty client for loading saved keys.
     :param device: ``cpu`` or ``auto``; a CUDA implementation is not yet available.
-    :param server_backend: ``optimized`` (cached GMP), ``reference``, or ``rns``
-        (optional compiled CPU RNS/NTT extension) server arithmetic.
+    :param server_backend: ``optimized`` (cached GMP), ``reference``, ``rns``
+        (compiled arithmetic), or ``native`` (complete C++ server evaluation).
         This runtime choice is independent of the serialized crypto configuration.
     """
 
@@ -61,8 +62,8 @@ class BFVClient(HammingClientBase):
         if device == "gpu":
             raise NotImplementedError("Native BFV currently supports only the CPU backend")
         self.device = "cpu"
-        if server_backend not in ("optimized", "reference", "rns"):
-            raise ValueError("server_backend must be 'optimized', 'reference', or 'rns'")
+        if server_backend not in ("optimized", "reference", "rns", "native"):
+            raise ValueError("server_backend must be 'optimized', 'reference', 'rns', or 'native'")
         self.server_backend = server_backend
         self._server_evaluator: BFVEvaluator | None = None
         self._evaluator_public_key: BFVPublicKey | None = None
@@ -101,6 +102,7 @@ class BFVClient(HammingClientBase):
         self.vectors_per_ciphertext = 2 * self.lanes_per_row
         self.distances_per_ciphertext = n
         self._mask_cache: dict[int, BFVPolynomial] = {}
+        self._native_server: BFVNativeServer | None = None
 
     def _rotation_steps(self) -> list[int]:
         return [
@@ -133,6 +135,21 @@ class BFVClient(HammingClientBase):
     @staticmethod
     def has_gpu() -> bool:
         return False
+
+    def _native(self) -> BFVNativeServer:
+        arithmetic = self._evaluator()._rns
+        if arithmetic is None:
+            raise ValueError("The native server requires a compiled BFV backend")
+        if (
+            self._native_server is None
+            or self._native_server.arithmetic is not arithmetic
+            or self._native_server.padded_embed_len != self.padded_embed_len
+            or self._native_server.response_modulus_bits != self.response_modulus_bits
+        ):
+            self._native_server = BFVNativeServer(
+                arithmetic, self.padded_embed_len, self.response_modulus_bits
+            )
+        return self._native_server
 
     def stringify_pk(self) -> str:
         """Public encryption/evaluation keys; safe to separate from the secret key."""
@@ -185,6 +202,7 @@ class BFVClient(HammingClientBase):
         self.keys = keys
         self._server_evaluator = None
         self._evaluator_public_key = None
+        self._native_server = None
 
     def _validate_vector(self, embd: Sequence[int]) -> None:
         if len(embd) != self.embed_len:
@@ -262,6 +280,8 @@ class BFVClient(HammingClientBase):
         compact: bool = True,
     ) -> EncryptedVector:
         """Compute an encrypted distance using only public evaluation keys."""
+        if self.server_backend == "native":
+            return self._native().search(ct1, [ct2], 1, compact=compact)[0]
         pk = self._pk()
         result = self._distance_tile(
             BFV.ciphertext_from_ints(ct1, pk), BFV.ciphertext_from_ints(ct2, pk), 1
@@ -287,6 +307,8 @@ class BFVClient(HammingClientBase):
         pk = self._pk()
         capacity = self.vectors_per_ciphertext
         self._validate_count(vector_count, len(index), capacity)
+        if self.server_backend == "native":
+            return self._native().search(query, index, vector_count, compact=compact)
         query_ct = BFV.ciphertext_from_ints(query, pk)
         evaluator = self._evaluator()
         result = []
