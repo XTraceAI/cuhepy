@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - staging
     # `labeled` lets reviewers opt a PR into integration / GPU coverage by
     # adding `run-integration` or `run-gpu` to the PR. Per-job `if:` checks
     # the label set, so unrelated jobs still skip.
@@ -69,6 +70,17 @@ jobs:
           make -C src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext PYTHON="$PWD/.venv/bin/python"
           uv run python -c 'from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns, _bfv_private; assert _bfv_rns.ABI_VERSION == 4; assert _bfv_private.ABI_VERSION == 1'
           uv run pytest tests/x_vec/test_bfv_encryption.py tests/x_vec/test_bfv_evaluator.py tests/x_vec/test_bfv_rns.py tests/x_vec/test_bfv_native.py tests/x_vec/test_bfv_residue.py tests/x_vec/test_bfv_client.py tests/x_vec/test_bfv_security.py tests/x_vec/test_bfv_verified_client.py tests/x_vec/test_bfv_private.py tests/x_vec/test_bfv_guarded_client.py tests/x_vec/test_bfv_assurance.py
+
+      - name: BFV Nitro attestation and protocol regressions (offline)
+        run: uv run --extra bfv-nitro pytest tests/x_vec/test_bfv_nitro.py tests/x_vec/test_bfv_attested_client.py tests/x_vec/test_bfv_nitro_transport.py tests/x_vec/test_bfv_nitro_aws.py
+
+      - name: SEAL comparison (synthetic inputs only)
+        run: |
+          uv pip install --python .venv/bin/python -r experiments/bfv/requirements.txt
+          .venv/bin/python -m pytest experiments/bfv/test_packed_hamming.py tests/x_vec/test_bfv_client.py::test_optional_seal_reference
+
+      - name: Build documentation
+        run: uv run --extra bfv-nitro sphinx-build -W -b html docs /tmp/xtrace-docs
 
       - name: BFV native arithmetic sanitizers
         run: |

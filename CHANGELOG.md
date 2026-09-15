@@ -10,13 +10,21 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Complete C++ BFV server evaluation through `server_backend="native"`: direct packed ciphertext buffers, prepared masks, native result merging and compaction, lazy transforms, Barrett reduction and certified CRT conversion modulo q with exact fallback. Includes opt-in native phase profiling; existing BFV keys, wire formats and backends remain compatible. Rebuild the optional extension for ABI version 2.
+- Optional AWS Nitro `BFVAttestedClient`/`BFVAttestedServer` sessions: signed owner requests, exact image measurement pins, fresh attestation, and enclave response receipts checked before private decryption. The enclave evaluates once; the BFV secret stays on the owner. Includes the `bfv-nitro` extra, bounded relay/service, local image build records and an opt-in real AWS test. This remains experimental and requires hardware validation and independent review before production use.
+- Persistent BFV `server_backend="residue"` arithmetic with a product of 60-bit primes, fused NTTs and exact RNS tensor scaling. Existing GMP, reference and earlier native backends remain available for differential tests; selecting the product modulus requires fresh keys and a new index.
+- BFV execution policies, bounded authenticated sessions, protected private exports, and an owner-controlled recomputing verifier. A separate native private decoder provides fixed-work terminal arithmetic with locked/wiped buffers; this is not an end-to-end constant-time guarantee.
+- Complete C++ BFV server evaluation through `server_backend="native"`: direct packed ciphertext buffers, prepared masks, native result merging and compaction, lazy transforms, Barrett reduction and certified CRT conversion modulo q with exact fallback. Includes opt-in native phase profiling; existing BFV keys, wire formats and backends remain compatible. The current optional extensions require public ABI version 4 and private ABI version 1.
 
 - Optional native BFV `server_backend="rns"`, with independently implemented C++ RNS/NTT polynomial arithmetic, cached transformed evaluation keys, exact GMP reconstruction, and a native Hamming tile circuit. Preserves native BFV keys, ciphertext outputs and wire format. Includes native-boundary tests, sanitizer oracles, optional SEAL benchmarks and correctly tagged binary wheels. The previous GMP and reference backends remain available.
 - Native GMP BFV primitives in `crypto/encryption/bfv.py` and a `BFVClient` in `crypto/bfv_client.py`, with CRT batching, ciphertext multiplication/relinearization, public-key Hamming evaluation, packed distance responses, and terminal modulus compaction. Includes CPU benchmarks and tests against plaintext algebra and an optional SEAL oracle. This is an experimental local implementation; the existing Paillier clients and SEAL research example are preserved.
 - Offline BFV packed Hamming experiment under `experiments/bfv`, with an isolated public-key server evaluator, correctness tests, a comparison against an exported Paillier Git revision, and a research report. The production Paillier path and dependencies are unchanged.
 - `xtrace_sdk.x_vec.crypto.device.resolve_device` — shared device-resolution helper used by both Paillier clients and intended for future homomorphic clients with optional GPU backends.
 - `test_cross_device_interop` — parametrised test covering CPU↔GPU portability for both `PaillierClient` and `PaillierLookupClient`. Verifies that contexts saved on one device load correctly on the other (hash equality), and that ciphertexts produced on either backend round-trip correctly through the other for both encryption and server-side homomorphic add.
+
+### Security
+
+- BFV regression tests demonstrate secret-key recovery from malicious ciphertexts and observable post-decryption accept/reject behavior, even with private result checks. The guarded and Nitro clients require approval before decryption. Attestation authenticates approved execution under the TEE's assumptions; raw BFV remains malleable and is not given a general chosen-ciphertext security claim.
+- Nitro rejects malformed certificate versions and duplicate extensions through the bounded protocol error path. Staging PRs now run quality checks, SEAL reference tests and strict documentation builds; the native sanitizer harness also supports the CFFI dependency installed by the Nitro extra.
 
 ## [0.2.0] - 2026-04-18
 

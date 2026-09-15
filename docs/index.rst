@@ -89,6 +89,9 @@ Choose your path:
    research/native-bfv-security
    research/native-bfv-verified-sessions
    research/native-bfv-predecryption
+   research/native-bfv-verification-plan
+   research/native-bfv-nitro
+   research/native-bfv-code-audit
    research/bfv-packed-hamming
 
 .. toctree::

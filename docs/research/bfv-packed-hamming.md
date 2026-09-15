@@ -257,7 +257,7 @@ backend from these estimates.
 ## Boundaries and next steps
 
 The implementation and commands are in the
-[experiment README](../../experiments/bfv/README.md). Production source and
+[experiment README](https://github.com/XTraceAI/xtrace-sdk/blob/46b637b604e1c2835653140610b7b2396f10b284/experiments/bfv/README.md). Production source and
 dependencies remain unchanged. The generated assets contain measurements only;
 no document data, API credentials, ciphertext indexes or secret keys are committed.
 

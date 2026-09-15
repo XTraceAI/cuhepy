@@ -5,8 +5,15 @@ Start Python with the sanitizer and C++ runtimes in LD_PRELOAD (see CI).
 """
 
 import importlib.util
+import os
 from pathlib import Path
 import sys
+
+# Installing the Nitro extra also installs CFFI. PyCryptodome then uses a loader
+# with RTLD_DEEPBIND, which bypasses ASan's allocator interposition. Its supported
+# override keeps sanitizers active; it applies only to this test process and must
+# be set before importing the SDK (which imports PyCryptodome).
+os.environ["PYCRYPTODOME_DISABLE_DEEPBIND"] = "1"
 
 import xtrace_sdk.x_vec.crypto.bfv_cpu_ext as package
 
@@ -33,6 +40,7 @@ raise SystemExit(
             "tests/x_vec/test_bfv_verified_client.py",
             "tests/x_vec/test_bfv_private.py",
             "tests/x_vec/test_bfv_guarded_client.py",
+            "tests/x_vec/test_bfv_attested_client.py",
             "tests/x_vec/test_bfv_assurance.py",
             "-q",
         ]
