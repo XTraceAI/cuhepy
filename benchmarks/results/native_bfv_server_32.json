@@ -1,0 +1,142 @@
+{
+  "environment": {
+    "utc": "2026-09-10T22:15:47.796934+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "gmpy2": "2.3.0",
+    "gmp": "GMP 6.3.0",
+    "revision": "cf454e5eb6e053822501645bd44c6f23aa832a19",
+    "working_tree_dirty": true
+  },
+  "command": [
+    "benchmarks/bfv_server.py",
+    "--num-vectors",
+    "32",
+    "--repeats",
+    "4",
+    "--profile-dir",
+    "/tmp/xtrace-bfv-server-profiles",
+    "--json-out",
+    "/tmp/xtrace-bfv-server-32.json"
+  ],
+  "measurement_notes": "One CPU process, identical public keys and encrypted inputs for both backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
+  "config": {
+    "embed_len": 512,
+    "poly_modulus_degree": 8192,
+    "plain_modulus": 65537,
+    "coeff_modulus_bits": 180,
+    "decomposition_bits": 30,
+    "error_eta": 21,
+    "response_modulus_bits": 50,
+    "device": "cpu"
+  },
+  "seed": 1337,
+  "vectors": 32,
+  "setup_timings": {
+    "key_generation_s": 4.557773574022576,
+    "index_encrypt_s": 0.21618583402596414,
+    "query_encrypt_s": 0.10164761217311025,
+    "public_key_export_s": 0.8099749418906868,
+    "reference_public_key_import_s": 0.8771210089325905,
+    "optimized_public_key_import_s": 0.8737351400777698
+  },
+  "runs": [
+    {
+      "backend": "reference",
+      "repeat": 0,
+      "server_compute_s": 3.3908394610043615
+    },
+    {
+      "backend": "optimized",
+      "repeat": 0,
+      "server_compute_s": 1.877934766933322
+    },
+    {
+      "backend": "optimized",
+      "repeat": 1,
+      "server_compute_s": 1.8629616550169885
+    },
+    {
+      "backend": "reference",
+      "repeat": 1,
+      "server_compute_s": 3.6480522511992604
+    },
+    {
+      "backend": "reference",
+      "repeat": 2,
+      "server_compute_s": 3.6024102109950036
+    },
+    {
+      "backend": "optimized",
+      "repeat": 2,
+      "server_compute_s": 1.865732975071296
+    },
+    {
+      "backend": "optimized",
+      "repeat": 3,
+      "server_compute_s": 1.871090185130015
+    },
+    {
+      "backend": "reference",
+      "repeat": 3,
+      "server_compute_s": 3.708768686046824
+    }
+  ],
+  "summary": {
+    "reference": {
+      "first_search_s": 3.3908394610043615,
+      "warm_searches_s": [
+        3.6480522511992604,
+        3.6024102109950036,
+        3.708768686046824
+      ],
+      "warm_median_s": 3.6480522511992604
+    },
+    "optimized": {
+      "first_search_s": 1.877934766933322,
+      "warm_searches_s": [
+        1.8629616550169885,
+        1.865732975071296,
+        1.871090185130015
+      ],
+      "warm_median_s": 1.865732975071296
+    }
+  },
+  "first_search_speedup": 1.8056215373985656,
+  "warm_median_speedup": 1.9552917271346697,
+  "sizes": {
+    "encrypted_index_bytes": 737480,
+    "public_keys_bytes": 85603818,
+    "query_bytes": 368754,
+    "response_bytes": 102494,
+    "query_plus_response_bytes": 471248
+  },
+  "optimized_cached_switch_keys": 11,
+  "optimized_packed_cache_payload_bytes": 35807568,
+  "cache_size_note": "sys.getsizeof of packed GMP values, including folding constants; additional to the existing public key. Excludes small Python containers and transient arithmetic allocations; not peak RSS.",
+  "minimum_response_noise_budget_bits": 26,
+  "identical_ciphertexts": true,
+  "all_distances_correct": true,
+  "top3": [
+    {
+      "index": 0,
+      "distance": 0
+    },
+    {
+      "index": 31,
+      "distance": 0
+    },
+    {
+      "index": 19,
+      "distance": 241
+    }
+  ],
+  "source_sha256": {
+    "benchmarks/bfv_server.py": "c0523cfbd4100657fc7f9eae9ac117d5fa86fc57e9983a7e2dd840920a2c2298",
+    "benchmarks/bfv_client_matrix.py": "d7c4c4242ad2cc537b8c39cf990944b83c3a2f178ce317e23dd415e5c12f7283",
+    "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "1a9927c6e15937ee39e6e84131890e249e14352795c21e8b8930cfe1007dd674",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py": "6f03ac75f42218170da2bd785605ee394940a202afdd5471545a8ae3fdc8c3d8",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py": "6e2c84e7882bb86f8e623c2eb2d104e0d4cab85090aed17840adc0809a5cd9a3",
+    "src/xtrace_sdk/x_vec/utils/xtrace_types.py": "7a10c977ee648eb1975286b313f009b3508183efe9e942cd710ae6ad5ae279a3"
+  }
+}

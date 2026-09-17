@@ -1,0 +1,521 @@
+{
+  "utc": "2026-09-11T13:05:22.031193+00:00",
+  "sage": "10.9",
+  "python": "3.14.6",
+  "estimator_revision": "53da5982597709ba0fdf94ea37a84d822310fd84",
+  "runner_sha256": "8161c495e2b6932a5321b19dfa4da56f25b09934ae6df0b98a36d53e64425b7b",
+  "manifest": {
+    "schema": 1,
+    "profile": "review",
+    "config": {
+      "embed_len": 512,
+      "poly_modulus_degree": 16384,
+      "plain_modulus": 65537,
+      "coeff_modulus_bits": 180,
+      "decomposition_bits": 30,
+      "error_eta": 21,
+      "rns_modulus": true,
+      "response_modulus_bits": 50,
+      "device": "cpu"
+    },
+    "q": "1532495540865191964058577030327937992314109603578642433",
+    "q_primes": [
+      1152921504606748673,
+      1152921504606683137,
+      1152921504606584833
+    ],
+    "secret": {
+      "distribution": "uniform",
+      "inclusive_bounds": [
+        -1,
+        1
+      ]
+    },
+    "error": {
+      "distribution": "centered_binomial",
+      "eta": 21,
+      "variance": 10.5
+    },
+    "ephemeral_u": {
+      "distribution": "uniform",
+      "inclusive_bounds": [
+        -1,
+        1
+      ]
+    },
+    "evaluation_keys": {
+      "galois_exponents": [
+        385,
+        1537,
+        3073,
+        6145,
+        8193,
+        12289,
+        14529,
+        15617,
+        16001,
+        16385,
+        17153,
+        20481,
+        22337,
+        24577,
+        26625,
+        29697,
+        31233
+      ],
+      "digits_per_key": 6,
+      "key_switch_pairs": 108,
+      "note": "Encryptions of gadget-scaled s^2 and automorphic secrets. Ordinary LWE estimates do not justify these circular/key-dependent-message assumptions."
+    },
+    "sdk_revision": "0cd7b41454533ab27082667cb9cb2f3c8040e823",
+    "worst_supported_hamming_bound": {
+      "encrypted": 688149,
+      "difference": 1427785,
+      "squared": 52059769849576678535,
+      "key_switch": 2216615439532032,
+      "tile": 28621377361628378284959515398718,
+      "merged": 14654145209153730814589761537631682,
+      "compacted": 73729,
+      "original_rounding_error_numerator": 960388714572308056395769201895141795266,
+      "terminal_rounding_error_numerator": 9124978689,
+      "original_modulus": 1532495540865191964058577030327937992314109603578642433,
+      "terminal_modulus": 1125899906842597,
+      "sufficient": true
+    },
+    "source_sha256": {
+      "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py": "51eee672c2d0514146f97c9ddf33c7f4cfb99114a2b7d86654ec7de7422ebca7",
+      "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "becd81b9c41c027fe26de3e675adfba32fae7c0e6b0e1bede73f96a14effc775",
+      "src/xtrace_sdk/x_vec/crypto/bfv_security.py": "17149c07384889f994f93bc9e7b209d965176cd916c97a0f6b7a138861a7204e",
+      "src/xtrace_sdk/x_vec/crypto/bfv_assurance.py": "ba64de6db3f76031ba9c35627a0a3790244c816937a97a3b65c98b9c699bb33d",
+      "src/xtrace_sdk/x_vec/utils/xtrace_types.py": "3d4daa19d5d9d536573b2e2c65aa13d9559a4bc5e6ae01e2b5ffdeeac8bae962"
+    }
+  },
+  "command": [
+    "benchmarks/bfv_parameter_audit.py",
+    "estimate",
+    "--manifest",
+    "/tmp/xtrace-bfv-review-manifest.json",
+    "--estimator",
+    "/tmp/xtrace-bfv-lattice-estimator",
+    "--json-out",
+    "benchmarks/results/native_bfv_review_parameter_estimates.json"
+  ],
+  "interpretation": "Heuristic generic LWE attack estimates with Gaussian-shape approximation for centered binomial errors. Reports m=N and unbounded independent samples; RLWE structure, evaluation-key assumptions, decryption failures, implementation leakage and protocol attacks are not certified. ADPS16-quantum is a quantum sieving cost sensitivity model, not a complete quantum security analysis. Unlisted attacks are not evaluated.",
+  "runs": [
+    {
+      "samples": "N",
+      "model": "MATZOV-classical",
+      "attack": "primal_usvp",
+      "seconds": 0.05196200706996024,
+      "log2_rop": 341.1723757172288,
+      "cost": {
+        "rop": "5.04799345125361e102",
+        "red": "5.04799345125361e102",
+        "delta": "1.00191078002672",
+        "beta": "1092",
+        "d": "32083",
+        "tag": "usvp",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "MATZOV-classical",
+      "attack": "primal_bdd",
+      "seconds": 5.101183895953,
+      "log2_rop": 340.7298617250473,
+      "cost": {
+        "rop": "3.71457214481230e102",
+        "red": "3.45038992834586e102",
+        "svp": "2.64182216466433e101",
+        "beta": "1090",
+        "eta": "1129",
+        "d": "32344",
+        "tag": "bdd",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "MATZOV-classical",
+      "attack": "dual",
+      "seconds": 0.04392242501489818,
+      "log2_rop": 343.3327532463879,
+      "cost": {
+        "rop": "2.25661370326375e103",
+        "mem": "27004289658070035888654106211172915795011311755896265023025172176204854",
+        "m": "16204",
+        "beta": "1096",
+        "d": "32588",
+        "repetitions": "1",
+        "tag": "dual"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "MATZOV-classical",
+      "attack": "dual_hybrid",
+      "seconds": 14.51800377201289,
+      "log2_rop": 339.58676911414483,
+      "cost": {
+        "rop": "1.68191341284720e102",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)",
+        "red": "1.68190843684125e102",
+        "guess": "4.97600594903040e96",
+        "beta": "1083",
+        "p": "3",
+        "zeta": "0",
+        "t": "190",
+        "beta_": "1066",
+        "N": "7.82287607371639e65",
+        "m": "16384"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "ADPS16-classical",
+      "attack": "primal_usvp",
+      "seconds": 0.04052111296914518,
+      "log2_rop": 318.864,
+      "cost": {
+        "rop": "9.71915565210739e95",
+        "red": "9.71915565210739e95",
+        "delta": "1.00191078002672",
+        "beta": "1092",
+        "d": "32083",
+        "tag": "usvp",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "ADPS16-classical",
+      "attack": "primal_bdd",
+      "seconds": 5.235912185860798,
+      "log2_rop": 319.160068553334,
+      "cost": {
+        "rop": "1.19331212308321e96",
+        "red": "1.18995159682775e96",
+        "svp": "3.36052625546777e93",
+        "beta": "1093",
+        "eta": "1063",
+        "d": "32383",
+        "tag": "bdd",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "ADPS16-classical",
+      "attack": "dual",
+      "seconds": 0.03102129092440009,
+      "log2_rop": 319.73999999999995,
+      "cost": {
+        "rop": "1.78373696975310e96",
+        "mem": "273648654219124481565040050707290299685135857117579618854340086718143754",
+        "m": "16193",
+        "beta": "1095",
+        "d": "32577",
+        "repetitions": "1",
+        "tag": "dual"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "ADPS16-classical",
+      "attack": "dual_hybrid",
+      "seconds": 8.881262043956667,
+      "log2_rop": 316.82,
+      "cost": {
+        "rop": "2.35680269580672e95",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)",
+        "red": "2.35680269580672e95",
+        "guess": "3.23123409447432e77",
+        "beta": "1085",
+        "p": "3",
+        "zeta": "0",
+        "t": "150",
+        "beta_": "1085",
+        "N": "3.83009980795253e67",
+        "m": "16384"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "ADPS16-quantum",
+      "attack": "primal_usvp",
+      "seconds": 0.03971595619805157,
+      "log2_rop": 289.38,
+      "cost": {
+        "rop": "1.29437508644779e87",
+        "red": "1.29437508644779e87",
+        "delta": "1.00191078002672",
+        "beta": "1092",
+        "d": "32083",
+        "tag": "usvp",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "ADPS16-quantum",
+      "attack": "primal_bdd",
+      "seconds": 5.272714625112712,
+      "log2_rop": 289.65199368299255,
+      "cost": {
+        "rop": "1.56292595152198e87",
+        "red": "1.55536776548515e87",
+        "svp": "7.55818603682939e84",
+        "beta": "1093",
+        "eta": "1063",
+        "d": "32383",
+        "tag": "bdd",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "ADPS16-quantum",
+      "attack": "dual",
+      "seconds": 0.02500018198043108,
+      "log2_rop": 290.175,
+      "cost": {
+        "rop": "2.24584092635855e87",
+        "mem": "273648654219124481565040050707290299685135857117579618854340086718143754",
+        "m": "16193",
+        "beta": "1095",
+        "d": "32577",
+        "repetitions": "1",
+        "tag": "dual"
+      }
+    },
+    {
+      "samples": "N",
+      "model": "ADPS16-quantum",
+      "attack": "dual_hybrid",
+      "seconds": 8.84267289401032,
+      "log2_rop": 287.5250000013029,
+      "cost": {
+        "rop": "3.57807552817983e86",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=16384, tag=None)",
+        "red": "3.57807552494859e86",
+        "guess": "3.23123409447432e77",
+        "beta": "1085",
+        "p": "3",
+        "zeta": "0",
+        "t": "150",
+        "beta_": "1085",
+        "N": "3.83009980795253e67",
+        "m": "16384"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "MATZOV-classical",
+      "attack": "primal_usvp",
+      "seconds": 0.04323683097027242,
+      "log2_rop": 341.1723757172288,
+      "cost": {
+        "rop": "5.04799345125361e102",
+        "red": "5.04799345125361e102",
+        "delta": "1.00191078002672",
+        "beta": "1092",
+        "d": "32083",
+        "tag": "usvp",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "MATZOV-classical",
+      "attack": "primal_bdd",
+      "seconds": 5.31509437202476,
+      "log2_rop": 340.7298617250473,
+      "cost": {
+        "rop": "3.71457214481230e102",
+        "red": "3.45038992834586e102",
+        "svp": "2.64182216466433e101",
+        "beta": "1090",
+        "eta": "1129",
+        "d": "32344",
+        "tag": "bdd",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "MATZOV-classical",
+      "attack": "dual",
+      "seconds": 0.03988387901335955,
+      "log2_rop": 343.3327532463879,
+      "cost": {
+        "rop": "2.25661370326375e103",
+        "mem": "27004289658070035888654106211172915795011311755896265023025172176204854",
+        "m": "16204",
+        "beta": "1096",
+        "d": "32588",
+        "repetitions": "1",
+        "tag": "dual"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "MATZOV-classical",
+      "attack": "dual_hybrid",
+      "seconds": 14.420737589942291,
+      "log2_rop": 339.58676911414483,
+      "cost": {
+        "rop": "1.68191341284720e102",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+        "red": "1.68190843684125e102",
+        "guess": "4.97600594903040e96",
+        "beta": "1083",
+        "p": "3",
+        "zeta": "0",
+        "t": "190",
+        "beta_": "1066",
+        "N": "7.82287607371639e65",
+        "m": "16384"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "ADPS16-classical",
+      "attack": "primal_usvp",
+      "seconds": 0.040466082049533725,
+      "log2_rop": 318.864,
+      "cost": {
+        "rop": "9.71915565210739e95",
+        "red": "9.71915565210739e95",
+        "delta": "1.00191078002672",
+        "beta": "1092",
+        "d": "32083",
+        "tag": "usvp",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "ADPS16-classical",
+      "attack": "primal_bdd",
+      "seconds": 5.354171877028421,
+      "log2_rop": 319.160068553334,
+      "cost": {
+        "rop": "1.19331212308321e96",
+        "red": "1.18995159682775e96",
+        "svp": "3.36052625546777e93",
+        "beta": "1093",
+        "eta": "1063",
+        "d": "32383",
+        "tag": "bdd",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "ADPS16-classical",
+      "attack": "dual",
+      "seconds": 0.027775981929153204,
+      "log2_rop": 319.73999999999995,
+      "cost": {
+        "rop": "1.78373696975310e96",
+        "mem": "273648654219124481565040050707290299685135857117579618854340086718143754",
+        "m": "16193",
+        "beta": "1095",
+        "d": "32577",
+        "repetitions": "1",
+        "tag": "dual"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "ADPS16-classical",
+      "attack": "dual_hybrid",
+      "seconds": 8.707200119970366,
+      "log2_rop": 316.82,
+      "cost": {
+        "rop": "2.35680269580672e95",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+        "red": "2.35680269580672e95",
+        "guess": "3.23123409447432e77",
+        "beta": "1085",
+        "p": "3",
+        "zeta": "0",
+        "t": "150",
+        "beta_": "1085",
+        "N": "3.83009980795253e67",
+        "m": "16384"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "ADPS16-quantum",
+      "attack": "primal_usvp",
+      "seconds": 0.040943962056189775,
+      "log2_rop": 289.38,
+      "cost": {
+        "rop": "1.29437508644779e87",
+        "red": "1.29437508644779e87",
+        "delta": "1.00191078002672",
+        "beta": "1092",
+        "d": "32083",
+        "tag": "usvp",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "ADPS16-quantum",
+      "attack": "primal_bdd",
+      "seconds": 5.37198440101929,
+      "log2_rop": 289.65199368299255,
+      "cost": {
+        "rop": "1.56292595152198e87",
+        "red": "1.55536776548515e87",
+        "svp": "7.55818603682939e84",
+        "beta": "1093",
+        "eta": "1063",
+        "d": "32383",
+        "tag": "bdd",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "ADPS16-quantum",
+      "attack": "dual",
+      "seconds": 0.026228047907352448,
+      "log2_rop": 290.175,
+      "cost": {
+        "rop": "2.24584092635855e87",
+        "mem": "273648654219124481565040050707290299685135857117579618854340086718143754",
+        "m": "16193",
+        "beta": "1095",
+        "d": "32577",
+        "repetitions": "1",
+        "tag": "dual"
+      }
+    },
+    {
+      "samples": "unbounded",
+      "model": "ADPS16-quantum",
+      "attack": "dual_hybrid",
+      "seconds": 8.744628780055791,
+      "log2_rop": 287.5250000013029,
+      "cost": {
+        "rop": "3.57807552817983e86",
+        "problem": "LWEParameters(n=16384, q=1532495540865191964058577030327937992314109603578642433, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+        "red": "3.57807552494859e86",
+        "guess": "3.23123409447432e77",
+        "beta": "1085",
+        "p": "3",
+        "zeta": "0",
+        "t": "150",
+        "beta_": "1085",
+        "N": "3.83009980795253e67",
+        "m": "16384"
+      }
+    }
+  ],
+  "complete": true
+}

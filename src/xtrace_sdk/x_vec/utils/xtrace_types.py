@@ -1,4 +1,5 @@
 from collections.abc import Sequence
+from dataclasses import dataclass
 from typing import TypeAlias, TypedDict
 
 import gmpy2
@@ -61,6 +62,53 @@ class GoldwasserMicaliSecretKey(TypedDict):
 class GoldwasserMicaliKeyPair(TypedDict):
     pk: GoldwasserMicaliPublicKey
     sk: GoldwasserMicaliSecretKey
+
+
+# ── BFV ───────────────────────────────────────────────────────────────────
+
+BFVPolynomial: TypeAlias = tuple[gmpy2.mpz, ...]
+BFVSwitchKey: TypeAlias = tuple[tuple[BFVPolynomial, BFVPolynomial], ...]
+
+
+@dataclass(frozen=True)
+class BFVParameters:
+    """Native BFV arithmetic parameters; these are not a security certification."""
+
+    poly_modulus_degree: int = 8192
+    plain_modulus: int = 65537
+    coeff_modulus_bits: int = 180
+    decomposition_bits: int = 30
+    error_eta: int = 21
+    rns_modulus: bool = False
+
+
+@dataclass(frozen=True)
+class BFVCiphertext:
+    """Polynomials modulo ``modulus`` in Z[X]/(X^N + 1), tied to one public key."""
+
+    components: tuple[BFVPolynomial, ...]
+    modulus: gmpy2.mpz
+    key_id: str
+
+
+class BFVPublicKey(TypedDict):
+    params: BFVParameters
+    q: gmpy2.mpz
+    key_id: str
+    b: BFVPolynomial
+    a: BFVPolynomial
+    relin_key: BFVSwitchKey
+    galois_keys: dict[int, BFVSwitchKey]
+
+
+class BFVSecretKey(TypedDict):
+    s: BFVPolynomial
+    key_id: str
+
+
+class BFVKeyPair(TypedDict):
+    pk: BFVPublicKey
+    sk: BFVSecretKey
 
 
 # ── Encrypted vector type ──────────────────────────────────────────────────

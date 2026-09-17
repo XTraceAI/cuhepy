@@ -1,0 +1,164 @@
+{
+  "mode": "local",
+  "hardware_attestation": false,
+  "measurement_notes": "All variants evaluate identical ciphertexts; exactly one evaluation produces a protocol response. Local mode substitutes a test CA and includes real certificate, owner-signature and receipt checks, but no NSM, vsock, hardware isolation or EC2. AWS protocol timers include network/relay; the reference runs locally and ratios are meaningful only on matched hardware. One cold and remaining warm trials; no tail-latency claim. No production-security certification.",
+  "environment": {
+    "utc": "2026-09-15T17:55:52.950792+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "cpu": "AMD Ryzen 7 5800X 8-Core Processor",
+    "versions": {
+      "gmpy2": "2.3.0",
+      "pycryptodome": "3.23.0",
+      "cbor2": "6.1.4",
+      "pyOpenSSL": "26.4.0",
+      "cryptography": "50.0.1"
+    },
+    "revision": "46b637b604e1c2835653140610b7b2396f10b284"
+  },
+  "config": {
+    "embed_len": 512,
+    "poly_modulus_degree": 16384,
+    "plain_modulus": 65537,
+    "coeff_modulus_bits": 180,
+    "decomposition_bits": 30,
+    "error_eta": 21,
+    "rns_modulus": true,
+    "response_modulus_bits": 50,
+    "device": "cpu"
+  },
+  "vectors": 1024,
+  "setup_timings": {
+    "key_generation_s": 8.675407716073096,
+    "index_encrypt_export_s": 9.33344871387817,
+    "registration_encode_s": 0.3417240921407938,
+    "baseline_import_s": 3.3312883710023016,
+    "protocol_import_s": 3.5784192520659417
+  },
+  "enrollment": [
+    {
+      "issue_or_rpc_s": 0.0022853699047118425,
+      "client_verify_s": 0.0075106131844222546,
+      "document_bytes": 1936,
+      "possession_bytes": 64,
+      "challenge_bytes": 134
+    },
+    {
+      "issue_or_rpc_s": 0.0021545880008488894,
+      "client_verify_s": 0.005094030173495412,
+      "document_bytes": 1936,
+      "possession_bytes": 64,
+      "challenge_bytes": 134
+    },
+    {
+      "issue_or_rpc_s": 0.002078167162835598,
+      "client_verify_s": 0.00487562594935298,
+      "document_bytes": 1936,
+      "possession_bytes": 64,
+      "challenge_bytes": 134
+    },
+    {
+      "issue_or_rpc_s": 0.002088826848194003,
+      "client_verify_s": 0.00495729804970324,
+      "document_bytes": 1936,
+      "possession_bytes": 64,
+      "challenge_bytes": 134
+    }
+  ],
+  "runs": [
+    {
+      "repeat": 0,
+      "query_encrypt_sign_s": 0.20626455708406866,
+      "baseline_local_search_s": 3.060150825884193,
+      "protocol_search_or_rpc_s": 3.06122068897821,
+      "client_finish_s": 0.028632056899368763
+    },
+    {
+      "repeat": 1,
+      "query_encrypt_sign_s": 0.20665679895319045,
+      "baseline_local_search_s": 2.4312804299406707,
+      "protocol_search_or_rpc_s": 2.436255524866283,
+      "client_finish_s": 0.02823221101425588
+    },
+    {
+      "repeat": 2,
+      "query_encrypt_sign_s": 0.20398432505317032,
+      "baseline_local_search_s": 2.432181579992175,
+      "protocol_search_or_rpc_s": 2.435416348045692,
+      "client_finish_s": 0.028609218075871468
+    },
+    {
+      "repeat": 3,
+      "query_encrypt_sign_s": 0.2063854408916086,
+      "baseline_local_search_s": 2.4394479650072753,
+      "protocol_search_or_rpc_s": 2.4388709040358663,
+      "client_finish_s": 0.02783559402450919
+    }
+  ],
+  "summary": {
+    "query_encrypt_sign_s": {
+      "first_s": 0.20626455708406866,
+      "warm_median_s": 0.2063854408916086,
+      "warm_samples_s": [
+        0.20665679895319045,
+        0.20398432505317032,
+        0.2063854408916086
+      ]
+    },
+    "baseline_local_search_s": {
+      "first_s": 3.060150825884193,
+      "warm_median_s": 2.432181579992175,
+      "warm_samples_s": [
+        2.4312804299406707,
+        2.432181579992175,
+        2.4394479650072753
+      ]
+    },
+    "protocol_search_or_rpc_s": {
+      "first_s": 3.06122068897821,
+      "warm_median_s": 2.436255524866283,
+      "warm_samples_s": [
+        2.436255524866283,
+        2.435416348045692,
+        2.4388709040358663
+      ]
+    },
+    "client_finish_s": {
+      "first_s": 0.028632056899368763,
+      "warm_median_s": 0.02823221101425588,
+      "warm_samples_s": [
+        0.02823221101425588,
+        0.028609218075871468,
+        0.02783559402450919
+      ]
+    }
+  },
+  "sizes": {
+    "setup_bytes": 194804883,
+    "registration_bytes": 194805024,
+    "query_bytes": 737582,
+    "response_bytes": 205018,
+    "receipt_bytes": 198,
+    "query_response_receipt_bytes": 942798
+  },
+  "whole_process_peak_rss_kib_linux": 2320364,
+  "identical_ciphertexts": true,
+  "all_distances_correct": true,
+  "source_sha256": {
+    "benchmarks/bfv_nitro.py": "6189c69c762e11d7b3cffcb66a695e7e7306d8350f0cb4245b2c89542611aefe",
+    "experiments/bfv_nitro/__init__.py": "96f217ab43bd80b51d6b928cc128a7f7d6fb9c8bce318267ac157436bb49df75",
+    "experiments/bfv_nitro/client.py": "5a5d68dbde3f07f053e0d67b3ab22a1da1cc493cf631b540237408b0f5f7fe6a",
+    "experiments/bfv_nitro/relay.py": "113c99417e3ff4b9f7769084ccf8bb19225d351c2b545786980e4a7e1939e00f",
+    "experiments/bfv_nitro/service.py": "a4b322e678d9f49a16d44f76f53e9ea3fe2094ed213cb6f133aef21643c9e701",
+    "experiments/bfv_nitro/transport.py": "1fbb2767aa59209d0bdadd17b7aaafbfeb8f11a72e64cbb5f7997368a1bb36d5",
+    "src/xtrace_sdk/x_vec/crypto/bfv_assurance.py": "ba64de6db3f76031ba9c35627a0a3790244c816937a97a3b65c98b9c699bb33d",
+    "src/xtrace_sdk/x_vec/crypto/bfv_attested_client.py": "d3bed7a596fd19f834ea308fc332f0a28109a1136c7dd63026819b4cc106c7de",
+    "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "becd81b9c41c027fe26de3e675adfba32fae7c0e6b0e1bede73f96a14effc775",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_private.cpython-312-x86_64-linux-gnu.so": "c55be18d74e56a1d6bb82c9fa31f55cb9ecf568aecf191a26278a660502b6c72",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "539e19f0591c9dd375a7cf519569c4777067fb6593f5157d87b7edb37a42eb04",
+    "src/xtrace_sdk/x_vec/crypto/bfv_guarded_client.py": "2e684a8a7f2364a1134aa0271ee34fc6e2562367f26ae453f61a03fa80e31db3",
+    "src/xtrace_sdk/x_vec/crypto/bfv_nitro.py": "791107dd7daaea99b07cb9cc70116ec71fe932c0ece608a9bd65ce8a7aad6660",
+    "src/xtrace_sdk/x_vec/crypto/bfv_security.py": "17149c07384889f994f93bc9e7b209d965176cd916c97a0f6b7a138861a7204e",
+    "src/xtrace_sdk/x_vec/crypto/bfv_verified_client.py": "6a384b16c347d84f90e40ccc9903b1ae916ae277e6171bd668181366d56e88a0"
+  }
+}

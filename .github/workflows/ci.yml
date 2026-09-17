@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - staging
     # `labeled` lets reviewers opt a PR into integration / GPU coverage by
     # adding `run-integration` or `run-gpu` to the PR. Per-job `if:` checks
     # the label set, so unrelated jobs still skip.
@@ -61,6 +62,56 @@ jobs:
 
       - name: Pytest (test_paillier_encryption)
         run: uv run pytest tests/x_vec/test_paillier_encryption.py
+
+      - name: Build and test native BFV CPU kernels
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgmp-dev valgrind clang
+          make -C src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext PYTHON="$PWD/.venv/bin/python"
+          uv run python -c 'from xtrace_sdk.x_vec.crypto.bfv_cpu_ext import _bfv_rns, _bfv_private; assert _bfv_rns.ABI_VERSION == 4; assert _bfv_private.ABI_VERSION == 1'
+          uv run pytest tests/x_vec/test_bfv_encryption.py tests/x_vec/test_bfv_evaluator.py tests/x_vec/test_bfv_rns.py tests/x_vec/test_bfv_native.py tests/x_vec/test_bfv_residue.py tests/x_vec/test_bfv_client.py tests/x_vec/test_bfv_security.py tests/x_vec/test_bfv_verified_client.py tests/x_vec/test_bfv_private.py tests/x_vec/test_bfv_guarded_client.py tests/x_vec/test_bfv_assurance.py
+
+      - name: BFV Nitro attestation and protocol regressions (offline)
+        run: uv run --extra bfv-nitro pytest tests/x_vec/test_bfv_nitro.py tests/x_vec/test_bfv_attested_client.py tests/x_vec/test_bfv_nitro_transport.py tests/x_vec/test_bfv_nitro_aws.py
+
+      - name: SEAL comparison (synthetic inputs only)
+        run: |
+          uv pip install --python .venv/bin/python -r experiments/bfv/requirements.txt
+          .venv/bin/python -m pytest experiments/bfv/test_packed_hamming.py tests/x_vec/test_bfv_client.py::test_optional_seal_reference
+
+      - name: Build documentation
+        run: uv run --extra bfv-nitro sphinx-build -W -b html docs /tmp/xtrace-docs
+
+      - name: BFV native arithmetic sanitizers
+        run: |
+          g++ -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext tests/x_vec/native/test_bfv_rns.cpp -lgmpxx -lgmp -o /tmp/test_bfv_rns
+          /tmp/test_bfv_rns
+          g++ -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext tests/x_vec/native/test_bfv_private.cpp -lgmpxx -lgmp -o /tmp/test_bfv_private
+          /tmp/test_bfv_private
+
+      - name: BFV private kernel secret-taint regression
+        run: |
+          bfv_gcc_install=$(dirname "$(g++ -print-libgcc-file-name)")
+          for bfv_cxx in g++ clang++; do
+            bfv_toolchain=()
+            if [ "$bfv_cxx" = clang++ ]; then
+              bfv_toolchain=("--gcc-install-dir=$bfv_gcc_install")
+            fi
+            "$bfv_cxx" "${bfv_toolchain[@]}" -std=c++17 -O3 -g -fPIC -fstack-protector-strong -D_FORTIFY_SOURCE=3 -DXTRACE_BFV_CTGRIND -I src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext tests/x_vec/native/test_bfv_private.cpp -lgmpxx -lgmp -o /tmp/test_bfv_private_taint
+            valgrind --tool=memcheck --error-exitcode=1 --track-origins=yes /tmp/test_bfv_private_taint
+            if valgrind --tool=memcheck --error-exitcode=1 /tmp/test_bfv_private_taint --negative-control; then
+              exit 1
+            fi
+          done
+
+      - name: BFV Python binding sanitizers
+        run: |
+          bfv_py_include=$(.venv/bin/python -c 'import sysconfig; print(sysconfig.get_paths()["include"])')
+          g++ -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fPIC -shared -I"$bfv_py_include" src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bindings.cpp -lgmpxx -lgmp -o /tmp/bfv_sanitized.so
+          g++ -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fPIC -shared -I"$bfv_py_include" src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/private_bindings.cpp -lgmpxx -lgmp -o /tmp/bfv_private_sanitized.so
+          bfv_asan_runtime=$(g++ -print-file-name=libasan.so)
+          bfv_cpp_runtime=$(g++ -print-file-name=libstdc++.so)
+          ASAN_OPTIONS=detect_leaks=0 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 LD_PRELOAD="$bfv_asan_runtime:$bfv_cpp_runtime" .venv/bin/python tests/x_vec/native/run_binding_sanitizers.py /tmp/bfv_sanitized.so /tmp/bfv_private_sanitized.so
 
   # ── Integration tests (require XTrace API credentials) ──────────
   # Triggers:

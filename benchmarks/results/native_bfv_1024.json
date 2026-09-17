@@ -1,0 +1,177 @@
+{
+  "environment": {
+    "utc": "2026-09-10T20:27:09.027921+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "gmpy2": "2.3.0",
+    "gmp": "GMP 6.3.0",
+    "revision": "04204ec9b98923d90ad4e6f489bac25c3f46aa16",
+    "working_tree_dirty": true
+  },
+  "command": [
+    "benchmarks/bfv_client_matrix.py",
+    "--num-vectors",
+    "1024",
+    "--json-out",
+    "benchmarks/results/native_bfv_1024.json"
+  ],
+  "measurement_notes": "CPU synthetic experiment; no equivalent-security claim. Keys are public JSON including BFV evaluation keys. Index/query/response use common MessagePack framing with LE integer bytes and implicit IDs. No network/HTTP/TLS, secret-key, plaintext-content or AES-content bytes. Timings are separate from serialization; no concurrent test/benchmark processes intended.",
+  "seed": 1337,
+  "runs": [
+    {
+      "variant": "bfv-packed",
+      "vectors": 1024,
+      "embed_len": 512,
+      "config": {
+        "embed_len": 512,
+        "poly_modulus_degree": 8192,
+        "plain_modulus": 65537,
+        "coeff_modulus_bits": 180,
+        "decomposition_bits": 30,
+        "error_eta": 21,
+        "response_modulus_bits": 50,
+        "device": "cpu"
+      },
+      "compact": true,
+      "timings": {
+        "key_generation_s": 4.32266186689958,
+        "public_key_export_s": 0.7880964139476418,
+        "public_key_import_s": 0.853526117047295,
+        "index_encrypt_s": 6.748511495068669,
+        "query_encrypt_s": 0.1036944561637938,
+        "index_serialize_s": 0.038064548978582025,
+        "query_serialize_s": 0.0002170950174331665,
+        "index_deserialize_s": 0.022240569116547704,
+        "query_deserialize_s": 0.00021161511540412903,
+        "server_compute_s": 108.29552126303315,
+        "response_serialize_s": 0.0003346470184624195,
+        "response_deserialize_s": 6.959214806556702e-05,
+        "client_decode_s": 0.0412755839060992
+      },
+      "sizes": {
+        "encrypted_index_bytes": 23598496,
+        "public_keys_bytes": 85602812,
+        "query_bytes": 368754,
+        "response_bytes": 102496,
+        "query_plus_response_bytes": 471250
+      },
+      "index_ciphertexts": 64,
+      "response_ciphertexts": 1,
+      "minimum_response_noise_budget_bits": 26,
+      "top3": [
+        {
+          "index": 0,
+          "distance": 0
+        },
+        {
+          "index": 1023,
+          "distance": 0
+        },
+        {
+          "index": 81,
+          "distance": 220
+        }
+      ],
+      "correct": true,
+      "repeat": 0
+    },
+    {
+      "variant": "paillier-cpu",
+      "vectors": 1024,
+      "embed_len": 512,
+      "config": {
+        "embed_len": 512,
+        "key_len": 1024
+      },
+      "compact": false,
+      "timings": {
+        "key_generation_s": 0.5261988120619208,
+        "public_key_export_s": 4.5150984078645706e-05,
+        "public_key_import_s": 1.7459969967603683e-05,
+        "index_encrypt_s": 10.52772010397166,
+        "query_encrypt_s": 0.010291318176314235,
+        "index_serialize_s": 0.001604192890226841,
+        "query_serialize_s": 1.933099702000618e-05,
+        "index_deserialize_s": 0.0005795308388769627,
+        "query_deserialize_s": 1.3759825378656387e-05,
+        "server_compute_s": 0.005445469869300723,
+        "response_serialize_s": 0.0007037140894681215,
+        "response_deserialize_s": 0.0005315609741955996,
+        "client_decode_s": 7.0446601149160415
+      },
+      "sizes": {
+        "encrypted_index_bytes": 528396,
+        "public_keys_bytes": 2502,
+        "query_bytes": 544,
+        "response_bytes": 528403,
+        "query_plus_response_bytes": 528947
+      },
+      "index_ciphertexts": 1024,
+      "response_ciphertexts": 1024,
+      "minimum_response_noise_budget_bits": null,
+      "top3": [
+        {
+          "index": 0,
+          "distance": 0
+        },
+        {
+          "index": 1023,
+          "distance": 0
+        },
+        {
+          "index": 81,
+          "distance": 220
+        }
+      ],
+      "correct": true,
+      "repeat": 0
+    }
+  ],
+  "source_sha256": {
+    "benchmarks/bfv_client_matrix.py": "c5d1f2eafe6941219c27c2501f2f753579bcbe8cce871a9f23a9591367424658",
+    "src/xtrace_sdk/x_vec/crypto/paillier_client.py": "40582d7acb86ee7dd2060e2d795c76829f4879db3b1eca9518be7a9599de4788",
+    "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "1f55ce8061c18644f98e99d683351bc849ef78fb917ac511c9a08eddff214d73",
+    "src/xtrace_sdk/x_vec/crypto/goldwasser_micali_client.py": "0982ad7532d07c8e26a701359ce8f4f7d4c1a3beb714050e741f3b534d59935f",
+    "src/xtrace_sdk/x_vec/crypto/paillier_lookup_client.py": "4faa0dd71d03b3e9bc9e49c4e60e8be7b173ff514b52cf1d94a3b1a2426bf699",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py": "6f03ac75f42218170da2bd785605ee394940a202afdd5471545a8ae3fdc8c3d8",
+    "src/xtrace_sdk/x_vec/crypto/encryption/paillier_lookup.py": "eed0be7e0e2c1f6e8e8c0138262ec071fef73648e334a948ef1f82df6e9b9712",
+    "src/xtrace_sdk/x_vec/crypto/encryption/__init__.py": "261a50ed1758cee38c880cc625187f8acb051c6d5c96ba7a71ee956bdbea2cc5",
+    "src/xtrace_sdk/x_vec/crypto/encryption/goldwasser_micali.py": "4b32296c6210663c098718fa49bd810c427b1f8102d026d12a7d734f58e8e3d1",
+    "src/xtrace_sdk/x_vec/crypto/encryption/homomorphic_base.py": "915da9e500d0a142651243bb13de7631dc96103fea2ec9e5b9288bee498010e7",
+    "src/xtrace_sdk/x_vec/crypto/encryption/paillier.py": "525a1944caef38d5d216ae84fcac982627d2a2fddea50b747e47ef05e2e91c9f",
+    "src/xtrace_sdk/x_vec/crypto/encryption/aes.py": "2c833351db3b249c381e315307d858791ee4e5b633d3465127cad763b4d095d5",
+    "src/xtrace_sdk/x_vec/utils/xtrace_types.py": "7a10c977ee648eb1975286b313f009b3508183efe9e942cd710ae6ad5ae279a3"
+  },
+  "median_timings": {
+    "bfv-packed": {
+      "key_generation_s": 4.32266186689958,
+      "public_key_export_s": 0.7880964139476418,
+      "public_key_import_s": 0.853526117047295,
+      "index_encrypt_s": 6.748511495068669,
+      "query_encrypt_s": 0.1036944561637938,
+      "index_serialize_s": 0.038064548978582025,
+      "query_serialize_s": 0.0002170950174331665,
+      "index_deserialize_s": 0.022240569116547704,
+      "query_deserialize_s": 0.00021161511540412903,
+      "server_compute_s": 108.29552126303315,
+      "response_serialize_s": 0.0003346470184624195,
+      "response_deserialize_s": 6.959214806556702e-05,
+      "client_decode_s": 0.0412755839060992
+    },
+    "paillier-cpu": {
+      "key_generation_s": 0.5261988120619208,
+      "public_key_export_s": 4.5150984078645706e-05,
+      "public_key_import_s": 1.7459969967603683e-05,
+      "index_encrypt_s": 10.52772010397166,
+      "query_encrypt_s": 0.010291318176314235,
+      "index_serialize_s": 0.001604192890226841,
+      "query_serialize_s": 1.933099702000618e-05,
+      "index_deserialize_s": 0.0005795308388769627,
+      "query_deserialize_s": 1.3759825378656387e-05,
+      "server_compute_s": 0.005445469869300723,
+      "response_serialize_s": 0.0007037140894681215,
+      "response_deserialize_s": 0.0005315609741955996,
+      "client_decode_s": 7.0446601149160415
+    }
+  }
+}

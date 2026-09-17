@@ -1,0 +1,75 @@
+Native BFV server profiles, 32 vectors x 512 bits, default parameters.
+Additional warm searches from bfv_server.py, after four unprofiled searches per backend.
+Timing comparisons are in native_bfv_server_32.json; cProfile timings are distorted by instrumentation.
+
+reference
+Thu Sep 10 18:15:45 2026    /tmp/xtrace-bfv-server-profiles/reference.prof
+
+         19838069 function calls in 5.637 seconds
+
+   Ordered by: internal time
+   List reduced from 72 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      262    1.335    0.005    2.976    0.011 bfv.py:39(_poly_product)
+  1228950    0.468    0.000    1.338    0.000 bfv.py:300(<genexpr>)
+       21    0.431    0.021    3.992    0.190 bfv.py:411(_switch)
+  2097408    0.338    0.000    0.338    0.000 bfv.py:60(<genexpr>)
+  2146566    0.303    0.000    0.303    0.000 bfv.py:56(<genexpr>)
+      268    0.271    0.001    0.271    0.001 {built-in method gmpy2.gmpy2.unpack}
+  4292623    0.269    0.000    0.269    0.000 {method 'bit_length' of 'gmpy2.mpz' objects}
+      524    0.249    0.000    0.968    0.002 {built-in method builtins.max}
+  1245208    0.239    0.000    0.561    0.000 {built-in method _abc._abc_instancecheck}
+  2146566    0.220    0.000    0.354    0.000 bfv.py:49(<genexpr>)
+      256    0.206    0.001    3.442    0.013 bfv.py:59(_ring_product)
+  1245208    0.202    0.000    0.202    0.000 {built-in method _abc._abc_subclasscheck}
+  1245233    0.195    0.000    0.881    0.000 {built-in method builtins.isinstance}
+  1032318    0.176    0.000    0.176    0.000 bfv.py:420(<genexpr>)
+  1245208    0.125    0.000    0.686    0.000 <frozen abc>:117(__instancecheck__)
+  1245208    0.120    0.000    0.322    0.000 <frozen abc>:121(__subclasscheck__)
+      522    0.102    0.000    0.102    0.000 {built-in method gmpy2.gmpy2.pack}
+      158    0.074    0.000    1.427    0.009 {built-in method builtins.any}
+   311334    0.072    0.000    0.072    0.000 bfv.py:366(<genexpr>)
+       38    0.064    0.002    0.064    0.002 bfv.py:63(_automorphism)
+   155667    0.040    0.000    0.040    0.000 bfv.py:501(<genexpr>)
+       19    0.019    0.001    4.117    0.217 bfv_evaluator.py:196(rotate_rows)
+        2    0.019    0.010    5.502    2.751 bfv_client.py:237(_distance_tile)
+       57    0.016    0.000    0.089    0.002 bfv.py:365(<genexpr>)
+    65536    0.016    0.000    0.016    0.000 bfv.py:34(_round_div)
+
+
+
+optimized
+Thu Sep 10 18:15:47 2026    /tmp/xtrace-bfv-server-profiles/optimized.prof
+
+         3581974 function calls in 2.220 seconds
+
+   Ordered by: internal time
+   List reduced from 73 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       21    1.293    0.062    1.426    0.068 bfv_evaluator.py:53(apply)
+  1048704    0.102    0.000    0.102    0.000 bfv_evaluator.py:110(<genexpr>)
+   344106    0.071    0.000    0.071    0.000 bfv_evaluator.py:67(<genexpr>)
+   180246    0.065    0.000    0.193    0.000 bfv.py:300(<genexpr>)
+      158    0.061    0.000    0.371    0.002 {built-in method builtins.any}
+       10    0.056    0.006    0.122    0.012 bfv.py:39(_poly_product)
+       38    0.055    0.001    0.055    0.001 bfv.py:63(_automorphism)
+   311334    0.050    0.000    0.050    0.000 bfv_evaluator.py:139(<genexpr>)
+   155667    0.039    0.000    0.039    0.000 bfv_evaluator.py:213(<genexpr>)
+   196632    0.038    0.000    0.090    0.000 {built-in method _abc._abc_instancecheck}
+       58    0.035    0.001    0.035    0.001 {built-in method gmpy2.gmpy2.unpack}
+   196632    0.032    0.000    0.032    0.000 {built-in method _abc._abc_subclasscheck}
+   196657    0.031    0.000    0.140    0.000 {built-in method builtins.isinstance}
+      148    0.028    0.000    0.057    0.000 {built-in method builtins.max}
+        2    0.027    0.013    2.045    1.022 bfv_client.py:237(_distance_tile)
+      144    0.025    0.000    0.025    0.000 {built-in method gmpy2.gmpy2.pack}
+   196632    0.020    0.000    0.109    0.000 <frozen abc>:117(__instancecheck__)
+       42    0.019    0.000    0.111    0.003 bfv_evaluator.py:61(finish)
+      130    0.019    0.000    0.019    0.000 {built-in method builtins.min}
+   196632    0.019    0.000    0.051    0.000 <frozen abc>:121(__subclasscheck__)
+       57    0.016    0.000    0.066    0.001 bfv_evaluator.py:138(<genexpr>)
+    65536    0.016    0.000    0.016    0.000 bfv.py:34(_round_div)
+    81930    0.013    0.000    0.013    0.000 bfv.py:56(<genexpr>)
+   163855    0.011    0.000    0.011    0.000 {method 'bit_length' of 'gmpy2.mpz' objects}
+    81930    0.009    0.000    0.014    0.000 bfv.py:49(<genexpr>)

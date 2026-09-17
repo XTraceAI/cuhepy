@@ -14,6 +14,14 @@ Subpackages
 Submodules
 ----------
 
+xtrace\_sdk.crypto.bfv\_client module
+------------------------------------
+
+.. automodule:: xtrace_sdk.x_vec.crypto.bfv_client
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 xtrace\_sdk.crypto.goldwasser\_micali\_client module
 ----------------------------------------------------
 

@@ -29,13 +29,13 @@ class HomomorphicBase(Generic[T_CT, T_PT, T_KP, T_KEY], ABC):
 
     @staticmethod
     @abstractmethod
-    def encrypt(pt: T_PT, key: T_KEY) -> T_PT:
+    def encrypt(pt: T_PT, key: T_KEY) -> T_CT:
         """Encrypts a plain text with key"""
         pass
 
     @staticmethod
     @abstractmethod
-    def decrypt(ct: T_CT, key: T_KP) -> T_CT:
+    def decrypt(ct: T_CT, key: T_KP) -> T_PT:
         """decrypts a cipher"""
         pass
 

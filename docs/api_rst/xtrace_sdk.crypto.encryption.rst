@@ -4,6 +4,38 @@ xtrace\_sdk.crypto.encryption package
 Submodules
 ----------
 
+xtrace\_sdk.crypto.encryption.bfv module
+---------------------------------------
+
+.. automodule:: xtrace_sdk.x_vec.crypto.encryption.bfv
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+xtrace\_sdk.crypto.encryption.bfv\_evaluator module
+-------------------------------------------------
+
+.. automodule:: xtrace_sdk.x_vec.crypto.encryption.bfv_evaluator
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+xtrace\_sdk.crypto.encryption.bfv\_rns module
+-------------------------------------------
+
+.. automodule:: xtrace_sdk.x_vec.crypto.encryption.bfv_rns
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+xtrace\_sdk.crypto.encryption.bfv\_native module
+----------------------------------------------
+
+.. automodule:: xtrace_sdk.x_vec.crypto.encryption.bfv_native
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 xtrace\_sdk.crypto.encryption.aes module
 ----------------------------------------
 
