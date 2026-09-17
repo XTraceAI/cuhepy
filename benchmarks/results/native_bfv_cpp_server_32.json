@@ -1,0 +1,388 @@
+{
+  "environment": {
+    "utc": "2026-09-11T01:31:51.513445+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "gmpy2": "2.3.0",
+    "gmp": "GMP 6.3.0",
+    "revision": "79ad443f2cc4606af8f142af075ecdcf8e62d8a2",
+    "working_tree_dirty": true
+  },
+  "command": [
+    "benchmarks/bfv_server.py",
+    "--num-vectors",
+    "32",
+    "--backends",
+    "rns,native",
+    "--seal",
+    "--repeats",
+    "4",
+    "--native-profile",
+    "--json-out",
+    "benchmarks/results/native_bfv_cpp_server_32.json"
+  ],
+  "measurement_notes": "One CPU process, identical public keys and encrypted inputs for all native backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
+  "config": {
+    "embed_len": 512,
+    "poly_modulus_degree": 8192,
+    "plain_modulus": 65537,
+    "coeff_modulus_bits": 180,
+    "decomposition_bits": 30,
+    "error_eta": 21,
+    "response_modulus_bits": 50,
+    "device": "cpu"
+  },
+  "seed": 1337,
+  "vectors": 32,
+  "setup_timings": {
+    "key_generation_s": 4.342289729043841,
+    "index_encrypt_s": 0.21233072807081044,
+    "query_encrypt_s": 0.10064343316480517,
+    "public_key_export_s": 0.7829922570381314,
+    "rns_public_key_import_s": 0.856646987143904,
+    "native_public_key_import_s": 0.851454121991992
+  },
+  "runs": [
+    {
+      "backend": "rns",
+      "repeat": 0,
+      "server_compute_s": 0.4936013799160719
+    },
+    {
+      "backend": "native",
+      "repeat": 0,
+      "server_compute_s": 0.5134266279637814
+    },
+    {
+      "backend": "seal",
+      "repeat": 0,
+      "server_compute_s": 0.0763197538908571
+    },
+    {
+      "backend": "seal",
+      "repeat": 1,
+      "server_compute_s": 0.07405148795805871
+    },
+    {
+      "backend": "native",
+      "repeat": 1,
+      "server_compute_s": 0.16401935601606965
+    },
+    {
+      "backend": "rns",
+      "repeat": 1,
+      "server_compute_s": 0.26051225513219833
+    },
+    {
+      "backend": "rns",
+      "repeat": 2,
+      "server_compute_s": 0.2602035889867693
+    },
+    {
+      "backend": "native",
+      "repeat": 2,
+      "server_compute_s": 0.1639279848895967
+    },
+    {
+      "backend": "seal",
+      "repeat": 2,
+      "server_compute_s": 0.0742087010294199
+    },
+    {
+      "backend": "seal",
+      "repeat": 3,
+      "server_compute_s": 0.07412873883731663
+    },
+    {
+      "backend": "native",
+      "repeat": 3,
+      "server_compute_s": 0.1639478448778391
+    },
+    {
+      "backend": "rns",
+      "repeat": 3,
+      "server_compute_s": 0.2600402070675045
+    }
+  ],
+  "summary": {
+    "rns": {
+      "first_search_s": 0.4936013799160719,
+      "warm_searches_s": [
+        0.26051225513219833,
+        0.2602035889867693,
+        0.2600402070675045
+      ],
+      "warm_median_s": 0.2602035889867693
+    },
+    "native": {
+      "first_search_s": 0.5134266279637814,
+      "warm_searches_s": [
+        0.16401935601606965,
+        0.1639279848895967,
+        0.1639478448778391
+      ],
+      "warm_median_s": 0.1639478448778391
+    },
+    "seal": {
+      "first_search_s": 0.0763197538908571,
+      "warm_searches_s": [
+        0.07405148795805871,
+        0.0742087010294199,
+        0.07412873883731663
+      ],
+      "warm_median_s": 0.07412873883731663
+    }
+  },
+  "first_search_speedup": null,
+  "warm_median_speedup": null,
+  "speedups_relative_to_first_native_backend": {
+    "rns": {
+      "first": 1.0,
+      "warm_median": 1.0
+    },
+    "native": {
+      "first": 0.9613864046624633,
+      "warm_median": 1.5871119817442698
+    },
+    "seal": {
+      "first": 6.467544177644472,
+      "warm_median": 3.5101580448820755
+    }
+  },
+  "seal_comparison": {
+    "tenseal": "0.3.16",
+    "poly_modulus_degree": 8192,
+    "plain_modulus": 65537,
+    "active_coeff_modulus_bits": [
+      43,
+      43,
+      44,
+      44
+    ],
+    "key_coeff_modulus_bits": [
+      43,
+      43,
+      44,
+      44,
+      44
+    ],
+    "security_setting": "SEAL TC128; no equivalent-security claim for native parameters",
+    "index_bytes": 865239,
+    "query_bytes": 432560,
+    "public_key_bytes": 39586592,
+    "timing_notes": "SEAL search includes its serialization, MessagePack and binding temporary-file I/O. Native times exclude outer MessagePack; both include ciphertext decoding, arithmetic, compaction and ciphertext encoding. These are practical server calls with different parameters/formats, not identical arithmetic kernels.",
+    "response_bytes": 103312,
+    "all_distances_correct": true,
+    "minimum_response_noise_budget_bits": 19
+  },
+  "native_phases": {
+    "rns": {
+      "forward_ntt": {
+        "seconds": 0.046839558,
+        "calls": 564
+      },
+      "inverse_ntt": {
+        "seconds": 0.022890933000000002,
+        "calls": 226
+      },
+      "to_residues": {
+        "seconds": 0.004476374,
+        "calls": 12
+      },
+      "crt_reconstruct": {
+        "seconds": 0.041671711,
+        "calls": 52
+      },
+      "crt_exact_fallback": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "gadget_decompose": {
+        "seconds": 0.0015517270000000001,
+        "calls": 21
+      },
+      "pointwise": {
+        "seconds": 0.012541273,
+        "calls": 27
+      },
+      "scale_round": {
+        "seconds": 0.004987500000000001,
+        "calls": 6
+      },
+      "mod_q": {
+        "seconds": 0.014520551000000001,
+        "calls": 46
+      },
+      "buffers": {
+        "seconds": 0.000788527,
+        "calls": 35
+      },
+      "automorphism": {
+        "seconds": 0.010529403000000001,
+        "calls": 19
+      },
+      "add_sub": {
+        "seconds": 0.006080952000000001,
+        "calls": 22
+      },
+      "wire_import": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "wire_export": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "other": {
+        "seconds": 0.09332303,
+        "calls": 1
+      }
+    },
+    "native": {
+      "forward_ntt": {
+        "seconds": 0.047080215,
+        "calls": 548
+      },
+      "inverse_ntt": {
+        "seconds": 0.016968431000000003,
+        "calls": 226
+      },
+      "to_residues": {
+        "seconds": 0.004014191,
+        "calls": 8
+      },
+      "crt_reconstruct": {
+        "seconds": 0.026213566,
+        "calls": 52
+      },
+      "crt_exact_fallback": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "gadget_decompose": {
+        "seconds": 0.0016716600000000002,
+        "calls": 21
+      },
+      "pointwise": {
+        "seconds": 0.012280482,
+        "calls": 27
+      },
+      "scale_round": {
+        "seconds": 0.006211254,
+        "calls": 7
+      },
+      "mod_q": {
+        "seconds": 0.014689607,
+        "calls": 46
+      },
+      "buffers": {
+        "seconds": 0.00095556,
+        "calls": 31
+      },
+      "automorphism": {
+        "seconds": 0.010587844,
+        "calls": 19
+      },
+      "add_sub": {
+        "seconds": 0.006361085000000001,
+        "calls": 23
+      },
+      "wire_import": {
+        "seconds": 0.0013337070000000002,
+        "calls": 6
+      },
+      "wire_export": {
+        "seconds": 0.000158364,
+        "calls": 2
+      },
+      "other": {
+        "seconds": 0.015787336000000003,
+        "calls": 1
+      }
+    }
+  },
+  "native_profile_note": "Additional warm searches, excluded from performance samples. Exclusive wall times and call counts; other includes Python, binding overhead and unscoped native work. buffers covers explicit buffer setup; GMP allocations remain charged to their arithmetic phases. Profiles are per-thread and restored after exceptions.",
+  "sizes": {
+    "encrypted_index_bytes": 737480,
+    "public_keys_bytes": 85603223,
+    "query_bytes": 368754,
+    "response_bytes": 102494,
+    "query_plus_response_bytes": 471248
+  },
+  "caches": {
+    "rns": {
+      "primes": [
+        1152921504606830593,
+        1152921504606748673,
+        1152921504606683137,
+        1152921504606601217,
+        1152921504606584833,
+        1152921504606109697,
+        1152921504605962241
+      ],
+      "switch_prime_count": 4,
+      "transform_table_bytes": 2752512,
+      "gmp": "6.3.0",
+      "compiler": "13.3.0",
+      "fast_arithmetic": false,
+      "switch_keys": 11,
+      "key_payload_bytes": 34603008,
+      "server_plan_bytes": 0
+    },
+    "native": {
+      "primes": [
+        1152921504606830593,
+        1152921504606748673,
+        1152921504606683137,
+        1152921504606601217,
+        1152921504606584833,
+        1152921504606109697,
+        1152921504605962241
+      ],
+      "switch_prime_count": 4,
+      "transform_table_bytes": 2752512,
+      "gmp": "6.3.0",
+      "compiler": "13.3.0",
+      "fast_arithmetic": true,
+      "switch_keys": 18,
+      "key_payload_bytes": 56623104,
+      "server_plan_bytes": 655360
+    }
+  },
+  "cache_size_note": "Additional to the existing public key: GMP object payloads including folding constants, or native NTT coefficient arrays and transform tables. Excludes containers, CRT constants and transient allocations; not peak RSS.",
+  "minimum_response_noise_budget_bits": 26,
+  "identical_ciphertexts": true,
+  "all_distances_correct": true,
+  "top3": [
+    {
+      "index": 0,
+      "distance": 0
+    },
+    {
+      "index": 31,
+      "distance": 0
+    },
+    {
+      "index": 19,
+      "distance": 241
+    }
+  ],
+  "source_sha256": {
+    "benchmarks/bfv_server.py": "6e8187062aef810a0cc25c4e3689a99ba79ee29ea5048fe6aa297daf6273dd40",
+    "benchmarks/bfv_client_matrix.py": "925f50c0e21c591d293c308e74dd5b5ab9ee9c6016543c956dbfce8b6ecec502",
+    "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "67ee7ebcce11b4b4bf55297a32811904a285c7c3f4edd884e61ef85af88f2636",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py": "6f03ac75f42218170da2bd785605ee394940a202afdd5471545a8ae3fdc8c3d8",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py": "88c944adbf6a717cbf32e0a62d7e7d9f648f5db0d92e954c8a2e1307eeb45d81",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_rns.py": "96ce615ee4b187c45d3118c1a17df679d5ad9cbe2f233783e2a15ed43bd1aeff",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_native.py": "176a4d01c38e0e20aa9e6ed2dd78bc5a88f50d5262b5a9434307d254befeab50",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bindings.cpp": "3931b73d1622443476cef5f9de2af03819364dd3cd54c5efe5e2ed49acd136f7",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/profile.h": "e019dad8d819626f051a31519557b26ff65648d0327e28ddcd943d2344f57b8a",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_server.h": "88ec7b5295f2916f45a531d695e6c18f91b3b8dddcae0ada8c0d4527a56ed4f8",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_ntt.h": "26221a0fd074abd1251c03e5b54a7db3565e024ec942be94da10d6a1606e0233",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile": "ba256b062d975310c3de166cd5242c1cea5254250a769b942b0a49f5a7aed434",
+    "src/xtrace_sdk/x_vec/utils/xtrace_types.py": "7a10c977ee648eb1975286b313f009b3508183efe9e942cd710ae6ad5ae279a3",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "c86ff6e20fe63db5599baaa086f87dbb3f33d956fa175388e054b79d765c8e0c",
+    "experiments/bfv/packed_hamming.py": "5c940efe69617a822d0e6fce8afff92d14804cd49431cc87705553b71a709e01"
+  }
+}

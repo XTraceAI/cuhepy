@@ -1,0 +1,83 @@
+Additional cProfile runs for 32 vectors x 512 bits.
+These instrumented runs are excluded from benchmark timings.
+
+optimized
+Thu Sep 10 19:06:32 2026    /tmp/xtrace-bfv-rns-profiles/optimized.prof
+
+         3581976 function calls in 2.024 seconds
+
+   Ordered by: cumulative time
+   List reduced from 74 to 30 due to restriction <30>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    2.046    2.046 bfv_server.py:109(evaluate)
+        1    0.002    0.002    2.044    2.044 bfv_client.py:273(encode_hamming_server_packed)
+        2    0.001    0.000    1.860    0.930 bfv_client.py:238(_distance_tile)
+        2    0.022    0.011    1.859    0.930 bfv_evaluator.py:242(hamming_tile)
+       19    0.008    0.000    1.318    0.069 bfv_evaluator.py:269(rotate_rows)
+       21    0.000    0.000    1.304    0.062 bfv_evaluator.py:146(_switch)
+       21    1.185    0.056    1.304    0.062 bfv_evaluator.py:55(apply)
+      158    0.059    0.000    0.352    0.002 {built-in method builtins.any}
+        2    0.000    0.000    0.333    0.166 bfv_evaluator.py:237(xor)
+        2    0.003    0.001    0.315    0.157 bfv_evaluator.py:221(multiply)
+       11    0.000    0.000    0.201    0.018 bfv.py:289(validate_ciphertext)
+   180246    0.063    0.000    0.190    0.000 bfv.py:300(<genexpr>)
+        2    0.003    0.001    0.172    0.086 bfv.py:447(multiply)
+       63    0.000    0.000    0.170    0.003 bfv_evaluator.py:118(_validate)
+       19    0.000    0.000    0.164    0.009 bfv_evaluator.py:158(add)
+        2    0.002    0.001    0.139    0.070 bfv_evaluator.py:198(relinearize)
+   196657    0.030    0.000    0.139    0.000 {built-in method builtins.isinstance}
+       21    0.000    0.000    0.112    0.005 bfv_evaluator.py:139(_pair)
+   196632    0.020    0.000    0.108    0.000 <frozen abc>:117(__instancecheck__)
+       10    0.049    0.005    0.107    0.011 bfv.py:39(_poly_product)
+        2    0.000    0.000    0.102    0.051 bfv_evaluator.py:186(multiply_plain)
+        2    0.000    0.000    0.102    0.051 bfv.py:398(multiply_plain)
+       42    0.019    0.000    0.099    0.002 bfv_evaluator.py:63(finish)
+   196632    0.038    0.000    0.088    0.000 {built-in method _abc._abc_instancecheck}
+  1048704    0.088    0.000    0.088    0.000 bfv_evaluator.py:133(<genexpr>)
+        2    0.000    0.000    0.074    0.037 bfv.py:351(_pair)
+       57    0.016    0.000    0.062    0.001 bfv_evaluator.py:164(<genexpr>)
+   344106    0.062    0.000    0.062    0.000 bfv_evaluator.py:69(<genexpr>)
+        3    0.001    0.000    0.059    0.020 bfv.py:566(ciphertext_from_ints)
+       57    0.000    0.000    0.055    0.001 bfv_evaluator.py:289(<genexpr>)
+
+
+rns
+Thu Sep 10 19:06:32 2026    /tmp/xtrace-bfv-rns-profiles/rns.prof
+
+         770665 function calls in 0.342 seconds
+
+   Ordered by: cumulative time
+   List reduced from 62 to 30 due to restriction <30>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.342    0.342 bfv_server.py:109(evaluate)
+        1    0.002    0.002    0.340    0.340 bfv_client.py:273(encode_hamming_server_packed)
+        2    0.000    0.000    0.213    0.107 bfv_client.py:238(_distance_tile)
+        2    0.000    0.000    0.213    0.107 bfv_evaluator.py:242(hamming_tile)
+        2    0.000    0.000    0.184    0.092 bfv_rns.py:68(hamming_tile)
+        2    0.178    0.089    0.178    0.089 {built-in method cuhepy.bfv._cpu_ext._bfv_rns.hamming_tile}
+       32    0.011    0.000    0.121    0.004 {built-in method builtins.any}
+        5    0.000    0.000    0.090    0.018 bfv.py:289(validate_ciphertext)
+    81930    0.028    0.000    0.085    0.000 bfv.py:300(<genexpr>)
+    98353    0.015    0.000    0.069    0.000 {built-in method builtins.isinstance}
+        3    0.001    0.000    0.059    0.020 bfv.py:566(ciphertext_from_ints)
+    98328    0.010    0.000    0.054    0.000 <frozen abc>:117(__instancecheck__)
+    98328    0.019    0.000    0.044    0.000 {built-in method _abc._abc_instancecheck}
+        1    0.000    0.000    0.027    0.027 bfv.py:504(modulus_switch)
+    98328    0.009    0.000    0.025    0.000 <frozen abc>:121(__subclasscheck__)
+        7    0.000    0.000    0.019    0.003 bfv_evaluator.py:118(_validate)
+        2    0.001    0.000    0.018    0.009 bfv.py:244(_plaintext)
+        1    0.000    0.000    0.017    0.017 bfv.py:545(ciphertext_to_ints)
+        3    0.000    0.000    0.016    0.005 bfv_evaluator.py:139(_pair)
+    98328    0.016    0.000    0.016    0.000 {built-in method _abc._abc_subclasscheck}
+    16386    0.003    0.000    0.015    0.000 bfv.py:248(<genexpr>)
+        1    0.000    0.000    0.013    0.013 bfv_evaluator.py:269(rotate_rows)
+        1    0.000    0.000    0.011    0.011 bfv_rns.py:59(rotate)
+   114702    0.010    0.000    0.010    0.000 bfv_evaluator.py:133(<genexpr>)
+        1    0.000    0.000    0.009    0.009 bfv_evaluator.py:158(add)
+        1    0.009    0.009    0.009    0.009 {built-in method cuhepy.bfv._cpu_ext._bfv_rns.rotate_rows}
+        3    0.001    0.000    0.009    0.003 bfv.py:524(<genexpr>)
+    16386    0.004    0.000    0.008    0.000 bfv.py:525(<genexpr>)
+       12    0.006    0.000    0.006    0.000 {built-in method gmpy2.gmpy2.unpack}
+        6    0.000    0.000    0.004    0.001 bfv_rns.py:40(_unpack)

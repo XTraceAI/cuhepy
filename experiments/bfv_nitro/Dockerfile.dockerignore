@@ -1,0 +1,20 @@
+# Only measured public source/build inputs enter Docker's context. Never copy
+# owner keys, local indices, .env files, the virtualenv, git metadata or host .so.
+**
+!LICENSE
+!src/
+!src/xtrace_sdk/
+!src/xtrace_sdk/**
+!experiments/
+!experiments/bfv_nitro/
+!experiments/bfv_nitro/Dockerfile
+!experiments/bfv_nitro/Dockerfile.dockerignore
+!experiments/bfv_nitro/nsmlib.Cargo.lock
+!experiments/bfv_nitro/requirements.lock
+!experiments/bfv_nitro/__init__.py
+!experiments/bfv_nitro/transport.py
+!experiments/bfv_nitro/service.py
+**/__pycache__
+**/*.so
+**/*.pyc
+**/.env*
