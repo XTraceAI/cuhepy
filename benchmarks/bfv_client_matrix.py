@@ -30,7 +30,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from xtrace_sdk.x_vec.crypto.bfv_client import BFVClient  # noqa: E402
-from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV  # noqa: E402
+from xtrace_sdk.x_vec.crypto.encryption.bfv import BFV, MAX_PUBLIC_KEY_CHARS  # noqa: E402
 from xtrace_sdk.x_vec.crypto.encryption.paillier import Paillier  # noqa: E402
 from xtrace_sdk.x_vec.crypto.paillier_client import PaillierClient  # noqa: E402
 from xtrace_sdk.x_vec.crypto.paillier_lookup_client import PaillierLookupClient  # noqa: E402
@@ -126,7 +126,9 @@ def benchmark(
         def load_server() -> BFVClient:
             result = BFVClient(skip_key_gen=True, server_backend=args.server_backend)
             result.load_config(config)
-            result.load_stringified_keys(public_json)
+            result.load_stringified_keys(
+                public_json, max_public_key_chars=args.max_public_key_chars
+            )
             assert result.keys is None
             return result
 
@@ -236,6 +238,12 @@ def main() -> None:
     parser.add_argument("--coeff-modulus-bits", type=int, default=180)
     parser.add_argument("--decomposition-bits", type=int, default=30)
     parser.add_argument("--response-modulus-bits", type=int, default=50)
+    parser.add_argument(
+        "--max-public-key-chars",
+        type=int,
+        default=MAX_PUBLIC_KEY_CHARS,
+        help="Local JSON import bound; use 268435456 for the N=16384 review profile",
+    )
     parser.add_argument("--no-compact", action="store_true")
     parser.add_argument(
         "--server-backend",
@@ -264,8 +272,13 @@ def main() -> None:
     if args.server_backend == "residue" and not args.rns_modulus:
         parser.error("residue requires --rns-modulus")
     variants = [v.strip() for v in args.variants.split(",")]
-    if args.num_vectors < 1 or args.embed_len < 1 or args.repeats < 1:
-        parser.error("num-vectors, embed-len and repeats must be positive")
+    if (
+        args.num_vectors < 1
+        or args.embed_len < 1
+        or args.repeats < 1
+        or args.max_public_key_chars < 1
+    ):
+        parser.error("num-vectors, embed-len, repeats and max-public-key-chars must be positive")
     if any(v not in VARIANTS for v in variants):
         parser.error("unknown variant")
     vectors, query, expected = make_data(args.num_vectors, args.embed_len, args.seed)
@@ -301,6 +314,10 @@ def main() -> None:
                 Path(__file__).resolve(),
                 *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto").glob("*client.py"),
                 *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/encryption").glob("*.py"),
+                *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.h"),
+                *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.cpp"),
+                *(REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext").glob("*.so"),
+                REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile",
                 REPO_ROOT / "src/xtrace_sdk/x_vec/utils/xtrace_types.py",
             ]
         },

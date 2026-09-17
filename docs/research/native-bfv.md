@@ -423,3 +423,98 @@ tests and the optional SEAL oracle. Ruff and mypy passed for the SDK and BFV
 benchmark files. The live service and CUDA tests remain excluded from this CPU
 change. An offline Sphinx build retains the preexisting README cross-reference
 warning in the earlier SEAL research report.
+
+### 8,192-vector comparison (2026-09-17)
+
+There is no 1,024-vector limit in the homemade BFV client. That was the earlier
+development workload; packed evaluation processes additional index tiles and
+returns `ceil(vector_count/N)` response ciphertexts. With 8,192 vectors, both
+parameter profiles below still return **one** response ciphertext, while
+Paillier returns 8,192. The larger batch amortizes BFV's fixed query cost.
+
+These new runs use the same 8,192 synthetic 512-bit vectors and query, seed 1337,
+the current C++ `residue` backend, and standard CPU Paillier with 1,024-bit primes.
+One Paillier baseline is shared between the two BFV comparisons. The runs were
+sequential, with no concurrent tests or other benchmarks. Each variant checked
+**every distance** against plaintext Hamming distance and selected the same top
+three positions: `[0, 8191, 2654]` with distances `[0, 0, 217]`.
+
+Both BFV profiles use t=65,537, a 180-bit product modulus, 30-bit gadget digits,
+eta=21 and 50-bit response compaction. N=8,192 retains the earlier engineering
+ring size; N=16,384 matches the arithmetic parameters in `bfv_review_policy()`.
+Neither comparison establishes equivalent cryptographic security to Paillier
+or SEAL.
+
+| Exact serialized bytes | Paillier CPU | Homemade BFV, N=8,192 | Homemade BFV, N=16,384 |
+| --- | ---: | ---: | ---: |
+| Query upload per search | 544 | 368,754 | 737,394 |
+| Response download per search | 4,226,979 | 102,496 | 204,900 |
+| **Query + response per search** | 4,227,523 | 471,250 | 942,294 |
+| Encrypted index | 4,226,979 | 188,787,740 | 188,765,728 |
+| Public/evaluation keys, JSON | 2,502 | 85,603,562 | 171,204,881 |
+
+| BFV profile versus the same Paillier baseline | Response reduction factor | Query + response reduction factor | Fewer query + response bytes |
+| --- | ---: | ---: | ---: |
+| N=8,192 | 41.24× | 8.97× | 88.9% |
+| N=16,384 review parameters | 20.63× | 4.49× | 77.7% |
+
+A reduction factor is `Paillier bytes / BFV bytes`. Index and public/evaluation
+keys are initial upload/storage or key-rotation costs, excluded from recurring
+query-plus-response totals. They are substantially larger for BFV. The index
+contains 512 ciphertexts at N=8,192 and 256
+at N=16,384. Increasing the ring halves the index ciphertext count while
+doubling each ciphertext's size; it also increases the query and response size.
+
+All three variants use the same MessagePack framing with implicit candidate IDs
+and little-endian integer bytes. Counts exclude HTTP/TLS, explicit IDs, content
+retrieval and private keys. This measures raw BFV, including when using the
+review parameters: it does not include the authenticated/Nitro protocol,
+receipts, attestation or network transport. The local Nitro protocol is
+measured separately in the [Nitro report](native-bfv-nitro.md). These sizes do
+not inherit the original SEAL experiment's different framing or security
+configuration.
+
+Single-run CPU timings on an AMD Ryzen 7 5800X are included for context:
+
+| Seconds, excluding serialization | Paillier CPU | Homemade BFV, N=8,192 | Homemade BFV, N=16,384 |
+| --- | ---: | ---: | ---: |
+| Encrypt index | 86.237863 | 54.573942 | 56.275379 |
+| Public server computation, first search | 0.043897 | 19.836359 | 20.878492 |
+| Client decrypt/decode | 57.763218 | 0.041912 | 0.086103 |
+
+These are one fresh setup and one first search per variant, not warm medians or
+a statistically established latency comparison. BFV's first search includes
+lazy public-key cache preparation. Client decode uses the raw client's GMP
+path, without the guarded/attested client's native private decoder or receipt
+checks. No GPU, EC2 or live service was used. Minimum compacted diagnostic noise
+budgets were 26 bits (N=8,192) and
+25 bits (N=16,384); these diagnostics are
+correctness observations, not security-level estimates.
+
+Raw records, including exact commands, configuration, phase timings, correctness
+and source/native-binary hashes:
+
+- `benchmarks/results/native_bfv_8192.json`: N=8,192 BFV and the shared Paillier baseline.
+- `benchmarks/results/native_bfv_review_8192.json`: N=16,384 BFV on the same input.
+
+Reproduce sequentially from the repository root:
+
+```bash
+.venv/bin/python benchmarks/bfv_client_matrix.py \
+  --num-vectors 8192 --embed-len 512 --poly-modulus-degree 8192 \
+  --server-backend residue --rns-modulus \
+  --variants bfv-packed,paillier-cpu --repeats 1 \
+  --json-out benchmarks/results/native_bfv_8192.json
+
+.venv/bin/python benchmarks/bfv_client_matrix.py \
+  --num-vectors 8192 --embed-len 512 --poly-modulus-degree 16384 \
+  --server-backend residue --rns-modulus \
+  --max-public-key-chars 268435456 --variants bfv-packed --repeats 1 \
+  --json-out benchmarks/results/native_bfv_review_8192.json
+```
+
+The benchmark's explicit public-key import allowance accommodates the larger
+locally generated review-profile key bundle. SDK and protocol defaults are
+unchanged. The records identify base commit `be71b0d`
+and the measured working-tree source hashes; the benchmark-only changes add
+that import option and native source/binary provenance.

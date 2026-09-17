@@ -1,0 +1,145 @@
+{
+  "environment": {
+    "utc": "2026-09-17T19:15:01.868692+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "gmpy2": "2.3.0",
+    "gmp": "GMP 6.3.0",
+    "revision": "be71b0dd4fa3693f6a6628e61f31e4b54ece9760",
+    "working_tree_dirty": true
+  },
+  "command": [
+    "benchmarks/bfv_client_matrix.py",
+    "--num-vectors",
+    "8192",
+    "--embed-len",
+    "512",
+    "--poly-modulus-degree",
+    "16384",
+    "--server-backend",
+    "residue",
+    "--rns-modulus",
+    "--max-public-key-chars",
+    "268435456",
+    "--variants",
+    "bfv-packed",
+    "--repeats",
+    "1",
+    "--json-out",
+    "benchmarks/results/native_bfv_review_8192.json"
+  ],
+  "measurement_notes": "CPU synthetic experiment; no equivalent-security claim. Keys are public JSON including BFV evaluation keys. Index/query/response use common MessagePack framing with LE integer bytes and implicit IDs. No network/HTTP/TLS, secret-key, plaintext-content or AES-content bytes. Timings are separate from serialization; no concurrent test/benchmark processes intended.",
+  "seed": 1337,
+  "runs": [
+    {
+      "variant": "bfv-packed",
+      "server_backend": "residue",
+      "vectors": 8192,
+      "embed_len": 512,
+      "config": {
+        "embed_len": 512,
+        "poly_modulus_degree": 16384,
+        "plain_modulus": 65537,
+        "coeff_modulus_bits": 180,
+        "decomposition_bits": 30,
+        "error_eta": 21,
+        "rns_modulus": true,
+        "response_modulus_bits": 50,
+        "device": "cpu"
+      },
+      "compact": true,
+      "timings": {
+        "key_generation_s": 9.108531635720283,
+        "public_key_export_s": 1.587051787879318,
+        "public_key_import_s": 2.978017693851143,
+        "index_encrypt_s": 56.27537882234901,
+        "query_encrypt_s": 0.2093489640392363,
+        "index_serialize_s": 0.4128873459994793,
+        "query_serialize_s": 0.0010858788155019283,
+        "index_deserialize_s": 0.2603874821215868,
+        "query_deserialize_s": 0.00039217714220285416,
+        "server_compute_s": 20.878492071758956,
+        "response_serialize_s": 0.00013659195974469185,
+        "response_deserialize_s": 0.00012690294533967972,
+        "client_decode_s": 0.0861029070802033
+      },
+      "sizes": {
+        "encrypted_index_bytes": 188765728,
+        "public_keys_bytes": 171204881,
+        "query_bytes": 737394,
+        "response_bytes": 204900,
+        "query_plus_response_bytes": 942294
+      },
+      "index_ciphertexts": 256,
+      "response_ciphertexts": 1,
+      "minimum_response_noise_budget_bits": 25,
+      "top3": [
+        {
+          "index": 0,
+          "distance": 0
+        },
+        {
+          "index": 8191,
+          "distance": 0
+        },
+        {
+          "index": 2654,
+          "distance": 217
+        }
+      ],
+      "correct": true,
+      "repeat": 0
+    }
+  ],
+  "source_sha256": {
+    "benchmarks/bfv_client_matrix.py": "2f93923f21f3b9165ddc510ce029d61e8df873c7b519c1d61a99a193697a2f38",
+    "src/xtrace_sdk/x_vec/crypto/bfv_attested_client.py": "d3bed7a596fd19f834ea308fc332f0a28109a1136c7dd63026819b4cc106c7de",
+    "src/xtrace_sdk/x_vec/crypto/paillier_client.py": "40582d7acb86ee7dd2060e2d795c76829f4879db3b1eca9518be7a9599de4788",
+    "src/xtrace_sdk/x_vec/crypto/bfv_guarded_client.py": "2e684a8a7f2364a1134aa0271ee34fc6e2562367f26ae453f61a03fa80e31db3",
+    "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "becd81b9c41c027fe26de3e675adfba32fae7c0e6b0e1bede73f96a14effc775",
+    "src/xtrace_sdk/x_vec/crypto/bfv_verified_client.py": "6a384b16c347d84f90e40ccc9903b1ae916ae277e6171bd668181366d56e88a0",
+    "src/xtrace_sdk/x_vec/crypto/goldwasser_micali_client.py": "0982ad7532d07c8e26a701359ce8f4f7d4c1a3beb714050e741f3b534d59935f",
+    "src/xtrace_sdk/x_vec/crypto/paillier_lookup_client.py": "4faa0dd71d03b3e9bc9e49c4e60e8be7b173ff514b52cf1d94a3b1a2426bf699",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py": "51eee672c2d0514146f97c9ddf33c7f4cfb99114a2b7d86654ec7de7422ebca7",
+    "src/xtrace_sdk/x_vec/crypto/encryption/paillier_lookup.py": "eed0be7e0e2c1f6e8e8c0138262ec071fef73648e334a948ef1f82df6e9b9712",
+    "src/xtrace_sdk/x_vec/crypto/encryption/__init__.py": "261a50ed1758cee38c880cc625187f8acb051c6d5c96ba7a71ee956bdbea2cc5",
+    "src/xtrace_sdk/x_vec/crypto/encryption/goldwasser_micali.py": "4b32296c6210663c098718fa49bd810c427b1f8102d026d12a7d734f58e8e3d1",
+    "src/xtrace_sdk/x_vec/crypto/encryption/homomorphic_base.py": "915da9e500d0a142651243bb13de7631dc96103fea2ec9e5b9288bee498010e7",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_native.py": "13b0028e889351ade4d9dff2f5605e969c015cebe890aa80fd5489593d4ef0cf",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_rns.py": "74663e4b22d2fc0128ad2572cb10f9d3727b404fc0240661b08d308ba57cad40",
+    "src/xtrace_sdk/x_vec/crypto/encryption/paillier.py": "525a1944caef38d5d216ae84fcac982627d2a2fddea50b747e47ef05e2e91c9f",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_private.py": "b1291e6d017be84638b054fb84e651734a44b2d54d601eb50dae2e9d2016bdfa",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py": "895fc201b641a1ea5242b0c54a001d9402afcfb4d21668ca33a8b9992b4132dc",
+    "src/xtrace_sdk/x_vec/crypto/encryption/aes.py": "2c833351db3b249c381e315307d858791ee4e5b633d3465127cad763b4d095d5",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_residue.h": "e77f270c620d432370e8204c24e1dc6f3c0d382d6bd777ad63852dd8a89f575a",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_server.h": "70f96bc7f1fc25827979cea7b350edaf9cffccf2fa5af0a9275b9d514fb400cf",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_ntt.h": "5f46b7490d556a2f314dbb5cda6f022cacac6f952f3eda48640e068f352e3796",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/private_bindings.cpp": "7b48d92e526147d97d9401e868c8d3e9dbf0b8ba567a67e05047e01f2a371fc0",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bindings.cpp": "da003cf5e6553f85fa402c943a762504d661fb16657d25b16116f3f667509cae",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "539e19f0591c9dd375a7cf519569c4777067fb6593f5157d87b7edb37a42eb04",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_private.cpython-312-x86_64-linux-gnu.so": "c55be18d74e56a1d6bb82c9fa31f55cb9ecf568aecf191a26278a660502b6c72",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile": "ee3f7371f92ba9fa3ebb8037906fc23c5f7832f96908d5879f1a4326847ffb53",
+    "src/xtrace_sdk/x_vec/utils/xtrace_types.py": "3d4daa19d5d9d536573b2e2c65aa13d9559a4bc5e6ae01e2b5ffdeeac8bae962"
+  },
+  "median_timings": {
+    "bfv-packed": {
+      "key_generation_s": 9.108531635720283,
+      "public_key_export_s": 1.587051787879318,
+      "public_key_import_s": 2.978017693851143,
+      "index_encrypt_s": 56.27537882234901,
+      "query_encrypt_s": 0.2093489640392363,
+      "index_serialize_s": 0.4128873459994793,
+      "query_serialize_s": 0.0010858788155019283,
+      "index_deserialize_s": 0.2603874821215868,
+      "query_deserialize_s": 0.00039217714220285416,
+      "server_compute_s": 20.878492071758956,
+      "response_serialize_s": 0.00013659195974469185,
+      "response_deserialize_s": 0.00012690294533967972,
+      "client_decode_s": 0.0861029070802033
+    }
+  }
+}
