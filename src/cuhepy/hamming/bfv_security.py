@@ -25,7 +25,7 @@ from cuhepy.bfv.scheme import (
 from cuhepy.types import BFVParameters, BFVPublicKey, EncryptedVector
 
 if TYPE_CHECKING:
-    from cuhepy.bfv.client import BFVClient
+    from cuhepy.hamming.bfv import BFVClient
 
 
 class BFVProtocolError(ValueError):
@@ -56,7 +56,7 @@ class BFVExecutionPolicy:
     max_concurrent_searches: int = 1
 
     def __post_init__(self) -> None:
-        from cuhepy.bfv.client import BFVClient
+        from cuhepy.hamming.bfv import BFVClient
 
         BFVClient(**self.config(), skip_key_gen=True)
         for name, value in vars(self).items():
@@ -219,7 +219,7 @@ def protect_bfv_secret_key(client: BFVClient, wrapping_key: bytes) -> bytes:
 
 def restore_bfv_client(public_json: str, protected: bytes, wrapping_key: bytes) -> BFVClient:
     """Restore against exactly the saved public bundle, including evaluation keys."""
-    from cuhepy.bfv.client import BFVClient
+    from cuhepy.hamming.bfv import BFVClient
 
     if (
         type(public_json) is not str

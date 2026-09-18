@@ -29,11 +29,11 @@ import msgpack
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from cuhepy.bfv.client import BFVClient  # noqa: E402
+from cuhepy.hamming.bfv import BFVClient  # noqa: E402
 from cuhepy.bfv.scheme import BFV, MAX_PUBLIC_KEY_CHARS  # noqa: E402
 from cuhepy.paillier.scheme import Paillier  # noqa: E402
-from cuhepy.paillier.client import PaillierClient  # noqa: E402
-from cuhepy.paillier.lookup_client import PaillierLookupClient  # noqa: E402
+from cuhepy.hamming.paillier import PaillierClient  # noqa: E402
+from cuhepy.hamming.paillier_lookup import PaillierLookupClient  # noqa: E402
 
 T = TypeVar("T")
 VARIANTS = ("bfv-packed", "bfv-individual", "paillier-cpu", "paillier-lookup-cpu")
@@ -313,12 +313,12 @@ def main() -> None:
             for path in [
                 Path(__file__).resolve(),
                 *(REPO_ROOT / "src/cuhepy").glob("*client.py"),
-                *(REPO_ROOT / "src/cuhepy/encryption").glob("*.py"),
+                *(REPO_ROOT / "src/cuhepy/bfv").glob("*.py"),
                 *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.h"),
                 *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.cpp"),
                 *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.so"),
                 REPO_ROOT / "src/cuhepy/bfv/_cpu_ext/Makefile",
-                REPO_ROOT / "src/cuhepy/x_vec/utils/xtrace_types.py",
+                REPO_ROOT / "src/cuhepy/types.py",
             ]
         },
     }

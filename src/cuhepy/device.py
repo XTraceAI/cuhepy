@@ -1,6 +1,6 @@
 """Shared device-resolution helper for clients with optional GPU backends.
 
-Used by ``paillier_client`` and ``paillier_lookup_client``, and intended to be
+Used by the Hamming clients in :mod:`cuhepy.hamming`, and intended to be
 reused by future homomorphic clients that ship a CUDA extension.
 """
 

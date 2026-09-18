@@ -25,7 +25,7 @@ from typing import Any, cast
 import gmpy2
 
 from bfv_client_matrix import REPO_ROOT, make_data, packet, time_call, unpack_packet
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 from cuhepy.bfv.scheme import BFV, _rns_coefficient_primes
 from cuhepy.bfv.evaluator import BFVEvaluator, BFVServerBackend
 
@@ -251,15 +251,15 @@ def main() -> None:
     source_paths = [
         Path(__file__).resolve(),
         REPO_ROOT / "benchmarks/bfv_client_matrix.py",
-        REPO_ROOT / "src/cuhepy/bfv_client.py",
-        REPO_ROOT / "src/cuhepy/encryption/bfv.py",
-        REPO_ROOT / "src/cuhepy/encryption/bfv_evaluator.py",
-        REPO_ROOT / "src/cuhepy/encryption/bfv_rns.py",
-        REPO_ROOT / "src/cuhepy/encryption/bfv_native.py",
+        REPO_ROOT / "src/cuhepy/hamming/bfv.py",
+        REPO_ROOT / "src/cuhepy/bfv/scheme.py",
+        REPO_ROOT / "src/cuhepy/bfv/evaluator.py",
+        REPO_ROOT / "src/cuhepy/bfv/rns.py",
+        REPO_ROOT / "src/cuhepy/bfv/native.py",
         *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.cpp"),
         *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.h"),
         REPO_ROOT / "src/cuhepy/bfv/_cpu_ext/Makefile",
-        REPO_ROOT / "src/cuhepy/x_vec/utils/xtrace_types.py",
+        REPO_ROOT / "src/cuhepy/types.py",
     ]
     if any(b in ("rns", "native", "residue") for b, _ in variants.values()):
         source_paths.extend((REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.so"))

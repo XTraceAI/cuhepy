@@ -21,7 +21,7 @@ from cuhepy.bfv.scheme import (
 )
 
 if TYPE_CHECKING:
-    from cuhepy.bfv.client import BFVClient
+    from cuhepy.hamming.bfv import BFVClient
 
 BFVPrivateBackend = Literal["python", "native"]
 

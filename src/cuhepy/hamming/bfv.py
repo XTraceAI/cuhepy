@@ -19,7 +19,7 @@ from cuhepy.bfv.scheme import (
 )
 from cuhepy.bfv.evaluator import BFVEvaluator, BFVServerBackend
 from cuhepy.bfv.native import BFVNativeServer
-from cuhepy.hamming import HammingClientBase
+from cuhepy.hamming.base import HammingClientBase
 from cuhepy.types import (
     BFVCiphertext,
     BFVKeyPair,

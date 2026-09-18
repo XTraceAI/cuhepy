@@ -60,12 +60,12 @@ gate and the old variable-time private implementation.
 ```python
 import secrets
 
-from cuhepy.bfv.assurance import bfv_review_policy
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.guarded_client import (
+from cuhepy.hamming.bfv_assurance import bfv_review_policy
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_guarded import (
     BFVGuardedClient, BFVPublicVerifier, bfv_verifier_public_key,
 )
-from cuhepy.bfv.verified_client import BFVVerifiedServer
+from cuhepy.hamming.bfv_verified import BFVVerifiedServer
 
 policy = bfv_review_policy()  # N=16384; fresh keys and index required.
 authentication_key = secrets.token_bytes(32)  # Shared with evaluator.

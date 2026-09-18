@@ -20,9 +20,9 @@ pytestmark = pytest.mark.skipif(
 def test_real_nitro_end_to_end():
     from experiments.bfv_nitro.client import load_measurements
     from experiments.bfv_nitro.transport import NitroRemote
-    from cuhepy.bfv.assurance import bfv_review_policy
-    from cuhepy.bfv.attested_client import BFVAttestedClient
-    from cuhepy.bfv.client import BFVClient
+    from cuhepy.hamming.bfv_assurance import bfv_review_policy
+    from cuhepy.hamming.bfv_attested import BFVAttestedClient
+    from cuhepy.hamming.bfv import BFVClient
 
     policy = bfv_review_policy()
     pins = load_measurements(Path(os.environ["XTRACE_BFV_NITRO_PINS"]))

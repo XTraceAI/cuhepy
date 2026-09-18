@@ -49,7 +49,7 @@ unchanged. No Paillier implementation or SEAL experiment was replaced.
 ```python
 import json
 
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 
 client = BFVClient(embed_len=512, device="cpu")
 query = [0, 1] * 256

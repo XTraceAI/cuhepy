@@ -103,7 +103,7 @@ def run_paillier_worker(args: argparse.Namespace) -> dict[str, Any]:
     # so the installed editable SDK cannot silently substitute the current branch.
     sys.path.insert(0, str(Path(args.paillier_source) / "src"))
     import gmpy2
-    import cuhepy.paillier.client as module
+    import cuhepy.hamming.paillier as module
     from cuhepy.paillier.scheme import Paillier
 
     if not Path(module.__file__).resolve().is_relative_to(Path(args.paillier_source).resolve()):

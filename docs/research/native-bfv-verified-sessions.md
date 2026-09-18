@@ -38,9 +38,9 @@ separate trusted client storage or a suitable key-management service.
 ```python
 import secrets
 
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.security import BFVExecutionPolicy
-from cuhepy.bfv.verified_client import (
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_security import BFVExecutionPolicy
+from cuhepy.hamming.bfv_verified import (
     BFVVerifiedClient,
     BFVVerifiedServer,
 )

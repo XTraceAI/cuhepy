@@ -10,7 +10,7 @@ from cuhepy.paillier.lookup import (
     MIN_ALPHA_LEN,
     PaillierLookup,
 )
-from cuhepy.hamming import HammingClientBase
+from cuhepy.hamming.base import HammingClientBase
 from cuhepy.types import EncryptedVector, PaillierEncryptedNumber, PaillierLookupKeyPair
 
 

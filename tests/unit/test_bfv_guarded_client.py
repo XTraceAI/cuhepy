@@ -12,8 +12,8 @@ import pytest
 from Crypto.Signature import eddsa
 from gmpy2 import mpz
 
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.security import (
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,
     BFVProtocolError,
     _authenticate,
@@ -23,14 +23,14 @@ from cuhepy.bfv.security import (
     _pack,
     _unpack,
 )
-from cuhepy.bfv.guarded_client import (
+from cuhepy.hamming.bfv_guarded import (
     BFVGuardedClient,
     BFVPublicVerifier,
     bfv_verifier_public_key,
     _CONTEXT,
     _MESSAGE_BYTES,
 )
-from cuhepy.bfv.verified_client import BFVVerifiedClient, BFVVerifiedServer
+from cuhepy.hamming.bfv_verified import BFVVerifiedClient, BFVVerifiedServer
 from cuhepy.bfv.scheme import BFV, _coefficient_modulus
 from cuhepy.bfv.private import BFVPrivateDecoder
 from cuhepy.types import BFVCiphertext
@@ -161,7 +161,7 @@ def test_bad_receipts_fail_before_parsing_or_private_work(private, mutation, mon
         bad = receipt[:position] + bytes([receipt[position] ^ 1]) + receipt[position + 1 :]
     with monkeypatch.context() as scope:
         deny_private(scope)
-        import cuhepy.bfv.security as framing
+        import cuhepy.hamming.bfv_security as framing
 
         scope.setattr(
             framing.msgpack, "unpackb", lambda *a, **kw: pytest.fail("Unapproved BFV body parsed")

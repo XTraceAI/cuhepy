@@ -8,9 +8,9 @@ from pathlib import Path
 
 import pytest
 
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 from cuhepy.bfv.scheme import BFV
-from cuhepy.hamming import HammingClientBase
+from cuhepy.hamming.base import HammingClientBase
 
 
 def small_client(dimension: int = 3) -> BFVClient:
@@ -133,7 +133,7 @@ def test_public_only_evaluator_in_separate_process(tmp_path: Path, backend: str)
     script = """
 import json, sys
 from pathlib import Path
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 p = json.loads(Path(sys.argv[1]).read_text())
 s = BFVClient(skip_key_gen=True, server_backend=sys.argv[2])
 s.load_config(p['config'])

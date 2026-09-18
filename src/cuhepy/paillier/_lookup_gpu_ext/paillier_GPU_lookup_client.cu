@@ -1,7 +1,7 @@
 // production_GPU_paillier_client/paillier_GPU_client.cu
 //
 // This file implements a CUDA-accelerated Paillier client whose
-// public API mirrors cuhepy.paillier.client.PaillierClient:
+// public API mirrors cuhepy.hamming.paillier_lookup.PaillierLookupClient:
 //
 //   class PaillierGPUClient:
 //       def __init__(self, embed_len: int = 512, key_len: int = 1024, skip_key_gen: bool = False)

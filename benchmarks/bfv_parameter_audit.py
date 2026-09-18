@@ -32,9 +32,9 @@ def revision(path: Path) -> str:
 
 def manifest(profile: str) -> dict[str, Any]:
     sys.path.insert(0, str(REPO_ROOT / "src"))
-    from cuhepy.bfv.client import BFVClient
-    from cuhepy.bfv.assurance import bfv_review_policy, hamming_noise_bound
-    from cuhepy.bfv.security import BFVExecutionPolicy
+    from cuhepy.hamming.bfv import BFVClient
+    from cuhepy.hamming.bfv_assurance import bfv_review_policy, hamming_noise_bound
+    from cuhepy.hamming.bfv_security import BFVExecutionPolicy
     from cuhepy.bfv.scheme import _parameter_modulus, _rns_coefficient_primes
 
     policy = BFVExecutionPolicy() if profile == "original" else bfv_review_policy()
@@ -46,11 +46,11 @@ def manifest(profile: str) -> dict[str, Any]:
         params.coeff_modulus_bits + params.decomposition_bits - 1
     ) // params.decomposition_bits
     sources = [
-        "src/cuhepy/encryption/bfv.py",
-        "src/cuhepy/bfv_client.py",
-        "src/cuhepy/bfv_security.py",
-        "src/cuhepy/bfv_assurance.py",
-        "src/cuhepy/x_vec/utils/xtrace_types.py",
+        "src/cuhepy/bfv/scheme.py",
+        "src/cuhepy/hamming/bfv.py",
+        "src/cuhepy/hamming/bfv_security.py",
+        "src/cuhepy/hamming/bfv_assurance.py",
+        "src/cuhepy/types.py",
     ]
     return {
         "schema": 1,

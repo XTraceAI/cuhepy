@@ -93,7 +93,7 @@ the native binary when built locally and receive a Python/OS/architecture tag.
 
 ```python
 import json
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 
 client = BFVClient(embed_len=512)
 server = BFVClient(skip_key_gen=True, server_backend="rns")

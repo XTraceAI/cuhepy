@@ -10,7 +10,7 @@
 
 Usage::
 
-    from cuhepy.paillier.lookup_client import PaillierLookupClient
+    from cuhepy.hamming.paillier_lookup import PaillierLookupClient
     from cuhepy import keys
 
     client = PaillierLookupClient(embed_len=512, key_len=1024)
@@ -38,15 +38,15 @@ _CTOR_KEYS: dict[str, tuple[str, ...] | None] = {
 
 def _client_class(type_name: str) -> type[Any]:
     if type_name == "PaillierClient":
-        from cuhepy.paillier.client import PaillierClient
+        from cuhepy.hamming.paillier import PaillierClient
 
         return PaillierClient
     if type_name == "PaillierLookupClient":
-        from cuhepy.paillier.lookup_client import PaillierLookupClient
+        from cuhepy.hamming.paillier_lookup import PaillierLookupClient
 
         return PaillierLookupClient
     if type_name == "BFVClient":
-        from cuhepy.bfv.client import BFVClient
+        from cuhepy.hamming.bfv import BFVClient
 
         return BFVClient
     raise ValueError(

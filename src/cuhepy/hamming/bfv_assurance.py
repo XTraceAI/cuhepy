@@ -11,7 +11,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from fractions import Fraction
 
-from cuhepy.bfv.security import BFVExecutionPolicy
+from cuhepy.hamming.bfv_security import BFVExecutionPolicy
 from cuhepy.bfv.scheme import _coefficient_modulus, _parameter_modulus
 from cuhepy.types import BFVParameters
 

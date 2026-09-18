@@ -4,9 +4,9 @@ from dataclasses import replace
 
 import pytest
 
-from cuhepy.bfv.assurance import bfv_review_policy, hamming_noise_bound
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.security import BFVExecutionPolicy
+from cuhepy.hamming.bfv_assurance import bfv_review_policy, hamming_noise_bound
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_security import BFVExecutionPolicy
 from cuhepy.bfv.scheme import BFV
 
 

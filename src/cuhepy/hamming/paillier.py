@@ -5,7 +5,7 @@ import gmpy2
 
 from cuhepy.device import DeviceMode, resolve_device
 from cuhepy.paillier.scheme import Paillier
-from cuhepy.hamming import HammingClientBase
+from cuhepy.hamming.base import HammingClientBase
 from cuhepy.types import EncryptedVector, PaillierEncryptedNumber, PaillierKeyPair
 
 

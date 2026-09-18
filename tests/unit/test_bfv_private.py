@@ -11,7 +11,7 @@ from types import SimpleNamespace
 import pytest
 from gmpy2 import mpz
 
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 from cuhepy.bfv.scheme import (
     BFV,
     _coefficient_modulus,

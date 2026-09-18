@@ -16,18 +16,18 @@ pytest.importorskip("OpenSSL")
 from Crypto.Signature import eddsa
 from gmpy2 import mpz
 
-from tests.x_vec.nitro_fixtures import PCRS, SyntheticNitro
-from tests.x_vec.test_bfv_guarded_client import deny_private, rebind_response
-from cuhepy.bfv import attested_client as attested
+from tests.unit.nitro_fixtures import PCRS, SyntheticNitro
+from tests.unit.test_bfv_guarded_client import deny_private, rebind_response
+from cuhepy.hamming import bfv_attested as attested
 from cuhepy.bfv import nitro
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.security import (
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,
     BFVProtocolError,
     _unpack,
     _pack,
 )
-from cuhepy.bfv.verified_client import BFVVerifiedClient, BFVVerifiedServer
+from cuhepy.hamming.bfv_verified import BFVVerifiedClient, BFVVerifiedServer
 from cuhepy.bfv.scheme import BFV, _coefficient_modulus
 from cuhepy.types import BFVCiphertext
 
@@ -124,7 +124,7 @@ def test_receipt_failures_never_parse_or_decrypt(private, trusted, monkeypatch, 
         bad = receipt[:p] + bytes([receipt[p] ^ 1]) + receipt[p + 1 :]
     with monkeypatch.context() as scope:
         deny_private(scope)
-        import cuhepy.bfv.security as framing
+        import cuhepy.hamming.bfv_security as framing
 
         scope.setattr(
             framing.msgpack, "unpackb", lambda *a, **kw: pytest.fail("Unapproved BFV parsing")

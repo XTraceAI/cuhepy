@@ -7,7 +7,7 @@ from cuhepy.paillier.lookup import (
     DEFAULT_ALPHA_LEN,
     MIN_ALPHA_LEN,
 )
-from cuhepy.paillier.lookup_client import PaillierLookupClient
+from cuhepy.hamming.paillier_lookup import PaillierLookupClient
 from cuhepy.types import PaillierLookupKeyPair
 
 random.seed(42)

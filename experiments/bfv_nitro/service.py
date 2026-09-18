@@ -12,14 +12,14 @@ import resource
 import socket
 import time
 
-from cuhepy.bfv.assurance import bfv_review_policy
-from cuhepy.bfv.attested_client import (
+from cuhepy.hamming.bfv_assurance import bfv_review_policy
+from cuhepy.hamming.bfv_attested import (
     BFVAttestedServer,
     NITRO_HELLO_BYTES,
     NITRO_QUERY_OVERHEAD,
 )
 from cuhepy.bfv.nitro import NitroNSM
-from cuhepy.bfv.security import BFVProtocolError, _pack
+from cuhepy.hamming.bfv_security import BFVProtocolError, _pack
 
 from .transport import REGISTER, ATTEST, SEARCH, ERROR, receive_header, receive_exact, send_frame
 

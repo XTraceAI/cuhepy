@@ -14,7 +14,7 @@ import gmpy2
 import pytest
 from gmpy2 import mpz
 
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 from cuhepy.bfv import scheme as bfv
 from cuhepy.bfv.scheme import BFV
 from cuhepy.bfv.evaluator import BFVEvaluator

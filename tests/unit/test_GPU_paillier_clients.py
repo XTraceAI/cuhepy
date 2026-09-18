@@ -4,8 +4,8 @@ import pickle
 import pytest
 
 from cuhepy import keys
-from cuhepy.paillier.client import PaillierClient
-from cuhepy.paillier.lookup_client import PaillierLookupClient
+from cuhepy.hamming.paillier import PaillierClient
+from cuhepy.hamming.paillier_lookup import PaillierLookupClient
 
 _EMBED_LEN = 8
 _KEY_LEN = 1024

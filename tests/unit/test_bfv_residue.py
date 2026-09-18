@@ -7,7 +7,7 @@ from dataclasses import asdict, replace
 import gmpy2
 import pytest
 
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 from cuhepy.bfv.scheme import BFV, _rns_coefficient_primes
 from cuhepy.bfv.evaluator import BFVEvaluator
 from cuhepy.types import BFVParameters

@@ -12,14 +12,14 @@ import socket
 import struct
 import time
 
-from cuhepy.bfv.assurance import bfv_review_policy
-from cuhepy.bfv.attested_client import (
+from cuhepy.hamming.bfv_assurance import bfv_review_policy
+from cuhepy.hamming.bfv_attested import (
     NITRO_HELLO_BYTES,
     NITRO_QUERY_OVERHEAD,
     NITRO_RECEIPT_BYTES,
 )
 from cuhepy.bfv.nitro import MAX_NITRO_DOCUMENT_BYTES
-from cuhepy.bfv.security import (
+from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,
     BFVProtocolError,
     _bytes,

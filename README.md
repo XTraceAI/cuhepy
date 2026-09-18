@@ -32,9 +32,14 @@ Python and optional compiled backends:
 | **`cuhepy.paillier`** | Paillier, plus an α-subgroup variant with precomputed tables | pure Python/GMP · **CUDA** | addition |
 | **`cuhepy.bfv`** | Leveled BFV over `Z_q[X]/(X^N+1)`, SIMD batching | pure Python/GMP · cached GMP · **C++ RNS/NTT** | addition, multiplication, rotation |
 
-The worked application both were built for is **encrypted k-nearest-neighbour
-search**: an evaluator holding only the public key ranks encrypted vectors by
-Hamming distance without ever learning the vectors, the query, or the distances.
+`cuhepy.paillier` and `cuhepy.bfv` are the primitives — key generation,
+encryption, decryption and the homomorphic operations, over arbitrary integers.
+
+`cuhepy.hamming` is an application built on top: **encrypted k-nearest-neighbour
+search**, where an evaluator holding only the public key ranks encrypted vectors
+by Hamming distance without learning the vectors, the query, or the distances.
+It is the workload the compiled backends were originally written for, and it is
+kept separate from the schemes so neither depends on the other.
 
 ## Install
 
@@ -52,7 +57,7 @@ Encrypt two vectors, let an untrusted evaluator compute their Hamming distance
 on the ciphertexts, and decrypt the result:
 
 ```python
-from cuhepy.paillier.lookup_client import PaillierLookupClient
+from cuhepy.hamming.paillier_lookup import PaillierLookupClient
 
 client = PaillierLookupClient(embed_len=512, key_len=1024)
 
@@ -166,9 +171,10 @@ uv run python attacks/pl01_alpha_recovery.py          # recover a key from a pub
 
 ```
 src/cuhepy/
-  paillier/   scheme.py · lookup.py · client.py · lookup_client.py · _gpu_ext/
-  bfv/        scheme.py · evaluator.py · rns.py · native.py · client.py · _cpu_ext/
-  hamming.py  base.py  device.py  keys.py  types.py  bench.py
+  paillier/   scheme.py · lookup.py · _gpu_ext/ · _lookup_gpu_ext/    ← primitives
+  bfv/        scheme.py · evaluator.py · rns.py · native.py · _cpu_ext/
+  hamming/    base.py · paillier.py · paillier_lookup.py · bfv.py     ← application
+  base.py  device.py  keys.py  types.py  bench.py
 attacks/      runnable demonstrations of the findings above
 benchmarks/   measurement harness and recorded results
 docs/research/ security reviews and optimisation reports

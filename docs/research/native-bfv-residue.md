@@ -48,7 +48,7 @@ make -C src/cuhepy/bfv/_cpu_ext PYTHON="$PWD/.venv/bin/python"
 
 ```python
 import json
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 
 client = BFVClient(embed_len=512, rns_modulus=True, server_backend="residue")
 server = BFVClient(skip_key_gen=True, server_backend="residue")

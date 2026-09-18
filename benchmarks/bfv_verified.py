@@ -25,15 +25,15 @@ from typing import Any
 import gmpy2
 
 from bfv_client_matrix import REPO_ROOT, make_data, packet, time_call
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.security import (
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,
     _authenticated_body,
     _decode_ciphertexts,
     _encode_ciphertexts,
     _unpack,
 )
-from cuhepy.bfv.verified_client import (
+from cuhepy.hamming.bfv_verified import (
     BFVVerifiedClient,
     BFVVerifiedServer,
     _HammingSummary,
@@ -164,12 +164,12 @@ def main() -> None:
         Path(__file__).resolve(),
         REPO_ROOT / "benchmarks/bfv_client_matrix.py",
         *(REPO_ROOT / "src/cuhepy").glob("bfv*.py"),
-        *(REPO_ROOT / "src/cuhepy/encryption").glob("bfv*.py"),
+        *(REPO_ROOT / "src/cuhepy/bfv").glob("*.py"),
         *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.cpp"),
         *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.h"),
         *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.so"),
         REPO_ROOT / "src/cuhepy/bfv/_cpu_ext/Makefile",
-        REPO_ROOT / "src/cuhepy/x_vec/utils/xtrace_types.py",
+        REPO_ROOT / "src/cuhepy/types.py",
     ]
     output: dict[str, Any] = {
         "environment": {

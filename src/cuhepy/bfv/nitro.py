@@ -25,7 +25,7 @@ from typing import Any
 
 from Crypto.Signature import eddsa
 
-from cuhepy.bfv.security import BFVProtocolError, _bytes, _pack
+from cuhepy.hamming.bfv_security import BFVProtocolError, _bytes, _pack
 
 
 MAX_NITRO_DOCUMENT_BYTES = 16 * 1024

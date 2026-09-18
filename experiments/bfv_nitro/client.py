@@ -11,9 +11,9 @@ import random
 import secrets
 from pathlib import Path
 
-from cuhepy.bfv.assurance import bfv_review_policy
-from cuhepy.bfv.attested_client import BFVAttestedClient
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv_assurance import bfv_review_policy
+from cuhepy.hamming.bfv_attested import BFVAttestedClient
+from cuhepy.hamming.bfv import BFVClient
 from cuhepy.bfv.nitro import NitroAttestationPolicy
 
 from .transport import NitroRemote

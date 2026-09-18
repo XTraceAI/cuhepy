@@ -16,8 +16,8 @@ import pytest
 import numpy as np
 from gmpy2 import mpz
 
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.security import (
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,
     BFVProtocolError,
     _authenticate,
@@ -29,7 +29,7 @@ from cuhepy.bfv.security import (
     protect_bfv_secret_key,
     restore_bfv_client,
 )
-from cuhepy.bfv.verified_client import (
+from cuhepy.hamming.bfv_verified import (
     BFVVerifiedClient,
     BFVVerifiedServer,
     _FIELD,
@@ -192,7 +192,7 @@ def test_same_key_different_index_session_rejected(private):
 def test_authentication_checked_before_parser_or_decryption(private, monkeypatch):
     client, server, setup, auth = session(private)
     response = server.search(client.begin_query([0, 1, 0]))
-    import cuhepy.bfv.security as security
+    import cuhepy.hamming.bfv_security as security
 
     with monkeypatch.context() as guard:
         guard.setattr(
@@ -271,7 +271,7 @@ def test_packet_limits_precede_authentication_and_parsing(private, monkeypatch):
     client, server, setup, auth = session(private)
     request = client.begin_query([0, 1, 0])
     response = server.search(request)
-    import cuhepy.bfv.security as security
+    import cuhepy.hamming.bfv_security as security
 
     monkeypatch.setattr(
         security.hmac, "new", lambda *a, **kw: pytest.fail("Oversized packet hashed")
@@ -317,7 +317,7 @@ def test_summary_randomness_failure_aborts_preparation(private, monkeypatch):
 
 
 def test_summary_rejection_sampling_is_bounded(monkeypatch):
-    import cuhepy.bfv.verified_client as verified
+    import cuhepy.hamming.bfv_verified as verified
 
     monkeypatch.setattr(verified.hmac, "digest", lambda *a: b"\xff" * 32)
     with pytest.raises(RuntimeError, match="weight generation failed"):

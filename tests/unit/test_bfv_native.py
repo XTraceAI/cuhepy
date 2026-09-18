@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import pytest
 
-from cuhepy.bfv.client import BFVClient
+from cuhepy.hamming.bfv import BFVClient
 from cuhepy.bfv.rns import BFVRNSArithmetic
 
 native = pytest.importorskip("cuhepy.bfv._cpu_ext._bfv_rns")

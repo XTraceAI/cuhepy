@@ -14,9 +14,9 @@ from collections.abc import Sequence
 
 from Crypto.Signature import eddsa
 
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.assurance import bfv_review_policy, hamming_noise_bound
-from cuhepy.bfv.security import (
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_assurance import bfv_review_policy, hamming_noise_bound
+from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,
     BFVProtocolError,
     _bytes,
@@ -24,7 +24,7 @@ from cuhepy.bfv.security import (
     protect_bfv_state,
     unprotect_bfv_state,
 )
-from cuhepy.bfv.verified_client import BFVVerifiedClient, BFVVerifiedServer
+from cuhepy.hamming.bfv_verified import BFVVerifiedClient, BFVVerifiedServer
 from cuhepy.bfv.evaluator import BFVServerBackend
 from cuhepy.bfv.private import BFVPrivateBackend
 

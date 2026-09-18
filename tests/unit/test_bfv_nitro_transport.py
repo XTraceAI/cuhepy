@@ -16,8 +16,8 @@ pytest.importorskip("OpenSSL")
 
 from experiments.bfv_nitro.service import EnclaveApplication
 from experiments.bfv_nitro import transport as wire
-from tests.x_vec.test_bfv_attested_client import make_session, private, issuer, trusted
-from cuhepy.bfv.security import BFVProtocolError, _unpack
+from tests.unit.test_bfv_attested_client import make_session, private, issuer, trusted
+from cuhepy.hamming.bfv_security import BFVProtocolError, _unpack
 
 
 def call(app, kind, payload=b"", header=None):
@@ -115,7 +115,7 @@ def test_remote_rejects_wrong_kind_or_oversize_response_before_reading():
 def test_owner_loads_official_cli_measurement_format(tmp_path, algorithm):
     """Accept the literal HashAlgorithm emitted by the locally built Nitro CLI."""
     from experiments.bfv_nitro.client import load_measurements
-    from tests.x_vec.nitro_fixtures import PCRS
+    from tests.unit.nitro_fixtures import PCRS
 
     path = tmp_path / "measurements.json"
     measurements = {

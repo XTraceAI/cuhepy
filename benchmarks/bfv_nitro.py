@@ -26,10 +26,10 @@ from unittest.mock import patch
 
 from bfv_client_matrix import REPO_ROOT, make_data, time_call
 sys.path.insert(0, str(REPO_ROOT))
-from cuhepy.bfv.assurance import bfv_review_policy
-from cuhepy.bfv.attested_client import BFVAttestedClient, BFVAttestedServer
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.verified_client import BFVVerifiedServer
+from cuhepy.hamming.bfv_assurance import bfv_review_policy
+from cuhepy.hamming.bfv_attested import BFVAttestedClient, BFVAttestedServer
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_verified import BFVVerifiedServer
 from cuhepy.bfv.nitro import NitroAttestationPolicy
 
 
@@ -53,7 +53,7 @@ def main():
         if args.mode == "local":
             # This benchmark-only trust substitution is intentionally absent
             # from the SDK's public API and the measured service image.
-            from tests.x_vec.nitro_fixtures import PCRS, SyntheticNitro
+            from tests.unit.nitro_fixtures import PCRS, SyntheticNitro
             from cuhepy.bfv import nitro as bfv_nitro
             issuer = SyntheticNitro()
             stack.enter_context(patch.object(bfv_nitro, "_AWS_ROOT_SHA256", issuer.root_digest))
@@ -105,7 +105,7 @@ def main():
             key: {"first_s": runs[0][key], "warm_median_s": statistics.median(r[key] for r in runs[1:]), "warm_samples_s": [r[key] for r in runs[1:]]}
             for key in runs[0] if key != "repeat"
         }
-        paths = [Path(__file__), *REPO_ROOT.glob("src/cuhepy/bfv*.py"), *REPO_ROOT.glob("src/cuhepy/bfv/_cpu_ext/*.so"), *REPO_ROOT.glob("experiments/bfv_nitro/*.py")]
+        paths = [Path(__file__), *REPO_ROOT.glob("src/cuhepy/bfv/*.py"), *REPO_ROOT.glob("src/cuhepy/hamming/bfv*.py"), *REPO_ROOT.glob("src/cuhepy/bfv/_cpu_ext/*.so"), *REPO_ROOT.glob("experiments/bfv_nitro/*.py")]
         output = {
             "mode": args.mode,
             "hardware_attestation": args.mode == "aws",

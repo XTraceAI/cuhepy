@@ -15,8 +15,8 @@ import threading
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from cuhepy.bfv.client import BFVClient
-from cuhepy.bfv.security import (
+from cuhepy.hamming.bfv import BFVClient
+from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,
     BFVProtocolError,
     _authenticate,

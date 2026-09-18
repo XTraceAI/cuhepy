@@ -19,9 +19,9 @@ pytest.importorskip("OpenSSL")
 import cbor2
 from Crypto.Signature import eddsa
 
-from tests.x_vec.nitro_fixtures import PCRS, SyntheticNitro, malformed_certificate
+from tests.unit.nitro_fixtures import PCRS, SyntheticNitro, malformed_certificate
 from cuhepy.bfv import nitro
-from cuhepy.bfv.security import BFVProtocolError
+from cuhepy.hamming.bfv_security import BFVProtocolError
 
 
 @pytest.fixture(scope="module")
