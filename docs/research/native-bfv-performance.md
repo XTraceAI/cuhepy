@@ -12,6 +12,14 @@ computation substantially. It is not currently the fastest overall path.
 These are elapsed API timings without network transfer or setup. The Nitro
 case uses synthetic attestation evidence; it is not an AWS performance result.
 
+The measured SDK checkout is based on `241413d`, with code under
+`src/xtrace_sdk/`. The original BFV PR #10 was merged on 2026-09-17. The remote
+repository has since moved to CuHEpy with a new history and a Hamming/primitive
+separation (`staging` at `6a8fc29` when checked). This report measures the
+retained SDK implementation, not that refactored CuHEpy API. The benchmark
+commits remain on the research branch and are linked as a post-merge note in
+PR #10; they are not part of its historical merge.
+
 ## Measured search latency
 
 Warm medians of three searches after one first search, in seconds. Prepare
