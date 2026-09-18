@@ -1,0 +1,2157 @@
+{
+  "environment": {
+    "utc": "2026-09-18T05:13:39.857913+00:00",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "cpu": "AMD Ryzen 7 5800X 8-Core Processor",
+    "gmp": "GMP 6.3.0",
+    "versions": {
+      "gmpy2": "2.3.0",
+      "pycryptodome": "3.23.0",
+      "msgpack": "1.1.2"
+    },
+    "compiler": {
+      "returncode": 0,
+      "stdout": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "stderr": ""
+    },
+    "revision": {
+      "returncode": 0,
+      "stdout": "d8f81cc4d0dd629b90558b2ea4f010c96d07487d",
+      "stderr": ""
+    },
+    "working_tree": {
+      "returncode": 0,
+      "stdout": "M benchmarks/bfv_latency.py\n M benchmarks/results/.gitignore\n M docs/index.rst\n M docs/research/native-bfv.md\n?? benchmarks/paillier_client_matrix.py\n?? docs/research/native-bfv-performance.md",
+      "stderr": ""
+    },
+    "gpu_probe": {
+      "returncode": 0,
+      "stdout": "NVIDIA GeForce RTX 3080, 580.173.02",
+      "stderr": ""
+    }
+  },
+  "command": [
+    "benchmarks/bfv_latency.py",
+    "--num-vectors",
+    "1024",
+    "8192",
+    "--repeats",
+    "4",
+    "--variants",
+    "paillier-gpu",
+    "paillier-lookup-gpu",
+    "--json-out",
+    "benchmarks/results/native_bfv_latency_gpu.json"
+  ],
+  "seed": 1337,
+  "measurement_notes": "CPU BFV; explicit CPU or GPU Paillier backends, no equivalent-security claim. CUDA calls are synchronous and include host/device copies and API conversions; process CPU seconds do not measure GPU device work. Sequential cases in recorded order, no concurrent benchmarks/tests intended. Each case reuses one key/index with fresh randomized encryption of the same plaintext query per trial. First search separate from remaining warm trials; no p95/throughput claim. Wall and process CPU seconds; both logical roles run on this host. GC before each query, not between phases. Setup and Nitro enrollment excluded from query timers and recorded separately. Raw cases use common MessagePack with implicit IDs; Nitro uses real protocol encoding/signatures/private checks but a SYNTHETIC test CA. No network, NSM, vsock, enclave isolation, HTTP/TLS, content retrieval, or live service. Same stable top-three sort is timed for every case; correctness checks are outside timers. Native raw BFV decoding is safe here only because all inputs are generated locally.",
+  "source_sha256": {
+    "benchmarks/bfv_client_matrix.py": "2f93923f21f3b9165ddc510ce029d61e8df873c7b519c1d61a99a193697a2f38",
+    "benchmarks/bfv_latency.py": "d03b5720d00d3ba75b0fe3041788014efa5eafc4470b1f6e76f67b1045618b8d",
+    "src/xtrace_sdk/x_vec/crypto/__init__.py": "4e756987a9074daa86d19d451b12e49f9ffe77f7d2ed6d1c620aac8d74893cf5",
+    "src/xtrace_sdk/x_vec/crypto/bfv_assurance.py": "ba64de6db3f76031ba9c35627a0a3790244c816937a97a3b65c98b9c699bb33d",
+    "src/xtrace_sdk/x_vec/crypto/bfv_attested_client.py": "d3bed7a596fd19f834ea308fc332f0a28109a1136c7dd63026819b4cc106c7de",
+    "src/xtrace_sdk/x_vec/crypto/bfv_client.py": "becd81b9c41c027fe26de3e675adfba32fae7c0e6b0e1bede73f96a14effc775",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile": "ee3f7371f92ba9fa3ebb8037906fc23c5f7832f96908d5879f1a4326847ffb53",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_private.cpython-312-x86_64-linux-gnu.so": "c55be18d74e56a1d6bb82c9fa31f55cb9ecf568aecf191a26278a660502b6c72",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "539e19f0591c9dd375a7cf519569c4777067fb6593f5157d87b7edb37a42eb04",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_residue.h": "e77f270c620d432370e8204c24e1dc6f3c0d382d6bd777ad63852dd8a89f575a",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bfv_server.h": "70f96bc7f1fc25827979cea7b350edaf9cffccf2fa5af0a9275b9d514fb400cf",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/bindings.cpp": "da003cf5e6553f85fa402c943a762504d661fb16657d25b16116f3f667509cae",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/private_bindings.cpp": "7b48d92e526147d97d9401e868c8d3e9dbf0b8ba567a67e05047e01f2a371fc0",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_ntt.h": "5f46b7490d556a2f314dbb5cda6f022cacac6f952f3eda48640e068f352e3796",
+    "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/xtrace_sdk/x_vec/crypto/bfv_guarded_client.py": "2e684a8a7f2364a1134aa0271ee34fc6e2562367f26ae453f61a03fa80e31db3",
+    "src/xtrace_sdk/x_vec/crypto/bfv_nitro.py": "791107dd7daaea99b07cb9cc70116ec71fe932c0ece608a9bd65ce8a7aad6660",
+    "src/xtrace_sdk/x_vec/crypto/bfv_security.py": "17149c07384889f994f93bc9e7b209d965176cd916c97a0f6b7a138861a7204e",
+    "src/xtrace_sdk/x_vec/crypto/bfv_verified_client.py": "6a384b16c347d84f90e40ccc9903b1ae916ae277e6171bd668181366d56e88a0",
+    "src/xtrace_sdk/x_vec/crypto/device.py": "8452899bc9aeb66e6556dfd5b4c876272e77379a90b2bd3320e93238cb773b9b",
+    "src/xtrace_sdk/x_vec/crypto/encryption/__init__.py": "261a50ed1758cee38c880cc625187f8acb051c6d5c96ba7a71ee956bdbea2cc5",
+    "src/xtrace_sdk/x_vec/crypto/encryption/aes.py": "2c833351db3b249c381e315307d858791ee4e5b633d3465127cad763b4d095d5",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv.py": "51eee672c2d0514146f97c9ddf33c7f4cfb99114a2b7d86654ec7de7422ebca7",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_evaluator.py": "895fc201b641a1ea5242b0c54a001d9402afcfb4d21668ca33a8b9992b4132dc",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_native.py": "13b0028e889351ade4d9dff2f5605e969c015cebe890aa80fd5489593d4ef0cf",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_private.py": "b1291e6d017be84638b054fb84e651734a44b2d54d601eb50dae2e9d2016bdfa",
+    "src/xtrace_sdk/x_vec/crypto/encryption/bfv_rns.py": "74663e4b22d2fc0128ad2572cb10f9d3727b404fc0240661b08d308ba57cad40",
+    "src/xtrace_sdk/x_vec/crypto/encryption/goldwasser_micali.py": "4b32296c6210663c098718fa49bd810c427b1f8102d026d12a7d734f58e8e3d1",
+    "src/xtrace_sdk/x_vec/crypto/encryption/homomorphic_base.py": "915da9e500d0a142651243bb13de7631dc96103fea2ec9e5b9288bee498010e7",
+    "src/xtrace_sdk/x_vec/crypto/encryption/paillier.py": "525a1944caef38d5d216ae84fcac982627d2a2fddea50b747e47ef05e2e91c9f",
+    "src/xtrace_sdk/x_vec/crypto/encryption/paillier_lookup.py": "eed0be7e0e2c1f6e8e8c0138262ec071fef73648e334a948ef1f82df6e9b9712",
+    "src/xtrace_sdk/x_vec/crypto/goldwasser_micali_client.py": "0982ad7532d07c8e26a701359ce8f4f7d4c1a3beb714050e741f3b534d59935f",
+    "src/xtrace_sdk/x_vec/crypto/hamming_client_base.py": "039fb7eb1f15347b8e79303cd4c80eec59e8271954815b6e69268cb6378ea57a",
+    "src/xtrace_sdk/x_vec/crypto/key_provider.py": "d55e1ac740172ecda6f025ae7b31e3e917a02b05ffe92b91ed7da3f8e97adca2",
+    "src/xtrace_sdk/x_vec/crypto/paillier_client.py": "40582d7acb86ee7dd2060e2d795c76829f4879db3b1eca9518be7a9599de4788",
+    "src/xtrace_sdk/x_vec/crypto/paillier_gpu_ext/Makefile": "9cce872d0be783b083f2ded192fcff1a047df4f2f0e6e8afe7d715e8362aa915",
+    "src/xtrace_sdk/x_vec/crypto/paillier_gpu_ext/paillier_GPU_client.cpython-311-x86_64-linux-gnu.so": "55b32e4bfb4dfdd1c7df41369ae86ef39263f45e34d640ec693db1afb0523b40",
+    "src/xtrace_sdk/x_vec/crypto/paillier_gpu_ext/paillier_GPU_client.cpython-312-x86_64-linux-gnu.so": "14404c760fc09cb364ac621530568011ccc7fde85044f456429e126a6bdc88f3",
+    "src/xtrace_sdk/x_vec/crypto/paillier_gpu_ext/paillier_GPU_client.cu": "b9868d8ccc40022deb41344e72a4816ff3dcbbbc6633a0c0267e82ae4d9b8bc6",
+    "src/xtrace_sdk/x_vec/crypto/paillier_lookup_client.py": "4faa0dd71d03b3e9bc9e49c4e60e8be7b173ff514b52cf1d94a3b1a2426bf699",
+    "src/xtrace_sdk/x_vec/crypto/paillier_lookup_gpu_ext/Makefile": "5830a894e36da0fc8cefeb3fac9bb4e1a416984812f36c968ba7db5f21261b52",
+    "src/xtrace_sdk/x_vec/crypto/paillier_lookup_gpu_ext/paillier_GPU_lookup_client.cpython-311-x86_64-linux-gnu.so": "57b7ba5d5bdafa9951f708e9bc094f4dec57a3df89adc2359cd453edb2d21c15",
+    "src/xtrace_sdk/x_vec/crypto/paillier_lookup_gpu_ext/paillier_GPU_lookup_client.cpython-312-x86_64-linux-gnu.so": "56453844ef4633b88d022701e65c5981a00cc95fe0bf3dab59ca28aef3ff7c91",
+    "src/xtrace_sdk/x_vec/crypto/paillier_lookup_gpu_ext/paillier_GPU_lookup_client.cu": "8e9321e2eef96cb31e3ab329280ff0ddaf820fd4f23061e75a7cf26e20eedc74",
+    "src/xtrace_sdk/x_vec/utils/xtrace_types.py": "3d4daa19d5d9d536573b2e2c65aa13d9559a4bc5e6ae01e2b5ffdeeac8bae962",
+    "tests/x_vec/nitro_fixtures.py": "cd66deae5a1e0f60cc0cb269ee3c4439d9a4a6bfddcdff058c62fe0793a0e0dc"
+  },
+  "results": [
+    {
+      "variant": "paillier-gpu",
+      "vectors": 1024,
+      "embed_len": 512,
+      "config": {
+        "embed_len": 512,
+        "key_len": 1024,
+        "actual_modulus_bits": 2047,
+        "gpu_max_key_len": 1024
+      },
+      "server_backend": "CUDA public multiplication",
+      "private_backend": "existing GPU client",
+      "client_device": "gpu",
+      "server_device": "gpu",
+      "setup_timings": {
+        "key_generation": {
+          "wall_s": 0.009017439093440771,
+          "cpu_s": 0.009017022000000097
+        },
+        "public_key_export": {
+          "wall_s": 3.100000321865082e-05,
+          "cpu_s": 3.2170000000109056e-05
+        },
+        "public_key_import": {
+          "wall_s": 2.0531006157398224e-05,
+          "cpu_s": 2.0679999999995147e-05
+        },
+        "index_encrypt": {
+          "wall_s": 0.6271527279168367,
+          "cpu_s": 0.6256656029999998
+        },
+        "index_serialize": {
+          "wall_s": 0.0007039541378617287,
+          "cpu_s": 0.0007042510000001556
+        },
+        "index_deserialize": {
+          "wall_s": 0.0004953490570187569,
+          "cpu_s": 0.00049557999999994
+        }
+      },
+      "setup_sizes": {
+        "public_keys_bytes": 2502,
+        "encrypted_index_bytes": 528399
+      },
+      "index_ciphertexts": 1024,
+      "samples": [
+        {
+          "repeat": 0,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.1570703382603824,
+              "cpu_s": 0.15761642100000017
+            },
+            "query_serialize": {
+              "wall_s": 2.1869782358407974e-05,
+              "cpu_s": 2.196000000020959e-05
+            },
+            "query_deserialize": {
+              "wall_s": 1.1121388524770737e-05,
+              "cpu_s": 1.1179999999999524e-05
+            },
+            "server_evaluate": {
+              "wall_s": 0.010049908887594938,
+              "cpu_s": 0.010064963000000038
+            },
+            "response_serialize": {
+              "wall_s": 0.0006287628784775734,
+              "cpu_s": 0.0006289100000000936
+            },
+            "response_deserialize": {
+              "wall_s": 0.0004973998293280602,
+              "cpu_s": 0.0004975799999997754
+            },
+            "response_decode": {
+              "wall_s": 0.26621510414406657,
+              "cpu_s": 0.26687087
+            },
+            "client_prepare": {
+              "wall_s": 0.15709220804274082,
+              "cpu_s": 0.15763838100000038
+            },
+            "server_total": {
+              "wall_s": 0.010689793154597282,
+              "cpu_s": 0.010705053000000131
+            },
+            "client_finish": {
+              "wall_s": 0.26671250397339463,
+              "cpu_s": 0.26736844999999976
+            },
+            "client_top3": {
+              "wall_s": 0.00022971490398049355,
+              "cpu_s": 0.00022974000000042238
+            },
+            "local_end_to_end": {
+              "wall_s": 0.4350341251119971,
+              "cpu_s": 0.4362451439999999
+            },
+            "client_total": {
+              "wall_s": 0.42403442692011595,
+              "cpu_s": 0.42523657100000056
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 528392,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 1024,
+            "download_bytes": 528392,
+            "query_plus_response_bytes": 528936
+          },
+          "correct": true
+        },
+        {
+          "repeat": 1,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.15690279472619295,
+              "cpu_s": 0.1572378910000003
+            },
+            "query_serialize": {
+              "wall_s": 2.0619947463274002e-05,
+              "cpu_s": 2.0660000000116696e-05
+            },
+            "query_deserialize": {
+              "wall_s": 1.0100193321704865e-05,
+              "cpu_s": 1.013000000016362e-05
+            },
+            "server_evaluate": {
+              "wall_s": 0.010998879093676805,
+              "cpu_s": 0.011061433000000065
+            },
+            "response_serialize": {
+              "wall_s": 0.0006948341615498066,
+              "cpu_s": 0.0006951399999999275
+            },
+            "response_deserialize": {
+              "wall_s": 0.0004462292417883873,
+              "cpu_s": 0.0004464300000002197
+            },
+            "response_decode": {
+              "wall_s": 0.26816283306106925,
+              "cpu_s": 0.26943366199999996
+            },
+            "client_prepare": {
+              "wall_s": 0.15692341467365623,
+              "cpu_s": 0.1572585510000004
+            },
+            "server_total": {
+              "wall_s": 0.011703813448548317,
+              "cpu_s": 0.011766703000000156
+            },
+            "client_finish": {
+              "wall_s": 0.26860906230285764,
+              "cpu_s": 0.2698800920000002
+            },
+            "client_top3": {
+              "wall_s": 0.00021733436733484268,
+              "cpu_s": 0.00021728000000020842
+            },
+            "local_end_to_end": {
+              "wall_s": 0.43768919818103313,
+              "cpu_s": 0.439349746
+            },
+            "client_total": {
+              "wall_s": 0.4257498113438487,
+              "cpu_s": 0.4273559230000008
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 528394,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 1024,
+            "download_bytes": 528394,
+            "query_plus_response_bytes": 528938
+          },
+          "correct": true
+        },
+        {
+          "repeat": 2,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.15577404107898474,
+              "cpu_s": 0.15622601100000022
+            },
+            "query_serialize": {
+              "wall_s": 2.0899809896945953e-05,
+              "cpu_s": 2.094000000019136e-05
+            },
+            "query_deserialize": {
+              "wall_s": 9.609851986169815e-06,
+              "cpu_s": 9.639999999588866e-06
+            },
+            "server_evaluate": {
+              "wall_s": 0.010834615677595139,
+              "cpu_s": 0.010946203000000043
+            },
+            "response_serialize": {
+              "wall_s": 0.0006890031509101391,
+              "cpu_s": 0.000689099999999776
+            },
+            "response_deserialize": {
+              "wall_s": 0.00044857896864414215,
+              "cpu_s": 0.00044880000000002696
+            },
+            "response_decode": {
+              "wall_s": 0.26531283697113395,
+              "cpu_s": 0.26583426899999996
+            },
+            "client_prepare": {
+              "wall_s": 0.15579494088888168,
+              "cpu_s": 0.1562469510000004
+            },
+            "server_total": {
+              "wall_s": 0.011533228680491447,
+              "cpu_s": 0.011644942999999408
+            },
+            "client_finish": {
+              "wall_s": 0.2657614159397781,
+              "cpu_s": 0.266283069
+            },
+            "client_top3": {
+              "wall_s": 0.00021870480850338936,
+              "cpu_s": 0.00021869000000007688
+            },
+            "local_end_to_end": {
+              "wall_s": 0.43353480566293,
+              "cpu_s": 0.434611694
+            },
+            "client_total": {
+              "wall_s": 0.42177506163716316,
+              "cpu_s": 0.42274871000000047
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 528388,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 1024,
+            "download_bytes": 528388,
+            "query_plus_response_bytes": 528932
+          },
+          "correct": true
+        },
+        {
+          "repeat": 3,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.15696761617437005,
+              "cpu_s": 0.1573169710000002
+            },
+            "query_serialize": {
+              "wall_s": 2.0670238882303238e-05,
+              "cpu_s": 2.0689999999934372e-05
+            },
+            "query_deserialize": {
+              "wall_s": 9.841285645961761e-06,
+              "cpu_s": 9.87999999990663e-06
+            },
+            "server_evaluate": {
+              "wall_s": 0.010068119037896395,
+              "cpu_s": 0.010068643000000321
+            },
+            "response_serialize": {
+              "wall_s": 0.0006581740453839302,
+              "cpu_s": 0.0006583799999999584
+            },
+            "response_deserialize": {
+              "wall_s": 0.0004627592861652374,
+              "cpu_s": 0.0004629599999996792
+            },
+            "response_decode": {
+              "wall_s": 0.26486624823883176,
+              "cpu_s": 0.26545559900000004
+            },
+            "client_prepare": {
+              "wall_s": 0.15698828641325235,
+              "cpu_s": 0.15733766100000013
+            },
+            "server_total": {
+              "wall_s": 0.010736134368926287,
+              "cpu_s": 0.010736903000000186
+            },
+            "client_finish": {
+              "wall_s": 0.265329007524997,
+              "cpu_s": 0.2659185589999997
+            },
+            "client_top3": {
+              "wall_s": 0.00022113509476184845,
+              "cpu_s": 0.00022111999999996357
+            },
+            "local_end_to_end": {
+              "wall_s": 0.43349705496802926,
+              "cpu_s": 0.43443002399999964
+            },
+            "client_total": {
+              "wall_s": 0.4225384290330112,
+              "cpu_s": 0.4234773399999998
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 528392,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 1024,
+            "download_bytes": 528392,
+            "query_plus_response_bytes": 528936
+          },
+          "correct": true
+        }
+      ],
+      "summary": {
+        "query_encrypt": {
+          "wall_s": {
+            "first": 0.1570703382603824,
+            "warm_median": 0.15690279472619295,
+            "warm_min": 0.15577404107898474,
+            "warm_max": 0.15696761617437005
+          },
+          "cpu_s": {
+            "first": 0.15761642100000017,
+            "warm_median": 0.1572378910000003,
+            "warm_min": 0.15622601100000022,
+            "warm_max": 0.1573169710000002
+          }
+        },
+        "query_serialize": {
+          "wall_s": {
+            "first": 2.1869782358407974e-05,
+            "warm_median": 2.0670238882303238e-05,
+            "warm_min": 2.0619947463274002e-05,
+            "warm_max": 2.0899809896945953e-05
+          },
+          "cpu_s": {
+            "first": 2.196000000020959e-05,
+            "warm_median": 2.0689999999934372e-05,
+            "warm_min": 2.0660000000116696e-05,
+            "warm_max": 2.094000000019136e-05
+          }
+        },
+        "query_deserialize": {
+          "wall_s": {
+            "first": 1.1121388524770737e-05,
+            "warm_median": 9.841285645961761e-06,
+            "warm_min": 9.609851986169815e-06,
+            "warm_max": 1.0100193321704865e-05
+          },
+          "cpu_s": {
+            "first": 1.1179999999999524e-05,
+            "warm_median": 9.87999999990663e-06,
+            "warm_min": 9.639999999588866e-06,
+            "warm_max": 1.013000000016362e-05
+          }
+        },
+        "server_evaluate": {
+          "wall_s": {
+            "first": 0.010049908887594938,
+            "warm_median": 0.010834615677595139,
+            "warm_min": 0.010068119037896395,
+            "warm_max": 0.010998879093676805
+          },
+          "cpu_s": {
+            "first": 0.010064963000000038,
+            "warm_median": 0.010946203000000043,
+            "warm_min": 0.010068643000000321,
+            "warm_max": 0.011061433000000065
+          }
+        },
+        "response_serialize": {
+          "wall_s": {
+            "first": 0.0006287628784775734,
+            "warm_median": 0.0006890031509101391,
+            "warm_min": 0.0006581740453839302,
+            "warm_max": 0.0006948341615498066
+          },
+          "cpu_s": {
+            "first": 0.0006289100000000936,
+            "warm_median": 0.000689099999999776,
+            "warm_min": 0.0006583799999999584,
+            "warm_max": 0.0006951399999999275
+          }
+        },
+        "response_deserialize": {
+          "wall_s": {
+            "first": 0.0004973998293280602,
+            "warm_median": 0.00044857896864414215,
+            "warm_min": 0.0004462292417883873,
+            "warm_max": 0.0004627592861652374
+          },
+          "cpu_s": {
+            "first": 0.0004975799999997754,
+            "warm_median": 0.00044880000000002696,
+            "warm_min": 0.0004464300000002197,
+            "warm_max": 0.0004629599999996792
+          }
+        },
+        "response_decode": {
+          "wall_s": {
+            "first": 0.26621510414406657,
+            "warm_median": 0.26531283697113395,
+            "warm_min": 0.26486624823883176,
+            "warm_max": 0.26816283306106925
+          },
+          "cpu_s": {
+            "first": 0.26687087,
+            "warm_median": 0.26583426899999996,
+            "warm_min": 0.26545559900000004,
+            "warm_max": 0.26943366199999996
+          }
+        },
+        "client_prepare": {
+          "wall_s": {
+            "first": 0.15709220804274082,
+            "warm_median": 0.15692341467365623,
+            "warm_min": 0.15579494088888168,
+            "warm_max": 0.15698828641325235
+          },
+          "cpu_s": {
+            "first": 0.15763838100000038,
+            "warm_median": 0.1572585510000004,
+            "warm_min": 0.1562469510000004,
+            "warm_max": 0.15733766100000013
+          }
+        },
+        "server_total": {
+          "wall_s": {
+            "first": 0.010689793154597282,
+            "warm_median": 0.011533228680491447,
+            "warm_min": 0.010736134368926287,
+            "warm_max": 0.011703813448548317
+          },
+          "cpu_s": {
+            "first": 0.010705053000000131,
+            "warm_median": 0.011644942999999408,
+            "warm_min": 0.010736903000000186,
+            "warm_max": 0.011766703000000156
+          }
+        },
+        "client_finish": {
+          "wall_s": {
+            "first": 0.26671250397339463,
+            "warm_median": 0.2657614159397781,
+            "warm_min": 0.265329007524997,
+            "warm_max": 0.26860906230285764
+          },
+          "cpu_s": {
+            "first": 0.26736844999999976,
+            "warm_median": 0.266283069,
+            "warm_min": 0.2659185589999997,
+            "warm_max": 0.2698800920000002
+          }
+        },
+        "client_top3": {
+          "wall_s": {
+            "first": 0.00022971490398049355,
+            "warm_median": 0.00021870480850338936,
+            "warm_min": 0.00021733436733484268,
+            "warm_max": 0.00022113509476184845
+          },
+          "cpu_s": {
+            "first": 0.00022974000000042238,
+            "warm_median": 0.00021869000000007688,
+            "warm_min": 0.00021728000000020842,
+            "warm_max": 0.00022111999999996357
+          }
+        },
+        "local_end_to_end": {
+          "wall_s": {
+            "first": 0.4350341251119971,
+            "warm_median": 0.43353480566293,
+            "warm_min": 0.43349705496802926,
+            "warm_max": 0.43768919818103313
+          },
+          "cpu_s": {
+            "first": 0.4362451439999999,
+            "warm_median": 0.434611694,
+            "warm_min": 0.43443002399999964,
+            "warm_max": 0.439349746
+          }
+        },
+        "client_total": {
+          "wall_s": {
+            "first": 0.42403442692011595,
+            "warm_median": 0.4225384290330112,
+            "warm_min": 0.42177506163716316,
+            "warm_max": 0.4257498113438487
+          },
+          "cpu_s": {
+            "first": 0.42523657100000056,
+            "warm_median": 0.4234773399999998,
+            "warm_min": 0.42274871000000047,
+            "warm_max": 0.4273559230000008
+          }
+        }
+      },
+      "top3": [
+        {
+          "index": 0,
+          "distance": 0
+        },
+        {
+          "index": 1023,
+          "distance": 0
+        },
+        {
+          "index": 81,
+          "distance": 220
+        }
+      ],
+      "all_distances_and_top3_correct": true
+    },
+    {
+      "variant": "paillier-lookup-gpu",
+      "vectors": 1024,
+      "embed_len": 512,
+      "config": {
+        "message_chunks": 256,
+        "alpha_len": 50,
+        "embed_len": 512,
+        "key_len": 1024,
+        "actual_modulus_bits": 2048,
+        "gpu_max_key_len": 1024
+      },
+      "server_backend": "CUDA public multiplication",
+      "private_backend": "existing GPU client",
+      "client_device": "gpu",
+      "server_device": "gpu",
+      "setup_timings": {
+        "key_generation": {
+          "wall_s": 3.051196337211877,
+          "cpu_s": 3.0622939229999995
+        },
+        "public_key_export": {
+          "wall_s": 0.0072013926692306995,
+          "cpu_s": 0.0072204720000002
+        },
+        "public_key_import": {
+          "wall_s": 2.6201363652944565e-05,
+          "cpu_s": 2.625999999938955e-05
+        },
+        "index_encrypt": {
+          "wall_s": 0.03197704395279288,
+          "cpu_s": 0.0320420480000001
+        },
+        "index_serialize": {
+          "wall_s": 0.0006532128900289536,
+          "cpu_s": 0.0006533800000001477
+        },
+        "index_deserialize": {
+          "wall_s": 0.0004478180781006813,
+          "cpu_s": 0.00044804000000020494
+        }
+      },
+      "setup_sizes": {
+        "public_keys_bytes": 4354,
+        "encrypted_index_bytes": 528403
+      },
+      "index_ciphertexts": 1024,
+      "samples": [
+        {
+          "repeat": 0,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.004711694084107876,
+              "cpu_s": 0.004715311
+            },
+            "query_serialize": {
+              "wall_s": 2.6620924472808838e-05,
+              "cpu_s": 2.6709999999319223e-05
+            },
+            "query_deserialize": {
+              "wall_s": 1.1609867215156555e-05,
+              "cpu_s": 1.1660000000190962e-05
+            },
+            "server_evaluate": {
+              "wall_s": 0.043240897823125124,
+              "cpu_s": 0.04329142100000016
+            },
+            "response_serialize": {
+              "wall_s": 0.0007096640765666962,
+              "cpu_s": 0.0007100110000006765
+            },
+            "response_deserialize": {
+              "wall_s": 0.000453408807516098,
+              "cpu_s": 0.0004536499999998611
+            },
+            "response_decode": {
+              "wall_s": 0.021915444638580084,
+              "cpu_s": 0.021996345000000694
+            },
+            "client_prepare": {
+              "wall_s": 0.004738315008580685,
+              "cpu_s": 0.004742020999999319
+            },
+            "server_total": {
+              "wall_s": 0.04396217176690698,
+              "cpu_s": 0.04401309200000103
+            },
+            "client_finish": {
+              "wall_s": 0.022368853446096182,
+              "cpu_s": 0.022449995000000555
+            },
+            "client_top3": {
+              "wall_s": 0.00022297538816928864,
+              "cpu_s": 0.0002230110000001062
+            },
+            "local_end_to_end": {
+              "wall_s": 0.0714169479906559,
+              "cpu_s": 0.07154708900000006
+            },
+            "client_total": {
+              "wall_s": 0.027330143842846155,
+              "cpu_s": 0.02741502699999998
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 528407,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 1024,
+            "download_bytes": 528407,
+            "query_plus_response_bytes": 528951
+          },
+          "correct": true
+        },
+        {
+          "repeat": 1,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.004423667676746845,
+              "cpu_s": 0.0044240220000002495
+            },
+            "query_serialize": {
+              "wall_s": 1.7391052097082138e-05,
+              "cpu_s": 1.7470000000407993e-05
+            },
+            "query_deserialize": {
+              "wall_s": 9.43988561630249e-06,
+              "cpu_s": 9.490000000056398e-06
+            },
+            "server_evaluate": {
+              "wall_s": 0.043131975922733545,
+              "cpu_s": 0.04338831099999929
+            },
+            "response_serialize": {
+              "wall_s": 0.0007190541364252567,
+              "cpu_s": 0.0007193399999998462
+            },
+            "response_deserialize": {
+              "wall_s": 0.0004778103902935982,
+              "cpu_s": 0.00047788999999998083
+            },
+            "response_decode": {
+              "wall_s": 0.021433015819638968,
+              "cpu_s": 0.02162626600000017
+            },
+            "client_prepare": {
+              "wall_s": 0.004441058728843927,
+              "cpu_s": 0.0044414920000006575
+            },
+            "server_total": {
+              "wall_s": 0.043860469944775105,
+              "cpu_s": 0.044117140999999194
+            },
+            "client_finish": {
+              "wall_s": 0.021910826209932566,
+              "cpu_s": 0.022104156000000152
+            },
+            "client_top3": {
+              "wall_s": 0.00023160502314567566,
+              "cpu_s": 0.00023192000000005208
+            },
+            "local_end_to_end": {
+              "wall_s": 0.07062809215858579,
+              "cpu_s": 0.07107217899999974
+            },
+            "client_total": {
+              "wall_s": 0.02658348996192217,
+              "cpu_s": 0.026777568000000862
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 528409,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 1024,
+            "download_bytes": 528409,
+            "query_plus_response_bytes": 528953
+          },
+          "correct": true
+        },
+        {
+          "repeat": 2,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.00512697221711278,
+              "cpu_s": 0.00516441099999998
+            },
+            "query_serialize": {
+              "wall_s": 1.8360093235969543e-05,
+              "cpu_s": 1.842999999990269e-05
+            },
+            "query_deserialize": {
+              "wall_s": 8.860137313604355e-06,
+              "cpu_s": 8.900000000089392e-06
+            },
+            "server_evaluate": {
+              "wall_s": 0.04291275190189481,
+              "cpu_s": 0.04315523999999993
+            },
+            "response_serialize": {
+              "wall_s": 0.0008375868201255798,
+              "cpu_s": 0.0008383509999996264
+            },
+            "response_deserialize": {
+              "wall_s": 0.0005107000470161438,
+              "cpu_s": 0.0005109500000006761
+            },
+            "response_decode": {
+              "wall_s": 0.023989526089280844,
+              "cpu_s": 0.024109886000000635
+            },
+            "client_prepare": {
+              "wall_s": 0.005145332310348749,
+              "cpu_s": 0.005182840999999883
+            },
+            "server_total": {
+              "wall_s": 0.04375919885933399,
+              "cpu_s": 0.044002490999999644
+            },
+            "client_finish": {
+              "wall_s": 0.024500226136296988,
+              "cpu_s": 0.02462083600000131
+            },
+            "client_top3": {
+              "wall_s": 0.00021695438772439957,
+              "cpu_s": 0.0002168899999999141
+            },
+            "local_end_to_end": {
+              "wall_s": 0.07383431633934379,
+              "cpu_s": 0.07422731800000015
+            },
+            "client_total": {
+              "wall_s": 0.029862512834370136,
+              "cpu_s": 0.030020567000001108
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 528404,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 1024,
+            "download_bytes": 528404,
+            "query_plus_response_bytes": 528948
+          },
+          "correct": true
+        },
+        {
+          "repeat": 3,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.00465672230347991,
+              "cpu_s": 0.0047292710000004234
+            },
+            "query_serialize": {
+              "wall_s": 1.9080936908721924e-05,
+              "cpu_s": 1.9130000000089353e-05
+            },
+            "query_deserialize": {
+              "wall_s": 1.027015969157219e-05,
+              "cpu_s": 1.0329999999392214e-05
+            },
+            "server_evaluate": {
+              "wall_s": 0.0439697727560997,
+              "cpu_s": 0.04429683099999959
+            },
+            "response_serialize": {
+              "wall_s": 0.0007273741066455841,
+              "cpu_s": 0.0007274800000001136
+            },
+            "response_deserialize": {
+              "wall_s": 0.00044969888404011726,
+              "cpu_s": 0.00044991099999958095
+            },
+            "response_decode": {
+              "wall_s": 0.022312772925943136,
+              "cpu_s": 0.022377405000000294
+            },
+            "client_prepare": {
+              "wall_s": 0.004675803240388632,
+              "cpu_s": 0.004748401000000513
+            },
+            "server_total": {
+              "wall_s": 0.04470741702243686,
+              "cpu_s": 0.0450346409999991
+            },
+            "client_finish": {
+              "wall_s": 0.022762471809983253,
+              "cpu_s": 0.022827315999999875
+            },
+            "client_top3": {
+              "wall_s": 0.00021861400455236435,
+              "cpu_s": 0.00021867100000072526
+            },
+            "local_end_to_end": {
+              "wall_s": 0.0725325788371265,
+              "cpu_s": 0.07299120899999956
+            },
+            "client_total": {
+              "wall_s": 0.02765688905492425,
+              "cpu_s": 0.027794388000001113
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 528410,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 1024,
+            "download_bytes": 528410,
+            "query_plus_response_bytes": 528954
+          },
+          "correct": true
+        }
+      ],
+      "summary": {
+        "query_encrypt": {
+          "wall_s": {
+            "first": 0.004711694084107876,
+            "warm_median": 0.00465672230347991,
+            "warm_min": 0.004423667676746845,
+            "warm_max": 0.00512697221711278
+          },
+          "cpu_s": {
+            "first": 0.004715311,
+            "warm_median": 0.0047292710000004234,
+            "warm_min": 0.0044240220000002495,
+            "warm_max": 0.00516441099999998
+          }
+        },
+        "query_serialize": {
+          "wall_s": {
+            "first": 2.6620924472808838e-05,
+            "warm_median": 1.8360093235969543e-05,
+            "warm_min": 1.7391052097082138e-05,
+            "warm_max": 1.9080936908721924e-05
+          },
+          "cpu_s": {
+            "first": 2.6709999999319223e-05,
+            "warm_median": 1.842999999990269e-05,
+            "warm_min": 1.7470000000407993e-05,
+            "warm_max": 1.9130000000089353e-05
+          }
+        },
+        "query_deserialize": {
+          "wall_s": {
+            "first": 1.1609867215156555e-05,
+            "warm_median": 9.43988561630249e-06,
+            "warm_min": 8.860137313604355e-06,
+            "warm_max": 1.027015969157219e-05
+          },
+          "cpu_s": {
+            "first": 1.1660000000190962e-05,
+            "warm_median": 9.490000000056398e-06,
+            "warm_min": 8.900000000089392e-06,
+            "warm_max": 1.0329999999392214e-05
+          }
+        },
+        "server_evaluate": {
+          "wall_s": {
+            "first": 0.043240897823125124,
+            "warm_median": 0.043131975922733545,
+            "warm_min": 0.04291275190189481,
+            "warm_max": 0.0439697727560997
+          },
+          "cpu_s": {
+            "first": 0.04329142100000016,
+            "warm_median": 0.04338831099999929,
+            "warm_min": 0.04315523999999993,
+            "warm_max": 0.04429683099999959
+          }
+        },
+        "response_serialize": {
+          "wall_s": {
+            "first": 0.0007096640765666962,
+            "warm_median": 0.0007273741066455841,
+            "warm_min": 0.0007190541364252567,
+            "warm_max": 0.0008375868201255798
+          },
+          "cpu_s": {
+            "first": 0.0007100110000006765,
+            "warm_median": 0.0007274800000001136,
+            "warm_min": 0.0007193399999998462,
+            "warm_max": 0.0008383509999996264
+          }
+        },
+        "response_deserialize": {
+          "wall_s": {
+            "first": 0.000453408807516098,
+            "warm_median": 0.0004778103902935982,
+            "warm_min": 0.00044969888404011726,
+            "warm_max": 0.0005107000470161438
+          },
+          "cpu_s": {
+            "first": 0.0004536499999998611,
+            "warm_median": 0.00047788999999998083,
+            "warm_min": 0.00044991099999958095,
+            "warm_max": 0.0005109500000006761
+          }
+        },
+        "response_decode": {
+          "wall_s": {
+            "first": 0.021915444638580084,
+            "warm_median": 0.022312772925943136,
+            "warm_min": 0.021433015819638968,
+            "warm_max": 0.023989526089280844
+          },
+          "cpu_s": {
+            "first": 0.021996345000000694,
+            "warm_median": 0.022377405000000294,
+            "warm_min": 0.02162626600000017,
+            "warm_max": 0.024109886000000635
+          }
+        },
+        "client_prepare": {
+          "wall_s": {
+            "first": 0.004738315008580685,
+            "warm_median": 0.004675803240388632,
+            "warm_min": 0.004441058728843927,
+            "warm_max": 0.005145332310348749
+          },
+          "cpu_s": {
+            "first": 0.004742020999999319,
+            "warm_median": 0.004748401000000513,
+            "warm_min": 0.0044414920000006575,
+            "warm_max": 0.005182840999999883
+          }
+        },
+        "server_total": {
+          "wall_s": {
+            "first": 0.04396217176690698,
+            "warm_median": 0.043860469944775105,
+            "warm_min": 0.04375919885933399,
+            "warm_max": 0.04470741702243686
+          },
+          "cpu_s": {
+            "first": 0.04401309200000103,
+            "warm_median": 0.044117140999999194,
+            "warm_min": 0.044002490999999644,
+            "warm_max": 0.0450346409999991
+          }
+        },
+        "client_finish": {
+          "wall_s": {
+            "first": 0.022368853446096182,
+            "warm_median": 0.022762471809983253,
+            "warm_min": 0.021910826209932566,
+            "warm_max": 0.024500226136296988
+          },
+          "cpu_s": {
+            "first": 0.022449995000000555,
+            "warm_median": 0.022827315999999875,
+            "warm_min": 0.022104156000000152,
+            "warm_max": 0.02462083600000131
+          }
+        },
+        "client_top3": {
+          "wall_s": {
+            "first": 0.00022297538816928864,
+            "warm_median": 0.00021861400455236435,
+            "warm_min": 0.00021695438772439957,
+            "warm_max": 0.00023160502314567566
+          },
+          "cpu_s": {
+            "first": 0.0002230110000001062,
+            "warm_median": 0.00021867100000072526,
+            "warm_min": 0.0002168899999999141,
+            "warm_max": 0.00023192000000005208
+          }
+        },
+        "local_end_to_end": {
+          "wall_s": {
+            "first": 0.0714169479906559,
+            "warm_median": 0.0725325788371265,
+            "warm_min": 0.07062809215858579,
+            "warm_max": 0.07383431633934379
+          },
+          "cpu_s": {
+            "first": 0.07154708900000006,
+            "warm_median": 0.07299120899999956,
+            "warm_min": 0.07107217899999974,
+            "warm_max": 0.07422731800000015
+          }
+        },
+        "client_total": {
+          "wall_s": {
+            "first": 0.027330143842846155,
+            "warm_median": 0.02765688905492425,
+            "warm_min": 0.02658348996192217,
+            "warm_max": 0.029862512834370136
+          },
+          "cpu_s": {
+            "first": 0.02741502699999998,
+            "warm_median": 0.027794388000001113,
+            "warm_min": 0.026777568000000862,
+            "warm_max": 0.030020567000001108
+          }
+        }
+      },
+      "top3": [
+        {
+          "index": 0,
+          "distance": 0
+        },
+        {
+          "index": 1023,
+          "distance": 0
+        },
+        {
+          "index": 81,
+          "distance": 220
+        }
+      ],
+      "all_distances_and_top3_correct": true
+    },
+    {
+      "variant": "paillier-gpu",
+      "vectors": 8192,
+      "embed_len": 512,
+      "config": {
+        "embed_len": 512,
+        "key_len": 1024,
+        "actual_modulus_bits": 2048,
+        "gpu_max_key_len": 1024
+      },
+      "server_backend": "CUDA public multiplication",
+      "private_backend": "existing GPU client",
+      "client_device": "gpu",
+      "server_device": "gpu",
+      "setup_timings": {
+        "key_generation": {
+          "wall_s": 0.013855445198714733,
+          "cpu_s": 0.014125722999999368
+        },
+        "public_key_export": {
+          "wall_s": 2.9520131647586823e-05,
+          "cpu_s": 2.9390000001683347e-05
+        },
+        "public_key_import": {
+          "wall_s": 5.670357495546341e-06,
+          "cpu_s": 5.700000000885552e-06
+        },
+        "index_encrypt": {
+          "wall_s": 2.294604437891394,
+          "cpu_s": 2.300272453
+        },
+        "index_serialize": {
+          "wall_s": 0.0054770479910075665,
+          "cpu_s": 0.005478022000000138
+        },
+        "index_deserialize": {
+          "wall_s": 0.004280935041606426,
+          "cpu_s": 0.004301891000000779
+        }
+      },
+      "setup_sizes": {
+        "public_keys_bytes": 2502,
+        "encrypted_index_bytes": 4227031
+      },
+      "index_ciphertexts": 8192,
+      "samples": [
+        {
+          "repeat": 0,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.15569430077448487,
+              "cpu_s": 0.15583623000000024
+            },
+            "query_serialize": {
+              "wall_s": 2.2880733013153076e-05,
+              "cpu_s": 2.29199999992602e-05
+            },
+            "query_deserialize": {
+              "wall_s": 1.0020099580287933e-05,
+              "cpu_s": 1.0059999999256775e-05
+            },
+            "server_evaluate": {
+              "wall_s": 0.09380275197327137,
+              "cpu_s": 0.09386162500000061
+            },
+            "response_serialize": {
+              "wall_s": 0.006120990961790085,
+              "cpu_s": 0.006135172000000466
+            },
+            "response_deserialize": {
+              "wall_s": 0.003715754020959139,
+              "cpu_s": 0.003709581000000739
+            },
+            "response_decode": {
+              "wall_s": 1.968452564906329,
+              "cpu_s": 1.9728358890000006
+            },
+            "client_prepare": {
+              "wall_s": 0.15571718150749803,
+              "cpu_s": 0.1558591499999995
+            },
+            "server_total": {
+              "wall_s": 0.09993376303464174,
+              "cpu_s": 0.10000685700000034
+            },
+            "client_finish": {
+              "wall_s": 1.972168318927288,
+              "cpu_s": 1.9765454700000014
+            },
+            "client_top3": {
+              "wall_s": 0.0018513472750782967,
+              "cpu_s": 0.0018512509999997206
+            },
+            "local_end_to_end": {
+              "wall_s": 2.230343104340136,
+              "cpu_s": 2.2349248280000005
+            },
+            "client_total": {
+              "wall_s": 2.1297368477098644,
+              "cpu_s": 2.1342558710000006
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 4227037,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 8192,
+            "download_bytes": 4227037,
+            "query_plus_response_bytes": 4227581
+          },
+          "correct": true
+        },
+        {
+          "repeat": 1,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.15475825173780322,
+              "cpu_s": 0.1553404510000007
+            },
+            "query_serialize": {
+              "wall_s": 2.6800669729709625e-05,
+              "cpu_s": 2.689999999994086e-05
+            },
+            "query_deserialize": {
+              "wall_s": 9.709969162940979e-06,
+              "cpu_s": 9.750000000252612e-06
+            },
+            "server_evaluate": {
+              "wall_s": 0.0848178737796843,
+              "cpu_s": 0.08523254300000005
+            },
+            "response_serialize": {
+              "wall_s": 0.0067587438970804214,
+              "cpu_s": 0.006760060999999595
+            },
+            "response_deserialize": {
+              "wall_s": 0.0038708671927452087,
+              "cpu_s": 0.003850381000001235
+            },
+            "response_decode": {
+              "wall_s": 1.9736171080730855,
+              "cpu_s": 1.9792196200000003
+            },
+            "client_prepare": {
+              "wall_s": 0.15478505240753293,
+              "cpu_s": 0.15536735100000065
+            },
+            "server_total": {
+              "wall_s": 0.09158632764592767,
+              "cpu_s": 0.0920023539999999
+            },
+            "client_finish": {
+              "wall_s": 1.9774879752658308,
+              "cpu_s": 1.9830700010000015
+            },
+            "client_top3": {
+              "wall_s": 0.002058741170912981,
+              "cpu_s": 0.0020595809999992554
+            },
+            "local_end_to_end": {
+              "wall_s": 2.2268811650574207,
+              "cpu_s": 2.2334505569999994
+            },
+            "client_total": {
+              "wall_s": 2.1343317688442767,
+              "cpu_s": 2.1404969330000014
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 4227047,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 8192,
+            "download_bytes": 4227047,
+            "query_plus_response_bytes": 4227591
+          },
+          "correct": true
+        },
+        {
+          "repeat": 2,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.15537966508418322,
+              "cpu_s": 0.15610310100000113
+            },
+            "query_serialize": {
+              "wall_s": 2.1420884877443314e-05,
+              "cpu_s": 2.1470000000078926e-05
+            },
+            "query_deserialize": {
+              "wall_s": 1.0259915143251419e-05,
+              "cpu_s": 1.0290000000523492e-05
+            },
+            "server_evaluate": {
+              "wall_s": 0.08500822726637125,
+              "cpu_s": 0.08541388300000108
+            },
+            "response_serialize": {
+              "wall_s": 0.006645032204687595,
+              "cpu_s": 0.006646120999999283
+            },
+            "response_deserialize": {
+              "wall_s": 0.0037675448693335056,
+              "cpu_s": 0.003815020999999419
+            },
+            "response_decode": {
+              "wall_s": 1.9321003439836204,
+              "cpu_s": 1.9389525999999986
+            },
+            "client_prepare": {
+              "wall_s": 0.15540108596906066,
+              "cpu_s": 0.1561245710000012
+            },
+            "server_total": {
+              "wall_s": 0.0916635193862021,
+              "cpu_s": 0.09207029400000089
+            },
+            "client_finish": {
+              "wall_s": 1.935867888852954,
+              "cpu_s": 1.942767620999998
+            },
+            "client_top3": {
+              "wall_s": 0.001847557257860899,
+              "cpu_s": 0.0018475809999998205
+            },
+            "local_end_to_end": {
+              "wall_s": 2.185811541043222,
+              "cpu_s": 2.193828986999998
+            },
+            "client_total": {
+              "wall_s": 2.0931165320798755,
+              "cpu_s": 2.100739772999999
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 4227051,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 8192,
+            "download_bytes": 4227051,
+            "query_plus_response_bytes": 4227595
+          },
+          "correct": true
+        },
+        {
+          "repeat": 3,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.15493409475311637,
+              "cpu_s": 0.15567271999999832
+            },
+            "query_serialize": {
+              "wall_s": 2.5820918381214142e-05,
+              "cpu_s": 2.5980000000203063e-05
+            },
+            "query_deserialize": {
+              "wall_s": 1.2049917131662369e-05,
+              "cpu_s": 1.2210000001289245e-05
+            },
+            "server_evaluate": {
+              "wall_s": 0.08224136335775256,
+              "cpu_s": 0.0823979829999999
+            },
+            "response_serialize": {
+              "wall_s": 0.006030880380421877,
+              "cpu_s": 0.0060111710000008145
+            },
+            "response_deserialize": {
+              "wall_s": 0.004109431058168411,
+              "cpu_s": 0.00407827100000091
+            },
+            "response_decode": {
+              "wall_s": 1.9501475431025028,
+              "cpu_s": 1.953256923999998
+            },
+            "client_prepare": {
+              "wall_s": 0.15495991567149758,
+              "cpu_s": 0.15569869999999852
+            },
+            "server_total": {
+              "wall_s": 0.0882842936553061,
+              "cpu_s": 0.088421364000002
+            },
+            "client_finish": {
+              "wall_s": 1.9542569741606712,
+              "cpu_s": 1.9573351949999989
+            },
+            "client_top3": {
+              "wall_s": 0.0020631509833037853,
+              "cpu_s": 0.0020630409999995436
+            },
+            "local_end_to_end": {
+              "wall_s": 2.200662505812943,
+              "cpu_s": 2.2046042200000002
+            },
+            "client_total": {
+              "wall_s": 2.1112800408154726,
+              "cpu_s": 2.115096935999997
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 4227044,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 8192,
+            "download_bytes": 4227044,
+            "query_plus_response_bytes": 4227588
+          },
+          "correct": true
+        }
+      ],
+      "summary": {
+        "query_encrypt": {
+          "wall_s": {
+            "first": 0.15569430077448487,
+            "warm_median": 0.15493409475311637,
+            "warm_min": 0.15475825173780322,
+            "warm_max": 0.15537966508418322
+          },
+          "cpu_s": {
+            "first": 0.15583623000000024,
+            "warm_median": 0.15567271999999832,
+            "warm_min": 0.1553404510000007,
+            "warm_max": 0.15610310100000113
+          }
+        },
+        "query_serialize": {
+          "wall_s": {
+            "first": 2.2880733013153076e-05,
+            "warm_median": 2.5820918381214142e-05,
+            "warm_min": 2.1420884877443314e-05,
+            "warm_max": 2.6800669729709625e-05
+          },
+          "cpu_s": {
+            "first": 2.29199999992602e-05,
+            "warm_median": 2.5980000000203063e-05,
+            "warm_min": 2.1470000000078926e-05,
+            "warm_max": 2.689999999994086e-05
+          }
+        },
+        "query_deserialize": {
+          "wall_s": {
+            "first": 1.0020099580287933e-05,
+            "warm_median": 1.0259915143251419e-05,
+            "warm_min": 9.709969162940979e-06,
+            "warm_max": 1.2049917131662369e-05
+          },
+          "cpu_s": {
+            "first": 1.0059999999256775e-05,
+            "warm_median": 1.0290000000523492e-05,
+            "warm_min": 9.750000000252612e-06,
+            "warm_max": 1.2210000001289245e-05
+          }
+        },
+        "server_evaluate": {
+          "wall_s": {
+            "first": 0.09380275197327137,
+            "warm_median": 0.0848178737796843,
+            "warm_min": 0.08224136335775256,
+            "warm_max": 0.08500822726637125
+          },
+          "cpu_s": {
+            "first": 0.09386162500000061,
+            "warm_median": 0.08523254300000005,
+            "warm_min": 0.0823979829999999,
+            "warm_max": 0.08541388300000108
+          }
+        },
+        "response_serialize": {
+          "wall_s": {
+            "first": 0.006120990961790085,
+            "warm_median": 0.006645032204687595,
+            "warm_min": 0.006030880380421877,
+            "warm_max": 0.0067587438970804214
+          },
+          "cpu_s": {
+            "first": 0.006135172000000466,
+            "warm_median": 0.006646120999999283,
+            "warm_min": 0.0060111710000008145,
+            "warm_max": 0.006760060999999595
+          }
+        },
+        "response_deserialize": {
+          "wall_s": {
+            "first": 0.003715754020959139,
+            "warm_median": 0.0038708671927452087,
+            "warm_min": 0.0037675448693335056,
+            "warm_max": 0.004109431058168411
+          },
+          "cpu_s": {
+            "first": 0.003709581000000739,
+            "warm_median": 0.003850381000001235,
+            "warm_min": 0.003815020999999419,
+            "warm_max": 0.00407827100000091
+          }
+        },
+        "response_decode": {
+          "wall_s": {
+            "first": 1.968452564906329,
+            "warm_median": 1.9501475431025028,
+            "warm_min": 1.9321003439836204,
+            "warm_max": 1.9736171080730855
+          },
+          "cpu_s": {
+            "first": 1.9728358890000006,
+            "warm_median": 1.953256923999998,
+            "warm_min": 1.9389525999999986,
+            "warm_max": 1.9792196200000003
+          }
+        },
+        "client_prepare": {
+          "wall_s": {
+            "first": 0.15571718150749803,
+            "warm_median": 0.15495991567149758,
+            "warm_min": 0.15478505240753293,
+            "warm_max": 0.15540108596906066
+          },
+          "cpu_s": {
+            "first": 0.1558591499999995,
+            "warm_median": 0.15569869999999852,
+            "warm_min": 0.15536735100000065,
+            "warm_max": 0.1561245710000012
+          }
+        },
+        "server_total": {
+          "wall_s": {
+            "first": 0.09993376303464174,
+            "warm_median": 0.09158632764592767,
+            "warm_min": 0.0882842936553061,
+            "warm_max": 0.0916635193862021
+          },
+          "cpu_s": {
+            "first": 0.10000685700000034,
+            "warm_median": 0.0920023539999999,
+            "warm_min": 0.088421364000002,
+            "warm_max": 0.09207029400000089
+          }
+        },
+        "client_finish": {
+          "wall_s": {
+            "first": 1.972168318927288,
+            "warm_median": 1.9542569741606712,
+            "warm_min": 1.935867888852954,
+            "warm_max": 1.9774879752658308
+          },
+          "cpu_s": {
+            "first": 1.9765454700000014,
+            "warm_median": 1.9573351949999989,
+            "warm_min": 1.942767620999998,
+            "warm_max": 1.9830700010000015
+          }
+        },
+        "client_top3": {
+          "wall_s": {
+            "first": 0.0018513472750782967,
+            "warm_median": 0.002058741170912981,
+            "warm_min": 0.001847557257860899,
+            "warm_max": 0.0020631509833037853
+          },
+          "cpu_s": {
+            "first": 0.0018512509999997206,
+            "warm_median": 0.0020595809999992554,
+            "warm_min": 0.0018475809999998205,
+            "warm_max": 0.0020630409999995436
+          }
+        },
+        "local_end_to_end": {
+          "wall_s": {
+            "first": 2.230343104340136,
+            "warm_median": 2.200662505812943,
+            "warm_min": 2.185811541043222,
+            "warm_max": 2.2268811650574207
+          },
+          "cpu_s": {
+            "first": 2.2349248280000005,
+            "warm_median": 2.2046042200000002,
+            "warm_min": 2.193828986999998,
+            "warm_max": 2.2334505569999994
+          }
+        },
+        "client_total": {
+          "wall_s": {
+            "first": 2.1297368477098644,
+            "warm_median": 2.1112800408154726,
+            "warm_min": 2.0931165320798755,
+            "warm_max": 2.1343317688442767
+          },
+          "cpu_s": {
+            "first": 2.1342558710000006,
+            "warm_median": 2.115096935999997,
+            "warm_min": 2.100739772999999,
+            "warm_max": 2.1404969330000014
+          }
+        }
+      },
+      "top3": [
+        {
+          "index": 0,
+          "distance": 0
+        },
+        {
+          "index": 8191,
+          "distance": 0
+        },
+        {
+          "index": 2654,
+          "distance": 217
+        }
+      ],
+      "all_distances_and_top3_correct": true
+    },
+    {
+      "variant": "paillier-lookup-gpu",
+      "vectors": 8192,
+      "embed_len": 512,
+      "config": {
+        "message_chunks": 256,
+        "alpha_len": 50,
+        "embed_len": 512,
+        "key_len": 1024,
+        "actual_modulus_bits": 2048,
+        "gpu_max_key_len": 1024
+      },
+      "server_backend": "CUDA public multiplication",
+      "private_backend": "existing GPU client",
+      "client_device": "gpu",
+      "server_device": "gpu",
+      "setup_timings": {
+        "key_generation": {
+          "wall_s": 3.0694949333555996,
+          "cpu_s": 3.0813273479999985
+        },
+        "public_key_export": {
+          "wall_s": 0.007188702933490276,
+          "cpu_s": 0.007215542000000852
+        },
+        "public_key_import": {
+          "wall_s": 2.776132896542549e-05,
+          "cpu_s": 2.7840000001333465e-05
+        },
+        "index_encrypt": {
+          "wall_s": 0.1940678721293807,
+          "cpu_s": 0.19469693199999938
+        },
+        "index_serialize": {
+          "wall_s": 0.005224862601608038,
+          "cpu_s": 0.005225860999999554
+        },
+        "index_deserialize": {
+          "wall_s": 0.004192513879388571,
+          "cpu_s": 0.004256820999998467
+        }
+      },
+      "setup_sizes": {
+        "public_keys_bytes": 4353,
+        "encrypted_index_bytes": 4226999
+      },
+      "index_ciphertexts": 8192,
+      "samples": [
+        {
+          "repeat": 0,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.004411296918988228,
+              "cpu_s": 0.0044117410000019674
+            },
+            "query_serialize": {
+              "wall_s": 1.7260201275348663e-05,
+              "cpu_s": 1.7320000001319613e-05
+            },
+            "query_deserialize": {
+              "wall_s": 9.160023182630539e-06,
+              "cpu_s": 9.199999997377972e-06
+            },
+            "server_evaluate": {
+              "wall_s": 0.3590154768899083,
+              "cpu_s": 0.3613813539999988
+            },
+            "response_serialize": {
+              "wall_s": 0.005459658335894346,
+              "cpu_s": 0.005460161999998547
+            },
+            "response_deserialize": {
+              "wall_s": 0.0037464741617441177,
+              "cpu_s": 0.0037468009999983565
+            },
+            "response_decode": {
+              "wall_s": 0.17856924515217543,
+              "cpu_s": 0.17939763600000092
+            },
+            "client_prepare": {
+              "wall_s": 0.0044285571202635765,
+              "cpu_s": 0.004429061000003287
+            },
+            "server_total": {
+              "wall_s": 0.3644842952489853,
+              "cpu_s": 0.36685071599999475
+            },
+            "client_finish": {
+              "wall_s": 0.18231571931391954,
+              "cpu_s": 0.18314443699999927
+            },
+            "client_top3": {
+              "wall_s": 0.0018614870496094227,
+              "cpu_s": 0.001861419999997338
+            },
+            "local_end_to_end": {
+              "wall_s": 0.5538846254348755,
+              "cpu_s": 0.5570708550000028
+            },
+            "client_total": {
+              "wall_s": 0.18860576348379254,
+              "cpu_s": 0.1894349179999999
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 4227007,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 8192,
+            "download_bytes": 4227007,
+            "query_plus_response_bytes": 4227551
+          },
+          "correct": true
+        },
+        {
+          "repeat": 1,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.005053000990301371,
+              "cpu_s": 0.0050429220000012265
+            },
+            "query_serialize": {
+              "wall_s": 1.7540063709020615e-05,
+              "cpu_s": 1.7580000001515828e-05
+            },
+            "query_deserialize": {
+              "wall_s": 8.980277925729752e-06,
+              "cpu_s": 9.00999999942087e-06
+            },
+            "server_evaluate": {
+              "wall_s": 0.34213824197649956,
+              "cpu_s": 0.34310933899999796
+            },
+            "response_serialize": {
+              "wall_s": 0.007514158729463816,
+              "cpu_s": 0.007533102000000014
+            },
+            "response_deserialize": {
+              "wall_s": 0.0037840851582586765,
+              "cpu_s": 0.003784661000000966
+            },
+            "response_decode": {
+              "wall_s": 0.1699322434142232,
+              "cpu_s": 0.1702799249999991
+            },
+            "client_prepare": {
+              "wall_s": 0.005070541054010391,
+              "cpu_s": 0.005060502000002742
+            },
+            "server_total": {
+              "wall_s": 0.3496613809838891,
+              "cpu_s": 0.3506514509999974
+            },
+            "client_finish": {
+              "wall_s": 0.17371632857248187,
+              "cpu_s": 0.17406458600000008
+            },
+            "client_top3": {
+              "wall_s": 0.0021622618660330772,
+              "cpu_s": 0.002179081000001304
+            },
+            "local_end_to_end": {
+              "wall_s": 0.5321149928495288,
+              "cpu_s": 0.533450460000001
+            },
+            "client_total": {
+              "wall_s": 0.18094913149252534,
+              "cpu_s": 0.18130416900000412
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 4227008,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 8192,
+            "download_bytes": 4227008,
+            "query_plus_response_bytes": 4227552
+          },
+          "correct": true
+        },
+        {
+          "repeat": 2,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.004815344698727131,
+              "cpu_s": 0.004833921000003016
+            },
+            "query_serialize": {
+              "wall_s": 1.9029714167118073e-05,
+              "cpu_s": 1.9070000000454e-05
+            },
+            "query_deserialize": {
+              "wall_s": 9.469687938690186e-06,
+              "cpu_s": 9.519999998985895e-06
+            },
+            "server_evaluate": {
+              "wall_s": 0.34184855688363314,
+              "cpu_s": 0.34364431000000195
+            },
+            "response_serialize": {
+              "wall_s": 0.005783363711088896,
+              "cpu_s": 0.006006490999997283
+            },
+            "response_deserialize": {
+              "wall_s": 0.0038408860564231873,
+              "cpu_s": 0.0038412410000034924
+            },
+            "response_decode": {
+              "wall_s": 0.17435533134266734,
+              "cpu_s": 0.17502068599999987
+            },
+            "client_prepare": {
+              "wall_s": 0.004834374412894249,
+              "cpu_s": 0.00485299100000347
+            },
+            "server_total": {
+              "wall_s": 0.3476413902826607,
+              "cpu_s": 0.3496603209999982
+            },
+            "client_finish": {
+              "wall_s": 0.17819621739909053,
+              "cpu_s": 0.17886192700000336
+            },
+            "client_top3": {
+              "wall_s": 0.0018457970581948757,
+              "cpu_s": 0.0018457709999992744
+            },
+            "local_end_to_end": {
+              "wall_s": 0.5335009410046041,
+              "cpu_s": 0.5362160100000004
+            },
+            "client_total": {
+              "wall_s": 0.18487638887017965,
+              "cpu_s": 0.1855606890000061
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 4227012,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 8192,
+            "download_bytes": 4227012,
+            "query_plus_response_bytes": 4227556
+          },
+          "correct": true
+        },
+        {
+          "repeat": 3,
+          "timings": {
+            "query_encrypt": {
+              "wall_s": 0.0053066350519657135,
+              "cpu_s": 0.0053284409999996285
+            },
+            "query_serialize": {
+              "wall_s": 2.035079523921013e-05,
+              "cpu_s": 2.0430000002846782e-05
+            },
+            "query_deserialize": {
+              "wall_s": 1.0049901902675629e-05,
+              "cpu_s": 1.0089999999962629e-05
+            },
+            "server_evaluate": {
+              "wall_s": 0.34417466213926673,
+              "cpu_s": 0.3462135499999981
+            },
+            "response_serialize": {
+              "wall_s": 0.00640786811709404,
+              "cpu_s": 0.006409052000002191
+            },
+            "response_deserialize": {
+              "wall_s": 0.003754034638404846,
+              "cpu_s": 0.0037542909999999097
+            },
+            "response_decode": {
+              "wall_s": 0.17459401628002524,
+              "cpu_s": 0.17510310599999812
+            },
+            "client_prepare": {
+              "wall_s": 0.005326985847204924,
+              "cpu_s": 0.005348871000002475
+            },
+            "server_total": {
+              "wall_s": 0.35059258015826344,
+              "cpu_s": 0.35263269200000025
+            },
+            "client_finish": {
+              "wall_s": 0.1783480509184301,
+              "cpu_s": 0.17885739699999803
+            },
+            "client_top3": {
+              "wall_s": 0.0019027371890842915,
+              "cpu_s": 0.0019023599999989926
+            },
+            "local_end_to_end": {
+              "wall_s": 0.5372428651899099,
+              "cpu_s": 0.5398037999999978
+            },
+            "client_total": {
+              "wall_s": 0.1855777739547193,
+              "cpu_s": 0.1861086279999995
+            }
+          },
+          "sizes": {
+            "query_bytes": 544,
+            "response_bytes": 4227026,
+            "receipt_bytes": 0,
+            "response_ciphertexts": 8192,
+            "download_bytes": 4227026,
+            "query_plus_response_bytes": 4227570
+          },
+          "correct": true
+        }
+      ],
+      "summary": {
+        "query_encrypt": {
+          "wall_s": {
+            "first": 0.004411296918988228,
+            "warm_median": 0.005053000990301371,
+            "warm_min": 0.004815344698727131,
+            "warm_max": 0.0053066350519657135
+          },
+          "cpu_s": {
+            "first": 0.0044117410000019674,
+            "warm_median": 0.0050429220000012265,
+            "warm_min": 0.004833921000003016,
+            "warm_max": 0.0053284409999996285
+          }
+        },
+        "query_serialize": {
+          "wall_s": {
+            "first": 1.7260201275348663e-05,
+            "warm_median": 1.9029714167118073e-05,
+            "warm_min": 1.7540063709020615e-05,
+            "warm_max": 2.035079523921013e-05
+          },
+          "cpu_s": {
+            "first": 1.7320000001319613e-05,
+            "warm_median": 1.9070000000454e-05,
+            "warm_min": 1.7580000001515828e-05,
+            "warm_max": 2.0430000002846782e-05
+          }
+        },
+        "query_deserialize": {
+          "wall_s": {
+            "first": 9.160023182630539e-06,
+            "warm_median": 9.469687938690186e-06,
+            "warm_min": 8.980277925729752e-06,
+            "warm_max": 1.0049901902675629e-05
+          },
+          "cpu_s": {
+            "first": 9.199999997377972e-06,
+            "warm_median": 9.519999998985895e-06,
+            "warm_min": 9.00999999942087e-06,
+            "warm_max": 1.0089999999962629e-05
+          }
+        },
+        "server_evaluate": {
+          "wall_s": {
+            "first": 0.3590154768899083,
+            "warm_median": 0.34213824197649956,
+            "warm_min": 0.34184855688363314,
+            "warm_max": 0.34417466213926673
+          },
+          "cpu_s": {
+            "first": 0.3613813539999988,
+            "warm_median": 0.34364431000000195,
+            "warm_min": 0.34310933899999796,
+            "warm_max": 0.3462135499999981
+          }
+        },
+        "response_serialize": {
+          "wall_s": {
+            "first": 0.005459658335894346,
+            "warm_median": 0.00640786811709404,
+            "warm_min": 0.005783363711088896,
+            "warm_max": 0.007514158729463816
+          },
+          "cpu_s": {
+            "first": 0.005460161999998547,
+            "warm_median": 0.006409052000002191,
+            "warm_min": 0.006006490999997283,
+            "warm_max": 0.007533102000000014
+          }
+        },
+        "response_deserialize": {
+          "wall_s": {
+            "first": 0.0037464741617441177,
+            "warm_median": 0.0037840851582586765,
+            "warm_min": 0.003754034638404846,
+            "warm_max": 0.0038408860564231873
+          },
+          "cpu_s": {
+            "first": 0.0037468009999983565,
+            "warm_median": 0.003784661000000966,
+            "warm_min": 0.0037542909999999097,
+            "warm_max": 0.0038412410000034924
+          }
+        },
+        "response_decode": {
+          "wall_s": {
+            "first": 0.17856924515217543,
+            "warm_median": 0.17435533134266734,
+            "warm_min": 0.1699322434142232,
+            "warm_max": 0.17459401628002524
+          },
+          "cpu_s": {
+            "first": 0.17939763600000092,
+            "warm_median": 0.17502068599999987,
+            "warm_min": 0.1702799249999991,
+            "warm_max": 0.17510310599999812
+          }
+        },
+        "client_prepare": {
+          "wall_s": {
+            "first": 0.0044285571202635765,
+            "warm_median": 0.005070541054010391,
+            "warm_min": 0.004834374412894249,
+            "warm_max": 0.005326985847204924
+          },
+          "cpu_s": {
+            "first": 0.004429061000003287,
+            "warm_median": 0.005060502000002742,
+            "warm_min": 0.00485299100000347,
+            "warm_max": 0.005348871000002475
+          }
+        },
+        "server_total": {
+          "wall_s": {
+            "first": 0.3644842952489853,
+            "warm_median": 0.3496613809838891,
+            "warm_min": 0.3476413902826607,
+            "warm_max": 0.35059258015826344
+          },
+          "cpu_s": {
+            "first": 0.36685071599999475,
+            "warm_median": 0.3506514509999974,
+            "warm_min": 0.3496603209999982,
+            "warm_max": 0.35263269200000025
+          }
+        },
+        "client_finish": {
+          "wall_s": {
+            "first": 0.18231571931391954,
+            "warm_median": 0.17819621739909053,
+            "warm_min": 0.17371632857248187,
+            "warm_max": 0.1783480509184301
+          },
+          "cpu_s": {
+            "first": 0.18314443699999927,
+            "warm_median": 0.17885739699999803,
+            "warm_min": 0.17406458600000008,
+            "warm_max": 0.17886192700000336
+          }
+        },
+        "client_top3": {
+          "wall_s": {
+            "first": 0.0018614870496094227,
+            "warm_median": 0.0019027371890842915,
+            "warm_min": 0.0018457970581948757,
+            "warm_max": 0.0021622618660330772
+          },
+          "cpu_s": {
+            "first": 0.001861419999997338,
+            "warm_median": 0.0019023599999989926,
+            "warm_min": 0.0018457709999992744,
+            "warm_max": 0.002179081000001304
+          }
+        },
+        "local_end_to_end": {
+          "wall_s": {
+            "first": 0.5538846254348755,
+            "warm_median": 0.5335009410046041,
+            "warm_min": 0.5321149928495288,
+            "warm_max": 0.5372428651899099
+          },
+          "cpu_s": {
+            "first": 0.5570708550000028,
+            "warm_median": 0.5362160100000004,
+            "warm_min": 0.533450460000001,
+            "warm_max": 0.5398037999999978
+          }
+        },
+        "client_total": {
+          "wall_s": {
+            "first": 0.18860576348379254,
+            "warm_median": 0.18487638887017965,
+            "warm_min": 0.18094913149252534,
+            "warm_max": 0.1855777739547193
+          },
+          "cpu_s": {
+            "first": 0.1894349179999999,
+            "warm_median": 0.1855606890000061,
+            "warm_min": 0.18130416900000412,
+            "warm_max": 0.1861086279999995
+          }
+        }
+      },
+      "top3": [
+        {
+          "index": 0,
+          "distance": 0
+        },
+        {
+          "index": 8191,
+          "distance": 0
+        },
+        {
+          "index": 2654,
+          "distance": 217
+        }
+      ],
+      "all_distances_and_top3_correct": true
+    }
+  ],
+  "complete": true,
+  "process_resources": {
+    "whole_process_peak_rss_kib_linux": 325768,
+    "major_page_faults": 0,
+    "swaps": 0
+  },
+  "finished_utc": "2026-09-18T05:14:03.875608+00:00"
+}

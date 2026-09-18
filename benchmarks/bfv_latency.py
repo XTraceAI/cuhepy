@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Repeated CPU searches on reused BFV/Paillier indexes, with role-level timings.
+"""Repeated searches on reused BFV/Paillier indexes, with role-level timings.
 
 The raw BFV cases decrypt only honest, locally generated benchmark responses.
 The Nitro case uses the existing SYNTHETIC test CA: protocol costs, not AWS/TEE
@@ -39,13 +39,14 @@ from xtrace_sdk.x_vec.crypto.paillier_lookup_client import PaillierLookupClient
 
 T = TypeVar("T")
 Timings = dict[str, dict[str, float]]
-VARIANTS = (
+CPU_VARIANTS = (
     "paillier-cpu",
     "paillier-lookup-cpu",
     "bfv-8192",
     "bfv-16384",
     "bfv-nitro-local",
 )
+VARIANTS = (*CPU_VARIANTS, "paillier-gpu", "paillier-lookup-gpu")
 
 
 def measure(timings: Timings, name: str, fn: Callable[[], T]) -> T:
@@ -67,6 +68,8 @@ def raw_case(
     setup: Timings = {}
     n = len(vectors)
     native = variant.startswith("bfv-")
+    gpu = variant.endswith("-gpu")
+    device = "gpu" if gpu else "cpu"
     if native:
         config = bfv_review_policy().config()
         config["poly_modulus_degree"] = int(variant.split("-")[1])
@@ -75,13 +78,13 @@ def raw_case(
         )
         decoder = measure(setup, "private_context_import", lambda: BFVPrivateDecoder(client))
         stack.callback(decoder.close)
-    elif variant == "paillier-cpu":
-        client = measure(setup, "key_generation", lambda: PaillierClient(512, 1024, device="cpu"))
+    elif variant in ("paillier-cpu", "paillier-gpu"):
+        client = measure(setup, "key_generation", lambda: PaillierClient(512, 1024, device=device))
     else:
         client = measure(
             setup,
             "key_generation",
-            lambda: PaillierLookupClient(512, 1024, args.alpha_len, device="cpu"),
+            lambda: PaillierLookupClient(512, 1024, args.alpha_len, device=device),
         )
     config = json.loads(client.stringify_config())
     public = measure(setup, "public_key_export", client.stringify_pk)
@@ -100,6 +103,12 @@ def raw_case(
         pk = measure(setup, "public_key_import", lambda: json.loads(public))
         modulus = gmpy2.mpz(pk["n_squared"])
         config["actual_modulus_bits"] = int(pk["n"]).bit_length()
+        if gpu:
+            assert client.device == "gpu"  # Never silently benchmark a CPU fallback.
+            # This static evaluator receives only public data. Batch all chunks
+            # into one existing CUDA call instead of launching once per vector.
+            gpu_evaluate = type(client.client).encode_hamming_server
+            config["gpu_max_key_len"] = type(client.client).max_key_len()
     public = ""
     print(f"  encrypting {n} index vectors", file=sys.stderr, flush=True)
     index = measure(
@@ -111,8 +120,14 @@ def raw_case(
     server_index = measure(setup, "index_deserialize", lambda: unpack_packet(index_wire))
     info = {
         "config": config,
-        "server_backend": "residue" if native else "gmpy2 public multiplication",
-        "private_backend": "native" if native else "existing CPU client",
+        "server_backend": "residue"
+        if native
+        else ("CUDA public multiplication" if gpu else "gmpy2 public multiplication"),
+        "private_backend": "native"
+        if native
+        else ("existing GPU client" if gpu else "existing CPU client"),
+        "client_device": device,
+        "server_device": device,
         "setup_timings": setup,
         "setup_sizes": {
             "public_keys_bytes": public_bytes,
@@ -129,6 +144,20 @@ def raw_case(
         def evaluate() -> list[list[int]]:
             if native:
                 return server.encode_hamming_server_packed(server_query, server_index, n)
+            if gpu:
+                query_chunks = server_query * n
+                index_chunks = [c for row in server_index for c in row]
+                if variant == "paillier-gpu":
+                    products = gpu_evaluate(
+                        [format(c, "x") for c in query_chunks],
+                        [format(c, "x") for c in index_chunks],
+                        {"n_squared": format(int(modulus), "x")},
+                    )
+                    flat = [int(c, 16) for c in products]
+                else:
+                    flat = [int(c) for c in gpu_evaluate(query_chunks, index_chunks, pk)]
+                chunks = len(server_query)
+                return [flat[i : i + chunks] for i in range(0, len(flat), chunks)]
             return [
                 [int(gmpy2.mpz(a) * b % modulus) for a, b in zip(server_query, row, strict=True)]
                 for row in server_index
@@ -350,7 +379,7 @@ def environment() -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--num-vectors", type=int, nargs="+", default=[1024, 8192])
-    parser.add_argument("--variants", nargs="+", choices=VARIANTS, default=list(VARIANTS))
+    parser.add_argument("--variants", nargs="+", choices=VARIANTS, default=list(CPU_VARIANTS))
     parser.add_argument(
         "--repeats", type=int, default=4, help="One first search, then warm searches"
     )
@@ -373,13 +402,18 @@ def main() -> None:
         REPO_ROOT / "src/xtrace_sdk/x_vec/crypto/bfv_cpu_ext/Makefile",
         REPO_ROOT / "src/xtrace_sdk/x_vec/utils/xtrace_types.py",
         REPO_ROOT / "tests/x_vec/nitro_fixtures.py",
+        *REPO_ROOT.glob("src/xtrace_sdk/x_vec/crypto/paillier*_gpu_ext/*.cu"),
+        *REPO_ROOT.glob("src/xtrace_sdk/x_vec/crypto/paillier*_gpu_ext/*.so"),
+        *REPO_ROOT.glob("src/xtrace_sdk/x_vec/crypto/paillier*_gpu_ext/Makefile"),
     ]
     output: dict[str, Any] = {
         "environment": environment(),
         "command": sys.argv,
         "seed": args.seed,
         "measurement_notes": (
-            "CPU only; no equivalent-security claim. Sequential cases in recorded order, no concurrent "
+            "CPU BFV; explicit CPU or GPU Paillier backends, no equivalent-security claim. "
+            "CUDA calls are synchronous and include host/device copies and API conversions; process "
+            "CPU seconds do not measure GPU device work. Sequential cases in recorded order, no concurrent "
             "benchmarks/tests intended. Each case reuses one key/index with fresh randomized encryption "
             "of the same plaintext query per trial. First search separate from remaining warm trials; "
             "no p95/throughput claim. Wall and process CPU seconds; both logical roles run on this host. "
