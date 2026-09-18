@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/xtrace_orbital.gif" width="420" alt="cuhepy">
-
 # cuhepy
 
 <p><strong>GPU-accelerated homomorphic encryption in Python.<br>
@@ -44,8 +42,8 @@ Hamming distance without ever learning the vectors, the query, or the distances.
 pip install cuhepy
 ```
 
-Requires Python 3.11+. The CPU path has three dependencies (`gmpy2`, `numpy`,
-`pycryptodome`) and needs no GPU. Compiled backends are opt-in — see
+Requires Python 3.11+. The CPU path has four dependencies (`gmpy2`, `msgpack`,
+`numpy`, `pycryptodome`) and needs no GPU. Compiled backends are opt-in — see
 [Compiled backends](#compiled-backends).
 
 ## Quick start
@@ -171,7 +169,7 @@ src/cuhepy/
   paillier/   scheme.py · lookup.py · client.py · lookup_client.py · _gpu_ext/
   bfv/        scheme.py · evaluator.py · rns.py · native.py · client.py · _cpu_ext/
   hamming.py  base.py  device.py  keys.py  types.py  bench.py
-attacks/      runnable demonstrations of the findings below
+attacks/      runnable demonstrations of the findings above
 benchmarks/   measurement harness and recorded results
 docs/research/ security reviews and optimisation reports
 experiments/  SEAL cross-check, Nitro enclave evaluator
