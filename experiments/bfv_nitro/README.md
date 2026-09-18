@@ -16,8 +16,8 @@ for the protocol, evidence and remaining review work.
 
 | File | Responsibility |
 | --- | --- |
-| `src/cuhepy/bfv_attested_client.py` | Owner authorization, attested client/server sessions, receipt gate and protected client state |
-| `src/cuhepy/bfv_nitro.py` | AWS certificate/COSE verification, owner PCR policy and official NSM C-library adapter |
+| `src/cuhepy/hamming/bfv_attested.py` | Owner authorization, attested client/server sessions, receipt gate and protected client state |
+| `src/cuhepy/hamming/bfv_nitro.py` | AWS certificate/COSE verification, owner PCR policy and official NSM C-library adapter |
 | `service.py` | Fixed-policy evaluator entrypoint inside the enclave |
 | `transport.py` / `relay.py` | Bounded framing and untrusted TCP-to-vsock forwarding |
 | `client.py` | Owner-side synthetic end-to-end demonstration |

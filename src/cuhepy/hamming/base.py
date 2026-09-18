@@ -6,10 +6,10 @@ from cuhepy.types import EncryptedVector
 class HammingClientBase(ABC):
     """Abstract base class for homomorphic encryption clients used in encrypted Hamming distance search.
 
-    Concrete implementations (``PaillierClient``, ``PaillierLookupClient``) encrypt binary embedding
-    vectors on the client side, send the ciphertexts to XTrace, and later decrypt the encoded
-    Hamming distances returned by the server — without the server ever seeing plaintext vectors
-    or distances.
+    Concrete implementations (``PaillierClient``, ``PaillierLookupClient``, ``BFVClient``)
+    encrypt binary vectors, hand the ciphertexts to an evaluator holding only the public key,
+    and decrypt the encoded Hamming distances it returns — without the evaluator ever seeing
+    plaintext vectors or distances.
     """
 
     @abstractmethod
@@ -36,7 +36,7 @@ class HammingClientBase(ABC):
 
     @abstractmethod
     def decode_hamming_client_one(self, cipher: list[int | bytes]) -> int:
-        """Decrypt a single encrypted Hamming distance returned by the XTrace server.
+        """Decrypt a single encrypted Hamming distance returned by the evaluator.
 
         :param cipher: Encrypted Hamming encoding as returned by the server.
         :type cipher: list[int]
@@ -47,7 +47,7 @@ class HammingClientBase(ABC):
 
     @abstractmethod
     def decode_hamming_client_batch(self, ciphers: list[list[int | bytes]]) -> list[int]:
-        """Decrypt a batch of encrypted Hamming distances returned by the XTrace server.
+        """Decrypt a batch of encrypted Hamming distances returned by the evaluator.
 
         :param ciphers: List of encrypted Hamming encodings as returned by the server.
         :type ciphers: list[list[int]]

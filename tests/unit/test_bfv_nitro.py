@@ -20,7 +20,7 @@ import cbor2
 from Crypto.Signature import eddsa
 
 from tests.unit.nitro_fixtures import PCRS, SyntheticNitro, malformed_certificate
-from cuhepy.bfv import nitro
+from cuhepy.hamming import bfv_nitro as nitro
 from cuhepy.hamming.bfv_security import BFVProtocolError
 
 

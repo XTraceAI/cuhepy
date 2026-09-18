@@ -19,7 +19,7 @@ from gmpy2 import mpz
 from tests.unit.nitro_fixtures import PCRS, SyntheticNitro
 from tests.unit.test_bfv_guarded_client import deny_private, rebind_response
 from cuhepy.hamming import bfv_attested as attested
-from cuhepy.bfv import nitro
+from cuhepy.hamming import bfv_nitro as nitro
 from cuhepy.hamming.bfv import BFVClient
 from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,

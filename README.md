@@ -134,8 +134,8 @@ demonstrate it:
 - **BFV-01** — a decryption oracle recovers the BFV secret key from accept/reject
   feedback.
 
-`cuhepy.bfv.guarded_client`, `verified_client` and `attested_client` are
-experimental protocol layers that address BFV-01 at a trust and compute cost.
+`cuhepy.hamming.bfv_guarded`, `bfv_verified` and `bfv_attested` are experimental
+protocol layers that address BFV-01 at a trust and compute cost.
 Full write-ups: [`docs/research/paillier-security.md`](./docs/research/paillier-security.md)
 and [`docs/research/native-bfv-security.md`](./docs/research/native-bfv-security.md).
 
@@ -170,10 +170,13 @@ uv run python attacks/pl01_alpha_recovery.py          # recover a key from a pub
 ## Repository layout
 
 ```
-src/cuhepy/
-  paillier/   scheme.py · lookup.py · _gpu_ext/ · _lookup_gpu_ext/    ← primitives
-  bfv/        scheme.py · evaluator.py · rns.py · native.py · _cpu_ext/
-  hamming/    base.py · paillier.py · paillier_lookup.py · bfv.py     ← application
+src/cuhepy/                                          ← primitives
+  paillier/   scheme.py · lookup.py · _gpu_ext/ · _lookup_gpu_ext/
+  bfv/        scheme.py · evaluator.py · rns.py · native.py · private.py · _cpu_ext/
+  hamming/                                           ← application
+      base.py · paillier.py · paillier_lookup.py · bfv.py
+      bfv_security.py · bfv_assurance.py
+      bfv_guarded.py · bfv_verified.py · bfv_attested.py · bfv_nitro.py
   base.py  device.py  keys.py  types.py  bench.py
 attacks/      runnable demonstrations of the findings above
 benchmarks/   measurement harness and recorded results

@@ -14,7 +14,7 @@ from pathlib import Path
 from cuhepy.hamming.bfv_assurance import bfv_review_policy
 from cuhepy.hamming.bfv_attested import BFVAttestedClient
 from cuhepy.hamming.bfv import BFVClient
-from cuhepy.bfv.nitro import NitroAttestationPolicy
+from cuhepy.hamming.bfv_nitro import NitroAttestationPolicy
 
 from .transport import NitroRemote
 

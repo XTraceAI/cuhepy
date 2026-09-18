@@ -1,7 +1,8 @@
 """Native CPU BFV client for individual and packed encrypted Hamming distances.
 
-This implements the local HammingClientBase interface. The BFV wire format and
-packed index need corresponding server support before use with XTrace's HTTP API.
+This implements the HammingClientBase interface. The evaluator side runs
+in-process via BFVEvaluator / BFVServerBackend, or out-of-process via the
+Nitro experiment; any other transport must implement the same wire format.
 """
 
 import json

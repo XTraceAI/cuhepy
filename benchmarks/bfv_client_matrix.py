@@ -314,6 +314,8 @@ def main() -> None:
                 Path(__file__).resolve(),
                 *(REPO_ROOT / "src/cuhepy").glob("*client.py"),
                 *(REPO_ROOT / "src/cuhepy/bfv").glob("*.py"),
+                *(REPO_ROOT / "src/cuhepy/hamming").glob("*.py"),
+                *(REPO_ROOT / "src/cuhepy/paillier").glob("*.py"),
                 *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.h"),
                 *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.cpp"),
                 *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.so"),

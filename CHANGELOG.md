@@ -11,8 +11,16 @@ All notable changes to this project will be documented in this file.
   Goldwasser-Micali scheme have all been removed. What remains is the Paillier
   and BFV schemes, their CPU and compiled backends, the encrypted Hamming
   kernel, and the research material.
-- Layout is now scheme-major: `cuhepy.paillier.*`, `cuhepy.bfv.*`, with
-  `hamming`, `base`, `device`, `keys`, `types` and `bench` at the top level.
+- Layout separates primitives from the application built on them:
+  `cuhepy.paillier.*` and `cuhepy.bfv.*` hold the schemes and their backends,
+  and `cuhepy.hamming.*` holds the encrypted-search clients and BFV protocol
+  layers that were previously mixed in with them. Imports run application →
+  primitive only; the scheme packages no longer reference Hamming at all.
+  Moved: `paillier.client` → `hamming.paillier`, `paillier.lookup_client` →
+  `hamming.paillier_lookup`, `bfv.client` → `hamming.bfv`, and
+  `bfv.{guarded_client,verified_client,attested_client,security,assurance,nitro}`
+  → `hamming.bfv_{guarded,verified,attested,security,assurance,nitro}`.
+  `device`, `keys`, `types`, `base` and `bench` sit at the top level.
 - Runtime dependencies reduced to `gmpy2`, `numpy` and `pycryptodome`.
 - Sphinx removed; documentation is Markdown in `docs/`.
 

@@ -141,12 +141,12 @@ def main() -> None:
     sources = [
         Path(__file__).resolve(),
         REPO_ROOT / "benchmarks/bfv_client_matrix.py",
-        *crypto.glob("bfv*.py"),
-        *(crypto / "encryption").glob("bfv*.py"),
-        *(crypto / "bfv_cpu_ext").glob("*.cpp"),
-        *(crypto / "bfv_cpu_ext").glob("*.h"),
-        *(crypto / "bfv_cpu_ext").glob("*.so"),
-        crypto / "bfv_cpu_ext/Makefile",
+        *(crypto / "bfv").glob("*.py"),
+        *(crypto / "hamming").glob("*.py"),
+        *(crypto / "bfv/_cpu_ext").glob("*.cpp"),
+        *(crypto / "bfv/_cpu_ext").glob("*.h"),
+        *(crypto / "bfv/_cpu_ext").glob("*.so"),
+        crypto / "bfv/_cpu_ext/Makefile",
         REPO_ROOT / "src/cuhepy/types.py",
     ]
     output: dict[str, Any] = {

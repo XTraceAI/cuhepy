@@ -18,7 +18,7 @@ from cuhepy.hamming.bfv_attested import (
     NITRO_HELLO_BYTES,
     NITRO_QUERY_OVERHEAD,
 )
-from cuhepy.bfv.nitro import NitroNSM
+from cuhepy.hamming.bfv_nitro import NitroNSM
 from cuhepy.hamming.bfv_security import BFVProtocolError, _pack
 
 from .transport import REGISTER, ATTEST, SEARCH, ERROR, receive_header, receive_exact, send_frame

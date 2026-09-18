@@ -6,7 +6,6 @@ Supports addition, multiplication and SIMD slot batching.
 - :mod:`cuhepy.bfv.evaluator` / :mod:`~cuhepy.bfv.rns` / :mod:`~cuhepy.bfv.native`
   — evaluation backends, from a cached-GMP reference to compiled C++ RNS/NTT.
 - :mod:`cuhepy.bfv.private` — the separate private decoder backend.
-- :mod:`cuhepy.bfv.nitro` — AWS Nitro enclave attestation primitives.
 
 The encrypted-search application built on this scheme lives in
 :mod:`cuhepy.hamming`.

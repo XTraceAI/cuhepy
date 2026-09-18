@@ -18,7 +18,7 @@ from cuhepy.hamming.bfv_attested import (
     NITRO_QUERY_OVERHEAD,
     NITRO_RECEIPT_BYTES,
 )
-from cuhepy.bfv.nitro import MAX_NITRO_DOCUMENT_BYTES
+from cuhepy.hamming.bfv_nitro import MAX_NITRO_DOCUMENT_BYTES
 from cuhepy.hamming.bfv_security import (
     BFVExecutionPolicy,
     BFVProtocolError,

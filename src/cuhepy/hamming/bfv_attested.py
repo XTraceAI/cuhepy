@@ -23,7 +23,7 @@ from Crypto.Signature import eddsa
 from cuhepy.hamming.bfv_assurance import bfv_review_policy, hamming_noise_bound
 from cuhepy.hamming.bfv import BFVClient
 from cuhepy.hamming.bfv_guarded import _CIRCUIT
-from cuhepy.bfv.nitro import (
+from cuhepy.hamming.bfv_nitro import (
     MAX_NITRO_DOCUMENT_BYTES,
     NitroAttestationPolicy,
     NitroIdentity,

@@ -165,6 +165,8 @@ def main() -> None:
         REPO_ROOT / "benchmarks/bfv_client_matrix.py",
         *(REPO_ROOT / "src/cuhepy").glob("bfv*.py"),
         *(REPO_ROOT / "src/cuhepy/bfv").glob("*.py"),
+        *(REPO_ROOT / "src/cuhepy/hamming").glob("*.py"),
+        *(REPO_ROOT / "src/cuhepy/paillier").glob("*.py"),
         *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.cpp"),
         *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.h"),
         *(REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.so"),

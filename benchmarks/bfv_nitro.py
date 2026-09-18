@@ -30,7 +30,7 @@ from cuhepy.hamming.bfv_assurance import bfv_review_policy
 from cuhepy.hamming.bfv_attested import BFVAttestedClient, BFVAttestedServer
 from cuhepy.hamming.bfv import BFVClient
 from cuhepy.hamming.bfv_verified import BFVVerifiedServer
-from cuhepy.bfv.nitro import NitroAttestationPolicy
+from cuhepy.hamming.bfv_nitro import NitroAttestationPolicy
 
 
 def main():
@@ -54,7 +54,7 @@ def main():
             # This benchmark-only trust substitution is intentionally absent
             # from the SDK's public API and the measured service image.
             from tests.unit.nitro_fixtures import PCRS, SyntheticNitro
-            from cuhepy.bfv import nitro as bfv_nitro
+            from cuhepy.hamming import bfv_nitro
             issuer = SyntheticNitro()
             stack.enter_context(patch.object(bfv_nitro, "_AWS_ROOT_SHA256", issuer.root_digest))
             pins = NitroAttestationPolicy(PCRS)
