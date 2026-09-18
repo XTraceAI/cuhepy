@@ -37,6 +37,7 @@ All paths are relative to the repository root.
 | `tests/x_vec/test_bfv_evaluator.py` | Fused key-switch oracle, exact reference comparisons, validation and cache lifecycle tests |
 | `tests/x_vec/test_bfv_client.py` | Client, persistence, process separation, packing boundaries, default settings and optional SEAL comparison |
 | `benchmarks/bfv_client_matrix.py` | Native BFV and existing CPU Paillier/Lookup timing and wire-size comparison |
+| `benchmarks/bfv_latency.py` | Reused-index client/server CPU and CUDA latency, Lookup baselines and local Nitro protocol costs |
 | `benchmarks/bfv_server.py` | Native comparisons on identical encrypted inputs, with first/warm searches, optional SEAL comparison and profiles |
 
 The only shared cryptographic interface correction is to the return annotations
@@ -268,6 +269,11 @@ also rejects distances outside `[0, embed_len]`, but in-range errors can still
 occur if an unsupported circuit exhausts its noise.
 
 ## Tests and benchmarks
+
+The [repeated-search performance comparison](native-bfv-performance.md) measures the
+current client and server costs against both Paillier and Paillier-Lookup,
+including a separate local Nitro protocol case. Setup and network costs are
+kept explicit; the earlier measurements below remain historical records.
 
 ```bash
 .venv/bin/python -m pytest tests/x_vec/test_bfv_encryption.py \

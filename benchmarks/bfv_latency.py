@@ -69,6 +69,7 @@ def raw_case(
     n = len(vectors)
     native = variant.startswith("bfv-")
     gpu = variant.endswith("-gpu")
+    gpu_server = gpu and not args.gpu_client_cpu_server
     device = "gpu" if gpu else "cpu"
     if native:
         config = bfv_review_policy().config()
@@ -122,12 +123,12 @@ def raw_case(
         "config": config,
         "server_backend": "residue"
         if native
-        else ("CUDA public multiplication" if gpu else "gmpy2 public multiplication"),
+        else ("CUDA public multiplication" if gpu_server else "gmpy2 public multiplication"),
         "private_backend": "native"
         if native
         else ("existing GPU client" if gpu else "existing CPU client"),
         "client_device": device,
-        "server_device": device,
+        "server_device": "gpu" if gpu_server else "cpu",
         "setup_timings": setup,
         "setup_sizes": {
             "public_keys_bytes": public_bytes,
@@ -144,7 +145,7 @@ def raw_case(
         def evaluate() -> list[list[int]]:
             if native:
                 return server.encode_hamming_server_packed(server_query, server_index, n)
-            if gpu:
+            if gpu_server:
                 query_chunks = server_query * n
                 index_chunks = [c for row in server_index for c in row]
                 if variant == "paillier-gpu":
@@ -384,6 +385,11 @@ def main() -> None:
         "--repeats", type=int, default=4, help="One first search, then warm searches"
     )
     parser.add_argument("--alpha-len", type=int, default=50)
+    parser.add_argument(
+        "--gpu-client-cpu-server",
+        action="store_true",
+        help="For CUDA client variants, use public GMP server multiplication instead of CUDA",
+    )
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()

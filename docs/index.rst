@@ -82,6 +82,7 @@ Choose your path:
    :caption: Research
 
    research/native-bfv
+   research/native-bfv-performance
    research/native-bfv-ntt
    research/native-bfv-server
    research/native-bfv-residue
