@@ -6,6 +6,10 @@ are unchanged. The former CUDA implementation is retained as a selectable
 comparison path. The changes accelerate public server evaluation; client key
 generation/encryption/decryption remain CPU operations.
 
+For a comparison that also includes Paillier CPU/CUDA, lookup tables, client
+processing and response bytes, see the
+[complete local-search benchmark](bfv-paillier-performance.md).
+
 ## Why a faster NTT alone was insufficient
 
 The first implementation launched one kernel for every NTT stage. At N=16,384
