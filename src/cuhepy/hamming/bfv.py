@@ -9,7 +9,7 @@ import json
 from collections.abc import Sequence
 from dataclasses import asdict
 from numbers import Integral
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
 from cuhepy.device import DeviceMode
 from cuhepy.bfv.scheme import (
@@ -20,6 +20,9 @@ from cuhepy.bfv.scheme import (
 )
 from cuhepy.bfv.evaluator import BFVEvaluator, BFVServerBackend
 from cuhepy.bfv.native import BFVNativeServer
+
+if TYPE_CHECKING:
+    from cuhepy.bfv.cuda import BFVCudaIndex
 from cuhepy.hamming.base import HammingClientBase
 from cuhepy.types import (
     BFVCiphertext,
@@ -51,10 +54,12 @@ class BFVClient(HammingClientBase):
     :param server_backend: ``optimized`` (cached GMP), ``reference``, ``rns``
         (compiled arithmetic), ``native`` (complete C++ server evaluation), or
         ``residue`` (persistent RNS after the BFV tensor scale-and-round).
-        ``residue`` requires keys generated with ``rns_modulus=True``.
+        ``cuda`` runs this packed circuit on an optional CUDA server. Both
+        ``residue`` and ``cuda`` require keys generated with ``rns_modulus=True``.
+        Owner encryption/decryption remain on CPU (``device="cpu"``).
     :param rns_modulus: Use a product of 60-bit NTT primes for the ciphertext
         modulus. Requires fresh keys and a fresh encrypted index. Modulus bits
-        must be a multiple of 60 in [60, 480]. All backends can use these keys;
+        must be a multiple of 60 in [60, 480]. CPU backends can use these keys;
         the default prime-modulus configuration remains available.
     """
 
@@ -75,16 +80,18 @@ class BFVClient(HammingClientBase):
         if device not in ("cpu", "auto", "gpu"):
             raise ValueError("device must be 'auto', 'cpu', or 'gpu'")
         if device == "gpu":
-            raise NotImplementedError("Native BFV currently supports only the CPU backend")
+            raise NotImplementedError(
+                "BFV owner operations support only CPU; select server_backend='cuda' for GPU search"
+            )
         self.device = "cpu"
-        if server_backend not in ("optimized", "reference", "rns", "native", "residue"):
+        if server_backend not in ("optimized", "reference", "rns", "native", "residue", "cuda"):
             raise ValueError(
-                "server_backend must be 'optimized', 'reference', 'rns', 'native', or 'residue'"
+                "server_backend must be 'optimized', 'reference', 'rns', 'native', 'residue', or 'cuda'"
             )
         self.server_backend = server_backend
-        if server_backend == "residue" and not rns_modulus and not skip_key_gen:
+        if server_backend in ("residue", "cuda") and not rns_modulus and not skip_key_gen:
             raise ValueError(
-                "The residue backend requires fresh keys generated with rns_modulus=True"
+                "The residue and cuda backends require fresh keys generated with rns_modulus=True"
             )
         self._server_evaluator: BFVEvaluator | None = None
         self._evaluator_public_key: BFVPublicKey | None = None
@@ -160,6 +167,7 @@ class BFVClient(HammingClientBase):
 
     @staticmethod
     def has_gpu() -> bool:
+        """Owner encryption/decryption are CPU-only; see bfv.cuda.cuda_available."""
         return False
 
     def _native(self) -> BFVNativeServer:
@@ -172,7 +180,10 @@ class BFVClient(HammingClientBase):
             or self._native_server.padded_embed_len != self.padded_embed_len
             or self._native_server.response_modulus_bits != self.response_modulus_bits
         ):
-            self._native_server = BFVNativeServer(
+            from cuhepy.bfv.cuda import BFVCudaServer
+
+            server_class = BFVCudaServer if self.server_backend == "cuda" else BFVNativeServer
+            self._native_server = server_class(
                 arithmetic, self.padded_embed_len, self.response_modulus_bits
             )
         return self._native_server
@@ -314,7 +325,7 @@ class BFVClient(HammingClientBase):
         compact: bool = True,
     ) -> EncryptedVector:
         """Compute an encrypted distance using only public evaluation keys."""
-        if self.server_backend in ("native", "residue"):
+        if self.server_backend in ("native", "residue", "cuda"):
             return self._native().search(ct1, [ct2], 1, compact=compact)[0]
         pk = self._pk()
         result = self._distance_tile(
@@ -341,7 +352,7 @@ class BFVClient(HammingClientBase):
         pk = self._pk()
         capacity = self.vectors_per_ciphertext
         self._validate_count(vector_count, len(index), capacity)
-        if self.server_backend in ("native", "residue"):
+        if self.server_backend in ("native", "residue", "cuda"):
             return self._native().search(query, index, vector_count, compact=compact)
         query_ct = BFV.ciphertext_from_ints(query, pk)
         evaluator = self._evaluator()
@@ -372,6 +383,30 @@ class BFVClient(HammingClientBase):
                 combined = BFV.modulus_switch(combined, self.response_modulus_bits, pk)
             result.append(BFV.ciphertext_to_ints(combined, pk))
         return result
+
+    def prepare_cuda_index(
+        self, index: Sequence[Sequence[int | bytes]], vector_count: int
+    ) -> "BFVCudaIndex":
+        """Upload an immutable public index snapshot for repeated CUDA searches."""
+        from cuhepy.bfv.cuda import BFVCudaServer
+
+        if self.server_backend != "cuda":
+            raise ValueError("A prepared CUDA index requires server_backend='cuda'")
+        server = self._native()
+        assert isinstance(server, BFVCudaServer)
+        return server.prepare_index(index, vector_count)
+
+    def encode_hamming_server_prepared(
+        self, query: Sequence[int | bytes], index: "BFVCudaIndex", *, compact: bool = True
+    ) -> list[EncryptedVector]:
+        """Search a GPU snapshot; the original Python index is not read again."""
+        from cuhepy.bfv.cuda import BFVCudaServer
+
+        if self.server_backend != "cuda":
+            raise ValueError("A prepared CUDA index requires server_backend='cuda'")
+        server = self._native()
+        assert isinstance(server, BFVCudaServer)
+        return server.search_prepared(query, index, compact=compact)
 
     @staticmethod
     def _validate_count(count: int, ciphertexts: int, capacity: int) -> None:

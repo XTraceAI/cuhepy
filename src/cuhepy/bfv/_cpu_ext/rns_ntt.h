@@ -525,6 +525,9 @@ class SwitchKey {
 
 public:
     const std::shared_ptr<const Ring> ring;
+    // Read-only transformed public keys for optional accelerator plans. The
+    // owning SwitchKey keeps the coefficients alive; callers must not mutate them.
+    const std::vector<std::array<Residues, 2>>& transformed() const { return key_; }
     SwitchKey(std::shared_ptr<const Ring> ring, const std::vector<std::array<Polynomial, 2>>& key)
         : ring(std::move(ring)) {
         if (key.size() != this->ring->digits) throw std::invalid_argument("Incorrect gadget digit count");

@@ -1,0 +1,192 @@
+{
+  "environment": {
+    "revision": "12d7f7e1e4105503ae69a998cb48cfce06d17500",
+    "working_tree_dirty": true,
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "gmp": "GMP 6.3.0",
+    "gmpy2": "2.3.0",
+    "gpu": "NVIDIA GeForce RTX 3080, 10240 MiB, 580.173.02",
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2023 NVIDIA Corporation\nBuilt on Fri_Jan__6_16:45:21_PST_2023\nCuda compilation tools, release 12.0, V12.0.140\nBuild cuda_12.0.r12.0/compiler.32267302_0"
+  },
+  "config": {
+    "embed_len": 512,
+    "poly_modulus_degree": 16384,
+    "plain_modulus": 65537,
+    "coeff_modulus_bits": 180,
+    "decomposition_bits": 30,
+    "error_eta": 21,
+    "rns_modulus": true,
+    "response_modulus_bits": 50,
+    "device": "cpu"
+  },
+  "vectors": 8192,
+  "embed_len": 512,
+  "seed": 913,
+  "repeats": 3,
+  "notes": "Separate preliminary tile-batch tuning run on the same host, using one public-only fixture of 8192 distinct freshly encrypted vectors. Same parameters as the scaling run but separately generated keys. Each samples list contains one warmup followed by three measured raw/prepared searches; warm_medians exclude element zero. Host/compiler/config metadata copied from the final scaling run. Do not combine these samples with the later scaling medians.",
+  "measurements": [
+    {
+      "level": 2,
+      "batch": 32,
+      "setup_s": 0.24165665730834007,
+      "samples": {
+        "raw": [
+          0.33207752322778106,
+          0.3198969131335616,
+          0.3238001321442425,
+          0.3184270323254168
+        ],
+        "prepared": [
+          0.21888202987611294,
+          0.21589547907933593,
+          0.22067010728642344,
+          0.21609180327504873
+        ]
+      },
+      "warm_medians": {
+        "raw": 0.3198969131335616,
+        "prepared": 0.21609180327504873
+      }
+    },
+    {
+      "level": 3,
+      "batch": 8,
+      "setup_s": 0.12425371911376715,
+      "samples": {
+        "raw": [
+          0.27970792818814516,
+          0.28161174803972244,
+          0.2807071190327406,
+          0.27909956499934196
+        ],
+        "prepared": [
+          0.18679912202060223,
+          0.18782752333208919,
+          0.18726243171840906,
+          0.18761777924373746
+        ]
+      },
+      "warm_medians": {
+        "raw": 0.2807071190327406,
+        "prepared": 0.18761777924373746
+      }
+    },
+    {
+      "level": 3,
+      "batch": 16,
+      "setup_s": 0.12126033706590533,
+      "samples": {
+        "raw": [
+          0.27919642720371485,
+          0.2749489303678274,
+          0.2772765080444515,
+          0.27780930837616324
+        ],
+        "prepared": [
+          0.17972448701038957,
+          0.18122662790119648,
+          0.18260873574763536,
+          0.18083232874050736
+        ]
+      },
+      "warm_medians": {
+        "raw": 0.2772765080444515,
+        "prepared": 0.18122662790119648
+      }
+    },
+    {
+      "level": 3,
+      "batch": 32,
+      "setup_s": 0.11760704219341278,
+      "samples": {
+        "raw": [
+          0.28157006623223424,
+          0.27922621788457036,
+          0.2780035133473575,
+          0.27830129908397794
+        ],
+        "prepared": [
+          0.18189682206138968,
+          0.1802709880284965,
+          0.1811315449886024,
+          0.17901364201679826
+        ]
+      },
+      "warm_medians": {
+        "raw": 0.27830129908397794,
+        "prepared": 0.1802709880284965
+      }
+    },
+    {
+      "level": 3,
+      "batch": 64,
+      "setup_s": 0.23358968226239085,
+      "samples": {
+        "raw": [
+          0.31513870414346457,
+          0.3183943210169673,
+          0.312472659163177,
+          0.3119248477742076
+        ],
+        "prepared": [
+          0.18713190918788314,
+          0.18503473605960608,
+          0.18459096597507596,
+          0.18666889006271958
+        ]
+      },
+      "warm_medians": {
+        "raw": 0.312472659163177,
+        "prepared": 0.18503473605960608
+      }
+    },
+    {
+      "level": 3,
+      "batch": 128,
+      "setup_s": 0.2350035710260272,
+      "samples": {
+        "raw": [
+          0.3419145126827061,
+          0.3417134191840887,
+          0.33659988502040505,
+          0.33839626098051667
+        ],
+        "prepared": [
+          0.18947065621614456,
+          0.18984025390818715,
+          0.18989026499912143,
+          0.18842537514865398
+        ]
+      },
+      "warm_medians": {
+        "raw": 0.33839626098051667,
+        "prepared": 0.18984025390818715
+      }
+    },
+    {
+      "level": 3,
+      "batch": 256,
+      "setup_s": 0.2285177269950509,
+      "samples": {
+        "raw": [
+          0.4116019322536886,
+          0.4214099030941725,
+          0.4099516379646957,
+          0.4194793435744941
+        ],
+        "prepared": [
+          0.19410686194896698,
+          0.19488961808383465,
+          0.19238899601623416,
+          0.1958641679957509
+        ]
+      },
+      "warm_medians": {
+        "raw": 0.4194793435744941,
+        "prepared": 0.19488961808383465
+      }
+    }
+  ],
+  "samples_include_warmup": true
+}

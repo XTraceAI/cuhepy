@@ -21,6 +21,7 @@ class CustomBuildHook(BuildHookInterface):
             "src/cuhepy/paillier/_gpu_ext/*.so",
             "src/cuhepy/paillier/_lookup_gpu_ext/*.so",
             "src/cuhepy/bfv/_cpu_ext/*.so",
+            "src/cuhepy/bfv/_gpu_ext/*.so",
         ]
         has_binary = any(
             glob.glob(os.path.join(self.root, pattern)) for pattern in native_so_globs
