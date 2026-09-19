@@ -20,6 +20,7 @@ class BFVNativeServer:
         self, arithmetic: BFVRNSArithmetic, padded_embed_len: int, response_modulus_bits: int
     ) -> None:
         self.arithmetic = arithmetic
+        self._extension = self._load_extension(arithmetic)
         self.padded_embed_len = padded_embed_len
         self.response_modulus_bits = response_modulus_bits
         pk = arithmetic._pk
@@ -47,13 +48,17 @@ class BFVNativeServer:
         } - {1}
         if not exponents.issubset(pk["galois_keys"]):
             raise ValueError("Public key lacks native server rotation keys")
-        self._server = arithmetic._native.create_server(
+        self._server = self._extension.create_server(
             arithmetic._prepare_key(0, pk["relin_key"]),
             tuple((g, arithmetic._prepare_key(g, pk["galois_keys"][g])) for g in sorted(exponents)),
             padded_embed_len,
             pk["params"].plain_modulus,
             format(self._target, "x"),
         )
+
+    @staticmethod
+    def _load_extension(arithmetic: BFVRNSArithmetic) -> Any:
+        return arithmetic._native
 
     def _wire(self, values: Sequence[int | bytes]) -> tuple[bytes, bytes]:
         if len(values) != 8:
@@ -101,10 +106,12 @@ class BFVNativeServer:
             vector_count,
             compact,
         )
-        native = self.arithmetic._native
+        native = self._extension
         if profile is None:
             packed = native.packed_search(*args)
         else:
+            if not hasattr(native, "profile_packed_search"):
+                raise ValueError("Native phase profiling is unavailable for this backend")
             packed, timings = native.profile_packed_search(*args)
             profile.update(timings)
         q = self._target if compact else self.arithmetic._pk["q"]
@@ -115,4 +122,4 @@ class BFVNativeServer:
 
     def cache_bytes(self) -> int:
         """Payload of prepared plaintext tables and mask, excluding evaluation keys."""
-        return self.arithmetic._native.server_bytes(self._server)
+        return self._extension.server_bytes(self._server)

@@ -6,6 +6,9 @@
 #include "bfv_residue.h"
 #include "packed_wire.h"
 #include <string>
+#ifdef XTRACE_BFV_CUDA
+#include "../_gpu_ext/server.cuh"
+#endif
 
 using namespace xtrace_bfv;
 namespace {
@@ -14,7 +17,11 @@ using KeyPtr = std::shared_ptr<const SwitchKey>;
 using ServerPtr = std::shared_ptr<const HammingServer>;
 constexpr const char* ring_name = "xtrace.bfv.rns.ring.v1";
 constexpr const char* key_name = "xtrace.bfv.rns.key.v1";
+#ifdef XTRACE_BFV_CUDA
+constexpr const char* server_name = "xtrace.bfv.cuda.server.v1";
+#else
 constexpr const char* server_name = "xtrace.bfv.server.v1";
+#endif
 
 struct PythonError {};
 struct WithoutGIL {
@@ -305,9 +312,14 @@ PyObject* create_server(PyObject*, PyObject* args) {
         }
         ServerPtr server;
         { WithoutGIL release;
+#ifdef XTRACE_BFV_CUDA
+          server = std::make_shared<gpu::CudaServer>(relin, std::move(keys), padded, t, target);
+#else
           if (ring.residue_prime_count)
               server = std::make_shared<ResidueServer>(relin, std::move(keys), padded, t, target);
-          else server = std::make_shared<HammingServer>(relin, std::move(keys), padded, t, target); }
+          else server = std::make_shared<HammingServer>(relin, std::move(keys), padded, t, target);
+#endif
+        }
         return capsule(std::move(server), server_name);
     });
 }
@@ -402,6 +414,23 @@ PyObject* profile_call(PyObject*, PyObject* callback) {
     return profiled([](PyObject*, PyObject* value) { return PyObject_CallNoArgs(value); }, callback);
 }
 
+#ifdef XTRACE_BFV_CUDA
+PyObject* available(PyObject*, PyObject*) {
+    int count = 0;
+    auto status = cudaGetDeviceCount(&count);
+    if (status != cudaSuccess) cudaGetLastError();
+    return PyBool_FromLong(status == cudaSuccess && count > 0);
+}
+PyMethodDef methods[] = {
+    {"available", available, METH_NOARGS, "Whether a CUDA device is available."},
+    {"create_server", create_server, METH_VARARGS, "Prepare public CUDA tables and evaluation keys."},
+    {"packed_search", packed_search, METH_VARARGS, "Evaluate the packed Hamming circuit on CUDA."},
+    {"server_bytes", server_bytes, METH_O, "GPU plan bytes, including transformed evaluation keys."},
+    {nullptr, nullptr, 0, nullptr}
+};
+PyModuleDef module = {PyModuleDef_HEAD_INIT, "_bfv_cuda", "Experimental public BFV CUDA server.", -1,
+                      methods, nullptr, nullptr, nullptr, nullptr};
+#else
 PyMethodDef methods[] = {
     {"create_ring", create_ring, METH_VARARGS, "Prepare exact CRT bases and negacyclic NTT tables."},
     {"compile_key", compile_key, METH_VARARGS, "Cache a gadget key in RNS/NTT form."},
@@ -422,9 +451,14 @@ PyMethodDef methods[] = {
 };
 PyModuleDef module = {PyModuleDef_HEAD_INIT, "_bfv_rns", "Native BFV RNS/NTT CPU kernels.", -1,
                       methods, nullptr, nullptr, nullptr, nullptr};
+#endif
 } // namespace
 
+#ifdef XTRACE_BFV_CUDA
+PyMODINIT_FUNC PyInit__bfv_cuda() {
+#else
 PyMODINIT_FUNC PyInit__bfv_rns() {
+#endif
     PyObject* result = PyModule_Create(&module);
     if (result && PyModule_AddIntConstant(result, "ABI_VERSION", 4) < 0) {
         Py_DECREF(result); return nullptr;

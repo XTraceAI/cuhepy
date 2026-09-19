@@ -2,8 +2,9 @@
 """Compare native BFV server backends on identical keys, queries, and index bytes.
 
 The first search includes lazy evaluation-key preparation. Subsequent searches
-reuse the same public-only server. No SEAL, network, GPU or secret server key is
-required. Run without concurrent tests/benchmarks for useful timing comparisons.
+reuse the same public-only server. No SEAL, network or secret server key is
+required. The optional cuda backend requires the compiled CUDA extension and a
+compatible GPU. Run without concurrent tests/benchmarks for useful timings.
 """
 
 from __future__ import annotations
@@ -60,7 +61,7 @@ def main() -> None:
     parser.add_argument(
         "--backends",
         default="reference,optimized",
-        help="Comma-separated native backends: reference,optimized,rns,native,residue",
+        help="Comma-separated native backends: reference,optimized,rns,native,residue,cuda",
     )
     parser.add_argument(
         "--seal",
@@ -84,15 +85,17 @@ def main() -> None:
     if (
         not names
         or len(set(names)) != len(names)
-        or any(b not in ("reference", "optimized", "rns", "native", "residue") for b in names)
+        or any(
+            b not in ("reference", "optimized", "rns", "native", "residue", "cuda") for b in names
+        )
     ):
         parser.error("backends must be distinct native backend names")
     if args.seal and (args.poly_modulus_degree != 8192 or args.plain_modulus != 65537):
         parser.error("the SEAL comparison requires N=8192 and t=65537")
     if args.native_profile and not any(b in ("rns", "native", "residue") for b in names):
         parser.error("native-profile requires the rns, native, or residue backend")
-    if "residue" in names and not args.rns_modulus:
-        parser.error("residue requires --rns-modulus (fresh keys and index)")
+    if {"residue", "cuda"}.intersection(names) and not args.rns_modulus:
+        parser.error("residue/cuda require --rns-modulus (fresh keys and index)")
     levels = args.residue_levels.split(",")
     if len(set(levels)) != len(levels) or any(level not in ("0", "1", "2") for level in levels):
         parser.error("residue-levels must contain distinct values from 0,1,2")
@@ -130,7 +133,11 @@ def main() -> None:
     for label, (actual_backend, level) in variants.items():
         server = BFVClient(skip_key_gen=True, server_backend=actual_backend, **config)
         setup[f"{label}_public_key_import_s"], _ = time_call(
-            partial(server.load_stringified_keys, public_json)
+            # This benchmark generated the key locally. Admit its measured size
+            # without weakening the library's default limit for untrusted keys.
+            partial(
+                server.load_stringified_keys, public_json, max_public_key_chars=len(public_json)
+            )
         )
         setup[f"{label}_arithmetic_context_s"], server._server_evaluator = time_call(
             partial(BFVEvaluator, server._pk(), actual_backend, kernel_level=level)
@@ -261,14 +268,31 @@ def main() -> None:
         REPO_ROOT / "src/cuhepy/bfv/_cpu_ext/Makefile",
         REPO_ROOT / "src/cuhepy/types.py",
     ]
-    if any(b in ("rns", "native", "residue") for b, _ in variants.values()):
+    if any(b in ("rns", "native", "residue", "cuda") for b, _ in variants.values()):
         source_paths.extend((REPO_ROOT / "src/cuhepy/bfv/_cpu_ext").glob("*.so"))
+    if "cuda" in names:
+        source_paths.append(REPO_ROOT / "src/cuhepy/bfv/cuda.py")
+        source_paths.extend(
+            p for p in (REPO_ROOT / "src/cuhepy/bfv/_gpu_ext").iterdir() if p.is_file()
+        )
     if args.seal:
         source_paths.append(REPO_ROOT / "experiments/bfv/packed_hamming.py")
     output: dict[str, Any] = {
         "environment": {
             "utc": datetime.now(UTC).isoformat(),
             "python": platform.python_version(),
+            "gpu": subprocess.run(
+                [
+                    "nvidia-smi",
+                    "--query-gpu=name,memory.total,driver_version",
+                    "--format=csv,noheader",
+                ],
+                capture_output=True,
+                text=True,
+                check=True,
+            ).stdout.strip()
+            if "cuda" in names
+            else None,
             "platform": platform.platform(),
             "gmpy2": gmpy2.version(),
             "gmp": gmpy2.mp_version(),
@@ -290,7 +314,7 @@ def main() -> None:
             ),
         },
         "command": sys.argv,
-        "measurement_notes": "One CPU process, identical public keys and encrypted inputs for all native backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, arithmetic context creation (reported under setup), key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
+        "measurement_notes": "One host process, identical public keys and encrypted inputs for all native backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, arithmetic context creation (reported under setup), key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. CUDA includes index/query host-to-device transfers, response device-to-host transfers, scratch allocations and synchronization; the index is uploaded on every search. CUDA context initialization occurs in its first search. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
         "backend_variants": variants,
         "config": config,
         "ciphertext_modulus_hex": format(client._pk()["q"], "x"),
@@ -335,12 +359,12 @@ def main() -> None:
             backend: {
                 **server._evaluator().cache_info(),
                 "server_plan_bytes": server._native().cache_bytes()
-                if variants[backend][0] in ("native", "residue")
+                if variants[backend][0] in ("native", "residue", "cuda")
                 else 0,
             }
             for backend, server in servers.items()
         },
-        "cache_size_note": "Additional to the existing public key: GMP object payloads including folding constants, or native NTT coefficient arrays and transform tables. Excludes containers, CRT constants and transient allocations; not peak RSS.",
+        "cache_size_note": "Additional to the existing public key: GMP object payloads including folding constants, or native NTT coefficient arrays and transform tables. Excludes containers, CRT constants and transient allocations; not peak RSS. CUDA server_plan_bytes includes GPU transformed keys and tables, excluding per-search scratch; CPU plan bytes exclude evaluation keys (reported separately).",
         "minimum_response_noise_budget_bits": min(
             BFV.noise_budget(BFV.ciphertext_from_ints(ct, client._pk()), client._keys())
             for ct in reference_response

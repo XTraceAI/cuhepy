@@ -157,6 +157,13 @@ forces a backend.
 **C++ RNS/NTT (BFV)** — `make -C src/cuhepy/bfv/_cpu_ext`. Select it with
 `BFVClient(server_backend="rns" | "native" | "residue")`.
 
+**CUDA packed BFV server (experimental)** — build the CPU extension and then
+`make -C src/cuhepy/bfv/_gpu_ext`. Select `server_backend="cuda"` with
+`rns_modulus=True`; owner encryption/decryption remain on CPU. See the
+[CUDA implementation, parameter limits and measurements](docs/research/bfv-cuda-server.md).
+The current Nitro attestation signer rejects this backend because its protocol
+does not establish trust in execution on an external GPU.
+
 ## Verify it yourself
 
 Everything runs offline, no account or service required:

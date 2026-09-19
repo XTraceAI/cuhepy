@@ -1,0 +1,244 @@
+{
+  "environment": {
+    "utc": "2026-09-19T05:51:59.310494+00:00",
+    "python": "3.12.3",
+    "gpu": "NVIDIA GeForce RTX 3080, 10240 MiB, 580.173.02",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "gmpy2": "2.3.0",
+    "gmp": "GMP 6.3.0",
+    "revision": "6a8fc29419b2ff881d05171d7e40c6098dca4b96",
+    "working_tree_dirty": true
+  },
+  "command": [
+    "benchmarks/bfv_server.py",
+    "--num-vectors",
+    "8192",
+    "--embed-len",
+    "512",
+    "--poly-modulus-degree",
+    "16384",
+    "--rns-modulus",
+    "--backends",
+    "residue,cuda",
+    "--repeats",
+    "4",
+    "--json-out",
+    "/tmp/bfv-cuda-8192-n16384.json"
+  ],
+  "measurement_notes": "One host process, identical public keys and encrypted inputs for all native backends. Server times include native ciphertext decoding/encoding, terminal modulus switching and lazy cache preparation; exclude outer MessagePack, arithmetic context creation (reported under setup), key import, encryption and client decryption. First search starts with empty key and mask caches. Warm searches reuse these caches. CUDA includes index/query host-to-device transfers, response device-to-host transfers, scratch allocations and synchronization; the index is uploaded on every search. CUDA context initialization occurs in its first search. Order alternates. Profiles, if requested, are additional untimed searches. No network or equal-security comparison to other schemes.",
+  "backend_variants": {
+    "residue": [
+      "residue",
+      2
+    ],
+    "cuda": [
+      "cuda",
+      null
+    ]
+  },
+  "config": {
+    "embed_len": 512,
+    "poly_modulus_degree": 16384,
+    "plain_modulus": 65537,
+    "coeff_modulus_bits": 180,
+    "decomposition_bits": 30,
+    "error_eta": 21,
+    "rns_modulus": true,
+    "response_modulus_bits": 50,
+    "device": "cpu"
+  },
+  "ciphertext_modulus_hex": "ffffffffff800030000013bff00002ff10013bff80001",
+  "ciphertext_modulus_primes": [
+    1152921504606748673,
+    1152921504606683137,
+    1152921504606584833
+  ],
+  "seed": 1337,
+  "vectors": 8192,
+  "setup_timings": {
+    "key_generation_s": 8.82451938977465,
+    "index_encrypt_s": 55.45163005311042,
+    "query_encrypt_s": 0.2075122338719666,
+    "public_key_export_s": 1.6529110972769558,
+    "residue_public_key_import_s": 2.863048944622278,
+    "residue_arithmetic_context_s": 0.0033344789408147335,
+    "cuda_public_key_import_s": 2.9474572809413075,
+    "cuda_arithmetic_context_s": 0.0022993041202425957
+  },
+  "runs": [
+    {
+      "backend": "residue",
+      "repeat": 0,
+      "server_compute_s": 20.81241727527231
+    },
+    {
+      "backend": "cuda",
+      "repeat": 0,
+      "server_compute_s": 1.9352747821249068
+    },
+    {
+      "backend": "cuda",
+      "repeat": 1,
+      "server_compute_s": 0.8776198588311672
+    },
+    {
+      "backend": "residue",
+      "repeat": 1,
+      "server_compute_s": 20.127716010902077
+    },
+    {
+      "backend": "residue",
+      "repeat": 2,
+      "server_compute_s": 20.190901083871722
+    },
+    {
+      "backend": "cuda",
+      "repeat": 2,
+      "server_compute_s": 0.8897487330250442
+    },
+    {
+      "backend": "cuda",
+      "repeat": 3,
+      "server_compute_s": 0.8627833127975464
+    },
+    {
+      "backend": "residue",
+      "repeat": 3,
+      "server_compute_s": 20.470374265220016
+    }
+  ],
+  "summary": {
+    "residue": {
+      "first_search_s": 20.81241727527231,
+      "warm_searches_s": [
+        20.127716010902077,
+        20.190901083871722,
+        20.470374265220016
+      ],
+      "warm_median_s": 20.190901083871722
+    },
+    "cuda": {
+      "first_search_s": 1.9352747821249068,
+      "warm_searches_s": [
+        0.8776198588311672,
+        0.8897487330250442,
+        0.8627833127975464
+      ],
+      "warm_median_s": 0.8776198588311672
+    }
+  },
+  "first_search_speedup": null,
+  "warm_median_speedup": null,
+  "speedups_relative_to_first_native_backend": {
+    "residue": {
+      "first": 1.0,
+      "warm_median": 1.0
+    },
+    "cuda": {
+      "first": 10.754244031651435,
+      "warm_median": 23.006431407286513
+    }
+  },
+  "seal_comparison": null,
+  "native_phases": {},
+  "native_profile_note": "Additional warm searches, excluded from performance samples. Exclusive wall times and call counts; other includes Python, binding overhead and unscoped native work. buffers covers explicit buffer setup; GMP allocations remain charged to their arithmetic phases. Profiles are per-thread and restored after exceptions.",
+  "sizes": {
+    "encrypted_index_bytes": 188765728,
+    "public_keys_bytes": 171205087,
+    "query_bytes": 737394,
+    "response_bytes": 204900,
+    "query_plus_response_bytes": 942294
+  },
+  "caches": {
+    "residue": {
+      "primes": [
+        1152921504606748673,
+        1152921504606683137,
+        1152921504606584833,
+        1152921504605962241,
+        1152921504604979201,
+        1152921504600260609,
+        1152921504599080961
+      ],
+      "switch_prime_count": 3,
+      "transform_table_bytes": 3670240,
+      "gmp": "6.3.0",
+      "compiler": "12.4.0",
+      "fast_arithmetic": true,
+      "residue_prime_count": 3,
+      "kernel_level": 2,
+      "switch_keys": 18,
+      "key_payload_bytes": 84934656,
+      "server_plan_bytes": 1181472
+    },
+    "cuda": {
+      "primes": [
+        1152921504606748673,
+        1152921504606683137,
+        1152921504606584833,
+        1152921504605962241,
+        1152921504604979201,
+        1152921504600260609,
+        1152921504599080961
+      ],
+      "switch_prime_count": 3,
+      "transform_table_bytes": 3670240,
+      "gmp": "6.3.0",
+      "compiler": "12.4.0",
+      "fast_arithmetic": true,
+      "residue_prime_count": 3,
+      "kernel_level": 2,
+      "switch_keys": 18,
+      "key_payload_bytes": 84934656,
+      "server_plan_bytes": 174328768
+    }
+  },
+  "cache_size_note": "Additional to the existing public key: GMP object payloads including folding constants, or native NTT coefficient arrays and transform tables. Excludes containers, CRT constants and transient allocations; not peak RSS. CUDA server_plan_bytes includes GPU transformed keys and tables, excluding per-search scratch; CPU plan bytes exclude evaluation keys (reported separately).",
+  "minimum_response_noise_budget_bits": 26,
+  "identical_ciphertexts": true,
+  "all_distances_correct": true,
+  "top3": [
+    {
+      "index": 0,
+      "distance": 0
+    },
+    {
+      "index": 8191,
+      "distance": 0
+    },
+    {
+      "index": 2654,
+      "distance": 217
+    }
+  ],
+  "source_sha256": {
+    "benchmarks/bfv_server.py": "6743d24ee26ed7737cebfecae290993439996697e71034ab6194019854b6fffa",
+    "benchmarks/bfv_client_matrix.py": "6720e62b98a93b100e1f72b816889299b2865489d3b40883870c515f63e48718",
+    "src/cuhepy/hamming/bfv.py": "49fd2d1656c86fd1777f7d94136e2cec1ea939a3630d948bc2459d3e9b348b82",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "src/cuhepy/bfv/evaluator.py": "c50cd2856cbc83213c61cac5ef963d0a146250f6d8014778a1ad8d702cc5926b",
+    "src/cuhepy/bfv/rns.py": "4663dbdfc5124c4f4a9b212b48c998e3d4959853be9625115de972b4f02b6ef4",
+    "src/cuhepy/bfv/native.py": "bc5935b63c4db52cad5d8c1918f8441004f33babb707648cbe9c448dbc21dfcf",
+    "src/cuhepy/bfv/_cpu_ext/private_bindings.cpp": "7b48d92e526147d97d9401e868c8d3e9dbf0b8ba567a67e05047e01f2a371fc0",
+    "src/cuhepy/bfv/_cpu_ext/bindings.cpp": "b4a1d101a1f9ee7efa387b7cec9633be2507cd674fc04769dbaa73c2105b83be",
+    "src/cuhepy/bfv/_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/cuhepy/bfv/_cpu_ext/bfv_residue.h": "e77f270c620d432370e8204c24e1dc6f3c0d382d6bd777ad63852dd8a89f575a",
+    "src/cuhepy/bfv/_cpu_ext/bfv_server.h": "70f96bc7f1fc25827979cea7b350edaf9cffccf2fa5af0a9275b9d514fb400cf",
+    "src/cuhepy/bfv/_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/cuhepy/bfv/_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/cuhepy/bfv/_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+    "src/cuhepy/bfv/_cpu_ext/rns_ntt.h": "f9886933ab66eeac9a4b25968b9bf485e065ab62d8f2efe4223598c927062f67",
+    "src/cuhepy/bfv/_cpu_ext/Makefile": "a2c91ba6be28cbeb3e5f3fb02feb28c80e66786bfd317a8d9dc129bb758cc2f8",
+    "src/cuhepy/types.py": "b6adf11b6edb56f71868bc9315aa0a496f74e14d6b8665034fe6a7ab787ef85e",
+    "src/cuhepy/bfv/_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "68b1e10443fbca6186ec9d4bb061199f46a75f050bcc25d33d7383102edfab1f",
+    "src/cuhepy/bfv/_cpu_ext/_bfv_private.cpython-312-x86_64-linux-gnu.so": "11d0c6bc949db2de7ccf2cf9921522f2c8bc330d07151dec2d94d9ad953ec9d7",
+    "src/cuhepy/bfv/cuda.py": "9d1fec1e767a70cafc72ef79154caa92f63e73060ee7d3fe6016ea118d392e00",
+    "src/cuhepy/bfv/_gpu_ext/Makefile": "b95829c86918cd6c9e154e5b47aff0f9025ca825501cf1e965028df181d18788",
+    "src/cuhepy/bfv/_gpu_ext/bindings.cu": "19d9e1c077f4e96f8b75691b4e55acaadf19a474ac3996ca23f8459633a030c2",
+    "src/cuhepy/bfv/_gpu_ext/server.cuh": "d938bd35cf7e45a78514101cb0f6dd48cac29d43cf6749ce34d5ba9a94b26dfb",
+    "src/cuhepy/bfv/_gpu_ext/__init__.py": "23dc7117fdbc45885c3a4ab36b6002ea007a2b33077d6f3069ee3535efe6884c",
+    "src/cuhepy/bfv/_gpu_ext/_bfv_cuda.pyi": "85c334afacda96e023948820332166e712b2b4871b48fdc46495f58a06f06e74",
+    "src/cuhepy/bfv/_gpu_ext/_bfv_cuda.cpython-312-x86_64-linux-gnu.so": "cb0857b1acc6ced71f1bacef4ef5d0f206dad39edc23271ce2027293bf3f5b9e",
+    "src/cuhepy/bfv/_gpu_ext/kernels.cuh": "01a134d40e2aadfb3e989c019a9ed6824229a1629d023d3e1e90c3a32058d645"
+  }
+}

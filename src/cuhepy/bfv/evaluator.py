@@ -22,7 +22,7 @@ from cuhepy.types import (
     BFVSwitchKey,
 )
 
-BFVServerBackend = Literal["optimized", "reference", "rns", "native", "residue"]
+BFVServerBackend = Literal["optimized", "reference", "rns", "native", "residue", "cuda"]
 
 
 @dataclass(frozen=True)
@@ -80,11 +80,14 @@ class BFVEvaluator:
     optional native C++ RNS/NTT kernels. ``native`` enables their faster exact
     arithmetic and lets BFVClient run complete searches inside C++. ``residue``
     keeps those searches in RNS after tensor scale-and-round; it requires an
-    RNS product modulus. All backends return identical ciphertexts for the same
-    keys and inputs. Reuse one evaluator across queries to amortize preparation.
+    RNS product modulus. ``cuda`` uses the same CPU primitive helpers and lets
+    BFVClient dispatch complete packed searches to the optional CUDA server.
+    Supported backends return identical ciphertexts for the same keys and inputs.
+    Reuse one evaluator across queries to amortize preparation.
 
     :param pk: Valid public key from key generation or public-key deserialization.
-    :param backend: ``optimized`` (default), ``reference``, ``rns``, ``native``, or ``residue``.
+    :param backend: ``optimized`` (default), ``reference``, ``rns``, ``native``,
+        ``residue``, or ``cuda`` (packed Hamming server only).
 
     The key dictionaries are snapshotted; immutable polynomial tuples are shared.
     Construct a new evaluator when changing keys. The cache is bounded by the
@@ -98,9 +101,9 @@ class BFVEvaluator:
         *,
         kernel_level: int | None = None,
     ) -> None:
-        if backend not in ("optimized", "reference", "rns", "native", "residue"):
+        if backend not in ("optimized", "reference", "rns", "native", "residue", "cuda"):
             raise ValueError(
-                "server_backend must be 'optimized', 'reference', 'rns', 'native', or 'residue'"
+                "server_backend must be 'optimized', 'reference', 'rns', 'native', 'residue', or 'cuda'"
             )
         if kernel_level is not None and backend != "residue":
             raise ValueError("kernel_level is a residue backend experiment control")
@@ -111,11 +114,11 @@ class BFVEvaluator:
         self._rns = (
             BFVRNSArithmetic(
                 self._pk,
-                fast=backend in ("native", "residue"),
-                residue=backend == "residue",
+                fast=backend in ("native", "residue", "cuda"),
+                residue=backend in ("residue", "cuda"),
                 kernel_level=kernel_level,
             )
-            if backend in ("rns", "native", "residue")
+            if backend in ("rns", "native", "residue", "cuda")
             else None
         )
 
