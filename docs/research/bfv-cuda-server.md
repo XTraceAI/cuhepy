@@ -5,6 +5,12 @@ The reference, GMP, native C++, persistent-RNS CPU and original SEAL experiment
 remain available. It changes neither BFV parameters nor the ciphertext format.
 It is an experimental evaluator, not a production security approval.
 
+The [second optimization pass](bfv-cuda-fused.md) adds a shared-memory NTT,
+GPU packed-wire decoding, shared public-key reuse, and optional resident indexes.
+The original CUDA path remains selectable with `kernel_level=0`. The initial
+measurements below are retained as the baseline; the linked report measures
+the current implementation and larger/concurrent workloads.
+
 ## What carries over from Paillier?
 
 | Candidate optimization | BFV assessment | Decision here |
@@ -55,19 +61,22 @@ four-limb integer division avoid floating-point rounding. Public setup checks
 the auxiliary-base bound. The key-switch and merge order matches the existing
 CPU circuit, including incomplete response groups.
 
-Per-prime arithmetic and the complete Hamming circuit run on the GPU. Wire
-parsing, conversion to/from residues, and terminal response compaction still
-run on CPU. Every search uploads the index; there is no mutable-object identity
-cache or stale-index reuse. Immutable GPU keys/tables persist across queries.
+Per-prime arithmetic and the complete Hamming circuit run on the GPU. The current
+default also decodes packed coefficients on the GPU. Header parsing, response
+conversion and terminal compaction run on CPU. Raw searches upload the index;
+`prepare_cuda_index` creates an explicit immutable GPU snapshot for reuse.
+Snapshots are bound to their exact server plan; changing the original Python
+index does not change a prepared snapshot. GPU keys/tables persist across queries.
 Each call owns its scratch buffers and stream, and restores the caller's CUDA
 device on exit. Errors propagate; requesting CUDA never silently selects CPU.
 
 The largest group buffer holds at most `padded_dimension` tiles. Scratch uses
-`86 * min(32, tile_count) * N` 64-bit words plus the group buffer, query, and
-optional partial mask. Plan memory includes two words per transformed key
-coefficient (value plus modular multiplication constant). There is no unbounded
-per-index GPU cache. Concurrent callers each allocate their own scratch, so a
-service must bound concurrency according to its VRAM budget.
+`86 * min(batch_tiles, tile_count) * N` 64-bit words plus the group buffer, query,
+packed upload buffer, and optional partial mask. The default is 32 tiles. Plan
+memory includes two words per transformed key coefficient (value plus modular
+multiplication constant). Prepared indexes explicitly retain additional device
+memory. Concurrent callers each allocate their own scratch, so a service must
+bound both resident-index storage and concurrency according to its VRAM budget.
 
 ## Build and use
 
@@ -100,6 +109,10 @@ server.load_stringified_keys(
     owner_public_key_json, max_public_key_chars=authenticated_setup_key_size_limit
 )
 response = server.encode_hamming_server_packed(query, encrypted_index, vector_count)
+
+# Optional: validate and upload once for repeated searches of an immutable index.
+prepared = server.prepare_cuda_index(encrypted_index, vector_count)
+response = server.encode_hamming_server_prepared(query, prepared)
 ```
 
 This example is a public evaluator call, not an authenticated client/server
@@ -132,7 +145,7 @@ canonical coefficient extremes and randomized public inputs, concurrent reuse,
 index replacement, malformed framing, unsupported parameters, and the explicit
 Nitro rejection. These are regression checks, not a cryptographic review.
 
-Final local validation: **356 BFV tests passed, 1 optional AWS test skipped**.
+Initial implementation validation: **356 BFV tests passed, 1 optional AWS test skipped**.
 Ruff and mypy passed for the changed Python implementation. The standalone
 `tests/unit/native/test_bfv_cuda.cu` test also passed exact CPU/GPU comparisons
 at N=8, 16 and 256 with synthetic public keys and arbitrary canonical inputs.
@@ -142,8 +155,8 @@ The Python suite and benchmarks additionally exercise N=8192 and N=16384.
 or the standalone executable on this host. After supplying its installation
 library paths, it still exited before the first instrumented API call with
 `Target application terminated before first instrumented API call`. No GPU
-memory-sanitizer success is claimed. Rerun memcheck (and racecheck for future
-shared-memory kernels) on a working installation before deployment review.
+memory-sanitizer success is claimed. Rerun memcheck and racecheck on the shared
+memory kernels using a working installation before deployment review.
 
 The paired benchmark is the existing `benchmarks/bfv_server.py` with CUDA added:
 
@@ -162,7 +175,7 @@ Context creation and key import are reported separately. Cold search includes
 lazy key preparation and GPU plan creation. The GPU reuploads the index even
 for warm searches. Correctness checks run outside the timed interval.
 
-### Recorded measurements
+### Initial CUDA measurements (commit `12d7f7e`)
 
 Hardware: AMD Ryzen 7 5800X and NVIDIA GeForce RTX 3080 (10 GiB), driver
 580.173.02. CUDA 12.0, GCC 12.4.0, Python 3.12.3, GMP 6.3.0. Single CPU server
@@ -196,15 +209,10 @@ including every sample, source/binary SHA-256 hashes, environment, setup costs,
 packet sizes, exact prime values, and correctness outcomes. Across the runs,
 24 searches checked 139,264 distances. All ciphertexts matched the CPU baseline.
 
-### Next performance experiments
+### Follow-up experiments
 
-1. Profile kernel launches, GPU memory traffic and host wire-to-residue
-   conversion separately, while retaining the complete-call timing above.
-2. Fuse small NTT stages in shared memory and reuse scratch buffers with
-   explicit synchronization/ownership; verify byte-for-byte compatibility.
-3. Add an explicitly owned immutable GPU index snapshot if repeated-query
-   workloads justify its VRAM footprint. Do not key a cache by Python object
-   identity, because callers can mutate an index.
-4. Evaluate smaller RNS primes or moduli only as separate parameter experiments
-   with fresh keys, correctness bounds, security review and packing-aware IO
-   measurements. Changing parameters is not needed for the gains reported here.
+Profiling, shared-memory transforms, explicit GPU index snapshots, batch sizing
+and concurrency are covered by the [follow-up report](bfv-cuda-fused.md). Scratch
+pooling and further arithmetic specialization remain possible experiments.
+Smaller RNS primes or moduli require separate parameter experiments with fresh
+keys, correctness bounds, security review and packing-aware IO measurements.

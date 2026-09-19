@@ -161,6 +161,9 @@ forces a backend.
 `make -C src/cuhepy/bfv/_gpu_ext`. Select `server_backend="cuda"` with
 `rns_modulus=True`; owner encryption/decryption remain on CPU. See the
 [CUDA implementation, parameter limits and measurements](docs/research/bfv-cuda-server.md).
+Repeated searches can keep a validated encrypted index on the GPU with
+`prepare_cuda_index` and `encode_hamming_server_prepared`; see the
+[fused kernels and scaling measurements](docs/research/bfv-cuda-fused.md).
 The current Nitro attestation signer rejects this backend because its protocol
 does not establish trust in execution on an external GPU.
 

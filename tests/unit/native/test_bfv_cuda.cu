@@ -12,7 +12,7 @@ int main() {
     try {
         gmp_randclass random(gmp_randinit_mt);
         random.seed(179);
-        for (std::size_t n : {8, 16, 256}) {
+        for (std::size_t n : {8, 16, 256, 1024, 2048, 8192, 16384, 32768}) {
             Ring auxiliary(n, (mpz_class(1)<<180)-1, 30, true);
             mpz_class q = 1;
             for (int j = 0; j < 3; ++j) q *= auxiliary.transforms[j].modulus;
@@ -31,7 +31,7 @@ int main() {
             for (int d = 0; d < 6; ++d) key.push_back({polynomial(),polynomial()});
             auto relin = std::make_shared<SwitchKey>(ring,key);
             std::map<Word,KeyHandle> keys;
-            const std::size_t padded = n/2, lanes = 1;
+            const std::size_t padded = std::min<std::size_t>(512,n/2), lanes = n/(2*padded);
             for (std::size_t size = 1; size < padded; size *= 2) {
                 keys.emplace(power_mod(3,lanes*size,2*n),relin);
                 keys.emplace(power_mod(3,n/2-lanes*size,2*n),relin);
@@ -40,8 +40,9 @@ int main() {
             gpu::CudaServer cuda(relin,keys,padded,65537,cpu.target);
             Ciphertext query{polynomial(),polynomial()};
             std::vector<Ciphertext> index;
-            for (std::size_t i = 0; i < n+1; ++i) index.push_back({polynomial(),polynomial()});
-            for (std::size_t count : {std::size_t(1), n-1, n+1, 2*n+1}) {
+            for (std::size_t i = 0; i < (n <= 256 ? n+1 : 2); ++i) index.push_back({polynomial(),polynomial()});
+            const std::vector<std::size_t> counts = n <= 256 ? std::vector<std::size_t>{1,n-1,n+1,2*n+1} : std::vector<std::size_t>{1,2*lanes+1};
+            for (std::size_t count : counts) {
                 auto read = [&](std::size_t at) { return index.at(at); };
                 std::vector<Ciphertext> expected, actual;
                 cpu.search(query,count,read,[&](const Ciphertext& v) { expected.push_back(v); },false);

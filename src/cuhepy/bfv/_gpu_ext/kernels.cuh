@@ -13,6 +13,8 @@ struct Parameters {
     Prime primes[7];
     Mul inverse[7][7], prime_mod[7][7], inverse_q[4];
     U b_mod_q[3], half_b[4], shifted_q[31][4], half_q[4];
+    U q_words[4];
+    Mul radix64[3];
 };
 
 __device__ inline U add(U a, U b, U p) { U s = a + b; return s >= p ? s - p : s; }
@@ -77,6 +79,31 @@ __device__ inline void subtract_words(U* a, const U* b) {
     }
 }
 
+// Decode the unchanged 180-bit packed wire directly on the device. Each
+// component is padded with one zero word by the uploader for the final shifted
+// read. Reject >=Q before evaluating, including coefficients in unused slots.
+__global__ void unpack_residues(const U* packed, U* out, unsigned* invalid,
+                                 const Parameters* plan, int batch, int stride) {
+    int at = blockIdx.x*blockDim.x+threadIdx.x, n = plan->n;
+    if (at >= batch*2*n) return;
+    int poly = at/n, i = at%n, offset = (i*180)/64, shift = (i*180)%64;
+    const U* source = packed+poly*stride+offset;
+    U value[4]{};
+    for (int w = 0; w < 3; ++w) {
+        value[w] = source[w]>>shift;
+        if (shift) value[w] |= source[w+1]<<(64-shift);
+    }
+    value[2] &= (U(1)<<52)-1;
+    if (at_least(value,plan->q_words)) { atomicExch(invalid,1U); return; }
+    for (int j = 0; j < 3; ++j) {
+        Prime prime = plan->primes[j];
+        U result = value[2]; // Fewer than 60 bits.
+        result = add(mul(result,plan->radix64[j],prime.p),product(value[1],1,prime),prime.p);
+        result = add(mul(result,plan->radix64[j],prime.p),product(value[0],1,prime),prime.p);
+        out[(poly*3+j)*n+i] = result;
+    }
+}
+
 __global__ void difference(const U* query, const U* index, U* out, const Parameters* plan, int batch) {
     const auto& p = *plan;
     int at = blockIdx.x * blockDim.x + threadIdx.x;
@@ -114,6 +141,56 @@ __global__ void ntt_stage(U* data, const Mul* roots, const Parameters* plan,
 __global__ void normalize(U* data, const Mul* inverse_n, const Parameters* plan, int primes, int size) {
     int at = blockIdx.x * blockDim.x + threadIdx.x;
     if (at < size) { int j = (at / plan->n) % primes; data[at] = mul(data[at], inverse_n[j], plan->primes[j].p); }
+}
+
+// Split an NTT into two shared-memory passes, retaining the baseline's exact
+// butterfly order. The outer pass owns every row for a strip of columns; the
+// inner pass owns one contiguous row. No butterfly crosses a block boundary
+// within either pass. For N<=1024, one block owns the whole polynomial.
+// N<=32768 leaves at least 32 adjacent columns in each outer strip, so global
+// loads/stores remain coalesced. All threads reach every block barrier.
+template<int Primes, bool Inverse, bool Outer>
+__global__ void ntt_fused(U* data, const Mul* roots, const Mul* inverse_n,
+                          const Parameters* plan) {
+    constexpr int tile = 1024;
+    __shared__ U values[tile];
+    int n = plan->n, row_size = n < tile ? n : tile;
+    int rows = n/row_size, columns = tile/rows;
+    int poly = blockIdx.y, chunk = blockIdx.x, j = poly % Primes;
+    int size = Outer ? tile : row_size;
+    U mod = plan->primes[j].p;
+    for (int i = threadIdx.x; i < size; i += blockDim.x) {
+        int position = Outer ? (i/columns)*row_size + chunk*columns + i%columns : chunk*row_size+i;
+        values[i] = data[poly*n+position];
+    }
+    __syncthreads();
+    int last = Outer ? rows/2 : row_size/2;
+    for (int groups = Inverse ? last : 1;
+         Inverse ? groups >= 1 : groups <= last;
+         groups = Inverse ? groups/2 : groups*2) {
+        int gap = size/(2*groups);
+        for (int at = threadIdx.x; at < size/2; at += blockDim.x) {
+            int group = at/gap, position = 2*group*gap + at%gap;
+            int root_index = Outer ? groups+group : rows*groups+chunk*groups+group;
+            U a = values[position], b = values[position+gap];
+            Mul root = roots[j*n+root_index];
+            if constexpr (Inverse) {
+                values[position] = add(a,b,mod);
+                values[position+gap] = mul(sub(a,b,mod),root,mod);
+            } else {
+                b = mul(b,root,mod);
+                values[position] = add(a,b,mod);
+                values[position+gap] = sub(a,b,mod);
+            }
+        }
+        __syncthreads();
+    }
+    for (int i = threadIdx.x; i < size; i += blockDim.x) {
+        int position = Outer ? (i/columns)*row_size + chunk*columns + i%columns : chunk*row_size+i;
+        U value = values[i];
+        if constexpr (Inverse) if (Outer || n<=tile) value = mul(value,inverse_n[j],mod);
+        data[poly*n+position] = value;
+    }
 }
 __global__ void square(const U* a, U* out, const Parameters* plan, int batch) {
     int at = blockIdx.x * blockDim.x + threadIdx.x;
@@ -186,6 +263,34 @@ __global__ void key_product(const U* digits, const Mul* key, U* dst, const Param
     for (int d = 0; d < 6; ++d)
         total = add(total, mul(digits[((b*6+d)*3+j)*p.n+i], key[((d*2+c)*3+j)*p.n+i], mod), mod);
     dst[at] = total;
+}
+
+// Eight ciphertexts share a coefficient strip of the same public key. Load the
+// key once per block, reuse each gadget digit for both output components, and
+// keep adjacent lanes on adjacent coefficients. Separate shared arrays avoid
+// the extra bank conflicts of a 16-byte array-of-structures layout.
+__global__ void key_product_tiled(const U* __restrict__ digits, const Mul* __restrict__ key,
+                                  U* __restrict__ dst, const Parameters* plan, int batch) {
+    constexpr int lanes = 32, tiles = 8;
+    __shared__ U values[6][2][lanes], quotients[6][2][lanes];
+    int n = plan->n, j = blockIdx.z, start = blockIdx.x*lanes;
+    for (int at = threadIdx.x; at < 6*2*lanes; at += blockDim.x) {
+        int d = at/(2*lanes), c = (at/lanes)%2, lane = at%lanes;
+        Mul value = key[((d*2+c)*3+j)*n+start+lane];
+        values[d][c][lane] = value.value; quotients[d][c][lane] = value.quotient;
+    }
+    __syncthreads();
+    int lane = threadIdx.x%lanes, b = blockIdx.y*tiles+threadIdx.x/lanes;
+    if (b >= batch) return;
+    U mod = plan->primes[j].p, sum0 = 0, sum1 = 0;
+    #pragma unroll
+    for (int d = 0; d < 6; ++d) {
+        U digit = digits[((b*6+d)*3+j)*n+start+lane];
+        sum0 = add(sum0,mul(digit,{values[d][0][lane],quotients[d][0][lane]},mod),mod);
+        sum1 = add(sum1,mul(digit,{values[d][1][lane],quotients[d][1][lane]},mod),mod);
+    }
+    dst[(b*6+j)*n+start+lane] = sum0;
+    dst[(b*6+3+j)*n+start+lane] = sum1;
 }
 __global__ void add_linear(U* out, const U* scaled, const Parameters* plan, int batch) {
     int at = blockIdx.x * blockDim.x + threadIdx.x, n = plan->n;

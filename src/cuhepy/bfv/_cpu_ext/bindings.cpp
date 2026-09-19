@@ -19,6 +19,8 @@ constexpr const char* ring_name = "xtrace.bfv.rns.ring.v1";
 constexpr const char* key_name = "xtrace.bfv.rns.key.v1";
 #ifdef XTRACE_BFV_CUDA
 constexpr const char* server_name = "xtrace.bfv.cuda.server.v1";
+constexpr const char* index_name = "xtrace.bfv.cuda.index.v1";
+using IndexPtr = std::shared_ptr<const gpu::PreparedIndex>;
 #else
 constexpr const char* server_name = "xtrace.bfv.server.v1";
 #endif
@@ -287,7 +289,24 @@ PyObject* create_server(PyObject*, PyObject* args) {
         PyObject *relin_object, *keys_object, *padded_object, *t_object;
         const char* target_hex;
         Py_ssize_t target_length;
+#ifdef XTRACE_BFV_CUDA
+        unsigned level = 3;
+        unsigned long long batch = 32;
+        PyObject *level_object = nullptr, *batch_object = nullptr;
+        if (!PyArg_ParseTuple(args, "OOOOs#|OO", &relin_object, &keys_object, &padded_object, &t_object, &target_hex, &target_length,
+                             &level_object, &batch_object)) return nullptr;
+        if (level_object) {
+            auto value = PyLong_AsUnsignedLongLong(level_object);
+            if (PyErr_Occurred()) return nullptr;
+            if (value > 3) throw std::invalid_argument("Invalid CUDA kernel level");
+            level = value;
+        }
+        if (batch_object) batch = PyLong_AsUnsignedLongLong(batch_object);
+        if (PyErr_Occurred()) return nullptr;
+        if (!batch || batch > 256) throw std::invalid_argument("Invalid CUDA batch limit");
+#else
         if (!PyArg_ParseTuple(args, "OOOOs#", &relin_object, &keys_object, &padded_object, &t_object, &target_hex, &target_length)) return nullptr;
+#endif
         auto relin = get_capsule<KeyPtr>(relin_object, key_name);
         const auto& ring = *relin->ring;
         auto padded = PyLong_AsUnsignedLongLong(padded_object);
@@ -313,7 +332,7 @@ PyObject* create_server(PyObject*, PyObject* args) {
         ServerPtr server;
         { WithoutGIL release;
 #ifdef XTRACE_BFV_CUDA
-          server = std::make_shared<gpu::CudaServer>(relin, std::move(keys), padded, t, target);
+          server = std::make_shared<gpu::CudaServer>(relin, std::move(keys), padded, t, target, level, batch);
 #else
           if (ring.residue_prime_count)
               server = std::make_shared<ResidueServer>(relin, std::move(keys), padded, t, target);
@@ -338,6 +357,30 @@ PackedPair packed_pair(PyObject* object, const Ring& ring) {
     return result;
 }
 
+std::vector<PackedPair> packed_index(PyObject* object, std::size_t count, const HammingServer& server) {
+    if (!PyTuple_Check(object) || count > SIZE_MAX-server.capacity ||
+        (count+server.capacity-1)/server.capacity != static_cast<std::size_t>(PyTuple_GET_SIZE(object)))
+        throw std::invalid_argument("vector_count does not match the packed ciphertext count");
+    std::vector<PackedPair> index;
+    for (Py_ssize_t i = 0; i < PyTuple_GET_SIZE(object); ++i)
+        index.push_back(packed_pair(PyTuple_GET_ITEM(object,i),*server.ring));
+    return index;
+}
+
+using PackedOutput = std::vector<std::array<std::string,2>>;
+PyObject* write_packed(const PackedOutput& output) {
+    PyObject* result = PyList_New(output.size());
+    if (!result) return nullptr;
+    for (std::size_t i = 0; i < output.size(); ++i) {
+        const auto& v = output[i];
+        PyObject* pair = Py_BuildValue("(y#y#)",v[0].data(),static_cast<Py_ssize_t>(v[0].size()),
+                                                v[1].data(),static_cast<Py_ssize_t>(v[1].size()));
+        if (!pair) { Py_DECREF(result); return nullptr; }
+        PyList_SET_ITEM(result,i,pair);
+    }
+    return result;
+}
+
 PyObject* packed_search(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
         PyObject *server_object, *query_object, *index_object, *count_object;
@@ -346,37 +389,72 @@ PyObject* packed_search(PyObject*, PyObject* args) {
         auto server = get_capsule<ServerPtr>(server_object, server_name);
         auto count = PyLong_AsUnsignedLongLong(count_object);
         if (PyErr_Occurred()) return nullptr;
-        if (!PyTuple_Check(index_object) || count > SIZE_MAX - server->capacity ||
-            (count + server->capacity - 1) / server->capacity != static_cast<std::size_t>(PyTuple_GET_SIZE(index_object)))
-            throw std::invalid_argument("vector_count does not match the packed ciphertext count");
         auto query_bytes = packed_pair(query_object, *server->ring);
-        std::vector<PackedPair> index;
-        for (Py_ssize_t i = 0; i < PyTuple_GET_SIZE(index_object); ++i)
-            index.push_back(packed_pair(PyTuple_GET_ITEM(index_object, i), *server->ring));
-        std::vector<std::array<std::string, 2>> output;
+        auto index = packed_index(index_object,count,*server);
+        PackedOutput output;
         {
             WithoutGIL release;
             const auto& ring = *server->ring;
+            auto emit = [&](const Ciphertext& value) {
+                const auto& q = compact ? server->target : ring.q;
+                output.push_back({export_packed(value[0],q),export_packed(value[1],q)});
+            };
+#ifdef XTRACE_BFV_CUDA
+            auto cuda = std::dynamic_pointer_cast<const gpu::CudaServer>(server);
+            if (!cuda) throw std::invalid_argument("Expected a CUDA server");
+            cuda->search_packed(query_bytes,index,count,emit,compact);
+#else
             Ciphertext query{import_packed(query_bytes[0], ring), import_packed(query_bytes[1], ring)};
             server->search(query, count, [&](std::size_t at) -> Ciphertext {
                 return {import_packed(index[at][0], ring), import_packed(index[at][1], ring)};
-            }, [&](const Ciphertext& value) {
-                const auto& q = compact ? server->target : ring.q;
-                output.push_back({export_packed(value[0], q), export_packed(value[1], q)});
-            }, compact);
+            },emit,compact);
+#endif
         }
-        PyObject* result = PyList_New(output.size());
-        if (!result) return nullptr;
-        for (std::size_t i = 0; i < output.size(); ++i) {
-            auto& v = output[i];
-            PyObject* pair = Py_BuildValue("(y#y#)", v[0].data(), static_cast<Py_ssize_t>(v[0].size()),
-                                                    v[1].data(), static_cast<Py_ssize_t>(v[1].size()));
-            if (!pair) { Py_DECREF(result); return nullptr; }
-            PyList_SET_ITEM(result, i, pair);
-        }
-        return result;
+        return write_packed(output);
     });
 }
+
+#ifdef XTRACE_BFV_CUDA
+PyObject* prepare_index(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_object, *index_object, *count_object;
+        if (!PyArg_ParseTuple(args,"OOO",&server_object,&index_object,&count_object)) return nullptr;
+        auto base = get_capsule<ServerPtr>(server_object,server_name);
+        auto server = std::dynamic_pointer_cast<const gpu::CudaServer>(base);
+        if (!server) throw std::invalid_argument("Expected a CUDA server");
+        auto count = PyLong_AsUnsignedLongLong(count_object);
+        if (PyErr_Occurred()) return nullptr;
+        auto index = packed_index(index_object,count,*server);
+        IndexPtr prepared;
+        { WithoutGIL release; prepared = std::make_shared<gpu::PreparedIndex>(server,index,count); }
+        return capsule(std::move(prepared),index_name);
+    });
+}
+PyObject* prepared_search(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_object, *query_object, *index_object;
+        int compact;
+        if (!PyArg_ParseTuple(args,"OOOp",&server_object,&query_object,&index_object,&compact)) return nullptr;
+        auto server = get_capsule<ServerPtr>(server_object,server_name);
+        auto index = get_capsule<IndexPtr>(index_object,index_name);
+        if (index->server.get() != server.get()) throw std::invalid_argument("Prepared index belongs to another CUDA server plan");
+        auto query = packed_pair(query_object,*server->ring);
+        PackedOutput output;
+        { WithoutGIL release;
+          index->server->search_prepared(query,index->values.data(),index->count,[&](const Ciphertext& value) {
+              const auto& q = compact ? server->target : server->ring->q;
+              output.push_back({export_packed(value[0],q),export_packed(value[1],q)});
+          },compact);
+        }
+        return write_packed(output);
+    });
+}
+PyObject* index_bytes(PyObject*, PyObject* argument) {
+    return checked([&]() -> PyObject* {
+        return PyLong_FromSize_t(get_capsule<IndexPtr>(argument,index_name)->values.bytes());
+    });
+}
+#endif
 
 PyObject* server_bytes(PyObject*, PyObject* argument) {
     return checked([&]() -> PyObject* {
@@ -415,6 +493,7 @@ PyObject* profile_call(PyObject*, PyObject* callback) {
 }
 
 #ifdef XTRACE_BFV_CUDA
+PyObject* profile_prepared_search(PyObject*, PyObject* args) { return profiled(prepared_search,args); }
 PyObject* available(PyObject*, PyObject*) {
     int count = 0;
     auto status = cudaGetDeviceCount(&count);
@@ -425,6 +504,11 @@ PyMethodDef methods[] = {
     {"available", available, METH_NOARGS, "Whether a CUDA device is available."},
     {"create_server", create_server, METH_VARARGS, "Prepare public CUDA tables and evaluation keys."},
     {"packed_search", packed_search, METH_VARARGS, "Evaluate the packed Hamming circuit on CUDA."},
+    {"profile_packed_search", profile_packed_search, METH_VARARGS, "Diagnostic synchronized wall timings; exclude from performance samples."},
+    {"prepare_index", prepare_index, METH_VARARGS, "Validate and upload an immutable index snapshot."},
+    {"prepared_search", prepared_search, METH_VARARGS, "Search an index resident on the plan's GPU."},
+    {"profile_prepared_search", profile_prepared_search, METH_VARARGS, "Diagnostic synchronized timings for a resident-index search."},
+    {"index_bytes", index_bytes, METH_O, "Bytes retained by the GPU index."},
     {"server_bytes", server_bytes, METH_O, "GPU plan bytes, including transformed evaluation keys."},
     {nullptr, nullptr, 0, nullptr}
 };
@@ -456,11 +540,13 @@ PyModuleDef module = {PyModuleDef_HEAD_INIT, "_bfv_rns", "Native BFV RNS/NTT CPU
 
 #ifdef XTRACE_BFV_CUDA
 PyMODINIT_FUNC PyInit__bfv_cuda() {
+    constexpr int abi_version = 5;
 #else
 PyMODINIT_FUNC PyInit__bfv_rns() {
+    constexpr int abi_version = 4;
 #endif
     PyObject* result = PyModule_Create(&module);
-    if (result && PyModule_AddIntConstant(result, "ABI_VERSION", 4) < 0) {
+    if (result && PyModule_AddIntConstant(result, "ABI_VERSION", abi_version) < 0) {
         Py_DECREF(result); return nullptr;
     }
     return result;

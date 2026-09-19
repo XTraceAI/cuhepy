@@ -48,13 +48,16 @@ class BFVNativeServer:
         } - {1}
         if not exponents.issubset(pk["galois_keys"]):
             raise ValueError("Public key lacks native server rotation keys")
-        self._server = self._extension.create_server(
+        self._server = self._create_server(
             arithmetic._prepare_key(0, pk["relin_key"]),
             tuple((g, arithmetic._prepare_key(g, pk["galois_keys"][g])) for g in sorted(exponents)),
             padded_embed_len,
             pk["params"].plain_modulus,
             format(self._target, "x"),
         )
+
+    def _create_server(self, *args: Any) -> Any:
+        return self._extension.create_server(*args)
 
     @staticmethod
     def _load_extension(arithmetic: BFVRNSArithmetic) -> Any:
@@ -114,6 +117,11 @@ class BFVNativeServer:
                 raise ValueError("Native phase profiling is unavailable for this backend")
             packed, timings = native.profile_packed_search(*args)
             profile.update(timings)
+        return self._finish(packed, compact)
+
+    def _finish(
+        self, packed: Sequence[tuple[bytes, bytes]], compact: bool
+    ) -> list[EncryptedVector]:
         q = self._target if compact else self.arithmetic._pk["q"]
         header = [0x58424656, 1, self.arithmetic.n, int(q), self._key_id, 2]
         return [

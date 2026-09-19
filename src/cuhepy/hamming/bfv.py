@@ -9,7 +9,7 @@ import json
 from collections.abc import Sequence
 from dataclasses import asdict
 from numbers import Integral
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
 from cuhepy.device import DeviceMode
 from cuhepy.bfv.scheme import (
@@ -20,6 +20,9 @@ from cuhepy.bfv.scheme import (
 )
 from cuhepy.bfv.evaluator import BFVEvaluator, BFVServerBackend
 from cuhepy.bfv.native import BFVNativeServer
+
+if TYPE_CHECKING:
+    from cuhepy.bfv.cuda import BFVCudaIndex
 from cuhepy.hamming.base import HammingClientBase
 from cuhepy.types import (
     BFVCiphertext,
@@ -380,6 +383,30 @@ class BFVClient(HammingClientBase):
                 combined = BFV.modulus_switch(combined, self.response_modulus_bits, pk)
             result.append(BFV.ciphertext_to_ints(combined, pk))
         return result
+
+    def prepare_cuda_index(
+        self, index: Sequence[Sequence[int | bytes]], vector_count: int
+    ) -> "BFVCudaIndex":
+        """Upload an immutable public index snapshot for repeated CUDA searches."""
+        from cuhepy.bfv.cuda import BFVCudaServer
+
+        if self.server_backend != "cuda":
+            raise ValueError("A prepared CUDA index requires server_backend='cuda'")
+        server = self._native()
+        assert isinstance(server, BFVCudaServer)
+        return server.prepare_index(index, vector_count)
+
+    def encode_hamming_server_prepared(
+        self, query: Sequence[int | bytes], index: "BFVCudaIndex", *, compact: bool = True
+    ) -> list[EncryptedVector]:
+        """Search a GPU snapshot; the original Python index is not read again."""
+        from cuhepy.bfv.cuda import BFVCudaServer
+
+        if self.server_backend != "cuda":
+            raise ValueError("A prepared CUDA index requires server_backend='cuda'")
+        server = self._native()
+        assert isinstance(server, BFVCudaServer)
+        return server.search_prepared(query, index, compact=compact)
 
     @staticmethod
     def _validate_count(count: int, ciphertexts: int, capacity: int) -> None:
