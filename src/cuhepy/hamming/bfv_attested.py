@@ -130,6 +130,10 @@ class BFVAttestedServer:
         policy: BFVExecutionPolicy | None = None,
         backend: BFVServerBackend = "residue",
     ) -> None:
+        if backend == "cuda":
+            raise BFVProtocolError(
+                "CUDA execution is outside the current Nitro attestation boundary"
+            )
         self.policy = policy or bfv_review_policy()
         if type(setup) is not bytes or len(setup) > self.policy.max_setup_bytes:
             raise BFVProtocolError("BFV setup exceeds the local size policy")

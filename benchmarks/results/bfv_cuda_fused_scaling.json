@@ -1,0 +1,562 @@
+{
+  "environment": {
+    "utc": "2026-09-19T06:45:18.629510+00:00",
+    "revision": "12d7f7e1e4105503ae69a998cb48cfce06d17500",
+    "working_tree_dirty": true,
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "gmp": "GMP 6.3.0",
+    "gmpy2": "2.3.0",
+    "gpu": "NVIDIA GeForce RTX 3080, 10240 MiB, 580.173.02",
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2023 NVIDIA Corporation\nBuilt on Fri_Jan__6_16:45:21_PST_2023\nCuda compilation tools, release 12.0, V12.0.140\nBuild cuda_12.0.r12.0/compiler.32267302_0"
+  },
+  "command": [
+    "benchmarks/bfv_cuda_scaling.py",
+    "--sizes",
+    "1024,8192,32768",
+    "--repeats",
+    "3",
+    "--json-out",
+    "/tmp/bfv-cuda-scaling-optimized.json"
+  ],
+  "config": {
+    "embed_len": 512,
+    "poly_modulus_degree": 16384,
+    "plain_modulus": 65537,
+    "coeff_modulus_bits": 180,
+    "decomposition_bits": 30,
+    "error_eta": 21,
+    "rns_modulus": true,
+    "response_modulus_bits": 50,
+    "device": "cpu"
+  },
+  "seed": 913,
+  "batch_tiles": 32,
+  "setup": {
+    "key_generation_s": 8.740546445827931,
+    "index_encrypt_s": 220.26749131735414,
+    "query_encrypt_s": 0.22496066987514496,
+    "cpu_plan_s": 0.6954404492862523,
+    "original_cuda_plan_s": 1.2656518029980361,
+    "fused_ntt_plan_s": 0.09969441406428814,
+    "gpu_decode_plan_s": 0.09269486088305712,
+    "shared_keys_plan_s": 0.09421059302985668
+  },
+  "notes": "One fresh corpus, identical keys/query/index prefix per comparison; fresh encryption for every packed tile; larger indexes do not repeat ciphertexts. All plans prepared before timing; one warmup then measured repeats in alternating order. Raw searches include index upload, validation, allocations, query/response conversion and compaction. Prepared searches exclude the separately measured one-time index preparation. Neither includes network or owner crypto. CPU reference times are one warm-plan sample per size, not medians. Correctness checks and synchronized diagnostic profiles are untimed. Concurrency rows measure a wave of distinct encrypted queries, including task scheduling, not per-query latency.",
+  "sizes": [
+    {
+      "vectors": 1024,
+      "cpu_reference_s": 2.6133245788514614,
+      "index_prepare_s": 0.03131319861859083,
+      "resident_index_bytes": 25165824,
+      "samples_s": {
+        "original_cuda": [
+          0.18523485912010074,
+          0.17904712306335568,
+          0.17760203313082457
+        ],
+        "fused_ntt": [
+          0.1326431860215962,
+          0.13300912268459797,
+          0.13770935917273164
+        ],
+        "gpu_decode": [
+          0.05523615702986717,
+          0.054359528701752424,
+          0.05848284298554063
+        ],
+        "shared_keys": [
+          0.055658845230937004,
+          0.050336907152086496,
+          0.053680574987083673
+        ],
+        "prepared_index": [
+          0.03474612906575203,
+          0.034518743865191936,
+          0.03669871902093291
+        ]
+      },
+      "warm_medians_s": {
+        "original_cuda": 0.17904712306335568,
+        "fused_ntt": 0.13300912268459797,
+        "gpu_decode": 0.05523615702986717,
+        "shared_keys": 0.053680574987083673,
+        "prepared_index": 0.03474612906575203
+      },
+      "speedup_over_original_cuda": {
+        "original_cuda": 1.0,
+        "fused_ntt": 1.3461266374031107,
+        "gpu_decode": 3.2414840693305607,
+        "shared_keys": 3.3354173852727365,
+        "prepared_index": 5.1530092093002615
+      },
+      "vectors_per_second": {
+        "original_cuda": 5719.164778970832,
+        "fused_ntt": 7698.720052670312,
+        "gpu_decode": 18538.58152091039,
+        "shared_keys": 19075.801633018822,
+        "prepared_index": 29470.90877554239
+      },
+      "response_ciphertexts": 1,
+      "identical_ciphertexts": true,
+      "all_distances_correct": true
+    },
+    {
+      "vectors": 8192,
+      "cpu_reference_s": 20.283019953407347,
+      "index_prepare_s": 0.1408246229402721,
+      "resident_index_bytes": 201326592,
+      "samples_s": {
+        "original_cuda": [
+          0.9484920897521079,
+          0.9428178542293608,
+          0.9421186791732907
+        ],
+        "fused_ntt": [
+          0.8725395598448813,
+          0.8661269079893827,
+          0.8624868048354983
+        ],
+        "gpu_decode": [
+          0.3937393520027399,
+          0.39110856782644987,
+          0.4044553907588124
+        ],
+        "shared_keys": [
+          0.35410103434696794,
+          0.3521349928341806,
+          0.35396592132747173
+        ],
+        "prepared_index": [
+          0.17853291193023324,
+          0.17956399312242866,
+          0.17536394717171788
+        ]
+      },
+      "warm_medians_s": {
+        "original_cuda": 0.9428178542293608,
+        "fused_ntt": 0.8661269079893827,
+        "gpu_decode": 0.3937393520027399,
+        "shared_keys": 0.35396592132747173,
+        "prepared_index": 0.17853291193023324
+      },
+      "speedup_over_original_cuda": {
+        "original_cuda": 1.0,
+        "fused_ntt": 1.0885446988571312,
+        "gpu_decode": 2.394522796448347,
+        "shared_keys": 2.663583688207974,
+        "prepared_index": 5.2809190419623775
+      },
+      "vectors_per_second": {
+        "original_cuda": 8688.846910621953,
+        "fused_ntt": 9458.198243738689,
+        "gpu_decode": 20805.642002334058,
+        "shared_keys": 23143.47090046888,
+        "prepared_index": 45885.09710299944
+      },
+      "response_ciphertexts": 1,
+      "identical_ciphertexts": true,
+      "all_distances_correct": true
+    },
+    {
+      "vectors": 32768,
+      "cpu_reference_s": 80.89568542083725,
+      "index_prepare_s": 0.5116533548571169,
+      "resident_index_bytes": 805306368,
+      "samples_s": {
+        "original_cuda": [
+          3.3529703649692237,
+          3.3377099838107824,
+          3.3124206140637398
+        ],
+        "fused_ntt": [
+          3.12905898084864,
+          3.160643321927637,
+          3.1183515870943666
+        ],
+        "gpu_decode": [
+          1.2322604791261256,
+          1.2313217497430742,
+          1.2365819457918406
+        ],
+        "shared_keys": [
+          1.0667447438463569,
+          1.0702042430639267,
+          1.063073517754674
+        ],
+        "prepared_index": [
+          0.668649876024574,
+          0.6682194261811674,
+          0.6708486899733543
+        ]
+      },
+      "warm_medians_s": {
+        "original_cuda": 3.3377099838107824,
+        "fused_ntt": 3.12905898084864,
+        "gpu_decode": 1.2322604791261256,
+        "shared_keys": 1.0667447438463569,
+        "prepared_index": 0.668649876024574
+      },
+      "speedup_over_original_cuda": {
+        "original_cuda": 1.0,
+        "fused_ntt": 1.0666817098172925,
+        "gpu_decode": 2.7086075065701736,
+        "shared_keys": 3.128874084512492,
+        "prepared_index": 4.991715550229334
+      },
+      "vectors_per_second": {
+        "original_cuda": 9817.509657501041,
+        "fused_ntt": 10472.157987610994,
+        "gpu_decode": 26591.780354132494,
+        "shared_keys": 30717.751541806116,
+        "prepared_index": 49006.21562187461
+      },
+      "response_ciphertexts": 2,
+      "identical_ciphertexts": true,
+      "all_distances_correct": true
+    }
+  ],
+  "concurrency": [
+    {
+      "mode": "shared_plan",
+      "workers": 1,
+      "queries_per_wave": 8,
+      "vectors_per_query": 8192,
+      "samples_s": [
+        1.441923241596669,
+        1.4413558109663427,
+        1.4376420839689672
+      ],
+      "median_wave_s": 1.4413558109663427,
+      "queries_per_second": 5.550329723676265,
+      "vectors_per_second": 45468.301096355965,
+      "all_distances_correct": true
+    },
+    {
+      "mode": "shared_plan",
+      "workers": 2,
+      "queries_per_wave": 8,
+      "vectors_per_query": 8192,
+      "samples_s": [
+        1.3812931263819337,
+        1.3864352400414646,
+        1.3862477149814367
+      ],
+      "median_wave_s": 1.3862477149814367,
+      "queries_per_second": 5.770974345741034,
+      "vectors_per_second": 47275.82184031055,
+      "all_distances_correct": true
+    },
+    {
+      "mode": "shared_plan",
+      "workers": 4,
+      "queries_per_wave": 8,
+      "vectors_per_query": 8192,
+      "samples_s": [
+        1.3871128628961742,
+        1.3866247329860926,
+        1.3899397999048233
+      ],
+      "median_wave_s": 1.3871128628961742,
+      "queries_per_second": 5.767374965651085,
+      "vectors_per_second": 47246.335718613685,
+      "all_distances_correct": true
+    },
+    {
+      "mode": "independent_plans",
+      "workers": 1,
+      "queries_per_wave": 8,
+      "vectors_per_query": 8192,
+      "samples_s": [
+        1.4468093998730183,
+        1.4430258823558688,
+        1.4384032380767167
+      ],
+      "median_wave_s": 1.4430258823558688,
+      "queries_per_second": 5.543906105786047,
+      "vectors_per_second": 45415.6788185993,
+      "all_distances_correct": true
+    },
+    {
+      "mode": "independent_plans",
+      "workers": 2,
+      "queries_per_wave": 8,
+      "vectors_per_query": 8192,
+      "samples_s": [
+        1.3909115088172257,
+        1.387019889894873,
+        1.3899406199343503
+      ],
+      "median_wave_s": 1.3899406199343503,
+      "queries_per_second": 5.755641561419981,
+      "vectors_per_second": 47150.21567115249,
+      "all_distances_correct": true
+    },
+    {
+      "mode": "independent_plans",
+      "workers": 4,
+      "queries_per_wave": 8,
+      "vectors_per_query": 8192,
+      "samples_s": [
+        1.3846075697802007,
+        1.3915261114016175,
+        1.3905512308701873
+      ],
+      "median_wave_s": 1.3905512308701873,
+      "queries_per_second": 5.753114176882008,
+      "vectors_per_second": 47129.51133701741,
+      "all_distances_correct": true
+    }
+  ],
+  "profiles": {
+    "original_cuda": {
+      "forward_ntt": {
+        "seconds": 0.312856942,
+        "calls": 108
+      },
+      "inverse_ntt": {
+        "seconds": 0.151342963,
+        "calls": 108
+      },
+      "to_residues": {
+        "seconds": 0.286767549,
+        "calls": 265
+      },
+      "crt_reconstruct": {
+        "seconds": 0.0006622840000000001,
+        "calls": 2
+      },
+      "crt_exact_fallback": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "gadget_decompose": {
+        "seconds": 0.012261188000000001,
+        "calls": 92
+      },
+      "pointwise": {
+        "seconds": 0.066489066,
+        "calls": 108
+      },
+      "scale_round": {
+        "seconds": 0.00294479,
+        "calls": 1
+      },
+      "mod_q": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "buffers": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "automorphism": {
+        "seconds": 0.010348355,
+        "calls": 84
+      },
+      "add_sub": {
+        "seconds": 0.019262447000000002,
+        "calls": 92
+      },
+      "wire_import": {
+        "seconds": 0.228401611,
+        "calls": 514
+      },
+      "wire_export": {
+        "seconds": 0.000350827,
+        "calls": 2
+      },
+      "rns_compose": {
+        "seconds": 0.0005072900000000001,
+        "calls": 2
+      },
+      "rns_scale": {
+        "seconds": 0.003059693,
+        "calls": 8
+      },
+      "other": {
+        "seconds": 0.175380485,
+        "calls": 1
+      }
+    },
+    "shared_keys": {
+      "forward_ntt": {
+        "seconds": 0.065426949,
+        "calls": 108
+      },
+      "inverse_ntt": {
+        "seconds": 0.030558266,
+        "calls": 108
+      },
+      "to_residues": {
+        "seconds": 0.022263384,
+        "calls": 17
+      },
+      "crt_reconstruct": {
+        "seconds": 0.000747465,
+        "calls": 2
+      },
+      "crt_exact_fallback": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "gadget_decompose": {
+        "seconds": 0.013059536,
+        "calls": 92
+      },
+      "pointwise": {
+        "seconds": 0.022917134000000002,
+        "calls": 108
+      },
+      "scale_round": {
+        "seconds": 0.0030392320000000002,
+        "calls": 1
+      },
+      "mod_q": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "buffers": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "automorphism": {
+        "seconds": 0.009528568000000001,
+        "calls": 84
+      },
+      "add_sub": {
+        "seconds": 0.014034479,
+        "calls": 92
+      },
+      "wire_import": {
+        "seconds": 0.018836775,
+        "calls": 9
+      },
+      "wire_export": {
+        "seconds": 0.000344657,
+        "calls": 2
+      },
+      "rns_compose": {
+        "seconds": 0.00044179800000000003,
+        "calls": 2
+      },
+      "rns_scale": {
+        "seconds": 0.003988002,
+        "calls": 8
+      },
+      "other": {
+        "seconds": 0.036457935000000004,
+        "calls": 1
+      }
+    },
+    "prepared_index": {
+      "forward_ntt": {
+        "seconds": 0.06914677100000001,
+        "calls": 108
+      },
+      "inverse_ntt": {
+        "seconds": 0.032208850000000004,
+        "calls": 108
+      },
+      "to_residues": {
+        "seconds": 0.0021795020000000003,
+        "calls": 9
+      },
+      "crt_reconstruct": {
+        "seconds": 0.000670262,
+        "calls": 2
+      },
+      "crt_exact_fallback": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "gadget_decompose": {
+        "seconds": 0.011997608,
+        "calls": 92
+      },
+      "pointwise": {
+        "seconds": 0.027299237,
+        "calls": 108
+      },
+      "scale_round": {
+        "seconds": 0.002725176,
+        "calls": 1
+      },
+      "mod_q": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "buffers": {
+        "seconds": 0.0,
+        "calls": 0
+      },
+      "automorphism": {
+        "seconds": 0.008405836,
+        "calls": 84
+      },
+      "add_sub": {
+        "seconds": 0.013114026,
+        "calls": 92
+      },
+      "wire_import": {
+        "seconds": 2.951e-05,
+        "calls": 1
+      },
+      "wire_export": {
+        "seconds": 0.000346407,
+        "calls": 2
+      },
+      "rns_compose": {
+        "seconds": 0.000374139,
+        "calls": 2
+      },
+      "rns_scale": {
+        "seconds": 0.003844029,
+        "calls": 8
+      },
+      "other": {
+        "seconds": 0.013743973000000001,
+        "calls": 1
+      }
+    }
+  },
+  "source_sha256": {
+    "benchmarks/bfv_cuda_scaling.py": "921105540d96a7ee49a0343166303c1e38dd51477ab22f2af03c533f62370d0b",
+    "benchmarks/bfv_client_matrix.py": "6720e62b98a93b100e1f72b816889299b2865489d3b40883870c515f63e48718",
+    "src/cuhepy/bfv/rns.py": "4663dbdfc5124c4f4a9b212b48c998e3d4959853be9625115de972b4f02b6ef4",
+    "src/cuhepy/bfv/native.py": "e5b55f613522d42fc1442f43bf3e3f8b93c5ce458fbfd625280dcdad5cf79a49",
+    "src/cuhepy/bfv/__init__.py": "4254ce1d203a4bcc83564ba2cbcdff6c9aeccc4a330831c2d5085b3758d0074b",
+    "src/cuhepy/bfv/evaluator.py": "c50cd2856cbc83213c61cac5ef963d0a146250f6d8014778a1ad8d702cc5926b",
+    "src/cuhepy/bfv/cuda.py": "9587ca2b36b371703163d387e20aaf3f0a5ff991066c2163b345abfdc13ec100",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "src/cuhepy/bfv/private.py": "432c96490d95d14d32973a6a539199b70f6bf4d3c86e520c04beb23ffccf764e",
+    "src/cuhepy/bfv/_gpu_ext/bindings.cu": "19d9e1c077f4e96f8b75691b4e55acaadf19a474ac3996ca23f8459633a030c2",
+    "src/cuhepy/bfv/_gpu_ext/server.cuh": "7d182dd28e3060e8287157357222c010ce3ed2548e373a80720e4243e69ea3d9",
+    "src/cuhepy/bfv/_gpu_ext/__init__.py": "23dc7117fdbc45885c3a4ab36b6002ea007a2b33077d6f3069ee3535efe6884c",
+    "src/cuhepy/bfv/_gpu_ext/_bfv_cuda.cpython-312-x86_64-linux-gnu.so": "2961ec11e0c7565f09bf197152325b2e5385e7ca03e4b87c19e93b7ed83ab9fb",
+    "src/cuhepy/bfv/_gpu_ext/kernels.cuh": "06e6cdc447f16d54338dd7689a958f292d9e3d344c0a03e6b9a51088b0e05140",
+    "src/cuhepy/bfv/_cpu_ext/__init__.py": "5b403430d7bea9a571afeecf51f39d99b1360f162f33f6340dfca0b257d2b320",
+    "src/cuhepy/bfv/_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/cuhepy/bfv/_cpu_ext/bfv_residue.h": "e77f270c620d432370e8204c24e1dc6f3c0d382d6bd777ad63852dd8a89f575a",
+    "src/cuhepy/bfv/_cpu_ext/bfv_server.h": "70f96bc7f1fc25827979cea7b350edaf9cffccf2fa5af0a9275b9d514fb400cf",
+    "src/cuhepy/bfv/_cpu_ext/private_bindings.cpp": "7b48d92e526147d97d9401e868c8d3e9dbf0b8ba567a67e05047e01f2a371fc0",
+    "src/cuhepy/bfv/_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/cuhepy/bfv/_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "829149a0b572c92c005196816221f63bebac6efda1ead9683cba7fca00fe5a7a",
+    "src/cuhepy/bfv/_cpu_ext/bindings.cpp": "43cd4278154bd0456865d82a067febeb22f003478c07266aae466124a5708bf7",
+    "src/cuhepy/bfv/_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/cuhepy/bfv/_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+    "src/cuhepy/bfv/_cpu_ext/_bfv_private.cpython-312-x86_64-linux-gnu.so": "11d0c6bc949db2de7ccf2cf9921522f2c8bc330d07151dec2d94d9ad953ec9d7",
+    "src/cuhepy/bfv/_cpu_ext/rns_ntt.h": "f9886933ab66eeac9a4b25968b9bf485e065ab62d8f2efe4223598c927062f67",
+    "src/cuhepy/hamming/bfv_attested.py": "3774c1e1c7e532f050b021962c96372f028fe54f4dacc5e580ea5841b46d56d5",
+    "src/cuhepy/hamming/bfv.py": "4f276b8bf422a04bd6a244335d4e8380ea402ead52fe7315eecf06ed273f9737",
+    "src/cuhepy/hamming/bfv_assurance.py": "4bc7f1540b3a50511f74246e47c7322ebb736bc5378a81c1a9ccfc3b3b9eae68",
+    "src/cuhepy/hamming/paillier_lookup.py": "f68b46cf8520edea20a847eff902c665b231606fdaf97e09c593937a1b888f5e",
+    "src/cuhepy/hamming/base.py": "7de33f0378b3fdb5c8650ff563e634dcc959e6edeb4de93e69034e0e11e08de3",
+    "src/cuhepy/hamming/__init__.py": "4637d3a80b2ab55bcedb98c648489f51efb5415398d69edb2ff7546be1334275",
+    "src/cuhepy/hamming/bfv_verified.py": "c5a9060a48dcca0d5afaf583469c6ca16e3f884028284ea8ae11ad6af0ecb573",
+    "src/cuhepy/hamming/bfv_nitro.py": "095a21bc97175704a9c5f2b91cccb98decdb8089759d8a5439c61a122fe242b6",
+    "src/cuhepy/hamming/bfv_guarded.py": "baf60dd46d46bba9998e0c9d20a4ce2a11efc15191439dd60d6f4831c650576e",
+    "src/cuhepy/hamming/paillier.py": "fca271f88667bccee7281619a8b9e3d055d9894575e3b6dc696c2107a372d96f",
+    "src/cuhepy/hamming/bfv_security.py": "46bed16965d27648cf705188d5a9f0e02c0bad15e6a97ca0f7a07ba32ff98eca"
+  }
+}
