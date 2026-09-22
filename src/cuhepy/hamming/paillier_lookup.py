@@ -378,8 +378,18 @@ class PaillierLookupClient(HammingClientBase):
         return [self._cipher_to_int(cipher) for cipher in result]
 
     def dump_tables(self) -> dict:
+        """Export JSON-compatible tables with the same types on CPU and GPU."""
         dump_fn = getattr(self.client, "dump_tables", None)
-        return dump_fn() if dump_fn is not None else {}
+        tables = dump_fn() if dump_fn is not None else {}
+        if not tables:
+            return {}
+        # The CUDA extension exports mpz values; the CPU already exports ints.
+        # Normalize at the public boundary so keys.save and other JSON callers
+        # can persist either backend without custom encoders or rebuilding it.
+        return {
+            "g_table": {int(k): [int(v) for v in row] for k, row in tables["g_table"].items()},
+            "noise_table": [int(v) for v in tables["noise_table"]],
+        }
 
     def __getstate__(self) -> dict:
         state = {

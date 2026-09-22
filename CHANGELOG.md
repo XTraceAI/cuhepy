@@ -2,8 +2,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- Saving a GPU Paillier-Lookup client with `keys.save(..., include_tables=True)`
+  now converts cached GMP integers to JSON-compatible integers, matching CPU
+  table exports. Cached key files can be restored on CPU or GPU.
+
 ### Changed
 
+- README installation now uses a source checkout while the renamed package's
+  PyPI release is pending. Compiled-backend examples specify matching Python
+  versions, the BFV residue modulus requirement, and when to reinstall built
+  extensions. Test instructions distinguish dependency downloads, optional
+  backend/protocol tests and offline execution.
 - **The project is now `cuhepy`: a homomorphic-encryption library, not a client
   for a hosted service.** The XTrace vector-database integration, the `xtrace`
   CLI, the embedding/LLM wrappers, the data loader and retriever, the AES and

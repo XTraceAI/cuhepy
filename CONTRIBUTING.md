@@ -33,7 +33,11 @@ Thank you for your interest in contributing to cuhepy!
 uv run pytest tests/
 ```
 
-The whole suite runs offline. Tests for the compiled backends skip automatically when the extensions are not built.
+After dependencies are installed, the suite runs offline. Tests for the compiled
+backends skip automatically when the extensions are not built. Include the
+optional local Nitro tests with `uv sync --all-groups --extra bfv-nitro` followed
+by `uv run --extra bfv-nitro pytest tests/`; the real AWS integration test is
+opt-in.
 
 ## Code Style
 

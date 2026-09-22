@@ -43,8 +43,15 @@ kept separate from the schemes so neither depends on the other.
 
 ## Install
 
+The renamed `cuhepy` package has not been published on PyPI yet. Install from
+a source checkout in a virtual environment:
+
 ```bash
-pip install cuhepy
+git clone https://github.com/XTraceAI/cuhepy.git
+cd cuhepy
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install .
 ```
 
 Requires Python 3.11+. The CPU path has four dependencies (`gmpy2`, `msgpack`,
@@ -150,22 +157,52 @@ build host needs only Docker, not a GPU or a local CUDA toolkit:
 ./build_gpu_binaries.sh      # -> src/cuhepy/paillier/_{,lookup_}gpu_ext/*.so
 ```
 
+The default build targets **Python 3.11**. Match the build to the interpreter
+that will import the extensions; for Python 3.12, for example:
+
+```bash
+PYTHON_VERSION=3.12 PYTHON_FULL_VERSION=3.12.13 ./build_gpu_binaries.sh
+```
+
+The patch version selects the pinned Python build used inside Docker; the host
+interpreter must have the same major/minor version. If you installed a wheel
+with `pip install .` before building, reinstall with `python -m pip install .`
+to include the new extensions. An editable install (`python -m pip install -e .`
+or `uv sync`) reads them directly from the checkout.
+
 Runtime needs an NVIDIA driver ≥ 550 and a GPU of compute capability 7.0–9.0.
 Clients probe for the extension at construction; `device="cpu"` or `device="gpu"`
 forces a backend.
 
-**C++ RNS/NTT (BFV)** — `make -C src/cuhepy/bfv/_cpu_ext`. Select it with
-`BFVClient(server_backend="rns" | "native" | "residue")`.
+**C++ RNS/NTT (BFV)** — requires a C++17 compiler, GMP development headers and
+the development headers for your Python interpreter:
+
+```bash
+make -C src/cuhepy/bfv/_cpu_ext PYTHON="$PWD/.venv/bin/python"
+```
+
+Import `BFVClient` from `cuhepy.hamming.bfv`. Select the residue backend with
+`BFVClient(server_backend="residue", rns_modulus=True)`, which generates keys
+with the required RNS modulus. `server_backend="rns"` and `"native"` are also
+available. The same reinstall/editable-install rule applies after this build.
 
 ## Verify it yourself
 
-Everything runs offline, no account or service required:
+From the repository root, install the development dependencies, then run the
+tests and demonstration. Dependency installation needs network access; the
+tests and demonstration run offline without an account or service:
 
 ```bash
 uv sync --all-groups
-uv run pytest tests/                                  # full offline suite
+uv run pytest tests/                                  # available offline tests
 uv run python attacks/pl01_alpha_recovery.py          # recover a key from a public key
 ```
+
+Tests for unbuilt compiled backends skip automatically. To also run the local
+Nitro protocol tests, install their optional dependencies with
+`uv sync --all-groups --extra bfv-nitro`, then run
+`uv run --extra bfv-nitro pytest tests/`. The real AWS integration test remains
+opt-in; local protocol tests use synthetic attestation fixtures.
 
 ## Repository layout
 
