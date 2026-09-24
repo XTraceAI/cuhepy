@@ -12,6 +12,13 @@ including losses, exact scope and raw data. The implementation directory is
 [`experiments/bfv_search_lab`](../../experiments/bfv_search_lab). The portfolio
 now also includes proposed CKKS, TFHE and mixed-protocol alternatives below.
 
+**Public-pipeline follow-up:** the homemade BGV path now includes GPU query
+transforms, key-read sharing, two fusion strategies, native terminal reduction,
+and experiments on concurrent requests and terminal precision. See the
+[paired pipeline results](bgv-public-pipeline-results.md). External libraries
+remain independent correctness/performance references; developing our own
+scheme and arithmetic implementations is the primary objective.
+
 ## Expanded scheme portfolio after the first implementations
 
 The objective is exact/private search under a declared contract, not adherence

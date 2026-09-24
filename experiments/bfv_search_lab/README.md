@@ -8,6 +8,9 @@ The [results report](../../docs/research/search-lab-first-results.md) records
 measurements, unsuccessful tradeoffs, and the next experiments.
 The [BGV follow-up](../../docs/research/bgv-butterfly-results.md) adds joint
 packing, persistent RNS, CUDA, bounded terminal compaction and seeded queries.
+The [public-pipeline follow-up](../../docs/research/bgv-public-pipeline-results.md)
+records kernel ablations, native compaction, scaling, concurrency and terminal
+precision under the same homemade BGV evaluation context.
 
 These are explicit research entry points, outside the default client and its
 authenticated protocols. They operate on synthetic, owner-controlled data.

@@ -5,6 +5,10 @@
 Paillier and authenticated clients are unchanged. These implementations live
 under [experiments/bfv_search_lab](../../experiments/bfv_search_lab).
 
+The [next public-pipeline report](bgv-public-pipeline-results.md) measures kernel
+ablations, native compaction, larger indexes, concurrent requests and reduced
+terminal precision. The measurements below remain the preceding baseline.
+
 ## What was implemented
 
 1. Joint trace and coefficient packing using an automorphism butterfly.

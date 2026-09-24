@@ -12,6 +12,9 @@ All notable changes to this project will be documented in this file.
 - Add a paired terminal-precision sweep with full-plaintext comparisons and
   explicit correctness-bound refusals; keep the 32-bit default and measure
   smaller responses under the same Q120 evaluation context.
+- Record ten-trial BGV pipeline measurements at 8,192 and 32,768 vectors,
+  concurrent-request throughput, and a 25-bit response experiment in
+  `docs/research/bgv-public-pipeline-results.md`, with public measurement artifacts.
 - Add joint BGV trace/packing with the established automorphism butterfly,
   an isolated native public evaluator with cached key/index transforms, and
   an independent SEAL 4.1.2 BGV circuit oracle. Preserve the per-tile reference
