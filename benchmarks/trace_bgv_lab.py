@@ -108,8 +108,7 @@ def main():
         "response_ciphertexts": (8192 + case.n - 1) // case.n,
         "raw_response_bytes": ((8192 + case.n - 1) // case.n)
         * 2
-        * (case.n * case.q.bit_length() + 7)
-        // 8,
+        * ((case.n * case.q.bit_length() + 7) // 8),
         "phase_bound_bits": bound.bit_length(),
         "conservative_no_wrap_bound_holds": 2 * bound < case.q,
         "relinearizations": full_tiles,
