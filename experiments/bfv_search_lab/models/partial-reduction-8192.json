@@ -1,0 +1,127 @@
+{
+  "kind": "analytical_operation_counts_not_performance_measurements",
+  "verification": {
+    "scope": "plaintext algebra only; no encrypted execution or security estimate",
+    "partial_layout_cases": 1131,
+    "coefficient_layout_cases": 367
+  },
+  "parameters": {
+    "num_vectors": 8192,
+    "embed_len": 512,
+    "ring_degree": 16384,
+    "response_bits": 50
+  },
+  "notes": "Bytes count only two-component ciphertext coefficients; framing is excluded. Key-switch counts include one relinearization per input tile. Partial sums disclose more to the decrypting client than final distances.",
+  "partial_reduction": [
+    {
+      "partials_per_vector": 1,
+      "input_tiles": 256,
+      "reduction_rotations": 2304,
+      "packing_rotations": 255,
+      "rotations": 2559,
+      "relinearizations": 256,
+      "key_switches": 2815,
+      "response_ciphertexts": 1,
+      "response_coefficient_bytes": 204800
+    },
+    {
+      "partials_per_vector": 2,
+      "input_tiles": 256,
+      "reduction_rotations": 2048,
+      "packing_rotations": 255,
+      "rotations": 2303,
+      "relinearizations": 256,
+      "key_switches": 2559,
+      "response_ciphertexts": 1,
+      "response_coefficient_bytes": 204800
+    },
+    {
+      "partials_per_vector": 4,
+      "input_tiles": 256,
+      "reduction_rotations": 1792,
+      "packing_rotations": 254,
+      "rotations": 2046,
+      "relinearizations": 256,
+      "key_switches": 2302,
+      "response_ciphertexts": 2,
+      "response_coefficient_bytes": 409600
+    },
+    {
+      "partials_per_vector": 8,
+      "input_tiles": 256,
+      "reduction_rotations": 1536,
+      "packing_rotations": 252,
+      "rotations": 1788,
+      "relinearizations": 256,
+      "key_switches": 2044,
+      "response_ciphertexts": 4,
+      "response_coefficient_bytes": 819200
+    },
+    {
+      "partials_per_vector": 16,
+      "input_tiles": 256,
+      "reduction_rotations": 1280,
+      "packing_rotations": 248,
+      "rotations": 1528,
+      "relinearizations": 256,
+      "key_switches": 1784,
+      "response_ciphertexts": 8,
+      "response_coefficient_bytes": 1638400
+    },
+    {
+      "partials_per_vector": 32,
+      "input_tiles": 256,
+      "reduction_rotations": 1024,
+      "packing_rotations": 240,
+      "rotations": 1264,
+      "relinearizations": 256,
+      "key_switches": 1520,
+      "response_ciphertexts": 16,
+      "response_coefficient_bytes": 3276800
+    },
+    {
+      "partials_per_vector": 64,
+      "input_tiles": 256,
+      "reduction_rotations": 768,
+      "packing_rotations": 224,
+      "rotations": 992,
+      "relinearizations": 256,
+      "key_switches": 1248,
+      "response_ciphertexts": 32,
+      "response_coefficient_bytes": 6553600
+    },
+    {
+      "partials_per_vector": 128,
+      "input_tiles": 256,
+      "reduction_rotations": 512,
+      "packing_rotations": 192,
+      "rotations": 704,
+      "relinearizations": 256,
+      "key_switches": 960,
+      "response_ciphertexts": 64,
+      "response_coefficient_bytes": 13107200
+    },
+    {
+      "partials_per_vector": 256,
+      "input_tiles": 256,
+      "reduction_rotations": 256,
+      "packing_rotations": 128,
+      "rotations": 384,
+      "relinearizations": 256,
+      "key_switches": 640,
+      "response_ciphertexts": 128,
+      "response_coefficient_bytes": 26214400
+    },
+    {
+      "partials_per_vector": 512,
+      "input_tiles": 256,
+      "reduction_rotations": 0,
+      "packing_rotations": 0,
+      "rotations": 0,
+      "relinearizations": 256,
+      "key_switches": 256,
+      "response_ciphertexts": 256,
+      "response_coefficient_bytes": 52428800
+    }
+  ]
+}

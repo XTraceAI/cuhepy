@@ -2,6 +2,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Research
+
+- Add a BFV search experiment plan covering client preparation, alternative
+  circuits and layouts, GPU arithmetic, and communication. Include independent
+  plaintext layout checks and an analytical partial-reduction cost model;
+  encrypted performance and security validation remain future experiments.
+
 ### Changed
 
 - **The project is now `cuhepy`: a homomorphic-encryption library, not a client
