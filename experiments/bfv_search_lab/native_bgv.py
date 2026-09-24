@@ -8,6 +8,7 @@ The native arithmetic is variable-time. This is not an authenticated protocol.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import importlib
 from typing import Any
 
 import gmpy2
@@ -29,8 +30,12 @@ class PreparedIndex:
 class NativeServer:
     """Explicit opt-in lab backend; package BFV/Paillier behavior is unchanged."""
 
-    def __init__(self, pk: bgv.PublicKey, keys: trace.EvaluationKeys) -> None:
-        from experiments.bfv_search_lab._native import _bgv_trace
+    def __init__(self, pk: bgv.PublicKey, keys: trace.EvaluationKeys, *, residue: bool = False,
+                 device: str = "cpu") -> None:
+        if device not in ("cpu", "cuda") or (device == "cuda" and not residue):
+            raise ValueError("CUDA requires explicit persistent RNS mode")
+        module = "_bgv_trace_cuda" if device == "cuda" else "_bgv_trace"
+        _bgv_trace = importlib.import_module(f"experiments.bfv_search_lab._native.{module}")
 
         butterfly.validate_keys(pk, keys)
         self.pk, self.keys = pk, keys
@@ -41,6 +46,7 @@ class NativeServer:
             pk.n, format(pk.q, "x"), keys.digit_bits, keys.padded,
             tuple(tuple((self._pack(b), self._pack(a)) for b, a in key)
                   for key in (keys.relin, *(key for _, key in keys.rotations))),
+            residue,
         )
 
     def _pack(self, poly: BFVPolynomial) -> bytes:

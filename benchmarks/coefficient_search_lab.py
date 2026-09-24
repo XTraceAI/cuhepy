@@ -40,7 +40,7 @@ def timed(fn, *args, **kwargs):
 
 
 class Case:
-    def __init__(self, mode, n, t, q_bits, compact=False, karatsuba=False):
+    def __init__(self, mode, n, t, q_bits, compact=False, karatsuba=False, rns_modulus=False):
         self.mode, self.n, self.t = mode, n, t
         self.compact, self.karatsuba = compact, karatsuba
         if mode == "bfv":
@@ -48,7 +48,7 @@ class Case:
             self.pk, self.sk = self.keys["pk"], self.keys["sk"]
             self.q, self.key_id = self.pk["q"], self.pk["key_id"]
         else:
-            self.pk, self.sk = bgv.key_gen(n, t, q_bits)
+            self.pk, self.sk = bgv.key_gen(n, t, q_bits, rns_modulus=rns_modulus)
             self.q, self.key_id = self.pk.q, self.pk.key_id
         self.name = f"{mode}-t{t}-q{q_bits}"
         if compact:

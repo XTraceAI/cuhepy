@@ -28,7 +28,8 @@ public:
     Server(std::shared_ptr<const Ring> r, std::size_t d,
            std::vector<std::shared_ptr<const SwitchKey>> k)
         : ring(std::move(r)), padded(d),
-          primes(ring->prime_count(2 * ring->n * (ring->q - 1) * (ring->q - 1))), keys(std::move(k)) {
+          primes(ring->residue_prime_count ? ring->residue_prime_count :
+                 ring->prime_count(2 * ring->n * (ring->q - 1) * (ring->q - 1))), keys(std::move(k)) {
         if (!d || (d & (d - 1)) || d > ring->n / 2)
             throw std::invalid_argument("Invalid native trace layout");
         Word exponent = 1 + 2 * ring->n / d;
@@ -41,6 +42,8 @@ public:
         for (const auto& key : keys)
             if (key->ring != ring) throw std::invalid_argument("Mismatched native key context");
     }
+
+    virtual ~Server() = default;
 
     PreparedCiphertext prepare(const Ciphertext& cipher) const {
         return {ring->encode(cipher[0], primes), ring->encode(cipher[1], primes)};
@@ -70,7 +73,7 @@ public:
         return monomial(output, 2 * ring->n + 1 - padded, *ring);
     }
 
-    std::vector<Ciphertext> search(const Ciphertext& query,
+    virtual std::vector<Ciphertext> search(const Ciphertext& query,
                                   const std::vector<PreparedCiphertext>& index, bool butterfly) const {
         const auto& r = *ring;
         auto prepared = prepare(query);

@@ -65,3 +65,18 @@ def test_native_boundary_rejections():
                           (16, "f" * 24, 30, 3)):
         with pytest.raises(ValueError):
             native.create_server(n, q, bits, d, ())
+
+
+@pytest.mark.parametrize("n,d,bits", [(8, 1, 120), (64, 5, 120), (64, 31, 180)])
+def test_persistent_rns_matches_python_and_auxiliary_native(n, d, bits):
+    pk, sk = bgv.key_gen(n, q_bits=bits, rns_modulus=True)
+    keys = trace.evaluation_keys(pk, sk, 1 << (d - 1).bit_length())
+    query = [i % 2 for i in range(d)]
+    rows = [query, [1 - x for x in query]] * (n + 1)
+    qp, tiles = bgv.coefficient_inputs(query, rows, n)
+    ct, index = bgv.encrypt(qp, pk), [bgv.encrypt(p, pk) for p in tiles]
+    for joint, reference in ((False, trace.search), (True, butterfly.search)):
+        expected = reference(ct, index, len(rows), pk, keys)
+        for residue in (False, True):
+            server = NativeServer(pk, keys, residue=residue)
+            assert server.search(ct, server.prepare_index(index, len(rows)), joint=joint) == expected

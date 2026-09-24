@@ -15,7 +15,7 @@ import secrets
 import gmpy2
 from gmpy2 import mpz
 
-from cuhepy.bfv.scheme import _coefficient_modulus, _ring_product, _small_poly, _ternary_poly
+from cuhepy.bfv.scheme import _coefficient_modulus, _rns_coefficient_primes, _ring_product, _small_poly, _ternary_poly
 from cuhepy.types import BFVPolynomial
 
 
@@ -50,7 +50,8 @@ class Ciphertext:
     phase_bound: int  # Public conservative bound, not a private noise diagnostic.
 
 
-def key_gen(n: int, t: int = 1031, q_bits: int = 180, eta: int = 21) -> tuple[PublicKey, SecretKey]:
+def key_gen(n: int, t: int = 1031, q_bits: int = 180, eta: int = 21,
+            *, rns_modulus: bool = False) -> tuple[PublicKey, SecretKey]:
     if (
         type(n) is not int
         or not 8 <= n <= 32768
@@ -62,9 +63,15 @@ def key_gen(n: int, t: int = 1031, q_bits: int = 180, eta: int = 21) -> tuple[Pu
         or not 32 <= q_bits <= 240
         or type(eta) is not int
         or not 1 <= eta <= 64
+        or type(rns_modulus) is not bool
     ):
         raise ValueError("Invalid shallow BGV fixture parameters")
-    q = _coefficient_modulus(q_bits)
+    # An opt-in product modulus enables persistent RNS public evaluation. It
+    # changes the key context and requires a newly encrypted index.
+    q = mpz(1) if rns_modulus else _coefficient_modulus(q_bits)
+    if rns_modulus:
+        for prime in _rns_coefficient_primes(n, q_bits):
+            q *= prime
     fresh_bound = t // 2 + t * eta * (2 * n + 1)
     if 2 * n * fresh_bound**2 >= q:
         raise ValueError("Q is too small for the conservative one-product correctness bound")

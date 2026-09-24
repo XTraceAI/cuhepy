@@ -2,6 +2,10 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 #include "trace_server.h"
+#include "residue_trace.h"
+#ifdef CUHEPY_BGV_CUDA
+#include "cuda_trace.cuh"
+#endif
 #include <string>
 
 namespace {
@@ -10,10 +14,18 @@ using ServerPtr = std::shared_ptr<const Server>;
 struct Index {
     ServerPtr server;
     std::vector<PreparedCiphertext> tiles;
+#ifdef CUHEPY_BGV_CUDA
+    std::shared_ptr<const CudaTraceServer::DeviceIndex> device;
+#endif
 };
 using IndexPtr = std::shared_ptr<const Index>;
+#ifdef CUHEPY_BGV_CUDA
+constexpr const char* server_name = "cuhepy.lab.bgv.cuda.server.v1";
+constexpr const char* index_name = "cuhepy.lab.bgv.cuda.index.v1";
+#else
 constexpr const char* server_name = "cuhepy.lab.bgv.server.v1";
 constexpr const char* index_name = "cuhepy.lab.bgv.index.v1";
+#endif
 struct PythonError {};
 struct WithoutGIL {
     PyThreadState* state = PyEval_SaveThread();
@@ -87,10 +99,12 @@ PyObject* write_pair(const Ciphertext& ct, const Ring& r) {
 }
 PyObject* create_server(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
-        PyObject *n_obj, *bits_obj, *d_obj, *keys_obj;
+        PyObject *n_obj, *bits_obj, *d_obj, *keys_obj, *residue_obj = Py_False;
         const char* text;
         Py_ssize_t length;
-        if (!PyArg_ParseTuple(args, "Os#OOO", &n_obj, &text, &length, &bits_obj, &d_obj, &keys_obj)) return nullptr;
+        if (!PyArg_ParseTuple(args, "Os#OOO|O", &n_obj, &text, &length, &bits_obj, &d_obj, &keys_obj, &residue_obj)) return nullptr;
+        if (!PyBool_Check(residue_obj)) throw std::invalid_argument("Residue mode must be bool");
+        bool residue = residue_obj == Py_True;
         auto n = integer(n_obj, 32768), bits = integer(bits_obj, 60), d = integer(d_obj, n / 2);
         if (n < 8 || (n & (n - 1)) || bits < 4 || !d || (d & (d - 1)) ||
             length < 8 || length > 60 || text[0] == '0' || !std::all_of(text, text + length, [](char c) {
@@ -106,7 +120,7 @@ PyObject* create_server(PyObject*, PyObject* args) {
         if (!PyTuple_Check(keys_obj) || PyTuple_GET_SIZE(keys_obj) != static_cast<Py_ssize_t>(count))
             throw std::invalid_argument("Incorrect native key count");
         std::shared_ptr<const Ring> ring;
-        { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, true); }
+        { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, true, residue, residue ? 2 : 0); }
         std::vector<std::shared_ptr<const SwitchKey>> keys;
         for (std::size_t i = 0; i < count; ++i) {
             auto key = PyTuple_GET_ITEM(keys_obj, i);
@@ -117,7 +131,14 @@ PyObject* create_server(PyObject*, PyObject* args) {
                 columns.push_back(read_pair(PyTuple_GET_ITEM(key, j), *ring));
             { WithoutGIL release; keys.push_back(std::make_shared<SwitchKey>(ring, columns)); }
         }
-        return capsule(ServerPtr(std::make_shared<Server>(ring, d, std::move(keys))), server_name);
+        ServerPtr server;
+#ifdef CUHEPY_BGV_CUDA
+        server = std::make_shared<CudaTraceServer>(ring, d, std::move(keys));
+#else
+        if (residue) server = std::make_shared<ResidueTraceServer>(ring, d, std::move(keys));
+        else server = std::make_shared<Server>(ring, d, std::move(keys));
+#endif
+        return capsule(std::move(server), server_name);
     });
 }
 PyObject* prepare_index(PyObject*, PyObject* args) {
@@ -136,6 +157,11 @@ PyObject* prepare_index(PyObject*, PyObject* args) {
             auto tile = read_pair(PyTuple_GET_ITEM(tiles, i), *server->ring);
             { WithoutGIL release; index->tiles.push_back(server->prepare(tile)); }
         }
+#ifdef CUHEPY_BGV_CUDA
+        { WithoutGIL release;
+          index->device = static_cast<const CudaTraceServer&>(*server).prepare_device(index->tiles);
+          index->tiles.clear(); index->tiles.shrink_to_fit(); }
+#endif
         return capsule(IndexPtr(index), index_name);
     });
 }
@@ -149,7 +175,13 @@ PyObject* search(PyObject*, PyObject* args) {
         if (!PyBool_Check(mode)) throw std::invalid_argument("Butterfly mode must be bool");
         auto query = read_pair(query_obj, *server->ring);
         std::vector<Ciphertext> output;
-        { WithoutGIL release; output = server->search(query, index->tiles, mode == Py_True); }
+        { WithoutGIL release;
+#ifdef CUHEPY_BGV_CUDA
+          output = static_cast<const CudaTraceServer&>(*server).search_device(query, *index->device, mode == Py_True);
+#else
+          output = server->search(query, index->tiles, mode == Py_True);
+#endif
+        }
         auto result = PyTuple_New(output.size());
         if (!result) return nullptr;
         try {
@@ -168,7 +200,16 @@ PyMethodDef methods[] = {
     {"search", search, METH_VARARGS, "Evaluate the per-tile or joint trace circuit."},
     {nullptr, nullptr, 0, nullptr}
 };
-PyModuleDef module = {PyModuleDef_HEAD_INIT, "_bgv_trace", "Experimental public BGV arithmetic.", -1,
+#ifdef CUHEPY_BGV_CUDA
+constexpr const char* module_name = "_bgv_trace_cuda";
+#else
+constexpr const char* module_name = "_bgv_trace";
+#endif
+PyModuleDef module = {PyModuleDef_HEAD_INIT, module_name, "Experimental public BGV arithmetic.", -1,
                      methods, nullptr, nullptr, nullptr, nullptr};
 }
+#ifdef CUHEPY_BGV_CUDA
+PyMODINIT_FUNC PyInit__bgv_trace_cuda() { return PyModule_Create(&module); }
+#else
 PyMODINIT_FUNC PyInit__bgv_trace() { return PyModule_Create(&module); }
+#endif
