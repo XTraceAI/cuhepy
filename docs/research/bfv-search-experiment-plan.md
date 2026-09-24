@@ -609,6 +609,15 @@ or stop. Never store private keys in measurement artifacts.
   for E01's complete slot layout and E06's signed coefficient identity.
 - [Analytical operation counts](../../experiments/bfv_search_lab/models/partial-reduction-8192.json)
   for the current 8,192-vector workload, clearly marked as a model.
+- [Encrypted first results](search-lab-first-results.md): partial CPU/CUDA sums,
+  query preprocessing, seeded uploads and the homemade coefficient-BGV reference.
+- [BGV joint packing](bgv-butterfly-results.md): an isolated homemade public
+  RNS/CUDA evaluator, terminal compaction and independent SEAL circuit checks.
+- [Public pipeline ablations](bgv-public-pipeline-results.md): gathered/fused
+  kernels, native terminal reduction, 32,768-vector scaling and concurrent service.
+- [Fresh owner arithmetic](bgv-owner-results.md): bulk sampling/stream decoding,
+  exact shifted-ternary products, a separate private C++/GMP owner, and paired
+  client/server phase measurements. No secret arithmetic enters the public server.
 
 The oracle passes **1,131 partial-layout cases and 367 coefficient-layout cases**.
 It exhausts all query/vector pairs up to four bits and adds deterministic random

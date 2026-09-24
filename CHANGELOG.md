@@ -10,6 +10,9 @@ All notable changes to this project will be documented in this file.
   benchmarks, exhaustive sampling/algebra checks, native boundary and lifecycle
   tests. Keep the original reference and the public server independent; private
   arithmetic remains variable-time and outside the authenticated client paths.
+- Record ten-trial owner comparisons at 8,192 and 32,768 vectors in
+  `docs/research/bgv-owner-results.md`, with unchanged communication sizes,
+  separate cache/setup costs, raw measurements and committed source hashes.
 - Add paired BGV public-pipeline ablations: GPU query NTTs, fused and gathered
   automorphism/gadget kernels, shared evaluation-key reads, and exact C++ terminal
   compaction before export. Preserve every baseline and cryptographic parameter.

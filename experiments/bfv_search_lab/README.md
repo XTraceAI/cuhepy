@@ -11,6 +11,8 @@ packing, persistent RNS, CUDA, bounded terminal compaction and seeded queries.
 The [public-pipeline follow-up](../../docs/research/bgv-public-pipeline-results.md)
 records kernel ablations, native compaction, scaling, concurrency and terminal
 precision under the same homemade BGV evaluation context.
+The [owner follow-up](../../docs/research/bgv-owner-results.md) measures bulk
+fresh sampling, exact ternary products and a separate private C++/GMP backend.
 
 These are explicit research entry points, outside the default client and its
 authenticated protocols. They operate on synthetic, owner-controlled data.

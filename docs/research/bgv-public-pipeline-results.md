@@ -198,6 +198,11 @@ and allocation contention seen in the thread experiment. Narrower RNS limbs
 remain a separate parameter/arithmetic experiment, rather than part of these
 same-Q results.
 
+The subsequent [owner-arithmetic experiment](bgv-owner-results.md) addresses
+those private costs with bulk sampling and exact shifted-ternary GMP products,
+including a separate optional native owner. It preserves this public server and
+records new paired measurements; its private GMP operations remain variable-time.
+
 These are engineering experiments using established BGV/trace identities, not
 a novelty or production-security claim. Private Python/GMP remains variable-time;
 BGV parameter assurance and authenticated GPU execution are still open. Correct
