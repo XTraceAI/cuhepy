@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add joint BGV trace/packing with the established automorphism butterfly,
+  an isolated native public evaluator with cached key/index transforms, and
+  an independent SEAL 4.1.2 BGV circuit oracle. Preserve the per-tile reference
+  and compare complete ciphertexts before measuring performance.
 - Add a BFV search experiment plan covering client preparation, alternative
   circuits and layouts, GPU arithmetic, and communication. Include independent
   plaintext layout checks and an analytical partial-reduction cost model.
