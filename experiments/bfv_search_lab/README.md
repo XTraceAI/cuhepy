@@ -227,6 +227,17 @@ Service times include host scheduling/GIL contention and device synchronization;
 they are not interactive network latency. The experiment caps concurrent
 coefficient workspace at 4 GiB. See `benchmarks/bgv_request_throughput.py`.
 
+The separate terminal-precision sweep compares 24, 25, 26, 28 and 32 bits
+under the **same** Q120 keys and encrypted index. It verifies every plaintext
+coefficient before/after reduction and records bound refusals without decrypting
+unsafe results. Its smallest passing size is specific to the ring, t, secret
+distribution and public circuit bound; this is not a general parameter policy.
+
+```bash
+.venv/bin/python benchmarks/bgv_terminal_sweep.py --num-vectors 8192 --repeats 10 \
+  --json-out benchmarks/results/bgv_terminal_precision_8192.json
+```
+
 ## Independent SEAL BGV oracle
 
 TenSEAL 0.3.16's low-level wrapper exposes BFV/CKKS but not BGV. Build this

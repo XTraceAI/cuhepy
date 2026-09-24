@@ -86,3 +86,16 @@ def test_native_compaction_refuses_bad_contexts_bounds_and_parameters():
     bad = pk.q.to_bytes(server.width, "little") * pk.n
     with pytest.raises(ValueError, match="Noncanonical"):
         server._native.compact_result(server._server, (bad, pair[1]), pk.t, format(p, "x"))
+
+
+@pytest.mark.parametrize("n,minimum_bits", [(2048, 22), (16384, 25)])
+def test_terminal_precision_boundary_depends_on_ring_and_plaintext_modulus(n, minimum_bits):
+    pk, sk = bgv.key_gen(n, q_bits=120, rns_modulus=True)
+    server = NativeServer(pk, trace.evaluation_keys(pk, sk, 1), residue=True)
+    cipher = bgv.encrypt([0] * n, pk)
+    with pytest.raises(ValueError, match="correctness bound"):
+        server.compact_result(cipher, minimum_bits - 1)
+    small = server.compact_result(cipher, minimum_bits)
+    assert small == compact.compact(cipher, pk, minimum_bits)
+    assert compact.decrypt(small, pk, sk) == [0] * n
+    assert 2 * small.phase_bound < small.modulus

@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
   compaction before export. Preserve every baseline and cryptographic parameter.
   Add concurrent-request throughput experiments and differential rounding,
   malformed-input, tail, stream-ordering and complete-ciphertext checks.
+- Add a paired terminal-precision sweep with full-plaintext comparisons and
+  explicit correctness-bound refusals; keep the 32-bit default and measure
+  smaller responses under the same Q120 evaluation context.
 - Add joint BGV trace/packing with the established automorphism butterfly,
   an isolated native public evaluator with cached key/index transforms, and
   an independent SEAL 4.1.2 BGV circuit oracle. Preserve the per-tile reference
