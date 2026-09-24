@@ -6,6 +6,8 @@ now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
 seeded queries, a native SIMD encoder, and a depth-one BGV-style alternative.
 The [results report](../../docs/research/search-lab-first-results.md) records
 measurements, unsuccessful tradeoffs, and the next experiments.
+The [BGV follow-up](../../docs/research/bgv-butterfly-results.md) adds joint
+packing, persistent RNS, CUDA, bounded terminal compaction and seeded queries.
 
 These are explicit research entry points, outside the default client and its
 authenticated protocols. They operate on synthetic, owner-controlled data.
@@ -20,6 +22,11 @@ assurance. The raw CUDA path does not provide attestation.
 | `query.py` | Public-key or seeded symmetric query, one-use preprocessing pool, native encoder wrapper |
 | `shallow_bgv.py` | Depth-one RLWE reference, conservative correctness bound, signed coefficient layout |
 | `trace_bgv.py` | Public evaluation keys, ring-trace projection and dense coefficient-result packing |
+| `butterfly_bgv.py` | Joint trace/packing reference, public bound schedule and key validation |
+| `native_bgv.py`, `_native/` | Isolated C++/RNS/CUDA evaluators with resident public keys/index |
+| `compact_bgv.py` | Congruence-preserving terminal modulus reduction and its correctness bound |
+| `seeded_bgv.py` | Fresh owner-encrypted query; server regenerates the uniform component |
+| `seal_bgv_oracle.cpp` | Independent coefficient-layout/circuit check using official SEAL BGV |
 | `planner.py` | Capability-filtered ranking under a modeled network connection |
 | `test_*.py` | Differential, boundary, lifecycle and algebra tests |
 
@@ -28,6 +35,8 @@ The small C++ hooks live with the existing backends in
 [`src/cuhepy/bfv/_gpu_ext`](../../src/cuhepy/bfv/_gpu_ext). Rebuild **both** from
 this checkout; old binaries do not have the experimental factories. The
 accepted `create_server` path defaults to one complete sum as before.
+The BGV follow-up has its **own** native extensions under `_native/`; it does
+not add a BGV mode to the production BFV factories.
 
 ## Build, test and measure
 
@@ -68,6 +77,8 @@ The trace pilot adds encrypted projection/repacking and measures **65 vectors
 at the full N=16,384, d=512 ring/layout**. It includes an explicitly analytical
 8,192-vector payload/count/bound projection, not a runtime claim at that size.
 Its public CPU key switching is a slow reference, without native or CUDA kernels.
+The follow-up benchmarks below supersede that limitation; the original pilot
+and its artifacts remain available as a reference.
 
 Only timings, public parameters, byte counts and source/binary hashes are
 saved. The repository ignores JSON globally: explicitly stage only reviewed
@@ -127,3 +138,87 @@ ruff check --config 'force-exclude=false' --config 'exclude=[]' \
 mypy --explicit-package-bases \
   experiments/bfv_search_lab/{layout_oracles,partial,query,shallow_bgv,trace_bgv,planner}.py
 ```
+
+## BGV joint packing, RNS and CUDA
+
+These commands build only the isolated research extensions. Public evaluation
+reuses existing modular/NTT code; SEAL is not linked into these extensions.
+
+```bash
+make -C experiments/bfv_search_lab/_native all cuda \
+  PYTHON="$PWD/.venv/bin/python" CXX=g++-12 CUDA_CXX=g++-12 CUDA_ARCH=86
+.venv/bin/python -m pytest experiments/bfv_search_lab/ -q
+
+# Full-ring differential pilot: identical ciphertexts across Python/C++/GPU.
+.venv/bin/python benchmarks/butterfly_bgv_lab.py \
+  --num-vectors 65 --q-bits 120 --rns-modulus --terminal-bits 32 \
+  --variants python-butterfly native-butterfly residue-butterfly cuda-per-tile cuda-butterfly \
+  --repeats 3 --json-out benchmarks/results/bgv_rns_cuda_65.json
+
+# Full workload, same keys/index/query for each paired CPU/GPU round.
+.venv/bin/python benchmarks/butterfly_bgv_lab.py \
+  --num-vectors 8192 --q-bits 120 --rns-modulus --terminal-bits 32 \
+  --variants residue-per-tile residue-butterfly cuda-per-tile cuda-butterfly \
+  --repeats 5 --json-out benchmarks/results/bgv_rns_cuda_8192.json
+
+# Optional owner-only query encryption; fresh seed/error for every query.
+.venv/bin/python benchmarks/butterfly_bgv_lab.py \
+  --num-vectors 8192 --q-bits 120 --rns-modulus --terminal-bits 32 --seeded-query \
+  --variants residue-butterfly cuda-per-tile cuda-butterfly \
+  --repeats 5 --json-out benchmarks/results/bgv_seeded_cuda_8192.json
+```
+
+All ciphertexts within each run share the selected modulus. `--rns-modulus`
+requires newly generated keys/index; it is not a reinterpretation of the old
+prime-modulus ciphertexts. Native byte counts describe cached NTT storage,
+while wire counts describe coefficient framing. `server_s` includes native
+conversions and synchronized GPU evaluation; `server_compact_s` separately
+charges terminal reduction. `local_phases_s` excludes wire parsing, network,
+attestation and setup. Seeded query creation includes its packet encoding;
+`server_query_expand_s` charges seed expansion.
+
+Run this matrix without simultaneous tests, compilers or other benchmarks.
+To inspect the earlier single-prime experiment, omit `--rns-modulus`, select
+only Python/native variants and use `--q-bits 96`.
+
+## Independent SEAL BGV oracle
+
+TenSEAL 0.3.16's low-level wrapper exposes BFV/CKKS but not BGV. Build this
+optional oracle against the official pinned SEAL release in a temporary tree:
+
+```bash
+git clone --depth 1 --branch v4.1.2 https://github.com/microsoft/SEAL.git /tmp/cuhepy-research-SEAL-4.1.2
+cmake -S /tmp/cuhepy-research-SEAL-4.1.2 -B /tmp/cuhepy-research-SEAL-4.1.2/build \
+  -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-12 \
+  -DSEAL_BUILD_DEPS=OFF -DSEAL_USE_MSGSL=OFF -DSEAL_USE_ZLIB=OFF \
+  -DSEAL_USE_ZSTD=OFF -DSEAL_BUILD_EXAMPLES=OFF -DSEAL_BUILD_TESTS=OFF
+cmake --build /tmp/cuhepy-research-SEAL-4.1.2/build -j2
+g++-12 -O3 -std=c++17 experiments/bfv_search_lab/seal_bgv_oracle.cpp \
+  -I/tmp/cuhepy-research-SEAL-4.1.2/native/src \
+  -I/tmp/cuhepy-research-SEAL-4.1.2/build/native/src \
+  /tmp/cuhepy-research-SEAL-4.1.2/build/lib/libseal-4.1.a -pthread \
+  -o /tmp/cuhepy-seal-bgv-oracle
+CUHEPY_SEAL_BGV_ORACLE=/tmp/cuhepy-seal-bgv-oracle \
+  .venv/bin/python -m pytest experiments/bfv_search_lab/test_seal_bgv_oracle.py -q
+```
+
+The oracle checks both circuits and every plaintext coefficient, including
+tail and multi-response cases. Its SEAL parameters differ from our BGV keys,
+so this validates the algebra/circuit, not our cryptographic security profile.
+
+## Standalone CUDA arithmetic and memory checking
+
+```bash
+nvcc -O2 -lineinfo -std=c++17 -ccbin g++-12 \
+  -gencode arch=compute_86,code=sm_86 -Isrc/cuhepy/bfv/_cpu_ext \
+  experiments/bfv_search_lab/_native/sanitize_cuda.cu -lgmpxx -lgmp \
+  -o /tmp/cuhepy-bgv-cuda-sanitizer
+/tmp/cuhepy-bgv-cuda-sanitizer
+compute-sanitizer --tool memcheck --error-exitcode 99 /tmp/cuhepy-bgv-cuda-sanitizer
+```
+
+The standalone oracle passes locally. The installed Compute Sanitizer 2022.4.1
+cannot instrument it on this machine (exit 255 before the first API call),
+including retries with the injection path and `--target-processes all`.
+This command is provided for a working sanitizer environment, not as a claim
+that GPU memory checking passed here.

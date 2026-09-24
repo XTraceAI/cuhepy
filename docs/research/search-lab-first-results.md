@@ -4,6 +4,9 @@
 and measurement notebook for the [research plan](bfv-search-experiment-plan.md).
 The accepted Paillier/BFV clients remain the baseline. All new application
 entry points are in the [experiment directory](../../experiments/bfv_search_lab).
+The [BGV follow-up](bgv-butterfly-results.md) implements joint trace packing,
+persistent RNS/CUDA evaluation and terminal response compaction, with full
+8,192-vector measurements. The original experiments below remain the baseline.
 
 ## Scope and methodology
 
