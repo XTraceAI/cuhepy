@@ -216,8 +216,8 @@ class ResidueServer : public HammingServer {
 
 public:
     ResidueServer(KeyHandle relin, std::map<Word, KeyHandle> keys,
-                  std::size_t padded, Word t, const mpz_class& target)
-        : HammingServer(std::move(relin), std::move(keys), padded, t, target, false),
+                  std::size_t padded, Word t, const mpz_class& target, std::size_t partials = 1)
+        : HammingServer(std::move(relin), std::move(keys), padded, t, target, false, partials),
           arithmetic_(*ring), full_mask_ntt_(ring->encode(mask(capacity), arithmetic_.count)) {
         if (ring->kernel_level >= 2) scale_ = std::make_unique<RNSScale>(*ring, t);
     }
@@ -226,7 +226,7 @@ public:
         const auto tiles = (count + capacity - 1) / capacity;
         Residues partial;
         if (count % capacity) partial = ring->encode(mask(count % capacity), arithmetic_.count);
-        merge_hamming_tiles<ResidueCiphertext>(tiles, padded, [&](std::size_t at) {
+        merge_hamming_tiles<ResidueCiphertext>(tiles, reduction_span, [&](std::size_t at) {
             const auto& selected = at + 1 == tiles && !partial.empty() ? partial : full_mask_ntt_;
             return tile(query, read_tile(at), selected);
         }, [&](const ResidueCiphertext& result, std::size_t level) {

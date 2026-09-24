@@ -6,8 +6,14 @@ All notable changes to this project will be documented in this file.
 
 - Add a BFV search experiment plan covering client preparation, alternative
   circuits and layouts, GPU arithmetic, and communication. Include independent
-  plaintext layout checks and an analytical partial-reduction cost model;
-  encrypted performance and security validation remain future experiments.
+  plaintext layout checks and an analytical partial-reduction cost model.
+- Implement opt-in encrypted partial-sum CPU/CUDA experiments, a native SIMD
+  encoder, seeded queries, and a bounded one-use preprocessing pool. Add paired
+  complete-search measurements, capability-filtered network projections, and
+  a depth-one BGV-style coefficient-packing reference with a correctness bound
+  and three-product multiplication, plus encrypted ring-trace result packing.
+  Preserve default clients and protocol
+  bindings; the experiments have no production-security or novelty claim.
 
 ### Changed
 

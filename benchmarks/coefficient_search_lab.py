@@ -33,9 +33,9 @@ from cuhepy.types import BFVCiphertext
 from experiments.bfv_search_lab import shallow_bgv as bgv
 
 
-def timed(fn):
+def timed(fn, *args, **kwargs):
     start = time.perf_counter()
-    result = fn()
+    result = fn(*args, **kwargs)
     return time.perf_counter() - start, result
 
 
@@ -151,9 +151,9 @@ def main():
         ("bgv", 65537, 180, False, True),
         ("bgv", 1031, 90, False, True),
     ):
-        seconds, case = timed(lambda: Case(mode, args.ring_degree, t, bits, compact, karatsuba))
+        seconds, case = timed(Case, mode, args.ring_degree, t, bits, compact, karatsuba)
         print(f"Preparing {case.name}", file=sys.stderr, flush=True)
-        index_s, case.index = timed(lambda: [case.encrypt(tile) for tile in tiles])
+        index_s, case.index = timed(lambda encrypt=case.encrypt: [encrypt(tile) for tile in tiles])
         setup[case.name] = {
             "keygen_s": seconds,
             "index_encrypt_s": index_s,

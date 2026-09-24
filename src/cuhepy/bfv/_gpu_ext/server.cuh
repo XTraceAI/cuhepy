@@ -185,8 +185,9 @@ class CudaServer final : public HammingServer {
     }
 public:
     CudaServer(KeyHandle relin, std::map<Word, KeyHandle> keys, std::size_t padded, Word t,
-               const mpz_class& target, unsigned kernel_level = 3, std::size_t batch_limit = 32)
-        : HammingServer(relin, std::move(keys), padded, t, target, false),
+               const mpz_class& target, unsigned kernel_level = 3, std::size_t batch_limit = 32,
+               std::size_t partials = 1)
+        : HammingServer(relin, std::move(keys), padded, t, target, false, partials),
           kernel_level_(kernel_level), batch_limit_(batch_limit) {
         if (kernel_level > 3 || batch_limit < 1 || batch_limit > 256)
             throw std::invalid_argument("Invalid CUDA kernel level or tile batch limit");
@@ -321,7 +322,7 @@ private:
     void evaluate(const U* query_rns, std::size_t count, LoadBatch load, Emit emit, bool compact_result) const {
         if (!count) return;
         std::size_t tiles = (count+capacity-1)/capacity, n = ring->n;
-        std::size_t batch_max = std::min(batch_limit_, tiles), group_max = std::min(padded,tiles);
+        std::size_t batch_max = std::min(batch_limit_, tiles), group_max = std::min(reduction_span,tiles);
         // Allocation is per call: immutable plans are safe to share between
         // Python threads, and concurrent searches have independent streams.
         Buffer<U> input(batch_max*6*n), lifted(batch_max*14*n), tensor(batch_max*21*n);
@@ -342,8 +343,8 @@ private:
                 add_rotation<<<blocks(batch*6*n),256,0,stream.value>>>(destination,switched.data(),permuted.data(),parameters_.data(),batch,to,to_step);
             });
         };
-        for (std::size_t start = 0; start < tiles; start += padded) {
-            auto group_size = std::min(padded,tiles-start);
+        for (std::size_t start = 0; start < tiles; start += reduction_span) {
+            auto group_size = std::min(reduction_span,tiles-start);
             for (std::size_t at = 0; at < group_size; at += batch_max) {
                 auto batch = std::min(batch_max,group_size-at);
                 const U* indexed = load(start+at,batch,input.data(),stream.value);

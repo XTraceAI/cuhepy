@@ -5,6 +5,7 @@
 #include "bfv_server.h"
 #include "bfv_residue.h"
 #include "packed_wire.h"
+#include "batch_encoder.h"
 #include <string>
 #ifdef XTRACE_BFV_CUDA
 #include "../_gpu_ext/server.cuh"
@@ -15,6 +16,8 @@ namespace {
 using RingPtr = std::shared_ptr<const Ring>;
 using KeyPtr = std::shared_ptr<const SwitchKey>;
 using ServerPtr = std::shared_ptr<const HammingServer>;
+using EncoderPtr = std::shared_ptr<const BatchEncoder>;
+constexpr const char* encoder_name = "cuhepy.bfv.lab.encoder.v1";
 constexpr const char* ring_name = "xtrace.bfv.rns.ring.v1";
 constexpr const char* key_name = "xtrace.bfv.rns.key.v1";
 #ifdef XTRACE_BFV_CUDA
@@ -141,6 +144,49 @@ PyObject* create_ring(PyObject*, PyObject* args) {
         RingPtr ring;
         { WithoutGIL release; ring = std::make_shared<Ring>(n, q, bits, fast, residue, level); }
         return capsule(std::move(ring), ring_name);
+    });
+}
+
+PyObject* create_batch_encoder(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *n_object, *t_object;
+        if (!PyArg_ParseTuple(args, "OO", &n_object, &t_object)) return nullptr;
+        if (!PyLong_CheckExact(n_object) || !PyLong_CheckExact(t_object))
+            throw std::invalid_argument("Batch parameters must be integers");
+        auto n = PyLong_AsUnsignedLongLong(n_object), t = PyLong_AsUnsignedLongLong(t_object);
+        if (PyErr_Occurred()) return nullptr;
+        if (n < 8 || n > 32768 || (n & (n - 1)) || t < 3 || t >= (Word(1) << 60) || (t - 1) % (2 * n))
+            throw std::invalid_argument("Invalid batch encoder parameters");
+        mpz_class prime;
+        mpz_import(prime.get_mpz_t(), 1, 1, sizeof(t), 0, 0, &t);
+        if (mpz_probab_prime_p(prime.get_mpz_t(), 32) == 0)
+            throw std::invalid_argument("Batch modulus must be prime");
+        EncoderPtr encoder;
+        { WithoutGIL release; encoder = std::make_shared<BatchEncoder>(n, t); }
+        return capsule(std::move(encoder), encoder_name);
+    });
+}
+
+PyObject* batch_encode(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *encoder_object, *slots_object;
+        if (!PyArg_ParseTuple(args, "OO", &encoder_object, &slots_object)) return nullptr;
+        auto encoder = get_capsule<EncoderPtr>(encoder_object, encoder_name);
+        if (!PyBytes_Check(slots_object) || PyBytes_GET_SIZE(slots_object) != static_cast<Py_ssize_t>(8 * encoder->n))
+            throw std::invalid_argument("Expected N little-endian uint64 batch slots");
+        const auto* input = reinterpret_cast<const unsigned char*>(PyBytes_AS_STRING(slots_object));
+        std::vector<Word> slots(encoder->n), coefficients;
+        for (std::size_t i = 0; i < encoder->n; ++i)
+            for (unsigned byte = 0; byte < 8; ++byte)
+                slots[i] |= Word(input[8 * i + byte]) << (8 * byte);
+        { WithoutGIL release; coefficients = encoder->encode(slots); }
+        PyObject* result = PyBytes_FromStringAndSize(nullptr, 8 * encoder->n);
+        if (!result) return nullptr;
+        auto* output = reinterpret_cast<unsigned char*>(PyBytes_AS_STRING(result));
+        for (std::size_t i = 0; i < encoder->n; ++i)
+            for (unsigned byte = 0; byte < 8; ++byte)
+                output[8 * i + byte] = static_cast<unsigned char>(coefficients[i] >> (8 * byte));
+        return result;
     });
 }
 
@@ -284,17 +330,18 @@ PyObject* key_bytes(PyObject*, PyObject* argument) {
     });
 }
 
-PyObject* create_server(PyObject*, PyObject* args) {
+PyObject* create_server_impl(PyObject* args, bool partial_mode) {
     return checked([&]() -> PyObject* {
         PyObject *relin_object, *keys_object, *padded_object, *t_object;
         const char* target_hex;
         Py_ssize_t target_length;
+        PyObject* partials_object = nullptr;
 #ifdef XTRACE_BFV_CUDA
         unsigned level = 3;
         unsigned long long batch = 32;
         PyObject *level_object = nullptr, *batch_object = nullptr;
-        if (!PyArg_ParseTuple(args, "OOOOs#|OO", &relin_object, &keys_object, &padded_object, &t_object, &target_hex, &target_length,
-                             &level_object, &batch_object)) return nullptr;
+        if (!PyArg_ParseTuple(args, partial_mode ? "OOOOs#OOO" : "OOOOs#|OO", &relin_object, &keys_object, &padded_object, &t_object, &target_hex, &target_length,
+                             &level_object, &batch_object, &partials_object)) return nullptr;
         if (level_object) {
             auto value = PyLong_AsUnsignedLongLong(level_object);
             if (PyErr_Occurred()) return nullptr;
@@ -305,7 +352,7 @@ PyObject* create_server(PyObject*, PyObject* args) {
         if (PyErr_Occurred()) return nullptr;
         if (!batch || batch > 256) throw std::invalid_argument("Invalid CUDA batch limit");
 #else
-        if (!PyArg_ParseTuple(args, "OOOOs#", &relin_object, &keys_object, &padded_object, &t_object, &target_hex, &target_length)) return nullptr;
+        if (!PyArg_ParseTuple(args, partial_mode ? "OOOOs#O" : "OOOOs#", &relin_object, &keys_object, &padded_object, &t_object, &target_hex, &target_length, &partials_object)) return nullptr;
 #endif
         auto relin = get_capsule<KeyPtr>(relin_object, key_name);
         const auto& ring = *relin->ring;
@@ -316,6 +363,14 @@ PyObject* create_server(PyObject*, PyObject* args) {
         if (!padded || padded > ring.n / 2 || (padded & (padded - 1)) ||
             t % (2 * ring.n) != 1 || !mpz_probab_prime_p(plain.get_mpz_t(), 32))
             throw std::invalid_argument("Invalid native server layout or plaintext modulus");
+        unsigned long long partials = 1;
+        if (partial_mode) {
+            if (!PyLong_CheckExact(partials_object)) throw std::invalid_argument("Invalid partial-sum count");
+            partials = PyLong_AsUnsignedLongLong(partials_object);
+            if (PyErr_Occurred()) return nullptr;
+            if (!partials || partials > padded || (partials & (partials - 1)))
+                throw std::invalid_argument("Invalid partial-sum count");
+        }
         target = read_modulus(target_hex, target_length, (mpz_sizeinbase(ring.q.get_mpz_t(), 2) + 3) / 4);
         if (target <= plain || target > ring.q)
             throw std::invalid_argument("Invalid native response modulus");
@@ -332,16 +387,19 @@ PyObject* create_server(PyObject*, PyObject* args) {
         ServerPtr server;
         { WithoutGIL release;
 #ifdef XTRACE_BFV_CUDA
-          server = std::make_shared<gpu::CudaServer>(relin, std::move(keys), padded, t, target, level, batch);
+          server = std::make_shared<gpu::CudaServer>(relin, std::move(keys), padded, t, target, level, batch, partials);
 #else
           if (ring.residue_prime_count)
-              server = std::make_shared<ResidueServer>(relin, std::move(keys), padded, t, target);
-          else server = std::make_shared<HammingServer>(relin, std::move(keys), padded, t, target);
+              server = std::make_shared<ResidueServer>(relin, std::move(keys), padded, t, target, partials);
+          else server = std::make_shared<HammingServer>(relin, std::move(keys), padded, t, target, true, partials);
 #endif
         }
         return capsule(std::move(server), server_name);
     });
 }
+
+PyObject* create_server(PyObject*, PyObject* args) { return create_server_impl(args, false); }
+PyObject* create_partial_server(PyObject*, PyObject* args) { return create_server_impl(args, true); }
 
 using PackedPair = std::array<std::string_view, 2>;
 PackedPair packed_pair(PyObject* object, const Ring& ring) {
@@ -503,6 +561,7 @@ PyObject* available(PyObject*, PyObject*) {
 PyMethodDef methods[] = {
     {"available", available, METH_NOARGS, "Whether a CUDA device is available."},
     {"create_server", create_server, METH_VARARGS, "Prepare public CUDA tables and evaluation keys."},
+    {"create_partial_server", create_partial_server, METH_VARARGS, "Experimental partial-sum layout; requires its own decoder and protocol binding."},
     {"packed_search", packed_search, METH_VARARGS, "Evaluate the packed Hamming circuit on CUDA."},
     {"profile_packed_search", profile_packed_search, METH_VARARGS, "Diagnostic synchronized wall timings; exclude from performance samples."},
     {"prepare_index", prepare_index, METH_VARARGS, "Validate and upload an immutable index snapshot."},
@@ -517,6 +576,8 @@ PyModuleDef module = {PyModuleDef_HEAD_INIT, "_bfv_cuda", "Experimental public B
 #else
 PyMethodDef methods[] = {
     {"create_ring", create_ring, METH_VARARGS, "Prepare exact CRT bases and negacyclic NTT tables."},
+    {"create_batch_encoder", create_batch_encoder, METH_VARARGS, "Experimental variable-time SIMD encoder plan."},
+    {"batch_encode", batch_encode, METH_VARARGS, "Encode canonical uint64 slots using a prepared SIMD plan."},
     {"compile_key", compile_key, METH_VARARGS, "Cache a gadget key in RNS/NTT form."},
     {"apply_key", apply_key, METH_VARARGS, "Evaluate an exact gadget dot product, reduced mod q."},
     {"ring_product", ring_product, METH_VARARGS, "Multiply two canonical polynomials mod q."},
@@ -525,6 +586,7 @@ PyMethodDef methods[] = {
     {"hamming_tile", hamming_tile, METH_VARARGS, "Evaluate the native Hamming tile circuit."},
     {"profile_hamming_tile", profile_hamming_tile, METH_VARARGS, "Return a tile and exclusive per-phase native timings."},
     {"create_server", create_server, METH_VARARGS, "Prepare an immutable public-key native Hamming server."},
+    {"create_partial_server", create_partial_server, METH_VARARGS, "Experimental partial-sum layout; requires its own decoder and protocol binding."},
     {"packed_search", packed_search, METH_VARARGS, "Evaluate a complete packed search using native wire buffers."},
     {"profile_packed_search", profile_packed_search, METH_VARARGS, "Return a search and exclusive per-phase native timings."},
     {"profile_call", profile_call, METH_O, "Profile native phases of a synchronous callable; other includes Python work."},
