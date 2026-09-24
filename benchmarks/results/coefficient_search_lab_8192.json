@@ -1,0 +1,549 @@
+{
+  "kind": "cpu_reference_coefficient_layout_no_repacking_or_attestation",
+  "utc": "2026-09-24T08:37:36.613229+00:00",
+  "command": [
+    "benchmarks/coefficient_search_lab.py",
+    "--num-vectors",
+    "8192",
+    "--repeats",
+    "5",
+    "--json-out",
+    "benchmarks/results/coefficient_search_lab_8192.json"
+  ],
+  "git_head": "00077758f6bbf3cf5569d2ea8596b6cd375b0daa",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "gmp": "GMP 6.3.0",
+  "num_vectors": 8192,
+  "dimension": 512,
+  "ring_degree": 16384,
+  "notes": "CPU Python/GMP reference algorithms only. Same coefficient packing and signed binary task. Fresh keys per case, independent encryption randomness, paired shuffled query rounds. No security equivalence claimed: BGV is depth-one RLWE with a conservative correctness bound, not full BGV. No relinearization, rotations or result repacking. Unmasked outputs expose additional correlations to the authorized owner. No network or attestation. Terminal BFV correctness is measured, not a general parameter assurance proof.",
+  "sha256": {
+    "benchmarks/coefficient_search_lab.py": "c7f6918fb763bb243e3401aef0cd85dbb4c8753c02f3ae1515e5748b97a7e71a",
+    "experiments/bfv_search_lab/shallow_bgv.py": "b46841c96479fe6af31b56294e84f1609e9faa7a13250415c0e4d3760d98cf08",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4"
+  },
+  "setup": {
+    "bfv-t65537-q180": {
+      "keygen_s": 0.12016568705439568,
+      "index_encrypt_s": 38.83212212333456,
+      "index_bytes": 188746595,
+      "input_tiles": 256
+    },
+    "bfv-t65537-q180-terminal50": {
+      "keygen_s": 0.11238287389278412,
+      "index_encrypt_s": 39.30578602897003,
+      "index_bytes": 188746595,
+      "input_tiles": 256
+    },
+    "bgv-t65537-q180": {
+      "keygen_s": 0.1090993620455265,
+      "index_encrypt_s": 38.21379583515227,
+      "index_bytes": 188746595,
+      "input_tiles": 256,
+      "public_phase_bound_bits_after_product": 85,
+      "conservative_no_wrap_bound_holds": true
+    },
+    "bgv-t65537-q180-three-products": {
+      "keygen_s": 0.11135501228272915,
+      "index_encrypt_s": 37.920798887033015,
+      "index_bytes": 188746595,
+      "input_tiles": 256,
+      "public_phase_bound_bits_after_product": 85,
+      "conservative_no_wrap_bound_holds": true
+    },
+    "bgv-t1031-q90-three-products": {
+      "keygen_s": 0.09912819601595402,
+      "index_encrypt_s": 32.95069076633081,
+      "index_bytes": 94374742,
+      "input_tiles": 256,
+      "public_phase_bound_bits_after_product": 73,
+      "conservative_no_wrap_bound_holds": true
+    }
+  },
+  "warmup": {
+    "bfv-t65537-q180": {
+      "client_prepare_s": 0.15491617377847433,
+      "server_unpack_s": 0.0033850870095193386,
+      "server_evaluate_s": 38.76954776188359,
+      "response_pack_s": 1.2282236996106803,
+      "client_unpack_s": 2.0193805219605565,
+      "client_decode_s": 22.163107378873974,
+      "client_top3_s": 0.0075951009057462215,
+      "online_total_s": 64.3480460527353,
+      "query_bytes": 737386,
+      "response_bytes": 283119715,
+      "query_plus_response_bytes": 283857101
+    },
+    "bfv-t65537-q180-terminal50": {
+      "client_prepare_s": 0.14932091487571597,
+      "server_unpack_s": 0.0033633671700954437,
+      "server_evaluate_s": 47.17638071579859,
+      "response_pack_s": 0.5143318576738238,
+      "client_unpack_s": 1.2703275470994413,
+      "client_decode_s": 14.225567904300988,
+      "client_top3_s": 0.050649452954530716,
+      "online_total_s": 63.39180814707652,
+      "query_bytes": 737386,
+      "response_bytes": 78647379,
+      "query_plus_response_bytes": 79384765
+    },
+    "bgv-t65537-q180": {
+      "client_prepare_s": 0.14890720136463642,
+      "server_unpack_s": 0.003418568056076765,
+      "server_evaluate_s": 25.73481071414426,
+      "response_pack_s": 1.027786772698164,
+      "client_unpack_s": 1.8924453342333436,
+      "client_decode_s": 16.264379377942532,
+      "client_top3_s": 0.01593213528394699,
+      "online_total_s": 45.08950962964445,
+      "query_bytes": 737386,
+      "response_bytes": 283119715,
+      "query_plus_response_bytes": 283857101
+    },
+    "bgv-t65537-q180-three-products": {
+      "client_prepare_s": 0.15106845973059535,
+      "server_unpack_s": 0.004284445196390152,
+      "server_evaluate_s": 21.15160587290302,
+      "response_pack_s": 1.0367232980206609,
+      "client_unpack_s": 1.930920243728906,
+      "client_decode_s": 16.597905796952546,
+      "client_top3_s": 0.053616030141711235,
+      "online_total_s": 40.92795403301716,
+      "query_bytes": 737386,
+      "response_bytes": 283119715,
+      "query_plus_response_bytes": 283857101
+    },
+    "bgv-t1031-q90-three-products": {
+      "client_prepare_s": 0.13346875878050923,
+      "server_unpack_s": 0.003066771198064089,
+      "server_evaluate_s": 15.505611297208816,
+      "response_pack_s": 0.5886102830991149,
+      "client_unpack_s": 1.636638875119388,
+      "client_decode_s": 12.368627953343093,
+      "client_top3_s": 0.024841350968927145,
+      "online_total_s": 30.26274519599974,
+      "query_bytes": 368733,
+      "response_bytes": 141561942,
+      "query_plus_response_bytes": 141930675
+    }
+  },
+  "results": [
+    {
+      "variant": "bfv-t65537-q180",
+      "samples": [
+        {
+          "client_prepare_s": 0.1468844823539257,
+          "server_unpack_s": 0.0033998368307948112,
+          "server_evaluate_s": 34.513429092243314,
+          "response_pack_s": 1.1452156556770205,
+          "client_unpack_s": 1.8696911209262908,
+          "client_decode_s": 21.121136501897126,
+          "client_top3_s": 0.04565561888739467,
+          "online_total_s": 58.84742575837299,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.165221125818789,
+          "server_unpack_s": 0.0038099451921880245,
+          "server_evaluate_s": 34.411916855722666,
+          "response_pack_s": 1.0999041153118014,
+          "client_unpack_s": 1.8276486997492611,
+          "client_decode_s": 21.084620845038444,
+          "client_top3_s": 0.046552174258977175,
+          "online_total_s": 58.64172155223787,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.15518577955663204,
+          "server_unpack_s": 0.004321094136685133,
+          "server_evaluate_s": 36.676272267941386,
+          "response_pack_s": 1.1741642910055816,
+          "client_unpack_s": 1.9362341477535665,
+          "client_decode_s": 22.782149536069483,
+          "client_top3_s": 0.05310537992045283,
+          "online_total_s": 62.784504177980125,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.16135067772120237,
+          "server_unpack_s": 0.0038207448087632656,
+          "server_evaluate_s": 37.569562563207,
+          "response_pack_s": 1.1826722659170628,
+          "client_unpack_s": 1.937177682761103,
+          "client_decode_s": 23.07226106710732,
+          "client_top3_s": 0.05236439406871796,
+          "online_total_s": 63.98269512504339,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.15438969805836678,
+          "server_unpack_s": 0.003589809872210026,
+          "server_evaluate_s": 37.373060496058315,
+          "response_pack_s": 1.2055801772512496,
+          "client_unpack_s": 1.9303635549731553,
+          "client_decode_s": 23.12886757776141,
+          "client_top3_s": 0.05897338315844536,
+          "online_total_s": 63.85690660728142,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        }
+      ],
+      "medians": {
+        "client_prepare_s": 0.15518577955663204,
+        "server_unpack_s": 0.0038099451921880245,
+        "server_evaluate_s": 36.676272267941386,
+        "response_pack_s": 1.1741642910055816,
+        "client_unpack_s": 1.9303635549731553,
+        "client_decode_s": 22.782149536069483,
+        "client_top3_s": 0.05236439406871796,
+        "online_total_s": 62.784504177980125,
+        "query_bytes": 737386,
+        "response_bytes": 283119715,
+        "query_plus_response_bytes": 283857101
+      }
+    },
+    {
+      "variant": "bfv-t65537-q180-terminal50",
+      "samples": [
+        {
+          "client_prepare_s": 0.16297660022974014,
+          "server_unpack_s": 0.004070910159498453,
+          "server_evaluate_s": 47.630994993727654,
+          "response_pack_s": 0.49676527408882976,
+          "client_unpack_s": 1.232887210790068,
+          "client_decode_s": 13.584402590990067,
+          "client_top3_s": 0.046891465317457914,
+          "online_total_s": 63.160928985103965,
+          "query_bytes": 737386,
+          "response_bytes": 78647379,
+          "query_plus_response_bytes": 79384765
+        },
+        {
+          "client_prepare_s": 0.1491680582985282,
+          "server_unpack_s": 0.003451547585427761,
+          "server_evaluate_s": 45.111151984892786,
+          "response_pack_s": 0.49395201075822115,
+          "client_unpack_s": 1.2397514441981912,
+          "client_decode_s": 13.565932903904468,
+          "client_top3_s": 0.047115114983171225,
+          "online_total_s": 60.61258500535041,
+          "query_bytes": 737386,
+          "response_bytes": 78647379,
+          "query_plus_response_bytes": 79384765
+        },
+        {
+          "client_prepare_s": 0.14889353094622493,
+          "server_unpack_s": 0.003421276807785034,
+          "server_evaluate_s": 45.21397943422198,
+          "response_pack_s": 0.4899136871099472,
+          "client_unpack_s": 1.2362924427725375,
+          "client_decode_s": 13.654384901747108,
+          "client_top3_s": 0.04696459136903286,
+          "online_total_s": 60.795906144194305,
+          "query_bytes": 737386,
+          "response_bytes": 78647379,
+          "query_plus_response_bytes": 79384765
+        },
+        {
+          "client_prepare_s": 0.18098987406119704,
+          "server_unpack_s": 0.004800113849341869,
+          "server_evaluate_s": 47.755493071861565,
+          "response_pack_s": 0.523222072981298,
+          "client_unpack_s": 1.2980690710246563,
+          "client_decode_s": 14.671803370118141,
+          "client_top3_s": 0.054686139803379774,
+          "online_total_s": 64.49230224685743,
+          "query_bytes": 737386,
+          "response_bytes": 78647379,
+          "query_plus_response_bytes": 79384765
+        },
+        {
+          "client_prepare_s": 0.15399856166914105,
+          "server_unpack_s": 0.0038067540153861046,
+          "server_evaluate_s": 48.974704226944596,
+          "response_pack_s": 0.5192763516679406,
+          "client_unpack_s": 1.2736618919298053,
+          "client_decode_s": 14.69565084669739,
+          "client_top3_s": 0.05855159508064389,
+          "online_total_s": 65.68196341302246,
+          "query_bytes": 737386,
+          "response_bytes": 78647379,
+          "query_plus_response_bytes": 79384765
+        }
+      ],
+      "medians": {
+        "client_prepare_s": 0.15399856166914105,
+        "server_unpack_s": 0.0038067540153861046,
+        "server_evaluate_s": 47.630994993727654,
+        "response_pack_s": 0.49676527408882976,
+        "client_unpack_s": 1.2397514441981912,
+        "client_decode_s": 13.654384901747108,
+        "client_top3_s": 0.047115114983171225,
+        "online_total_s": 63.160928985103965,
+        "query_bytes": 737386,
+        "response_bytes": 78647379,
+        "query_plus_response_bytes": 79384765
+      }
+    },
+    {
+      "variant": "bgv-t65537-q180",
+      "samples": [
+        {
+          "client_prepare_s": 0.14295183727517724,
+          "server_unpack_s": 0.0033714659512043,
+          "server_evaluate_s": 24.371836293954402,
+          "response_pack_s": 0.9807002749294043,
+          "client_unpack_s": 1.8208605707623065,
+          "client_decode_s": 14.928133183158934,
+          "client_top3_s": 0.016597216948866844,
+          "online_total_s": 42.266422192100435,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.14336760994046926,
+          "server_unpack_s": 0.003426757175475359,
+          "server_evaluate_s": 24.331476358231157,
+          "response_pack_s": 0.9781707641668618,
+          "client_unpack_s": 1.8250273568555713,
+          "client_decode_s": 14.867837749887258,
+          "client_top3_s": 0.01704432489350438,
+          "online_total_s": 42.16832534968853,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.14426217786967754,
+          "server_unpack_s": 0.003453147131949663,
+          "server_evaluate_s": 24.50881891604513,
+          "response_pack_s": 0.9796829493716359,
+          "client_unpack_s": 1.8101908029057086,
+          "client_decode_s": 16.14486902114004,
+          "client_top3_s": 0.027318814769387245,
+          "online_total_s": 43.6206541787833,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.16808700934052467,
+          "server_unpack_s": 0.004621639847755432,
+          "server_evaluate_s": 26.511163365095854,
+          "response_pack_s": 1.0296132257208228,
+          "client_unpack_s": 1.8826157059520483,
+          "client_decode_s": 16.88706006994471,
+          "client_top3_s": 0.02282215701416135,
+          "online_total_s": 46.50806635292247,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.1573733971454203,
+          "server_unpack_s": 0.003752123098820448,
+          "server_evaluate_s": 26.59224985493347,
+          "response_pack_s": 1.0288903904147446,
+          "client_unpack_s": 1.8934841067530215,
+          "client_decode_s": 16.828266595024616,
+          "client_top3_s": 0.018917500041425228,
+          "online_total_s": 46.525498097762465,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        }
+      ],
+      "medians": {
+        "client_prepare_s": 0.14426217786967754,
+        "server_unpack_s": 0.003453147131949663,
+        "server_evaluate_s": 24.50881891604513,
+        "response_pack_s": 0.9807002749294043,
+        "client_unpack_s": 1.8250273568555713,
+        "client_decode_s": 16.14486902114004,
+        "client_top3_s": 0.018917500041425228,
+        "online_total_s": 43.6206541787833,
+        "query_bytes": 737386,
+        "response_bytes": 283119715,
+        "query_plus_response_bytes": 283857101
+      }
+    },
+    {
+      "variant": "bgv-t65537-q180-three-products",
+      "samples": [
+        {
+          "client_prepare_s": 0.1433521779254079,
+          "server_unpack_s": 0.0033522057346999645,
+          "server_evaluate_s": 19.964860920794308,
+          "response_pack_s": 0.9876160169951618,
+          "client_unpack_s": 1.8606220320798457,
+          "client_decode_s": 14.943639337550849,
+          "client_top3_s": 0.0167043786495924,
+          "online_total_s": 37.922083870042115,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.14445000607520342,
+          "server_unpack_s": 0.0034138266928493977,
+          "server_evaluate_s": 20.10391262639314,
+          "response_pack_s": 0.9814822589978576,
+          "client_unpack_s": 1.8376066866330802,
+          "client_decode_s": 15.135765057988465,
+          "client_top3_s": 0.016683917958289385,
+          "online_total_s": 38.22534447303042,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.14481091918423772,
+          "server_unpack_s": 0.0033854972571134567,
+          "server_evaluate_s": 19.99895314499736,
+          "response_pack_s": 0.9706331379711628,
+          "client_unpack_s": 1.8458829750306904,
+          "client_decode_s": 15.02193424385041,
+          "client_top3_s": 0.04781308677047491,
+          "online_total_s": 38.03547021513805,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.18155917106196284,
+          "server_unpack_s": 0.003537449985742569,
+          "server_evaluate_s": 21.53480990603566,
+          "response_pack_s": 1.0421393048018217,
+          "client_unpack_s": 1.9067914672195911,
+          "client_decode_s": 16.87853864626959,
+          "client_top3_s": 0.019914499018341303,
+          "online_total_s": 41.56932770460844,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        },
+        {
+          "client_prepare_s": 0.21133693121373653,
+          "server_unpack_s": 0.004691031761467457,
+          "server_evaluate_s": 22.37518427008763,
+          "response_pack_s": 1.0437345709651709,
+          "client_unpack_s": 1.9456705688498914,
+          "client_decode_s": 17.285952519159764,
+          "client_top3_s": 0.05316461902111769,
+          "online_total_s": 42.921823530923575,
+          "query_bytes": 737386,
+          "response_bytes": 283119715,
+          "query_plus_response_bytes": 283857101
+        }
+      ],
+      "medians": {
+        "client_prepare_s": 0.14481091918423772,
+        "server_unpack_s": 0.0034138266928493977,
+        "server_evaluate_s": 20.10391262639314,
+        "response_pack_s": 0.9876160169951618,
+        "client_unpack_s": 1.8606220320798457,
+        "client_decode_s": 15.135765057988465,
+        "client_top3_s": 0.019914499018341303,
+        "online_total_s": 38.22534447303042,
+        "query_bytes": 737386,
+        "response_bytes": 283119715,
+        "query_plus_response_bytes": 283857101
+      }
+    },
+    {
+      "variant": "bgv-t1031-q90-three-products",
+      "samples": [
+        {
+          "client_prepare_s": 0.12725104810670018,
+          "server_unpack_s": 0.0029731187969446182,
+          "server_evaluate_s": 14.465755642391741,
+          "response_pack_s": 0.5560835390351713,
+          "client_unpack_s": 1.589519226923585,
+          "client_decode_s": 11.113249589223415,
+          "client_top3_s": 0.016224290244281292,
+          "online_total_s": 27.873022241983563,
+          "query_bytes": 368733,
+          "response_bytes": 141561942,
+          "query_plus_response_bytes": 141930675
+        },
+        {
+          "client_prepare_s": 0.12612436898052692,
+          "server_unpack_s": 0.00296223908662796,
+          "server_evaluate_s": 14.43382734619081,
+          "response_pack_s": 0.4972451841458678,
+          "client_unpack_s": 1.455169141292572,
+          "client_decode_s": 11.10488567687571,
+          "client_top3_s": 0.016816511284559965,
+          "online_total_s": 27.639077996835113,
+          "query_bytes": 368733,
+          "response_bytes": 141561942,
+          "query_plus_response_bytes": 141930675
+        },
+        {
+          "client_prepare_s": 0.13669689698144794,
+          "server_unpack_s": 0.0030327592976391315,
+          "server_evaluate_s": 15.929004864301533,
+          "response_pack_s": 0.591211318038404,
+          "client_unpack_s": 1.6451420676894486,
+          "client_decode_s": 12.612731591332704,
+          "client_top3_s": 0.02076693717390299,
+          "online_total_s": 30.941715374123305,
+          "query_bytes": 368733,
+          "response_bytes": 141561942,
+          "query_plus_response_bytes": 141930675
+        },
+        {
+          "client_prepare_s": 0.13701234990730882,
+          "server_unpack_s": 0.003281995188444853,
+          "server_evaluate_s": 16.016878032125533,
+          "response_pack_s": 0.6042790110222995,
+          "client_unpack_s": 1.6773698353208601,
+          "client_decode_s": 12.589473443105817,
+          "client_top3_s": 0.018583322875201702,
+          "online_total_s": 31.049019580241293,
+          "query_bytes": 368733,
+          "response_bytes": 141561942,
+          "query_plus_response_bytes": 141930675
+        },
+        {
+          "client_prepare_s": 0.17422287771478295,
+          "server_unpack_s": 0.006698891054838896,
+          "server_evaluate_s": 15.999356091022491,
+          "response_pack_s": 0.5931093990802765,
+          "client_unpack_s": 1.6703959489241242,
+          "client_decode_s": 12.681707188021392,
+          "client_top3_s": 0.019829307217150927,
+          "online_total_s": 31.147349394857883,
+          "query_bytes": 368733,
+          "response_bytes": 141561942,
+          "query_plus_response_bytes": 141930675
+        }
+      ],
+      "medians": {
+        "client_prepare_s": 0.13669689698144794,
+        "server_unpack_s": 0.0030327592976391315,
+        "server_evaluate_s": 15.929004864301533,
+        "response_pack_s": 0.591211318038404,
+        "client_unpack_s": 1.6451420676894486,
+        "client_decode_s": 12.589473443105817,
+        "client_top3_s": 0.018583322875201702,
+        "online_total_s": 30.941715374123305,
+        "query_bytes": 368733,
+        "response_bytes": 141561942,
+        "query_plus_response_bytes": 141930675
+      }
+    }
+  ],
+  "all_distances_and_top3_correct": true
+}
