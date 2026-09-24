@@ -53,7 +53,8 @@ def encrypt(plaintext: list[int], pk: bgv.PublicKey, sk: bgv.SecretKey) -> bytes
     return msgpack.packb([_TAG, bytes.fromhex(pk.key_id), seed, packed], use_bin_type=True)
 
 
-def expand(packet: bytes, pk: bgv.PublicKey) -> bgv.Ciphertext:
+def _parse(packet: bytes, pk: bgv.PublicKey) -> tuple[tuple[mpz, ...], bytes]:
+    """Shared bounded parser; arithmetic variants preserve exactly this framing."""
     bits = pk.q.bit_length()
     width = (pk.n * bits + 7) // 8
     if type(packet) is not bytes or len(packet) > width + 256:
@@ -74,5 +75,10 @@ def expand(packet: bytes, pk: bgv.PublicKey) -> bgv.Ciphertext:
     if any(c >= pk.q for c in c0):
         raise ValueError("Noncanonical seeded BGV coefficient")
     c0.extend([mpz(0)] * (pk.n - len(c0)))
+    return tuple(c0), seed
+
+
+def expand(packet: bytes, pk: bgv.PublicKey) -> bgv.Ciphertext:
+    c0, seed = _parse(packet, pk)
     bound = pk.t // 2 + pk.t * pk.eta
-    return bgv.Ciphertext((tuple(c0), _uniform(seed, pk)), pk.key_id, bound)
+    return bgv.Ciphertext((c0, _uniform(seed, pk)), pk.key_id, bound)

@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add fresh BGV owner-query ablations: bulk independent OS error sampling,
+  identical bulk SHAKE stream decoding, exact shifted-ternary GMP products, and
+  a separate optional C++/GMP private owner extension. Add paired complete-search
+  benchmarks, exhaustive sampling/algebra checks, native boundary and lifecycle
+  tests. Keep the original reference and the public server independent; private
+  arithmetic remains variable-time and outside the authenticated client paths.
 - Add paired BGV public-pipeline ablations: GPU query NTTs, fused and gathered
   automorphism/gadget kernels, shared evaluation-key reads, and exact C++ terminal
   compaction before export. Preserve every baseline and cryptographic parameter.

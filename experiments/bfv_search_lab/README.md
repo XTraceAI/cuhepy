@@ -30,6 +30,8 @@ assurance. The raw CUDA path does not provide attestation.
 | `_native/compact.h` | Exact terminal reduction in C++, before exporting the small result |
 | `compact_bgv.py` | Congruence-preserving terminal modulus reduction and its correctness bound |
 | `seeded_bgv.py` | Fresh owner-encrypted query; server regenerates the uniform component |
+| `owner_bgv.py` | Bulk fresh sampling, identical public stream decoding, shifted-ternary multiplication and local owner |
+| `native_owner_bgv.py`, `_owner/` | Separate optional private C++/GMP arithmetic; no SEAL/CUDA dependency |
 | `seal_bgv_oracle.cpp` | Independent coefficient-layout/circuit check using official SEAL BGV |
 | `planner.py` | Capability-filtered ranking under a modeled network connection |
 | `test_*.py` | Differential, boundary, lifecycle and algebra tests |
@@ -240,6 +242,55 @@ distribution and public circuit bound; this is not a general parameter policy.
 .venv/bin/python benchmarks/bgv_terminal_sweep.py --num-vectors 8192 --repeats 10 \
   --json-out benchmarks/results/bgv_terminal_precision_8192.json
 ```
+
+## Fresh owner arithmetic
+
+The owner experiments keep the seeded-query bytes, error distribution, Q120
+evaluation parameters, ciphertext algebra and public server unchanged. Bulk
+sampling uses new independent OS randomness on every call. The multiplication
+identity `a*s = a*(s+J) - a*J`, for `J=1+X+...+X^(N-1)`, packs shifted secret
+coefficients in `{0,1,2}` and computes `a*J` by public prefix sums. A public
+worst-case coefficient width prevents carries in the GMP integer product.
+The cache contains only reusable secret representations, never one-use masks.
+
+```bash
+make -C experiments/bfv_search_lab/_owner PYTHON="$PWD/.venv/bin/python" CXX=g++-12
+.venv/bin/python -m pytest experiments/bfv_search_lab/test_owner_bgv.py \
+  experiments/bfv_search_lab/test_native_owner_bgv.py \
+  experiments/bfv_search_lab/test_seeded_bgv.py -q
+.venv/bin/python benchmarks/bgv_owner_pipeline.py --num-vectors 8192 --repeats 10 \
+  --json-out benchmarks/results/bgv_owner_pipeline_8192.json
+.venv/bin/python benchmarks/bgv_owner_pipeline.py --num-vectors 32768 --repeats 10 \
+  --json-out benchmarks/results/bgv_owner_pipeline_32768.json
+```
+
+Build the public CPU and CUDA `_native/` modules too, as described above. The
+benchmark compares reference, bulk, Python/GMP ternary and C++/GMP native owner
+paths under the same level-4 CUDA evaluator and explicit 25-bit terminal format.
+Each variant receives a fresh encryption of the same plaintext query in each
+shuffled round; ciphertexts therefore differ across variants. It checks every
+distance/top-three and every returned plaintext coefficient against the original
+decryption, plus exact CPU/CUDA ciphertext equality on warmup. Setup, including
+the secret representation cache, is separate; no refill or randomness work is
+omitted from recurring query times. Response parsing, transport, authentication
+and concurrent load are outside this local phase-sum measurement.
+
+`OwnerClient(pk, sk, native=True)` explicitly selects the optional backend.
+The native extension is private and is never imported by the public evaluator.
+Owner calls serialize under locks; inherited instances refuse work after fork;
+copying/pickling is blocked; `close()` drops references. These controls are not
+secure erasure or a constant-time guarantee. Python/GMP and native GMP arithmetic
+remain variable-time. Use only local trusted fixtures: this helper does not
+authenticate remote responses or connect the research BGV circuit to Nitro.
+
+For address/undefined-behavior checks, build `_owner/bindings.cpp` separately
+with `-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer`, preload GCC's
+`libasan.so` and `libstdc++.so.6`, and load that extension under its qualified
+module name before running the three test files above. Set
+`PYCRYPTODOME_DISABLE_DEEPBIND=1` for the sanitizer harness so its CFFI loader
+does not bypass ASan; `ASAN_OPTIONS=detect_leaks=0:abort_on_error=1` and
+`UBSAN_OPTIONS=halt_on_error=1` keep address/UB checking enabled. This does not
+instrument GMP/Python themselves and does not check leakage or secret erasure.
 
 ## Independent SEAL BGV oracle
 
