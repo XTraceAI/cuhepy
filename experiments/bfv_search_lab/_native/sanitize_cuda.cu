@@ -37,9 +37,18 @@ int main() {
                 for (bool joint : {false,true})
                     if (expected[joint] != gpu.search_device(query,*device,joint))
                         throw std::runtime_error("Standalone CUDA ciphertext mismatch");
+                if (level == 4) {
+                    std::vector<Ciphertext> queries{query,{polynomial(),polynomial()},query,
+                                                    {polynomial(),polynomial()},query};
+                    std::vector<std::vector<Ciphertext>> batch_expected;
+                    for (const auto& q : queries) batch_expected.push_back(cpu.search(q,index,true));
+                    for (std::size_t size : {1,2,3,4,8}) for (bool shared : {false,true})
+                        if (gpu.search_many_device(queries,*device,size,shared) != batch_expected)
+                            throw std::runtime_error("Standalone CUDA multi-query mismatch");
+                }
             }
         }
-        std::cout << "BGV CUDA canonical arithmetic and both packing circuits passed\n";
+        std::cout << "BGV CUDA canonical arithmetic, both circuits and multi-query batches passed\n";
     } catch (const std::exception& error) {
         std::cerr << error.what() << '\n';
         return 1;

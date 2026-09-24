@@ -34,6 +34,8 @@ assurance. The raw CUDA path does not provide attestation.
 | `seeded_bgv.py` | Fresh owner-encrypted query; server regenerates the uniform component |
 | `owner_bgv.py` | Bulk fresh sampling, identical public stream decoding, shifted-ternary multiplication and local owner |
 | `native_owner_bgv.py`, `_owner/` | Separate optional private C++/GMP arithmetic; no SEAL/CUDA dependency |
+| `results_bgv.py`, `_owner/finish.h` | Exact local distance lookup, stable heap top-k and fused native finishing |
+| `_native/cuda_batch.cuh` | Distinct-query tensor/butterfly kernels; public keys and index shared within a batch |
 | `seal_bgv_oracle.cpp` | Independent coefficient-layout/circuit check using official SEAL BGV |
 | `planner.py` | Capability-filtered ranking under a modeled network connection |
 | `test_*.py` | Differential, boundary, lifecycle and algebra tests |
@@ -293,6 +295,64 @@ module name before running the three test files above. Set
 does not bypass ASan; `ASAN_OPTIONS=detect_leaks=0:abort_on_error=1` and
 `UBSAN_OPTIONS=halt_on_error=1` keep address/UB checking enabled. This does not
 instrument GMP/Python themselves and does not check leakage or secret erasure.
+
+## Result handling and distinct-query GPU batches
+
+`OwnerClient.finish(response, count, dimension)` explicitly uses the native owner
+to decrypt, decode and select top results without exporting intermediate plaintext
+polynomials to Python. It returns `SearchResult(top, distances)`, where each top
+entry is `(original_index, distance)`, ordered by distance then index. Set
+`all_distances=False` to return only the top entries locally; **encrypted response
+bytes stay unchanged**. The Python `sort`, `heap` and `lookup` methods remain
+available as explicit ablations. Native finishing requires a native owner.
+
+For the trace layout, residue `D*(dimension-2*distance) mod t` identifies a
+distance exactly. The public table contains only valid distance residues;
+invalid correlations still reject, even after enough top results have been
+found. The native path uses modular arithmetic above the 65,536-entry table cap.
+Top-k uses O(count log k) work with stable ties and a bounded k<=64. All distances
+are checked whether or not the caller requests their return. These are local
+plaintext optimizations, without a new privacy or authentication claim.
+
+`NativeServer.search_many_compact(queries, index, batch_size=4, shared_index=True,
+bits=25)` evaluates distinct queries against one immutable public context/index.
+It requires CUDA level 4 and the joint circuit. The original `search_compact`
+remains unchanged. `search_many` returns the full-Q results for arithmetic tests.
+Each call accepts at most 32 queries, uses waves of 1..8, and refuses more than
+4 GiB of coefficient scratch before device allocation. Call
+`batch_workspace_bytes(index, wave_size)` to inspect that allocation count;
+it excludes the index, keys, host buffers and CUDA runtime. The cap is per call,
+so a deployment scheduler must separately account for concurrent calls.
+
+The batch kernels transform queries together and keep each query's butterfly
+separate. The optional tensor kernel broadcasts an index strip to query warps.
+Existing tiled key products can share key reads across queries at smaller trace
+stages. Scratch is private to each call and reused across its waves/result groups.
+The batch returns once the entire call is complete; it does not stream early
+responses or include a scheduler for waiting on arriving requests.
+
+```bash
+make -C experiments/bfv_search_lab/_owner PYTHON="$PWD/.venv/bin/python" CXX=g++-12
+make -C experiments/bfv_search_lab/_native PYTHON="$PWD/.venv/bin/python" CXX=g++-12
+make -C experiments/bfv_search_lab/_native cuda PYTHON="$PWD/.venv/bin/python" CUDA_CXX=g++-12 CUDA_ARCH=86
+CUHEPY_REQUIRE_BGV_CUDA=1 .venv/bin/python -m pytest \
+  experiments/bfv_search_lab/test_results_bgv.py experiments/bfv_search_lab/test_cuda_batch_bgv.py -q
+.venv/bin/python benchmarks/bgv_finish_batch.py --num-vectors 8192 --repeats 10 \
+  --json-out benchmarks/results/bgv_finish_batch_8192.json
+.venv/bin/python benchmarks/bgv_finish_batch.py --num-vectors 32768 --repeats 10 \
+  --json-out benchmarks/results/bgv_finish_batch_32768.json
+```
+
+Four fresh queries per round are shared across sequential calls, two/four host
+workers, and native wave sizes one/two/four, with and without index broadcast.
+Over-budget variants are recorded as skipped; the benchmark also checks the raw
+native memory refusal on the real index when eight-query waves exceed the cap.
+It shuffles variants, excludes one warmup, compares exact ciphertexts, and checks
+all distances and stable top results. Batch throughput begins with expanded
+queries ready and excludes batching wait, network, framing and authentication.
+Completion times expose the latency cost of returning all batch results together.
+Client finishing timings use the same response; their local phase sum adds the
+first query's measured creation, expansion, serial evaluation and response packing.
 
 ## Independent SEAL BGV oracle
 

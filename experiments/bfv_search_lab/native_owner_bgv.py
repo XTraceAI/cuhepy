@@ -14,6 +14,7 @@ import gmpy2
 from gmpy2 import mpz
 
 from cuhepy.types import BFVPolynomial
+from experiments.bfv_search_lab import results_bgv as results
 
 
 class NativeTernaryProduct:
@@ -57,6 +58,18 @@ class NativeTernaryProduct:
 
     def clear(self) -> None:
         self._native.close(self._handle)
+
+    def finish(self, components: list[tuple[BFVPolynomial, BFVPolynomial]], modulus: mpz,
+               t: int, count: int, dimension: int, k: int, all_distances: bool) -> results.SearchResult:
+        results.validate_layout(self.n, t, count, dimension, k, all_distances)
+        if len(components) != (count + self.n - 1) // self.n:
+            raise ValueError("Incorrect native response count")
+        data = self._native.finish(
+            self._handle, tuple((self._pack(pair[0], modulus), self._pack(pair[1], modulus))
+                                for pair in components),
+            format(modulus, "x"), t, count, dimension, k, all_distances,
+        )
+        return results.from_native(data, count, k, all_distances)
 
     def __reduce_ex__(self, protocol: SupportsIndex) -> Any:
         raise TypeError("Private native owner caches cannot be serialized")

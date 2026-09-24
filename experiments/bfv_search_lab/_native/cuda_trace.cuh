@@ -209,6 +209,8 @@ __global__ void pack_tiles(const U* work, U* output, const Parameters* p, int co
 }
 } // namespace cuda_detail
 
+#include "cuda_batch.cuh"
+
 class CudaTraceServer final : public Server {
     using U = xtrace_bfv::gpu::U;
     using Mul = xtrace_bfv::gpu::Mul;
@@ -381,6 +383,77 @@ public:
                 ciphertext[k] = arithmetic.compose(residues);
             }
             output.push_back(std::move(ciphertext));
+        }
+        return output;
+    }
+    std::vector<std::vector<Ciphertext>> search_many_device(const std::vector<Ciphertext>& queries,
+            const DeviceIndex& index, std::size_t batch_size, bool shared_index) const {
+        using namespace xtrace_bfv::gpu;
+        if (kernel_level_ != 4 || !batch_size || batch_size > 8 || queries.size() > 32)
+            throw std::invalid_argument("BGV batches require level 4, 1..8 concurrent queries and at most 32 requests");
+        std::vector<std::vector<Ciphertext>> output(queries.size());
+        auto n = ring->n, maximum = std::min(padded,index.count), wave = std::min(batch_size,queries.size());
+        if (!wave || !maximum) return output;
+        auto workspace = wave*(4+26*maximum)*n*sizeof(U);
+        if (workspace > (std::size_t(4)<<30))
+            throw std::invalid_argument("Batched BGV coefficient workspace exceeds 4 GiB; select a smaller batch size");
+        DeviceScope scope(device_);
+        ResidueArithmetic arithmetic(*ring);
+        std::vector<U> input, data(wave*4*n);
+        input.reserve(wave*4*n);
+        Buffer<U> query_ntt(wave*4*n), tensor(wave*maximum*6*n), digits(wave*maximum*8*n),
+                  switched(wave*maximum*4*n), work(wave*maximum*4*n), plus(wave*maximum*4*n);
+        // All host/device transfer buffers outlive the stream, including on error.
+        // Scratch is allocated once per call and reused across chunks/groups.
+        Stream stream;
+        for (std::size_t first = 0; first < queries.size(); first += wave) {
+            auto requests = std::min(wave,queries.size()-first);
+            input.clear();
+            for (std::size_t request = first; request < first+requests; ++request)
+                for (const auto& poly : queries[request])
+                    for (const auto& prime : arithmetic.split(poly)) input.insert(input.end(),prime.begin(),prime.end());
+            check(cudaMemcpyAsync(query_ntt.data(),input.data(),input.size()*sizeof(U),cudaMemcpyHostToDevice,stream.value));
+            transform<false>(query_ntt.data(),requests*2,stream.value);
+            for (std::size_t start = 0; start < index.count; start += padded) {
+                auto batch = std::min(padded,index.count-start), total = requests*batch;
+                if (shared_index && requests > 1 && n >= 32) {
+                    dim3 grid(n/32,batch,2);
+                    cuda_detail::tensor_many_shared<<<grid,32*requests,0,stream.value>>>(
+                        query_ntt.data(),index.values.data()+start*4*n,tensor.data(),parameters_.data(),batch);
+                } else {
+                    cuda_detail::tensor_many<<<blocks(total*2*n),256,0,stream.value>>>(
+                        query_ntt.data(),index.values.data()+start*4*n,tensor.data(),parameters_.data(),batch,requests);
+                }
+                transform<true>(tensor.data(),total*3,stream.value);
+                switch_key(tensor.data(),digits.data(),switched.data(),total,3,2,0,stream.value);
+                cuda_detail::initial_shift<<<blocks(total*4*n),256,0,stream.value>>>(
+                    tensor.data(),switched.data(),work.data(),parameters_.data(),total,2*n+1-padded);
+                auto active = batch, shift = padded/2;
+                for (std::size_t j = 0; j < exponents.size(); ++j, shift /= 2) {
+                    auto count = std::min(shift,active);
+                    cuda_detail::gather_digits_many<<<blocks(requests*count*n),256,0,stream.value>>>(
+                        work.data(),digits.data(),parameters_.data(),active,count,shift,inverse_exponents_[j],requests);
+                    switch_digits(digits.data(),switched.data(),requests*count,j+1,stream.value);
+                    cuda_detail::gather_merge_many<<<blocks(requests*count*4*n),256,0,stream.value>>>(
+                        work.data(),switched.data(),plus.data(),parameters_.data(),active,count,shift,inverse_exponents_[j],requests);
+                    work.swap(plus); active = count;
+                }
+                check(cudaGetLastError());
+                check(cudaMemcpyAsync(data.data(),work.data(),requests*4*n*sizeof(U),cudaMemcpyDeviceToHost,stream.value));
+                check(cudaStreamSynchronize(stream.value));
+                for (std::size_t request = 0; request < requests; ++request) {
+                    Ciphertext cipher;
+                    for (std::size_t c = 0; c < 2; ++c) {
+                        Residues residues;
+                        for (std::size_t j = 0; j < 2; ++j) {
+                            auto begin = data.begin()+(request*4+c*2+j)*n;
+                            residues.emplace_back(begin,begin+n);
+                        }
+                        cipher[c] = arithmetic.compose(residues);
+                    }
+                    output[first+request].push_back(std::move(cipher));
+                }
+            }
         }
         return output;
     }

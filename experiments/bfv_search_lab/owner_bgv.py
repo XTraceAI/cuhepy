@@ -26,6 +26,7 @@ from cuhepy.bfv.scheme import _ring_product
 from cuhepy.types import BFVPolynomial
 from experiments.bfv_search_lab import shallow_bgv as bgv, seeded_bgv as seeded
 from experiments.bfv_search_lab import compact_bgv as compact
+from experiments.bfv_search_lab import results_bgv as results
 from experiments.bfv_search_lab.native_owner_bgv import NativeTernaryProduct
 
 
@@ -197,6 +198,36 @@ class OwnerClient:
         with self._lock:
             self._sk = None
             self._product.clear()
+
+    def finish(self, ciphertexts: list[compact.CompactCiphertext], count: int, dimension: int,
+               *, k: int = 3, all_distances: bool = True, method: str = "native") -> results.SearchResult:
+        """Local fixture decryption and stable top-k; no remote authenticity gate.
+
+        ``all_distances=False`` avoids exporting the full plaintext result to
+        Python. It does not reduce encrypted response traffic or server work.
+        """
+        self._check()
+        with self._lock:
+            self._check()
+            results.validate_layout(self.pk.n, self.pk.t, count, dimension, k, all_distances)
+            if method not in ("native", "sort", "heap", "lookup"):
+                raise ValueError("Unknown owner result method")
+            if method == "native" and not isinstance(self._product, NativeTernaryProduct):
+                raise ValueError("Native finish requires a native owner")
+            if len(ciphertexts) != (count + self.pk.n - 1) // self.pk.n:
+                raise ValueError("Incorrect owner response count")
+            for cipher in ciphertexts:
+                compact._validate(cipher, self.pk)
+                if cipher.modulus != ciphertexts[0].modulus:
+                    raise ValueError("Mixed owner response moduli")
+            if not ciphertexts:
+                return results.SearchResult((), () if all_distances else None)
+            if method == "native" and isinstance(self._product, NativeTernaryProduct):
+                return self._product.finish([c.components for c in ciphertexts], ciphertexts[0].modulus,
+                                            self.pk.t, count, dimension, k, all_distances)
+            plaintexts = [self.decrypt_compact(c) for c in ciphertexts]
+            return results.finish(plaintexts, count, dimension, self.pk, k=k,
+                                  all_distances=all_distances, method=method)
 
     def __reduce_ex__(self, protocol: SupportsIndex) -> Any:
         raise TypeError("Private owner caches cannot be serialized")

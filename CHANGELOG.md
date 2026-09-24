@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add exact BGV result lookup tables, bounded heap top-k with stable ties, and
+  a fused native owner finish path. Add explicit same-key/index multi-query
+  CUDA evaluation with optional shared index reads, reusable per-call scratch,
+  and a 4 GiB coefficient-workspace limit. Preserve independent single-query
+  and reference paths; add paired latency/throughput and result-handling trials.
 - Add fresh BGV owner-query ablations: bulk independent OS error sampling,
   identical bulk SHAKE stream decoding, exact shifted-ternary GMP products, and
   a separate optional C++/GMP private owner extension. Add paired complete-search

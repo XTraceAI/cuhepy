@@ -220,6 +220,51 @@ PyObject* search_impl(PyObject* args, bool compact) {
 }
 PyObject* search(PyObject*, PyObject* args) { return search_impl(args, false); }
 PyObject* search_compact(PyObject*, PyObject* args) { return search_impl(args, true); }
+#ifdef CUHEPY_BGV_CUDA
+PyObject* search_many_impl(PyObject* args, bool compact) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_obj, *queries_obj, *index_obj, *batch_obj, *shared_obj, *t_obj = nullptr;
+        const char* p_text = nullptr;
+        Py_ssize_t length = 0;
+        if (compact) {
+            if (!PyArg_ParseTuple(args,"OOOOOOs#",&server_obj,&queries_obj,&index_obj,&batch_obj,&shared_obj,&t_obj,&p_text,&length)) return nullptr;
+        } else if (!PyArg_ParseTuple(args,"OOOOO",&server_obj,&queries_obj,&index_obj,&batch_obj,&shared_obj)) return nullptr;
+        auto server = get<ServerPtr>(server_obj,server_name);
+        auto index = get<IndexPtr>(index_obj,index_name);
+        auto batch = integer(batch_obj,8);
+        if (index->server != server || !batch || !PyBool_Check(shared_obj) ||
+            !PyTuple_CheckExact(queries_obj) || PyTuple_GET_SIZE(queries_obj) > 32)
+            throw std::invalid_argument("Invalid native batch context/shape");
+        auto reduction = compact ? terminal(t_obj,p_text,length,*server->ring) : nullptr;
+        std::vector<Ciphertext> queries;
+        for (Py_ssize_t i = 0; i < PyTuple_GET_SIZE(queries_obj); ++i)
+            queries.push_back(read_pair(PyTuple_GET_ITEM(queries_obj,i),*server->ring));
+        std::vector<std::vector<Ciphertext>> output;
+        { WithoutGIL release;
+          output = static_cast<const CudaTraceServer&>(*server).search_many_device(queries,*index->device,batch,shared_obj == Py_True);
+          if (reduction) for (auto& response : output) for (auto& cipher : response) reduction->apply(cipher); }
+        auto result = PyTuple_New(output.size());
+        if (!result) return nullptr;
+        try {
+            for (std::size_t request = 0; request < output.size(); ++request) {
+                auto response = PyTuple_New(output[request].size());
+                if (!response) { Py_DECREF(result); return nullptr; }
+                PyTuple_SET_ITEM(result,request,response);
+                for (std::size_t j = 0; j < output[request].size(); ++j) {
+                    auto pair = write_pair(output[request][j],server->ring->n,
+                                           reduction ? reduction->modulus : server->ring->q,
+                                           reduction ? reduction->coefficient_bytes : server->ring->coefficient_bytes);
+                    if (!pair) { Py_DECREF(result); return nullptr; }
+                    PyTuple_SET_ITEM(response,j,pair);
+                }
+            }
+        } catch (...) { Py_DECREF(result); throw; }
+        return result;
+    });
+}
+PyObject* search_many(PyObject*, PyObject* args) { return search_many_impl(args,false); }
+PyObject* search_many_compact(PyObject*, PyObject* args) { return search_many_impl(args,true); }
+#endif
 // Standalone entry point for exhaustive/differential tests and phase benchmarks.
 PyObject* compact_result(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
@@ -239,6 +284,10 @@ PyMethodDef methods[] = {
     {"prepare_index", prepare_index, METH_VARARGS, "Cache public encrypted index transforms."},
     {"search", search, METH_VARARGS, "Evaluate the per-tile or joint trace circuit."},
     {"search_compact", search_compact, METH_VARARGS, "Evaluate and reduce the result before exporting coefficients."},
+#ifdef CUHEPY_BGV_CUDA
+    {"search_many", search_many, METH_VARARGS, "Evaluate distinct queries in shared-index GPU batches."},
+    {"search_many_compact", search_many_compact, METH_VARARGS, "Batched GPU queries with native terminal reduction."},
+#endif
     {"compact_result", compact_result, METH_VARARGS, "Exact public terminal reduction of a coefficient pair."},
     {nullptr, nullptr, 0, nullptr}
 };

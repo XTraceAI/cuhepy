@@ -3,6 +3,7 @@
 // public server or treat it as a remotely callable decryption service.
 #pragma once
 #include "packed_wire.h"
+#include "finish.h"
 #include <map>
 #include <mutex>
 #include <unistd.h>
@@ -87,6 +88,19 @@ class Product {
         }
         return output;
     }
+    std::vector<Word> decrypt_values_locked(const Polynomial& c0, const Polynomial& c1,
+                                            const mpz_class& modulus, Word t) {
+        auto product = multiply_locked(c1,modulus);
+        mpz_class half = modulus/2, phase;
+        std::vector<Word> output(n);
+        for (std::size_t i = 0; i < n; ++i) {
+            phase = c0[i]+product[i];
+            mpz_mod(phase.get_mpz_t(),phase.get_mpz_t(),modulus.get_mpz_t());
+            if (phase > half) phase -= modulus;
+            output[i] = mpz_fdiv_ui(phase.get_mpz_t(),t);
+        }
+        return output;
+    }
 public:
     const std::size_t n;
     Product(std::size_t degree, std::string_view shifted) : n(degree) {
@@ -137,17 +151,21 @@ public:
         if (t < 3 || t >= (Word(1)<<30) || !(t&1) || modulus <= t)
             throw std::invalid_argument("Invalid native decryption modulus");
         auto c0 = read_poly(c0_bytes,n,modulus), c1 = read_poly(c1_bytes,n,modulus);
-        auto product = multiply_locked(c1,modulus);
-        mpz_class half = modulus/2, phase;
+        auto plain = decrypt_values_locked(c0,c1,modulus,t);
         std::string output(n*4,'\0');
-        for (std::size_t i = 0; i < n; ++i) {
-            phase = c0[i]+product[i];
-            mpz_mod(phase.get_mpz_t(),phase.get_mpz_t(),modulus.get_mpz_t());
-            if (phase > half) phase -= modulus;
-            Word value = mpz_fdiv_ui(phase.get_mpz_t(),t);
-            for (unsigned j = 0; j < 4; ++j) output[4*i+j] = value>>(8*j);
-        }
+        for (std::size_t i = 0; i < n; ++i) put32(output,4*i,plain[i]);
         return output;
+    }
+    std::pair<std::string,std::string> finish(const std::vector<std::array<std::string_view,2>>& pairs,
+            const mpz_class& modulus, Word t, std::size_t count, std::size_t dimension, std::size_t k, bool all) {
+        check_process(); std::lock_guard<std::mutex> lock(mutex_); check_open();
+        Finisher result(n,t,count,dimension,k,all);
+        if (modulus <= t || pairs.size() != result.groups()) throw std::invalid_argument("Invalid native response shape/modulus");
+        // Validate EVERY packed ciphertext before the first private product.
+        std::vector<std::array<Polynomial,2>> vetted;
+        for (const auto& pair : pairs) vetted.push_back({read_poly(pair[0],n,modulus),read_poly(pair[1],n,modulus)});
+        for (const auto& pair : vetted) result.consume(decrypt_values_locked(pair[0],pair[1],modulus,t));
+        return result.result();
     }
     void close() {
         check_process(); std::lock_guard<std::mutex> lock(mutex_);
