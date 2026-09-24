@@ -3,7 +3,65 @@
 Drafted 2026-09-24. Branch: `research/bfv-search-lab`, based on the accepted
 CUDA implementation in `staging` at `8d4c12c` (PR #12). These are hypotheses,
 operation counts, and proposed experiments. No new encrypted performance
-results or production-security approval are claimed.
+results or production-security approval are claimed by this original plan.
+
+**Implementation update, 2026-09-24:** E01, E02, E06 and a restricted E08 now
+have encrypted implementations and tests; E11 has a measured-variant network
+planner. See [the first results](search-lab-first-results.md) for the experiments,
+including losses, exact scope and raw data. The implementation directory is
+[`experiments/bfv_search_lab`](../../experiments/bfv_search_lab). The portfolio
+now also includes proposed CKKS, TFHE and mixed-protocol alternatives below.
+
+## Expanded scheme portfolio after the first implementations
+
+The objective is exact/private search under a declared contract, not adherence
+to BFV. Each new scheme needs its own key/index format, correctness assumptions,
+parameter assessment and protocol binding. A faster experiment must report any
+change in privacy, interaction, preprocessing or approximation alongside speed.
+
+| Track | Concrete experiment | First decision criterion |
+| --- | --- | --- |
+| BGV-style depth-one RLWE (implemented reference) | Coefficient correlations, no scale-and-round; compare four tensor products against three; try smaller plaintext modulus because this layout needs no batching roots | Full search compute **and** unrepacked response bytes, plus a public no-wrap correctness bound |
+| BGV with sparse-result conversion (trace reference implemented) | Project correlation coefficients with a ring trace; pack tiles by monomial shifts; compare key size, conversion work, noise and setup with other repacking methods | Does conversion cost less than the BFV rotations it removes, while recovering the compact response? |
+| CKKS with exactness gate | Signed inner products or coarse scores, followed by certified integer rounding or exact refinement of **all** ambiguous candidates | A proved error interval or measured recall labeled approximate; near-tie/tie fixtures must be included |
+| RLWE-to-TFHE selection | Compute distances in an arithmetic scheme, then convert to Boolean/torus ciphertexts for encrypted comparisons and stable top-k | Conversion + comparisons + key distribution must beat sending packed distances and sorting on the owner |
+| Mixed-protocol secure computation | Secret-shared Hamming followed by Boolean/garbled-circuit top-k; compare offline correlations and online traffic | State who holds each share, which parties may collude, interaction rounds, and whether security is semi-honest or malicious |
+| Attested plaintext kernel | A separately labeled trust-model baseline: keep plaintext/key material inside an approved confidential execution boundary and perform XOR/popcount/top-k there | Trusted memory and attestation coverage, actual end-to-end cost, and explicit loss of the HE-only confidentiality assumption |
+
+CKKS supports approximate arithmetic; that feature does not by itself guarantee
+exact binary top-k. Our proposed gate would require a **proven** distance error
+below one half for direct integer rounding, or intervals that retain every
+candidate able to enter the exact top-k. Empirical accuracy alone belongs to
+the approximate track. See the [original CKKS paper](https://eprint.iacr.org/2016/421).
+
+TFHE supplies encrypted Boolean computation. Applying it only to selection is
+a hypothesis for this workload, not an existing result here; scheme conversion
+and tie-breaking can dominate. See the
+[TFHE paper](https://eprint.iacr.org/2018/421) and its
+[original implementation](https://tfhe.github.io/tfhe/).
+
+ABY2.0 is a useful counterpoint for preprocessing and mixed arithmetic/Boolean
+computation, but its stated security model is semi-honest. It cannot be used as
+a drop-in answer to our malicious-evaluator problem. Our proposed experiment
+must explicitly select and justify the parties and adversary model before
+implementation. See [ABY2.0](https://eprint.iacr.org/2020/1225).
+
+Immediate order after the first measurements: preserve the winning query and
+partial-reduction variants; optimize and compare sparse coefficient-result conversion;
+then compare a reviewed library's shallow BGV and scheme-conversion path as an
+independent oracle before optimizing a new native implementation. Seeded RLWE,
+precomputed zero encryptions, coefficient dot products and three-product
+multiplication are established techniques. Any paper contribution must be
+supported by a prior-art review and the measured combination, layout/cost model
+or new conversion algorithm, rather than renaming these ingredients.
+
+Trace-packing prior art needs particular attention: the August 2026
+[algebraic trace analysis](https://eprint.iacr.org/2026/1604) discusses
+coefficient-dependent noise and non-recursive packing. Our first implementation
+uses a simple worst-case coefficient bound, not that paper's refined variance
+analysis. [HERMES](https://eprint.iacr.org/2023/1244) is another relevant
+conversion baseline, using MLWE formats for ring packing; reproducing it would
+require a different representation and cannot be assumed to be a small patch.
 
 The research question is: **which representation and division of work minimize
 end-to-end cost when both the database and query are encrypted?** Our strongest

@@ -1,0 +1,162 @@
+{
+  "kind": "cpu_encrypted_trace_packing_pilot_no_attestation",
+  "utc": "2026-09-24T08:51:41.267063+00:00",
+  "command": [
+    "benchmarks/trace_bgv_lab.py",
+    "--num-vectors",
+    "65",
+    "--q-bits",
+    "96",
+    "--repeats",
+    "3",
+    "--json-out",
+    "benchmarks/results/trace_bgv_lab_65.json"
+  ],
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "num_vectors": 65,
+  "dimension": 512,
+  "n": 16384,
+  "t": 1031,
+  "q_bits": 96,
+  "digit_bits": 30,
+  "notes": "Same encrypted index and independently encrypted queries for both references. CPU Python/GMP only; no native key switching or GPU implementation. Phase bounds are public conservative correctness bounds, not security estimates. Timings are arithmetic phases, not complete framed/network search latency. Response bytes include generic coefficient framing; trace circuit binding is not an authenticated wire protocol. Unrepacked plaintext reveals extra correlations; owner is authorized for all input data.",
+  "setup": {
+    "evaluation_keys_s": 2.9156820490024984,
+    "evaluation_key_raw_coefficient_bytes": 15728640,
+    "evaluation_key_bytes_note": "Raw fixed-bit coefficient count; no evaluation-key wire format is implemented",
+    "index_encrypt_s": 0.43901162315160036,
+    "index_bytes": 1179763
+  },
+  "warmup": {
+    "trace-packed": {
+      "query_encrypt_s": 0.13266969518736005,
+      "server_s": 4.247243785765022,
+      "client_decrypt_s": 0.02275783196091652,
+      "client_score_decode_s": 0.000757013913244009,
+      "response_bytes": 393309,
+      "query_bytes": 393309,
+      "response_ciphertexts": 1,
+      "phase_bound_bits": 84
+    },
+    "unrepacked": {
+      "query_encrypt_s": 0.12250068318098783,
+      "server_s": 0.17416281206533313,
+      "client_decrypt_s": 0.1275425092317164,
+      "client_score_decode_s": 0.0022105718962848186,
+      "response_bytes": 1769602,
+      "query_bytes": 393309,
+      "response_ciphertexts": 3,
+      "phase_bound_bits": 73
+    }
+  },
+  "results": [
+    {
+      "variant": "unrepacked",
+      "samples": [
+        {
+          "query_encrypt_s": 0.12406343314796686,
+          "server_s": 0.17365189315751195,
+          "client_decrypt_s": 0.12608003104105592,
+          "client_score_decode_s": 0.0022013308480381966,
+          "response_bytes": 1769602,
+          "query_bytes": 393309,
+          "response_ciphertexts": 3,
+          "phase_bound_bits": 73
+        },
+        {
+          "query_encrypt_s": 0.12224666913971305,
+          "server_s": 0.17391680041328073,
+          "client_decrypt_s": 0.12867054110392928,
+          "client_score_decode_s": 0.0022106519900262356,
+          "response_bytes": 1769602,
+          "query_bytes": 393309,
+          "response_ciphertexts": 3,
+          "phase_bound_bits": 73
+        },
+        {
+          "query_encrypt_s": 0.12469200510531664,
+          "server_s": 0.18003386491909623,
+          "client_decrypt_s": 0.12883761385455728,
+          "client_score_decode_s": 0.0022276919335126877,
+          "response_bytes": 1769602,
+          "query_bytes": 393309,
+          "response_ciphertexts": 3,
+          "phase_bound_bits": 73
+        }
+      ],
+      "medians": {
+        "query_encrypt_s": 0.12406343314796686,
+        "server_s": 0.17391680041328073,
+        "client_decrypt_s": 0.12867054110392928,
+        "client_score_decode_s": 0.0022106519900262356,
+        "response_bytes": 1769602,
+        "query_bytes": 393309,
+        "response_ciphertexts": 3,
+        "phase_bound_bits": 73
+      }
+    },
+    {
+      "variant": "trace-packed",
+      "samples": [
+        {
+          "query_encrypt_s": 0.12389753898605704,
+          "server_s": 4.229206802789122,
+          "client_decrypt_s": 0.023303192108869553,
+          "client_score_decode_s": 0.0007704948075115681,
+          "response_bytes": 393309,
+          "query_bytes": 393309,
+          "response_ciphertexts": 1,
+          "phase_bound_bits": 84
+        },
+        {
+          "query_encrypt_s": 0.12324618687853217,
+          "server_s": 4.2846334292553365,
+          "client_decrypt_s": 0.02259502885863185,
+          "client_score_decode_s": 0.0007529240101575851,
+          "response_bytes": 393309,
+          "query_bytes": 393309,
+          "response_ciphertexts": 1,
+          "phase_bound_bits": 84
+        },
+        {
+          "query_encrypt_s": 0.12441344978287816,
+          "server_s": 4.238271610345691,
+          "client_decrypt_s": 0.023606498260051012,
+          "client_score_decode_s": 0.0007525240071117878,
+          "response_bytes": 393309,
+          "query_bytes": 393309,
+          "response_ciphertexts": 1,
+          "phase_bound_bits": 84
+        }
+      ],
+      "medians": {
+        "query_encrypt_s": 0.12389753898605704,
+        "server_s": 4.238271610345691,
+        "client_decrypt_s": 0.023303192108869553,
+        "client_score_decode_s": 0.0007529240101575851,
+        "response_bytes": 393309,
+        "query_bytes": 393309,
+        "response_ciphertexts": 1,
+        "phase_bound_bits": 84
+      }
+    }
+  ],
+  "full_workload_projection": {
+    "kind": "analytical_8192_candidate_bound_and_raw_bytes_NOT_a_runtime_measurement",
+    "input_tiles": 256,
+    "response_ciphertexts": 1,
+    "raw_response_bytes": 393216,
+    "phase_bound_bits": 90,
+    "conservative_no_wrap_bound_holds": true,
+    "relinearizations": 256,
+    "projection_automorphisms": 2304,
+    "packing_automorphisms": 0
+  },
+  "all_distances_correct": true,
+  "sha256": {
+    "benchmarks/trace_bgv_lab.py": "c6fcad7ff15c3516e7d849a7cf4809d4eab092bab18591280acb852e09c3d9f2",
+    "experiments/bfv_search_lab/trace_bgv.py": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5",
+    "experiments/bfv_search_lab/shallow_bgv.py": "b46841c96479fe6af31b56294e84f1609e9faa7a13250415c0e4d3760d98cf08"
+  }
+}
