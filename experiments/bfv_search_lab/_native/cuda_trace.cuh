@@ -178,6 +178,9 @@ public:
                         for (Word v : poly[j]) data.push_back(multiplier(v,host_.primes[j].p));
             keys_ntt_.emplace_back(data);
         }
+        // Pageable host cudaMemcpy may return after staging, before device DMA
+        // completes. Future nonblocking query streams do not wait on stream 0.
+        check(cudaStreamSynchronize(nullptr));
     }
     std::shared_ptr<const DeviceIndex> prepare_device(const std::vector<PreparedCiphertext>& index) const {
         using namespace xtrace_bfv::gpu;
@@ -187,7 +190,9 @@ public:
         for (const auto& tile : index)
             for (const auto& poly : tile)
                 for (const auto& prime : poly) data.insert(data.end(),prime.begin(),prime.end());
-        return std::make_shared<DeviceIndex>(data,index.size());
+        auto result = std::make_shared<DeviceIndex>(data,index.size());
+        check(cudaStreamSynchronize(nullptr));
+        return result;
     }
     std::vector<Ciphertext> search_device(const Ciphertext& query, const DeviceIndex& index, bool joint) const {
         using namespace xtrace_bfv::gpu;
@@ -197,11 +202,13 @@ public:
         std::vector<U> input;
         for (const auto& poly : prepare(query)) for (const auto& prime : poly)
             input.insert(input.end(),prime.begin(),prime.end());
-        Buffer<U> query_ntt(input), tensor(maximum*6*n), digits(maximum*8*n), switched(maximum*4*n),
+        Buffer<U> query_ntt(input.size()), tensor(maximum*6*n), digits(maximum*8*n), switched(maximum*4*n),
                   work(maximum*4*n), plus(maximum*4*n), permuted(maximum*4*n);
         // Declare the stream last so it synchronizes before workspace destruction
         // on both success and exception paths. Every invocation has private scratch.
         Stream stream;
+        // Order the upload and its consumers on this invocation's stream.
+        check(cudaMemcpyAsync(query_ntt.data(),input.data(),input.size()*sizeof(U),cudaMemcpyHostToDevice,stream.value));
         ResidueArithmetic arithmetic(*ring);
         std::vector<Ciphertext> output;
         for (std::size_t start = 0; start < index.count; start += padded) {

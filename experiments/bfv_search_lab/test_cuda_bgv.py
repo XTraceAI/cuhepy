@@ -72,3 +72,19 @@ def test_gpu_canonical_extremes_and_context_boundaries():
     bad = pk.q.to_bytes(gpu.width, "little") * pk.n
     with pytest.raises(ValueError, match="Noncanonical"):
         gpu._native.search(gpu._server, (bad, pair[1]), prepared.handle, True)
+
+
+def test_repeated_query_uploads_order_before_nonblocking_kernel_consumers():
+    # A pageable host cudaMemcpy on stream 0 can return before device DMA ends.
+    # Previously, later kernels on a nonblocking stream could read stale query
+    # words. Warm allocations plus fresh queries expose the missing dependency.
+    pk, sk = bgv.key_gen(2048, q_bits=120, rns_modulus=True)
+    keys = trace.evaluation_keys(pk, sk, 8)
+    gpu, cpu = NativeServer(pk, keys, residue=True, device="cuda"), NativeServer(pk, keys, residue=True)
+    qp, tiles = bgv.coefficient_inputs([0, 1, 1, 0, 1], [[0, 1, 1, 0, 1]], pk.n)
+    index = [bgv.encrypt(tile, pk) for tile in tiles]
+    device, host = gpu.prepare_index(index, 1), cpu.prepare_index(index, 1)
+    for iteration in range(32):
+        ct = bgv.encrypt(qp, pk)
+        joint = iteration % 2 == 0
+        assert gpu.search(ct, device, joint=joint) == cpu.search(ct, host, joint=joint)

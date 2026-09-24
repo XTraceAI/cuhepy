@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
   an isolated native public evaluator with cached key/index transforms, and
   an independent SEAL 4.1.2 BGV circuit oracle. Preserve the per-tile reference
   and compare complete ciphertexts before measuring performance.
+- Extend the isolated BGV evaluator with persistent RNS and CUDA, bounded
+  terminal modulus reduction, fresh seeded owner queries, and paired 8,192-vector
+  measurements. Fix query-upload ordering between pageable host transfers and
+  nonblocking CUDA streams; add repeated-query and canonical-boundary regressions.
 - Add a BFV search experiment plan covering client preparation, alternative
   circuits and layouts, GPU arithmetic, and communication. Include independent
   plaintext layout checks and an analytical partial-reduction cost model.

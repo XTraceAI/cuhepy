@@ -28,6 +28,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from experiments.bfv_search_lab import shallow_bgv as bgv, trace_bgv as trace
 from experiments.bfv_search_lab import butterfly_bgv as butterfly
 from experiments.bfv_search_lab import compact_bgv
+from experiments.bfv_search_lab import seeded_bgv
 from experiments.bfv_search_lab.native_bgv import NativeServer
 
 
@@ -43,6 +44,7 @@ def main():
     parser.add_argument("--variants", choices=variants, nargs="+", default=variants[:4])
     parser.add_argument("--rns-modulus", action="store_true")
     parser.add_argument("--terminal-bits", type=int, default=0)
+    parser.add_argument("--seeded-query", action="store_true")
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
     if min(args.num_vectors, args.repeats) < 1 or len(set(args.variants)) != len(args.variants):
@@ -79,9 +81,15 @@ def main():
         if repeat:
             current[(repeat - 1) % len(current)] ^= 1
         encode_s, encoded = timed(lambda current=current: bgv.coefficient_inputs(current, [], case.n)[0])
-        encrypt_s, encrypted = timed(case.encrypt, encoded)
+        expand_s = 0.0
+        if args.seeded_query:
+            encrypt_s, query_wire = timed(seeded_bgv.encrypt, encoded, case.pk, case.sk)
+            expand_s, encrypted = timed(seeded_bgv.expand, query_wire, case.pk)
+            query_pack_s = 0.0  # Seeded encryption includes the compact packet encoding.
+        else:
+            encrypt_s, encrypted = timed(case.encrypt, encoded)
+            query_pack_s, query_wire = timed(case.pack, [encrypted], 1)
         expected = [sum(a != b for a, b in zip(current, row, strict=True)) for row in rows]
-        query_pack_s, query_wire = timed(case.pack, [encrypted], 1)
         order, answers = args.variants.copy(), {}
         rng.shuffle(order)
         for name in order:
@@ -108,10 +116,11 @@ def main():
             sample = {
                 "query_encode_s": encode_s, "query_encrypt_s": encrypt_s,
                 "query_pack_s": query_pack_s, "server_s": server_s,
+                "server_query_expand_s": expand_s,
                 "response_pack_s": pack_s, "client_decrypt_s": decrypt_s,
                 "server_compact_s": compact_s,
                 "client_decode_s": decode_s, "client_top3_s": top_s,
-                "local_phases_s": encode_s + encrypt_s + query_pack_s + server_s + compact_s + pack_s + decrypt_s + decode_s + top_s,
+                "local_phases_s": encode_s + encrypt_s + query_pack_s + expand_s + server_s + compact_s + pack_s + decrypt_s + decode_s + top_s,
                 "query_bytes": len(query_wire), "response_bytes": len(wire),
                 "query_plus_response_bytes": len(query_wire) + len(wire),
                 "response_ciphertexts": len(response),
@@ -128,9 +137,11 @@ def main():
                 assert actual == compared[0]
                 ciphertext_checks += len(actual)
     total_automorphisms = sum(butterfly.schedule(padded, [1] * min(padded, len(index) - start), 0)[1] for start in range(0, len(index), padded))
-    sources = [Path(__file__).resolve(), REPO_ROOT / "benchmarks/coefficient_search_lab.py"]
+    sources = [Path(__file__).resolve(), REPO_ROOT / "benchmarks/coefficient_search_lab.py",
+               REPO_ROOT / "benchmarks/bfv_client_matrix.py", REPO_ROOT / "src/cuhepy/bfv/scheme.py",
+               REPO_ROOT / "src/cuhepy/types.py"]
     sources += [REPO_ROOT / "experiments/bfv_search_lab" / name for name in (
-        "shallow_bgv.py", "trace_bgv.py", "butterfly_bgv.py", "native_bgv.py", "compact_bgv.py",
+        "shallow_bgv.py", "trace_bgv.py", "butterfly_bgv.py", "native_bgv.py", "compact_bgv.py", "seeded_bgv.py",
         "_native/trace_server.h", "_native/residue_trace.h", "_native/bindings.cpp", "_native/Makefile",
         "_native/cuda_trace.cuh", "_native/bindings.cu",
     )]
@@ -141,10 +152,12 @@ def main():
         "utc": datetime.now(UTC).isoformat(), "command": sys.argv,
         "git_head": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True).strip(),
         "platform": platform.platform(), "python": sys.version,
+        "cpu": next((line.split(":", 1)[1].strip() for line in Path("/proc/cpuinfo").read_text().splitlines() if line.startswith("model name")), platform.machine()),
         "gpu": subprocess.check_output(["nvidia-smi", "--query-gpu=name,driver_version,memory.total", "--format=csv,noheader"], text=True).strip() if "cuda" in servers else None,
         "num_vectors": len(rows), "dimension": args.embed_len,
         "n": case.n, "t": case.t, "q_bits": case.q.bit_length(), "digit_bits": keys.digit_bits,
         "rns_modulus": args.rns_modulus, "terminal_bits": args.terminal_bits,
+        "seeded_query": args.seeded_query,
         "notes": "Same keys, encrypted index, and fresh query per paired round; shuffled order, one excluded warmup. "
         "Native setup caches public index/key NTTs. CPU variants are single-threaded; CUDA uses the local GPU. "
         "Local phases include native boundary conversions and wire packing but exclude wire parsing, network and attestation. "
