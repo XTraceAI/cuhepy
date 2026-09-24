@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
   CUDA evaluation with optional shared index reads, reusable per-call scratch,
   and a 4 GiB coefficient-workspace limit. Preserve independent single-query
   and reference paths; add paired latency/throughput and result-handling trials.
+- Record ten-round finish/batch experiments at 8,192 and 32,768 vectors in
+  `docs/research/bgv-finish-batch-results.md`, including faster client finishing,
+  cases where existing host workers beat fused batches, memory/latency tradeoffs,
+  native allocation refusals and public measurement artifacts.
 - Add fresh BGV owner-query ablations: bulk independent OS error sampling,
   identical bulk SHAKE stream decoding, exact shifted-ternary GMP products, and
   a separate optional C++/GMP private owner extension. Add paired complete-search

@@ -245,3 +245,7 @@ decoding and a full stable sort for three answers consume about 19 ms combined.
 Benchmark linear top-three selection with identical tie ordering, and a fused
 decoder, as separate ablations. They do not change the cryptographic circuit
 and should not be presented as new cryptographic techniques.
+
+The [result-handling and GPU-batch follow-up](bgv-finish-batch-results.md) now
+implements those client ablations and distinct-query public kernels, with paired
+measurements, explicit completion delays, memory caps and retained negative results.

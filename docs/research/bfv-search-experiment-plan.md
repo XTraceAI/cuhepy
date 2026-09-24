@@ -618,6 +618,9 @@ or stop. Never store private keys in measurement artifacts.
 - [Fresh owner arithmetic](bgv-owner-results.md): bulk sampling/stream decoding,
   exact shifted-ternary products, a separate private C++/GMP owner, and paired
   client/server phase measurements. No secret arithmetic enters the public server.
+- [Result handling and distinct-query GPU batches](bgv-finish-batch-results.md):
+  exact distance lookup, fused private finishing, public batch kernels, and
+  comparisons with the existing threaded server, including completion delays.
 
 The oracle passes **1,131 partial-layout cases and 367 coefficient-layout cases**.
 It exhausts all query/vector pairs up to four bits and adds deterministic random
