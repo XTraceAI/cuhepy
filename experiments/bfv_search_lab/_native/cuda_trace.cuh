@@ -21,22 +21,27 @@ __global__ void tensor(const U* query, const U* index, U* out, const Parameters*
     out[(b*6+4+j)*n+i] = product(c,y,prime);
 }
 
-__global__ void digits(const U* source, U* out, const Parameters* p, int batch, int components, int component) {
-    int at = blockIdx.x * blockDim.x + threadIdx.x, n = p->n;
-    if (at >= batch * n) return;
-    int b = at/n, i = at%n;
-    U values[2] = {source[(b*components*2+component*2)*n+i], source[(b*components*2+component*2+1)*n+i]};
-    garner(values,0,2,*p);
+__device__ inline void write_digits(U first, U second, U* out, const Parameters& p, int b, int i) {
+    U values[2] = {first, second};
+    garner(values,0,2,p);
     U value[4];
-    words(values,0,2,value,*p);
+    words(values,0,2,value,p);
     for (int digit = 0; digit < 4; ++digit) {
         int bit = 30*digit, limb = bit/64, offset = bit%64;
         U v = value[limb] >> offset;
         if (offset) v |= value[limb+1] << (64-offset);
         v &= (U(1)<<30)-1;
-        out[((b*4+digit)*2)*n+i] = v;
-        out[((b*4+digit)*2+1)*n+i] = v;
+        out[((b*4+digit)*2)*p.n+i] = v;
+        out[((b*4+digit)*2+1)*p.n+i] = v;
     }
+}
+
+__global__ void digits(const U* source, U* out, const Parameters* p, int batch, int components, int component) {
+    int at = blockIdx.x * blockDim.x + threadIdx.x, n = p->n;
+    if (at >= batch * n) return;
+    int b = at/n, i = at%n;
+    write_digits(source[(b*components*2+component*2)*n+i],
+                 source[(b*components*2+component*2+1)*n+i],out,*p,b,i);
 }
 
 __global__ void key_product(const U* input, const Mul* key, U* output, const Parameters* p, int batch) {
@@ -47,6 +52,33 @@ __global__ void key_product(const U* input, const Mul* key, U* output, const Par
     for (int digit = 0; digit < 4; ++digit)
         value = add(value,mul(input[((b*4+digit)*2+j)*n+i],key[((digit*2+c)*2+j)*n+i],prime),prime);
     output[at] = value;
+}
+
+// Reuse each key coefficient across eight ciphertexts and each input digit for
+// both output components. The baseline remains available for paired ablations.
+__global__ void key_product_tiled(const U* __restrict__ input, const Mul* __restrict__ key,
+                                   U* __restrict__ output, const Parameters* p, int batch) {
+    constexpr int lanes = 32, tiles = 8;
+    __shared__ U values[4][2][lanes], quotients[4][2][lanes];
+    int n = p->n, j = blockIdx.z, start = blockIdx.x*lanes;
+    for (int at = threadIdx.x; at < 4*2*lanes; at += blockDim.x) {
+        int d = at/(2*lanes), c = (at/lanes)%2, lane = at%lanes;
+        Mul value = key[((d*2+c)*2+j)*n+start+lane];
+        values[d][c][lane] = value.value;
+        quotients[d][c][lane] = value.quotient;
+    }
+    __syncthreads();
+    int lane = threadIdx.x%lanes, b = blockIdx.y*tiles+threadIdx.x/lanes;
+    if (b >= batch) return;
+    U prime = p->primes[j].p, sum0 = 0, sum1 = 0;
+    #pragma unroll
+    for (int d = 0; d < 4; ++d) {
+        U digit = input[((b*4+d)*2+j)*n+start+lane];
+        sum0 = add(sum0,mul(digit,{values[d][0][lane],quotients[d][0][lane]},prime),prime);
+        sum1 = add(sum1,mul(digit,{values[d][1][lane],quotients[d][1][lane]},prime),prime);
+    }
+    output[(b*4+j)*n+start+lane] = sum0;
+    output[(b*4+2+j)*n+start+lane] = sum1;
 }
 
 __global__ void initial_shift(const U* tensor, const U* switched, U* work, const Parameters* p, int batch, int shift) {
@@ -77,13 +109,89 @@ __global__ void butterfly_inputs(const U* work, U* plus, U* permuted, const Para
     permuted[(b*4+c*2+j)*n+target%n] = target >= n && v ? prime-v : v;
 }
 
-__global__ void finish_merge(U* work, const U* plus, const U* permuted, const U* switched,
-                             const Parameters* p, int count) {
+// Form the next stage's sum, permuted c0, and gadget digits of permuted c1
+// together. Exact CRT happens AFTER the negacyclic sign, since gadget digits
+// require the canonical representative in [0,Q). No permuted c1 buffer exists.
+__global__ void butterfly_digits(const U* work, U* plus, U* permuted0, U* digits,
+                                  const Parameters* p, int active, int count, int shift, U exponent) {
+    int at = blockIdx.x*blockDim.x+threadIdx.x, n = p->n;
+    if (at >= count*n) return;
+    int i = at%n, b = at/n, target = (i*exponent)%(2*n);
+    U difference1[2];
+    #pragma unroll
+    for (int c = 0; c < 2; ++c) {
+        #pragma unroll
+        for (int j = 0; j < 2; ++j) {
+            U prime = p->primes[j].p, a = work[(b*4+c*2+j)*n+i], rhs = 0;
+            if (b+shift < active) {
+                int source = (i+2*n-shift)%(2*n);
+                rhs = work[((b+shift)*4+c*2+j)*n+source%n];
+                if (source >= n && rhs) rhs = prime-rhs;
+            }
+            plus[(b*4+c*2+j)*n+i] = add(a,rhs,prime);
+            U v = sub(a,rhs,prime);
+            if (target >= n && v) v = prime-v;
+            if (c) difference1[j] = v;
+            else permuted0[(b*2+j)*n+target%n] = v;
+        }
+    }
+    write_digits(difference1[0],difference1[1],digits,*p,b,target%n);
+}
+
+__device__ inline U shifted_coefficient(const U* work, int b, int poly, int i,
+                                        int shift, int n, U prime) {
+    int source = (i+2*n-shift)%(2*n);
+    U value = work[(b*4+poly)*n+source%n];
+    return source >= n && value ? prime-value : value;
+}
+
+// Gather using sigma^-1 so the eight gadget-polynomial stores are coalesced.
+// The first fused experiment scattered all eight; fewer launches alone did not
+// compensate for that traffic. No sum or permuted-component buffer is written.
+__global__ void gather_digits(const U* work, U* digits, const Parameters* p,
+                               int active, int count, int shift, U inverse_exponent) {
+    int at = blockIdx.x*blockDim.x+threadIdx.x, n = p->n;
+    if (at >= count*n) return;
+    int i = at%n, b = at/n, source = (i*inverse_exponent)%(2*n);
+    U difference[2];
+    #pragma unroll
+    for (int j = 0; j < 2; ++j) {
+        U prime = p->primes[j].p, rhs = 0;
+        if (b+shift < active) rhs = shifted_coefficient(work,b+shift,2+j,source%n,shift,n,prime);
+        U v = sub(work[(b*4+2+j)*n+source%n],rhs,prime);
+        difference[j] = source >= n && v ? prime-v : v;
+    }
+    write_digits(difference[0],difference[1],digits,*p,b,i);
+}
+
+// Ping-pong output is necessary: sigma's reads span other threads' input
+// coefficients. In-place writes would introduce a cross-block data race.
+__global__ void gather_merge(const U* work, const U* switched, U* output, const Parameters* p,
+                              int active, int count, int shift, U inverse_exponent) {
     int at = blockIdx.x*blockDim.x+threadIdx.x, n = p->n;
     if (at >= count*4*n) return;
-    int j = (at/n)%2, c = (at/(2*n))%2;
+    int i = at%n, j = (at/n)%2, c = (at/(2*n))%2, b = at/(4*n), poly = c*2+j;
+    U prime = p->primes[j].p, rhs = 0;
+    if (b+shift < active) rhs = shifted_coefficient(work,b+shift,poly,i,shift,n,prime);
+    U value = add(add(work[at],rhs,prime),switched[at],prime);
+    if (!c) {
+        int source = (i*inverse_exponent)%(2*n);
+        U right = 0;
+        if (b+shift < active) right = shifted_coefficient(work,b+shift,j,source%n,shift,n,prime);
+        U v = sub(work[(b*4+j)*n+source%n],right,prime);
+        if (source >= n && v) v = prime-v;
+        value = add(value,v,prime);
+    }
+    output[at] = value;
+}
+
+__global__ void finish_merge(U* work, const U* plus, const U* permuted, const U* switched,
+                             const Parameters* p, int count, bool compact_permuted = false) {
+    int at = blockIdx.x*blockDim.x+threadIdx.x, n = p->n;
+    if (at >= count*4*n) return;
+    int j = (at/n)%2, c = (at/(2*n))%2, b = at/(4*n), i = at%n;
     U prime = p->primes[j].p, v = add(plus[at],switched[at],prime);
-    work[at] = c ? v : add(v,permuted[at],prime);
+    work[at] = c ? v : add(v,permuted[compact_permuted ? (b*2+j)*n+i : at],prime);
 }
 
 __global__ void pack_tiles(const U* work, U* output, const Parameters* p, int count) {
@@ -111,6 +219,8 @@ class CudaTraceServer final : public Server {
     Buffer<Parameters> parameters_;
     Buffer<Mul> roots_, inverse_roots_, inverse_n_;
     std::vector<Buffer<Mul>> keys_ntt_;
+    const unsigned kernel_level_;
+    std::vector<Word> inverse_exponents_;
 
     template<bool Inverse> void transform(U* data, std::size_t polys, cudaStream_t stream) const {
         using namespace xtrace_bfv::gpu;
@@ -125,13 +235,22 @@ class CudaTraceServer final : public Server {
         }
         check(cudaGetLastError());
     }
+    void switch_digits(U* digits, U* output, int batch, std::size_t key, cudaStream_t stream) const {
+        using namespace xtrace_bfv::gpu;
+        transform<false>(digits,batch*4,stream);
+        if (kernel_level_ >= 3 && batch >= 8 && ring->n >= 32) {
+            dim3 grid(ring->n/32,(batch+7)/8,2);
+            cuda_detail::key_product_tiled<<<grid,256,0,stream>>>(digits,keys_ntt_[key].data(),output,parameters_.data(),batch);
+        } else {
+            cuda_detail::key_product<<<blocks(batch*4*ring->n),256,0,stream>>>(digits,keys_ntt_[key].data(),output,parameters_.data(),batch);
+        }
+        transform<true>(output,batch*2,stream);
+    }
     void switch_key(const U* source, U* digits, U* output, int batch, int components,
                     int component, std::size_t key, cudaStream_t stream) const {
         using namespace xtrace_bfv::gpu;
         cuda_detail::digits<<<blocks(batch*ring->n),256,0,stream>>>(source,digits,parameters_.data(),batch,components,component);
-        transform<false>(digits,batch*4,stream);
-        cuda_detail::key_product<<<blocks(batch*4*ring->n),256,0,stream>>>(digits,keys_ntt_[key].data(),output,parameters_.data(),batch);
-        transform<true>(output,batch*2,stream);
+        switch_digits(digits,output,batch,key,stream);
     }
 public:
     struct DeviceIndex {
@@ -140,11 +259,17 @@ public:
         DeviceIndex(const std::vector<U>& data, std::size_t count) : values(data), count(count) {}
     };
     CudaTraceServer(std::shared_ptr<const Ring> r, std::size_t d,
-                    std::vector<std::shared_ptr<const SwitchKey>> keys)
-        : Server(std::move(r), d, std::move(keys)) {
+                    std::vector<std::shared_ptr<const SwitchKey>> keys, unsigned kernel_level = 0)
+        : Server(std::move(r), d, std::move(keys)), kernel_level_(kernel_level) {
         using namespace xtrace_bfv::gpu;
         if (ring->residue_prime_count != 2 || ring->digit_bits != 30 || ring->digits != 4 || padded > 512)
             throw std::invalid_argument("BGV CUDA requires Q=two 60-bit primes, four 30-bit digits, D<=512");
+        if (kernel_level > 4) throw std::invalid_argument("Unknown BGV CUDA kernel level");
+        for (auto exponent : exponents) {
+            auto inverse = power_mod(exponent,padded-1,2*ring->n);
+            if (exponent*inverse%(2*ring->n) != 1) throw std::logic_error("Incorrect inverse automorphism");
+            inverse_exponents_.push_back(inverse);
+        }
         check(cudaGetDevice(&device_));
         host_.n = ring->n;
         std::vector<Mul> roots, inverse_roots, inverse_n;
@@ -199,17 +324,20 @@ public:
         DeviceScope scope(device_);
         auto n = ring->n, maximum = std::min(padded,index.count);
         if (!maximum) return {};
+        ResidueArithmetic arithmetic(*ring);
+        auto query_residues = kernel_level_ ? PreparedCiphertext{arithmetic.split(query[0]),arithmetic.split(query[1])} : prepare(query);
         std::vector<U> input;
-        for (const auto& poly : prepare(query)) for (const auto& prime : poly)
+        for (const auto& poly : query_residues) for (const auto& prime : poly)
             input.insert(input.end(),prime.begin(),prime.end());
         Buffer<U> query_ntt(input.size()), tensor(maximum*6*n), digits(maximum*8*n), switched(maximum*4*n),
-                  work(maximum*4*n), plus(maximum*4*n), permuted(maximum*4*n);
+                  work(maximum*4*n), plus(maximum*4*n),
+                  permuted(maximum*(kernel_level_ >= 4 ? 0 : kernel_level_ >= 2 ? 2 : 4)*n);
         // Declare the stream last so it synchronizes before workspace destruction
         // on both success and exception paths. Every invocation has private scratch.
         Stream stream;
         // Order the upload and its consumers on this invocation's stream.
         check(cudaMemcpyAsync(query_ntt.data(),input.data(),input.size()*sizeof(U),cudaMemcpyHostToDevice,stream.value));
-        ResidueArithmetic arithmetic(*ring);
+        if (kernel_level_) transform<false>(query_ntt.data(),2,stream.value);
         std::vector<Ciphertext> output;
         for (std::size_t start = 0; start < index.count; start += padded) {
             auto batch = std::min(padded,index.count-start);
@@ -220,9 +348,20 @@ public:
             auto active = batch, shift = padded/2;
             for (std::size_t j = 0; j < exponents.size(); ++j, shift /= 2) {
                 auto count = joint ? std::min(shift,active) : active;
-                cuda_detail::butterfly_inputs<<<blocks(count*4*n),256,0,stream.value>>>(work.data(),plus.data(),permuted.data(),parameters_.data(),active,count,joint ? shift : active,exponents[j]);
-                switch_key(permuted.data(),digits.data(),switched.data(),count,2,1,j+1,stream.value);
-                cuda_detail::finish_merge<<<blocks(count*4*n),256,0,stream.value>>>(work.data(),plus.data(),permuted.data(),switched.data(),parameters_.data(),count);
+                if (kernel_level_ >= 4) {
+                    cuda_detail::gather_digits<<<blocks(count*n),256,0,stream.value>>>(work.data(),digits.data(),parameters_.data(),active,count,joint ? shift : active,inverse_exponents_[j]);
+                    switch_digits(digits.data(),switched.data(),count,j+1,stream.value);
+                    cuda_detail::gather_merge<<<blocks(count*4*n),256,0,stream.value>>>(work.data(),switched.data(),plus.data(),parameters_.data(),active,count,joint ? shift : active,inverse_exponents_[j]);
+                    work.swap(plus);
+                } else if (kernel_level_ >= 2) {
+                    cuda_detail::butterfly_digits<<<blocks(count*n),256,0,stream.value>>>(work.data(),plus.data(),permuted.data(),digits.data(),parameters_.data(),active,count,joint ? shift : active,exponents[j]);
+                    switch_digits(digits.data(),switched.data(),count,j+1,stream.value);
+                } else {
+                    cuda_detail::butterfly_inputs<<<blocks(count*4*n),256,0,stream.value>>>(work.data(),plus.data(),permuted.data(),parameters_.data(),active,count,joint ? shift : active,exponents[j]);
+                    switch_key(permuted.data(),digits.data(),switched.data(),count,2,1,j+1,stream.value);
+                }
+                if (kernel_level_ < 4)
+                    cuda_detail::finish_merge<<<blocks(count*4*n),256,0,stream.value>>>(work.data(),plus.data(),permuted.data(),switched.data(),parameters_.data(),count,kernel_level_ >= 2);
                 active = count;
             }
             const U* result = work.data();

@@ -60,14 +60,22 @@ def _round_coefficient(c: mpz, q: mpz, p: mpz, t: int) -> mpz:
     return ((2 * (p * c - q * residue) + q * t) // (2 * q * t)) * t + residue
 
 
+def reduced_bound(bound: int, pk: bgv.PublicKey, p: mpz) -> int:
+    """Trusted local metadata only; never permission to decrypt server input."""
+    if not 0 <= 2 * bound < pk.q:
+        raise ValueError("Invalid original BGV correctness bound")
+    result = int((p * bound + pk.q - 1) // pk.q) + ((pk.n + 1) * pk.t + 1) // 2
+    if 2 * result >= p:
+        raise ValueError("Terminal BGV correctness bound exceeds P/2")
+    return result
+
+
 def compact(cipher: bgv.Ciphertext, pk: bgv.PublicKey, bits: int = 32) -> CompactCiphertext:
     bgv._validate(cipher, pk)
     if len(cipher.components) != 2:
         raise ValueError("Terminal BGV reduction requires two components")
     p = terminal_modulus(pk.q, pk.t, bits)
-    bound = int((p * cipher.phase_bound + pk.q - 1) // pk.q) + ((pk.n + 1) * pk.t + 1) // 2
-    if 2 * bound >= p:
-        raise ValueError("Terminal BGV correctness bound exceeds P/2")
+    bound = reduced_bound(cipher.phase_bound, pk, p)
     c0, c1 = (tuple(_round_coefficient(c, pk.q, p, pk.t) % p for c in poly)
               for poly in cipher.components)
     return CompactCiphertext((c0, c1), pk.key_id, p, bound)

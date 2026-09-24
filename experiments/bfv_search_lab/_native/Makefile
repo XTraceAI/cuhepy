@@ -15,10 +15,10 @@ CUDA_TARGET := _bgv_trace_cuda$(EXT)
 .PHONY: all cuda clean
 all: $(TARGET)
 cuda: $(CUDA_TARGET)
-$(TARGET): bindings.cpp trace_server.h residue_trace.h $(wildcard $(CPU)/*.h) Makefile
+$(TARGET): bindings.cpp trace_server.h residue_trace.h compact.h $(wildcard $(CPU)/*.h) Makefile
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++17 -Wall -Wextra -fPIC -shared \
 		-I$(PY_INC) -I$(CPU) bindings.cpp $(LDFLAGS) -lgmpxx -lgmp -o $@
-$(CUDA_TARGET): bindings.cu bindings.cpp trace_server.h residue_trace.h cuda_trace.cuh $(wildcard $(CPU)/*.h) $(wildcard $(CPU)/../_gpu_ext/*.cuh) Makefile
+$(CUDA_TARGET): bindings.cu bindings.cpp trace_server.h residue_trace.h compact.h cuda_trace.cuh $(wildcard $(CPU)/*.h) $(wildcard $(CPU)/../_gpu_ext/*.cuh) Makefile
 	$(NVCC) $(NVCCFLAGS) -std=c++17 -ccbin $(CUDA_CXX) -Xcompiler -fPIC -shared \
 		-gencode arch=compute_$(CUDA_ARCH),code=sm_$(CUDA_ARCH) \
 		-gencode arch=compute_$(CUDA_ARCH),code=compute_$(CUDA_ARCH) \

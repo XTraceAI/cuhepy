@@ -24,6 +24,7 @@ assurance. The raw CUDA path does not provide attestation.
 | `trace_bgv.py` | Public evaluation keys, ring-trace projection and dense coefficient-result packing |
 | `butterfly_bgv.py` | Joint trace/packing reference, public bound schedule and key validation |
 | `native_bgv.py`, `_native/` | Isolated C++/RNS/CUDA evaluators with resident public keys/index |
+| `_native/compact.h` | Exact terminal reduction in C++, before exporting the small result |
 | `compact_bgv.py` | Congruence-preserving terminal modulus reduction and its correctness bound |
 | `seeded_bgv.py` | Fresh owner-encrypted query; server regenerates the uniform component |
 | `seal_bgv_oracle.cpp` | Independent coefficient-layout/circuit check using official SEAL BGV |
@@ -180,6 +181,51 @@ attestation and setup. Seeded query creation includes its packet encoding;
 Run this matrix without simultaneous tests, compilers or other benchmarks.
 To inspect the earlier single-prime experiment, omit `--rns-modulus`, select
 only Python/native variants and use `--q-bits 96`.
+
+### Public pipeline ablations and concurrent requests
+
+`NativeServer(..., device="cuda", residue=True, cuda_level=...)` preserves the
+original baseline as level 0. The explicitly selected research variants are:
+
+| Level | Change from the preceding experiment |
+| --- | --- |
+| 0 | Original coefficient/RNS CUDA evaluator |
+| 1 | Transform the query on the GPU |
+| 2 | Fuse butterfly sum/difference, permutation and gadget decomposition |
+| 3 | Share evaluation-key reads across eight ciphertexts and both components |
+| 4 | Gather with the inverse automorphism; coalesce gadget writes; fuse final addition and use two alternating work buffers |
+
+Level 2 retains the initial scattered-write fusion for comparison. Level 4
+replaces it: fewer kernel launches alone need not improve memory traffic.
+All levels use identical keys, parameters, rounding and output coefficients.
+`search_compact(..., bits=32)` runs exact public terminal reduction in C++ before
+exporting; `compact_result()` exposes the same reduction for differential checks.
+The Python bound check still runs before native evaluation. Neither interface
+authenticates a response or introduces private-key operations in the server.
+
+```bash
+.venv/bin/python benchmarks/bgv_public_pipeline.py --num-vectors 8192 --repeats 10 \
+  --concurrency-repeats 10 --json-out benchmarks/results/bgv_public_pipeline_8192.json
+.venv/bin/python benchmarks/bgv_public_pipeline.py --num-vectors 32768 --repeats 10 \
+  --variants baseline tiled gather gather-native-compact \
+  --json-out benchmarks/results/bgv_public_pipeline_32768.json
+```
+
+The pipeline benchmark uses fresh seeded owner queries. It compares entire
+full and compact ciphertexts, checks the CPU oracle on warmup, and verifies
+every distance and stable top-three result. Native compaction is included in
+`server_evaluate_s` for the `*-native-compact` variants; compare the common
+`server_evaluate_and_compact_s` column across all variants. One warmup is
+excluded and variant order is shuffled. Wire bytes and parameters are unchanged.
+
+Optional concurrency trials submit the **same four distinct fresh requests**
+to one, two and four worker threads in shuffled order. Each worker owns its
+stream/workspace and shares the immutable encrypted index and evaluation keys.
+This is concurrent service, not a fused multi-query kernel. The report separates
+fresh query creation and client verification from server batch throughput.
+Service times include host scheduling/GIL contention and device synchronization;
+they are not interactive network latency. The experiment caps concurrent
+coefficient workspace at 4 GiB. See `benchmarks/bgv_request_throughput.py`.
 
 ## Independent SEAL BGV oracle
 

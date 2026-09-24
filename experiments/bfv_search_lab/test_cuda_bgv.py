@@ -24,10 +24,12 @@ def require_gpu():
 
 
 @pytest.mark.parametrize("n,d", [(8, 1), (16, 3), (64, 31), (2048, 5), (16384, 512)])
-def test_gpu_exact_for_joint_and_independent_trace_with_tails(n, d):
+@pytest.mark.parametrize("level", [0, 1, 2, 3, 4])
+def test_gpu_exact_for_joint_and_independent_trace_with_tails(n, d, level):
     pk, sk = bgv.key_gen(n, q_bits=120, rns_modulus=True)
     keys = trace.evaluation_keys(pk, sk, 1 << (d - 1).bit_length())
-    gpu, cpu = NativeServer(pk, keys, residue=True, device="cuda"), NativeServer(pk, keys, residue=True)
+    gpu = NativeServer(pk, keys, residue=True, device="cuda", cuda_level=level)
+    cpu = NativeServer(pk, keys, residue=True)
     rng = random.Random(n + d)
     query = [rng.randrange(2) for _ in range(d)]
     rows = [query, [1 - x for x in query]] + [[rng.randrange(2) for _ in range(d)] for _ in range(n + 1 if n <= 64 else 63)]
@@ -42,6 +44,7 @@ def test_gpu_exact_for_joint_and_independent_trace_with_tails(n, d):
             expected = cpu.search(ct, host, joint=joint)
             actual = gpu.search(ct, device, joint=joint)
             assert actual == expected
+            assert gpu.search_compact(ct, device, joint=joint) == [compact.compact(c, pk) for c in expected]
             plains = [compact.decrypt(compact.compact(c, pk), pk, sk) for c in actual]
             assert trace.decode(plains, count, d, pk) == [sum(a != b for a, b in zip(query, row, strict=True)) for row in rows[:count]]
     if n <= 64:
@@ -51,10 +54,12 @@ def test_gpu_exact_for_joint_and_independent_trace_with_tails(n, d):
             assert all(output == expected for output in pool.map(lambda _: gpu.search(ct, prepared), range(3)))
 
 
-def test_gpu_canonical_extremes_and_context_boundaries():
+@pytest.mark.parametrize("level", [0, 1, 2, 3, 4])
+def test_gpu_canonical_extremes_and_context_boundaries(level):
     pk, sk = bgv.key_gen(64, q_bits=120, rns_modulus=True)
     keys = trace.evaluation_keys(pk, sk, 8)
-    gpu, cpu = NativeServer(pk, keys, residue=True, device="cuda"), NativeServer(pk, keys, residue=True)
+    gpu = NativeServer(pk, keys, residue=True, device="cuda", cuda_level=level)
+    cpu = NativeServer(pk, keys, residue=True)
     values = [0, 1, int(pk.q) - 1, int(pk.q) // 2, (1 << 64) - 1, 1 << 64, (1 << 119) - 1]
     rng = random.Random(999)
     # These are public-arithmetic fixtures, not valid bounded decryptable messages.
@@ -74,13 +79,15 @@ def test_gpu_canonical_extremes_and_context_boundaries():
         gpu._native.search(gpu._server, (bad, pair[1]), prepared.handle, True)
 
 
-def test_repeated_query_uploads_order_before_nonblocking_kernel_consumers():
+@pytest.mark.parametrize("level", [0, 3, 4])
+def test_repeated_query_uploads_order_before_nonblocking_kernel_consumers(level):
     # A pageable host cudaMemcpy on stream 0 can return before device DMA ends.
     # Previously, later kernels on a nonblocking stream could read stale query
     # words. Warm allocations plus fresh queries expose the missing dependency.
     pk, sk = bgv.key_gen(2048, q_bits=120, rns_modulus=True)
     keys = trace.evaluation_keys(pk, sk, 8)
-    gpu, cpu = NativeServer(pk, keys, residue=True, device="cuda"), NativeServer(pk, keys, residue=True)
+    gpu = NativeServer(pk, keys, residue=True, device="cuda", cuda_level=level)
+    cpu = NativeServer(pk, keys, residue=True)
     qp, tiles = bgv.coefficient_inputs([0, 1, 1, 0, 1], [[0, 1, 1, 0, 1]], pk.n)
     index = [bgv.encrypt(tile, pk) for tile in tiles]
     device, host = gpu.prepare_index(index, 1), cpu.prepare_index(index, 1)

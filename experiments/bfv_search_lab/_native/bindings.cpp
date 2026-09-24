@@ -3,6 +3,7 @@
 #include <Python.h>
 #include "trace_server.h"
 #include "residue_trace.h"
+#include "compact.h"
 #ifdef CUHEPY_BGV_CUDA
 #include "cuda_trace.cuh"
 #endif
@@ -76,35 +77,39 @@ Ciphertext read_pair(PyObject* object, const Ring& r) {
         throw std::invalid_argument("Expected two ciphertext components");
     return {read_poly(PyTuple_GET_ITEM(object, 0), r), read_poly(PyTuple_GET_ITEM(object, 1), r)};
 }
-PyObject* write_pair(const Ciphertext& ct, const Ring& r) {
+PyObject* write_pair(const Ciphertext& ct, std::size_t n, const mpz_class& modulus, std::size_t width) {
     auto result = PyTuple_New(2);
     if (!result) return nullptr;
     for (std::size_t k = 0; k < 2; ++k) {
-        auto bytes = PyBytes_FromStringAndSize(nullptr, r.n * r.coefficient_bytes);
+        auto bytes = PyBytes_FromStringAndSize(nullptr, n * width);
         if (!bytes) { Py_DECREF(result); return nullptr; }
         PyTuple_SET_ITEM(result, k, bytes);
         auto data = PyBytes_AS_STRING(bytes);
-        std::fill(data, data + r.n * r.coefficient_bytes, 0);
-        if (ct[k].size() != r.n) {
+        std::fill(data, data + n * width, 0);
+        if (ct[k].size() != n) {
             Py_DECREF(result); throw std::logic_error("Incorrect output polynomial length");
         }
-        for (std::size_t i = 0; i < r.n; ++i) {
-            if (ct[k][i] < 0 || ct[k][i] >= r.q) {
+        for (std::size_t i = 0; i < n; ++i) {
+            if (ct[k][i] < 0 || ct[k][i] >= modulus) {
                 Py_DECREF(result); throw std::logic_error("Noncanonical native output");
             }
-            mpz_export(data + i * r.coefficient_bytes, nullptr, -1, 1, 0, 0, ct[k][i].get_mpz_t());
+            mpz_export(data + i * width, nullptr, -1, 1, 0, 0, ct[k][i].get_mpz_t());
         }
     }
     return result;
 }
 PyObject* create_server(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
-        PyObject *n_obj, *bits_obj, *d_obj, *keys_obj, *residue_obj = Py_False;
+        PyObject *n_obj, *bits_obj, *d_obj, *keys_obj, *residue_obj = Py_False, *level_obj = nullptr;
         const char* text;
         Py_ssize_t length;
-        if (!PyArg_ParseTuple(args, "Os#OOO|O", &n_obj, &text, &length, &bits_obj, &d_obj, &keys_obj, &residue_obj)) return nullptr;
+        if (!PyArg_ParseTuple(args, "Os#OOO|OO", &n_obj, &text, &length, &bits_obj, &d_obj, &keys_obj, &residue_obj, &level_obj)) return nullptr;
         if (!PyBool_Check(residue_obj)) throw std::invalid_argument("Residue mode must be bool");
         bool residue = residue_obj == Py_True;
+        auto level = level_obj ? integer(level_obj, 4) : 0;
+#ifndef CUHEPY_BGV_CUDA
+        if (level) throw std::invalid_argument("CUDA kernel level requires the CUDA extension");
+#endif
         auto n = integer(n_obj, 32768), bits = integer(bits_obj, 60), d = integer(d_obj, n / 2);
         if (n < 8 || (n & (n - 1)) || bits < 4 || !d || (d & (d - 1)) ||
             length < 8 || length > 60 || text[0] == '0' || !std::all_of(text, text + length, [](char c) {
@@ -133,7 +138,7 @@ PyObject* create_server(PyObject*, PyObject* args) {
         }
         ServerPtr server;
 #ifdef CUHEPY_BGV_CUDA
-        server = std::make_shared<CudaTraceServer>(ring, d, std::move(keys));
+        server = std::make_shared<CudaTraceServer>(ring, d, std::move(keys), level);
 #else
         if (residue) server = std::make_shared<ResidueTraceServer>(ring, d, std::move(keys));
         else server = std::make_shared<Server>(ring, d, std::move(keys));
@@ -165,14 +170,30 @@ PyObject* prepare_index(PyObject*, PyObject* args) {
         return capsule(IndexPtr(index), index_name);
     });
 }
-PyObject* search(PyObject*, PyObject* args) {
+std::unique_ptr<TerminalReduction> terminal(PyObject* t_obj, const char* p_text,
+                                           Py_ssize_t length, const Ring& ring) {
+    auto t = integer(t_obj, (std::size_t(1) << 30) - 1);
+    if (length < 4 || length > 15 || p_text[0] == '0' ||
+        !std::all_of(p_text, p_text + length, [](char c) {
+            return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f');
+        })) throw std::invalid_argument("Invalid native terminal modulus encoding");
+    mpz_class p;
+    p.set_str(p_text, 16);
+    return std::make_unique<TerminalReduction>(ring.q, t, std::move(p));
+}
+PyObject* search_impl(PyObject* args, bool compact) {
     return checked([&]() -> PyObject* {
-        PyObject *server_obj, *query_obj, *index_obj, *mode;
-        if (!PyArg_ParseTuple(args, "OOOO", &server_obj, &query_obj, &index_obj, &mode)) return nullptr;
+        PyObject *server_obj, *query_obj, *index_obj, *mode, *t_obj = nullptr;
+        const char* p_text = nullptr;
+        Py_ssize_t length = 0;
+        if (compact) {
+            if (!PyArg_ParseTuple(args, "OOOOOs#", &server_obj, &query_obj, &index_obj, &mode, &t_obj, &p_text, &length)) return nullptr;
+        } else if (!PyArg_ParseTuple(args, "OOOO", &server_obj, &query_obj, &index_obj, &mode)) return nullptr;
         auto server = get<ServerPtr>(server_obj, server_name);
         auto index = get<IndexPtr>(index_obj, index_name);
         if (index->server != server) throw std::invalid_argument("Index belongs to another native server");
         if (!PyBool_Check(mode)) throw std::invalid_argument("Butterfly mode must be bool");
+        auto reduction = compact ? terminal(t_obj, p_text, length, *server->ring) : nullptr;
         auto query = read_pair(query_obj, *server->ring);
         std::vector<Ciphertext> output;
         { WithoutGIL release;
@@ -181,12 +202,15 @@ PyObject* search(PyObject*, PyObject* args) {
 #else
           output = server->search(query, index->tiles, mode == Py_True);
 #endif
+          if (reduction) for (auto& cipher : output) reduction->apply(cipher);
         }
         auto result = PyTuple_New(output.size());
         if (!result) return nullptr;
         try {
             for (std::size_t i = 0; i < output.size(); ++i) {
-                auto pair = write_pair(output[i], *server->ring);
+                auto pair = write_pair(output[i], server->ring->n,
+                                       reduction ? reduction->modulus : server->ring->q,
+                                       reduction ? reduction->coefficient_bytes : server->ring->coefficient_bytes);
                 if (!pair) { Py_DECREF(result); return nullptr; }
                 PyTuple_SET_ITEM(result, i, pair);
             }
@@ -194,10 +218,28 @@ PyObject* search(PyObject*, PyObject* args) {
         return result;
     });
 }
+PyObject* search(PyObject*, PyObject* args) { return search_impl(args, false); }
+PyObject* search_compact(PyObject*, PyObject* args) { return search_impl(args, true); }
+// Standalone entry point for exhaustive/differential tests and phase benchmarks.
+PyObject* compact_result(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_obj, *cipher_obj, *t_obj;
+        const char* p_text;
+        Py_ssize_t length;
+        if (!PyArg_ParseTuple(args, "OOOs#", &server_obj, &cipher_obj, &t_obj, &p_text, &length)) return nullptr;
+        auto server = get<ServerPtr>(server_obj, server_name);
+        auto reduction = terminal(t_obj, p_text, length, *server->ring);
+        auto cipher = read_pair(cipher_obj, *server->ring);
+        { WithoutGIL release; reduction->apply(cipher); }
+        return write_pair(cipher, server->ring->n, reduction->modulus, reduction->coefficient_bytes);
+    });
+}
 PyMethodDef methods[] = {
     {"create_server", create_server, METH_VARARGS, "Compile public trace evaluation keys."},
     {"prepare_index", prepare_index, METH_VARARGS, "Cache public encrypted index transforms."},
     {"search", search, METH_VARARGS, "Evaluate the per-tile or joint trace circuit."},
+    {"search_compact", search_compact, METH_VARARGS, "Evaluate and reduce the result before exporting coefficients."},
+    {"compact_result", compact_result, METH_VARARGS, "Exact public terminal reduction of a coefficient pair."},
     {nullptr, nullptr, 0, nullptr}
 };
 #ifdef CUHEPY_BGV_CUDA

@@ -27,14 +27,17 @@ int main() {
                 keys.push_back(std::make_shared<SwitchKey>(ring,columns));
             }
             ResidueTraceServer cpu(ring,padded,keys);
-            CudaTraceServer gpu(ring,padded,keys);
             Ciphertext query{polynomial(),polynomial()};
             std::vector<PreparedCiphertext> index;
             for (int i = 0; i < 11; ++i) index.push_back(cpu.prepare({polynomial(),polynomial()}));
-            auto device = gpu.prepare_device(index);
-            for (bool joint : {false,true})
-                if (cpu.search(query,index,joint) != gpu.search_device(query,*device,joint))
-                    throw std::runtime_error("Standalone CUDA ciphertext mismatch");
+            std::array<std::vector<Ciphertext>, 2> expected{cpu.search(query,index,false),cpu.search(query,index,true)};
+            for (unsigned level = 0; level <= 4; ++level) {
+                CudaTraceServer gpu(ring,padded,keys,level);
+                auto device = gpu.prepare_device(index);
+                for (bool joint : {false,true})
+                    if (expected[joint] != gpu.search_device(query,*device,joint))
+                        throw std::runtime_error("Standalone CUDA ciphertext mismatch");
+            }
         }
         std::cout << "BGV CUDA canonical arithmetic and both packing circuits passed\n";
     } catch (const std::exception& error) {
