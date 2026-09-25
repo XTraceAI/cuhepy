@@ -29,6 +29,14 @@ The old system sanitizer issue is resolved using NVIDIA's verified 12.9.79
 redistributable; the public oracle passes memcheck/racecheck. These advances do
 not authenticate BGV responses or establish private constant-time behavior.
 
+**Communication follow-up, 2026-09-25:** the query accounts for 70.6% of BGV
+traffic at 8,192 vectors. A separate plaintext-congruent c0 rounding experiment
+now reduces total traffic by 27.6% with the existing public-key index and 36.4%
+with a new owner-encrypted index. It preserves N/Q and uses the complete public
+correctness-bound schedule to select precision. A native public codec retains
+the Python/GMP oracle and original seeded query. See the
+[derivation, tradeoffs and measurements](bgv-query-compression.md).
+
 ## Expanded scheme portfolio after the first implementations
 
 The objective is exact/private search under a declared contract, not adherence

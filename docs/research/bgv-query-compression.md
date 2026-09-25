@@ -162,6 +162,53 @@ stable top-3 are checked. Local trials have ten measured rounds after one
 warmup; TCP uses five measured rounds. Setup, excluded fixture-evaluation costs,
 source hashes and all samples are saved without keys or ciphertexts.
 
+## Validation at the native-codec implementation
+
+At `d2f2159`, the focused reference/native/CUDA/owner/seeded run passes 85 tests.
+The complete `tests`, `experiments/bfv` and `experiments/bfv_search_lab` run passes
+**719 tests, with one live Nitro integration skipped**. Both Paillier CUDA
+extensions, required BGV CUDA and the independent SEAL BGV oracle are enabled.
+The expected multithreaded-fork regression produces one deprecation warning.
+Explicit Ruff and mypy checks of the changed modules pass.
+
+The public native extension is additionally rebuilt with GCC 12
+`-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer`. Loading this
+separate binary from `/tmp` into the Python process passes **53 reference,
+native-codec and seeded-query tests**, without sanitizer diagnostics. The
+PyCryptodome deepbind override is enabled and Python-hosted leak detection is
+disabled; address and undefined-behavior checking remain enabled. This is finite
+memory/arithmetic boundary coverage, not a security proof or private side-channel
+audit. The optimized binaries alone are used in the timing experiments.
+
+```bash
+CUHEPY_REQUIRE_BGV_CUDA=1 CUHEPY_SEAL_BGV_ORACLE=/tmp/cuhepy-seal-bgv-oracle .venv/bin/python -m pytest tests experiments/bfv experiments/bfv_search_lab -q
+.venv/bin/ruff check --no-force-exclude experiments/bfv_search_lab/compressed_query_bgv.py experiments/bfv_search_lab/seeded_bgv.py experiments/bfv_search_lab/test_native_query_codec_bgv.py experiments/bfv_search_lab/test_cuda_compressed_query_bgv.py benchmarks/bgv_query_compression.py
+.venv/bin/mypy --explicit-package-bases experiments/bfv_search_lab/compressed_query_bgv.py experiments/bfv_search_lab/seeded_bgv.py
+```
+
+The public-codec sanitizer invocation on this GCC 12/Linux host is below. The
+module is replaced only inside this one test process; normal extension files
+are not overwritten. Run this separately from performance measurements.
+
+```bash
+g++-12 -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fPIC -shared -I/usr/include/python3.12 -Isrc/cuhepy/bfv/_cpu_ext experiments/bfv_search_lab/_native/bindings.cpp -lgmpxx -lgmp -o /tmp/cuhepy-query-codec-asan.so
+PYCRYPTODOME_DISABLE_DEEPBIND=1 LD_PRELOAD=/usr/lib/gcc/x86_64-linux-gnu/12/libasan.so:/usr/lib/x86_64-linux-gnu/libstdc++.so.6 ASAN_OPTIONS=detect_leaks=0:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1 .venv/bin/python - <<'PY'
+import importlib.util
+import sys
+import pytest
+name = 'experiments.bfv_search_lab._native._bgv_trace'
+spec = importlib.util.spec_from_file_location(name, '/tmp/cuhepy-query-codec-asan.so')
+module = importlib.util.module_from_spec(spec)
+sys.modules[name] = module
+spec.loader.exec_module(module)
+assert module.__file__ == '/tmp/cuhepy-query-codec-asan.so'
+raise SystemExit(pytest.main([
+    'experiments/bfv_search_lab/test_compressed_query_bgv.py',
+    'experiments/bfv_search_lab/test_native_query_codec_bgv.py',
+    'experiments/bfv_search_lab/test_seeded_bgv.py', '-q']))
+PY
+```
+
 ## Python/GMP codec results
 
 The first full run uses the committed implementation at `c661f52` on the same
@@ -217,3 +264,66 @@ remains 204,895 bytes. The larger public-key-index local median rises from
 393.82 to 330.41 ms. With the owner index those paired values are 123.99 to
 137.65 ms locally and 380.53 to 295.77 ms over that paced link.
 See the [32,768-vector artifact](../../benchmarks/results/bgv_query_compression_32768.json).
+
+## Native public codec results
+
+The second study at `d2f2159` adds `--native-codec`. Each index group now pairs
+four encodings of every fresh query: seeded, conservative Python rounding,
+maximum Python rounding and maximum native rounding. Python and native maximum
+rounding use identical widths, bounds and payload sizes; only the public codec
+implementation changes. The original Python results above remain a separate
+earlier run. All values below compare variants within the new run.
+
+| 8,192 vectors, median | Public index, seeded | Public index, native rounded | Owner index, seeded | Owner index, native rounded |
+| --- | ---: | ---: | ---: | ---: |
+| Local, no TCP | 65.53 ms | 68.48 ms | 63.85 ms | 67.52 ms |
+| Loopback TCP | 71.01 ms | 75.19 ms | 66.63 ms | 71.01 ms |
+| 100/100 Mbps, 20 ms added RTT | 119.70 ms | 115.70 ms | 114.81 ms | 108.30 ms |
+| 10 Mbps up / 100 Mbps down, 40 ms RTT | 318.17 ms | 241.78 ms | 312.14 ms | 214.89 ms |
+| 10/10 Mbps, 40 ms RTT | 391.47 ms | 316.19 ms | 385.75 ms | 288.68 ms |
+
+Compression falls from 5.58 to 1.64 ms for the public-index case. Expansion,
+including regeneration of the unchanged seeded component, falls from 12.69 to
+6.08 ms (the unrounded baseline takes 4.18 ms). The added local request cost
+falls from 14.51 ms with Python to 2.95 ms with native encoding. For the owner
+index, the corresponding added costs are 13.03 and 3.67 ms. All are medians;
+phase medians need not sum exactly to the median total.
+
+This keeps the **252,100 / 221,380 byte** totals while making rounding useful
+on the measured 100 Mbps link as well as the 10 Mbps upload. The 10-up/100-down
+request median improves by 24.0% with the existing public-key index, and by
+31.2% with the owner index, relative to the seeded baseline within each group.
+The original seeded format is still faster locally and on loopback. Select the
+representation according to actual link cost and ingestion constraints; a
+smaller packet is not automatically a faster complete request.
+
+The [native 8,192-vector artifact](../../benchmarks/results/bgv_query_compression_native_8192.json)
+contains all variants, ten local/five paced trials after warmup, source/binary
+hashes and setup costs. Every measured result matches all exact Hamming
+distances and the stable top-3. The earlier trusted-fixture and excluded
+verification-cost limitations apply unchanged.
+
+The [native 32,768-vector run](../../benchmarks/results/bgv_query_compression_native_32768.json)
+uses the same protocol and retains the 356,555 / 325,835 byte totals:
+
+| 32,768 vectors, median | Public index, seeded | Public index, native rounded | Owner index, seeded | Owner index, native rounded |
+| --- | ---: | ---: | ---: | ---: |
+| Local, no TCP | 123.11 ms | 126.71 ms | 118.16 ms | 122.04 ms |
+| Loopback TCP | 130.12 ms | 134.01 ms | 123.62 ms | 125.54 ms |
+| 100/100 Mbps, 20 ms added RTT | 187.63 ms | 182.99 ms | 179.18 ms | 172.77 ms |
+| 10 Mbps up / 100 Mbps down, 40 ms RTT | 385.84 ms | 312.33 ms | 375.41 ms | 279.52 ms |
+| 10/10 Mbps, 40 ms RTT | 532.19 ms | 458.77 ms | 524.04 ms | 427.15 ms |
+
+Native rounding adds 3.60/3.88 ms locally but saves 19.1%/25.5% on the
+10-up/100-down link, relative to each group's seeded baseline. All measured
+distances and selections remain exact. The direction of the tradeoff agrees
+with the smaller workload: unchanged search work, slightly more CPU processing,
+and lower transfer cost. These samples do not measure a real WAN, independent
+client/server CPUs or an authenticated remote service.
+
+The next communication experiment should jointly budget precision for the query
+and terminal response, checking the complete no-wrap inequality and both codec
+costs. A smaller response might be worth a slightly larger query on an asymmetric
+link. That is a proposed experiment, with no further byte/time saving claimed
+here. The original ring and public correctness limits remain the reference
+until parameter assurance and protocol review justify any broader change.

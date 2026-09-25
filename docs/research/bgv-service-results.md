@@ -41,6 +41,11 @@ The query remains **245,866 bytes**. Responses remain **102,488 bytes** at 8,192
 vectors and **204,895 bytes** at 32,768 vectors. None of the winning arithmetic
 or allocation experiments changes the cryptographic parameters or these bytes.
 
+A subsequent [query compression study](bgv-query-compression.md) targets that
+upload directly, with separate public-key/owner-index experiments, paired
+Python and homemade native codecs, unchanged N/Q, and full correctness bounds.
+The payloads above remain the baseline for this service study.
+
 ## What the trace actually says
 
 The [Nsight summary](../../benchmarks/results/bgv_nsight_workspace_8192.json)
