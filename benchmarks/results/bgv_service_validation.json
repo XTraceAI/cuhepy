@@ -1,0 +1,56 @@
+{
+  "kind": "bgv_service_validation_environment",
+  "scope": "Finite regression/sanitizer coverage. Not cryptographic parameter assurance, a constant-time proof, secure erasure or a deployable authentication protocol.",
+  "sanitizer": {
+    "version": "12.9.79",
+    "manifest": "https://developer.download.nvidia.com/compute/cuda/redist/redistrib_12.9.1.json",
+    "archive_sha256": "e23aad21132ff58b92a22aad372a7048793400b79c625665d325d4ecec6979bf",
+    "install_scope": "Standalone redistributable under /tmp; no toolkit or driver replacement",
+    "gpu_memcheck_errors": 0,
+    "gpu_racecheck_hazards": 0,
+    "narrow_ntt_memcheck_errors": 0
+  },
+  "private_asan_ubsan": {
+    "passed": 80,
+    "leak_detection": false,
+    "PYCRYPTODOME_DISABLE_DEEPBIND": "1",
+    "scope": "Native owner, owner, seeded-query and result regressions; including opt-in RNS multiplication"
+  },
+  "paillier_gpu_builds": {
+    "key_bits": 1024,
+    "lookup_alpha_len": 280,
+    "cuda_arch": 86,
+    "host_compiler": "g++-12",
+    "include_root": "/home/pete/yavor-projects/xtrace-work/CppCrypto/include",
+    "standalone_gpu_client_tests_passed": 11
+  },
+  "sha256": {
+    "/tmp/cuhepy-bgv-cuda-sanitizer-current": "ad38dfe3f4a366adfed9c769657a52de1831ac0623be20f5fb152957243d5030",
+    "/tmp/cuhepy-narrow-ntt": "85c77bbbc3715894fc72b8f6e89c104251f81109d74baca8a3133a03a37da50c",
+    "/tmp/cuhepy-bgv-service-asan/_bgv_owner.cpython-312-x86_64-linux-gnu.so": "9cf3bf694b05982b362b151619c29218f6cc8ebef85e41c1026e2e952b7e92e0",
+    "experiments/bfv_search_lab/_native/sanitize_cuda.cu": "9087dbc376a20a45c77abcc64f2747e2dcb229476093263cc2a54130c463a2d8",
+    "experiments/bfv_search_lab/_native/cuda_trace.cuh": "d5020226913c0c6318bedcb5803e7fcba68e41007378149966e931641cca6305",
+    "experiments/bfv_search_lab/_native/cuda_batch.cuh": "395c19956905e3327cab1f2caab66c5b58a0b37780dc8a92b7e5cd1af504ba9f",
+    "experiments/bfv_search_lab/_native/narrow_ntt.cu": "7b430bdb8de064608b18589f4a6ef29d8413d4369ff623c31615575b1b4c2bbd",
+    "experiments/bfv_search_lab/_owner/owner.h": "5e6a14e24c4b83589973f1281f0bac4ca9d8c0c8cffd3f037949bc040943d9c2",
+    "experiments/bfv_search_lab/_owner/rns_product.h": "7d932bbba358fe9f62d45071da9ed8c7c05af066b6b433562256b42019417bcc",
+    "experiments/bfv_search_lab/_owner/finish.h": "efbf9333538900f7fbf002b528a8d15b80e9e385bc6c3076a2fd2abab09c9575",
+    "experiments/bfv_search_lab/_owner/bindings.cpp": "be6c4f9bbb9747c2bb4050265497525e3ef7a22cc90bdaa1cdd9cca38fd7ff2f"
+  },
+  "full_suite": {
+    "command": "CUHEPY_REQUIRE_BGV_CUDA=1 CUHEPY_SEAL_BGV_ORACLE=/tmp/cuhepy-seal-bgv-oracle .venv/bin/python -m pytest tests/ experiments/bfv_search_lab/ -q",
+    "passed": 635,
+    "skipped": 1,
+    "skip_reason": "Live Nitro integration unavailable",
+    "warnings": 1,
+    "warning_reason": "Deliberate multithreaded fork regression",
+    "seconds": 178.64
+  },
+  "static_checks": {
+    "ruff_package_tests": "pass",
+    "ruff_changed_lab_benchmarks": "pass",
+    "mypy_package_files": 34,
+    "mypy_changed_lab_files": 6
+  },
+  "full_suite_log_sha256": "bab6ae26fd4a75ee1f3eed8535b870c777e3007a7855a422e639995e50586fc8"
+}

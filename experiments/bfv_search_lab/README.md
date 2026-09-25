@@ -390,7 +390,7 @@ make -C experiments/bfv_search_lab/_owner PYTHON="$PWD/.venv/bin/python" CXX=g++
 .venv/bin/python benchmarks/bgv_scheme_comparison.py --num-vectors 8192 --repeats 5 --variants paillier-lookup-hybrid --json-out /tmp/paillier-hybrid.json
 ```
 
-The last command requires both Paillier CUDA extensions and the package BFV
+The full comparison requires both Paillier CUDA extensions and the package BFV
 extensions in addition to the research extensions. It uses the same corpus and
 fresh query plaintexts across all eight variants, checks every distance and
 stable top-3, and measures actual framing and both client phases. Its Paillier
@@ -470,7 +470,9 @@ nvcc -O2 -lineinfo -std=c++17 -ccbin g++-12 \
   experiments/bfv_search_lab/_native/sanitize_cuda.cu -lgmpxx -lgmp \
   -o /tmp/cuhepy-bgv-cuda-sanitizer
 /tmp/cuhepy-bgv-cuda-sanitizer
-compute-sanitizer --tool memcheck --error-exitcode 99 /tmp/cuhepy-bgv-cuda-sanitizer
+BGV_SANITIZER=/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer
+"$BGV_SANITIZER" --tool memcheck --error-exitcode 99 /tmp/cuhepy-bgv-cuda-sanitizer
+"$BGV_SANITIZER" --tool racecheck --error-exitcode 99 /tmp/cuhepy-bgv-cuda-sanitizer
 ```
 
 The older system Compute Sanitizer 2022.4.1 fails before the first instrumented
@@ -480,3 +482,5 @@ API. The follow-up installed the official **12.9.79** redistributable under
 on the standalone oracle, including persistent workspaces and batch kernels.
 See the follow-up report for the exact coverage and logs. No system CUDA or
 driver installation was replaced. Run sanitizer jobs separately from benchmarks.
+The variable above names that temporary installation; on another machine set it
+to the path of a compatible Compute Sanitizer executable.

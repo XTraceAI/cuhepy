@@ -1,0 +1,695 @@
+{
+  "kind": "nsight_bgv_diagnostic",
+  "scope": "Summarize single-threaded BGV NVTX ranges from an Nsight Systems SQLite export.\n\nDiagnostic durations only. CPU CUDA API time can include waiting for kernels;\nit is not device transfer time. Do not add overlapping CPU/GPU durations.\n",
+  "results": {
+    "transient": {
+      "samples": [
+        {
+          "range_ns": 43444459,
+          "kernels": [
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int)",
+              "duration_ns": 499221,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1100171,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_merge(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1359298,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::initial_shift(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int)",
+              "duration_ns": 584660,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 61183,
+              "calls": 3
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product_tiled(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 2273871,
+              "calls": 7
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::tensor(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 501493,
+              "calls": 1
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 4966838,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2657958,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 3716783,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2182834,
+              "calls": 11
+            }
+          ],
+          "runtime_api": [
+            {
+              "name": "cudaFree_v3020",
+              "duration_ns": 7561290,
+              "calls": 6
+            },
+            {
+              "name": "cudaLaunchKernel_v7000",
+              "duration_ns": 239584,
+              "calls": 75
+            },
+            {
+              "name": "cudaMalloc_v3020",
+              "duration_ns": 693543,
+              "calls": 6
+            },
+            {
+              "name": "cudaMemcpyAsync_v3020",
+              "duration_ns": 19941874,
+              "calls": 2
+            },
+            {
+              "name": "cudaStreamCreateWithFlags_v5000",
+              "duration_ns": 8351,
+              "calls": 1
+            },
+            {
+              "name": "cudaStreamDestroy_v5050",
+              "duration_ns": 6130,
+              "calls": 1
+            },
+            {
+              "name": "cudaStreamSynchronize_v3020",
+              "duration_ns": 7210,
+              "calls": 2
+            }
+          ],
+          "gpu_kernel_ns": 19904310,
+          "gpu_ntt_ns": 13524413,
+          "gpu_copy_ns": 43742,
+          "gpu_copy_bytes": 1048576
+        },
+        {
+          "range_ns": 41896348,
+          "kernels": [
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int)",
+              "duration_ns": 499029,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1097957,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_merge(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1359460,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::initial_shift(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int)",
+              "duration_ns": 584179,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 61086,
+              "calls": 3
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product_tiled(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 2273455,
+              "calls": 7
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::tensor(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 501717,
+              "calls": 1
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 4968533,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2659914,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 3716881,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2183858,
+              "calls": 11
+            }
+          ],
+          "runtime_api": [
+            {
+              "name": "cudaFree_v3020",
+              "duration_ns": 7555049,
+              "calls": 6
+            },
+            {
+              "name": "cudaLaunchKernel_v7000",
+              "duration_ns": 227605,
+              "calls": 75
+            },
+            {
+              "name": "cudaMalloc_v3020",
+              "duration_ns": 645623,
+              "calls": 6
+            },
+            {
+              "name": "cudaMemcpyAsync_v3020",
+              "duration_ns": 19855782,
+              "calls": 2
+            },
+            {
+              "name": "cudaStreamCreateWithFlags_v5000",
+              "duration_ns": 7370,
+              "calls": 1
+            },
+            {
+              "name": "cudaStreamDestroy_v5050",
+              "duration_ns": 5830,
+              "calls": 1
+            },
+            {
+              "name": "cudaStreamSynchronize_v3020",
+              "duration_ns": 5200,
+              "calls": 2
+            }
+          ],
+          "gpu_kernel_ns": 19906069,
+          "gpu_ntt_ns": 13529186,
+          "gpu_copy_ns": 43744,
+          "gpu_copy_bytes": 1048576
+        },
+        {
+          "range_ns": 41899268,
+          "kernels": [
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int)",
+              "duration_ns": 499221,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1097317,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_merge(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1358820,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::initial_shift(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int)",
+              "duration_ns": 583379,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 61150,
+              "calls": 3
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product_tiled(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 2272974,
+              "calls": 7
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::tensor(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 500309,
+              "calls": 1
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 4968055,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2661512,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 3716368,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2184145,
+              "calls": 11
+            }
+          ],
+          "runtime_api": [
+            {
+              "name": "cudaFree_v3020",
+              "duration_ns": 7552249,
+              "calls": 6
+            },
+            {
+              "name": "cudaLaunchKernel_v7000",
+              "duration_ns": 225604,
+              "calls": 75
+            },
+            {
+              "name": "cudaMalloc_v3020",
+              "duration_ns": 623783,
+              "calls": 6
+            },
+            {
+              "name": "cudaMemcpyAsync_v3020",
+              "duration_ns": 19859103,
+              "calls": 2
+            },
+            {
+              "name": "cudaStreamCreateWithFlags_v5000",
+              "duration_ns": 7260,
+              "calls": 1
+            },
+            {
+              "name": "cudaStreamDestroy_v5050",
+              "duration_ns": 5381,
+              "calls": 1
+            },
+            {
+              "name": "cudaStreamSynchronize_v3020",
+              "duration_ns": 4170,
+              "calls": 2
+            }
+          ],
+          "gpu_kernel_ns": 19903250,
+          "gpu_ntt_ns": 13530080,
+          "gpu_copy_ns": 43712,
+          "gpu_copy_bytes": 1048576
+        }
+      ],
+      "means": {
+        "range_ns": 42413358.333333336,
+        "gpu_kernel_ns": 19904543.0,
+        "gpu_ntt_ns": 13527893.0,
+        "gpu_copy_ns": 43732.666666666664,
+        "gpu_copy_bytes": 1048576.0
+      }
+    },
+    "persistent": {
+      "samples": [
+        {
+          "range_ns": 35654725,
+          "kernels": [
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int)",
+              "duration_ns": 498614,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1098825,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_merge(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1360162,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::initial_shift(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int)",
+              "duration_ns": 583251,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 61598,
+              "calls": 3
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product_tiled(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 2272401,
+              "calls": 7
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::tensor(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 519829,
+              "calls": 1
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 4968340,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2657222,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 3713648,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 3140764,
+              "calls": 11
+            }
+          ],
+          "runtime_api": [
+            {
+              "name": "cudaLaunchKernel_v7000",
+              "duration_ns": 308004,
+              "calls": 75
+            },
+            {
+              "name": "cudaMemcpyAsync_v3020",
+              "duration_ns": 21700889,
+              "calls": 2
+            },
+            {
+              "name": "cudaStreamSynchronize_v3020",
+              "duration_ns": 3180,
+              "calls": 1
+            }
+          ],
+          "gpu_kernel_ns": 20874654,
+          "gpu_ntt_ns": 14479974,
+          "gpu_copy_ns": 42942,
+          "gpu_copy_bytes": 1048576
+        },
+        {
+          "range_ns": 35150245,
+          "kernels": [
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int)",
+              "duration_ns": 499797,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1100808,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_merge(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1361059,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::initial_shift(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int)",
+              "duration_ns": 582900,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 61150,
+              "calls": 3
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product_tiled(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 2273296,
+              "calls": 7
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::tensor(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 522484,
+              "calls": 1
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 5943553,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2674151,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 3735344,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2198703,
+              "calls": 11
+            }
+          ],
+          "runtime_api": [
+            {
+              "name": "cudaLaunchKernel_v7000",
+              "duration_ns": 220584,
+              "calls": 75
+            },
+            {
+              "name": "cudaMemcpyAsync_v3020",
+              "duration_ns": 21399123,
+              "calls": 2
+            },
+            {
+              "name": "cudaStreamSynchronize_v3020",
+              "duration_ns": 3420,
+              "calls": 1
+            }
+          ],
+          "gpu_kernel_ns": 20953245,
+          "gpu_ntt_ns": 14551751,
+          "gpu_copy_ns": 42687,
+          "gpu_copy_bytes": 1048576
+        },
+        {
+          "range_ns": 34115685,
+          "kernels": [
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int)",
+              "duration_ns": 498965,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_digits(const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1098025,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::gather_merge(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int, int, unsigned long long)",
+              "duration_ns": 1359457,
+              "calls": 9
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::initial_shift(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int, int)",
+              "duration_ns": 582579,
+              "calls": 1
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 60862,
+              "calls": 3
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::key_product_tiled(const unsigned long long *, const xtrace_bfv::gpu::Mul *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 2272815,
+              "calls": 7
+            },
+            {
+              "name": "cuhepy_bgv_lab::cuda_detail::tensor(const unsigned long long *, const unsigned long long *, unsigned long long *, const xtrace_bfv::gpu::Parameters *, int)",
+              "duration_ns": 520501,
+              "calls": 1
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 4969175,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)0, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2657446,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)0>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 3716400,
+              "calls": 11
+            },
+            {
+              "name": "void xtrace_bfv::gpu::ntt_fused<(int)2, (bool)1, (bool)1>(unsigned long long *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Mul *, const xtrace_bfv::gpu::Parameters *)",
+              "duration_ns": 2184849,
+              "calls": 11
+            }
+          ],
+          "runtime_api": [
+            {
+              "name": "cudaLaunchKernel_v7000",
+              "duration_ns": 225235,
+              "calls": 75
+            },
+            {
+              "name": "cudaMemcpyAsync_v3020",
+              "duration_ns": 20238460,
+              "calls": 2
+            },
+            {
+              "name": "cudaStreamSynchronize_v3020",
+              "duration_ns": 3070,
+              "calls": 1
+            }
+          ],
+          "gpu_kernel_ns": 19921074,
+          "gpu_ntt_ns": 13527870,
+          "gpu_copy_ns": 42943,
+          "gpu_copy_bytes": 1048576
+        }
+      ],
+      "means": {
+        "range_ns": 34973551.666666664,
+        "gpu_kernel_ns": 20582991.0,
+        "gpu_ntt_ns": 14186531.666666666,
+        "gpu_copy_ns": 42857.333333333336,
+        "gpu_copy_bytes": 1048576.0
+      }
+    }
+  },
+  "sqlite_sha256": "dd6edb1bf6916b653102467974dae7abe782fd96e0744d47433d6cd7d7bf6282",
+  "summarizer_sha256": "c3fdda416e4d6bb71310b9efb3036c52ffb967552b2bdc3eb560cd98e2725b3d",
+  "capture_run_metadata": {
+    "kind": "homemade_bgv_service_profile",
+    "utc": "2026-09-25T05:12:03.509860+00:00",
+    "command": [
+      "benchmarks/bgv_service_pipeline.py",
+      "--mode",
+      "profile",
+      "--num-vectors",
+      "8192",
+      "--repeats",
+      "3",
+      "--json-out",
+      "/tmp/bgv-service-profile-8192.json"
+    ],
+    "git_head": "e81d7ff19f788b05cd7ff82a2bf06d70f4f37d46",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "gpu": "NVIDIA GeForce RTX 3080, 580.173.02, 10240 MiB",
+    "num_vectors": 8192,
+    "dimension": 512,
+    "n": 16384,
+    "t": 1031,
+    "q_hex": "ffffffffffc00020000003bffc0001",
+    "eta": 21,
+    "terminal_bits": 25,
+    "requests": 4,
+    "repeats": 3,
+    "setup": {
+      "keygen_s": 0.09907622914761305,
+      "evaluation_keys_s": 2.8732261122204363,
+      "index_encrypt_s": 32.03424800699577,
+      "server_create_s": 0.7621683687902987,
+      "index_prepare_s": 1.848862953018397,
+      "owner_create_s": 0.0045235902070999146,
+      "owner_terminal_prepare_s": 0.0007903049699962139
+    },
+    "result": {
+      "profile_only": true,
+      "scope": "NVTX ranges include full Python/public evaluator boundary; no private operations in capture."
+    },
+    "source_and_binary_sha256": {
+      "benchmarks/bgv_service_pipeline.py": "03d8b4d129aec067f49f2ebacdb8ae44761132224564eab661c00907a0d994c0",
+      "benchmarks/bfv_client_matrix.py": "6720e62b98a93b100e1f72b816889299b2865489d3b40883870c515f63e48718",
+      "benchmarks/coefficient_search_lab.py": "c8bce962079e9f7411bec4d7a93241e4392f6762afa976a6868d3dd4daf6e373",
+      "experiments/bfv_search_lab/butterfly_bgv.py": "07a1312356851b670dfc51da9bd648aee6aad22250b48d7a13575903ae388167",
+      "experiments/bfv_search_lab/compact_bgv.py": "4b98630622c75052a74ae4f1380bc529f2db088ad961716147b858f3936e0ff9",
+      "experiments/bfv_search_lab/layout_oracles.py": "ea30c80dd1d89f305c7dba332c1a4ae13e54723241b5e6fe4e6d8003ebd5e9d1",
+      "experiments/bfv_search_lab/native_bgv.py": "3aa35e87d65e3c88f3d81612fdcdd91dfd4fc5b107d30ad6b259ad8e5781755d",
+      "experiments/bfv_search_lab/native_owner_bgv.py": "f3920a1858e05f2cb562f18789c184f5150ff405fb910f010e8d647d2606c4c1",
+      "experiments/bfv_search_lab/owner_bgv.py": "5d3c7ccecd6ce0f514e88309618288ac69f7c0343d059960633992a0e4a096e3",
+      "experiments/bfv_search_lab/partial.py": "bd14b80524a3f8a0e8fb54494ee167e5476b93fe6722ec9032ade9d9502da3a7",
+      "experiments/bfv_search_lab/planner.py": "d7409c208d5527cb214f9d9e9b25bd5248be31c23794746b3c73ab82682b3e09",
+      "experiments/bfv_search_lab/query.py": "102eb1a02a8c0eaa3b5077cbd93239680ff56d6fbffe2b4547d0a63ce5da0823",
+      "experiments/bfv_search_lab/results_bgv.py": "56d1ba8295b51e36d298b86056137d9814d70335787b956e73700a162324034a",
+      "experiments/bfv_search_lab/seeded_bgv.py": "c62416035e0cad7b02c704a93f3652758f333e1a7b30f9614ae6903166dce21f",
+      "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+      "experiments/bfv_search_lab/test_butterfly_bgv.py": "1c65a728ef8e7e1f608239d035680fb96596558bc6bf82b5a539a61c4ad5a857",
+      "experiments/bfv_search_lab/test_compact_bgv.py": "7635301031cb10e7af78dd370dd651e1424ed3d85b988c6b1c679f3978859eaf",
+      "experiments/bfv_search_lab/test_cuda_batch_bgv.py": "0da7d8d26a93b409a9808358bb46f63b0900f9c360e28229d3c480d61e3cfef0",
+      "experiments/bfv_search_lab/test_cuda_bgv.py": "43c35762e34b34840d8addd66f05562abc902fa95e0797486852d81d697cedb1",
+      "experiments/bfv_search_lab/test_cuda_workspace_bgv.py": "787d93800ed04c3d416dcd9ab66d12e1c4fac7dda73fd203748f9cf8ca542a82",
+      "experiments/bfv_search_lab/test_native_bgv.py": "f23c6d519007674fe59fffc17e145c810bb9910500fc1a1e12b5a85737f5339b",
+      "experiments/bfv_search_lab/test_native_compact_bgv.py": "77bd3c8ece59ed3f793c6a7f9e877786b3fd836f8a9cf5fb27f907c2f45fc3e4",
+      "experiments/bfv_search_lab/test_native_owner_bgv.py": "a47551711d74eadb8311b007929423e50bb1f915c7546fcb57204637cea17328",
+      "experiments/bfv_search_lab/test_owner_bgv.py": "0b5933a292c6b487e988b14dae016085c793592421e11bcf085af757bf6a3e38",
+      "experiments/bfv_search_lab/test_partial.py": "a898ab8bf0e65ffe6df70a0e53a899dd885eeaab608a7ee937ba9c1b133e0941",
+      "experiments/bfv_search_lab/test_planner.py": "78c798f526b634a154d88426ad61a0d833672787be3bd6c3f374a33d907d461f",
+      "experiments/bfv_search_lab/test_query.py": "8ce2c1c9ce3cf8cdce196b076b16e704393fb7021f0e8447766892cfb0db46ab",
+      "experiments/bfv_search_lab/test_results_bgv.py": "3c8ea1c257e37ba796d3db92350b6c3e4830066e856dd2ad4998ca8e9fc08d7b",
+      "experiments/bfv_search_lab/test_seal_bgv_oracle.py": "e7b0e88745206221d6588446875263b696e0925b49af1fc246666c35f9849853",
+      "experiments/bfv_search_lab/test_seeded_bgv.py": "66206df194439a2d3f3b989df4e048a8e439f97851241543223dc1058b98c0d6",
+      "experiments/bfv_search_lab/test_shallow_bgv.py": "ff97ae244070a8a3ebc27591e3cd91095104bc100ef34f73437ba9937ce7ee4b",
+      "experiments/bfv_search_lab/test_trace_bgv.py": "965604905301ee7a92aede96923fad746f9fb6bcae80acf7279b898eee380fca",
+      "experiments/bfv_search_lab/trace_bgv.py": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5",
+      "experiments/bfv_search_lab/seal_bgv_oracle.cpp": "28a5132c15e6a7bd8385534a954aa4a4ac26e62c2a3b41c12a77e8a741e8b7fe",
+      "experiments/bfv_search_lab/_native/compact.h": "384a35dec51de848e5ea98d16a137d222054e1bc2060d4ac7911004f3bea2de0",
+      "experiments/bfv_search_lab/_native/residue_trace.h": "b24841d01c67be525dd219339f109f3c59d6dcf45e31b42d38f3056ea3e73a47",
+      "experiments/bfv_search_lab/_native/trace_server.h": "522500097d81f59eb789694fb2fb9714ffb4b12a6a1c90dd9e0efa4636946c11",
+      "experiments/bfv_search_lab/_native/cuda_batch.cuh": "395c19956905e3327cab1f2caab66c5b58a0b37780dc8a92b7e5cd1af504ba9f",
+      "experiments/bfv_search_lab/_native/cuda_trace.cuh": "d5020226913c0c6318bedcb5803e7fcba68e41007378149966e931641cca6305",
+      "experiments/bfv_search_lab/_native/bindings.cpp": "81389034eb10abaa1bbd161193d2064a341539eb995e5461d932dc87c0bf130b",
+      "experiments/bfv_search_lab/_native/bindings.cu": "52b69e53a8b26d405ff0c61eb5e1bca77a93368a74cd07e4040408a08771e81d",
+      "experiments/bfv_search_lab/_native/sanitize_cuda.cu": "5d7f22743f1fb3672eaeb1f0bb9056d1ecfd07ee4f784d29b56d263c79acbde5",
+      "experiments/bfv_search_lab/_native/_bgv_trace.pyi": "ce20bab077d0cb7d1ff4ac5f2a8c038e174c518c405475fc785d3b8296f65e03",
+      "experiments/bfv_search_lab/_native/Makefile": "1021e13481609aa295e5fa97a9e4dd52934a94194e522530d412a34ffae8b01e",
+      "experiments/bfv_search_lab/_native/_bgv_trace.cpython-312-x86_64-linux-gnu.so": "11ec24eb1c135c25008b98d833d943adc3c04f8e52808ec721a590b61015d3db",
+      "experiments/bfv_search_lab/_native/_bgv_trace_cuda.cpython-312-x86_64-linux-gnu.so": "d856404e49bcea32f20f89794e3d695b66305ecb6a0ded6c7d9ebddb4a248b81",
+      "experiments/bfv_search_lab/_owner/finish.h": "efbf9333538900f7fbf002b528a8d15b80e9e385bc6c3076a2fd2abab09c9575",
+      "experiments/bfv_search_lab/_owner/owner.h": "fac84f5be45a7061bfd3b98433948f0322876a0d8ad8ddfd16e083b68cd36003",
+      "experiments/bfv_search_lab/_owner/bindings.cpp": "b1d98d4673b1f5285b6734a187deccbf70470b290501bd0aa840857571088e69",
+      "experiments/bfv_search_lab/_owner/_bgv_owner.pyi": "fcb3a1fc606d246a2cbfc8adf61da1958d4ee5340cbefb144618b4659e59b2a3",
+      "experiments/bfv_search_lab/_owner/Makefile": "f32b115805796eab3b9b8ebdfc33c74054930559a58955cc9dda6ca278a5ed5a",
+      "experiments/bfv_search_lab/_owner/_bgv_owner.cpython-312-x86_64-linux-gnu.so": "f3aeffb9d1bf8a2f71674da2ae4ebd1d666e59658144fb70bdd3428b99e21c25",
+      "src/cuhepy/bfv/_cpu_ext/__init__.py": "5b403430d7bea9a571afeecf51f39d99b1360f162f33f6340dfca0b257d2b320",
+      "src/cuhepy/bfv/_cpu_ext/batch_encoder.h": "2e1d66860afe495f3b638c2ca878bef70b3c3425dbbf63d9c040211a833bd457",
+      "src/cuhepy/bfv/_cpu_ext/bfv_residue.h": "e8704caa4f62d93fe3a397b128cfe91bc2a349be815264f381b2d2eff80bca66",
+      "src/cuhepy/bfv/_cpu_ext/bfv_server.h": "6a0a26a5f24a76340cc8a33f6c0df9b11221f57c158b1e199fec574ddac7e520",
+      "src/cuhepy/bfv/_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+      "src/cuhepy/bfv/_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+      "src/cuhepy/bfv/_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+      "src/cuhepy/bfv/_cpu_ext/rns_ntt.h": "f9886933ab66eeac9a4b25968b9bf485e065ab62d8f2efe4223598c927062f67",
+      "src/cuhepy/bfv/_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+      "src/cuhepy/bfv/_cpu_ext/bindings.cpp": "49c399103f7f7df8fe6969fe1ff972650870f3c48f6e37b3dd78a76ed88a6997",
+      "src/cuhepy/bfv/_cpu_ext/private_bindings.cpp": "7b48d92e526147d97d9401e868c8d3e9dbf0b8ba567a67e05047e01f2a371fc0",
+      "src/cuhepy/bfv/_cpu_ext/_bfv_private.pyi": "11275c66776f344a015364d05af9d30534536c64dd82a08a6fd8de9f3a9fb098",
+      "src/cuhepy/bfv/_cpu_ext/_bfv_rns.pyi": "43b8d6e23f1a5d4a603bac44138f1d2be41816418a9ba9b36a25ec0fc4d305db",
+      "src/cuhepy/bfv/_cpu_ext/Makefile": "eaa18da724ccb1d24cb90a39c424194880e4979250edec4546ba134eba7dd285",
+      "src/cuhepy/bfv/_cpu_ext/_bfv_private.cpython-312-x86_64-linux-gnu.so": "11d0c6bc949db2de7ccf2cf9921522f2c8bc330d07151dec2d94d9ad953ec9d7",
+      "src/cuhepy/bfv/_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "cd6503bbeb9c7c7cd468338b4b9b4b1dcf0ea88c478c9a0a7abda5b1b7cb77ef",
+      "src/cuhepy/bfv/_gpu_ext/__init__.py": "23dc7117fdbc45885c3a4ab36b6002ea007a2b33077d6f3069ee3535efe6884c",
+      "src/cuhepy/bfv/_gpu_ext/kernels.cuh": "06e6cdc447f16d54338dd7689a958f292d9e3d344c0a03e6b9a51088b0e05140",
+      "src/cuhepy/bfv/_gpu_ext/server.cuh": "587442eaca2179adf3c4f3dcdc08d54867c3c503b3f1fc46f6e320556eaeeca9",
+      "src/cuhepy/bfv/_gpu_ext/bindings.cu": "19d9e1c077f4e96f8b75691b4e55acaadf19a474ac3996ca23f8459633a030c2",
+      "src/cuhepy/bfv/_gpu_ext/_bfv_cuda.pyi": "7ee3a1980940cc39148711ae9a25f3353e022cdda87d06af96936cd5e8543b8c",
+      "src/cuhepy/bfv/_gpu_ext/Makefile": "b95829c86918cd6c9e154e5b47aff0f9025ca825501cf1e965028df181d18788",
+      "src/cuhepy/bfv/_gpu_ext/_bfv_cuda.cpython-312-x86_64-linux-gnu.so": "1020fbde349f1d8b3a5005172ee9e46bd539473c2690360f00d93a7a140a1f0b"
+    }
+  },
+  "capture_note": "Capture preceded implementation commit 07c99f0; source/binary hashes identify the measured code. Core CUDA workspace code was unchanged at that commit. Timings are diagnostic only."
+}

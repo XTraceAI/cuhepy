@@ -19,6 +19,16 @@ and experiments on concurrent requests and terminal precision. See the
 remain independent correctness/performance references; developing our own
 scheme and arithmetic implementations is the primary objective.
 
+**Service/arithmetic follow-up, 2026-09-25:** E04 now has explicitly leased
+persistent GPU workspaces and individual completion; the owner has an opt-in
+private RNS/NTT backend. Nsight Systems captures and loopback TCP measurements
+cover conversion, allocation and communication. E05 has a standalone narrow-limb
+NTT comparison, E07 an encrypted feature-major reference, and E10 a plaintext
+exact-filter bound study. See [results and remaining work](bgv-service-results.md).
+The old system sanitizer issue is resolved using NVIDIA's verified 12.9.79
+redistributable; the public oracle passes memcheck/racecheck. These advances do
+not authenticate BGV responses or establish private constant-time behavior.
+
 ## Expanded scheme portfolio after the first implementations
 
 The objective is exact/private search under a declared contract, not adherence

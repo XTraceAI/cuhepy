@@ -19,6 +19,11 @@ All notable changes to this project will be documented in this file.
 - Add a fresh-query comparison of homemade BGV, BFV and Paillier CPU/CUDA paths,
   including Paillier lookup with the current 280-bit exponent configuration,
   role timings, actual packet sizes and source/binary provenance.
+- Record the 8,192/32,768-vector workspace, private RNS and TCP studies,
+  same-workload BFV/Paillier comparisons (including the Paillier hybrid),
+  reversed-order narrow NTT results and algorithm tradeoffs in
+  `docs/research/bgv-service-results.md`. The complete CUDA-enabled suite passes
+  635 tests with only the live Nitro integration skipped.
 - Add exact BGV result lookup tables, bounded heap top-k with stable ties, and
   a fused native owner finish path. Add explicit same-key/index multi-query
   CUDA evaluation with optional shared index reads, reusable per-call scratch,
