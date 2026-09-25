@@ -387,6 +387,7 @@ make -C experiments/bfv_search_lab/_owner PYTHON="$PWD/.venv/bin/python" CXX=g++
 .venv/bin/python benchmarks/bgv_service_pipeline.py --mode transport --num-vectors 8192 --owner-rns --repeats 10 --json-out /tmp/transport.json
 .venv/bin/python benchmarks/bgv_algorithm_portfolio.py --json-out /tmp/algorithms.json
 .venv/bin/python benchmarks/bgv_scheme_comparison.py --num-vectors 8192 --repeats 5 --json-out /tmp/scheme-comparison.json
+.venv/bin/python benchmarks/bgv_scheme_comparison.py --num-vectors 8192 --repeats 5 --variants paillier-lookup-hybrid --json-out /tmp/paillier-hybrid.json
 ```
 
 The last command requires both Paillier CUDA extensions and the package BFV
@@ -396,6 +397,10 @@ stable top-3, and measures actual framing and both client phases. Its Paillier
 CUDA variants use a GPU at the client too; the BFV/BGV clients run on the CPU.
 Parameters and security assumptions differ across schemes. This is a trusted
 local benchmark with setup and network transit excluded.
+The optional hybrid uses the Paillier lookup GPU client with GMP server
+multiplication. A separate invocation has the same corpus/distribution but
+different later query plaintexts, because variant-order shuffling advances the
+benchmark RNG; it is not part of the eight-way paired run.
 
 The TCP harness binds only loopback, parses bounded frames against local context,
 and compares each received ciphertext to its independently pinned local fixture

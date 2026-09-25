@@ -149,7 +149,9 @@ def main():
     parser.add_argument("--poly-modulus-degree", type=int, default=16384)
     parser.add_argument("--alpha-len", type=int, default=280)
     parser.add_argument("--repeats", type=int, default=5)
-    parser.add_argument("--variants", choices=VARIANTS, nargs="+", default=list(VARIANTS))
+    parser.add_argument(
+        "--variants", choices=(*VARIANTS, "paillier-lookup-hybrid"), nargs="+", default=list(VARIANTS)
+    )
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
     if (
