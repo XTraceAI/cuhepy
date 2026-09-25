@@ -72,6 +72,12 @@ is refused before native/GPU evaluation. Precision selection uses public
 parameters, layout and honest index bounds, never an observed private noise
 estimate or decryption feedback.
 
+For N=16,384, t=1,031, Q120 and the 25-bit terminal response, the existing
+public-key index permits d=58 at 8,192 vectors; d=59 is refused by the terminal
+bound. With the owner-encrypted index below, d=73 is admissible and d=74 is
+refused. These are conservative whole-circuit bounds, not empirical noise
+thresholds. They are recomputed when the count or index encryption mode changes.
+
 The ring N, arithmetic modulus Q, secret, evaluation keys and terminal response
 format are unchanged. This operation increases noise while keeping Q fixed;
 it is distinct from the modulus switching used by the terminal response.
@@ -142,3 +148,59 @@ charged to every total. Query and order RNGs are separate. All distances and
 stable top-3 are checked. Local trials have ten measured rounds after one
 warmup; TCP uses five measured rounds. Setup, excluded fixture-evaluation costs,
 source hashes and all samples are saved without keys or ciphertexts.
+
+## Python/GMP codec results
+
+The first full run uses the committed implementation at `c661f52` on the same
+Ryzen 7 5800X / RTX 3080 workstation as the service study. It retains N=16,384,
+t=1,031, Q120, eta=21 and the 25-bit response. The two index modes share the
+key context and plaintext corpus; each receives a separate fresh encrypted
+index. Pairing within a mode uses identical fresh query ciphertexts across
+codec variants. Ordinary benchmark runs are unprofiled and run separately
+from builds and tests.
+
+At 8,192 vectors:
+
+| Query/index configuration | Query bytes | Response bytes | Total bytes |
+| --- | ---: | ---: | ---: |
+| Original seeded query, either index mode | 245,866 | 102,488 | 348,354 |
+| Rounded query, existing public-key index | 149,612 | 102,488 | 252,100 |
+| Rounded query, new owner-encrypted index | 118,892 | 102,488 | 221,380 |
+
+Those are **27.6% and 36.4% less recurring traffic** than the seeded baseline.
+The actual retained coefficient widths are 73 and 58 bits: the encoding keeps
+the high part and a residue modulo t, so d dropped bits do not equal d saved
+bits. The response format and payload are unchanged.
+
+| 8,192 vectors, median | Public index, seeded | Public index, rounded | Owner index, seeded | Owner index, rounded |
+| --- | ---: | ---: | ---: | ---: |
+| Local, no TCP | 65.63 ms | 80.34 ms | 64.04 ms | 77.85 ms |
+| Loopback TCP | 72.09 ms | 84.58 ms | 68.90 ms | 82.23 ms |
+| 100/100 Mbps, 20 ms added RTT | 119.70 ms | 124.85 ms | 118.36 ms | 119.04 ms |
+| 10 Mbps up / 100 Mbps down, 40 ms RTT | 317.21 ms | 252.91 ms | 316.54 ms | 227.54 ms |
+| 10/10 Mbps, 40 ms RTT | 390.61 ms | 327.12 ms | 387.98 ms | 301.17 ms |
+
+The Python codec pays roughly 5 ms for compression and an extra 8–9 ms for
+expansion. That loses locally and on the 100 Mbps link, but saves time on the
+10 Mbps upload. These real loopback transfers use application pacing, not WAN
+congestion/loss emulation. The excluded expected-ciphertext evaluation makes
+them trusted fixtures rather than deployment latency estimates.
+
+Index encryption plus expansion takes 32.47 s with public-key encryption and
+4.14 s with the existing native RNS owner. Both expanded indexes contain
+125,829,120 coefficient bytes before framing; the owner's individual seeded
+index envelopes total 62,941,696 bytes. GPU preparation takes 1.89/1.79 s.
+These are one-time setup observations, not query latency or complete index
+upload measurements.
+
+See the [raw 8,192-vector results](../../benchmarks/results/bgv_query_compression_8192.json)
+for samples, exact bound plans, refused precisions and source/binary hashes.
+
+At 32,768 vectors the bound permits d=57 for the public-key index and d=72 for
+the owner index. Query-plus-response traffic falls from 450,761 bytes to
+356,555 and 325,835 bytes respectively (20.9% and 27.7% less). The response
+remains 204,895 bytes. The larger public-key-index local median rises from
+126.18 to 144.13 ms, while the 10-up/100-down Mbps, 40 ms RTT median falls from
+393.82 to 330.41 ms. With the owner index those paired values are 123.99 to
+137.65 ms locally and 380.53 to 295.77 ms over that paced link.
+See the [32,768-vector artifact](../../benchmarks/results/bgv_query_compression_32768.json).
