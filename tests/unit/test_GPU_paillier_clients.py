@@ -142,15 +142,31 @@ def test_paillier_lookup_gpu_pickle_roundtrip() -> None:
 
 
 @pytest.mark.parametrize("client_cls", _CLIENTS)
-def test_keys_save_load_roundtrip(tmp_path, client_cls: type) -> None:
-    """cuhepy.keys round-trips a keypair through disk. Runs on CPU."""
-    client = client_cls(embed_len=_EMBED_LEN, key_len=_KEY_LEN, device="cpu")
+@pytest.mark.parametrize(
+    ("source_device", "target_device"),
+    [("cpu", "cpu"), ("cpu", "gpu"), ("gpu", "cpu"), ("gpu", "gpu")],
+)
+def test_keys_save_load_roundtrip(
+    tmp_path, client_cls: type, source_device: str, target_device: str
+) -> None:
+    """Persist cached tables through JSON and restore keys on either backend."""
+    if "gpu" in (source_device, target_device) and not client_cls.has_gpu():
+        pytest.skip(f"{client_cls.__name__} GPU backend is unavailable on this machine")
+    client = client_cls(embed_len=_EMBED_LEN, key_len=_KEY_LEN, device=source_device)
+    original = client.encode_hamming_server(
+        client.encrypt_vec_one(_VECTORS[0]), client.encrypt_vec_one(_VECTORS[1])
+    )
     path = tmp_path / "key.json"
     keys.save(client, path, include_tables=True)
 
     assert path.stat().st_mode & 0o777 == 0o600
+    if client_cls is PaillierLookupClient:
+        saved = json.loads(path.read_text())
+        assert saved["tables"]["g_table"] and saved["tables"]["noise_table"]
 
-    restored = keys.load(path, device="cpu")
+    restored = keys.load(path, device=target_device)
+    assert restored.device == target_device
+    assert restored.decode_hamming_client_one(original) == _hamming(_VECTORS[0], _VECTORS[1])
     encoded = restored.encode_hamming_server(
         restored.encrypt_vec_one(_VECTORS[0]), restored.encrypt_vec_one(_VECTORS[1])
     )
