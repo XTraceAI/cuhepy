@@ -19,6 +19,9 @@ from cuhepy.types import BFVPolynomial
 from experiments.bfv_search_lab import shallow_bgv as bgv, trace_bgv as trace
 from experiments.bfv_search_lab import butterfly_bgv as butterfly
 from experiments.bfv_search_lab import compact_bgv as compact
+from experiments.bfv_search_lab import transport_bgv as wire
+
+NTT_VARIANTS = ("baseline", "indexed", "warp1024", "warp512", "warp2048")
 
 
 @dataclass(frozen=True)
@@ -33,11 +36,13 @@ class NativeServer:
     """Explicit opt-in lab backend; package BFV/Paillier behavior is unchanged."""
 
     def __init__(self, pk: bgv.PublicKey, keys: trace.EvaluationKeys, *, residue: bool = False,
-                 device: str = "cpu", cuda_level: int = 0) -> None:
+                 device: str = "cpu", cuda_level: int = 0, ntt_variant: str = "baseline") -> None:
         if device not in ("cpu", "cuda") or (device == "cuda" and not residue):
             raise ValueError("CUDA requires explicit persistent RNS mode")
         if type(cuda_level) is not int or not 0 <= cuda_level <= 4 or (device != "cuda" and cuda_level):
             raise ValueError("Invalid CUDA kernel level")
+        if ntt_variant not in NTT_VARIANTS or (device != "cuda" and ntt_variant != "baseline"):
+            raise ValueError("Invalid CUDA NTT variant")
         module = "_bgv_trace_cuda" if device == "cuda" else "_bgv_trace"
         _bgv_trace = importlib.import_module(f"experiments.bfv_search_lab._native.{module}")
 
@@ -45,13 +50,14 @@ class NativeServer:
         self.pk, self.keys = pk, keys
         self._native = _bgv_trace
         self._device, self._cuda_level = device, cuda_level
+        self.ntt_variant = ntt_variant
         self.width = (pk.q.bit_length() + 7) // 8
         self._identity = object()
         self._server = _bgv_trace.create_server(
             pk.n, format(pk.q, "x"), keys.digit_bits, keys.padded,
             tuple(tuple((self._pack(b), self._pack(a)) for b, a in key)
                   for key in (keys.relin, *(key for _, key in keys.rotations))),
-            residue, cuda_level,
+            residue, cuda_level, NTT_VARIANTS.index(ntt_variant),
         )
 
     def _pack(self, poly: BFVPolynomial) -> bytes:
@@ -199,6 +205,7 @@ class GPUWorkspace:
             raise ValueError("Persistent workspace requires this server's index and CUDA level 4")
         self.server, self.index = server, index
         self.coefficient_bytes = max(4 * server.pk.n * 8, server.batch_workspace_bytes(index, 1))
+        self._terminal_allocated = False
         self._pid = os.getpid()
         self._handle = server._native.prepare_workspace(index.handle)
 
@@ -206,15 +213,23 @@ class GPUWorkspace:
         if os.getpid() != self._pid:
             raise RuntimeError("Create a new GPU workspace after fork")
 
-    def search_compact(self, query: bgv.Ciphertext, *, bits: int = 32) -> list[compact.CompactCiphertext]:
+    def search_compact(self, query: bgv.Ciphertext, *, bits: int = 32,
+                       gpu_terminal: bool = False) -> list[compact.CompactCiphertext]:
         self._check_process()
+        if type(gpu_terminal) is not bool:
+            raise ValueError("GPU terminal mode must be bool")
         server = self.server
         bounds = server._bounds(query, self.index, True)
         p = compact.terminal_modulus(server.pk.q, server.pk.t, bits)
         reduced = [compact.reduced_bound(bound, server.pk, p) for bound in bounds]
-        output = server._native.search_workspace_compact(
+        function = (server._native.search_workspace_compact_gpu if gpu_terminal
+                    else server._native.search_workspace_compact)
+        output = function(
             self._handle, tuple(server._pack(poly) for poly in query.components), server.pk.t, format(p, "x"),
         )
+        if gpu_terminal and not self._terminal_allocated and bounds:
+            self.coefficient_bytes += 2 * server.pk.n * 8
+            self._terminal_allocated = True
         width = (p.bit_length() + 7) // 8
         return [compact.CompactCiphertext((server._unpack(pair[0], width), server._unpack(pair[1], width)),
                                          server.pk.key_id, p, bound)
@@ -223,6 +238,32 @@ class GPUWorkspace:
     def close(self) -> None:
         self._check_process()
         self.server._native.close_workspace(self._handle)
+
+    def search_packet(self, query: bgv.Ciphertext, dimension: int, *, bits: int = 32,
+                      gpu_terminal: bool = False) -> tuple[bytes, list[int]]:
+        """Same compact-v1 bytes, without Python coefficient export/reimport.
+
+        Bounds are computed locally and returned separately, never from a wire
+        field. The envelope remains a trusted fixture without authentication.
+        """
+        self._check_process()
+        if type(gpu_terminal) is not bool:
+            raise ValueError("GPU terminal mode must be bool")
+        server = self.server
+        p = compact.terminal_modulus(server.pk.q, server.pk.t, bits)
+        wire._context(server.pk, self.index.count, dimension, p)
+        bounds = [compact.reduced_bound(b, server.pk, p)
+                  for b in server._bounds(query, self.index, True)]
+        function = (server._native.search_workspace_packed_gpu if gpu_terminal
+                    else server._native.search_workspace_packed)
+        pairs = function(self._handle, tuple(server._pack(poly) for poly in query.components),
+                         server.pk.t, format(p, "x"))
+        if gpu_terminal and not self._terminal_allocated:
+            self.coefficient_bytes += 2 * server.pk.n * 8
+            self._terminal_allocated = True
+        packet = wire.pack_native_fixture(pairs, server.pk, count=self.index.count,
+                                           dimension=dimension, modulus=p)
+        return packet, bounds
 
     def __enter__(self) -> GPUWorkspace:
         return self

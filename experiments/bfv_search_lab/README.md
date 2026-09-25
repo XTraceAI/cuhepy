@@ -16,6 +16,10 @@ fresh sampling, exact ternary products and a separate private C++/GMP backend.
 The [result/batch follow-up](../../docs/research/bgv-finish-batch-results.md)
 records client lookup/selection and distinct-query CUDA batching experiments,
 including comparisons where the existing threaded server wins.
+The [compute follow-up](../../docs/research/bgv-compute-followup.md) adds NTT
+schedule choices, exact GPU terminal rounding and an unchanged-format packed
+server/client path. Select `ntt_variant` explicitly on `NativeServer`, and
+`gpu_terminal=True` on a workspace call; existing defaults remain the reference.
 
 These are explicit research entry points, outside the default client and its
 authenticated protocols. They operate on synthetic, owner-controlled data.

@@ -5,6 +5,7 @@
 #include "residue_trace.h"
 #include "compact.h"
 #include "query_codec.h"
+#include "packed_wire.h"
 #ifdef CUHEPY_BGV_CUDA
 #include "cuda_trace.cuh"
 #endif
@@ -107,15 +108,16 @@ PyObject* write_pair(const Ciphertext& ct, std::size_t n, const mpz_class& modul
 }
 PyObject* create_server(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
-        PyObject *n_obj, *bits_obj, *d_obj, *keys_obj, *residue_obj = Py_False, *level_obj = nullptr;
+        PyObject *n_obj, *bits_obj, *d_obj, *keys_obj, *residue_obj = Py_False, *level_obj = nullptr, *ntt_obj = nullptr;
         const char* text;
         Py_ssize_t length;
-        if (!PyArg_ParseTuple(args, "Os#OOO|OO", &n_obj, &text, &length, &bits_obj, &d_obj, &keys_obj, &residue_obj, &level_obj)) return nullptr;
+        if (!PyArg_ParseTuple(args, "Os#OOO|OOO", &n_obj, &text, &length, &bits_obj, &d_obj, &keys_obj, &residue_obj, &level_obj, &ntt_obj)) return nullptr;
         if (!PyBool_Check(residue_obj)) throw std::invalid_argument("Residue mode must be bool");
         bool residue = residue_obj == Py_True;
         auto level = level_obj ? integer(level_obj, 4) : 0;
+        auto ntt_variant = ntt_obj ? integer(ntt_obj,4) : 0;
 #ifndef CUHEPY_BGV_CUDA
-        if (level) throw std::invalid_argument("CUDA kernel level requires the CUDA extension");
+        if (level || ntt_variant) throw std::invalid_argument("CUDA kernel/NTT choice requires the CUDA extension");
 #endif
         auto n = integer(n_obj, 32768), bits = integer(bits_obj, 60), d = integer(d_obj, n / 2);
         if (n < 8 || (n & (n - 1)) || bits < 4 || !d || (d & (d - 1)) ||
@@ -145,7 +147,7 @@ PyObject* create_server(PyObject*, PyObject* args) {
         }
         ServerPtr server;
 #ifdef CUHEPY_BGV_CUDA
-        server = std::make_shared<CudaTraceServer>(ring, d, std::move(keys), level);
+        server = std::make_shared<CudaTraceServer>(ring, d, std::move(keys), level, ntt_variant);
 #else
         if (residue) server = std::make_shared<ResidueTraceServer>(ring, d, std::move(keys));
         else server = std::make_shared<Server>(ring, d, std::move(keys));
@@ -188,7 +190,18 @@ std::unique_ptr<TerminalReduction> terminal(PyObject* t_obj, const char* p_text,
     p.set_str(p_text, 16);
     return std::make_unique<TerminalReduction>(ring.q, t, std::move(p));
 }
-PyObject* search_impl(PyObject* args, bool compact, bool persistent = false) {
+PyObject* write_packed_pair(const Ciphertext& cipher, std::size_t n, const mpz_class& modulus) {
+    if (cipher[0].size()!=n || cipher[1].size()!=n)
+        throw std::logic_error("Incorrect packed output polynomial length");
+    std::string first,second;
+    { WithoutGIL release;
+      first=xtrace_bfv::export_packed(cipher[0],modulus);
+      second=xtrace_bfv::export_packed(cipher[1],modulus); }
+    return Py_BuildValue("(y#y#)",first.data(),static_cast<Py_ssize_t>(first.size()),
+                         second.data(),static_cast<Py_ssize_t>(second.size()));
+}
+PyObject* search_impl(PyObject* args, bool compact, bool persistent = false, bool gpu_terminal = false,
+                     bool packed = false) {
     return checked([&]() -> PyObject* {
         PyObject *server_obj = nullptr, *query_obj, *index_obj = nullptr, *mode = Py_True, *t_obj = nullptr;
         PyObject* workspace_obj = nullptr;
@@ -218,17 +231,19 @@ PyObject* search_impl(PyObject* args, bool compact, bool persistent = false) {
         { WithoutGIL release;
 #ifdef CUHEPY_BGV_CUDA
           output = static_cast<const CudaTraceServer&>(*server).search_device(query, *index->device, mode == Py_True,
-                                                                            workspace ? workspace->scratch.get() : nullptr);
+                                                                            workspace ? workspace->scratch.get() : nullptr,
+                                                                            gpu_terminal ? reduction.get() : nullptr);
 #else
           output = server->search(query, index->tiles, mode == Py_True);
 #endif
-          if (reduction) for (auto& cipher : output) reduction->apply(cipher);
+          if (reduction && !gpu_terminal) for (auto& cipher : output) reduction->apply(cipher);
         }
         auto result = PyTuple_New(output.size());
         if (!result) return nullptr;
         try {
             for (std::size_t i = 0; i < output.size(); ++i) {
-                auto pair = write_pair(output[i], server->ring->n,
+                auto pair = packed ? write_packed_pair(output[i],server->ring->n,reduction->modulus)
+                                   : write_pair(output[i], server->ring->n,
                                        reduction ? reduction->modulus : server->ring->q,
                                        reduction ? reduction->coefficient_bytes : server->ring->coefficient_bytes);
                 if (!pair) { Py_DECREF(result); return nullptr; }
@@ -263,6 +278,9 @@ PyObject* close_workspace(PyObject*, PyObject* args) {
     });
 }
 PyObject* search_workspace_compact(PyObject*, PyObject* args) { return search_impl(args,true,true); }
+PyObject* search_workspace_compact_gpu(PyObject*, PyObject* args) { return search_impl(args,true,true,true); }
+PyObject* search_workspace_packed(PyObject*, PyObject* args) { return search_impl(args,true,true,false,true); }
+PyObject* search_workspace_packed_gpu(PyObject*, PyObject* args) { return search_impl(args,true,true,true,true); }
 PyObject* search_many_impl(PyObject* args, bool compact) {
     return checked([&]() -> PyObject* {
         PyObject *server_obj, *queries_obj, *index_obj, *batch_obj, *shared_obj, *t_obj = nullptr;
@@ -354,6 +372,9 @@ PyMethodDef methods[] = {
     {"prepare_workspace", prepare_workspace, METH_VARARGS, "Allocate a bounded reusable single-request workspace."},
     {"close_workspace", close_workspace, METH_VARARGS, "Wait for outstanding use and release reusable GPU buffers."},
     {"search_workspace_compact", search_workspace_compact, METH_VARARGS, "Lease a workspace and return one compact response immediately."},
+    {"search_workspace_compact_gpu", search_workspace_compact_gpu, METH_VARARGS, "Lease a workspace with exact terminal rounding on the GPU."},
+    {"search_workspace_packed", search_workspace_packed, METH_VARARGS, "Return canonical compact coefficients as packed bytes."},
+    {"search_workspace_packed_gpu", search_workspace_packed_gpu, METH_VARARGS, "Return GPU-rounded compact coefficients as packed bytes."},
     {"search_many", search_many, METH_VARARGS, "Evaluate distinct queries in shared-index GPU batches."},
     {"search_many_compact", search_many_compact, METH_VARARGS, "Batched GPU queries with native terminal reduction."},
 #endif

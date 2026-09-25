@@ -4,6 +4,8 @@
 #pragma once
 #include "trace_server.h"
 #include "../_gpu_ext/server.cuh"
+#include "ntt_variants.cuh"
+#include "terminal_cuda.cuh"
 #include <mutex>
 #include <unistd.h>
 
@@ -224,20 +226,13 @@ class CudaTraceServer final : public Server {
     Buffer<Mul> roots_, inverse_roots_, inverse_n_;
     std::vector<Buffer<Mul>> keys_ntt_;
     const unsigned kernel_level_;
+    const unsigned ntt_variant_;
     std::vector<Word> inverse_exponents_;
 
     template<bool Inverse> void transform(U* data, std::size_t polys, cudaStream_t stream) const {
         using namespace xtrace_bfv::gpu;
-        dim3 grid(std::max<std::size_t>(1,ring->n/1024),polys*2);
         const auto* roots = Inverse ? inverse_roots_.data() : roots_.data();
-        if constexpr (Inverse) {
-            ntt_fused<2,true,false><<<grid,256,0,stream>>>(data,roots,inverse_n_.data(),parameters_.data());
-            if (ring->n > 1024) ntt_fused<2,true,true><<<grid,256,0,stream>>>(data,roots,inverse_n_.data(),parameters_.data());
-        } else {
-            if (ring->n > 1024) ntt_fused<2,false,true><<<grid,256,0,stream>>>(data,roots,inverse_n_.data(),parameters_.data());
-            ntt_fused<2,false,false><<<grid,256,0,stream>>>(data,roots,inverse_n_.data(),parameters_.data());
-        }
-        check(cudaGetLastError());
+        ntt_experiment::run<Inverse>(ntt_variant_,data,roots,inverse_n_.data(),parameters_.data(),ring->n,polys,stream);
     }
     void switch_digits(U* digits, U* output, int batch, std::size_t key, cudaStream_t stream) const {
         using namespace xtrace_bfv::gpu;
@@ -263,6 +258,9 @@ public:
         struct Scratch {
             std::vector<U> input, data;
             Buffer<U> query_ntt, tensor, digits, switched, work, plus, permuted;
+            Buffer<U> terminal_output;
+            Buffer<terminal_gpu::Plan> terminal_parameters;
+            terminal_gpu::Plan terminal_host{};
             // Destroy/synchronize the stream BEFORE either transfer endpoint.
             xtrace_bfv::gpu::Stream stream;
             Scratch(std::size_t n, std::size_t maximum, unsigned level)
@@ -305,12 +303,14 @@ public:
         DeviceIndex(const std::vector<U>& data, std::size_t count) : values(data), count(count) {}
     };
     CudaTraceServer(std::shared_ptr<const Ring> r, std::size_t d,
-                    std::vector<std::shared_ptr<const SwitchKey>> keys, unsigned kernel_level = 0)
-        : Server(std::move(r), d, std::move(keys)), kernel_level_(kernel_level) {
+                    std::vector<std::shared_ptr<const SwitchKey>> keys, unsigned kernel_level = 0,
+                    unsigned ntt_variant = 0)
+        : Server(std::move(r), d, std::move(keys)), kernel_level_(kernel_level), ntt_variant_(ntt_variant) {
         using namespace xtrace_bfv::gpu;
         if (ring->residue_prime_count != 2 || ring->digit_bits != 30 || ring->digits != 4 || padded > 512)
             throw std::invalid_argument("BGV CUDA requires Q=two 60-bit primes, four 30-bit digits, D<=512");
         if (kernel_level > 4) throw std::invalid_argument("Unknown BGV CUDA kernel level");
+        if (ntt_variant > 4) throw std::invalid_argument("Unknown BGV NTT variant");
         for (auto exponent : exponents) {
             auto inverse = power_mod(exponent,padded-1,2*ring->n);
             if (exponent*inverse%(2*ring->n) != 1) throw std::logic_error("Incorrect inverse automorphism");
@@ -368,12 +368,13 @@ public:
     std::shared_ptr<Workspace> prepare_workspace(const DeviceIndex& index) const {
         if (kernel_level_ != 4) throw std::invalid_argument("Persistent workspace requires CUDA level 4");
         auto maximum = std::min(padded,index.count);
-        if ((4+26*maximum)*ring->n*sizeof(U) > (std::size_t(4)<<30))
+        if ((6+26*maximum)*ring->n*sizeof(U)+sizeof(terminal_gpu::Plan) > (std::size_t(4)<<30))
             throw std::invalid_argument("BGV workspace exceeds 4 GiB");
         return std::make_shared<Workspace>(this,maximum);
     }
     std::vector<Ciphertext> search_device(const Ciphertext& query, const DeviceIndex& index,
-                                         bool joint, Workspace* workspace = nullptr) const {
+                                         bool joint, Workspace* workspace = nullptr,
+                                         const TerminalReduction* terminal = nullptr) const {
         std::unique_lock<std::mutex> lease;
         if (workspace) {
             workspace->check_process();
@@ -382,7 +383,7 @@ public:
             lease = std::unique_lock<std::mutex>(workspace->mutex);
             if (!workspace->scratch) throw std::runtime_error("GPU workspace is closed");
         }
-        try { return search_device_impl(query,index,joint,workspace); }
+        try { return search_device_impl(query,index,joint,workspace,terminal); }
         catch (...) {
             if (workspace) {
                 // A failed launch/transfer may still reference the buffers. Drain
@@ -394,7 +395,8 @@ public:
         }
     }
     std::vector<Ciphertext> search_device_impl(const Ciphertext& query, const DeviceIndex& index,
-                                              bool joint, Workspace* workspace) const {
+                                              bool joint, Workspace* workspace,
+                                              const TerminalReduction* terminal) const {
         using namespace xtrace_bfv::gpu;
         DeviceScope scope(device_);
         auto n = ring->n, maximum = std::min(padded,index.count);
@@ -412,6 +414,15 @@ public:
         auto& digits = scratch.digits; auto& switched = scratch.switched;
         auto& work = scratch.work; auto& plus = scratch.plus;
         auto& permuted = scratch.permuted; auto& stream = scratch.stream;
+        if (terminal && (scratch.terminal_host.p != terminal->modulus.get_ui() || scratch.terminal_host.t != terminal->t)) {
+            if (!scratch.terminal_output.data()) {
+                scratch.terminal_output=Buffer<U>(2*n);
+                scratch.terminal_parameters=Buffer<terminal_gpu::Plan>(1);
+            }
+            scratch.terminal_host = terminal_gpu::make_plan(ring->q,*terminal);
+            check(cudaMemcpyAsync(scratch.terminal_parameters.data(),&scratch.terminal_host,
+                                  sizeof(scratch.terminal_host),cudaMemcpyHostToDevice,stream.value));
+        }
         // Order the upload and its consumers on this invocation's stream.
         check(cudaMemcpyAsync(query_ntt.data(),input.data(),input.size()*sizeof(U),cudaMemcpyHostToDevice,stream.value));
         if (kernel_level_) transform<false>(query_ntt.data(),2,stream.value);
@@ -447,10 +458,21 @@ public:
                 result = plus.data();
             }
             check(cudaGetLastError());
-            check(cudaMemcpyAsync(data.data(),result,data.size()*sizeof(U),cudaMemcpyDeviceToHost,stream.value));
+            auto words = data.size();
+            if (terminal) {
+                terminal_gpu::compact<<<blocks(2*n),256,0,stream.value>>>(
+                    result,scratch.terminal_output.data(),parameters_.data(),scratch.terminal_parameters.data());
+                check(cudaGetLastError()); result=scratch.terminal_output.data(); words=2*n;
+            }
+            check(cudaMemcpyAsync(data.data(),result,words*sizeof(U),cudaMemcpyDeviceToHost,stream.value));
             check(cudaStreamSynchronize(stream.value));
             Ciphertext ciphertext;
             for (std::size_t k = 0; k < 2; ++k) {
+                if (terminal) {
+                    ciphertext[k].resize(n);
+                    for (std::size_t i=0;i<n;++i) mpz_set_ui(ciphertext[k][i].get_mpz_t(),data[k*n+i]);
+                    continue;
+                }
                 Residues residues;
                 for (std::size_t j = 0; j < 2; ++j)
                     residues.emplace_back(data.begin()+(k*2+j)*n,data.begin()+(k*2+j+1)*n);

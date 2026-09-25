@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add independent BGV NTT indexing/warp/tile experiments and exact 192-bit
+  terminal reduction on the GPU. Keep the existing kernels and CPU reduction
+  as defaults and coefficient-level oracles.
+- Add native packed response export and packed owner fixture finishing to
+  remove Python coefficient round trips while preserving compact-v1 bytes,
+  the expected-ciphertext gate and validation before private arithmetic.
 - Add an explicit C++/GMP backend for the public BGV query codec, retaining
   byte-identical packets, the Python reference, strict native boundary checks
   and independent CPU/CUDA search comparisons.

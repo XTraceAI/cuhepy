@@ -73,5 +73,13 @@ class NativeTernaryProduct:
         )
         return results.from_native(data, count, k, all_distances)
 
+    def finish_packed(self, pairs: tuple[tuple[bytes, bytes], ...], modulus: mpz, t: int,
+                      count: int, dimension: int, k: int, all_distances: bool) -> results.SearchResult:
+        """The existing native boundary vets EVERY ciphertext before the first private product."""
+        results.validate_layout(self.n, t, count, dimension, k, all_distances)
+        data = self._native.finish(self._handle, pairs, format(modulus, "x"), t,
+                                   count, dimension, k, all_distances)
+        return results.from_native(data, count, k, all_distances)
+
     def __reduce_ex__(self, protocol: SupportsIndex) -> Any:
         raise TypeError("Private native owner caches cannot be serialized")

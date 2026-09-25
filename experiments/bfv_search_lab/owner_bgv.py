@@ -27,6 +27,7 @@ from cuhepy.types import BFVPolynomial
 from experiments.bfv_search_lab import shallow_bgv as bgv, seeded_bgv as seeded
 from experiments.bfv_search_lab import compact_bgv as compact
 from experiments.bfv_search_lab import results_bgv as results
+from experiments.bfv_search_lab import transport_bgv as wire
 from experiments.bfv_search_lab.native_owner_bgv import NativeTernaryProduct
 
 
@@ -229,6 +230,27 @@ class OwnerClient:
             plaintexts = [self.decrypt_compact(c) for c in ciphertexts]
             return results.finish(plaintexts, count, dimension, self.pk, k=k,
                                   all_distances=all_distances, method=method)
+
+    def finish_packed_fixture(self, packet: bytes, expected: bytes, count: int, dimension: int,
+                              *, bounds: list[int], bits: int = 32, k: int = 3,
+                              all_distances: bool = True) -> results.SearchResult:
+        """Trusted local fixture only, with the expected complete bytes pinned first.
+
+        This gate is not an efficient remote verification protocol. The caller
+        must already know the complete expected response; no wire-provided bound
+        grants permission to decrypt. Native parsing vets every coefficient in
+        every ciphertext before any private multiplication begins.
+        """
+        self._check()
+        wire.require_expected_fixture(packet, expected)
+        with self._lock:
+            self._check()
+            if not isinstance(self._product, NativeTernaryProduct):
+                raise ValueError("Packed fixture finishing requires a native owner")
+            p = compact.terminal_modulus(self.pk.q, self.pk.t, bits)
+            pairs = wire._unpack_fields(packet, self.pk, count=count, dimension=dimension,
+                                        modulus=p, bounds=bounds)
+            return self._product.finish_packed(pairs, p, self.pk.t, count, dimension, k, all_distances)
 
     def __reduce_ex__(self, protocol: SupportsIndex) -> Any:
         raise TypeError("Private owner caches cannot be serialized")

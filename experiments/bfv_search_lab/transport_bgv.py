@@ -63,20 +63,35 @@ def send(connection: socket.socket, packet: bytes, *, mbps: float = 0, delay_ms:
         connection.sendall(part)
 
 
-def unpack_fixture(packet: bytes, pk: bgv.PublicKey, *, count: int, dimension: int,
-                   modulus: mpz, bounds: list[int]) -> list[compact.CompactCiphertext]:
-    """Parse against caller-pinned context and local bounds; never trust wire bounds."""
+def _context(pk: bgv.PublicKey, count: int, dimension: int, modulus: mpz) -> tuple[int, int, list]:
     if (type(count) is not int or not 1 <= count <= 64 * pk.n
         or type(dimension) is not int or not 1 <= dimension <= pk.n // 2 or pk.t <= 2 * dimension
         or not pk.t < modulus < pk.q or (modulus - pk.q) % pk.t):
         raise ValueError("Invalid fixture response context")
     groups, bits = (count + pk.n - 1) // pk.n, modulus.bit_length()
     width = (pk.n * bits + 7) // 8
+    header = ["cuhepy-lab-bgv-compact-v1", pk.n, pk.t, modulus.to_bytes((bits + 7) // 8, "little"),
+              bytes.fromhex(pk.key_id), count, dimension]
+    return groups, width, header
+
+
+def pack_native_fixture(pairs: tuple[tuple[bytes, bytes], ...], pk: bgv.PublicKey,
+                        *, count: int, dimension: int, modulus: mpz) -> bytes:
+    """Frame canonical coefficients already validated/packed by the native server."""
+    groups, width, header = _context(pk, count, dimension, modulus)
+    if (len(pairs) != groups or any(len(pair) != 2 or any(type(c) is not bytes or len(c) != width
+                                                       for c in pair) for pair in pairs)):
+        raise ValueError("Invalid native fixture component lengths")
+    return msgpack.packb([header, pairs], use_bin_type=True)
+
+
+def _unpack_fields(packet: bytes, pk: bgv.PublicKey, *, count: int, dimension: int,
+                   modulus: mpz, bounds: list[int]) -> tuple[tuple[bytes, bytes], ...]:
+    """Bound the envelope; the consumer MUST validate all coefficients before private work."""
+    groups, width, expected = _context(pk, count, dimension, modulus)
     if (len(bounds) != groups or any(type(b) is not int or not 0 <= 2 * b < modulus for b in bounds)
         or type(packet) is not bytes or len(packet) > min(MAX_FRAME, 2 * groups * width + 4096)):
         raise ValueError("Invalid fixture response bounds/length")
-    expected = ["cuhepy-lab-bgv-compact-v1", pk.n, pk.t, modulus.to_bytes((bits + 7) // 8, "little"),
-                bytes.fromhex(pk.key_id), count, dimension]
     try:
         value = msgpack.unpackb(packet, raw=False, max_array_len=64, max_map_len=0,
                                 max_bin_len=max(width, 32), max_str_len=64, max_ext_len=0)
@@ -88,19 +103,30 @@ def unpack_fixture(packet: bytes, pk: bgv.PublicKey, *, count: int, dimension: i
             or type(body) is not list or len(body) != groups):
             raise ValueError("Incorrect fixture response context/shape")
         output = []
-        for pair, bound in zip(body, bounds, strict=True):
+        for pair in body:
             if type(pair) is not list or len(pair) != 2:
                 raise ValueError("Invalid fixture component pair")
-            components = []
             for data in pair:
                 if type(data) is not bytes or len(data) != width:
                     raise ValueError("Invalid fixture polynomial size")
-                coefficients = gmpy2.unpack(mpz.from_bytes(data, "little"), bits)
-                if len(coefficients) > pk.n or any(c >= modulus for c in coefficients):
-                    raise ValueError("Noncanonical fixture coefficient")
-                coefficients.extend([mpz(0)] * (pk.n - len(coefficients)))
-                components.append(tuple(coefficients))
-            output.append(compact.CompactCiphertext((components[0], components[1]), pk.key_id, modulus, bound))
-        return output
+            output.append((pair[0], pair[1]))
+        return tuple(output)
     except (TypeError, OverflowError, msgpack.UnpackException) as error:
         raise ValueError("Invalid fixture response encoding") from error
+
+
+def unpack_fixture(packet: bytes, pk: bgv.PublicKey, *, count: int, dimension: int,
+                   modulus: mpz, bounds: list[int]) -> list[compact.CompactCiphertext]:
+    """Parse against caller-pinned context and local bounds; never trust wire bounds."""
+    pairs = _unpack_fields(packet, pk, count=count, dimension=dimension, modulus=modulus, bounds=bounds)
+    output = []
+    for pair, bound in zip(pairs, bounds, strict=True):
+        components = []
+        for data in pair:
+            coefficients = gmpy2.unpack(mpz.from_bytes(data, "little"), modulus.bit_length())
+            if len(coefficients) > pk.n or any(c >= modulus for c in coefficients):
+                raise ValueError("Noncanonical fixture coefficient")
+            coefficients.extend([mpz(0)] * (pk.n - len(coefficients)))
+            components.append(tuple(coefficients))
+        output.append(compact.CompactCiphertext((components[0], components[1]), pk.key_id, modulus, bound))
+    return output
