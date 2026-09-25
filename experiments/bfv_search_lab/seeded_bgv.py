@@ -53,14 +53,15 @@ def encrypt(plaintext: list[int], pk: bgv.PublicKey, sk: bgv.SecretKey) -> bytes
     return msgpack.packb([_TAG, bytes.fromhex(pk.key_id), seed, packed], use_bin_type=True)
 
 
-def _parse(packet: bytes, pk: bgv.PublicKey) -> tuple[tuple[mpz, ...], bytes]:
-    """Shared bounded parser; arithmetic variants preserve exactly this framing."""
+def _parse_fields(packet: bytes, pk: bgv.PublicKey) -> tuple[bytes, bytes]:
+    """Bound the shared envelope; each arithmetic path validates its coefficients."""
     bits = pk.q.bit_length()
     width = (pk.n * bits + 7) // 8
     if type(packet) is not bytes or len(packet) > width + 256:
         raise ValueError("Invalid seeded BGV packet size")
     try:
-        fields = msgpack.unpackb(packet, raw=False)
+        fields = msgpack.unpackb(packet, raw=False, max_array_len=4, max_map_len=0,
+                                max_bin_len=max(width, 64), max_str_len=0, max_ext_len=0)
     except (ValueError, msgpack.UnpackException) as error:
         raise ValueError("Invalid seeded BGV packet") from error
     if not isinstance(fields, list) or len(fields) != 4 or any(type(f) is not bytes for f in fields):
@@ -68,6 +69,13 @@ def _parse(packet: bytes, pk: bgv.PublicKey) -> tuple[tuple[mpz, ...], bytes]:
     tag, key_id, seed, packed = fields
     if tag != _TAG or key_id != bytes.fromhex(pk.key_id) or len(seed) != 32 or len(packed) != width:
         raise ValueError("Invalid seeded BGV context or shape")
+    return packed, seed
+
+
+def _parse(packet: bytes, pk: bgv.PublicKey) -> tuple[tuple[mpz, ...], bytes]:
+    """Shared bounded parser; arithmetic variants preserve exactly this framing."""
+    packed, seed = _parse_fields(packet, pk)
+    bits = pk.q.bit_length()
     integer = mpz.from_bytes(packed, "little")
     if integer.bit_length() > pk.n * bits:
         raise ValueError("Noncanonical seeded BGV padding")

@@ -460,6 +460,12 @@ The optional benchmark index mode uses existing owner encryption with fresh
 randomness per tile to obtain a smaller index noise bound; it requires owner
 secret-key access during ingestion and a newly encrypted index.
 
+The Python/GMP codec remains the default. Rebuild the lab `_native` extensions
+and pass `backend="native"` to both `compress` and `expand` to use the homemade
+C++/GMP public codec. Both implementations produce byte-identical packets and
+ciphertexts. Add `--native-codec` below for a paired comparison that includes
+both codecs and the original seeded-query baseline.
+
 ```bash
 .venv/bin/python benchmarks/bgv_query_compression.py --num-vectors 8192 --repeats 10 --transport-repeats 5 --json-out /tmp/query-compression.json
 ```

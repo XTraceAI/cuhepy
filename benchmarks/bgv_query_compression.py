@@ -180,6 +180,8 @@ class Loopback:
 def trials(args, rows, server, prepared, client, plan):
     max_drop = plan["maximum_safe_drop"]
     variants = {"seeded": None, "rounded-conservative": max_drop - 2, "rounded-maximum": max_drop}
+    if args.native_codec:
+        variants["rounded-native"] = max_drop
     samples, warmup, fixture_costs = {}, {}, []
     plain_rng, order_rng = random.Random(20260925), random.Random(20260926)
     with server.prepare_workspace(prepared) as workspace, closing(Loopback()) as tcp:
@@ -192,11 +194,14 @@ def trials(args, rows, server, prepared, client, plan):
             order_rng.shuffle(order)
             for name in order:
                 drop = variants[name]
+                backend = "native" if name == "rounded-native" else "python"
                 if drop is None:
                     compress_s, packet, expand = 0.0, fresh, partial(owner.expand, pk=client.pk)
                 else:
-                    compress_s, packet = timed(codec.compress, fresh, client.pk, dropped_bits=drop)
-                    expand = partial(codec.expand, pk=client.pk, dropped_bits=drop)
+                    compress_s, packet = timed(
+                        codec.compress, fresh, client.pk, dropped_bits=drop, backend=backend
+                    )
+                    expand = partial(codec.expand, pk=client.pk, dropped_bits=drop, backend=backend)
                 result, phases = local_request(
                     packet, expand, workspace, client, len(rows), args.embed_len, args.terminal_bits
                 )
@@ -256,6 +261,9 @@ def trials(args, rows, server, prepared, client, plan):
             print("Finished round", repeat, "of", args.repeats, flush=True)
     return {
         "variants": variants,
+        "codec_backends": {
+            name: "native" if name == "rounded-native" else "python" for name in variants
+        },
         "samples": samples,
         "warmup": warmup,
         "medians": {
@@ -279,6 +287,9 @@ def main():
     parser.add_argument("--terminal-bits", type=int, default=25)
     parser.add_argument("--repeats", type=int, default=10)
     parser.add_argument("--transport-repeats", type=int, default=5)
+    parser.add_argument(
+        "--native-codec", action="store_true", help="Include the homemade C++/GMP codec"
+    )
     parser.add_argument(
         "--index-modes", nargs="+", choices=("public", "owner"), default=["public", "owner"]
     )

@@ -36,11 +36,15 @@ def test_cpu_cuda_and_owner_finish_match_after_query_rounding(n, dimension, coun
         gpu = NativeServer(pk, keys, residue=True, device="cuda", cuda_level=4)
         host, resident = cpu.prepare_index(index, count), gpu.prepare_index(index, count)
         drop = 72 if owner_index else 56
-        packet = codec.compress(client.encrypt(plain), pk, dropped_bits=drop)
+        fresh = client.encrypt(plain)
+        packet = codec.compress(fresh, pk, dropped_bits=drop)
         expanded = codec.expand(packet, pk, dropped_bits=drop)
+        native_packet = codec.compress(fresh, pk, dropped_bits=drop, backend="native")
+        native_expanded = codec.expand(native_packet, pk, dropped_bits=drop, backend="native")
+        assert native_packet == packet and native_expanded == expanded
         reference = cpu.search_compact(expanded, host, bits=25)
         with gpu.prepare_workspace(resident) as workspace:
-            result = workspace.search_compact(expanded, bits=25)
+            result = workspace.search_compact(native_expanded, bits=25)
             assert result == reference  # All coefficients, not just selected distances.
             assert workspace.search_compact(expanded, bits=25) == result
             finished = client.finish(result, count, dimension)

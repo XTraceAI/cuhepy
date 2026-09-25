@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add an explicit C++/GMP backend for the public BGV query codec, retaining
+  byte-identical packets, the Python reference, strict native boundary checks
+  and independent CPU/CUDA search comparisons.
 - Add an opt-in BGV seeded-query codec that rounds c0 by bounded multiples of
   the plaintext modulus, preserving exact messages under propagated no-wrap
   bounds. Add strict packet parsing, CPU/CUDA differential tests, a public

@@ -104,13 +104,19 @@ index-upload protocol is not introduced here.
 ## Implementation and validation
 
 - [`compressed_query_bgv.py`](../../experiments/bfv_search_lab/compressed_query_bgv.py)
-  implements the separate envelope, fixed-width rounding and expansion.
+  implements the separate envelope, fixed-width rounding and expansion. Its
+  default is the Python/GMP reference; `backend="native"` explicitly selects
+  the separate homemade C++/GMP public codec in
+  [`query_codec.h`](../../experiments/bfv_search_lab/_native/query_codec.h).
 - [`test_compressed_query_bgv.py`](../../experiments/bfv_search_lab/test_compressed_query_bgv.py)
   checks exhaustive small coefficient domains, wrapping, malformed packets,
   mixed-radix holes, exact encryption/search, ties and excessive bounds.
 - [`test_cuda_compressed_query_bgv.py`](../../experiments/bfv_search_lab/test_cuda_compressed_query_bgv.py)
   compares full native CPU/CUDA ciphertexts, repeated workspaces and private
   finishing through degree 16,384, with both index encryption modes.
+- [`test_native_query_codec_bgv.py`](../../experiments/bfv_search_lab/test_native_query_codec_bgv.py)
+  checks byte-identical encodings and complete expanded ciphertexts, zero/tail
+  coefficients, unaligned widths, native allocation bounds and concurrent calls.
 - [`bgv_query_compression.py`](../../benchmarks/bgv_query_compression.py) measures
   paired old/rounded queries and loopback TCP with application pacing.
 
@@ -140,6 +146,13 @@ CUHEPY_REQUIRE_BGV_CUDA=1 .venv/bin/python -m pytest experiments/bfv_search_lab/
 .venv/bin/python benchmarks/bgv_query_compression.py --num-vectors 8192 --repeats 10 --transport-repeats 5 --json-out /tmp/bgv-query-8192.json
 .venv/bin/python benchmarks/bgv_query_compression.py --num-vectors 32768 --repeats 10 --transport-repeats 5 --json-out /tmp/bgv-query-32768.json
 ```
+
+Rebuild both lab public extensions after updating their source. Add
+`--native-codec` to either benchmark command to retain all three original
+variants and also measure the C++/GMP codec at the same maximum admissible
+precision. The compressed bytes are identical. Native encoding/decoding
+operates on bounded public bit streams and releases the GIL; it receives no
+secret key and adds no SEAL dependency.
 
 Each index group has a seeded baseline, the maximum publicly admissible dropped
 precision, and a variant dropping two fewer bits. A fresh owner query is shared

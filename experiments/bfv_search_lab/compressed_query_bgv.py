@@ -21,6 +21,8 @@ See docs/research/bgv-query-compression.md for the derivation and experiment.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from importlib import import_module
+from types import ModuleType
 
 import gmpy2
 from gmpy2 import mpz
@@ -76,21 +78,50 @@ def parameters(pk: bgv.PublicKey, dropped_bits: int) -> Encoding:
     return Encoding(dropped_bits, bits, (pk.n * bits + 7) // 8, maximum, center, added, bound)
 
 
-def compress(packet: bytes, pk: bgv.PublicKey, *, dropped_bits: int) -> bytes:
+def _implementation(backend: str) -> ModuleType | None:
+    if backend == "python":
+        return None
+    if backend != "native":
+        raise ValueError("Expected python or native query codec")
+    try:
+        module = import_module("experiments.bfv_search_lab._native._bgv_trace")
+    except ImportError as error:
+        raise RuntimeError("Build the lab native query codec before selecting it") from error
+    if not all(
+        hasattr(module, name)
+        for name in ("compress_query_coefficients", "expand_query_coefficients")
+    ):
+        raise RuntimeError("Rebuild the lab native extension for query compression")
+    return module
+
+
+def compress(
+    packet: bytes, pk: bgv.PublicKey, *, dropped_bits: int, backend: str = "python"
+) -> bytes:
     """Compress an existing fresh owner packet; requires no secret or fresh coins."""
     encoding = parameters(pk, dropped_bits)
-    c0, seed = seeded._parse(packet, pk)
-    mask = (mpz(1) << dropped_bits) - 1
-    words = [(c >> dropped_bits) * pk.t + (c & mask) % pk.t for c in c0]
-    body = gmpy2.pack(words, encoding.coefficient_bits).to_bytes(encoding.body_bytes, "little")
+    native = _implementation(backend)
+    if native is None:
+        c0, seed = seeded._parse(packet, pk)
+        mask = (mpz(1) << dropped_bits) - 1
+        words = [(c >> dropped_bits) * pk.t + (c & mask) % pk.t for c in c0]
+        body = gmpy2.pack(words, encoding.coefficient_bits).to_bytes(encoding.body_bytes, "little")
+    else:
+        packed, seed = seeded._parse_fields(packet, pk)
+        body = native.compress_query_coefficients(
+            packed, pk.n, format(pk.q, "x"), pk.t, dropped_bits
+        )
     return msgpack.packb(
         [_TAG, bytes.fromhex(pk.key_id), seed, dropped_bits, body], use_bin_type=True
     )
 
 
-def expand(packet: bytes, pk: bgv.PublicKey, *, dropped_bits: int) -> bgv.Ciphertext:
+def expand(
+    packet: bytes, pk: bgv.PublicKey, *, dropped_bits: int, backend: str = "python"
+) -> bgv.Ciphertext:
     """Expand only the caller-pinned format/context; no private arithmetic occurs."""
     encoding = parameters(pk, dropped_bits)
+    native = _implementation(backend)
     if type(packet) is not bytes or len(packet) > encoding.body_bytes + 256:
         raise ValueError("Invalid compressed BGV query length")
     try:
@@ -121,6 +152,13 @@ def expand(packet: bytes, pk: bgv.PublicKey, *, dropped_bits: int) -> bgv.Cipher
         or len(body) != encoding.body_bytes
     ):
         raise ValueError("Incorrect compressed BGV query context/shape")
+    if native is not None:
+        packed = native.expand_query_coefficients(body, pk.n, format(pk.q, "x"), pk.t, dropped_bits)
+        values = gmpy2.unpack(mpz.from_bytes(packed, "little"), pk.q.bit_length())
+        values.extend([mpz(0)] * (pk.n - len(values)))
+        return bgv.Ciphertext(
+            (tuple(values), owner._uniform_bulk(seed, pk)), pk.key_id, encoding.query_bound
+        )
     integer = mpz.from_bytes(body, "little")
     if integer.bit_length() > pk.n * encoding.coefficient_bits:
         raise ValueError("Noncanonical compressed BGV query padding")
