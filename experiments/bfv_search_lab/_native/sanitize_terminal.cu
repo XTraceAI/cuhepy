@@ -17,7 +17,7 @@ int main() {
             auto p0=rns.primes[0].p,p1=rns.primes[1].p;
             rns.inverse[1][0]=multiplier(power_mod(p0%p1,p1-2,p1),p1);
             Buffer<Parameters> device_rns(std::vector<Parameters>{rns});
-            for (Word t:{3,1031,65537}) for (int bits:{16,25,32,59}) {
+            for (Word t:{3,1031,65537}) for (int bits:{16,25,32,59,60}) {
                 if ((Word(1)<<bits)<=8*t) continue;
                 mpz_class p=(mpz_class(1)<<bits)-1;
                 p-=(mpz_fdiv_ui(p.get_mpz_t(),t)+t-mpz_fdiv_ui(q.get_mpz_t(),t))%t;

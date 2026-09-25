@@ -45,7 +45,7 @@ limbs and applies the existing exact terminal rounding on the GPU. With
 
 `k = floor((2*P*c - 2*Q*r + Q*t)/(2*Q*t))`, then `(k*t+r) mod P`.
 
-Q is at most 120 bits, P below 60 bits and t below 30 bits. Three 64-bit words
+Q is at most 120 bits, P < 2^60 and t < 2^30. Three 64-bit words
 suffice for the numerator, subtraction and shifted denominators; the largest
 quotient is bounded by `floor(P/t)+1`. A negative numerator is greater than
 `-Q*t`, so its floor quotient is -1. The implementation uses exact unsigned
@@ -158,8 +158,8 @@ report medians of ten shuffled measured rounds after one warmup.
 | Indexed NTT + GPU terminal rounding | 59.82 | 112.08 |
 | All three compute changes | **46.76** | **85.39** |
 
-The combined changes lower local time by **30.1% / 33.8%** (1.43x / 1.51x
-throughput for serial requests, computed from median latency). Median server
+The combined changes lower local time by **30.1% / 33.8%** (a 1.43x / 1.51x
+speedup in this latency comparison). Median server
 processing falls from **40.51 to 28.28 ms / 87.99 to 62.41 ms**. Median client
 response processing, including the fixture gate, parsing and private finish,
 falls from **11.66 to 4.43 ms / 23.58 to 8.87 ms**. Request totals also include

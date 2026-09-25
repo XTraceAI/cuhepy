@@ -37,7 +37,7 @@ def test_all_ntt_schedules_and_device_terminal_match_reference(n, dimension, cou
             resident = gpu.prepare_index(index, count)
             with gpu.prepare_workspace(resident) as workspace:
                 initial_bytes = workspace.coefficient_bytes
-                for bits in ([16, 25, 32, 59, 25] if n == 16 else [25, 32, 59, 25]):
+                for bits in ([16, 25, 32, 59, 60, 25] if n == 16 else [25, 32, 59, 60, 25]):
                     expected = [compact.compact(c, pk, bits) for c in full]
                     host = workspace.search_compact(encrypted, bits=bits)
                     device = workspace.search_compact(encrypted, bits=bits, gpu_terminal=True)

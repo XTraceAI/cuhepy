@@ -52,7 +52,7 @@ int main() {
                             throw std::runtime_error("Standalone CUDA workspace mismatch");
                     // Exercise lazy terminal scratch, plan changes and reuse on
                     // the complete pipeline, not just the standalone kernel.
-                    for (int bits : {25,32,59,25}) {
+                    for (int bits : {25,32,59,60,25}) {
                         const Word t = 1031;
                         mpz_class p = (mpz_class(1)<<bits)-1;
                         p -= (mpz_fdiv_ui(p.get_mpz_t(),t)+t-mpz_fdiv_ui(q.get_mpz_t(),t))%t;
