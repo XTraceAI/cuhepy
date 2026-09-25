@@ -42,7 +42,7 @@ public:
         : n_(n), drop_(drop), t_(t), q_(q) {
         full_bits_ = mpz_sizeinbase(q_.get_mpz_t(),2);
         if (n<8 || n>32768 || (n&(n-1)) || q<3 || mpz_even_p(q.get_mpz_t())
-            || full_bits_<32 || full_bits_>240 || t<3 || t>=(1UL<<30) || !(t&1)
+            || full_bits_<16 || full_bits_>240 || t<3 || t>=(1UL<<30) || !(t&1)
             || q<=t || !drop || drop>=full_bits_)
             throw std::invalid_argument("Invalid public query codec parameters");
         radix_ = mpz_class(1)<<drop;

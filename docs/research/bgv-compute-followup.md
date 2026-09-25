@@ -55,6 +55,54 @@ gate, whose duplicate evaluation is excluded from benchmark request timings.
 It is not a remote verification protocol. Variable-time private arithmetic,
 parameter assurance and authenticated BGV execution remain separate open work.
 
+## Joint query and response precision
+
+`compressed_response_bgv.py` applies the earlier plaintext-congruent query map
+to **only c0 of a terminal response**. For `R=2^d`, write `c=R*h+r`, send
+`w=t*h+(r mod t)`, and reconstruct `R*h+(r mod t)+t*floor(K/2)` modulo P,
+where `K=floor((R-1)/t)`. Before reduction the difference is a multiple of t
+with absolute value at most `E=t*ceil(K/2)`. Since c1 is unchanged, this adds
+E directly to the terminal phase bound, without a secret multiplication.
+The caller must reject unless `B_terminal+E < P/2`.
+
+This is deterministic public post-processing of an existing ciphertext. It
+does not change the ring, secret distribution or evaluation modulus Q; it is
+not a claim of a new compression primitive. Each response precision still
+uses the existing public terminal modulus and its full correctness bound.
+The rounded-response envelope pins context and precision and carries no
+trusted phase bounds. Independent Python and C++/GMP implementations agree
+on exact packets, including rounding boundaries and canonical encodings.
+
+`joint_precision_bgv.py` propagates the **query** rounding error through the
+entire multiplication, key switching, packing and terminal schedule, then
+checks response rounding against the remaining bound. It enumerates query
+drops, P widths 25/26/28/32 and response drops. Its Pareto frontier retains
+choices where shrinking either direction requires growing the other; byte
+counts include actual MessagePack framing. Transfer-only selection uses
+`query_bytes/upload_rate + response_bytes/download_rate`. It deliberately
+does not predict codec compute or cryptographic security. Complete local and
+paced-TCP timings determine whether each choice is useful.
+
+The benchmark uses the same fresh query encryption for each paired variant.
+It isolates NTT indexing, GPU terminal rounding and packed response processing,
+then combines them and tests joint precision on several link ratios. Every
+compute variant must produce identical complete ciphertext bytes. Every joint
+precision variant must recover every distance and the stable top three.
+No measured precision is selected from observed private noise.
+
+```bash
+.venv/bin/python benchmarks/bgv_pipeline_followup.py --num-vectors 8192 --repeats 10 --transport-repeats 5 --json-out /tmp/pipeline-8192.json
+.venv/bin/python benchmarks/bgv_pipeline_followup.py --num-vectors 32768 --repeats 10 --transport-repeats 5 --json-out /tmp/pipeline-32768.json
+.venv/bin/python benchmarks/bgv_pipeline_followup.py --mode joint --index-modes owner --num-vectors 8192 --repeats 10 --transport-repeats 5 --json-out /tmp/joint-owner-8192.json
+```
+
+Owner-encrypted indexes require a fresh index and owner secret access at
+ingestion, as in the preceding query study. They are measured separately from
+public-key-encrypted indexes. Setup includes resident workspaces and terminal
+private caches; per-search totals include fresh encryption, codecs, server
+work, framing/parsing and client finishing. Application-paced loopback links
+do not model WAN congestion, packet loss or remote authentication.
+
 ## Validation and reproduction
 
 The initial focused run passes 26 GPU pipeline, packed-client and transport

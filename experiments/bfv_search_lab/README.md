@@ -474,6 +474,36 @@ both codecs and the original seeded-query baseline.
 .venv/bin/python benchmarks/bgv_query_compression.py --num-vectors 8192 --repeats 10 --transport-repeats 5 --json-out /tmp/query-compression.json
 ```
 
+## Compute and joint precision follow-up
+
+The [compute and precision study](../../docs/research/bgv-compute-followup.md)
+isolates NTT schedules, exact GPU terminal rounding, packed response handling,
+and independent query/response coefficient compression. All are opt-in lab
+paths with the previous kernels, CPU reduction and Python codecs retained.
+
+```python
+server = NativeServer(pk, keys, residue=True, device="cuda", cuda_level=4,
+                      ntt_variant="indexed")
+prepared = server.prepare_index(encrypted_index, count)
+with server.prepare_workspace(prepared) as workspace:
+    packet, bounds = workspace.search_packet(query, dimension, bits=25,
+                                              gpu_terminal=True)
+    # expected_packet must already be pinned by a trusted LOCAL fixture.
+    result = client.finish_packed_fixture(packet, expected_packet, count,
+                                          dimension, bits=25, bounds=bounds)
+```
+
+This preserves the compact-v1 bytes and private arithmetic. The fixture gate
+requires a known complete expected response; it is not a remote verifier.
+`compressed_response_bgv.py` adds a separate c0-only response codec, and
+`joint_precision_bgv.py` enumerates admissible query/response precisions from
+public bounds. The planner ranks transfer bytes; the benchmark includes codec
+time and checks every distance before reporting performance.
+
+```bash
+.venv/bin/python benchmarks/bgv_pipeline_followup.py --num-vectors 8192 --repeats 10 --transport-repeats 5 --json-out /tmp/pipeline-8192.json
+```
+
 ## Independent SEAL BGV oracle
 
 TenSEAL 0.3.16's low-level wrapper exposes BFV/CKKS but not BGV. Build this

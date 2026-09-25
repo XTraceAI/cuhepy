@@ -32,7 +32,8 @@ int main() {
             for (int i = 0; i < 11; ++i) index.push_back(cpu.prepare({polynomial(),polynomial()}));
             std::array<std::vector<Ciphertext>, 2> expected{cpu.search(query,index,false),cpu.search(query,index,true)};
             for (unsigned level = 0; level <= 4; ++level) {
-                CudaTraceServer gpu(ring,padded,keys,level);
+              for (unsigned variant = 0; variant < (level == 4 ? 5U : 1U); ++variant) {
+                CudaTraceServer gpu(ring,padded,keys,level,variant);
                 auto device = gpu.prepare_device(index);
                 for (bool joint : {false,true})
                     if (expected[joint] != gpu.search_device(query,*device,joint))
@@ -49,15 +50,30 @@ int main() {
                     for (std::size_t i = 0; i < queries.size(); ++i)
                         if (gpu.search_device(queries[i],*device,true,workspace.get()) != batch_expected[i])
                             throw std::runtime_error("Standalone CUDA workspace mismatch");
+                    // Exercise lazy terminal scratch, plan changes and reuse on
+                    // the complete pipeline, not just the standalone kernel.
+                    for (int bits : {25,32,59,25}) {
+                        const Word t = 1031;
+                        mpz_class p = (mpz_class(1)<<bits)-1;
+                        p -= (mpz_fdiv_ui(p.get_mpz_t(),t)+t-mpz_fdiv_ui(q.get_mpz_t(),t))%t;
+                        if (mpz_even_p(p.get_mpz_t())) p -= t;
+                        while (!mpz_probab_prime_p(p.get_mpz_t(),32)) p -= 2*t;
+                        TerminalReduction reduction(q,t,p);
+                        auto compact_expected = expected[1];
+                        for (auto& ct : compact_expected) reduction.apply(ct);
+                        if (gpu.search_device(query,*device,true,workspace.get(),&reduction) != compact_expected)
+                            throw std::runtime_error("Standalone CUDA terminal workspace mismatch");
+                    }
                     workspace->close();
                     bool refused = false;
                     try { gpu.search_device(query,*device,true,workspace.get()); }
                     catch (const std::runtime_error&) { refused = true; }
                     if (!refused) throw std::runtime_error("Closed workspace was accepted");
                 }
+              }
             }
         }
-        std::cout << "BGV CUDA canonical arithmetic, both circuits and multi-query batches passed\n";
+        std::cout << "BGV CUDA canonical arithmetic, all NTT variants, terminal workspace and multi-query batches passed\n";
     } catch (const std::exception& error) {
         std::cerr << error.what() << '\n';
         return 1;

@@ -346,7 +346,7 @@ PyObject* query_codec_impl(PyObject* args, bool expand) {
         Py_ssize_t length;
         if (!PyArg_ParseTuple(args,"OOs#OO",&data,&n_obj,&q_text,&length,&t_obj,&drop_obj)) return nullptr;
         const auto n = integer(n_obj,32768), t = integer(t_obj,(1UL<<30)-1), drop = integer(drop_obj,239);
-        if (!PyBytes_CheckExact(data) || length<8 || length>60 || q_text[0]=='0'
+        if (!PyBytes_CheckExact(data) || length<4 || length>60 || q_text[0]=='0'
             || !std::all_of(q_text,q_text+length,[](char c) {
                 return (c>='0' && c<='9') || (c>='a' && c<='f');
             })) throw std::invalid_argument("Invalid public query codec input");

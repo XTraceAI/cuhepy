@@ -35,6 +35,36 @@ _TAG = b"cuhepy-lab-bgv-query-rounded-v1"
 
 
 @dataclass(frozen=True)
+class CoefficientEncoding:
+    coefficient_bits: int
+    max_word: int
+    center: int
+    added_bound: int
+
+
+def coefficient_encoding(modulus: mpz, t: int, dropped_bits: int) -> CoefficientEncoding:
+    """Shared public coefficient map; callers enforce their complete phase bounds."""
+    if (
+        not 16 <= modulus.bit_length() <= 240
+        or modulus % 2 != 1
+        or type(t) is not int
+        or not 3 <= t < (1 << 30)
+        or t % 2 != 1
+        or modulus <= t
+        or type(dropped_bits) is not int
+        or not 1 <= dropped_bits < modulus.bit_length()
+    ):
+        raise ValueError("Invalid coefficient rounding context/precision")
+    radix = 1 << dropped_bits
+    intervals = (radix - 1) // t
+    high, tail = divmod(int(modulus) - 1, radix)
+    maximum = high * t + min(t - 1, tail)
+    return CoefficientEncoding(
+        maximum.bit_length(), maximum, t * (intervals // 2), t * ((intervals + 1) // 2)
+    )
+
+
+@dataclass(frozen=True)
 class Encoding:
     dropped_bits: int
     coefficient_bits: int
@@ -65,17 +95,20 @@ def parameters(pk: bgv.PublicKey, dropped_bits: int) -> Encoding:
         or not 1 <= dropped_bits < pk.q.bit_length()
     ):
         raise ValueError("Invalid compressed BGV query context/precision")
-    radix = 1 << dropped_bits
-    intervals = (radix - 1) // pk.t
-    center = pk.t * (intervals // 2)
-    added = pk.t * ((intervals + 1) // 2)
-    bound = pk.t // 2 + pk.t * pk.eta + added
+    coefficient = coefficient_encoding(pk.q, pk.t, dropped_bits)
+    bound = pk.t // 2 + pk.t * pk.eta + coefficient.added_bound
     if 2 * bound >= pk.q:
         raise ValueError("Compressed query correctness bound exceeds Q/2")
-    high, tail = divmod(int(pk.q) - 1, radix)
-    maximum = high * pk.t + min(pk.t - 1, tail)
-    bits = maximum.bit_length()
-    return Encoding(dropped_bits, bits, (pk.n * bits + 7) // 8, maximum, center, added, bound)
+    bits = coefficient.coefficient_bits
+    return Encoding(
+        dropped_bits,
+        bits,
+        (pk.n * bits + 7) // 8,
+        coefficient.max_word,
+        coefficient.center,
+        coefficient.added_bound,
+        bound,
+    )
 
 
 def _implementation(backend: str) -> ModuleType | None:

@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add c0-only terminal-response rounding and a joint query/response precision
+  planner using complete public correctness bounds and exact framed byte counts.
+  Retain independent Python/native codecs and malformed-input tests. Add paired
+  compute ablations and joint-precision local/TCP benchmarks with complete
+  ciphertext/distance checks and separate setup/fixture costs.
 - Add independent BGV NTT indexing/warp/tile experiments and exact 192-bit
   terminal reduction on the GPU. Keep the existing kernels and CPU reduction
   as defaults and coefficient-level oracles.
