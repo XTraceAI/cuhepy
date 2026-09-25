@@ -357,6 +357,72 @@ Completion times expose the latency cost of returning all batch results together
 Client finishing timings use the same response; their local phase sum adds the
 first query's measured creation, expansion, serial evaluation and response packing.
 
+## Persistent workspaces, private RNS and transport follow-up
+
+The next experiments are described in
+[`bgv-service-results.md`](../../docs/research/bgv-service-results.md). They
+preserve the old arithmetic and interfaces as explicit baselines. No SEAL code
+is imported by the new implementations.
+
+```python
+with server.prepare_workspace(prepared_index) as workspace:
+    response = workspace.search_compact(encrypted_query, bits=25)
+    # Further requests reuse this stream and scratch; each call returns alone.
+
+client = owner_bgv.OwnerClient(pk, sk, native=True, rns=True)
+```
+
+One workspace serializes its own callers. Independent workspaces can overlap;
+the application must budget their combined memory. The benchmark caps total
+coefficient scratch at 4 GiB. Index/keys/runtime allocations are additional.
+Workspace close waits for native use, and use after close/fork is refused.
+Private RNS reuses our fixed-schedule NTT, but its GMP CRT and export remain
+variable-time and its cache release does not promise secret erasure.
+
+```bash
+make -C experiments/bfv_search_lab/_native all cuda PYTHON="$PWD/.venv/bin/python" CXX=g++-12 CUDA_CXX=g++-12 CUDA_ARCH=86
+make -C experiments/bfv_search_lab/_owner PYTHON="$PWD/.venv/bin/python" CXX=g++-12
+.venv/bin/python benchmarks/bgv_service_pipeline.py --mode workspace --num-vectors 8192 --repeats 10 --json-out /tmp/workspace.json
+.venv/bin/python benchmarks/bgv_service_pipeline.py --mode owner --num-vectors 8192 --repeats 20 --json-out /tmp/owner-rns.json
+.venv/bin/python benchmarks/bgv_service_pipeline.py --mode transport --num-vectors 8192 --owner-rns --repeats 10 --json-out /tmp/transport.json
+.venv/bin/python benchmarks/bgv_algorithm_portfolio.py --json-out /tmp/algorithms.json
+```
+
+The TCP harness binds only loopback, parses bounded frames against local context,
+and compares each received ciphertext to its independently pinned local fixture
+**before private decryption**. That excluded local evaluation is recorded as
+setup; the equality gate is not a proof, TEE receipt or deployment protocol.
+There is no decryption-dependent acknowledgement. The configured bandwidth and
+RTT are application pacing, with no TCP loss/congestion/WAN emulation claim.
+
+Profile separately from timing runs. Installed Nsight Systems 2022.4 captures
+successfully but needs its importer invoked explicitly on this machine:
+
+```bash
+nsys profile --trace=cuda,nvtx --sample=none --cpuctxsw=none --capture-range=cudaProfilerApi --capture-range-end=stop --force-overwrite=true --output=/tmp/bgv-profile .venv/bin/python benchmarks/bgv_service_pipeline.py --mode profile --num-vectors 8192 --repeats 3 --json-out /tmp/profile-run.json
+/usr/lib/nsight-systems/host-linux-x64/QdstrmImporter --input-file /tmp/bgv-profile.qdstrm --output-file /tmp/bgv-profile.nsys-rep
+nsys stats --report gpukernsum,cudaapisum,nvtxsum --format csv /tmp/bgv-profile.nsys-rep
+.venv/bin/python benchmarks/bgv_profile_summary.py --sqlite /tmp/bgv-profile.sqlite --json-out /tmp/profile-summary.json
+```
+
+Names above match the installed version; newer Nsight report names differ.
+Nsight Compute counter access is currently refused (`ERR_NVGPUCTRPERM`); this
+work did not alter the machine's system-wide counter policy. API waiting time
+must not be interpreted as device-copy time or added to overlapping GPU work.
+
+The narrow-limb study builds a standalone public arithmetic executable:
+
+```bash
+nvcc -O3 -std=c++17 -ccbin g++-12 -gencode arch=compute_86,code=sm_86 -Isrc/cuhepy/bfv/_cpu_ext experiments/bfv_search_lab/_native/narrow_ntt.cu -lgmpxx -lgmp -o /tmp/cuhepy-narrow-ntt
+/tmp/cuhepy-narrow-ntt 16384 1024 20
+/tmp/cuhepy-narrow-ntt 16384 1024 20 reverse
+```
+
+Each base has about 120 bits, but the products of its primes are different.
+Both forward transforms and inverse round trips are checked against our CPU
+oracle before timing. This measures NTTs only, without base conversion or a
+full encryption parameter assessment; it is not a full narrow-limb BGV server.
+
 ## Independent SEAL BGV oracle
 
 TenSEAL 0.3.16's low-level wrapper exposes BFV/CKKS but not BGV. Build this
@@ -393,8 +459,10 @@ nvcc -O2 -lineinfo -std=c++17 -ccbin g++-12 \
 compute-sanitizer --tool memcheck --error-exitcode 99 /tmp/cuhepy-bgv-cuda-sanitizer
 ```
 
-The standalone oracle passes locally. The installed Compute Sanitizer 2022.4.1
-cannot instrument it on this machine (exit 255 before the first API call),
-including retries with the injection path and `--target-processes all`.
-This command is provided for a working sanitizer environment, not as a claim
-that GPU memory checking passed here.
+The older system Compute Sanitizer 2022.4.1 fails before the first instrumented
+API. The follow-up installed the official **12.9.79** redistributable under
+`/tmp/cuhepy-sanitizer-12.9`, after verifying SHA-256 against NVIDIA's
+`redistrib_12.9.1.json` manifest. That version passes **memcheck and racecheck**
+on the standalone oracle, including persistent workspaces and batch kernels.
+See the follow-up report for the exact coverage and logs. No system CUDA or
+driver installation was replaced. Run sanitizer jobs separately from benchmarks.

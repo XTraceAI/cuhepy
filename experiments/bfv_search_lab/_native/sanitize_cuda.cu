@@ -45,6 +45,15 @@ int main() {
                     for (std::size_t size : {1,2,3,4,8}) for (bool shared : {false,true})
                         if (gpu.search_many_device(queries,*device,size,shared) != batch_expected)
                             throw std::runtime_error("Standalone CUDA multi-query mismatch");
+                    auto workspace = gpu.prepare_workspace(*device);
+                    for (std::size_t i = 0; i < queries.size(); ++i)
+                        if (gpu.search_device(queries[i],*device,true,workspace.get()) != batch_expected[i])
+                            throw std::runtime_error("Standalone CUDA workspace mismatch");
+                    workspace->close();
+                    bool refused = false;
+                    try { gpu.search_device(query,*device,true,workspace.get()); }
+                    catch (const std::runtime_error&) { refused = true; }
+                    if (!refused) throw std::runtime_error("Closed workspace was accepted");
                 }
             }
         }

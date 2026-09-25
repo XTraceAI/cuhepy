@@ -18,7 +18,9 @@ from experiments.bfv_search_lab import results_bgv as results
 
 
 class NativeTernaryProduct:
-    def __init__(self, secret: BFVPolynomial, modulus: mpz) -> None:
+    def __init__(self, secret: BFVPolynomial, modulus: mpz, *, rns: bool = False) -> None:
+        if type(rns) is not bool:
+            raise ValueError("Private RNS mode must be bool")
         if not 8 <= len(secret) <= 32768 or len(secret) & (len(secret) - 1):
             raise ValueError("Invalid native owner degree")
         if any(c not in (0, 1, modulus - 1) for c in secret):
@@ -26,7 +28,7 @@ class NativeTernaryProduct:
         self.n = len(secret)
         self._native = importlib.import_module("experiments.bfv_search_lab._owner._bgv_owner")
         shifted = bytes(0 if c == modulus - 1 else int(c) + 1 for c in secret)
-        self._handle = self._native.create(self.n, shifted)
+        self._handle = self._native.create(self.n, shifted, rns)
 
     def prepare(self, modulus: mpz) -> None:
         self._native.prepare(self._handle, format(modulus, "x"))

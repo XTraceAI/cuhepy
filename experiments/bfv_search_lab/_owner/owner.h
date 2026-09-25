@@ -4,6 +4,7 @@
 #pragma once
 #include "packed_wire.h"
 #include "finish.h"
+#include "rns_product.h"
 #include <map>
 #include <mutex>
 #include <unistd.h>
@@ -41,6 +42,7 @@ class Product {
     bool closed_ = false;
     std::vector<unsigned char> shifted_;
     std::map<std::size_t,mpz_class> packed_;
+    std::unique_ptr<RNSProduct> rns_;
 
     void check_process() const {
         // Must precede the lock: another thread may have held it at fork.
@@ -66,6 +68,7 @@ class Product {
         return packed_.emplace(bits,std::move(value)).first->second;
     }
     Polynomial multiply_locked(const Polynomial& input, const mpz_class& modulus) {
+        if (rns_) return rns_->multiply(input,modulus,shifted_);
         auto bits = width(modulus);
         const auto& secret = prepare_locked(bits);
         auto bytes = export_packed(input,(mpz_class(1)<<bits)-1);
@@ -103,16 +106,18 @@ class Product {
     }
 public:
     const std::size_t n;
-    Product(std::size_t degree, std::string_view shifted) : n(degree) {
+    Product(std::size_t degree, std::string_view shifted, bool rns = false) : n(degree) {
         if (n < 8 || n > 32768 || (n&(n-1)) || shifted.size() != n)
             throw std::invalid_argument("Invalid native ternary owner shape");
         for (unsigned char c : shifted)
             if (c > 2) throw std::invalid_argument("Invalid shifted ternary secret");
         shifted_.assign(shifted.begin(),shifted.end());
+        if (rns) rns_ = std::make_unique<RNSProduct>(n);
     }
     void prepare(const mpz_class& modulus) {
         check_process(); std::lock_guard<std::mutex> lock(mutex_); check_open();
-        prepare_locked(width(modulus));
+        if (rns_) rns_->prepare(modulus,shifted_);
+        else prepare_locked(width(modulus));
     }
     std::string multiply(std::string_view poly, const mpz_class& modulus) {
         check_process(); std::lock_guard<std::mutex> lock(mutex_); check_open();
@@ -171,6 +176,7 @@ public:
         check_process(); std::lock_guard<std::mutex> lock(mutex_);
         closed_ = true;
         packed_.clear(); std::vector<unsigned char>().swap(shifted_);
+        if (rns_) rns_->clear();
         // Frees references/storage, not a secure-erasure guarantee for GMP copies.
     }
 };

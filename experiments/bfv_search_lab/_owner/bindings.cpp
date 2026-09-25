@@ -54,9 +54,10 @@ mpz_class modulus(PyObject* object) {
 void destroy(PyObject* object) { delete static_cast<Handle*>(PyCapsule_GetPointer(object,name)); }
 PyObject* create(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
-        PyObject *n, *secret;
-        if (!PyArg_ParseTuple(args,"OO",&n,&secret)) return nullptr;
-        auto result = std::make_unique<Handle>(std::make_shared<Product>(integer(n,32768),bytes(secret)));
+        PyObject *n, *secret, *rns = Py_False;
+        if (!PyArg_ParseTuple(args,"OO|O",&n,&secret,&rns)) return nullptr;
+        if (!PyBool_Check(rns)) throw std::invalid_argument("Private RNS mode must be bool");
+        auto result = std::make_unique<Handle>(std::make_shared<Product>(integer(n,32768),bytes(secret),rns == Py_True));
         auto capsule = PyCapsule_New(result.get(),name,destroy);
         if (capsule) result.release();
         return capsule;

@@ -124,8 +124,9 @@ class OwnerClient:
     """Explicit local owner with an amortized secret cache and fresh encryption."""
 
     def __init__(self, pk: bgv.PublicKey, sk: bgv.SecretKey, *, ternary: bool = True,
-                 native: bool = False) -> None:
+                 native: bool = False, rns: bool = False) -> None:
         if (type(ternary) is not bool or type(native) is not bool or (native and not ternary)
+            or type(rns) is not bool or (rns and not native)
             or sk.key_id != pk.key_id or len(sk.s) != pk.n):
             raise ValueError("Wrong BGV owner context or multiplication mode")
         if (type(pk.n) is not int or not 8 <= pk.n <= 32768 or pk.n & (pk.n - 1)
@@ -136,7 +137,7 @@ class OwnerClient:
             raise ValueError("Invalid BGV owner parameters")
         self.pk = pk
         self._sk: bgv.SecretKey | None = sk
-        self._product = NativeTernaryProduct(sk.s, pk.q) if native else TernaryProduct(sk.s, pk.q)
+        self._product = NativeTernaryProduct(sk.s, pk.q, rns=rns) if native else TernaryProduct(sk.s, pk.q)
         self._ternary = ternary
         self._pid = os.getpid()
         self._lock = threading.RLock()

@@ -8,7 +8,7 @@ EXT := $(shell $(PYTHON) -c 'import sysconfig; print(sysconfig.get_config_var("E
 TARGET := _bgv_owner$(EXT)
 .PHONY: all clean
 all: $(TARGET)
-$(TARGET): bindings.cpp owner.h finish.h $(wildcard $(CPU)/*.h) Makefile
+$(TARGET): bindings.cpp owner.h finish.h rns_product.h $(wildcard $(CPU)/*.h) Makefile
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++17 -Wall -Wextra -fPIC -shared -pthread \
 		-I$(PY_INC) -I$(CPU) bindings.cpp $(LDFLAGS) -lgmpxx -lgmp -o $@
 clean:

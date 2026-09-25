@@ -84,12 +84,12 @@ def test_native_large_odd_plaintext_modulus_uses_bounded_arithmetic_fallback():
         results.decode_lookup(polys, len(distances), 31, pk)
 
 
-@pytest.mark.parametrize("native", [False, True])
-def test_encrypted_owner_finish_matches_full_reference_and_validates_lifecycle(native):
+@pytest.mark.parametrize("native,rns", [(False, False), (True, False), (True, True)])
+def test_encrypted_owner_finish_matches_full_reference_and_validates_lifecycle(native, rns):
     if native:
         pytest.importorskip("experiments.bfv_search_lab._owner._bgv_owner")
     pk, sk = bgv.key_gen(64, q_bits=120, rns_modulus=True)
-    client = owner.OwnerClient(pk, sk, native=native)
+    client = owner.OwnerClient(pk, sk, native=native, rns=rns)
     distances = [i % 4 for i in range(129)]
     polys = fixture(pk.n, pk.t, 3, distances)
     ciphertexts = [compact.compact(owner.expand(client.encrypt(p), pk), pk, 25) for p in polys]

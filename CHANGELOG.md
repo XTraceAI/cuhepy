@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add explicitly leased persistent BGV GPU workspaces with per-request completion,
+  close/fork guards and concurrent-use tests. Add a separate private RNS/NTT owner
+  backend, preserving the GMP reference and unchanged ciphertext formats.
+- Add Nsight capture/summary tools, paired workspace and owner benchmarks, and
+  bounded loopback TCP trials with application bandwidth/latency pacing. The
+  transport fixture pins expected ciphertexts before decryption; it is not a
+  remotely deployable authentication protocol.
+- Add a homemade 30-bit CUDA NTT microbenchmark, an encrypted feature-major
+  accumulate-before-relinearization reference, and a plaintext certified-filter
+  cost oracle. Record negative results and communication tradeoffs explicitly.
+- Validate the public CUDA oracle with Compute Sanitizer 12.9 memcheck/racecheck;
+  extend private ASan/UBSan coverage to the opt-in owner RNS arithmetic.
 - Add exact BGV result lookup tables, bounded heap top-k with stable ties, and
   a fused native owner finish path. Add explicit same-key/index multi-query
   CUDA evaluation with optional shared index reads, reusable per-call scratch,

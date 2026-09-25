@@ -4,6 +4,8 @@
 #pragma once
 #include "trace_server.h"
 #include "../_gpu_ext/server.cuh"
+#include <mutex>
+#include <unistd.h>
 
 namespace cuhepy_bgv_lab {
 namespace cuda_detail {
@@ -255,6 +257,48 @@ class CudaTraceServer final : public Server {
         switch_digits(digits,output,batch,key,stream);
     }
 public:
+    // A workspace is explicitly leased by a caller, not a mutable server cache.
+    // One lock covers its stream, host transfer storage and all device buffers.
+    struct Workspace {
+        struct Scratch {
+            std::vector<U> input, data;
+            Buffer<U> query_ntt, tensor, digits, switched, work, plus, permuted;
+            // Destroy/synchronize the stream BEFORE either transfer endpoint.
+            xtrace_bfv::gpu::Stream stream;
+            Scratch(std::size_t n, std::size_t maximum, unsigned level)
+                : data(4*n), query_ntt(4*n), tensor(maximum*6*n), digits(maximum*8*n),
+                  switched(maximum*4*n), work(maximum*4*n), plus(maximum*4*n),
+                  permuted(maximum*(level >= 4 ? 0 : level >= 2 ? 2 : 4)*n) {
+                input.reserve(4*n);
+            }
+        };
+        const CudaTraceServer* owner;
+        const std::size_t maximum;
+        const pid_t pid = getpid();
+        std::mutex mutex;
+        std::unique_ptr<Scratch> scratch;
+        Workspace(const CudaTraceServer* server, std::size_t count) : owner(server), maximum(count) {
+            xtrace_bfv::gpu::DeviceScope scope(owner->device_);
+            scratch = std::make_unique<Scratch>(owner->ring->n,maximum,owner->kernel_level_);
+        }
+        void check_process() const {
+            if (pid != getpid()) throw std::runtime_error("Create a new GPU workspace after fork");
+        }
+        void close() {
+            check_process();
+            std::lock_guard<std::mutex> guard(mutex);
+            xtrace_bfv::gpu::DeviceScope scope(owner->device_);
+            scratch.reset();
+        }
+        ~Workspace() {
+            // CUDA cannot safely be used in a forked child. Leak child references;
+            // process exit reclaims them, while the parent remains unaffected.
+            if (pid != getpid()) { scratch.release(); return; }
+            int previous = 0;
+            cudaGetDevice(&previous); cudaSetDevice(owner->device_);
+            scratch.reset(); cudaSetDevice(previous);
+        }
+    };
     struct DeviceIndex {
         Buffer<U> values;
         std::size_t count;
@@ -321,22 +365,53 @@ public:
         check(cudaStreamSynchronize(nullptr));
         return result;
     }
-    std::vector<Ciphertext> search_device(const Ciphertext& query, const DeviceIndex& index, bool joint) const {
+    std::shared_ptr<Workspace> prepare_workspace(const DeviceIndex& index) const {
+        if (kernel_level_ != 4) throw std::invalid_argument("Persistent workspace requires CUDA level 4");
+        auto maximum = std::min(padded,index.count);
+        if ((4+26*maximum)*ring->n*sizeof(U) > (std::size_t(4)<<30))
+            throw std::invalid_argument("BGV workspace exceeds 4 GiB");
+        return std::make_shared<Workspace>(this,maximum);
+    }
+    std::vector<Ciphertext> search_device(const Ciphertext& query, const DeviceIndex& index,
+                                         bool joint, Workspace* workspace = nullptr) const {
+        std::unique_lock<std::mutex> lease;
+        if (workspace) {
+            workspace->check_process();
+            if (workspace->owner != this || workspace->maximum < std::min(padded,index.count))
+                throw std::invalid_argument("Incorrect GPU workspace context/capacity");
+            lease = std::unique_lock<std::mutex>(workspace->mutex);
+            if (!workspace->scratch) throw std::runtime_error("GPU workspace is closed");
+        }
+        try { return search_device_impl(query,index,joint,workspace); }
+        catch (...) {
+            if (workspace) {
+                // A failed launch/transfer may still reference the buffers. Drain
+                // and retire this workspace before another request can lease it.
+                xtrace_bfv::gpu::DeviceScope scope(device_);
+                workspace->scratch.reset();
+            }
+            throw;
+        }
+    }
+    std::vector<Ciphertext> search_device_impl(const Ciphertext& query, const DeviceIndex& index,
+                                              bool joint, Workspace* workspace) const {
         using namespace xtrace_bfv::gpu;
         DeviceScope scope(device_);
         auto n = ring->n, maximum = std::min(padded,index.count);
         if (!maximum) return {};
         ResidueArithmetic arithmetic(*ring);
         auto query_residues = kernel_level_ ? PreparedCiphertext{arithmetic.split(query[0]),arithmetic.split(query[1])} : prepare(query);
-        std::vector<U> input;
+        auto temporary = workspace ? nullptr : std::make_unique<Workspace::Scratch>(n,maximum,kernel_level_);
+        auto& scratch = workspace ? *workspace->scratch : *temporary;
+        auto& input = scratch.input;
+        auto& data = scratch.data;
+        input.clear();
         for (const auto& poly : query_residues) for (const auto& prime : poly)
             input.insert(input.end(),prime.begin(),prime.end());
-        Buffer<U> query_ntt(input.size()), tensor(maximum*6*n), digits(maximum*8*n), switched(maximum*4*n),
-                  work(maximum*4*n), plus(maximum*4*n),
-                  permuted(maximum*(kernel_level_ >= 4 ? 0 : kernel_level_ >= 2 ? 2 : 4)*n);
-        // Declare the stream last so it synchronizes before workspace destruction
-        // on both success and exception paths. Every invocation has private scratch.
-        Stream stream;
+        auto& query_ntt = scratch.query_ntt; auto& tensor = scratch.tensor;
+        auto& digits = scratch.digits; auto& switched = scratch.switched;
+        auto& work = scratch.work; auto& plus = scratch.plus;
+        auto& permuted = scratch.permuted; auto& stream = scratch.stream;
         // Order the upload and its consumers on this invocation's stream.
         check(cudaMemcpyAsync(query_ntt.data(),input.data(),input.size()*sizeof(U),cudaMemcpyHostToDevice,stream.value));
         if (kernel_level_) transform<false>(query_ntt.data(),2,stream.value);
@@ -372,7 +447,6 @@ public:
                 result = plus.data();
             }
             check(cudaGetLastError());
-            std::vector<U> data(4*n);
             check(cudaMemcpyAsync(data.data(),result,data.size()*sizeof(U),cudaMemcpyDeviceToHost,stream.value));
             check(cudaStreamSynchronize(stream.value));
             Ciphertext ciphertext;

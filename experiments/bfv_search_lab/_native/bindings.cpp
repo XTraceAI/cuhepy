@@ -21,6 +21,12 @@ struct Index {
 };
 using IndexPtr = std::shared_ptr<const Index>;
 #ifdef CUHEPY_BGV_CUDA
+struct Workspace {
+    IndexPtr index; // Keep its immutable server and index alive until after scratch.
+    std::shared_ptr<CudaTraceServer::Workspace> scratch;
+};
+using WorkspacePtr = std::shared_ptr<Workspace>;
+constexpr const char* workspace_name = "cuhepy.lab.bgv.cuda.workspace.v1";
 constexpr const char* server_name = "cuhepy.lab.bgv.cuda.server.v1";
 constexpr const char* index_name = "cuhepy.lab.bgv.cuda.index.v1";
 #else
@@ -181,16 +187,28 @@ std::unique_ptr<TerminalReduction> terminal(PyObject* t_obj, const char* p_text,
     p.set_str(p_text, 16);
     return std::make_unique<TerminalReduction>(ring.q, t, std::move(p));
 }
-PyObject* search_impl(PyObject* args, bool compact) {
+PyObject* search_impl(PyObject* args, bool compact, bool persistent = false) {
     return checked([&]() -> PyObject* {
-        PyObject *server_obj, *query_obj, *index_obj, *mode, *t_obj = nullptr;
+        PyObject *server_obj = nullptr, *query_obj, *index_obj = nullptr, *mode = Py_True, *t_obj = nullptr;
+        PyObject* workspace_obj = nullptr;
         const char* p_text = nullptr;
         Py_ssize_t length = 0;
-        if (compact) {
+        if (persistent) {
+            if (!PyArg_ParseTuple(args,"OOOs#",&workspace_obj,&query_obj,&t_obj,&p_text,&length)) return nullptr;
+        } else if (compact) {
             if (!PyArg_ParseTuple(args, "OOOOOs#", &server_obj, &query_obj, &index_obj, &mode, &t_obj, &p_text, &length)) return nullptr;
         } else if (!PyArg_ParseTuple(args, "OOOO", &server_obj, &query_obj, &index_obj, &mode)) return nullptr;
-        auto server = get<ServerPtr>(server_obj, server_name);
-        auto index = get<IndexPtr>(index_obj, index_name);
+        ServerPtr server;
+        IndexPtr index;
+#ifdef CUHEPY_BGV_CUDA
+        WorkspacePtr workspace;
+        if (persistent) {
+            workspace = get<WorkspacePtr>(workspace_obj,workspace_name);
+            workspace->scratch->check_process();
+            index = workspace->index; server = index->server;
+        } else
+#endif
+        { server = get<ServerPtr>(server_obj,server_name); index = get<IndexPtr>(index_obj,index_name); }
         if (index->server != server) throw std::invalid_argument("Index belongs to another native server");
         if (!PyBool_Check(mode)) throw std::invalid_argument("Butterfly mode must be bool");
         auto reduction = compact ? terminal(t_obj, p_text, length, *server->ring) : nullptr;
@@ -198,7 +216,8 @@ PyObject* search_impl(PyObject* args, bool compact) {
         std::vector<Ciphertext> output;
         { WithoutGIL release;
 #ifdef CUHEPY_BGV_CUDA
-          output = static_cast<const CudaTraceServer&>(*server).search_device(query, *index->device, mode == Py_True);
+          output = static_cast<const CudaTraceServer&>(*server).search_device(query, *index->device, mode == Py_True,
+                                                                            workspace ? workspace->scratch.get() : nullptr);
 #else
           output = server->search(query, index->tiles, mode == Py_True);
 #endif
@@ -221,6 +240,28 @@ PyObject* search_impl(PyObject* args, bool compact) {
 PyObject* search(PyObject*, PyObject* args) { return search_impl(args, false); }
 PyObject* search_compact(PyObject*, PyObject* args) { return search_impl(args, true); }
 #ifdef CUHEPY_BGV_CUDA
+PyObject* prepare_workspace(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject* index_obj;
+        if (!PyArg_ParseTuple(args,"O",&index_obj)) return nullptr;
+        auto index = get<IndexPtr>(index_obj,index_name);
+        auto workspace = std::make_shared<Workspace>();
+        workspace->index = index;
+        { WithoutGIL release;
+          workspace->scratch = static_cast<const CudaTraceServer&>(*index->server).prepare_workspace(*index->device); }
+        return capsule(std::move(workspace),workspace_name);
+    });
+}
+PyObject* close_workspace(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject* object;
+        if (!PyArg_ParseTuple(args,"O",&object)) return nullptr;
+        auto workspace = get<WorkspacePtr>(object,workspace_name);
+        { WithoutGIL release; workspace->scratch->close(); }
+        Py_RETURN_NONE;
+    });
+}
+PyObject* search_workspace_compact(PyObject*, PyObject* args) { return search_impl(args,true,true); }
 PyObject* search_many_impl(PyObject* args, bool compact) {
     return checked([&]() -> PyObject* {
         PyObject *server_obj, *queries_obj, *index_obj, *batch_obj, *shared_obj, *t_obj = nullptr;
@@ -285,6 +326,9 @@ PyMethodDef methods[] = {
     {"search", search, METH_VARARGS, "Evaluate the per-tile or joint trace circuit."},
     {"search_compact", search_compact, METH_VARARGS, "Evaluate and reduce the result before exporting coefficients."},
 #ifdef CUHEPY_BGV_CUDA
+    {"prepare_workspace", prepare_workspace, METH_VARARGS, "Allocate a bounded reusable single-request workspace."},
+    {"close_workspace", close_workspace, METH_VARARGS, "Wait for outstanding use and release reusable GPU buffers."},
+    {"search_workspace_compact", search_workspace_compact, METH_VARARGS, "Lease a workspace and return one compact response immediately."},
     {"search_many", search_many, METH_VARARGS, "Evaluate distinct queries in shared-index GPU batches."},
     {"search_many_compact", search_many_compact, METH_VARARGS, "Batched GPU queries with native terminal reduction."},
 #endif

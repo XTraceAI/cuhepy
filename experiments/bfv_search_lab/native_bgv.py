@@ -9,7 +9,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import importlib
-from typing import Any
+import os
+from typing import Any, SupportsIndex
 
 import gmpy2
 from gmpy2 import mpz
@@ -141,6 +142,12 @@ class NativeServer:
         maximum = min(self.keys.padded, len(index.phase_bounds))
         return requests * (4 + 26 * maximum) * self.pk.n * 8 if maximum else 0
 
+    def prepare_workspace(self, index: PreparedIndex) -> GPUWorkspace:
+        """Allocate one explicit reusable lease; caller budgets concurrent leases."""
+        if self._device != "cuda" or self._cuda_level != 4 or index.owner is not self._identity:
+            raise ValueError("Persistent workspace requires this server's index and CUDA level 4")
+        return GPUWorkspace(self, index)
+
     def _many_bounds(self, queries: list[bgv.Ciphertext], index: PreparedIndex,
                      batch_size: int, shared_index: bool) -> list[list[int]]:
         if (self._device != "cuda" or self._cuda_level != 4
@@ -178,3 +185,50 @@ class NativeServer:
                                            self.pk.key_id, p, bound)
                  for pair, bound in zip(response, group_bounds, strict=True)]
                 for response, group_bounds in zip(output, reduced, strict=True)]
+
+
+class GPUWorkspace:
+    """Single-request scratch and stream, serialized by a native lease lock.
+
+    Separate instances can overlap on the GPU. Each call returns its own result;
+    no batch barrier or request mixing. Close waits for native use to finish.
+    """
+
+    def __init__(self, server: NativeServer, index: PreparedIndex) -> None:
+        if server._device != "cuda" or server._cuda_level != 4 or index.owner is not server._identity:
+            raise ValueError("Persistent workspace requires this server's index and CUDA level 4")
+        self.server, self.index = server, index
+        self.coefficient_bytes = max(4 * server.pk.n * 8, server.batch_workspace_bytes(index, 1))
+        self._pid = os.getpid()
+        self._handle = server._native.prepare_workspace(index.handle)
+
+    def _check_process(self) -> None:
+        if os.getpid() != self._pid:
+            raise RuntimeError("Create a new GPU workspace after fork")
+
+    def search_compact(self, query: bgv.Ciphertext, *, bits: int = 32) -> list[compact.CompactCiphertext]:
+        self._check_process()
+        server = self.server
+        bounds = server._bounds(query, self.index, True)
+        p = compact.terminal_modulus(server.pk.q, server.pk.t, bits)
+        reduced = [compact.reduced_bound(bound, server.pk, p) for bound in bounds]
+        output = server._native.search_workspace_compact(
+            self._handle, tuple(server._pack(poly) for poly in query.components), server.pk.t, format(p, "x"),
+        )
+        width = (p.bit_length() + 7) // 8
+        return [compact.CompactCiphertext((server._unpack(pair[0], width), server._unpack(pair[1], width)),
+                                         server.pk.key_id, p, bound)
+                for pair, bound in zip(output, reduced, strict=True)]
+
+    def close(self) -> None:
+        self._check_process()
+        self.server._native.close_workspace(self._handle)
+
+    def __enter__(self) -> GPUWorkspace:
+        return self
+
+    def __exit__(self, *args: Any) -> None:
+        self.close()
+
+    def __reduce_ex__(self, protocol: SupportsIndex) -> Any:
+        raise TypeError("GPU workspaces cannot be copied or serialized")

@@ -18,10 +18,11 @@ native = pytest.importorskip("experiments.bfv_search_lab._owner._bgv_owner")
 
 
 @pytest.mark.parametrize("n,bits", [(8, 93), (64, 240), (2048, 120), (16384, 120), (32768, 240)])
-def test_native_product_exact_for_random_and_extreme_coefficients(n, bits):
+@pytest.mark.parametrize("rns", [False, True])
+def test_native_product_exact_for_random_and_extreme_coefficients(n, bits, rns):
     pk, sk = bgv.key_gen(n, q_bits=bits)
     rng = random.Random(n + bits)
-    plan = NativeTernaryProduct(sk.s, pk.q)
+    plan = NativeTernaryProduct(sk.s, pk.q, rns=rns)
     for q in (pk.q, compact.terminal_modulus(pk.q, pk.t, 25), compact.terminal_modulus(pk.q, pk.t, 32)):
         secret = tuple(mpz(q - 1) if c == pk.q - 1 else c for c in sk.s)
         a = tuple(mpz(rng.randrange(int(q))) for _ in range(n))
@@ -29,7 +30,7 @@ def test_native_product_exact_for_random_and_extreme_coefficients(n, bits):
         assert plan.multiply((mpz(q - 1),) * n, q) == _ring_product((mpz(q - 1),) * n, secret, q)
     if n == 8:
         for value in (-1, 0, 1):
-            special = NativeTernaryProduct((mpz(value % pk.q),) * n, pk.q)
+            special = NativeTernaryProduct((mpz(value % pk.q),) * n, pk.q, rns=rns)
             assert special.multiply(a, q) == _ring_product(a, (mpz(value % q),) * n, q)
     plan.clear()
     with pytest.raises(RuntimeError, match="closed"):
@@ -37,9 +38,10 @@ def test_native_product_exact_for_random_and_extreme_coefficients(n, bits):
 
 
 @pytest.mark.parametrize("eta", [1, 7, 8, 21, 32, 63, 64])
-def test_native_encryption_matches_reference_with_identical_seed_and_error_bits(monkeypatch, eta):
+@pytest.mark.parametrize("rns", [False, True])
+def test_native_encryption_matches_reference_with_identical_seed_and_error_bits(monkeypatch, eta, rns):
     pk, sk = bgv.key_gen(64, q_bits=120, eta=eta, rns_modulus=True)
-    client = owner.OwnerClient(pk, sk, native=True)
+    client = owner.OwnerClient(pk, sk, native=True, rns=rns)
     entropy = bytes(i % 256 for i in range(pk.n * ((2 * eta + 7) // 8)))
     errors = owner._errors_from_bytes(entropy, pk.n, eta)
     monkeypatch.setattr(owner.secrets, "token_bytes", lambda count: b"s" * 32 if count == 32 else entropy)
@@ -54,9 +56,10 @@ def test_native_encryption_matches_reference_with_identical_seed_and_error_bits(
         client.decrypt_compact(cipher)
 
 
-def test_raw_native_boundary_rejections_and_concurrent_lifecycle():
+@pytest.mark.parametrize("rns", [False, True])
+def test_raw_native_boundary_rejections_and_concurrent_lifecycle(rns):
     n, q = 16, mpz((1 << 93) - 25)
-    handle = native.create(n, b"\x01" * n)
+    handle = native.create(n, b"\x01" * n, rns)
     packed = bytes((n * q.bit_length() + 7) // 8)
     good = format(q, "x")
     for degree, secret in ((True, b""), (7, b"\x01" * 7), (16, b"\x03" * 16), (65536, b"")):
