@@ -504,6 +504,12 @@ time and checks every distance before reporting performance.
 .venv/bin/python benchmarks/bgv_pipeline_followup.py --num-vectors 8192 --repeats 10 --transport-repeats 5 --json-out /tmp/pipeline-8192.json
 ```
 
+The native codec uses bounded unsigned-128-bit operations where both coefficient
+widths are at most 120 bits and the retained GMP mapping otherwise. Explicit
+`backend="native-gmp"` selects the prior mapping; Python remains the default.
+Use `--mode joint --compare-codecs` in the benchmark to compare both native
+arithmetic paths with identical packets and native response validation.
+
 ## Independent SEAL BGV oracle
 
 TenSEAL 0.3.16's low-level wrapper exposes BFV/CKKS but not BGV. Build this

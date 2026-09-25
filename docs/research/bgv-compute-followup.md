@@ -20,6 +20,25 @@ barrier. These participation requirements follow the
 [CUDA 12 guide](https://docs.nvidia.com/cuda/archive/12.0.1/cuda-c-programming-guide/index.html#warp-shuffle-functions).
 The kernel code is our own implementation.
 
+The [isolated NTT measurements](../../benchmarks/results/bgv_ntt_schedule.json)
+use N=16,384 on the RTX 3080, one warmup and 20 trials with shuffled variant
+order. Times below are median GPU milliseconds for a forward/inverse pair;
+each polynomial has two 60-bit limbs. They exclude a complete search's other
+kernels, conversion, transfers and client work.
+
+| Polynomials | Baseline | Indexed | Warp, tile 1024 | Warp, tile 512 | Warp, tile 2048 |
+|---:|---:|---:|---:|---:|---:|
+| 2 | 0.0358 | 0.0296 | 0.0347 | **0.0256** | 0.0553 |
+| 32 | 0.2048 | **0.1673** | 0.1842 | 0.1720 | 0.2099 |
+| 256 | 1.3117 | **1.0291** | 1.1894 | 1.1786 | 1.2713 |
+| 1,024 | 5.2429 | **4.0438** | 4.7207 | 4.7580 | 4.9536 |
+
+Indexing lowers the largest transform time by 22.9%. Warp shuffles and smaller
+tiles help the two-polynomial case but lose to indexed shared-memory stages
+on larger batches. All variants remain available; the full-pipeline comparison
+selects `indexed` from this study. A per-transform adaptive policy is a possible
+later experiment, not something assumed to improve complete search time here.
+
 `terminal_cuda.cuh` reconstructs a canonical coefficient from two 60-bit RNS
 limbs and applies the existing exact terminal rounding on the GPU. With
 `r=c mod t`, it computes
@@ -102,6 +121,57 @@ public-key-encrypted indexes. Setup includes resident workspaces and terminal
 private caches; per-search totals include fresh encryption, codecs, server
 work, framing/parsing and client finishing. Application-paced loopback links
 do not model WAN congestion, packet loss or remote authentication.
+
+### Bounded word codec
+
+The first complete measurements show that joint precision's additional codecs
+can erase its transfer savings on fast links. `word_codec.h` therefore adds a
+public unsigned-128-bit specialization when both input and output coefficient
+widths are at most 120 bits. A coefficient plus its byte offset occupies at
+most 127 bits. Canonical-preimage checks bound reconstruction below `2*Q`,
+which fits in 121 bits. The code uses exact integer division and preserves
+every canonicality check, partial-bin rejection and output bit.
+
+The native codec dispatches to this path where admissible and keeps the GMP
+mapping for wider widths. `backend="native-gmp"` explicitly selects the prior
+mapping; `backend="python"` remains the default reference. Native response
+validation reads c1 directly, avoiding Python coefficient objects. Validation
+still checks all coefficients before any private work. `--compare-codecs` adds
+paired fixed-word/GMP variants to the full benchmark; both use the new native
+c1 validator, isolating the arithmetic difference between those two variants.
+
+### Complete compute results
+
+The [8,192-vector](../../benchmarks/results/bgv_pipeline_followup_8192.json) and
+[32,768-vector](../../benchmarks/results/bgv_pipeline_followup_32768.json)
+experiments at commit `29640f2` use dimension 512, N=16,384, Q120, t=1031,
+eta=21, the public-key-encrypted index and P25 responses. They share fresh
+query encryption across variants, check complete ciphertext equality, and
+report medians of ten shuffled measured rounds after one warmup.
+
+| Change from previous persistent/RNS baseline | 8,192 local total, ms | 32,768 local total, ms |
+|---|---:|---:|
+| Baseline | 66.92 | 129.05 |
+| Indexed NTT only | 64.13 | 122.71 |
+| GPU terminal rounding only | 61.80 | 119.78 |
+| Packed server/client responses only | 53.28 | 103.12 |
+| Indexed NTT + GPU terminal rounding | 59.82 | 112.08 |
+| All three compute changes | **46.76** | **85.39** |
+
+The combined changes lower local time by **30.1% / 33.8%** (1.43x / 1.51x
+throughput for serial requests, computed from median latency). Median server
+processing falls from **40.51 to 28.28 ms / 87.99 to 62.41 ms**. Median client
+response processing, including the fixture gate, parsing and private finish,
+falls from **11.66 to 4.43 ms / 23.58 to 8.87 ms**. Request totals also include
+fresh query encoding/encryption, wrapper overhead and object lifetimes; sums
+of separately reported phase medians need not equal the total median.
+
+No communication or index re-encryption is needed for these compute changes:
+query/response sizes remain **245,866 / 102,488 bytes** at 8,192 vectors and
+**245,866 / 204,895 bytes** at 32,768. The fixed-word codec above was added after
+these measurements; seeded compute variants do not invoke a rounding codec.
+Each resident workspace adds 262,144 coefficient bytes on first GPU terminal
+use. Index/key uploads and scratch allocation are reported separately as setup.
 
 ## Validation and reproduction
 

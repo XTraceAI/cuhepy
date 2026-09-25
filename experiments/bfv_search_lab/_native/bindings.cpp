@@ -339,31 +339,56 @@ PyObject* compact_result(PyObject*, PyObject* args) {
         return write_pair(cipher, server->ring->n, reduction->modulus, reduction->coefficient_bytes);
     });
 }
-PyObject* query_codec_impl(PyObject* args, bool expand) {
+mpz_class codec_modulus(const char* text, Py_ssize_t length) {
+    if (length<4 || length>60 || text[0]=='0' || !std::all_of(text,text+length,[](char c) {
+        return (c>='0' && c<='9') || (c>='a' && c<='f');
+    })) throw std::invalid_argument("Invalid public coefficient modulus");
+    mpz_class q; q.set_str(text,16); return q;
+}
+PyObject* query_codec_impl(PyObject* args, bool expand, bool fixed_words = true) {
     return checked([&]() -> PyObject* {
         PyObject *data, *n_obj, *t_obj, *drop_obj;
         const char* q_text;
         Py_ssize_t length;
         if (!PyArg_ParseTuple(args,"OOs#OO",&data,&n_obj,&q_text,&length,&t_obj,&drop_obj)) return nullptr;
         const auto n = integer(n_obj,32768), t = integer(t_obj,(1UL<<30)-1), drop = integer(drop_obj,239);
-        if (!PyBytes_CheckExact(data) || length<4 || length>60 || q_text[0]=='0'
-            || !std::all_of(q_text,q_text+length,[](char c) {
-                return (c>='0' && c<='9') || (c>='a' && c<='f');
-            })) throw std::invalid_argument("Invalid public query codec input");
-        mpz_class q; q.set_str(q_text,16);
+        if (!PyBytes_CheckExact(data)) throw std::invalid_argument("Invalid public query codec input");
+        auto q = codec_modulus(q_text,length);
         QueryCodec codec(n,q,t,drop);
         auto input = reinterpret_cast<const unsigned char*>(PyBytes_AS_STRING(data));
         auto size = static_cast<std::size_t>(PyBytes_GET_SIZE(data));
         std::vector<unsigned char> output;
-        { WithoutGIL release; output = codec.apply(input,size,expand); }
+        { WithoutGIL release; output = codec.apply(input,size,expand,fixed_words); }
         return PyBytes_FromStringAndSize(reinterpret_cast<const char*>(output.data()),output.size());
     });
 }
 PyObject* compress_query_coefficients(PyObject*, PyObject* args) { return query_codec_impl(args,false); }
 PyObject* expand_query_coefficients(PyObject*, PyObject* args) { return query_codec_impl(args,true); }
+PyObject* compress_query_coefficients_gmp(PyObject*, PyObject* args) { return query_codec_impl(args,false,false); }
+PyObject* expand_query_coefficients_gmp(PyObject*, PyObject* args) { return query_codec_impl(args,true,false); }
+PyObject* validate_coefficients(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *data,*n_obj;
+        const char* q_text;
+        Py_ssize_t length;
+        if (!PyArg_ParseTuple(args,"OOs#",&data,&n_obj,&q_text,&length)) return nullptr;
+        if (!PyBytes_CheckExact(data)) throw std::invalid_argument("Invalid public coefficient input");
+        auto q=codec_modulus(q_text,length);
+        // Canonical validation depends only on N and Q. These fixed codec
+        // parameters construct its existing bounded reader; no rounding occurs.
+        QueryCodec codec(integer(n_obj,32768),q,3,1);
+        auto input=reinterpret_cast<const unsigned char*>(PyBytes_AS_STRING(data));
+        auto size=static_cast<std::size_t>(PyBytes_GET_SIZE(data));
+        { WithoutGIL release; codec.validate(input,size); }
+        Py_RETURN_NONE;
+    });
+}
 PyMethodDef methods[] = {
     {"compress_query_coefficients", compress_query_coefficients, METH_VARARGS, "Round and pack public seeded-query coefficients."},
     {"expand_query_coefficients", expand_query_coefficients, METH_VARARGS, "Expand bounded public query coefficients."},
+    {"compress_query_coefficients_gmp", compress_query_coefficients_gmp, METH_VARARGS, "Original GMP public coefficient codec."},
+    {"expand_query_coefficients_gmp", expand_query_coefficients_gmp, METH_VARARGS, "Original GMP public coefficient expansion."},
+    {"validate_coefficients", validate_coefficients, METH_VARARGS, "Validate every canonical public coefficient without Python integers."},
     {"create_server", create_server, METH_VARARGS, "Compile public trace evaluation keys."},
     {"prepare_index", prepare_index, METH_VARARGS, "Cache public encrypted index transforms."},
     {"search", search, METH_VARARGS, "Evaluate the per-tile or joint trace circuit."},

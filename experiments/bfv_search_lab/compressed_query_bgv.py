@@ -23,6 +23,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from importlib import import_module
 from types import ModuleType
+from typing import Callable
 
 import gmpy2
 from gmpy2 import mpz
@@ -114,18 +115,30 @@ def parameters(pk: bgv.PublicKey, dropped_bits: int) -> Encoding:
 def _implementation(backend: str) -> ModuleType | None:
     if backend == "python":
         return None
-    if backend != "native":
-        raise ValueError("Expected python or native query codec")
+    if backend not in ("native", "native-gmp"):
+        raise ValueError("Expected python or native (or native-gmp reference) query codec")
     try:
         module = import_module("experiments.bfv_search_lab._native._bgv_trace")
     except ImportError as error:
         raise RuntimeError("Build the lab native query codec before selecting it") from error
     if not all(
         hasattr(module, name)
-        for name in ("compress_query_coefficients", "expand_query_coefficients")
+        for name in (
+            "compress_query_coefficients",
+            "expand_query_coefficients",
+            "compress_query_coefficients_gmp",
+            "expand_query_coefficients_gmp",
+            "validate_coefficients",
+        )
     ):
         raise RuntimeError("Rebuild the lab native extension for query compression")
     return module
+
+
+def _native_function(module: ModuleType, backend: str, expand: bool) -> Callable[..., bytes]:
+    prefix = "expand" if expand else "compress"
+    suffix = "_gmp" if backend == "native-gmp" else ""
+    return getattr(module, prefix + "_query_coefficients" + suffix)
 
 
 def compress(
@@ -141,7 +154,7 @@ def compress(
         body = gmpy2.pack(words, encoding.coefficient_bits).to_bytes(encoding.body_bytes, "little")
     else:
         packed, seed = seeded._parse_fields(packet, pk)
-        body = native.compress_query_coefficients(
+        body = _native_function(native, backend, False)(
             packed, pk.n, format(pk.q, "x"), pk.t, dropped_bits
         )
     return msgpack.packb(
@@ -186,7 +199,9 @@ def expand(
     ):
         raise ValueError("Incorrect compressed BGV query context/shape")
     if native is not None:
-        packed = native.expand_query_coefficients(body, pk.n, format(pk.q, "x"), pk.t, dropped_bits)
+        packed = _native_function(native, backend, True)(
+            body, pk.n, format(pk.q, "x"), pk.t, dropped_bits
+        )
         values = gmpy2.unpack(mpz.from_bytes(packed, "little"), pk.q.bit_length())
         values.extend([mpz(0)] * (pk.n - len(values)))
         return bgv.Ciphertext(

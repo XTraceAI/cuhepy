@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <stdexcept>
 #include <vector>
+#include "word_codec.h"
 
 namespace cuhepy_bgv_lab {
 class QueryCodec {
@@ -52,8 +53,25 @@ public:
         maximum_ = high*t+(tail<t ? tail : mpz_class(t-1));
         code_bits_ = mpz_sizeinbase(maximum_.get_mpz_t(),2);
     }
+    void validate(const unsigned char* input, std::size_t size) const {
+        if (size!=width(n_,full_bits_)) throw std::invalid_argument("Incorrect coefficient payload length");
+        if (full_bits_<=120) {
+            const auto modulus=word_codec::integer(q_);
+            for (std::size_t i=0;i<n_;++i)
+                if (word_codec::read(input,size,i*full_bits_,full_bits_)>=modulus)
+                    throw std::invalid_argument("Noncanonical public coefficient");
+        } else {
+            mpz_class value;
+            for (std::size_t i=0;i<n_;++i) {
+                read(value,input,size,i*full_bits_,full_bits_);
+                if (value>=q_) throw std::invalid_argument("Noncanonical public coefficient");
+            }
+        }
+    }
     std::vector<unsigned char> apply(const unsigned char* input, std::size_t size,
-                                     bool expand) const {
+                                     bool expand, bool fixed_words = true) const {
+        if (fixed_words && full_bits_<=120 && code_bits_<=120)
+            return word_codec::apply(input,size,n_,q_,full_bits_,code_bits_,t_,drop_,center_,maximum_,expand);
         const auto in_bits = expand ? code_bits_ : full_bits_;
         const auto out_bits = expand ? full_bits_ : code_bits_;
         if (size != width(n_,in_bits)) throw std::invalid_argument("Incorrect query codec payload length");

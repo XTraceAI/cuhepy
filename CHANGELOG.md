@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add a bounded unsigned-128-bit public query/response codec specialization and
+  native canonical response validation. Preserve the GMP mapping as an explicit
+  reference and fallback; exhaustively compare drop positions across width and
+  byte-alignment boundaries. Record complete compute gains and joint-precision
+  tradeoffs in `docs/research/bgv-compute-followup.md`.
 - Add c0-only terminal-response rounding and a joint query/response precision
   planner using complete public correctness bounds and exact framed byte counts.
   Retain independent Python/native codecs and malformed-input tests. Add paired

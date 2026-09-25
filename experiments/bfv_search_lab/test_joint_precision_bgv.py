@@ -28,8 +28,13 @@ def test_response_codec_native_reference_identity_and_byte_model(bits, drop):
     kwargs = dict(count=13, dimension=3, bits=bits, bounds=[0], dropped_bits=drop)
     compressed = response_codec.compress(packet, pk, **kwargs)
     assert response_codec.compress(packet, pk, backend="native", **kwargs) == compressed
+    assert response_codec.compress(packet, pk, backend="native-gmp", **kwargs) == compressed
     unpacked, bounds = response_codec.expand(compressed, pk, **kwargs)
     assert response_codec.expand(compressed, pk, backend="native", **kwargs) == (unpacked, bounds)
+    assert response_codec.expand(compressed, pk, backend="native-gmp", **kwargs) == (
+        unpacked,
+        bounds,
+    )
     result = wire.unpack_fixture(unpacked, pk, count=13, dimension=3, modulus=p, bounds=bounds)[0]
     extra = query_codec.coefficient_encoding(p, pk.t, drop).added_bound
     assert bounds == [extra]
@@ -123,7 +128,7 @@ def test_joint_planner_sizes_bounds_and_exact_encrypted_search(owner_index):
                 planner.select(frontier, *link)
 
 
-@pytest.mark.parametrize("backend", ["python", "native"])
+@pytest.mark.parametrize("backend", ["python", "native", "native-gmp"])
 def test_response_codec_rejects_wrong_headers_holes_coefficients_and_bounds(backend):
     pytest.importorskip("experiments.bfv_search_lab._native._bgv_trace")
     pk, _ = bgv.key_gen(16, q_bits=120, rns_modulus=True)

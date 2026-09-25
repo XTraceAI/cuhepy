@@ -96,7 +96,10 @@ def compress(
     body = []
     width0 = pk.n * e.coefficient_bits // 8
     for c0, c1 in pairs:
-        _canonical(c1, pk.n, p)
+        if native is None:
+            _canonical(c1, pk.n, p)
+        else:
+            native.validate_coefficients(c1, pk.n, format(p, "x"))
         if native is None:
             mask = (mpz(1) << dropped_bits) - 1
             words = [
@@ -104,7 +107,7 @@ def compress(
             ]
             rounded = gmpy2.pack(words, e.coefficient_bits).to_bytes(width0, "little")
         else:
-            rounded = native.compress_query_coefficients(
+            rounded = query._native_function(native, backend, False)(
                 c0, pk.n, format(p, "x"), pk.t, dropped_bits
             )
         body.append([rounded, c1])
@@ -159,7 +162,10 @@ def expand(
             c0, c1 = pair
             if type(c0) is not bytes or len(c0) != width0:
                 raise ValueError("Invalid rounded response c0 length")
-            _canonical(c1, pk.n, p)
+            if native is None:
+                _canonical(c1, pk.n, p)
+            else:
+                native.validate_coefficients(c1, pk.n, format(p, "x"))
             if native is None:
                 words = gmpy2.unpack(mpz.from_bytes(c0, "little"), e.coefficient_bits)
                 words.extend([mpz(0)] * (pk.n - len(words)))
@@ -172,7 +178,7 @@ def expand(
                     coefficients.append((base + residue + e.center) % p)
                 original = gmpy2.pack(coefficients, p.bit_length()).to_bytes(width1, "little")
             else:
-                original = native.expand_query_coefficients(
+                original = query._native_function(native, backend, True)(
                     c0, pk.n, format(p, "x"), pk.t, dropped_bits
                 )
             body.append((original, c1))

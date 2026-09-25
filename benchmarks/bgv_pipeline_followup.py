@@ -18,7 +18,7 @@ from __future__ import annotations
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import ExitStack, closing
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import UTC, datetime
 import gc
 import hashlib
@@ -56,6 +56,7 @@ class Variant:
     bits: int = 25
     query_drop: int | None = None
     response_drop: int | None = None
+    codec_backend: str = "native"
 
 
 class Handler:
@@ -71,7 +72,11 @@ class Handler:
             expand_s, query = timed(owner.expand, packet, self.pk)
         else:
             expand_s, query = timed(
-                query_codec.expand, packet, self.pk, dropped_bits=v.query_drop, backend="native"
+                query_codec.expand,
+                packet,
+                self.pk,
+                dropped_bits=v.query_drop,
+                backend=v.codec_backend,
             )
         if v.packed:
             evaluate_s, (raw, bounds) = timed(
@@ -99,7 +104,7 @@ class Handler:
                 bits=v.bits,
                 bounds=bounds,
                 dropped_bits=v.response_drop,
-                backend="native",
+                backend=v.codec_backend,
             )
         return (
             raw,
@@ -162,7 +167,7 @@ def expand_response(packet, pk, count, dimension, variant, bounds):
         bits=variant.bits,
         bounds=bounds,
         dropped_bits=variant.response_drop,
-        backend="native",
+        backend=variant.codec_backend,
     )
 
 
@@ -223,7 +228,7 @@ def trials(args, rows, client, workspaces, variants, *, transport):
                         fresh,
                         client.pk,
                         dropped_bits=variant.query_drop,
-                        backend="native",
+                        backend=variant.codec_backend,
                     )
                 packets[name] = (packet, compress_s)
                 begin = time.perf_counter()
@@ -243,6 +248,13 @@ def trials(args, rows, client, workspaces, variants, *, transport):
                 )
             if not transport and len({item[0] for item in known.values()}) != 1:
                 raise AssertionError("Compute variants changed complete ciphertext bytes")
+            for name, variant in variants.items():
+                if variant.codec_backend == "native-gmp":
+                    reference = name.removesuffix("-gmp")
+                    if packets[name][0] != packets[reference][0] or known[name] != known[reference]:
+                        raise AssertionError(
+                            "Fixed-word and GMP codecs changed complete packets/bounds"
+                        )
             order = [(name, "local") for name in variants]
             if transport and repeat <= args.transport_repeats:
                 order += [(name, link) for name in variants for link in LINKS]
@@ -404,6 +416,14 @@ def run_index(args, rows, tiles, pk, keys, client, mode):
                 flush=True,
             )
             result["joint_plan"] = plan
+            if args.compare_codecs:
+                variants.update(
+                    {
+                        name + "-gmp": replace(v, codec_backend="native-gmp")
+                        for name, v in list(variants.items())
+                        if name != "seeded"
+                    }
+                )
             result["joint"] = trials(args, rows, client, workspaces, variants, transport=True)
         for ntt, workspace in workspaces.items():
             setup[ntt + "_workspace_coefficient_bytes_after_terminal"] = workspace.coefficient_bytes
@@ -418,6 +438,11 @@ def main():
     parser.add_argument("--ring-degree", type=int, default=16384)
     parser.add_argument("--repeats", type=int, default=10)
     parser.add_argument("--transport-repeats", type=int, default=5)
+    parser.add_argument(
+        "--compare-codecs",
+        action="store_true",
+        help="Pair the fixed-word codec with the retained GMP mapping",
+    )
     parser.add_argument("--index-modes", nargs="+", choices=("public", "owner"), default=["public"])
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
