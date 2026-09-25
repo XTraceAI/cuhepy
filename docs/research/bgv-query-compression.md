@@ -327,3 +327,9 @@ costs. A smaller response might be worth a slightly larger query on an asymmetri
 link. That is a proposed experiment, with no further byte/time saving claimed
 here. The original ring and public correctness limits remain the reference
 until parameter assurance and protocol review justify any broader change.
+
+The [compute and joint-precision follow-up](bgv-compute-followup.md) now
+implements that experiment, alongside NTT scheduling, GPU terminal reduction,
+packed client/server response handling and bounded native codec arithmetic.
+It retains these earlier results as the baseline and records both wins and
+codec/transfer tradeoffs on the same workload sizes.

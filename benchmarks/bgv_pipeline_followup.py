@@ -435,7 +435,13 @@ def main():
     parser.add_argument("--mode", choices=("compute", "joint", "all"), default="all")
     parser.add_argument("--num-vectors", type=int, default=8192)
     parser.add_argument("--embed-len", type=int, default=512)
-    parser.add_argument("--ring-degree", type=int, default=16384)
+    parser.add_argument(
+        "--ring-degree",
+        type=int,
+        default=16384,
+        choices=(2048, 4096, 8192, 16384),
+        help="This comparison's P25 baseline requires N<=16384; larger rings need a different precision study",
+    )
     parser.add_argument("--repeats", type=int, default=10)
     parser.add_argument("--transport-repeats", type=int, default=5)
     parser.add_argument(
@@ -449,7 +455,7 @@ def main():
     if (
         not 3 <= args.num_vectors <= 65536
         or not 1 <= args.embed_len <= 512
-        or args.ring_degree not in (2048, 4096, 8192, 16384, 32768)
+        or args.ring_degree not in (2048, 4096, 8192, 16384)
         or not 1 <= args.transport_repeats <= args.repeats <= 100
         or len(set(args.index_modes)) != len(args.index_modes)
     ):

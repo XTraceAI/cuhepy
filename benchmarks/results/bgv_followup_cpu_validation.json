@@ -1,0 +1,80 @@
+{
+  "utc": "2026-09-25T09:06:44.110096+00:00",
+  "full_suite": {
+    "git_head": "4eea5ffdcff020c1062595b2e7330c3b5f4361a2",
+    "command": "CUHEPY_REQUIRE_BGV_CUDA=1 CUHEPY_SEAL_BGV_ORACLE=/tmp/cuhepy-seal-bgv-oracle .venv/bin/python -m pytest tests experiments/bfv experiments/bfv_search_lab -q",
+    "passed": 787,
+    "skipped": 1,
+    "skip": "Live Nitro integration",
+    "warnings": "Expected multithreaded fork deprecation warning"
+  },
+  "maximum_terminal_followup": {
+    "git_head": "1b1e6ef2c6b14d0a18192b6efae18e27756d5704",
+    "command": "CUHEPY_REQUIRE_BGV_CUDA=1 .venv/bin/python -m pytest experiments/bfv_search_lab/test_cuda_pipeline_bgv.py -q",
+    "passed": 8,
+    "scope": "Extends existing loop to maximum supported 60-bit P; no arithmetic changed since the complete suite"
+  },
+  "asan_ubsan": {
+    "public_passed": 118,
+    "private_passed": 96,
+    "environment": {
+      "PYCRYPTODOME_DISABLE_DEEPBIND": "1",
+      "LD_PRELOAD": "/usr/lib/gcc/x86_64-linux-gnu/12/libasan.so:/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+      "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1"
+    },
+    "compiler_flags": "g++-12 -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fPIC -shared -I/usr/include/python3.12 -Isrc/cuhepy/bfv/_cpu_ext -lgmpxx -lgmp; private owner also -pthread",
+    "scope": "Instrumented extension injected before pytest imports; __file__ asserted. Python-hosted leak detection disabled, not an erasure or private-side-channel proof.",
+    "public_module": "experiments.bfv_search_lab._native._bgv_trace",
+    "private_module": "experiments.bfv_search_lab._owner._bgv_owner",
+    "public_tests": [
+      "experiments/bfv_search_lab/test_native_query_codec_bgv.py",
+      "experiments/bfv_search_lab/test_compressed_query_bgv.py",
+      "experiments/bfv_search_lab/test_joint_precision_bgv.py",
+      "experiments/bfv_search_lab/test_word_codec_bgv.py",
+      "experiments/bfv_search_lab/test_packed_owner_bgv.py",
+      "experiments/bfv_search_lab/test_transport_feature_bgv.py"
+    ],
+    "private_tests": [
+      "experiments/bfv_search_lab/test_native_owner_bgv.py",
+      "experiments/bfv_search_lab/test_owner_bgv.py",
+      "experiments/bfv_search_lab/test_results_bgv.py",
+      "experiments/bfv_search_lab/test_packed_owner_bgv.py",
+      "experiments/bfv_search_lab/test_joint_precision_bgv.py"
+    ]
+  },
+  "logs": {
+    "suite": "benchmarks/results/bgv_followup_tests.txt",
+    "maximum_terminal": "benchmarks/results/bgv_followup_max_terminal_tests.txt",
+    "public_asan": "benchmarks/results/bgv_followup_public_asan.txt",
+    "private_asan": "benchmarks/results/bgv_followup_private_asan.txt"
+  },
+  "source_sha256": {
+    "experiments/bfv_search_lab/_native/compact.h": "384a35dec51de848e5ea98d16a137d222054e1bc2060d4ac7911004f3bea2de0",
+    "experiments/bfv_search_lab/_native/query_codec.h": "fc4008d5a5676b90d374449022c7ac41e21756aaf345d2d328c741c0eeb02f85",
+    "experiments/bfv_search_lab/_native/word_codec.h": "0dd0302b5c7bbfef3d237abab86663bc0a613b063967af3e98dedf87d8d07f9a",
+    "experiments/bfv_search_lab/_native/trace_server.h": "522500097d81f59eb789694fb2fb9714ffb4b12a6a1c90dd9e0efa4636946c11",
+    "experiments/bfv_search_lab/_native/residue_trace.h": "b24841d01c67be525dd219339f109f3c59d6dcf45e31b42d38f3056ea3e73a47",
+    "experiments/bfv_search_lab/_owner/finish.h": "efbf9333538900f7fbf002b528a8d15b80e9e385bc6c3076a2fd2abab09c9575",
+    "experiments/bfv_search_lab/_owner/rns_product.h": "7d932bbba358fe9f62d45071da9ed8c7c05af066b6b433562256b42019417bcc",
+    "experiments/bfv_search_lab/_owner/owner.h": "5e6a14e24c4b83589973f1281f0bac4ca9d8c0c8cffd3f037949bc040943d9c2",
+    "src/cuhepy/bfv/_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/cuhepy/bfv/_cpu_ext/bfv_residue.h": "e8704caa4f62d93fe3a397b128cfe91bc2a349be815264f381b2d2eff80bca66",
+    "src/cuhepy/bfv/_cpu_ext/batch_encoder.h": "2e1d66860afe495f3b638c2ca878bef70b3c3425dbbf63d9c040211a833bd457",
+    "src/cuhepy/bfv/_cpu_ext/bfv_server.h": "6a0a26a5f24a76340cc8a33f6c0df9b11221f57c158b1e199fec574ddac7e520",
+    "src/cuhepy/bfv/_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/cuhepy/bfv/_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/cuhepy/bfv/_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+    "src/cuhepy/bfv/_cpu_ext/rns_ntt.h": "f9886933ab66eeac9a4b25968b9bf485e065ab62d8f2efe4223598c927062f67",
+    "experiments/bfv_search_lab/_native/bindings.cpp": "7eb627432ce3d27e2f1382ac01df9932e617a4f43c385426aba025036ffbe321",
+    "experiments/bfv_search_lab/_owner/bindings.cpp": "be6c4f9bbb9747c2bb4050265497525e3ef7a22cc90bdaa1cdd9cca38fd7ff2f"
+  },
+  "binary_sha256": {
+    "/tmp/cuhepy-query-codec-asan.so": "ad0c927b48e7fbee8c7f251ca2c4473a73da30de1b414ea532a122250d18877a",
+    "/tmp/cuhepy-bgv-service-asan/_bgv_owner.cpython-312-x86_64-linux-gnu.so": "9cf3bf694b05982b362b151619c29218f6cc8ebef85e41c1026e2e952b7e92e0"
+  },
+  "lint": "Package Ruff and mypy passed; explicit checks of changed research modules passed",
+  "host_cpu": "AMD Ryzen 7 5800X 8-Core Processor",
+  "compiler_version": "g++-12 (Ubuntu 12.4.0-2ubuntu1~24.04.1) 12.4.0",
+  "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2023 NVIDIA Corporation\nBuilt on Fri_Jan__6_16:45:21_PST_2023\nCuda compilation tools, release 12.0, V12.0.140\nBuild cuda_12.0.r12.0/compiler.32267302_0"
+}

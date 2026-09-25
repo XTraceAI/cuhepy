@@ -639,6 +639,15 @@ or stop. Never store private keys in measurement artifacts.
 - [Result handling and distinct-query GPU batches](bgv-finish-batch-results.md):
   exact distance lookup, fused private finishing, public batch kernels, and
   comparisons with the existing threaded server, including completion delays.
+- [Service and algorithm studies](bgv-service-results.md): persistent GPU
+  workspaces, private RNS arithmetic, local TCP pacing, fresh Paillier/BFV
+  comparisons and negative narrow-limb/filter results.
+- [Query communication](bgv-query-compression.md): bounded c0 rounding, native
+  codecs and separately measured public-key/owner-encrypted index choices.
+- [Compute and joint precision](bgv-compute-followup.md): indexed/warp NTT
+  ablations, exact GPU terminal rounding, packed response processing, a public
+  query/response precision frontier and bounded word codecs, with full-request
+  measurements and retained baselines.
 
 The oracle passes **1,131 partial-layout cases and 367 coefficient-layout cases**.
 It exhausts all query/vector pairs up to four bits and adds deterministic random

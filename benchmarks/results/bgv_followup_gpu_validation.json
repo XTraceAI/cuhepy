@@ -1,0 +1,170 @@
+{
+  "scope": "Standalone PUBLIC arithmetic only; instrumented NTT times are not performance measurements. Python binding and private arithmetic covered separately.",
+  "utc": "2026-09-25T09:08:35.228771+00:00",
+  "git_head": "1b1e6ef2c6b14d0a18192b6efae18e27756d5704",
+  "tool_version": "NVIDIA (R) Compute Sanitizer\nCopyright (c) 2020-2025 NVIDIA Corporation\nVersion 2025.2.1.0 (build 35969825) (public-release)\n",
+  "tool_sha256": "979adf037f4e3434a976b7f0912b0a05ce3b062e31b2a73397a1bf1cd5f57547",
+  "runs": [
+    {
+      "name": "pipeline",
+      "mode": "memcheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "memcheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-bgv-pipeline-sanitizer"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_pipeline_memcheck.txt",
+      "binary_sha256": "98b4ff6da49d58f03c69ca3b260fe1a763e2006267403c2121601b3749d2724b"
+    },
+    {
+      "name": "terminal",
+      "mode": "memcheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "memcheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-terminal-sanitizer"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_terminal_memcheck.txt",
+      "binary_sha256": "95dce460abf519c82613886e19a20542b0fe425126cf63d8e8fc782298744018"
+    },
+    {
+      "name": "ntt",
+      "mode": "memcheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "memcheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-ntt-schedule",
+        "16384",
+        "8",
+        "1"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_ntt_memcheck.txt",
+      "binary_sha256": "04228c7698c948fe04b7240f0e2f5d7ac283eff51a5b8dcd93f87fc0876e75f6"
+    },
+    {
+      "name": "pipeline",
+      "mode": "racecheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "racecheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-bgv-pipeline-sanitizer"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_pipeline_racecheck.txt",
+      "binary_sha256": "98b4ff6da49d58f03c69ca3b260fe1a763e2006267403c2121601b3749d2724b"
+    },
+    {
+      "name": "terminal",
+      "mode": "racecheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "racecheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-terminal-sanitizer"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_terminal_racecheck.txt",
+      "binary_sha256": "95dce460abf519c82613886e19a20542b0fe425126cf63d8e8fc782298744018"
+    },
+    {
+      "name": "ntt",
+      "mode": "racecheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "racecheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-ntt-schedule",
+        "16384",
+        "8",
+        "1"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_ntt_racecheck.txt",
+      "binary_sha256": "04228c7698c948fe04b7240f0e2f5d7ac283eff51a5b8dcd93f87fc0876e75f6"
+    },
+    {
+      "name": "pipeline",
+      "mode": "synccheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "synccheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-bgv-pipeline-sanitizer"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_pipeline_synccheck.txt",
+      "binary_sha256": "98b4ff6da49d58f03c69ca3b260fe1a763e2006267403c2121601b3749d2724b"
+    },
+    {
+      "name": "terminal",
+      "mode": "synccheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "synccheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-terminal-sanitizer"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_terminal_synccheck.txt",
+      "binary_sha256": "95dce460abf519c82613886e19a20542b0fe425126cf63d8e8fc782298744018"
+    },
+    {
+      "name": "ntt",
+      "mode": "synccheck",
+      "command": [
+        "/tmp/cuhepy-sanitizer-12.9/cuda_sanitizer_api-linux-x86_64-12.9.79-archive/compute-sanitizer/compute-sanitizer",
+        "--tool",
+        "synccheck",
+        "--error-exitcode",
+        "99",
+        "/tmp/cuhepy-ntt-schedule",
+        "16384",
+        "8",
+        "1"
+      ],
+      "exit_code": 0,
+      "log": "benchmarks/results/bgv_followup_ntt_synccheck.txt",
+      "binary_sha256": "04228c7698c948fe04b7240f0e2f5d7ac283eff51a5b8dcd93f87fc0876e75f6"
+    }
+  ],
+  "source_sha256": {
+    "experiments/bfv_search_lab/_native/compact.h": "384a35dec51de848e5ea98d16a137d222054e1bc2060d4ac7911004f3bea2de0",
+    "experiments/bfv_search_lab/_native/terminal_cuda.cuh": "eaf304797f63621f8010b1019809ef13ce86cd8bb43d5a7b7af8c00e0494edf4",
+    "experiments/bfv_search_lab/_native/bindings.cu": "52b69e53a8b26d405ff0c61eb5e1bca77a93368a74cd07e4040408a08771e81d",
+    "experiments/bfv_search_lab/_native/narrow_ntt.cu": "7b430bdb8de064608b18589f4a6ef29d8413d4369ff623c31615575b1b4c2bbd",
+    "experiments/bfv_search_lab/_native/query_codec.h": "fc4008d5a5676b90d374449022c7ac41e21756aaf345d2d328c741c0eeb02f85",
+    "experiments/bfv_search_lab/_native/word_codec.h": "0dd0302b5c7bbfef3d237abab86663bc0a613b063967af3e98dedf87d8d07f9a",
+    "experiments/bfv_search_lab/_native/cuda_batch.cuh": "395c19956905e3327cab1f2caab66c5b58a0b37780dc8a92b7e5cd1af504ba9f",
+    "experiments/bfv_search_lab/_native/cuda_trace.cuh": "1ce72a3ddaf2cd561835c80bd14ff1faf8d303adcca6027723a4b8e168328c65",
+    "experiments/bfv_search_lab/_native/sanitize_cuda.cu": "8e858af0a57ca21901db3cb4ccfa8231bb1c16a69bfb61b143a7cfc9c38c8cbb",
+    "experiments/bfv_search_lab/_native/ntt_variants.cuh": "9bdf24b92350b979206b5b7a602090e84483725d5253b7419ae05b136b94f85c",
+    "experiments/bfv_search_lab/_native/trace_server.h": "522500097d81f59eb789694fb2fb9714ffb4b12a6a1c90dd9e0efa4636946c11",
+    "experiments/bfv_search_lab/_native/ntt_schedule.cu": "664621d51b8d59d951920602ddcc2f31307169ad66b5f1b89e88539ae48b332a",
+    "experiments/bfv_search_lab/_native/residue_trace.h": "b24841d01c67be525dd219339f109f3c59d6dcf45e31b42d38f3056ea3e73a47",
+    "experiments/bfv_search_lab/_native/sanitize_terminal.cu": "375349506e866135f42d36d6985ed9906035b4c7eaea1143e71d329079126884",
+    "experiments/bfv_search_lab/_native/bindings.cpp": "7eb627432ce3d27e2f1382ac01df9932e617a4f43c385426aba025036ffbe321"
+  }
+}

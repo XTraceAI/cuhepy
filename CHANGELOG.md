@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Record an additional 30.1%/33.8% reduction in complete local BGV search time
+  at 8,192/32,768 vectors versus the previous persistent/RNS baseline. Record
+  joint-precision payload reductions and codec/link tradeoffs for both index
+  types, with raw paired trials and source/binary provenance. Validate 787 full
+  suite tests, 118 public and 96 private ASan/UBSan tests, plus GPU memcheck,
+  racecheck and synccheck on the public evaluator and new kernels.
 - Add a bounded unsigned-128-bit public query/response codec specialization and
   native canonical response validation. Preserve the GMP mapping as an explicit
   reference and fallback; exhaustively compare drop positions across width and
