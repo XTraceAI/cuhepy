@@ -437,6 +437,33 @@ Both forward transforms and inverse round trips are checked against our CPU
 oracle before timing. This measures NTTs only, without base conversion or a
 full encryption parameter assessment; it is not a full narrow-limb BGV server.
 
+## Rounded query communication experiment
+
+[`compressed_query_bgv.py`](compressed_query_bgv.py) supplies a separate public
+codec for existing fresh owner packets. It keeps the same ring, Q, secret and
+public-seeded second component, but rounds c0 by bounded multiples of t. The
+larger noise bound propagates through the existing evaluator and terminal
+reduction. Precision must fit the whole circuit; query decryption alone is not
+enough. See the [derivation and scope](../../docs/research/bgv-query-compression.md).
+
+```python
+from experiments.bfv_search_lab import compressed_query_bgv
+
+fresh = client.encrypt(encoded_query)
+packet = compressed_query_bgv.compress(fresh, pk, dropped_bits=56)
+query = compressed_query_bgv.expand(packet, pk, dropped_bits=56)
+response = workspace.search_compact(query, bits=25)  # Refuses excessive bounds.
+```
+
+The example is a trusted local fixture. It supplies no response authentication.
+The optional benchmark index mode uses existing owner encryption with fresh
+randomness per tile to obtain a smaller index noise bound; it requires owner
+secret-key access during ingestion and a newly encrypted index.
+
+```bash
+.venv/bin/python benchmarks/bgv_query_compression.py --num-vectors 8192 --repeats 10 --transport-repeats 5 --json-out /tmp/query-compression.json
+```
+
 ## Independent SEAL BGV oracle
 
 TenSEAL 0.3.16's low-level wrapper exposes BFV/CKKS but not BGV. Build this

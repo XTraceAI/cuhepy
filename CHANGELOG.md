@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add an opt-in BGV seeded-query codec that rounds c0 by bounded multiples of
+  the plaintext modulus, preserving exact messages under propagated no-wrap
+  bounds. Add strict packet parsing, CPU/CUDA differential tests, a public
+  precision planner, and paired local/TCP experiments with public-key and
+  owner-encrypted index variants. Keep the current query format as a baseline.
 - Add explicitly leased persistent BGV GPU workspaces with per-request completion,
   close/fork guards and concurrent-use tests. Add a separate private RNS/NTT owner
   backend, preserving the GMP reference and unchanged ciphertext formats.
