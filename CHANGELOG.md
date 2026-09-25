@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add a separate BGV Nitro protocol with owner-authorized immutable setup and
+  queries, measured CPU evaluation, domain-separated receipts, replay/lease
+  limits and mandatory verification before response parsing or decryption.
+  Preserve the unauthenticated CUDA/fixture baselines. Add a local regression
+  demonstrating why plaintext distance validation permits key recovery.
+- Add a homemade fixed-work BGV terminal decoder using locked/wiped buffers,
+  public-parameter selection of one-prime or exact two-prime NTT arithmetic,
+  bounded native packed input and compiled GCC/Clang secret-taint tests. Query
+  encryption/key generation and plaintext processing remain outside its scope.
+  Include an isolated Nitro service/image recipe and authentication benchmarks;
+  this remains research code pending independent review and real AWS testing.
 - Record an additional 30.1%/33.8% reduction in complete local BGV search time
   at 8,192/32,768 vectors versus the previous persistent/RNS baseline. Record
   joint-precision payload reductions and codec/link tradeoffs for both index

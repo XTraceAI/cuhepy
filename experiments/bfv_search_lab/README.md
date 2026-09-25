@@ -510,6 +510,21 @@ widths are at most 120 bits and the retained GMP mapping otherwise. Explicit
 Use `--mode joint --compare-codecs` in the benchmark to compare both native
 arithmetic paths with identical packets and native response validation.
 
+## BGV authentication and private terminal arithmetic
+
+The separate [BGV authentication experiment](../../docs/research/bgv-authentication.md)
+adds owner-authorized setup/queries and mandatory Nitro receipts before response
+parsing or private work. Its [measured service](../bgv_nitro/README.md) computes
+the complete CPU circuit once; it cannot sign an external GPU result. Existing
+fixture/CUDA APIs retain their behavior and do not acquire authentication.
+
+`private_bgv.py` and `_owner/bgv_private.h` supply a separate homemade fixed-work
+terminal decoder with mandatory locked/wiped native buffers and packed input.
+The optional `_owner` build now includes `_bgv_private` alongside `_bgv_owner`.
+Key generation, query encryption and Python plaintext processing are outside the
+new private-kernel scope; this is not a production or whole-client constant-time
+claim. The report records the exact threat model, attack regression and checks.
+
 ## Independent SEAL BGV oracle
 
 TenSEAL 0.3.16's low-level wrapper exposes BFV/CKKS but not BGV. Build this
