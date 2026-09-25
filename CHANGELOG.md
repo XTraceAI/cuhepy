@@ -16,6 +16,9 @@ All notable changes to this project will be documented in this file.
   cost oracle. Record negative results and communication tradeoffs explicitly.
 - Validate the public CUDA oracle with Compute Sanitizer 12.9 memcheck/racecheck;
   extend private ASan/UBSan coverage to the opt-in owner RNS arithmetic.
+- Add a fresh-query comparison of homemade BGV, BFV and Paillier CPU/CUDA paths,
+  including Paillier lookup with the current 280-bit exponent configuration,
+  role timings, actual packet sizes and source/binary provenance.
 - Add exact BGV result lookup tables, bounded heap top-k with stable ties, and
   a fused native owner finish path. Add explicit same-key/index multi-query
   CUDA evaluation with optional shared index reads, reusable per-call scratch,
