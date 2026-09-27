@@ -256,6 +256,18 @@ PyObject* search_impl(PyObject* args, bool compact, bool persistent = false, boo
 PyObject* search(PyObject*, PyObject* args) { return search_impl(args, false); }
 PyObject* search_compact(PyObject*, PyObject* args) { return search_impl(args, true); }
 #ifdef CUHEPY_BGV_CUDA
+PyObject* product_switch_rns(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_obj,*query_obj,*index_obj;
+        if(!PyArg_ParseTuple(args,"OOO",&server_obj,&query_obj,&index_obj)) return nullptr;
+        auto server=get<ServerPtr>(server_obj,server_name);auto index=get<IndexPtr>(index_obj,index_name);
+        if(index->server!=server) throw std::invalid_argument("Wrong RNS stage index context");
+        if(!PyBytes_CheckExact(query_obj)) throw std::invalid_argument("Expected immutable RNS stage bytes");
+        std::string_view raw(PyBytes_AS_STRING(query_obj),PyBytes_GET_SIZE(query_obj));std::string output;
+        {WithoutGIL release;output=static_cast<const CudaTraceServer&>(*server).product_switch_rns(raw,*index->device);}
+        return PyBytes_FromStringAndSize(output.data(),output.size());
+    });
+}
 PyObject* prepare_workspace(PyObject*, PyObject* args) {
     return checked([&]() -> PyObject* {
         PyObject* index_obj;
@@ -394,6 +406,7 @@ PyMethodDef methods[] = {
     {"search", search, METH_VARARGS, "Evaluate the per-tile or joint trace circuit."},
     {"search_compact", search_compact, METH_VARARGS, "Evaluate and reduce the result before exporting coefficients."},
 #ifdef CUHEPY_BGV_CUDA
+    {"product_switch_rns", product_switch_rns, METH_VARARGS, "Bounded product/relinearization stage; canonical RNS input/output, no search receipt."},
     {"prepare_workspace", prepare_workspace, METH_VARARGS, "Allocate a bounded reusable single-request workspace."},
     {"close_workspace", close_workspace, METH_VARARGS, "Wait for outstanding use and release reusable GPU buffers."},
     {"search_workspace_compact", search_workspace_compact, METH_VARARGS, "Lease a workspace and return one compact response immediately."},

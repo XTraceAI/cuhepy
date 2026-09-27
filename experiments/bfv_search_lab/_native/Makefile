@@ -13,9 +13,15 @@ EXT := $(shell $(PYTHON) -c 'import sysconfig; print(sysconfig.get_config_var("E
 TARGET := _bgv_trace$(EXT)
 CUDA_TARGET := _bgv_trace_cuda$(EXT)
 BOUNDARY_TARGET ?= /tmp/cuhepy-bgv-digit-boundary
+PRODUCT_SANITIZER_TARGET ?= /tmp/cuhepy-bgv-product-sanitizer
 .PHONY: all cuda clean
 all: $(TARGET)
 cuda: $(CUDA_TARGET)
+.PHONY: product-stage-sanitizer
+product-stage-sanitizer: sanitize_product.cu cuda_trace.cuh
+	$(NVCC) $(NVCCFLAGS) -std=c++17 -ccbin $(CUDA_CXX) \
+		-gencode arch=compute_$(CUDA_ARCH),code=sm_$(CUDA_ARCH) \
+		-I$(CPU) sanitize_product.cu -lgmpxx -lgmp -o $(PRODUCT_SANITIZER_TARGET)
 .PHONY: digit-boundary
 digit-boundary: digit_boundary.cu digit_boundary.h test_digit_boundary.cpp
 	$(NVCC) $(NVCCFLAGS) -std=c++17 -ccbin $(CUDA_CXX) -Xcompiler=-fopenmp \

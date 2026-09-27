@@ -50,6 +50,7 @@ class NativeServer:
         self.pk, self.keys = pk, keys
         self._native = _bgv_trace
         self._device, self._cuda_level = device, cuda_level
+        self._creator_pid = os.getpid()
         self.ntt_variant = ntt_variant
         self.width = (pk.q.bit_length() + 7) // 8
         self._identity = object()
@@ -111,6 +112,18 @@ class NativeServer:
                                      index.handle, joint)
         return [bgv.Ciphertext(tuple(self._unpack(p) for p in pair), self.pk.key_id, bound)
                 for pair, bound in zip(output, bounds, strict=True)]
+
+    def product_switch_rns(self, query: bytes, index: PreparedIndex) -> bytes:
+        """Explicit pre-butterfly stage for checked-product experiments only.
+
+        No distance result, compaction, receipt or client-decryption authority.
+        Bounded to at most 64 index tiles, padded=1 and CUDA level 4.
+        """
+        if os.getpid() != self._creator_pid:
+            raise RuntimeError("Create a new CUDA stage server after fork")
+        if self._device != 'cuda' or self._cuda_level != 4 or self.keys.padded != 1 or index.owner is not self._identity:
+            raise ValueError("Incorrect CUDA product stage context")
+        return self._native.product_switch_rns(self._server, query, index.handle)
 
     def search_compact(self, query: bgv.Ciphertext, index: PreparedIndex, *, joint: bool = True,
                        bits: int = 32) -> list[compact.CompactCiphertext]:

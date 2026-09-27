@@ -47,10 +47,11 @@ def main():
     parser.add_argument('--batches', type=int, nargs='+', default=[1, 8, 32, 64])
     parser.add_argument('--repeats', type=int, default=10)
     parser.add_argument('--cuda', action='store_true')
+    parser.add_argument('--rns-cuda', action='store_true', help='Also time the direct RNS/batched GPU stage')
     parser.add_argument('--json-out', type=Path, required=True)
     args = parser.parse_args()
     if (not 1 <= args.repeats <= 30 or any(not 1 <= b <= 64 for b in args.batches)
-        or len(set(args.batches)) != len(args.batches)):
+        or len(set(args.batches)) != len(args.batches) or (args.rns_cuda and not args.cuda)):
         parser.error('Invalid bounded workload')
     setup, n = {}, args.ring_degree
     setup['keygen_s'], (pk, sk) = timed(bgv.key_gen, n, q_bits=120, rns_modulus=True)
@@ -83,6 +84,8 @@ def main():
             query_adapter_s, raw_query = timed(ctx.pack_full, [query.components], 2)
             fixture_s, (witness, output) = timed(native.evaluate, raw_query, witness=True)
             operations = ['recompute', 'existing_cpu', 'witness', 'local']+(['cuda_local'] if gpu else [])
+            if args.rns_cuda:
+                operations.append('cuda_rns_local')
             order_rng.shuffle(operations)
             row = dict(excluded_query_encryption_s=encryption_s, excluded_query_rns_adapter_s=query_adapter_s,
                        excluded_fixture_server_s=fixture_s)
@@ -95,20 +98,24 @@ def main():
                     row['existing_cpu_search_s'], direct = timed(cpu.search, query, cpu_index)
                     if ctx.pack_full([c.components for c in direct], 2) != output:
                         raise AssertionError('Independent existing CPU output differs')
-                elif op == 'cuda_local':
+                elif op in ('cuda_local', 'cuda_rns_local'):
                     begin_s, request = timed(state.begin, raw_query, b'q'*32, mode='local', native=native)
-                    server_s, actual = timed(gpu.search, query, gpu_index)
-                    adapter_s, actual_raw = timed(ctx.pack_full, [c.components for c in actual], 2)
+                    if op == 'cuda_local':
+                        server_s, actual = timed(gpu.search, query, gpu_index)
+                        adapter_s, actual_raw = timed(ctx.pack_full, [c.components for c in actual], 2)
+                    else:
+                        server_s, actual_raw = timed(gpu.product_switch_rns, raw_query, gpu_index)
+                        adapter_s = 0.0
                     frame_s, packet = timed(request.result_packet, actual_raw)
                     check_s, accepted = timed(request.check_once, packet)
                     # The checker already decided, using ONLY pinned inputs and
                     # randomized relations. Equality is an external test oracle.
                     if not accepted.accepted or actual_raw != output:
                         raise AssertionError('CUDA product/switch mismatch')
-                    row.update(cuda_begin_s=begin_s, cuda_existing_search_s=server_s,
-                               cuda_python_rns_adapter_s=adapter_s, cuda_frame_s=frame_s,
-                               cuda_check_s=check_s,
-                               cuda_checked_local_stage_s=begin_s+server_s+adapter_s+frame_s+check_s)
+                    prefix = 'cuda_' if op == 'cuda_local' else 'cuda_rns_'
+                    row.update({prefix+k: v for k, v in dict(begin_s=begin_s, existing_search_s=server_s,
+                               python_rns_adapter_s=adapter_s, frame_s=frame_s, check_s=check_s,
+                               checked_local_stage_s=begin_s+server_s+adapter_s+frame_s+check_s).items()})
                 else:
                     values, _ = check(state, native, raw_query, witness, output, op)
                     row.update({op+'_'+k: value for k, value in values.items()})
@@ -149,7 +156,7 @@ def main():
     result = dict(kind='bgv_checked_product', scope=__doc__, command=sys.argv,
         git_head=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
         utc=datetime.now(UTC).isoformat(), n=n, t=pk.t, q_hex=format(pk.q, 'x'), primes=ctx.primes,
-        repeats=args.repeats, cuda=args.cuda, setup=setup, cases=cases, samples=samples, warmup=warmup,
+        repeats=args.repeats, cuda=args.cuda, rns_cuda=args.rns_cuda, setup=setup, cases=cases, samples=samples, warmup=warmup,
         all_complete_cpu_ciphertexts_equal=True, all_complete_cuda_ciphertexts_equal=True if gpu else None,
         all_honest_checks_accepted=True, all_mutation_checks_rejected=True,
         public_plaintext_fixture_seed=20260930, measurement_order_seed=20261001,

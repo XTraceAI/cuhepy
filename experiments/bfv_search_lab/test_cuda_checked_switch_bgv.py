@@ -49,6 +49,7 @@ def test_existing_cuda_relinearization_and_stage_checker(n, t):
     raw_query, raw_output = context.pack_full([query.components], 2), context.pack_full([c.components for c in result], 2)
     witness = b''.join(struct.pack(f'<{n}Q', *(int(v % p) for v in c.components[2])) for c in tensors for p in context.primes)
     assert arithmetic.evaluate(raw_query, witness=True) == (witness, raw_output)
+    assert gpu.product_switch_rns(raw_query, gpu.prepare_index(tiles, len(tiles)*n)) == raw_output
     for mode in ('local', 'witness'):
         for backend in (None, arithmetic):
             attempt = state.begin(raw_query, b'p'*32, mode=mode, native=backend)

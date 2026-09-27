@@ -7,6 +7,8 @@
 #include "ntt_variants.cuh"
 #include "terminal_cuda.cuh"
 #include <mutex>
+#include <cstring>
+#include <string_view>
 #include <unistd.h>
 
 namespace cuhepy_bgv_lab {
@@ -221,6 +223,7 @@ class CudaTraceServer final : public Server {
     using Parameters = xtrace_bfv::gpu::Parameters;
     template<class T> using Buffer = xtrace_bfv::gpu::Buffer<T>;
     int device_;
+    const pid_t creator_pid_ = getpid();
     Parameters host_{};
     Buffer<Parameters> parameters_;
     Buffer<Mul> roots_, inverse_roots_, inverse_n_;
@@ -371,6 +374,38 @@ public:
         if ((6+26*maximum)*ring->n*sizeof(U)+sizeof(terminal_gpu::Plan) > (std::size_t(4)<<30))
             throw std::invalid_argument("BGV workspace exceeds 4 GiB");
         return std::make_shared<Workspace>(this,maximum);
+    }
+    // Explicit bounded product/switch experiment, BEFORE all butterfly/terminal
+    // work. Same kernels as search_device; batch all tiles and export canonical
+    // RNS directly, avoiding CRT -> GMP -> Python -> RNS round trips. No receipt.
+    std::string product_switch_rns(std::string_view raw,const DeviceIndex& index) const {
+        using namespace xtrace_bfv::gpu;
+        if(getpid()!=creator_pid_) throw std::runtime_error("Create a new CUDA stage server after fork");
+        const auto n=ring->n,batch=index.count;
+        if(padded!=1||kernel_level_!=4||n>16384||!batch||batch>64||batch*n>(1U<<20)||raw.size()!=4*n*sizeof(U))
+            throw std::invalid_argument("RNS product stage requires padded=1, level=4 and bounded shapes");
+        std::vector<U> input(4*n);
+        std::memcpy(input.data(),raw.data(),raw.size());
+        for(std::size_t i=0;i<input.size();++i)
+            if(input[i]>=host_.primes[(i/n)%2].p) throw std::invalid_argument("Noncanonical RNS stage query");
+        DeviceScope scope(device_);
+        Workspace::Scratch scratch(n,batch,kernel_level_);
+        scratch.data.resize(batch*4*n);
+        auto stream=scratch.stream.value;
+        check(cudaMemcpyAsync(scratch.query_ntt.data(),input.data(),raw.size(),cudaMemcpyHostToDevice,stream));
+        transform<false>(scratch.query_ntt.data(),2,stream);
+        cuda_detail::tensor<<<blocks(batch*2*n),256,0,stream>>>(scratch.query_ntt.data(),index.values.data(),
+                                                               scratch.tensor.data(),parameters_.data(),batch);
+        transform<true>(scratch.tensor.data(),batch*3,stream);
+        switch_key(scratch.tensor.data(),scratch.digits.data(),scratch.switched.data(),batch,3,2,0,stream);
+        cuda_detail::initial_shift<<<blocks(batch*4*n),256,0,stream>>>(scratch.tensor.data(),scratch.switched.data(),
+                                                                      scratch.work.data(),parameters_.data(),batch,2*n);
+        check(cudaGetLastError());
+        check(cudaMemcpyAsync(scratch.data.data(),scratch.work.data(),scratch.data.size()*sizeof(U),cudaMemcpyDeviceToHost,stream));
+        check(cudaStreamSynchronize(stream));
+        // Ordinary host copies/allocation and transient scratch are included in
+        // the benchmark. This is not a persistent or zero-copy API.
+        return {reinterpret_cast<const char*>(scratch.data.data()),scratch.data.size()*sizeof(U)};
     }
     std::vector<Ciphertext> search_device(const Ciphertext& query, const DeviceIndex& index,
                                          bool joint, Workspace* workspace = nullptr,
