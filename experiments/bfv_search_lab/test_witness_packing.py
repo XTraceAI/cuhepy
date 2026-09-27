@@ -10,6 +10,7 @@ from experiments.bfv_search_lab import folded_dictionary as dictionary
 from experiments.bfv_search_lab import folded_filter as folded
 from experiments.bfv_search_lab import interval_filter as interval
 from experiments.bfv_search_lab import linear_packing as packing
+from experiments.bfv_search_lab import owner_residuals as residuals
 from experiments.bfv_search_lab import shallow_bgv as bgv, trace_bgv as trace
 from experiments.bfv_search_lab import witness_packing as witness
 
@@ -44,6 +45,8 @@ def test_encrypted_fusion_zero_support_scales_partial_tiles_and_two_round_top3(c
     left, right = witness.decode(bgv.decrypt(mixed, pk, sk), plan, pk.t)
     templates = interval.decode_templates(left, 32, pk.t)
     assert templates == [(query ^ folded._template(dictionary_plan, x)).bit_count() for x in rows]
+    hints = residuals.compile_hint(residuals.prepare(dictionary_plan, rows))
+    assert residuals.correct(hints, query, templates) == [(query ^ x).bit_count() for x in rows]
     exact_witness = interval.decode_templates(right, 32, pk.t)
     assert exact_witness == [(query ^ x).bit_count() for x in witnesses]
     lo, hi = interval.intervals(templates, radii, 32)

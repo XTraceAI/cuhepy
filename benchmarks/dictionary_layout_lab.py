@@ -33,6 +33,7 @@ from experiments.bfv_search_lab import folded_dictionary as dictionary
 from experiments.bfv_search_lab import folded_filter as folded
 from experiments.bfv_search_lab import interval_filter as interval
 from experiments.bfv_search_lab import linear_packing as packing
+from experiments.bfv_search_lab import owner_residuals as residuals
 from experiments.bfv_search_lab import witness_packing as witness
 
 
@@ -56,6 +57,8 @@ def evaluate(rows, ids, queries, dimension, plan, order, witnesses, n):
     reverse = {i: j for j, i in enumerate(order)}
     templates = [folded._template(plan, row) for row in ordered]
     radii = tuple((x ^ z).bit_count() for x, z in zip(ordered, templates, strict=True))
+    residual_hint = residuals.prepare(plan, ordered)
+    residual_state = residuals.compile_hint(residual_hint)
     groups = len(plan.representatives)
     full = packing.packing_cost(dimension, len(rows), n)
     coarse = packing.packing_cost(groups, len(rows), n)
@@ -68,11 +71,16 @@ def evaluate(rows, ids, queries, dimension, plan, order, witnesses, n):
             placements[w] = asdict(witness.place(n, coarse.padded, len(rows), full.padded, w))
         except ValueError:
             placements[w] = None  # Charge a separate reply when this construction cannot place it.
-    samples = {name: [] for name in ["adaptive_inband", "interval_hints", *(f"witness_{w}" for w in witnesses)]}
+    samples = {name: [] for name in ["adaptive_inband", "interval_hints", "owner_residual", *(f"witness_{w}" for w in witnesses)]}
     for query in queries:
         exact = [(query ^ row).bit_count() for row in ordered]
         expected = tuple(sorted(zip(exact, stable, strict=True))[:3])
         scores = [(query ^ z).bit_count() for z in templates]
+        corrected = residuals.correct(residual_state, query, scores)
+        assert corrected == exact and tuple(sorted(zip(corrected, stable, strict=True))[:3]) == expected
+        samples["owner_residual"].append({"products": coarse.input_tiles, "switches": coarse.switches,
+                                           "response_ciphertexts": coarse.response_ciphertexts,
+                                           "query_ciphertexts": 1, "rounds": 1, "refinement_tiles": 0})
         lower, upper = interval.intervals(scores, radii, dimension)
         assert all(a <= d <= b for a, d, b in zip(lower, exact, upper, strict=True))
 
@@ -103,6 +111,9 @@ def evaluate(rows, ids, queries, dimension, plan, order, witnesses, n):
                 "refinement_tiles": len(selected.tiles), "exact_rows": fetched,
                 "candidate_rows": selected.candidate_count})
     return {"full_scan": asdict(full), "inband_filter": asdict(inband), "hint_filter": asdict(coarse),
+            "residual_owner_state": {"canonical_body_bytes": residual_hint.body_bytes,
+                                     "prepared_python_masks_bytes": residual_state.python_mask_bytes,
+                                     "residual_entries": sum(radii), "raw_row_bytes": len(rows) * ((dimension + 7) // 8)},
             "witness_indexes": {w: asdict(c) for w, c in witness_costs.items()}, "placements": placements,
             "samples": samples, "summary": {k: summary(v) for k, v in samples.items()},
             "all_bounds_and_stable_top3_exact": True}
@@ -149,11 +160,12 @@ def main():
         parser.error("Reserve holdout 32:64 for this declared evaluation")
     paths = [Path(__file__), ROOT / "benchmarks/certified_filter_lab.py"]
     paths.extend(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
-        "binary_fixtures", "folded_dictionary", "folded_filter", "interval_filter", "witness_packing", "adaptive_refinement", "linear_packing"))
+        "binary_fixtures", "folded_dictionary", "folded_filter", "interval_filter", "witness_packing", "adaptive_refinement", "linear_packing", "owner_residuals"))
     output = metadata(paths)
     output.update({"kind": "dictionary_layout_exact_oracle_circuit_counts", "datasets": fixtures.SOURCES,
                    "notes": "No HE latency measured. Counts include original full index, coarse index, separately packed witness index, "
-                            "whole original refinement tiles and all dependent response rounds. Queries reused within a search. "
+                            "whole original refinement tiles and all dependent response rounds. E25 instead keeps exact residuals on owner "
+                            "and needs only the coarse index. Queries reused within a search. "
                             "Owner hint/permutation arrays exclude map/framing/epoch metadata. Native subset preparation, "
                             "authentication and hidden routing remain unimplemented/unpriced. No security or novelty claim.",
                    "results": []})
@@ -173,6 +185,10 @@ def main():
         for name, queries in (("synthetic_near", [rows[rng.randrange(len(rows))] ^ rng.getrandbits(16) for _ in range(args.queries)]),
                               ("synthetic_unrelated", [rng.getrandbits(512) for _ in range(args.queries)])):
             output["results"].append(workload(name, rows, list(range(len(rows))), queries, [], 512, [(63, 0), (64, 2)], 2903, 16384))
+        rows = [rng.getrandbits(512) for _ in range(8192)]
+        queries = [rng.getrandbits(512) for _ in range(args.queries)]
+        output["results"].append(workload("uniform_random", rows, list(range(len(rows))), queries, [],
+                                           512, [(64, 0)], 2904, 16384))
     args.json_out.parent.mkdir(parents=True, exist_ok=True)
     args.json_out.write_text(json.dumps(output, indent=2) + "\n")
 
