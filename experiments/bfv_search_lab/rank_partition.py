@@ -233,7 +233,7 @@ def allocate_slots(counts: tuple[int, ...], slots: int, capacity: int) -> tuple[
     return low, tuple(allocation)
 
 
-def reallocate(candidate: Candidate, rows: list[int], slots: int = 64) -> Candidate:
+def reallocate(candidate: Candidate, rows: list[int], slots: int = 64, *, coalesce: bool = True) -> Candidate:
     """Decouple CRT capacity from the tree that discovered the private maps.
 
     Assign contiguous elementary slots by exact minimax allocation, coalesce
@@ -243,7 +243,8 @@ def reallocate(candidate: Candidate, rows: list[int], slots: int = 64) -> Candid
     """
     validate_epoch(candidate, rows)
     n, padded, prime = candidate.layout.context.n, candidate.layout.padded, candidate.layout.context.prime
-    if type(slots) is not int or not 1 <= slots <= min(64, n // padded) or slots & (slots - 1):
+    if (type(slots) is not int or not 1 <= slots <= min(64, n // padded) or slots & (slots - 1)
+            or type(coalesce) is not bool):
         raise ValueError("Invalid elementary CRT slot count")
     grouped: dict[affine.Plan, list[int]] = {}
     for block in candidate.blocks:
@@ -255,7 +256,7 @@ def reallocate(candidate: Candidate, rows: list[int], slots: int = 64) -> Candid
     leaves: list[tuple[str, int]] = []
 
     def cover(path: str, start: int, stop: int) -> None:
-        if all(label == labels[start] for label in labels[start:stop]):
+        if stop - start == 1 or coalesce and all(label == labels[start] for label in labels[start:stop]):
             leaves.append((path, labels[start]))
         else:
             middle = (start + stop) // 2

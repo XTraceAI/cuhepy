@@ -104,6 +104,11 @@ def test_reallocation_preserves_complete_coverage_and_deduplicated_map_state():
     rows = fixture()
     candidate = partition.prepare(rows, 8, tuple(range(32)), initial_parts=2, n=128, target=4)
     allocated = partition.reallocate(candidate, rows, slots=16)
+    flat = partition.reallocate(candidate, rows, slots=16, coalesce=False)
+    assert len(flat.blocks) == 16
+    assert flat.layout.cost.input_tiles == allocated.layout.cost.input_tiles
+    assert flat.map_bytes == allocated.map_bytes
+    partition.validate_epoch(flat, rows)
     assert allocated.map_bytes == candidate.map_bytes
     assert allocated.layout.cost.input_tiles <= candidate.layout.cost.input_tiles
     partition.validate_epoch(allocated, rows)
