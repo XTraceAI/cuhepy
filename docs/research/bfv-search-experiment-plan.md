@@ -27,7 +27,8 @@ NTT comparison, E07 an encrypted feature-major reference, and E10 a plaintext
 exact-filter bound study. See [results and remaining work](bgv-service-results.md).
 The old system sanitizer issue is resolved using NVIDIA's verified 12.9.79
 redistributable; the public oracle passes memcheck/racecheck. These advances do
-not authenticate BGV responses or establish private constant-time behavior.
+not by themselves authenticate BGV responses or establish private constant-time
+behavior; the subsequent, separate protected path is described below.
 
 **Communication follow-up, 2026-09-25:** the query accounts for 70.6% of BGV
 traffic at 8,192 vectors. A separate plaintext-congruent c0 rounding experiment
@@ -36,6 +37,29 @@ with a new owner-encrypted index. It preserves N/Q and uses the complete public
 correctness-bound schedule to select precision. A native public codec retains
 the Python/GMP oracle and original seeded query. See the
 [derivation, tradeoffs and measurements](bgv-query-compression.md).
+
+**Compute/precision follow-up:** indexed NTTs, exact GPU terminal rounding,
+packed owner finishing and bounded word codecs now have paired measurements.
+The joint query/response planner measures complete framed traffic, including
+229,583 bytes at 8,192 vectors with the public-key index. See
+[compute and joint precision](bgv-compute-followup.md).
+
+**Authentication/private-arithmetic follow-up:** an opt-in BGV Nitro protocol
+now verifies an owner-authorized CPU evaluator's receipt before parsing or
+decryption, and a separate native terminal decoder has fixed-work arithmetic
+and compiled secret-taint checks. The GPU remains outside this authenticated
+execution path. Local tests use synthetic enrollment; real AWS testing, private
+encryption/key-generation assurance and parameter review remain open. See
+[BGV authentication](bgv-authentication.md).
+
+**Literature/agenda update, 2026-09-26:** the
+[related-work review and E13–E19 proposals](encrypted-search-literature-agenda.md)
+cover the supplied BioZKFHE paper, encrypted search/packing, verifiable FHE,
+TEE-assisted verification, conversion and private indexing. The next priority
+is a complete verified GPU path alongside stronger noise/packing models.
+The [current execution order](#7-next-experiments-after-the-literature-review)
+supersedes the initial ordering below. These proposals add no new performance
+measurements or security/novelty claims.
 
 ## Expanded scheme portfolio after the first implementations
 
@@ -71,7 +95,7 @@ a drop-in answer to our malicious-evaluator problem. Our proposed experiment
 must explicitly select and justify the parties and adversary model before
 implementation. See [ABY2.0](https://eprint.iacr.org/2020/1225).
 
-Immediate order after the first measurements: preserve the winning query and
+Historical order after the first measurements: preserve the winning query and
 partial-reduction variants; optimize and compare sparse coefficient-result conversion;
 then compare a reviewed library's shallow BGV and scheme-conversion path as an
 independent oracle before optimizing a new native implementation. Seeded RLWE,
@@ -648,6 +672,11 @@ or stop. Never store private keys in measurement artifacts.
   ablations, exact GPU terminal rounding, packed response processing, a public
   query/response precision frontier and bounded word codecs, with full-request
   measurements and retained baselines.
+- [BGV authentication and private finishing](bgv-authentication.md): separate
+  CPU enclave protocol, verification before decryption, fixed-work terminal
+  arithmetic and local protocol benchmarks; no authenticated GPU claim.
+- [Literature review and next experiments](encrypted-search-literature-agenda.md):
+  primary-source comparisons, E13–E19 derivations, cost limits and decision gates.
 
 The oracle passes **1,131 partial-layout cases and 367 coefficient-layout cases**.
 It exhausts all query/vector pairs up to four bits and adds deterministic random
@@ -660,8 +689,39 @@ python3 experiments/bfv_search_lab/layout_oracles.py \
   --json-out experiments/bfv_search_lab/models/partial-reduction-8192.json
 ```
 
-The candidate paper could center on **choosing an exact encrypted-search circuit
-to fit client computation, ciphertext occupancy, GPU memory and network cost**.
-E01 supplies an immediately testable scheduling idea; E06/E07 supply larger
-algorithmic bets; E02/E03 address today's measured bottlenecks. Whether that
-combination is a novel contribution remains a literature-and-results question.
+## 7. Next experiments after the literature review
+
+The strongest current paper direction is **exact encrypted search with
+verification, client work and communication included in the optimization**.
+The earlier E01–E12 descriptions retain their original hypotheses and dated
+baselines; their follow-up reports record what was implemented and what lost.
+Use the updated agenda for new decisions, rather than treating an old estimate
+or a raw GPU fixture as today's authenticated service performance.
+
+| ID | New experiment | First concrete deliverable | Main reason it may fail |
+|---|---|---|---|
+| E13 | Trusted CPU checks an untrusted GPU's public ciphertext arithmetic | Stage inventory and one-use field-check prototype, with trusted digit/rounding work | Intermediate traffic or trusted work approaches full recomputation |
+| E14 | Design the HE circuit and its proof together | Canonical evaluation relation including integer rounding, compression and index coverage | Proof generation/bytes overwhelm the fast search |
+| E15 | Coefficient-specific trace/noise bounds | Exact symbolic support model, then a justified deterministic or explicitly probabilistic bound | Shared errors/rounding invalidate optimistic independence assumptions |
+| E16 | Balanced radix digits inside coefficient-packed correlations | g=1/2/3 reference, exact carry/no-wrap derivation and complete noise model | Larger t/Q and wider output erase the reduction in tile count |
+| E17 | Short LWE/MLWE or symmetric query upload with server conversion | Conversion+search cost model against the current rounded query | Conversion depth/setup costs exceed saved transfer time |
+| E18 | Exact stable top-k followed by sparse output encoding | Selection and moment-encoding oracles, with real output-conversion costs | Comparisons cost more than the roughly 80 KB response they replace |
+| E19 | Exact private substring indexing and coverage certificates | Bucket/selectivity model, omission tests and explicit leakage contract | Enumeration, padding, proof traffic and extra rounds erase pruning |
+
+The [companion agenda](encrypted-search-literature-agenda.md) gives the equations,
+closest literature, security boundaries, experiment sequence and stop criteria.
+Start with E13/E14's complete verification specification and E15/E16's cheap
+mathematical references. Proceed to new kernels or scheme implementations only
+after those models leave a credible complete-request improvement. E17–E19 remain
+independent exploratory tracks; BFV is not a restriction on the design space.
+
+Keep the four original size categories and add authentication/proof bytes,
+verifier/accelerator traffic and preprocessing refill. Compare exact with exact,
+raw with raw, and protected with the same protection. The CPU protected path
+and raw GPU path are different baselines; their timing components cannot be
+combined into a claimed verified GPU result. Preserve all homemade/reference
+implementations and record unsuccessful experiments as part of the evidence.
+
+Packing, randomized verification, transciphering and sparse encoding are known
+ingredients. Whether the proposed bound, protocol, conversion or measured
+combination is a research contribution remains a literature-and-results question.

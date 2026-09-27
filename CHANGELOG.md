@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Update the experimental agenda after a primary-source literature review of
+  BioZKFHE, encrypted search, verifiable FHE, packing and conversion. Add E13–E19
+  hypotheses with mathematical starting points, comparison contracts, cost
+  ceilings and stop criteria. Separate raw GPU results from protected CPU
+  execution and preserve all existing implementation/results baselines.
 - Add a separate BGV Nitro protocol with owner-authorized immutable setup and
   queries, measured CPU evaluation, domain-separated receipts, replay/lease
   limits and mandatory verification before response parsing or decryption.
