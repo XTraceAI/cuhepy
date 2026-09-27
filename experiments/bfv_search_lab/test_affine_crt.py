@@ -16,12 +16,15 @@ from experiments.bfv_search_lab import shallow_bgv as bgv, trace_bgv as trace
 @pytest.mark.parametrize("rows", [[0] * 5, [0, 255, 1, 254], list(range(16)), [1, 2, 4, 8]])
 def test_affine_exact_for_every_binary_query_and_canonical_map(rows):
     plan = affine.prepare(rows, 8, 17)
+    bit_plan = affine.compile_bits(plan)
     features = affine.index_features(plan, rows)
     assert len(affine.canonical_map(plan)) > 0
     for query in range(256):
         weights, offset = affine.query_features(plan, query)
+        assert affine.bit_query_features(bit_plan, query) == (weights, offset)
         dots = [sum(a * b for a, b in zip(weights, row, strict=True)) % plan.prime for row in features]
         assert affine.decode(plan, dots, offset) == [(query ^ row).bit_count() for row in rows]
+        assert affine.bit_decode(bit_plan, dots, offset) == affine.decode(plan, dots, offset)
     if len(set(rows)) == 1:
         assert plan.rank == 0 and plan.features == 1
 
@@ -143,3 +146,17 @@ def test_bounded_maps_and_scores_do_not_authenticate_a_response():
     # Correctly shaped, plausible field output can still lie about a distance.
     assert affine.decode(plan, [1, 1], 0) == [1, 1]
     assert affine.decode(plan, [1, 1], 0) != [0, 1]
+
+
+def test_compiled_query_handles_general_field_coefficients_not_just_signs():
+    rng = random.Random(3007)
+    plan = affine.Plan(9, 17, 73, (0, 1),
+                       ((1, 0, 2, 3, 8, 9, 16, 1, 2), (0, 1, 16, 3, 9, 8, 2, 0, 7)))
+    bits = affine.compile_bits(plan)
+    for _ in range(64):
+        q = rng.randrange(512)
+        assert affine.bit_query_features(bits, q) == affine.query_features(plan, q)
+    with pytest.raises(ValueError):
+        affine.bit_query_features(bits, 512)
+    with pytest.raises(ValueError):
+        affine.bit_decode(bits, [17], 0)

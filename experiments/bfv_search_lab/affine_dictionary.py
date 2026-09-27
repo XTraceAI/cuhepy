@@ -146,3 +146,52 @@ def canonical_map(plan: Plan) -> bytes:
             body.extend(g.to_bytes(group_bytes, "little"))
             body.extend(value.to_bytes(coefficient_bytes, "little"))
     return bytes(body)
+
+
+@dataclass(frozen=True)
+class BitPlan:
+    """Validated owner map compiled by equal field coefficients, not by index row.
+
+    Each basis row satisfies B_g*(1-2q) = bias_g - 2*sum_c c*popcount(q & mask_gc).
+    This contracts binary queries without reading the dense basis each time.
+    Maps are private; Python bit operations remain variable-time.
+    """
+    dimension: int
+    prime: int
+    anchor: int
+    terms: tuple[tuple[tuple[int, int], ...], ...]
+    biases: tuple[int, ...]
+
+
+def compile_bits(plan: Plan) -> BitPlan:
+    validate(plan)
+    terms, biases = [], []
+    for row in plan.basis:
+        masks: dict[int, int] = {}
+        for j, value in enumerate(row):
+            if value:
+                coefficient = value if value <= plan.prime // 2 else value - plan.prime
+                masks[coefficient] = masks.get(coefficient, 0) | (1 << j)
+        terms.append(tuple(sorted(masks.items())))
+        biases.append(sum(c * mask.bit_count() for c, mask in masks.items()))
+    return BitPlan(plan.dimension, plan.prime, plan.anchor, tuple(terms), tuple(biases))
+
+
+def bit_query_features(plan: BitPlan, query: int) -> tuple[list[int], int]:
+    """Use an immutable locally compiled map; no remote map parser is exposed."""
+    folded._words(query, [], plan.dimension)
+    values = [(bias - 2 * sum(c * (query & mask).bit_count() for c, mask in row)) % plan.prime
+              for row, bias in zip(plan.terms, plan.biases, strict=True)]
+    weights = [x if x <= plan.prime // 2 else x - plan.prime for x in values]
+    return weights if weights else [0], (query ^ plan.anchor).bit_count()
+
+
+def bit_decode(plan: BitPlan, dots: list[int], offset: int) -> list[int]:
+    """Same field decoding after one-time owner map validation/compilation."""
+    if (type(offset) is not int or not 0 <= offset <= plan.dimension
+            or any(type(x) is not int or not 0 <= x < plan.prime for x in dots)):
+        raise ValueError("Invalid local compiled affine result")
+    result = [(x + offset) % plan.prime for x in dots]
+    if any(x > plan.dimension for x in result):
+        raise ValueError("Compiled affine score outside exact distance range")
+    return result

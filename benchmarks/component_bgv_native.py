@@ -81,6 +81,10 @@ def run(args):
     ordered = [x for group in groups for x in group]
     flat_ids = [x for group in stable for x in group]
     state["python_map_object_bytes"] = map_memory(plans)
+    compiled_s, bit_plans = timed(lambda: [affine.compile_bits(p) for p in plans])
+    state["compile_bit_masks_s"] = compiled_s
+    state["python_bit_map_object_bytes"] = map_memory(bit_plans)
+    state["bit_mask_terms"] = sum(len(row) for p in bit_plans for row in p.terms)
     raw = b"".join(x.to_bytes((dimension + 7) // 8, "little") for x in ordered)
     state.update({"raw_rows_bytes": len(raw), "raw_rows_zlib9_bytes": len(zlib.compress(raw, 9)),
                   "common_id_array_bytes": len(ids) * max(1, (max(ids).bit_length() + 7) // 8)})
@@ -126,6 +130,10 @@ def run(args):
             setup[name + "_index"] = entry
         del encrypted, keys, full_tiles, crt_tiles, separate_tiles, local_features, raw
         gc.collect()
+        # Reuse the exact CRT index: only the owner-side map representation changes.
+        definitions["crt_masks"] = definitions["crt"]
+        for device in args.devices:
+            prepared["crt_masks", device] = prepared["crt", device]
         cases = [(name, device) for name in definitions for device in args.devices]
         samples = {f"{name}/{device}": [] for name, device in cases}
         warmup = {}
@@ -144,10 +152,11 @@ def run(args):
                 def encode_query(name=name, q=q):
                     if name == "full":
                         return [folded.inputs(full_plan, q, [], pk.n)[0]], []
-                    transforms = [affine.query_features(p, q) for p in plans]
+                    transforms = ([affine.bit_query_features(p, q) for p in bit_plans] if name == "crt_masks"
+                                  else [affine.query_features(p, q) for p in plans])
                     offsets = [offset for _, offset in transforms]
                     weights = [w for w, _ in transforms]
-                    if name == "crt":
+                    if name in ("crt", "crt_masks"):
                         return [crt.query(layout, weights)], offsets
                     return [packing.pack(w + [0] * (layout.padded - len(w)), [], pk.n)[0] for w in weights], offsets
 
@@ -171,9 +180,11 @@ def run(args):
                     if name == "full":
                         scores = folded.decode(full_plan, packing.unpack(plaintexts[0], len(rows), padded, pk.n, pk.t), pk.t)
                     else:
-                        dots = (crt.unpack(layout, plaintexts[0]) if name == "crt" else
+                        dots = (crt.unpack(layout, plaintexts[0]) if name in ("crt", "crt_masks") else
                                 [packing.unpack(p, len(g), padded, pk.n, pk.t) for p, g in zip(plaintexts, groups, strict=True)])
-                        scores = [d for p, ds, offset in zip(plans, dots, offsets, strict=True) for d in affine.decode(p, ds, offset)]
+                        scores = ([d for bp, ds, offset in zip(bit_plans, dots, offsets, strict=True)
+                                   for d in affine.bit_decode(bp, ds, offset)] if name == "crt_masks" else
+                                  [d for p, ds, offset in zip(plans, dots, offsets, strict=True) for d in affine.decode(p, ds, offset)])
                     return scores, tuple(sorted(zip(scores, flat_ids, strict=True))[:3])
 
                 finish_s, (scores, top) = timed(finish)
