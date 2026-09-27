@@ -21,6 +21,7 @@ from pathlib import Path
 import random
 import sys
 import time
+import zlib
 
 import msgpack
 
@@ -77,6 +78,10 @@ def run(args):
         setup["residual_hint_body_bytes"] = hint.body_bytes
         setup["residual_python_mask_bytes"] = residual_state.python_mask_bytes
         setup["raw_plaintext_row_bytes"] = len(rows) * ((dimension + 7) // 8)
+        raw_rows = b"".join(row.to_bytes((dimension + 7) // 8, "little") for row in rows)
+        setup["raw_plaintext_zlib9_bytes"] = len(zlib.compress(raw_rows, 9))
+        setup["residual_hint_zlib9_bytes"] = len(zlib.compress(hint.offsets + hint.entries, 9))
+        del raw_rows
         for label, pad in (("coarse", cp), ("full", fp)):
             key_s, keys = timed(trace.evaluation_keys, pk, sk, pad)
             setup[label] = {"keygen_s": key_s,
