@@ -34,23 +34,29 @@ class Refinement:
 def refine(
     lower: list[int], dimension: int, tile_capacity: int,
     score_tiles: Callable[[tuple[int, ...]], list[tuple[int, int]]],
-    *, k: int = 3, batch_tiles: int = 1,
+    *, k: int = 3, batch_tiles: int = 1, row_ids: list[int] | None = None,
 ) -> Refinement:
-    """Call score_tiles with original tile IDs; expect all (row ID, distance).
+    """Call score_tiles with physical tile IDs; expect all (position, distance).
 
     This routine sees only supplied bounds and scores from requested tiles.
     The threshold is the kth best actually evaluated pair, not an oracle radius.
     Equality cannot discard a smaller ID. Neighboring scores in a fetched tile
     are useful work and immediately participate in the threshold.
+    Optional row_ids map physical positions to stable original IDs. The callback
+    still returns physical positions; reordering cannot redefine tie-breaking.
     """
     if (type(dimension) is not int or dimension < 1 or type(tile_capacity) is not int
             or tile_capacity < 1 or type(batch_tiles) is not int or batch_tiles < 1
             or type(k) is not int or not 0 <= k <= len(lower)
             or any(type(x) is not int or x > dimension for x in lower)):
         raise ValueError("Invalid refinement fixture")
+    ids = list(range(len(lower))) if row_ids is None else row_ids
+    if (len(ids) != len(lower) or any(type(i) is not int or i < 0 for i in ids)
+            or len(set(ids)) != len(ids)):
+        raise ValueError("Expected unique nonnegative stable row IDs")
     if not k:
         return Refinement((), (), 0, 0)
-    order = sorted(range(len(lower)), key=lambda i: (max(0, lower[i]), i))
+    order = sorted(range(len(lower)), key=lambda i: (max(0, lower[i]), ids[i]))
     heap: list[tuple[int, int]] = []  # Negated (distance, ID): worst at root.
     fetched: set[int] = set()
     rounds: list[Round] = []
@@ -69,7 +75,7 @@ def refine(
             if tile in fetched or tile in chosen:
                 at += 1
                 continue
-            if before is not None and (max(0, lower[i]), i) > before:
+            if before is not None and (max(0, lower[i]), ids[i]) > before:
                 break
             if len(chosen) == batch_tiles:
                 break  # Leave this unrequested row at the head of the queue.
@@ -86,7 +92,7 @@ def refine(
                        or lower[i] > d for i, d in scores)):
             raise ValueError("Refiner must return each requested row once with a consistent exact score")
         for i, distance in scores:
-            candidate = (-distance, -i)
+            candidate = (-distance, -ids[i])
             if len(heap) < k:
                 heapq.heappush(heap, candidate)
             elif candidate > heap[0]:
