@@ -78,19 +78,23 @@ def prepare(args, rows, mode, stack):
         stack.enter_context(workspace)
         setup["planning_s"], candidates = timed(radix.plans, server, index, layout, len(rows))
         frontier = planner.pareto(candidates)
-        plan = planner.select(frontier, 1, 1)
-        setup["terminal_prepare_s"] = timed(client.prepare_terminal, plan.terminal_bits)[0]
         setup["index_tiles"] = len(encrypted)
         setup["index_phase_bound"] = encrypted[0].phase_bound
         setup["full_index_coefficient_bytes"] = len(encrypted)*2*pk.n*((pk.q.bit_length()+7)//8)
         setup["workspace_coefficient_bytes"] = workspace.coefficient_bytes
-        variant = Variant(bits=plan.terminal_bits, query_drop=plan.query_drop, response_drop=plan.response_drop)
-        cases[name] = dict(client=client, layout=layout, plan=plan, variant=variant,
-            handler=RadixHandler(Handler(workspace, args.embed_len, variant), layout, len(rows)),
-            report=dict(layout=asdict(layout), t=pk.t, n=pk.n, q_hex=format(pk.q, "x"), eta=pk.eta,
-                setup=setup, selected=asdict(plan), pareto_frontier=[asdict(p) for p in frontier],
-                query_bytes=layout.packet_size(plan.query_bytes, len(rows), "query"),
-                response_bytes=layout.packet_size(plan.response_bytes, len(rows), "response")))
+        setup["full_key_coefficient_bytes"] = (2+2*len(keys.relin)*(1+len(keys.rotations)))*pk.n*((pk.q.bit_length()+7)//8)
+        measured_plans = frontier if args.all_precision else [planner.select(frontier, 1, 1)]
+        for i, plan in enumerate(measured_plans):
+            context_setup = setup.copy()
+            context_setup["terminal_prepare_s"] = timed(client.prepare_terminal, plan.terminal_bits)[0]
+            variant = Variant(bits=plan.terminal_bits, query_drop=plan.query_drop, response_drop=plan.response_drop)
+            case_name = f"{name}-p{i}" if args.all_precision else name
+            cases[case_name] = dict(client=client, layout=layout, plan=plan, variant=variant,
+                handler=RadixHandler(Handler(workspace, args.embed_len, variant), layout, len(rows)),
+                report=dict(layout=asdict(layout), layout_name=name, t=pk.t, n=pk.n, q_hex=format(pk.q, "x"), eta=pk.eta,
+                    setup=context_setup, selected=asdict(plan), pareto_frontier=[asdict(p) for p in frontier],
+                    query_bytes=layout.packet_size(plan.query_bytes, len(rows), "query"),
+                    response_bytes=layout.packet_size(plan.response_bytes, len(rows), "response")))
         del encoded, encrypted, candidates
         gc.collect()
     return cases
@@ -99,8 +103,10 @@ def prepare(args, rows, mode, stack):
 def trials(args, rows, cases):
     variants = {"g1-native": "g1", "g1-generic": "g1", "balanced2": "balanced2",
                 "distance2": "distance2", "distance3": "distance3"}
-    methods = {name: ("native" if name == "g1-native" else "numpy" if args.vectorized_radix else "scalar") for name in variants}
-    if args.vectorized_radix:
+    if args.all_precision:
+        variants = {name: name for name in cases}
+    methods = {name: ("native" if name == "g1-native" or name.startswith("g1-p") else "numpy" if args.vectorized_radix else "scalar") for name in variants}
+    if args.vectorized_radix and not args.all_precision:
         for case in ("g1", "distance2", "distance3"):
             variants[case+"-scalar"] = case
             methods[case+"-scalar"] = "scalar"
@@ -110,11 +116,14 @@ def trials(args, rows, cases):
         for repeat in range(args.repeats+1):
             query = [query_rng.randrange(2) for _ in range(args.embed_len)]
             expected = tuple(sum(a != b for a, b in zip(query, row, strict=True)) for row in rows)
-            prepared = {}
+            prepared, fresh_by_layout = {}, {}
             for name, c in cases.items():
                 layout, client, plan = c["layout"], c["client"], c["plan"]
-                encode_s, encoded = timed(bgv.coefficient_inputs, query, [], client.pk.n)
-                encrypt_s, fresh = timed(client.encrypt, encoded[0])
+                if layout not in fresh_by_layout:
+                    encode_s, encoded = timed(bgv.coefficient_inputs, query, [], client.pk.n)
+                    encrypt_s, fresh = timed(client.encrypt, encoded[0])
+                    fresh_by_layout[layout] = encode_s, encrypt_s, fresh
+                encode_s, encrypt_s, fresh = fresh_by_layout[layout]
                 compress_s, inner = (0.0, fresh) if plan.query_drop is None else timed(
                     query_codec.compress, fresh, client.pk, dropped_bits=plan.query_drop, backend="native")
                 wrap_s, packet = timed(layout.wrap, inner, len(rows), "query")
@@ -179,10 +188,13 @@ def main():
     parser.add_argument("--transport-repeats", type=int, default=5)
     parser.add_argument("--packed-radix", action="store_true", help="Use the retained packed native private boundary before radix decoding")
     parser.add_argument("--vectorized-radix", action="store_true", help="Use NumPy plaintext decoding and retain matched scalar controls")
+    parser.add_argument("--all-precision", action="store_true", help="Measure every Pareto precision plan with matched encryption coins within each layout")
     parser.add_argument("--links", nargs="+", choices=tuple(LINKS), default=["10up-100down-40ms", "10Mbps-40ms"])
     parser.add_argument("--index-modes", nargs="+", choices=("public", "owner"), default=["public", "owner"])
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
+    if args.all_precision and not (args.packed_radix and args.vectorized_radix):
+        parser.error("All-precision measurements require packed/vectorized radix finishing")
     if (not 3 <= args.num_vectors <= 32768 or not 1 <= args.embed_len <= 512
         or not 0 <= args.transport_repeats <= args.repeats <= 100 or args.repeats < 1
         or len(set(args.index_modes)) != len(args.index_modes) or len(set(args.links)) != len(args.links)):
@@ -207,6 +219,7 @@ def main():
         gpu=subprocess.check_output(["nvidia-smi", "--query-gpu=name,driver_version,memory.total", "--format=csv,noheader"], text=True).strip(),
         num_vectors=len(rows), dimension=args.embed_len, repeats=args.repeats, transport_repeats=args.transport_repeats,
         packed_radix=args.packed_radix, vectorized_radix=args.vectorized_radix,
+        all_precision=args.all_precision,
         plaintext_index_seed=1701, query_seed=20260927, variant_order_seed=20260929,
         links_upload_mbps_download_mbps_rtt_ms={link: LINKS[link] for link in args.links},
         results=results, source_and_binary_sha256=hashes)
