@@ -108,7 +108,7 @@ def run(args):
             query = data.rows[query_id]
             exact = [(query ^ row).bit_count() for row in rows]
             expected_top = tuple(sorted(zip(exact, ids, strict=True))[:3])
-            local_s, local_top = timed(lambda: tuple(sorted(((query ^ row).bit_count(), i)
+            local_s, local_top = timed(lambda query=query: tuple(sorted(((query ^ row).bit_count(), i)
                                                             for row, i in zip(rows, ids, strict=True))[:3]))
             assert local_top == expected_top
             if repeat:
