@@ -8,10 +8,17 @@ All notable changes to this project will be documented in this file.
   including a smaller-base modular distance construction, exact tail handling,
   context-bound fixture envelopes and public t-dependent precision planning.
   Retain scalar decoding as an oracle for packed/vectorized client paths and
-  compare complete CPU/CUDA ciphertexts at the new plaintext moduli.
+  compare complete CPU/CUDA ciphertexts at the new plaintext moduli. At 32,768
+  vectors, measure 29.1%/37.0% less complete owner-index local latency for two/
+  three-vector packing; only two-vector packing also lowers total traffic there.
 - Add an E13 standalone CRT/gadget-digit boundary benchmark with independent
-  GMP checks, native/shared/packed transfer layouts and one/eight CPU workers.
-  It measures transfer and conversion costs, not authenticated GPU execution.
+  GMP checks, native/shared/tightly packed/aligned transfer layouts and one/eight
+  CPU workers.
+  Aligned words reduce the eight-worker boundary time by 66.3%/65.2% at 8,192/
+  32,768 vectors. Record radix-reduced schedules and retain negative results.
+  These measure transfer/conversion costs, not authenticated GPU execution.
+  Validate 955 full-suite tests (one live AWS skip), host ASan/UBSan and CUDA
+  memcheck; update the experiment plan with measured choices and remaining gaps.
 - Add a separate E15 joint-packing support-bound policy, with a deterministic
   whole-polynomial derivation, independent symbolic error propagation and
   CPU/CUDA precision-frontier regressions. Retain the conservative bound and

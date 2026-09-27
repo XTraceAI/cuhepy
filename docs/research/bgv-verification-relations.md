@@ -102,7 +102,10 @@ cannot avoid that connection just by checking digit ranges.
 
 The simple partition therefore moves hundreds of MB to multiple GB per request,
 despite the owner/client response being around 80–156 KB. It deserves a transfer
-and trusted-CRT microbenchmark before implementing a complete service. It is not
+and trusted-CRT microbenchmark before implementing a complete service. The
+[follow-up now measures that boundary](bgv-digit-boundary-results.md), including
+an aligned 32-byte round trip and E16's reduced physical-candidate schedules.
+It does not implement the verification obligations listed here. This is not
 yet evidence that verified GPU evaluation must lose: batched relation proofs,
 better partitions, and genuinely attested GPU execution remain alternatives.
 
@@ -148,8 +151,11 @@ including partial and multiple response groups.
 .venv/bin/python -m pytest experiments/bfv_search_lab/test_verification_oracles.py -q
 ```
 
-Next, measure the modeled boundary, choose a complete small statement, and
-compare a trusted nonlinear core with a reviewed proof backend. Continue only
+With [boundary measurements](bgv-digit-boundary-results.md) now available,
+choose a complete small statement and compare a trusted nonlinear core with
+a reviewed proof backend. Any [radix layout](bgv-radix-results.md) must also
+bind its base/mode, digit count, t, logical/physical counts and tail policy.
+Continue only
 after mutations of every stage, context and coverage rule are rejected and the
 complete costs are measured. There is no claim of an efficient verified GPU
 service from these arithmetic identities alone.

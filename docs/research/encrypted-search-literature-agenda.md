@@ -4,9 +4,11 @@ Reviewed 2026-09-26 on `research/bfv-search-lab`, after `5f4a550`.
 This supplements the [main experiment plan](bfv-search-experiment-plan.md).
 E13–E19 below began as **proposals**. The 2026-09-27 follow-up now records an
 [E15 deterministic bound and measured precision improvement](bgv-support-bounds.md)
-and [E13/E14 stage inventory and arithmetic oracles](bgv-verification-relations.md).
-The latter are not implemented verification protocols or proofs. Neither update
-establishes novelty or production security. Existing E01–E12,
+and [E13/E14 stage inventory and arithmetic oracles](bgv-verification-relations.md),
+followed by [E16 radix/client measurements](bgv-radix-results.md) and
+[E13 CPU/GPU boundary measurements](bgv-digit-boundary-results.md). These do not
+implement a complete GPU verification protocol or proof. None establishes
+novelty or production security. Existing E01–E12,
 implementations, negative results and independent oracles remain the baseline.
 
 The most promising paper question is: **can exact search over an encrypted
@@ -174,6 +176,15 @@ matched raw GPU path; that is a goal, not a prediction. **Stop or repartition
 if:** trusted digit work or trace transfer dominates. A measured boundary where
 verification loses is still useful evidence.
 
+**Measured follow-up:** the [boundary study](bgv-digit-boundary-results.md)
+implements the exact public CRT/digit step, four transfer layouts and one/eight
+CPU workers. Aligned 16-byte integers beat tightly packed 15-byte integers even
+with 6.7% more traffic. Eight-worker aligned boundaries cost 43.95/121.41 ms at
+8,192/32,768 vectors, excluding all protocol work and Nitro/vsock copies. E16
+radix schedules reduce that cost, but no measured authenticated GPU service
+results from summing these component timings. Next implement and cost one
+complete checked subcircuit before committing to the whole partition.
+
 Separately evaluate an attested-GPU deployment when suitable hardware is
 available. It has a larger hardware/firmware trust boundary and needs its own
 fresh evidence, channel binding and measured execution policy. The current
@@ -278,7 +289,7 @@ arithmetic stage. **Stop if:** gains rely only on Gaussian fits or fail under
 shared-key reuse. New N/Q/t/secret/error distributions require a fresh security
 assessment; correctness headroom is not evidence of lattice security.
 
-## 6. E16 — Combine coefficient packing with balanced radix packing
+## 6. E16 — Combine coefficient packing with radix packing
 
 **Hypothesis:** compress several signed candidate vectors into each E06 block,
 then collect several correlations per selected coefficient. Fewer tile products
@@ -312,6 +323,22 @@ Sweep t/Q/N only with separately assessed security profiles. Additional radix
 digits may consume exactly the noise/precision savings from E15. **Continue
 if:** a complete request improves at matched correctness/security. **Stop if:**
 extra limbs, wider responses or client digit extraction remove the tile saving.
+
+**Implemented follow-up:** [E16 results](bgv-radix-results.md) retain the
+balanced construction and add direct-distance digits with `B=d+1`:
+`(B^g-1-S)*2^-1 mod t = sum_l H_l*B^l`. This needs odd `t>=B^g`, even when the
+signed correlation S wraps; partial groups use their actual active length.
+At d=512 it permits t=263,171 for g=2 and t=135,005,723 for g=3 under the
+existing policy. Independent integer/native/CUDA tests cover carries, tails,
+precision and exact distances. Larger t remains a separate parameter review.
+
+The first scalar-client implementation lost much of its server saving to
+decoding. Packed ciphertext handling plus independently checked NumPy plaintext
+decoding reduces complete owner-index local latency at 32,768 vectors by
+29.1%/37.0% for g=2/g=3. Only g=2 also saves total bytes there (12,290 B). Both
+increase traffic at 8,192, and g=3 loses on the measured paced links at either
+size. Joint workload/network planning is therefore the next packing step;
+this is not an unconditional replacement for the existing layout.
 
 ## 7. E17 — Make query upload proportional to useful input
 
@@ -440,8 +467,9 @@ Keep the main worktree and baseline intact. Proposed descendant branches are
 `experiment/bgv-trace-bounds` (E15), and `experiment/bgv-radix-correlation`
 (E16). E17–E19 start with models/oracles before native backends. The initial
 literature-only update created no branches or scheme implementations. The
-2026-09-27 work uses `experiment/bgv-verification-packing` for the first E13/E14
-oracles and E15 bound, leaving the baseline PR branch unchanged.
+2026-09-27 work uses `experiment/bgv-verification-packing` for E13/E14 oracles,
+E15 bounds, E16 radix/client experiments and E13 transfer measurements, leaving
+the baseline PR branch unchanged.
 
 | Order | Concrete output | Decision gate |
 |---|---|---|

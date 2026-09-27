@@ -180,8 +180,8 @@ and whitespace checks passed. Sanitizers and real enclave deployment were not
 rerun for this Python/model-only change.
 
 This is a positive E15 result: a deterministic bound improvement reduces upload
-without changing the ring or evaluator. The next performance experiment can
-combine it with E16 radix packing, accounting for the larger plaintext modulus
+without changing the ring or evaluator. The [E16 follow-up](bgv-radix-results.md)
+now combines it with radix packing, accounting for the larger plaintext modulus
 and terminal precision rather than assuming that fewer tiles halve wire bytes.
 The [verification inventory](bgv-verification-relations.md) separately begins
 E13/E14; the GPU authentication gap remains open.

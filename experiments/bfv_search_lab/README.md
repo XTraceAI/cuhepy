@@ -26,6 +26,12 @@ paired precision/transport measurements. The
 [E13/E14 verification inventory](../../docs/research/bgv-verification-relations.md)
 starts with arithmetic oracles and a trusted-boundary cost model, not a complete
 proof system or GPU authentication protocol.
+The [E16 radix experiment](../../docs/research/bgv-radix-results.md) implements
+balanced and direct-distance packing with independent scalar/vectorized
+decoders, and measures client/server/traffic tradeoffs. The
+[E13 boundary experiment](../../docs/research/bgv-digit-boundary-results.md)
+measures exact CRT/digit work and four host/GPU transfer layouts; it does not
+authorize GPU responses.
 
 These are explicit research entry points, outside the default client and its
 authenticated protocols. They operate on synthetic, owner-controlled data.
@@ -43,6 +49,8 @@ assurance. The raw CUDA path does not provide attestation.
 | `butterfly_bgv.py` | Joint trace/packing reference, public bound schedule and key validation |
 | `support_bounds_bgv.py` | Opt-in whole-polynomial support bound for the same joint native circuit |
 | `verification_oracles.py` | Toy field checks, exact integer relations and internal-traffic model; no authorization API |
+| `radix_bgv.py`, `radix_client_bgv.py` | Separate radix index layout, precision plans and gated local-fixture decoder; scalar and packed/vectorized paths |
+| `_native/digit_boundary.h`, `_native/digit_boundary.cu`, `_native/test_digit_boundary.cpp` | Public CRT/digit conversion, standalone CPU/GPU boundary benchmark and host sanitizer oracle |
 | `native_bgv.py`, `_native/` | Isolated C++/RNS/CUDA evaluators with resident public keys/index |
 | `_native/compact.h` | Exact terminal reduction in C++, before exporting the small result |
 | `compact_bgv.py` | Congruence-preserving terminal modulus reduction and its correctness bound |

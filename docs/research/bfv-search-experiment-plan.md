@@ -677,6 +677,11 @@ or stop. Never store private keys in measurement artifacts.
   arithmetic and local protocol benchmarks; no authenticated GPU claim.
 - [Literature review and next experiments](encrypted-search-literature-agenda.md):
   primary-source comparisons, E13–E19 derivations, cost limits and decision gates.
+- [Radix packing and client decoding](bgv-radix-results.md): balanced and
+  direct-distance layouts, exact bytes, scalar controls and complete local/TCP
+  measurements, including cases where fewer tiles still lose on the network.
+- [Trusted digit-boundary costs](bgv-digit-boundary-results.md): exact CPU/GPU
+  conversion, transfer layouts and radix-reduced schedules; no verifier claim.
 
 The oracle passes **1,131 partial-layout cases and 367 coefficient-layout cases**.
 It exhausts all query/vector pairs up to four bits and adds deterministic random
@@ -700,17 +705,28 @@ Follow-up work is on `experiment/bgv-verification-packing`:
   8,192/32,768 vectors and reduces paced-link latency. Original bounds, codecs
   and Nitro policies remain available. Whole-polynomial symbolic tests and
   complete CPU/CUDA comparisons precede the precision measurements.
-- **E13/E14 first specification/oracles implemented:** the
+- **E16 implemented and measured:** [balanced/direct-distance packing](bgv-radix-results.md)
+  uses the existing homemade BGV circuit with new t/layout contexts. At 32,768
+  vectors, owner-index complete local requests fall from 86.36 ms to 61.20 ms
+  (distance g=2) or 54.41 ms (g=3). Only g=2 also improves total traffic there;
+  at 8,192, larger packets lose on both measured links. The scalar reference,
+  negative initial results and packed/vectorized ablations are retained.
+- **E13/E14 specification/oracles and E13 boundary measurements implemented:** the
   [stage/constraint inventory](bgv-verification-relations.md) includes integer
   rounding, canonical CRT, digit ranges, coverage and exact response binding.
   Exhaustive toy field and integer mutation tests validate these arithmetic
   references. There is no complete proof or authenticated GPU protocol yet.
-  The naive trusted-digit boundary models 0.38–2.68 GB of internal traffic per
-  request across the two sizes/representations; measure it before committing
-  to that partition.
-- **Next:** measure trusted digit/transfer costs and produce one complete small
-  verification statement/proof; add the E16 radix reference with full t/noise/
-  precision costs. E17–E19 remain independent model-first experiments.
+  The [measured digit boundary](bgv-digit-boundary-results.md) improves from
+  130.53/348.84 ms to 43.95/121.41 ms at 8,192/32,768 vectors using aligned
+  words and eight CPU workers. These omit the actual verification protocol
+  and enclave transport. Radix g=3 reduces those schedule costs further to
+  20.60/50.01 ms; substantial trusted/transfer work remains.
+- **Next:** build one complete small checked subcircuit/proof with all binding,
+  challenge/refill and deployment transfer costs; compare nonlinear-boundary
+  choices. Join E16 layout selection with the precision/network planner and
+  charge fresh setup when changing t. Extend protected client and receipt
+  contracts only after that specification is complete. E17–E19 remain
+  independent model-first experiments.
 
 The strongest current paper direction is **exact encrypted search with
 verification, client work and communication included in the optimization**.
@@ -724,16 +740,17 @@ or a raw GPU fixture as today's authenticated service performance.
 | E13 | Trusted CPU checks an untrusted GPU's public ciphertext arithmetic | Stage inventory and one-use field-check prototype, with trusted digit/rounding work | Intermediate traffic or trusted work approaches full recomputation |
 | E14 | Design the HE circuit and its proof together | Canonical evaluation relation including integer rounding, compression and index coverage | Proof generation/bytes overwhelm the fast search |
 | E15 | Coefficient-specific trace/noise bounds | Exact symbolic support model, then a justified deterministic or explicitly probabilistic bound | Shared errors/rounding invalidate optimistic independence assumptions |
-| E16 | Balanced radix digits inside coefficient-packed correlations | g=1/2/3 reference, exact carry/no-wrap derivation and complete noise model | Larger t/Q and wider output erase the reduction in tile count |
+| E16 | Balanced and direct-distance radix digits inside coefficient-packed correlations | Completed g=1/2/3 reference and measurements; next, joint layout/precision/network selection | Larger t/Q and wider output erase the reduction in tile count |
 | E17 | Short LWE/MLWE or symmetric query upload with server conversion | Conversion+search cost model against the current rounded query | Conversion depth/setup costs exceed saved transfer time |
 | E18 | Exact stable top-k followed by sparse output encoding | Selection and moment-encoding oracles, with real output-conversion costs | Comparisons cost more than the roughly 80 KB response they replace |
 | E19 | Exact private substring indexing and coverage certificates | Bucket/selectivity model, omission tests and explicit leakage contract | Enumeration, padding, proof traffic and extra rounds erase pruning |
 
 The [companion agenda](encrypted-search-literature-agenda.md) gives the equations,
 closest literature, security boundaries, experiment sequence and stop criteria.
-Start with E13/E14's complete verification specification and E15/E16's cheap
-mathematical references. Proceed to new kernels or scheme implementations only
-after those models leave a credible complete-request improvement. E17–E19 remain
+Use E13's measured boundary costs and E15/E16's mathematical references and
+full-request measurements to choose the next complete verification experiment.
+Proceed to new kernels or scheme implementations only after those models
+leave a credible complete-request improvement. E17–E19 remain
 independent exploratory tracks; BFV is not a restriction on the design space.
 
 Keep the four original size categories and add authentication/proof bytes,
