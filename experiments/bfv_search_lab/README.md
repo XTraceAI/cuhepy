@@ -2,8 +2,11 @@
 
 The [current research priorities](../../docs/research/creative-experiment-priorities.md)
 favor creative algebra, algorithms and protocols before further routine tuning
-or completing the existing verifier. E20/E21 and the revised E17/E19/E14 cards
-are proposals, not implemented results or established novel contributions.
+or completing the existing verifier. The [first creative cycle](../../docs/research/creative-algebra-results.md)
+now implements E20/E21 mathematical and encrypted references plus E19 coupled
+syndrome/weight filtering and public lookup factorization. The retained negative
+results determine the next questions; no novel contribution or production
+speedup is established by these prototypes.
 
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
@@ -57,6 +60,9 @@ assurance. The raw CUDA path does not provide attestation.
 
 | File | Role |
 | --- | --- |
+| `reduction_oracles.py`, `deferred_bgv.py` | E20 independent secret-basis/projection oracle, switch/key/noise models and homemade delayed-switch evaluator |
+| `answer_oracles.py`, `aggregate_bgv.py` | E21 exact polynomial/interpolation/Walsh references, stable-ID recovery, rank/tie obstructions and encrypted factor circuit |
+| `syndrome_oracle.py` | E19 safe coupled block bounds, exact public table factorization and owner-side layouts checked through homemade BGV encryption |
 | `layout_oracles.py` | Independent plaintext algebra and operation counts |
 | `partial.py` | Layout, reference circuit, native/CUDA experimental servers and decoder |
 | `query.py` | Public-key or seeded symmetric query, one-use preprocessing pool, native encoder wrapper |

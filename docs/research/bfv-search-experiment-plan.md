@@ -65,6 +65,12 @@ add E20/E21 and promote competing E17/E19/E14 hypotheses. This supersedes earlie
 execution orders; existing results and implementations remain the baseline.
 These proposals add no new performance measurements or security/novelty claims.
 
+**Creative experiment results, 2026-09-27:** a separate descendant branch now
+contains [E20/E21 oracles and homemade encrypted pilots, plus E19 coupled
+filtering and exact lookup factorization](creative-algebra-results.md). The
+results retain unsuccessful constructions and identify the next representation
+and protocol questions. No production-size encrypted speedup is established.
+
 ## Expanded scheme portfolio after the first implementations
 
 The objective is exact/private search under a declared contract, not adherence
@@ -755,14 +761,22 @@ Follow-up work is on `experiment/bgv-verification-packing`:
   checked-stage medians of 61.27/155.85 ms at 32/64 tiles versus optimized native
   recomputation at 91.58/197.97 ms. One tile loses and eight are near parity.
   These are ciphertext tiles and an initial subcircuit, not complete searches.
-- **Next, under the updated research priority:** test alternative algebra and
-  protocols with small independent models before extending the existing native
-  pipeline. E20 asks whether expensive ciphertext transformations can follow
-  reduction; E21 asks whether direct answer aggregates can replace distance
-  materialization. Explore E19 certified pruning and E17 conversion fused with
-  matching alongside E14 arithmetic designed for cheaper verification. The
-  [experiment cards](creative-experiment-priorities.md) specify first tests,
-  prior-art questions and likely failure modes.
+- **E20/E21 and E19 creative cycle implemented:** the
+  [new results](creative-algebra-results.md) provide symbolic key-basis tracking,
+  exact histogram/ID recovery and homemade encrypted pilots. Straightforward
+  delayed switching and direct histogram products fail their initial cost tests.
+  A coupled syndrome/weight filter preserves exact results and sharply reduces
+  candidates on favorable synthetic data; public rank factorization halves the
+  modeled lookup products, but leaves an 8× penalty versus exact full-scan
+  products. Uniform and duplicate data retain the adverse cases.
+- **Next, under the updated research priority:** investigate a different private
+  lookup/selection mechanism and query conversion that produces useful
+  statistics directly. Treat the measured table rank and cheaper exact-distance
+  representation as controls. Keep complete threshold/coverage/privacy costs
+  explicit, and revisit E14 where the new arithmetic affects verification.
+  The [experiment cards](creative-experiment-priorities.md) retain the original
+  hypotheses and link their outcomes. The new work is on the descendant branch
+  `experiment/creative-search-algebra`; the prior optimized baseline is intact.
 - **Retained engineering backlog:** butterfly/key-switch composition, terminal
   rounding and final-byte binding, complete coverage, matched CPU thread
   budgets, resident memory and real enclave transfers remain necessary for a
@@ -789,9 +803,9 @@ or a raw GPU fixture as today's authenticated service performance.
 | E16 | Balanced and direct-distance radix digits inside coefficient-packed correlations | Joint layout/precision/setup report retained; broader service measurements deferred | Larger t/Q, wider output or setup erase the reduction in tile count |
 | E17 | Short LWE/MLWE or symmetric query upload with server conversion | Test whether conversion and matching can share work, against a separate-conversion baseline | Conversion depth/setup costs exceed saved transfer time |
 | E18 | Exact stable top-k followed by sparse output encoding | Selection and moment-encoding oracles, with real output-conversion costs | Comparisons cost more than the roughly 80 KB response they replace |
-| E19 | Exact private substring indexing and coverage certificates | Bucket/selectivity model, omission tests and explicit leakage contract | Enumeration, padding, proof traffic and extra rounds erase pruning |
-| E20 | Reduction before expensive ciphertext transformations | Symbolic secret-term oracle for delayed relinearization, automorphisms and projection | Secret-term growth, key material or noise cancels the saving |
-| E21 | Direct answer aggregates using the integer Hamming score domain | Tiny polynomial/histogram oracle with complete stable-ID recovery costs | Depth, polynomial growth or tie refinement exceeds ordinary scoring/selection |
+| E19 | Exact private indexing and coverage certificates | Coupled syndrome/weight model and encrypted one-hot/factorized lookup regressions done; seek a cheaper complete protocol | Lookup work, padding, proof traffic and extra rounds erase pruning |
+| E20 | Reduction before expensive ciphertext transformations | Symbolic and homemade encrypted references done; ordinary deferral saves no switches | Secret-term growth, key material or noise cancels the saving |
+| E21 | Direct answer aggregates using the integer Hamming score domain | Three polynomial oracles, rank/tie counterexamples and exact encrypted pilot done; literal circuit loses | Depth, polynomial growth or tie refinement exceeds ordinary scoring/selection |
 
 The [companion agenda](encrypted-search-literature-agenda.md) gives the equations,
 closest reviewed literature and security boundaries. The

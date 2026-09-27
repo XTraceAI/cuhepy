@@ -1,0 +1,2256 @@
+{
+  "kind": "plaintext_syndrome_weight_selectivity_model",
+  "utc": "2026-09-27T08:10:17.219776+00:00",
+  "command": [
+    "benchmarks/syndrome_search_model.py",
+    "--json-out",
+    "benchmarks/results/syndrome_search_model_20260927.json"
+  ],
+  "git_head": "a23d8132590871bdcb31689a7f22d914f2249b48",
+  "source_sha256": {
+    "benchmarks/syndrome_search_model.py": "27ea61a381e9cb11b12e82a83fb8f9ee7df721d26fbc4447201ed0702850405b",
+    "experiments/bfv_search_lab/syndrome_oracle.py": "71b6da471665600fc2b84932f78d92a0fcaa1005c69d38cd883b6034c4ae213c"
+  },
+  "notes": "Exact plaintext oracle, no encrypted speedup or novel coding-theory claim. Oracle kth radius is not free; fixed-radius results include insufficient coverage. All derived features are scanned. Encrypted lookup is only a cost model here; a separate small encrypted regression checks its algebra. Private routing, omitted-result certificates, threshold discovery, traffic and server/client timings are unimplemented. Data are synthetic, including deliberately favorable and adverse fixtures.",
+  "code_columns": [
+    [
+      1,
+      2,
+      4,
+      8,
+      7,
+      12,
+      10,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      13,
+      9,
+      3
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      11,
+      13,
+      9,
+      12
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      12,
+      11,
+      7,
+      9
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      6,
+      15,
+      9,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      9,
+      11,
+      3,
+      15
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      5,
+      10,
+      14,
+      13
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      5,
+      6,
+      15,
+      10
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      12,
+      3,
+      6,
+      9
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      6,
+      7,
+      10,
+      15
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      10,
+      5,
+      3
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      12,
+      5,
+      13,
+      11
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      11,
+      3,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      15,
+      12,
+      14
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      14,
+      11,
+      6
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      14,
+      3,
+      6,
+      13
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      10,
+      5,
+      13,
+      3
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      6,
+      7,
+      9
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      10,
+      6,
+      11,
+      3
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      11,
+      5,
+      7
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      6,
+      10,
+      11,
+      13
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      5,
+      9,
+      14,
+      6
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      10,
+      14,
+      9,
+      6
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      11,
+      5,
+      3,
+      6
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      7,
+      5,
+      9
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      6,
+      10,
+      13,
+      12
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      12,
+      15,
+      13,
+      14
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      14,
+      3,
+      9,
+      7
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      7,
+      13,
+      9,
+      6
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      12,
+      5,
+      3
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      5,
+      14,
+      6,
+      9
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      5,
+      3,
+      10,
+      11
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      13,
+      12,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      14,
+      9,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      6,
+      15,
+      10,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      5,
+      13,
+      10,
+      3
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      7,
+      5,
+      6,
+      9
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      14,
+      7,
+      3
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      9,
+      10,
+      6
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      3,
+      7,
+      13,
+      14
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      11,
+      14,
+      5,
+      6
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      11,
+      13,
+      14
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      9,
+      6,
+      5,
+      12
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      3,
+      5,
+      13
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      5,
+      3,
+      11
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      7,
+      15,
+      5,
+      13
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      12,
+      5,
+      6
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      5,
+      11,
+      14,
+      10
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      9,
+      11,
+      14,
+      10
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      11,
+      3,
+      12,
+      13
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      3,
+      14,
+      13,
+      10
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      7,
+      5,
+      9,
+      11
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      14,
+      5,
+      11,
+      9
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      6,
+      10,
+      14,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      12,
+      6,
+      9,
+      11
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      11,
+      12,
+      3,
+      9
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      10,
+      13,
+      9,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      7,
+      9,
+      14
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      13,
+      15,
+      5,
+      14
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      14,
+      9,
+      6,
+      5
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      12,
+      15,
+      6,
+      3
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      11,
+      6,
+      7,
+      12
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      11,
+      12,
+      9,
+      10
+    ],
+    [
+      1,
+      2,
+      4,
+      8,
+      15,
+      11,
+      3,
+      7
+    ]
+  ],
+  "onehot_lookup_cost_model": {
+    "onehot_features": 6117,
+    "onehot_padded": 8192,
+    "onehot_input_tiles": 4096,
+    "onehot_switches": 12287,
+    "original_features": 512,
+    "original_padded": 512,
+    "original_input_tiles": 256,
+    "original_switches": 767,
+    "query_plaintext_entries": 6117
+  },
+  "factorized_lookup_cost_model": {
+    "factorized_features": 3549,
+    "factorized_padded": 4096,
+    "factorized_input_tiles": 2048,
+    "factorized_switches": 6143,
+    "original_features": 512,
+    "original_padded": 512,
+    "original_input_tiles": 256,
+    "original_switches": 767,
+    "query_plaintext_entries": 3549
+  },
+  "factorized_block_ranks": [
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    42,
+    57,
+    57,
+    39,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    42,
+    57,
+    57,
+    57,
+    57,
+    57,
+    39,
+    57,
+    39,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    42,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57
+  ],
+  "rank_sweep_first_block": [
+    {
+      "syndrome_rank": 1,
+      "buckets": 9,
+      "lookup_rank": 9
+    },
+    {
+      "syndrome_rank": 2,
+      "buckets": 28,
+      "lookup_rank": 13
+    },
+    {
+      "syndrome_rank": 3,
+      "buckets": 56,
+      "lookup_rank": 47
+    },
+    {
+      "syndrome_rank": 4,
+      "buckets": 96,
+      "lookup_rank": 57
+    },
+    {
+      "syndrome_rank": 5,
+      "buckets": 156,
+      "lookup_rank": 34
+    },
+    {
+      "syndrome_rank": 6,
+      "buckets": 156,
+      "lookup_rank": 34
+    },
+    {
+      "syndrome_rank": 7,
+      "buckets": 256,
+      "lookup_rank": 9
+    },
+    {
+      "syndrome_rank": 8,
+      "buckets": 256,
+      "lookup_rank": 9
+    }
+  ],
+  "results": [
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 217,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 93.8046875,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 88.009033203125,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 8192,
+          "mean_bound": 138.716064453125,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 8192,
+          "mean_bound": 177.82080078125,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 4,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 5155,
+            "syndrome": 7890,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 577,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 7691
+          }
+        },
+        {
+          "radius": 217,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "uniform",
+      "seed": 2701
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 6,
+      "filters": {
+        "weight": {
+          "survivors": 3,
+          "mean_bound": 93.8756103515625,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 3,
+          "mean_bound": 87.9412841796875,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 3,
+          "mean_bound": 138.7828369140625,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 3,
+          "mean_bound": 177.6358642578125,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 2,
+          "covers_k": false,
+          "survivors": {
+            "weight": 2,
+            "syndrome": 2,
+            "parity_max": 2,
+            "conditioned": 2
+          }
+        },
+        {
+          "radius": 6,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 3,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 3,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 4,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 5084,
+            "syndrome": 7879,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 560,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 7697
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "planted-close",
+      "seed": 2701
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 0,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "all-identical",
+      "seed": 2701
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 124,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 87.6268310546875,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 7643,
+          "mean_bound": 119.317626953125,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 26,
+          "mean_bound": 147.113037109375,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 2,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 7917,
+            "parity_max": 3,
+            "conditioned": 2
+          }
+        },
+        {
+          "radius": 124,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 7643,
+            "conditioned": 26
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 99
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "balanced-with-planted-neighbors",
+      "seed": 2701
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 219,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 93.3883056640625,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 87.9010009765625,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 8192,
+          "mean_bound": 138.3912353515625,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 8192,
+          "mean_bound": 179.2403564453125,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 1,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 5299,
+            "syndrome": 7911,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 617,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 7501
+          }
+        },
+        {
+          "radius": 219,
+          "within_radius": 4,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "uniform",
+      "seed": 2702
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 6,
+      "filters": {
+        "weight": {
+          "survivors": 3,
+          "mean_bound": 93.2113037109375,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 3,
+          "mean_bound": 87.9710693359375,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 3,
+          "mean_bound": 138.2261962890625,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 3,
+          "mean_bound": 179.0208740234375,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 2,
+          "covers_k": false,
+          "survivors": {
+            "weight": 2,
+            "syndrome": 2,
+            "parity_max": 2,
+            "conditioned": 2
+          }
+        },
+        {
+          "radius": 6,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 3,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 3,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 5,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 5363,
+            "syndrome": 7912,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 661,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 7525
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "planted-close",
+      "seed": 2702
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 0,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "all-identical",
+      "seed": 2702
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 124,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 87.5997314453125,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 7667,
+          "mean_bound": 119.372802734375,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 74,
+          "mean_bound": 143.626708984375,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 2,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 7934,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 124,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 7667,
+            "conditioned": 74
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 244
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "balanced-with-planted-neighbors",
+      "seed": 2702
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 218,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 98.89208984375,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 88.0308837890625,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 8192,
+          "mean_bound": 142.5283203125,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 8190,
+          "mean_bound": 181.9560546875,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 1,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 3273,
+            "syndrome": 7892,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8187,
+            "syndrome": 8192,
+            "parity_max": 193,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 7091
+          }
+        },
+        {
+          "radius": 218,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8190
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "uniform",
+      "seed": 2703
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 6,
+      "filters": {
+        "weight": {
+          "survivors": 3,
+          "mean_bound": 98.6490478515625,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 3,
+          "mean_bound": 87.8690185546875,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 3,
+          "mean_bound": 142.2579345703125,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 3,
+          "mean_bound": 181.8590087890625,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 0,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 2,
+          "covers_k": false,
+          "survivors": {
+            "weight": 2,
+            "syndrome": 2,
+            "parity_max": 2,
+            "conditioned": 2
+          }
+        },
+        {
+          "radius": 6,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 3,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 3,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 3,
+            "syndrome": 3,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 3314,
+            "syndrome": 7911,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8187,
+            "syndrome": 8192,
+            "parity_max": 198,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 7125
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "planted-close",
+      "seed": 2703
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 0,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 8192,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "all-identical",
+      "seed": 2703
+    },
+    {
+      "count": 8192,
+      "dimension": 512,
+      "k": 3,
+      "oracle_kth_radius": 124,
+      "filters": {
+        "weight": {
+          "survivors": 8192,
+          "mean_bound": 0.0,
+          "exact_topk_preserved": true
+        },
+        "syndrome": {
+          "survivors": 8192,
+          "mean_bound": 87.87255859375,
+          "exact_topk_preserved": true
+        },
+        "parity_max": {
+          "survivors": 7676,
+          "mean_bound": 119.247314453125,
+          "exact_topk_preserved": true
+        },
+        "conditioned": {
+          "survivors": 54,
+          "mean_bound": 144.4560546875,
+          "exact_topk_preserved": true
+        }
+      },
+      "fixed_radii": [
+        {
+          "radius": 0,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 4,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 16,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 0,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 64,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 3,
+            "parity_max": 0,
+            "conditioned": 0
+          }
+        },
+        {
+          "radius": 96,
+          "within_radius": 0,
+          "covers_k": false,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 7889,
+            "parity_max": 3,
+            "conditioned": 3
+          }
+        },
+        {
+          "radius": 124,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 7676,
+            "conditioned": 54
+          }
+        },
+        {
+          "radius": 128,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 211
+          }
+        },
+        {
+          "radius": 192,
+          "within_radius": 3,
+          "covers_k": true,
+          "survivors": {
+            "weight": 8192,
+            "syndrome": 8192,
+            "parity_max": 8192,
+            "conditioned": 8192
+          }
+        }
+      ],
+      "feature_block_visits": 524288,
+      "public_conditioned_table_entries_per_query": 9216,
+      "conditioned_table_word_evaluations_per_query": 16384,
+      "conceptual_feature_bits_per_vector": 512,
+      "privacy_or_authentication_implemented": false,
+      "fixture": "balanced-with-planted-neighbors",
+      "seed": 2703
+    }
+  ]
+}

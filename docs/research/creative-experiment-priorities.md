@@ -7,6 +7,21 @@ results. The implementation baseline is `7dd927f` on
 `checkpoint/bgv-product-checks-2026-09-27`. The original company baseline remains
 in [PR #14](https://github.com/XTraceAI/cuhepy/pull/14).
 
+**First cycle implemented:** [algebra, encrypted pilots and filter results](creative-algebra-results.md)
+are on the descendant branch `experiment/creative-search-algebra` (`b972353`,
+`a23d813`). E20's ordinary deferral does not save switches; E21's literal answer
+polynomial loses to packed scores. E19's coupled syndrome/weight bound improves
+selectivity on favorable fixtures, and public rank factorization halves its
+modeled encrypted lookup cost, but that lookup still needs 8× the original
+scan's ciphertext products. These are useful limits and experiment controls,
+not an established novel contribution or a new production speedup.
+
+**Next cycle:** prioritize an alternative lookup/selection mechanism and E17's
+conversion fused with useful query statistics. The per-block bilinear rank and
+the cheaper exact-distance baseline must constrain the next design. Keep
+threshold discovery, routing privacy and complete coverage in the protocol
+question; do not default to CUDA tuning of these losing reference constructions.
+
 ## Objective and working method
 
 Prioritize experiments that could lead to a new algorithm, representation,
@@ -25,8 +40,9 @@ be known. Check the closest work before presenting a contribution claim.
 For the next research cycle:
 
 1. Investigate several competing hypotheses with small independent algebraic
-   models. Start with E20 and E21 below, then E19 and E17; keep E14 as a competing
-   protocol direction. A plausible but uncertain idea deserves a cheap test.
+   models. The first cycle tested E20, E21 and E19; use the results above to
+   choose the next E19/E17/E14 questions. A plausible but uncertain idea deserves
+   a cheap test.
 2. For each, write the claimed difference from its closest known construction,
    one falsifiable prediction, and the assumptions needed for correctness and
    privacy. Derive an identity or counterexample before building a fast backend.

@@ -1,0 +1,1841 @@
+{
+  "kind": "creative_search_algebra_models_and_toy_pilots",
+  "utc": "2026-09-27T08:04:45.307772+00:00",
+  "command": [
+    "benchmarks/creative_search_algebra.py",
+    "--repeats",
+    "7",
+    "--json-out",
+    "benchmarks/results/creative_search_algebra_20260927.json"
+  ],
+  "git_head": "b9723536864512d65ec65f73a307db933997ba55",
+  "source_sha256": {
+    "benchmarks/creative_search_algebra.py": "63e59f456d52bf3ab7df9780489b9ba1330c54d9fa0996c1348ac9af896778a5",
+    "experiments/bfv_search_lab/reduction_oracles.py": "d81a6366c26053ac3925082b90bd6c264c12b12aa9262c39dcbe6d4e815a287a",
+    "experiments/bfv_search_lab/deferred_bgv.py": "bc77db09defb1da68c2988e88acfe95468897dc708066f51a48dfbb6d2326d37",
+    "experiments/bfv_search_lab/answer_oracles.py": "ef0ac679669e8ed9e30fe99abc25664a2093c7cde85e17dce13b6cf880415d4e",
+    "experiments/bfv_search_lab/aggregate_bgv.py": "fd2d925fef010f199841f541bb4f13efe7b70dc8240ff67ff417a70b474a657f",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/trace_bgv.py": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5",
+    "experiments/bfv_search_lab/butterfly_bgv.py": "07a1312356851b670dfc51da9bd648aee6aad22250b48d7a13575903ae388167",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4"
+  },
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "cpu": "AMD Ryzen 7 5800X 8-Core Processor",
+  "notes": "One excluded warmup; fresh paired queries and shuffled variant order. Homemade variable-time Python/GMP on tiny insecure rings. Full conservative phase bounds; no HE parameter review, authentication, network or complete private prefix protocol. Models are not timings. Large-model Q=120 bits, t=1031, eta=21, digit_bits=30. Key sizes count canonical coefficients only, and memory counts exclude temporaries. No secret keys or ciphertext contents saved.",
+  "e20_models": [
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 0,
+      "switch_calls": 10,
+      "distinct_keys": 10,
+      "key_coefficient_bytes": 19660800,
+      "max_checkpoint_polynomials": 3,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 1,
+      "switch_calls": 11,
+      "distinct_keys": 11,
+      "key_coefficient_bytes": 21626880,
+      "max_checkpoint_polynomials": 5,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 2,
+      "switch_calls": 14,
+      "distinct_keys": 14,
+      "key_coefficient_bytes": 27525120,
+      "max_checkpoint_polynomials": 9,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 3,
+      "switch_calls": 21,
+      "distinct_keys": 21,
+      "key_coefficient_bytes": 41287680,
+      "max_checkpoint_polynomials": 17,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 4,
+      "switch_calls": 36,
+      "distinct_keys": 36,
+      "key_coefficient_bytes": 70778880,
+      "max_checkpoint_polynomials": 33,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 5,
+      "switch_calls": 67,
+      "distinct_keys": 67,
+      "key_coefficient_bytes": 131727360,
+      "max_checkpoint_polynomials": 65,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 6,
+      "switch_calls": 130,
+      "distinct_keys": 130,
+      "key_coefficient_bytes": 255590400,
+      "max_checkpoint_polynomials": 129,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 7,
+      "switch_calls": 257,
+      "distinct_keys": 257,
+      "key_coefficient_bytes": 505282560,
+      "max_checkpoint_polynomials": 257,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 8,
+      "switch_calls": 512,
+      "distinct_keys": 512,
+      "key_coefficient_bytes": 1006632960,
+      "max_checkpoint_polynomials": 513,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 32,
+      "n": 16384,
+      "padded": 512,
+      "cut": 9,
+      "switch_calls": 1023,
+      "distinct_keys": 1023,
+      "key_coefficient_bytes": 2011299840,
+      "max_checkpoint_polynomials": 1025,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 82
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 0,
+      "switch_calls": 767,
+      "distinct_keys": 10,
+      "key_coefficient_bytes": 19660800,
+      "max_checkpoint_polynomials": 768,
+      "max_switch_error_weight": 218453,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 1,
+      "switch_calls": 1023,
+      "distinct_keys": 11,
+      "key_coefficient_bytes": 21626880,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 218453,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 2,
+      "switch_calls": 1023,
+      "distinct_keys": 14,
+      "key_coefficient_bytes": 27525120,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 120149,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 3,
+      "switch_calls": 1023,
+      "distinct_keys": 21,
+      "key_coefficient_bytes": 41287680,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 62805,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 4,
+      "switch_calls": 1023,
+      "distinct_keys": 36,
+      "key_coefficient_bytes": 70778880,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 32085,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 5,
+      "switch_calls": 1023,
+      "distinct_keys": 67,
+      "key_coefficient_bytes": 131727360,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 16213,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 6,
+      "switch_calls": 1023,
+      "distinct_keys": 130,
+      "key_coefficient_bytes": 255590400,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 8149,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 7,
+      "switch_calls": 1023,
+      "distinct_keys": 257,
+      "key_coefficient_bytes": 505282560,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 4085,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 8,
+      "switch_calls": 1023,
+      "distinct_keys": 512,
+      "key_coefficient_bytes": 1006632960,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 2045,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 8192,
+      "n": 16384,
+      "padded": 512,
+      "cut": 9,
+      "switch_calls": 1023,
+      "distinct_keys": 1023,
+      "key_coefficient_bytes": 2011299840,
+      "max_checkpoint_polynomials": 1280,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 90
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 0,
+      "switch_calls": 1023,
+      "distinct_keys": 10,
+      "key_coefficient_bytes": 19660800,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 349525,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 1,
+      "switch_calls": 1023,
+      "distinct_keys": 11,
+      "key_coefficient_bytes": 21626880,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 218453,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 2,
+      "switch_calls": 1023,
+      "distinct_keys": 14,
+      "key_coefficient_bytes": 27525120,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 120149,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 3,
+      "switch_calls": 1023,
+      "distinct_keys": 21,
+      "key_coefficient_bytes": 41287680,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 62805,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 4,
+      "switch_calls": 1023,
+      "distinct_keys": 36,
+      "key_coefficient_bytes": 70778880,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 32085,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 5,
+      "switch_calls": 1023,
+      "distinct_keys": 67,
+      "key_coefficient_bytes": 131727360,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 16213,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 6,
+      "switch_calls": 1023,
+      "distinct_keys": 130,
+      "key_coefficient_bytes": 255590400,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 8149,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 7,
+      "switch_calls": 1023,
+      "distinct_keys": 257,
+      "key_coefficient_bytes": 505282560,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 4085,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 8,
+      "switch_calls": 1023,
+      "distinct_keys": 512,
+      "key_coefficient_bytes": 1006632960,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 2045,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 16384,
+      "n": 16384,
+      "padded": 512,
+      "cut": 9,
+      "switch_calls": 1023,
+      "distinct_keys": 1023,
+      "key_coefficient_bytes": 2011299840,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 0,
+      "switch_calls": 2046,
+      "distinct_keys": 10,
+      "key_coefficient_bytes": 19660800,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 349525,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 1,
+      "switch_calls": 2046,
+      "distinct_keys": 11,
+      "key_coefficient_bytes": 21626880,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 218453,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 2,
+      "switch_calls": 2046,
+      "distinct_keys": 14,
+      "key_coefficient_bytes": 27525120,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 120149,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 3,
+      "switch_calls": 2046,
+      "distinct_keys": 21,
+      "key_coefficient_bytes": 41287680,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 62805,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 4,
+      "switch_calls": 2046,
+      "distinct_keys": 36,
+      "key_coefficient_bytes": 70778880,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 32085,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 5,
+      "switch_calls": 2046,
+      "distinct_keys": 67,
+      "key_coefficient_bytes": 131727360,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 16213,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 6,
+      "switch_calls": 2046,
+      "distinct_keys": 130,
+      "key_coefficient_bytes": 255590400,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 8149,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 7,
+      "switch_calls": 2046,
+      "distinct_keys": 257,
+      "key_coefficient_bytes": 505282560,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 4085,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 8,
+      "switch_calls": 2046,
+      "distinct_keys": 512,
+      "key_coefficient_bytes": 1006632960,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 2045,
+      "max_phase_bound_bits": 91
+    },
+    {
+      "count": 32768,
+      "n": 16384,
+      "padded": 512,
+      "cut": 9,
+      "switch_calls": 2046,
+      "distinct_keys": 1023,
+      "key_coefficient_bytes": 2011299840,
+      "max_checkpoint_polynomials": 1536,
+      "max_switch_error_weight": 1023,
+      "max_phase_bound_bits": 91
+    }
+  ],
+  "e20_encrypted_toy": {
+    "n": 64,
+    "dimension": 16,
+    "count": 128,
+    "t": 1031,
+    "q_bits": 180,
+    "digit_bits": 12,
+    "eta": 2,
+    "setup": {
+      "keygen_s": 0.0008517769165337086,
+      "index_s": 0.023598816711455584,
+      "reference_keygen_s": 0.032380938064306974,
+      "delay-0": {
+        "keygen_s": 0.030684094410389662,
+        "source_keys": 5,
+        "model": {
+          "tensor_tiles": 16,
+          "cut_depth": 0,
+          "switch_calls": 31,
+          "distinct_keys": 5,
+          "product_bound_weight": 256,
+          "switch_error_weight": 341,
+          "max_basis_terms_per_cipher": 3,
+          "max_checkpoint_polynomials": 48,
+          "key_coefficient_bytes": 216000
+        }
+      },
+      "delay-1": {
+        "keygen_s": 0.027358729857951403,
+        "source_keys": 6,
+        "model": {
+          "tensor_tiles": 16,
+          "cut_depth": 1,
+          "switch_calls": 31,
+          "distinct_keys": 6,
+          "product_bound_weight": 256,
+          "switch_error_weight": 213,
+          "max_basis_terms_per_cipher": 5,
+          "max_checkpoint_polynomials": 48,
+          "key_coefficient_bytes": 259200
+        }
+      },
+      "delay-2": {
+        "keygen_s": 0.04184238985180855,
+        "source_keys": 9,
+        "model": {
+          "tensor_tiles": 16,
+          "cut_depth": 2,
+          "switch_calls": 31,
+          "distinct_keys": 9,
+          "product_bound_weight": 256,
+          "switch_error_weight": 117,
+          "max_basis_terms_per_cipher": 9,
+          "max_checkpoint_polynomials": 48,
+          "key_coefficient_bytes": 388800
+        }
+      },
+      "delay-3": {
+        "keygen_s": 0.0791126019321382,
+        "source_keys": 16,
+        "model": {
+          "tensor_tiles": 16,
+          "cut_depth": 3,
+          "switch_calls": 31,
+          "distinct_keys": 16,
+          "product_bound_weight": 256,
+          "switch_error_weight": 61,
+          "max_basis_terms_per_cipher": 17,
+          "max_checkpoint_polynomials": 48,
+          "key_coefficient_bytes": 691200
+        }
+      },
+      "delay-4": {
+        "keygen_s": 0.14572900300845504,
+        "source_keys": 31,
+        "model": {
+          "tensor_tiles": 16,
+          "cut_depth": 4,
+          "switch_calls": 31,
+          "distinct_keys": 31,
+          "product_bound_weight": 256,
+          "switch_error_weight": 31,
+          "max_basis_terms_per_cipher": 33,
+          "max_checkpoint_polynomials": 48,
+          "key_coefficient_bytes": 1339200
+        }
+      }
+    },
+    "warmup": {
+      "delay-3": {
+        "server_s": 0.12362105399370193,
+        "decrypt_decode_s": 0.0004365290515124798,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "reference": {
+        "server_s": 0.10895597096532583,
+        "decrypt_decode_s": 0.0002629449591040611,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-0": {
+        "server_s": 0.11173467477783561,
+        "decrypt_decode_s": 0.00030596600845456123,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-1": {
+        "server_s": 0.10934184771031141,
+        "decrypt_decode_s": 0.00028877612203359604,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-2": {
+        "server_s": 0.11272011278197169,
+        "decrypt_decode_s": 0.00029009487479925156,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-4": {
+        "server_s": 0.12157569592818618,
+        "decrypt_decode_s": 0.00043126801028847694,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      }
+    },
+    "samples": {
+      "reference": [
+        {
+          "server_s": 0.09864280140027404,
+          "decrypt_decode_s": 0.00025619519874453545,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.09995666705071926,
+          "decrypt_decode_s": 0.00023283390328288078,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.09822557307779789,
+          "decrypt_decode_s": 0.00025998521596193314,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10833969991654158,
+          "decrypt_decode_s": 0.0003278357908129692,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.09622516389936209,
+          "decrypt_decode_s": 0.0002492554485797882,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.0964989298954606,
+          "decrypt_decode_s": 0.00024941517040133476,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.09632669715210795,
+          "decrypt_decode_s": 0.0002497648820281029,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        }
+      ],
+      "delay-0": [
+        {
+          "server_s": 0.10200606565922499,
+          "decrypt_decode_s": 0.00029785605147480965,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10121542122215033,
+          "decrypt_decode_s": 0.00028320588171482086,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.1002947730012238,
+          "decrypt_decode_s": 0.000298134982585907,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10624910891056061,
+          "decrypt_decode_s": 0.00025202473625540733,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.09886182611808181,
+          "decrypt_decode_s": 0.0002890457399189472,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.09696846874430776,
+          "decrypt_decode_s": 0.00027238624170422554,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.0971988127566874,
+          "decrypt_decode_s": 0.0002816147170960903,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        }
+      ],
+      "delay-1": [
+        {
+          "server_s": 0.11020039534196258,
+          "decrypt_decode_s": 0.00029463600367307663,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10383955202996731,
+          "decrypt_decode_s": 0.0002720649354159832,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10241672489792109,
+          "decrypt_decode_s": 0.00026800530031323433,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10369803896173835,
+          "decrypt_decode_s": 0.0002534240484237671,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.09896512795239687,
+          "decrypt_decode_s": 0.00026136497035622597,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.09986837394535542,
+          "decrypt_decode_s": 0.00026717502623796463,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.1000850391574204,
+          "decrypt_decode_s": 0.0002691950649023056,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        }
+      ],
+      "delay-2": [
+        {
+          "server_s": 0.10690530110150576,
+          "decrypt_decode_s": 0.0002795848995447159,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10454080579802394,
+          "decrypt_decode_s": 0.0002858857624232769,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10651255305856466,
+          "decrypt_decode_s": 0.0002717445604503155,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.11199002992361784,
+          "decrypt_decode_s": 0.00032217614352703094,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10257545718923211,
+          "decrypt_decode_s": 0.0002579549327492714,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10203979723155499,
+          "decrypt_decode_s": 0.00030767591670155525,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10252490732818842,
+          "decrypt_decode_s": 0.00028037605807185173,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        }
+      ],
+      "delay-3": [
+        {
+          "server_s": 0.11048147082328796,
+          "decrypt_decode_s": 0.00027861492708325386,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10945330001413822,
+          "decrypt_decode_s": 0.00027947500348091125,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10845969105139375,
+          "decrypt_decode_s": 0.00025252532213926315,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10929929791018367,
+          "decrypt_decode_s": 0.0002619749866425991,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10527069866657257,
+          "decrypt_decode_s": 0.000264736358076334,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10597903421148658,
+          "decrypt_decode_s": 0.00026900507509708405,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10583437979221344,
+          "decrypt_decode_s": 0.0002628648653626442,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        }
+      ],
+      "delay-4": [
+        {
+          "server_s": 0.11306732101365924,
+          "decrypt_decode_s": 0.0003275759518146515,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.11392503697425127,
+          "decrypt_decode_s": 0.0003435271792113781,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.11180381523445249,
+          "decrypt_decode_s": 0.00035886699333786964,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10937541862949729,
+          "decrypt_decode_s": 0.00035974709317088127,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10823954688385129,
+          "decrypt_decode_s": 0.00032560713589191437,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.11078331619501114,
+          "decrypt_decode_s": 0.0003405557945370674,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        },
+        {
+          "server_s": 0.10993556072935462,
+          "decrypt_decode_s": 0.0003230157308280468,
+          "phase_bound_bits": 51,
+          "response_ciphertexts": 2
+        }
+      ]
+    },
+    "medians": {
+      "reference": {
+        "server_s": 0.09822557307779789,
+        "decrypt_decode_s": 0.0002497648820281029,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-0": {
+        "server_s": 0.1002947730012238,
+        "decrypt_decode_s": 0.00028320588171482086,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-1": {
+        "server_s": 0.10241672489792109,
+        "decrypt_decode_s": 0.00026800530031323433,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-2": {
+        "server_s": 0.10454080579802394,
+        "decrypt_decode_s": 0.00028037605807185173,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-3": {
+        "server_s": 0.10845969105139375,
+        "decrypt_decode_s": 0.000264736358076334,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      },
+      "delay-4": {
+        "server_s": 0.11078331619501114,
+        "decrypt_decode_s": 0.0003405557945370674,
+        "phase_bound_bits": 51,
+        "response_ciphertexts": 2
+      }
+    },
+    "all_distances_exact": true,
+    "security_parameters_reviewed": false
+  },
+  "e21_models": [
+    {
+      "count": 8192,
+      "dimension": 512,
+      "mismatch_products": 4194304,
+      "factor_products": 1117773824,
+      "evaluation_products": 2151669760,
+      "factor_multiplicative_depth": 10,
+      "histogram_field_elements": 513,
+      "cached_row_field_elements": 4202496,
+      "distance_field_elements": 8192,
+      "exact_separated_features": 13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096
+    },
+    {
+      "count": 32768,
+      "dimension": 512,
+      "mismatch_products": 16777216,
+      "factor_products": 4471095296,
+      "evaluation_products": 8606679040,
+      "factor_multiplicative_depth": 10,
+      "histogram_field_elements": 513,
+      "cached_row_field_elements": 16809984,
+      "distance_field_elements": 32768,
+      "exact_separated_features": 13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096
+    }
+  ],
+  "e21_rank_checks": [
+    {
+      "dimension": 1,
+      "generic_rank": 2,
+      "degenerate_rank": 1
+    },
+    {
+      "dimension": 2,
+      "generic_rank": 4,
+      "degenerate_rank": 1
+    },
+    {
+      "dimension": 3,
+      "generic_rank": 8,
+      "degenerate_rank": 1
+    },
+    {
+      "dimension": 4,
+      "generic_rank": 16,
+      "degenerate_rank": 1
+    },
+    {
+      "dimension": 5,
+      "generic_rank": 32,
+      "degenerate_rank": 1
+    },
+    {
+      "dimension": 6,
+      "generic_rank": 64,
+      "degenerate_rank": 1
+    }
+  ],
+  "e21_encrypted_toy": {
+    "n": 16,
+    "dimension": 4,
+    "count": 32,
+    "k": 3,
+    "t": 257,
+    "q_bits": 180,
+    "digit_bits": 12,
+    "eta": 1,
+    "setup": {
+      "keygen_s": 0.00015829270705580711,
+      "aggregate_key_s": 0.0010601109825074673,
+      "packed_key_s": 0.0030226577073335648,
+      "aggregate_inputs_s": 0.01618094416335225,
+      "packed_index_s": 0.0009332578629255295,
+      "aggregate_index_ciphertexts": 128,
+      "packed_index_ciphertexts": 8
+    },
+    "samples": {
+      "aggregate": [
+        {
+          "query_encrypt_s": 0.0004765894263982773,
+          "initial_server_s": 0.28302143421024084,
+          "owner_histogram_s": 0.00011657224968075752,
+          "recovery_s": 0.0013351556845009327,
+          "prefix_server_s": 0.0008967178873717785,
+          "prefix_owner_s": 0.0003953161649405956,
+          "local_total_s": 0.2849497515708208,
+          "product_calls": 672,
+          "multiplicative_depth": 3,
+          "initial_ciphertexts": 5,
+          "prefix_ciphertexts": 13,
+          "total_response_ciphertexts": 18,
+          "cached_row_ciphertexts": 160,
+          "phase_bound_bits": 146
+        },
+        {
+          "query_encrypt_s": 0.0004848102107644081,
+          "initial_server_s": 0.28396766213700175,
+          "owner_histogram_s": 0.0001875339075922966,
+          "recovery_s": 0.0014573978260159492,
+          "prefix_server_s": 0.0009380257688462734,
+          "prefix_owner_s": 0.00047247204929590225,
+          "local_total_s": 0.2860974040813744,
+          "product_calls": 672,
+          "multiplicative_depth": 3,
+          "initial_ciphertexts": 5,
+          "prefix_ciphertexts": 13,
+          "total_response_ciphertexts": 18,
+          "cached_row_ciphertexts": 160,
+          "phase_bound_bits": 146
+        },
+        {
+          "query_encrypt_s": 0.0004891697317361832,
+          "initial_server_s": 0.28948630997911096,
+          "owner_histogram_s": 0.00012198230251669884,
+          "recovery_s": 0.0017139730043709278,
+          "prefix_server_s": 0.0011782348155975342,
+          "prefix_owner_s": 0.00048622721806168556,
+          "local_total_s": 0.29181143501773477,
+          "product_calls": 672,
+          "multiplicative_depth": 3,
+          "initial_ciphertexts": 5,
+          "prefix_ciphertexts": 13,
+          "total_response_ciphertexts": 18,
+          "cached_row_ciphertexts": 160,
+          "phase_bound_bits": 146
+        },
+        {
+          "query_encrypt_s": 0.00046935910359025,
+          "initial_server_s": 0.2872621570713818,
+          "owner_histogram_s": 0.00011739227920770645,
+          "recovery_s": 0.0016397018916904926,
+          "prefix_server_s": 0.0011116517707705498,
+          "prefix_owner_s": 0.00047954684123396873,
+          "local_total_s": 0.28948861034587026,
+          "product_calls": 672,
+          "multiplicative_depth": 3,
+          "initial_ciphertexts": 5,
+          "prefix_ciphertexts": 14,
+          "total_response_ciphertexts": 19,
+          "cached_row_ciphertexts": 160,
+          "phase_bound_bits": 146
+        },
+        {
+          "query_encrypt_s": 0.000494448933750391,
+          "initial_server_s": 0.28361538564786315,
+          "owner_histogram_s": 0.000118291936814785,
+          "recovery_s": 0.0012224530801177025,
+          "prefix_server_s": 0.0008195638656616211,
+          "prefix_owner_s": 0.0003614583984017372,
+          "local_total_s": 0.28545057959854603,
+          "product_calls": 672,
+          "multiplicative_depth": 3,
+          "initial_ciphertexts": 5,
+          "prefix_ciphertexts": 13,
+          "total_response_ciphertexts": 18,
+          "cached_row_ciphertexts": 160,
+          "phase_bound_bits": 146
+        },
+        {
+          "query_encrypt_s": 0.00048043858259916306,
+          "initial_server_s": 0.2855567429214716,
+          "owner_histogram_s": 0.00011731218546628952,
+          "recovery_s": 0.0015044989995658398,
+          "prefix_server_s": 0.0010258168913424015,
+          "prefix_owner_s": 0.0004243701696395874,
+          "local_total_s": 0.2876589926891029,
+          "product_calls": 672,
+          "multiplicative_depth": 3,
+          "initial_ciphertexts": 5,
+          "prefix_ciphertexts": 14,
+          "total_response_ciphertexts": 19,
+          "cached_row_ciphertexts": 160,
+          "phase_bound_bits": 146
+        },
+        {
+          "query_encrypt_s": 0.00047655031085014343,
+          "initial_server_s": 0.2843866110779345,
+          "owner_histogram_s": 0.00011530192568898201,
+          "recovery_s": 0.0012291339226067066,
+          "prefix_server_s": 0.0008039441891014576,
+          "prefix_owner_s": 0.00038294820114970207,
+          "local_total_s": 0.28620759723708034,
+          "product_calls": 672,
+          "multiplicative_depth": 3,
+          "initial_ciphertexts": 5,
+          "prefix_ciphertexts": 13,
+          "total_response_ciphertexts": 18,
+          "cached_row_ciphertexts": 160,
+          "phase_bound_bits": 146
+        }
+      ],
+      "packed-distances": [
+        {
+          "query_encrypt_s": 0.0001154816709458828,
+          "initial_server_s": 0.005678639747202396,
+          "owner_finish_s": 7.929094135761261e-05,
+          "local_total_s": 0.005873412359505892,
+          "product_calls": 8,
+          "multiplicative_depth": 1,
+          "total_response_ciphertexts": 2,
+          "phase_bound_bits": 35
+        },
+        {
+          "query_encrypt_s": 0.00011777179315686226,
+          "initial_server_s": 0.005843042861670256,
+          "owner_finish_s": 7.372209802269936e-05,
+          "local_total_s": 0.006034536752849817,
+          "product_calls": 8,
+          "multiplicative_depth": 1,
+          "total_response_ciphertexts": 2,
+          "phase_bound_bits": 35
+        },
+        {
+          "query_encrypt_s": 0.00011887215077877045,
+          "initial_server_s": 0.005983666051179171,
+          "owner_finish_s": 7.777102291584015e-05,
+          "local_total_s": 0.006180309224873781,
+          "product_calls": 8,
+          "multiplicative_depth": 1,
+          "total_response_ciphertexts": 2,
+          "phase_bound_bits": 35
+        },
+        {
+          "query_encrypt_s": 0.00011973176151514053,
+          "initial_server_s": 0.0056260391138494015,
+          "owner_finish_s": 7.11311586201191e-05,
+          "local_total_s": 0.005816902033984661,
+          "product_calls": 8,
+          "multiplicative_depth": 1,
+          "total_response_ciphertexts": 2,
+          "phase_bound_bits": 35
+        },
+        {
+          "query_encrypt_s": 0.000121281947940588,
+          "initial_server_s": 0.005645229015499353,
+          "owner_finish_s": 7.307203486561775e-05,
+          "local_total_s": 0.005839582998305559,
+          "product_calls": 8,
+          "multiplicative_depth": 1,
+          "total_response_ciphertexts": 2,
+          "phase_bound_bits": 35
+        },
+        {
+          "query_encrypt_s": 0.00011573219671845436,
+          "initial_server_s": 0.006043266970664263,
+          "owner_finish_s": 8.43321904540062e-05,
+          "local_total_s": 0.006243331357836723,
+          "product_calls": 8,
+          "multiplicative_depth": 1,
+          "total_response_ciphertexts": 2,
+          "phase_bound_bits": 35
+        },
+        {
+          "query_encrypt_s": 0.00011959206312894821,
+          "initial_server_s": 0.005567417945712805,
+          "owner_finish_s": 7.108179852366447e-05,
+          "local_total_s": 0.0057580918073654175,
+          "product_calls": 8,
+          "multiplicative_depth": 1,
+          "total_response_ciphertexts": 2,
+          "phase_bound_bits": 35
+        }
+      ]
+    },
+    "warmup": {
+      "aggregate": {
+        "query_encrypt_s": 0.00047197891399264336,
+        "initial_server_s": 0.28343292186036706,
+        "owner_histogram_s": 0.00019893376156687737,
+        "recovery_s": 0.001521579921245575,
+        "prefix_server_s": 0.0011488022282719612,
+        "prefix_owner_s": 0.00030684610828757286,
+        "local_total_s": 0.28562541445717216,
+        "product_calls": 672,
+        "multiplicative_depth": 3,
+        "initial_ciphertexts": 5,
+        "prefix_ciphertexts": 14,
+        "total_response_ciphertexts": 19,
+        "cached_row_ciphertexts": 160,
+        "phase_bound_bits": 146
+      },
+      "packed-distances": {
+        "query_encrypt_s": 0.0001162518747150898,
+        "initial_server_s": 0.005927214864641428,
+        "owner_finish_s": 7.68410973250866e-05,
+        "local_total_s": 0.006120307836681604,
+        "product_calls": 8,
+        "multiplicative_depth": 1,
+        "total_response_ciphertexts": 2,
+        "phase_bound_bits": 35
+      }
+    },
+    "medians": {
+      "aggregate": {
+        "query_encrypt_s": 0.00048043858259916306,
+        "initial_server_s": 0.2843866110779345,
+        "owner_histogram_s": 0.00011739227920770645,
+        "recovery_s": 0.0014573978260159492,
+        "prefix_server_s": 0.0009380257688462734,
+        "prefix_owner_s": 0.0004243701696395874,
+        "local_total_s": 0.28620759723708034,
+        "product_calls": 672,
+        "multiplicative_depth": 3,
+        "initial_ciphertexts": 5,
+        "prefix_ciphertexts": 13,
+        "total_response_ciphertexts": 18,
+        "cached_row_ciphertexts": 160,
+        "phase_bound_bits": 146
+      },
+      "packed-distances": {
+        "query_encrypt_s": 0.00011887215077877045,
+        "initial_server_s": 0.005678639747202396,
+        "owner_finish_s": 7.372209802269936e-05,
+        "local_total_s": 0.005873412359505892,
+        "product_calls": 8,
+        "multiplicative_depth": 1,
+        "total_response_ciphertexts": 2,
+        "phase_bound_bits": 35
+      }
+    },
+    "prefix_transcripts": [
+      [
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 16,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 8,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 4,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 4,
+          "stop": 6,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 6,
+          "stop": 7,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 24,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 28,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 26,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 26,
+          "stop": 27,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 16,
+          "count": 2
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 8,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 8,
+          "stop": 12,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 12,
+          "stop": 14,
+          "count": 2
+        }
+      ],
+      [
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 16,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 24,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 20,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 18,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 18,
+          "stop": 19,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 28,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 28,
+          "stop": 30,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 28,
+          "stop": 29,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 16,
+          "count": 3
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 8,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 4,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 4,
+          "stop": 6,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 6,
+          "stop": 7,
+          "count": 0
+        }
+      ],
+      [
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 16,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 8,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 4,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 4,
+          "stop": 6,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 6,
+          "stop": 7,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 24,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 28,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 26,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 26,
+          "stop": 27,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 16,
+          "count": 2
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 8,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 8,
+          "stop": 12,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 12,
+          "stop": 14,
+          "count": 2
+        }
+      ],
+      [
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 16,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 8,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 8,
+          "stop": 12,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 12,
+          "stop": 14,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 12,
+          "stop": 13,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 24,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 20,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 20,
+          "stop": 22,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 22,
+          "stop": 23,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 16,
+          "count": 5
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 8,
+          "count": 3
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 4,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 2,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 1,
+          "count": 0
+        }
+      ],
+      [
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 16,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 24,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 20,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 18,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 18,
+          "stop": 19,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 28,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 28,
+          "stop": 30,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 28,
+          "stop": 29,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 16,
+          "count": 3
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 8,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 4,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 4,
+          "stop": 6,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 6,
+          "stop": 7,
+          "count": 0
+        }
+      ],
+      [
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 16,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 8,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 8,
+          "stop": 12,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 12,
+          "stop": 14,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 12,
+          "stop": 13,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 16,
+          "stop": 24,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 28,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 26,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 24,
+          "stop": 25,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 16,
+          "count": 7
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 8,
+          "count": 6
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 4,
+          "count": 3
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 2,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 1,
+          "count": 0
+        }
+      ],
+      [
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 16,
+          "count": 2
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 8,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 4,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 2,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 0,
+          "stop": 1,
+          "count": 1
+        },
+        {
+          "distance": 0,
+          "start": 8,
+          "stop": 12,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 12,
+          "stop": 14,
+          "count": 0
+        },
+        {
+          "distance": 0,
+          "start": 14,
+          "stop": 15,
+          "count": 0
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 16,
+          "count": 6
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 8,
+          "count": 3
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 4,
+          "count": 2
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 2,
+          "count": 1
+        },
+        {
+          "distance": 1,
+          "start": 0,
+          "stop": 1,
+          "count": 0
+        }
+      ]
+    ],
+    "all_stable_topk_exact": true,
+    "adaptive_prefix_privacy": "reveals selected distances and ID intervals; not a private protocol",
+    "ciphertext_bytes": "not serialized; counts exclude compression, authentication and network",
+    "security_parameters_reviewed": false
+  }
+}

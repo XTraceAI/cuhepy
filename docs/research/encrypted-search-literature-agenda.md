@@ -23,6 +23,13 @@ direction is deliberately open. Complete verified search remains one candidate;
 it is not a prerequisite for investigating the others. This update is a research
 plan, not a new literature review or a novelty claim.
 
+**Creative follow-up:** [the first-cycle report](creative-algebra-results.md)
+records implemented E20/E21 references and an E19 coupled filter with exact
+public lookup factorization. Two literal circuits lose their cost comparisons;
+the stronger filter's reduced candidate count does not yet pay for its
+encrypted lookup. The next experiments target that representation/protocol gap
+and E17 query statistics, rather than another round of routine kernel tuning.
+
 ## 1. What the literature changes
 
 The user-supplied [BioZKFHE, v1](https://arxiv.org/html/2607.22065v1)
@@ -82,6 +89,9 @@ against our machine, parameters or workload.
 | [PASTA, TCHES 2023](https://eprint.iacr.org/2021/731) | Integer-oriented hybrid homomorphic encryption trades bandwidth for server work | E17 can investigate tiny query uploads without giving the server a symmetric secret key |
 | [Transciphering SoK, TCHES 2025](https://eprint.iacr.org/2025/669) and [subgroup PASTA packing, 2026](https://arxiv.org/abs/2609.12624v1) | Cipher/representation tradeoffs and recent packing improvements | Compare complete conversion plus search; generic transciphering or interleaving is not our novelty |
 | [Norouzi–Punjani–Fleet, exact multi-index hashing](https://arxiv.org/abs/1307.2982) | Exact Hamming search using substring hash tables | E19 must contribute private, authenticated coverage or a useful cost/leakage tradeoff, not claim the indexing theorem |
+| [HEIR, relinearization scheduling](https://heir.dev/docs/design/relinearization_ilp/) | Existing lazy relinearization and explicit key-basis/placement models | E20 must account for transformed secrets and compare against an equally delayed conventional circuit |
+| [Azogagh–Killijian–Larose-Gervais, blind counting sort/top-k, PETS 2025](https://eprint.iacr.org/2024/1894.pdf) | TFHE counting/LUT selection and private k-NN with an honest-but-curious server and plaintext corpus | Counting/selection are established; adapt the corpus, output and integrity contracts explicitly |
+| [Alman–Williams, probabilistic polynomials and Hamming neighbors, FOCS 2015](https://arxiv.org/abs/1507.05106) | Randomized polynomial constructions and batch Hamming-neighbor algorithms | E21 does not establish a new polynomial-search primitive; any probabilistic variant needs its own exactness/error contract |
 
 ## 2. Freeze the contract before comparing systems
 
@@ -496,6 +506,15 @@ selectivity cheaply; encrypted lookup/selection still has a cost. Compare with
 E10's simpler popcount and prefix bounds. Expect weak bounds on uniform random
 high-dimensional data; verify rather than assume a win.
 
+The [implemented follow-up](creative-algebra-results.md#e19-a-stronger-bound-and-its-encrypted-representation-cost)
+adds the constraint `weight(y)=weight(x)` to the syndrome class and minimizes
+`Hamming(q,y)` over that class. It can beat the parity-corrected maximum of the
+separate bounds. Exact public rank factorization also reduces the lookup's
+bilinear feature count. Favorable selectivity and small encrypted regressions
+are established, but both encrypted lookup layouts still cost more modeled
+products than the original full scan. Routing privacy, threshold discovery,
+complete coverage and the scheme/proof costs remain open.
+
 **Continue if:** an exact, fully costed private/authenticated protocol beats the
 fixed scan on a declared workload. **Stop or relabel** if the gain depends on
 revealing routing geometry, dropping candidates, or measuring only a small
@@ -520,8 +539,8 @@ sharpened E17/E19/E14 questions.
 | Order | Concrete output | Decision gate |
 |---|---|---|
 | 1 | Use the preserved implementation as a control; state each competing hypothesis and its difference from the closest prior work | No novelty assumption; no need to finish the current verifier before exploring |
-| 2 | E20 symbolic secret-term/schedule oracle and E21 answer-aggregate oracle with stable-ID recovery | Find an identity, counterexample or informative cost tradeoff before native optimization |
-| 3 | E19 exact pruning/coverage study and E17 fused conversion/matching model; E14 alternative arithmetic/constraint model | Include adverse data, changed leakage, setup, rounds and required integer constraints |
+| 2 | Use the completed E20/E21 oracles, encrypted pilots and negative results to rule out unhelpful shortcuts | The existing full scan is the control; a compact mathematical answer is not automatically a cheap encrypted answer |
+| 3 | Extend E19 beyond its costly one-hot/factorized lookup; model E17 conversion fused with useful statistics and E14 verification of the proposed arithmetic | Include measured rank, adverse data, changed leakage, setup, rounds and required integer constraints |
 | 4 | Independent homemade encrypted references for the most informative survivors | A toy speed loss is acceptable; correctness, assumptions and the reason to continue must be explicit |
 | 5 | Focused implementation and ablations for promising candidates | Establish whether the proposed mechanism, rather than unequal baselines, explains a benefit |
 | 6 | Choose a paper direction; deepen proofs, parameter assurance, complete protocol and representative measurements | Claim only what the prior-art review, mathematics and equal-contract results support |
