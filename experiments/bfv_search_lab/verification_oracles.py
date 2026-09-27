@@ -60,6 +60,14 @@ def negacyclic_ntt_matrix(n, psi, p):
     return [[pow(psi, (2*j+1)*i, p) for i in range(n)] for j in range(n)]
 
 
+def batch_error_vanishes(errors, weights, p):
+    """Toy whole-vector batch check; one hidden weight per row, not a checksum."""
+    _matrix(errors, p)
+    _vector(weights, len(errors), p)
+    return all(sum(weights[b]*errors[b][i] for b in range(len(errors))) % p == 0
+               for i in range(len(errors[0])))
+
+
 @dataclass(frozen=True)
 class TerminalWitness:
     residue: int
