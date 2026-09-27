@@ -100,6 +100,7 @@ def run(args):
         gc.collect()
         cases = [(mode, device) for mode in ("full", "interval", "witness", "residual") for device in args.devices]
         samples = {f"{m}/{d}": [] for m, d in cases}
+        plaintext_samples = []
         warmup = {}
         rng = random.Random(2905)
         query_ids = holdout[95:96 + args.repeats]  # Warmup, then unused holdout 96:104.
@@ -107,6 +108,11 @@ def run(args):
             query = data.rows[query_id]
             exact = [(query ^ row).bit_count() for row in rows]
             expected_top = tuple(sorted(zip(exact, ids, strict=True))[:3])
+            local_s, local_top = timed(lambda: tuple(sorted(((query ^ row).bit_count(), i)
+                                                            for row, i in zip(rows, ids, strict=True))[:3]))
+            assert local_top == expected_top
+            if repeat:
+                plaintext_samples.append({"local_total_s": local_s})
             expected_templates = [(query ^ folded._template(plan, row)).bit_count() for row in rows]
             queries = {}
             for label, representation in (("full", full_plan), ("coarse", plan)):
@@ -207,6 +213,9 @@ def run(args):
     return {"dataset": args.dataset, "dataset_sha256": data.sha256, "count": len(rows), "dimension": dimension,
             "split_seed": args.seed, "query_ids": query_ids[1:], "warmup_query_id": query_ids[0], "setup": setup,
             "warmup": warmup, "samples": samples, "summary": {k: summary(v) for k, v in samples.items()},
+            "plaintext_full_index_control": {"samples": plaintext_samples, "summary": summary(plaintext_samples),
+                                             "python_rows_bytes": sys.getsizeof(rows) + sum(sys.getsizeof(x) for x in rows),
+                                             "note": "Retains EVERY plaintext row on owner; no HE/server/network needed. Different storage contract."},
             "all_stable_top3_and_intermediate_scores_exact": True,
             "complete_cpu_cuda_response_bytes_equal": True if len(args.devices) == 2 else None}
 
