@@ -687,6 +687,9 @@ or stop. Never store private keys in measurement artifacts.
 - [Complete key-switch stage checking](bgv-checked-switch.md): one-use
   reference/native checkers, conditional soundness, CPU/CUDA differential tests
   and actual trusted work; complete search authentication remains open.
+- [Bound product/switch checking](bgv-checked-product.md): eliminates the trusted
+  tensor prerequisite, compares witness/local-c2 partitions and measures a
+  direct-RNS checked GPU subcircuit against native recomputation.
 
 The oracle passes **1,131 partial-layout cases and 367 coefficient-layout cases**.
 It exhausts all query/vector pairs up to four bits and adds deterministic random
@@ -740,10 +743,19 @@ Follow-up work is on `experiment/bgv-verification-packing`:
   native costs including input binding are 9.29/23.15/90.73 ms for batches of
   1/8/32 at N=16,384. These verify one stage with already-trusted inputs, not
   the complete query or an untrusted preceding tensor product.
-- **Next:** bind the preceding fixed-index tensor product to the query/index,
-  compose adjacent checked stages, and compare against matched native CPU
-  recomputation. Measure native packet handling and all intermediate/enclave
-  transfers before selecting a complete verifier partition. For E16, measure
+- **E13 product/switch composition implemented:** the
+  [bound product checker](bgv-checked-product.md) pins the query/index and
+  combines product and switch relations. A c2-only witness removes 40% of
+  full-tensor/output coefficient traffic; local c2 removes 60%. After a retained
+  negative export-heavy GPU run, direct RNS export and batching yield complete
+  checked-stage medians of 61.27/155.85 ms at 32/64 tiles versus optimized native
+  recomputation at 91.58/197.97 ms. One tile loses and eight are near parity.
+  These are ciphertext tiles and an initial subcircuit, not complete searches.
+- **Next:** extend the exact relation through butterfly/key-switch transitions,
+  then terminal rounding/compression and final-byte binding. Benchmark matched
+  CPU thread budgets, bound block coverage above 64 tiles, resident memory and
+  actual enclave transfers before selecting a complete verifier partition.
+  The trusted checks now dominate the 32-tile result. For E16, measure
   registration, epoch turnover, additional dimensions/tails and independent
   reruns; budget resident memory and switching margins. Extend protected client
   and receipt contracts only after the complete statement is established.
@@ -758,7 +770,7 @@ or a raw GPU fixture as today's authenticated service performance.
 
 | ID | New experiment | First concrete deliverable | Main reason it may fail |
 |---|---|---|---|
-| E13 | Trusted CPU checks an untrusted GPU's public ciphertext arithmetic | Complete reference/native key-switch check done; next bind inputs and compose stages | Intermediate traffic or trusted work approaches native recomputation |
+| E13 | Trusted CPU checks an untrusted GPU's public ciphertext arithmetic | Bound product/switch and direct-RNS checked GPU subcircuit done; next reduction/terminal/coverage chain | Intermediate traffic or trusted work approaches matched native recomputation |
 | E14 | Design the HE circuit and its proof together | Canonical evaluation relation including integer rounding, compression and index coverage | Proof generation/bytes overwhelm the fast search |
 | E15 | Coefficient-specific trace/noise bounds | Exact symbolic support model, then a justified deterministic or explicitly probabilistic bound | Shared errors/rounding invalidate optimistic independence assumptions |
 | E16 | Balanced and direct-distance radix digits inside coefficient-packed correlations | Joint layout/precision/setup report done; next actual epochs, registration and memory costs | Larger t/Q, wider output or setup erase the reduction in tile count |

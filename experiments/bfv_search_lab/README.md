@@ -38,6 +38,11 @@ index-epoch projections. The
 [checked-switch follow-up](../../docs/research/bgv-checked-switch.md) adds
 independent reference and C++/RNS checks for one complete arithmetic stage.
 Its inputs must already be trusted; it does not authorize full GPU searches.
+The [bound product/switch experiment](../../docs/research/bgv-checked-product.md)
+now establishes the tensor relation from pinned query/index inputs. It compares
+a c2 witness with local c2 computation, and measures direct-RNS checked GPU
+execution against native recomputation. This still covers the initial
+subcircuit, before butterfly reduction and terminal output.
 
 These are explicit research entry points, outside the default client and its
 authenticated protocols. They operate on synthetic, owner-controlled data.
@@ -58,7 +63,9 @@ assurance. The raw CUDA path does not provide attestation.
 | `radix_bgv.py`, `radix_client_bgv.py` | Separate radix index layout, precision plans and gated local-fixture decoder; scalar and packed/vectorized paths |
 | `radix_planner.py` | Explicit ranking of measured layout/precision/setup choices; no parameter approval or online routing |
 | `checked_switch_bgv.py` | One-use batched key-switch stage check with trusted input binding and fresh post-output weights |
+| `checked_product_bgv.py`, `_verify/product.h` | Bound product/switch composition, c2-witness/local-c2 variants and matched native recomputation |
 | `native_check_bgv.py`, `_verify/` | Optional homemade public C++/RNS/NTT check arithmetic; wrapper supplies required sampling/lifecycle |
+| `NativeServer.product_switch_rns`, `_native/sanitize_product.cu` | Explicit bounded CUDA product stage with direct RNS export; independent standalone sanitizer oracle |
 | `_native/digit_boundary.h`, `_native/digit_boundary.cu`, `_native/test_digit_boundary.cpp` | Public CRT/digit conversion, standalone CPU/GPU boundary benchmark and host sanitizer oracle |
 | `native_bgv.py`, `_native/` | Isolated C++/RNS/CUDA evaluators with resident public keys/index |
 | `_native/compact.h` | Exact terminal reduction in C++, before exporting the small result |
@@ -86,6 +93,9 @@ no HE secret and does not change the private backend. Low-level
 weights do not establish sound verification. Use `context.begin(...,
 native=NativeCheckArithmetic(context)).check_once(packet)` only for the bounded
 stage statement described in the report, never as a full-search acceptance gate.
+`ProductContext.prepare(...)` and its `begin(...).check_once(...)` wrapper also
+bind multiplication to trusted index/query bytes. Registered inputs and global
+coverage are obligations of the caller; its result is not an owner receipt.
 
 ## Build, test and measure
 
@@ -116,6 +126,9 @@ make -C experiments/bfv_search_lab/_verify PYTHON="$PWD/.venv/bin/python" CXX=g+
   experiments/bfv_search_lab/test_native_checked_switch_bgv.py -q
 .venv/bin/python benchmarks/bgv_checked_switch.py --ring-degree 16384 \
   --batches 1 8 32 --repeats 5 --native --json-out /tmp/bgv-checked-switch.json
+.venv/bin/python benchmarks/bgv_checked_product.py --ring-degree 16384 \
+  --batches 1 8 32 64 --repeats 10 --cuda --rns-cuda \
+  --json-out /tmp/bgv-checked-product.json
 .venv/bin/python benchmarks/bgv_layout_report.py \
   benchmarks/results/bgv_radix_all_precision_32768.json \
   --json-out /tmp/bgv-layout-planner.json
@@ -127,6 +140,11 @@ are recorded separately; transport and establishing the trusted tensor are
 excluded. The layout report consumes measured data and needs no GPU. Reproduce
 its inputs using the commands in the
 [layout report](../../docs/research/bgv-layout-planning.md).
+The product benchmark measures both verifier partitions, native recomputation
+and actual checked CUDA subcircuits. Its direct-RNS path needs the rebuilt CUDA
+extension and includes transient allocation and host-device copies. Padded=1
+isolates multiplication/relinearization; these are ciphertext-tile timings,
+not complete Hamming-search timings or measured enclave performance.
 
 The `bfv_search_lab.py` benchmark reuses one index/key set across all CUDA/query variants,
 warms each variant, shuffles paired query rounds, and verifies every distance

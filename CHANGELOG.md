@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Compose the E13 product and key-switch relations from a pinned query and
+  ordered encrypted index, with independent reference/native implementations.
+  Check a c2-only witness or compute c2 in the trusted verifier, eliminating
+  40%/60% of full-tensor-plus-output coefficient traffic. Add a regression where
+  a correctly switched wrong tensor passes the old conditional stage and fails
+  the bound product check.
+- Add an explicit bounded CUDA product stage with direct RNS input/output and
+  batched existing kernels. Preserve the initial conversion-heavy negative run.
+  Complete locally checked 32/64-tile stages take 61.27/155.85 ms versus matched
+  optimized native recomputation at 91.58/197.97 ms; one tile loses and eight
+  are near parity. Record setup, native/legacy controls, adapter costs, internal
+  bytes and separately labeled link projections. No full-search receipt or
+  enclave deployment is introduced. Validate 1,118 full-suite tests (one live
+  AWS skip), 134 ASan/UBSan tests and zero CUDA memcheck errors.
 - Add joint E16 layout/precision/setup reporting over all 12 measured plans at
   8,192 and 32,768 vectors. Charge fresh index/key preparation and coefficient
   upload, correct terminal-cache setup accounting, and validate predictions

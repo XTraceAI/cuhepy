@@ -156,9 +156,12 @@ The [boundary measurements](bgv-digit-boundary-results.md) are followed by a
 independent reference and native arithmetic, post-output challenges, one-use
 binding and paired timings. It recomputes canonical digits from already-trusted
 input tensors before checking the batched linear map. It does not establish
-that preceding tensor product or the full search. Next bind the tensor to its
-fixed-index/query inputs, compare against native recomputation, and account for
-all stage transfers before composing the full chain or a reviewed proof backend.
+that preceding tensor product or the full search. The
+[product/switch follow-up](bgv-checked-product.md) now composes that input
+relation, eliminates c0/c1 witnesses and compares local-c2 checked GPU execution
+with optimized native recomputation. Butterfly, terminal, global coverage and
+final packet relations remain to be composed, with all transfers charged,
+before a full chain or reviewed proof backend can authorize owner decryption.
 Any [radix layout](bgv-radix-results.md) must also
 bind its base/mode, digit count, t, logical/physical counts and tail policy.
 Continue only

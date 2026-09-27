@@ -4,8 +4,8 @@ This follow-up moves beyond digit-conversion cost probes to one **complete
 arithmetic subcircuit**: canonical relinearization of a batch of trusted input
 tensors under a pinned public switching key. A homemade Python/GMP reference
 and optional C++/RNS/NTT backend implement the same check. Neither authenticates
-the complete search, runs in an enclave,
-produce a receipt, or authorize private decryption.
+the complete search, runs in an enclave, produces a receipt, or authorizes
+private decryption.
 
 The approach uses established randomized verification of batched linear maps.
 [Slalom §3.2](https://arxiv.org/html/1806.03287v2#S3.SS2) discusses checking a
@@ -216,12 +216,12 @@ CUHEPY_REQUIRE_BGV_CUDA=1 .venv/bin/python -m pytest \
   --json-out benchmarks/results/bgv_checked_switch_native_16384.json
 ```
 
-The next algebraic boundary is the **preceding fixed-index tensor product**.
-Its three components are linear in the query for a pinned encrypted index;
-a separate batch check could bind an untrusted tensor to that input. Complete
-verification still needs all subsequent transitions and final exact bytes.
-Before implementing the whole chain, compare this checker with **matched native
-CPU recomputation**, test composing adjacent checked stages, and account for
-every intermediate crossing the boundary. In particular, simply shipping all
-of these tensors through Nitro/vsock may erase the raw GPU benefit. A viable
-partition must be measured before extending receipts or private-client APIs.
+The [composed product/switch follow-up](bgv-checked-product.md) now binds the
+preceding fixed-index tensor product, eliminates c0/c1 witnesses, and optionally
+computes c2 in the verifier. It adds a stronger native recomputation control
+and a direct-RNS GPU stage with all current adapter/copy costs measured. At
+32/64 tiles the complete local checked subcircuit beats that native control;
+one tile loses and eight are near parity. Complete verification still needs
+all subsequent transitions, global coverage and final exact bytes. Internal
+traffic and real Nitro/vsock costs must be measured before extending receipts
+or private-client APIs.

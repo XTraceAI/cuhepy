@@ -8,7 +8,8 @@ and [E13/E14 stage inventory and arithmetic oracles](bgv-verification-relations.
 followed by [E16 radix/client measurements](bgv-radix-results.md),
 [joint layout/precision/setup selection](bgv-layout-planning.md),
 [E13 CPU/GPU boundary measurements](bgv-digit-boundary-results.md) and a
-[complete reference/native key-switch stage check](bgv-checked-switch.md). These do not
+[complete reference/native key-switch stage check](bgv-checked-switch.md), then
+[bound product/switch composition and direct RNS GPU output](bgv-checked-product.md). These do not
 implement a complete GPU verification protocol or proof. None establishes
 novelty or production security. Existing E01–E12,
 implementations, negative results and independent oracles remain the baseline.
@@ -196,9 +197,20 @@ an HE security estimate. No secret preprocessing pool or refill is used.
 Homemade C++/RNS arithmetic reduces paired reference checker costs by
 37.9–99.3× for batches 1/8/32; native costs including input binding are
 9.29/23.15/90.73 ms. It does not establish its input tensors or remaining search
-stages, and it is not a receipt. Next bind the preceding fixed-index tensor
-product, compare to matched native recomputation, and measure complete trace
-traffic before extending the partition or making a verified-service claim.
+stages, and it is not a receipt. Its proposed follow-up was to bind the preceding
+fixed-index tensor product and compare against matched native recomputation.
+
+The [composed follow-up](bgv-checked-product.md) now implements that product
+binding. It eliminates c0/c1 witnesses and offers local c2 computation, with
+40%/60% fewer coefficient bytes than a full tensor/output boundary. A first
+GPU run loses heavily to export/conversion. Retaining that result, a direct
+RNS/batched GPU subcircuit with local-c2 checking costs 61.27/155.85 ms for
+32/64 ciphertext tiles versus 91.58/197.97 ms for optimized native recomputation.
+Small batches lose or reach only near parity. These measurements include
+allocation, export, framing and checking, but no enclave channel or remaining
+search stages. Next compose butterfly and terminal relations, charge complete
+coverage and deployment traffic, and compare matched CPU thread budgets. This
+is conditional systems evidence, not a novelty or full-service security claim.
 
 Separately evaluate an attested-GPU deployment when suitable hardware is
 available. It has a larger hardware/firmware trust boundary and needs its own
