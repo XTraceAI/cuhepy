@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add a separate E15 joint-packing support-bound policy, with a deterministic
+  whole-polynomial derivation, independent symbolic error propagation and
+  CPU/CUDA precision-frontier regressions. Retain the conservative bound and
+  authentication policies. Add paired byte/compute/transport measurements.
 - Update the experimental agenda after a primary-source literature review of
   BioZKFHE, encrypted search, verifiable FHE, packing and conversion. Add E13–E19
   hypotheses with mathematical starting points, comparison contracts, cost
