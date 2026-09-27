@@ -7,7 +7,7 @@ EXT := $(shell $(PYTHON) -c 'import sysconfig; print(sysconfig.get_config_var("E
 TARGET := _bgv_checked$(EXT)
 .PHONY: all clean
 all: $(TARGET)
-$(TARGET): bindings.cpp check.h $(wildcard $(CPU)/*.h) Makefile
+$(TARGET): bindings.cpp check.h product.h $(wildcard $(CPU)/*.h) Makefile
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++17 -Wall -Wextra -fPIC -shared \
 		-I$(PY_INC) -I$(CPU) bindings.cpp $(LDFLAGS) -lgmpxx -lgmp -o $@
 clean:

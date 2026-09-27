@@ -12,6 +12,7 @@ static_assert(__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__, "Little-endian fixture 
 inline Word load(const char* input) { Word value;std::memcpy(&value,input,8);return value; }
 
 class Arithmetic {
+    friend class ProductArithmetic;
     std::vector<PrimeNTT> transforms_;
     // [limb][digit][component], each already transformed.
     std::array<std::array<std::array<std::vector<Word>,2>,4>,2> key_;

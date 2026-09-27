@@ -24,4 +24,6 @@ assert Path(module.__file__).resolve() == library
 import pytest  # noqa: E402
 
 raise SystemExit(pytest.main(['experiments/bfv_search_lab/test_checked_switch_bgv.py',
-    'experiments/bfv_search_lab/test_native_checked_switch_bgv.py', '-q']))
+    'experiments/bfv_search_lab/test_native_checked_switch_bgv.py',
+    'experiments/bfv_search_lab/test_checked_product_bgv.py',
+    'experiments/bfv_search_lab/test_native_checked_product_bgv.py', '-q']))
