@@ -160,3 +160,15 @@ def test_compiled_query_handles_general_field_coefficients_not_just_signs():
         affine.bit_query_features(bits, 512)
     with pytest.raises(ValueError):
         affine.bit_decode(bits, [17], 0)
+
+
+def test_one_new_direction_crosses_padding_boundary_and_invalidates_old_map():
+    rows = [0, *(1 << j for j in range(64))]
+    before = affine.prepare(rows, 72)
+    after = affine.prepare([*rows, 1 << 64], 72)
+    assert (before.rank, after.rank) == (64, 65)
+    ctx = crt.context(256, 1, 1153)
+    assert crt.layout(ctx, (before.features,), (len(rows),)).padded == 64
+    assert crt.layout(ctx, (after.features,), (len(rows) + 1,)).padded == 128
+    with pytest.raises(ValueError, match="epoch"):
+        affine.index_features(before, [1 << 64])

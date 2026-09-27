@@ -1,0 +1,2034 @@
+{
+  "utc": "2026-09-27T16:53:12.221761+00:00",
+  "command": [
+    "benchmarks/component_bgv_native.py",
+    "--cache-dir",
+    "../research-data/uci-20260927",
+    "--dataset",
+    "mushroom",
+    "--seed",
+    "3002",
+    "--parts",
+    "16",
+    "--json-out",
+    "benchmarks/results/component_bgv_mushroom_split2_20260927.json"
+  ],
+  "git_head": "d6d9ad89b9eaea3797d8824fdfe0ab3f00afa16a",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/component_bgv_native.py": "3e334fc351fd4a600cdf4869ff6a1c9740330ec8be33d9ee49c297ac0459b2b9",
+    "benchmarks/component_dictionary_lab.py": "3ef986989787a711aee7480e7d48d02266ea8b35c4bdf086fc9f9527ad519149",
+    "benchmarks/certified_filter_lab.py": "4faa08db3d109cc5c4e90573a7fc0999effb62e9a78679189059e9df13d7ea89",
+    "benchmarks/dictionary_layout_lab.py": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31",
+    "experiments/bfv_search_lab/affine_dictionary.py": "0f811f9a5cd2628f1c6c2f048c1d32e65eaaf9aa5e3f942118342b3edf6daf05",
+    "experiments/bfv_search_lab/crt_multiplex.py": "8998c749598f2506b7ab5d2c709a041e4b439ee9deb1da967a8dee09bf725d0a",
+    "experiments/bfv_search_lab/folded_dictionary.py": "ffcf1a874b3ced51acde17c018047005c34121e72f0221237b7b77377de7f35c",
+    "experiments/bfv_search_lab/folded_filter.py": "c0742a76c0f3daa956b02890f173afd47f027f8cf0b69ef2653836edb20e9605",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/linear_packing.py": "60664b62a7c225cc1a552040da51f4fe2532bdd0d213b145bb20623dea8b523d",
+    "experiments/bfv_search_lab/native_bgv.py": "7d04b12185a8b4afcf1e2d65d9d16589dda034427a4ec787c1d36729a0b167bb",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/native_owner_bgv.py": "29dfad4e654b7c84ac2d9e0785e175d1c20521923975f91915c7bdf74c1c8d2e",
+    "experiments/bfv_search_lab/seeded_bgv.py": "7e8631304dde122c4755f5f7391ef8ba6b9be213fd2c667a473b388175890272",
+    "experiments/bfv_search_lab/private_bgv.py": "65435e215abd4e0ba8e8072b27a1481d658534ade3b9e02f5e1802767a0a6ca8",
+    "experiments/bfv_search_lab/compact_bgv.py": "4b98630622c75052a74ae4f1380bc529f2db088ad961716147b858f3936e0ff9",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/trace_bgv.py": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5",
+    "experiments/bfv_search_lab/butterfly_bgv.py": "07a1312356851b670dfc51da9bd648aee6aad22250b48d7a13575903ae388167",
+    "experiments/bfv_search_lab/_native/_bgv_trace.cpython-312-x86_64-linux-gnu.so": "5753d77e87c84b09199a740c8bbeb94df4e7df8cca97a252021051b0a6f72454",
+    "experiments/bfv_search_lab/_owner/_bgv_owner.cpython-312-x86_64-linux-gnu.so": "91e97d7c12ad28e60e141ccc205526db5bc7d8fbcfa411697059b7612fcbdc51",
+    "experiments/bfv_search_lab/_native/_bgv_trace_cuda.cpython-312-x86_64-linux-gnu.so": "19275bfd7a6403339629231c32a2dae9894aa439d1a271ddc96695a19dc53f12"
+  },
+  "kind": "affine_crt_paired_homemade_bgv",
+  "omp_num_threads": "8",
+  "notes": "Same full encryption ring and t=1153 for ALL methods; 1031 does not support this CRT split. No private row corrections, adaptive routing, secret-key GPU arithmetic or imported HE library. Public-data metric partition or deliberately given piecewise synthetic blocks. All online stages charged; setup, network and authentication excluded. Native API, not packed-workspace service. Index-derived maps/anchors are private owner state; additional map size is independent of row count at fixed T,d. Common stable-ID/permutation state is still O(M); no total constant-state claim. No new parameter/side-channel assurance or production authorization.",
+  "result": {
+    "dataset": "mushroom",
+    "dimension": 126,
+    "count": 7996,
+    "unique_rows": 7996,
+    "split_seed": 3002,
+    "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+    "query_ids_with_warmup": [
+      7095,
+      7058,
+      2975,
+      1959,
+      1272,
+      7178,
+      2216,
+      7561,
+      4904
+    ],
+    "setup": {
+      "private_representation": {
+        "enroll_s": 0.10132250003516674,
+        "ranks": [
+          46,
+          35,
+          56,
+          12,
+          12,
+          12,
+          27,
+          13,
+          41,
+          42,
+          58,
+          48,
+          29,
+          38,
+          45,
+          14
+        ],
+        "map_body_bytes": 8271,
+        "map_zlib9_bytes": 2545,
+        "map_sha256": "2ebe19bfe4dcfb6ebd3d2b7a977c119f962d08363021f3fc95ab762ed5b23cbc",
+        "dense_field_basis_elements": 66528,
+        "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate.",
+        "python_map_object_bytes": 598172,
+        "compile_bit_masks_s": 0.007087375037372112,
+        "python_bit_map_object_bytes": 145028,
+        "bit_mask_terms": 1126,
+        "raw_rows_bytes": 127936,
+        "raw_rows_zlib9_bytes": 22698,
+        "common_id_array_bytes": 15992
+      },
+      "padded": 64,
+      "parts": 16,
+      "counts": [
+        499,
+        500,
+        500,
+        500,
+        499,
+        500,
+        500,
+        500,
+        499,
+        500,
+        500,
+        500,
+        499,
+        500,
+        500,
+        500
+      ],
+      "keygen_s": 0.09684344427660108,
+      "n": 16384,
+      "t": 1153,
+      "q_bits": 120,
+      "eta": 21,
+      "digit_bits": 30,
+      "terminal_bits": 32,
+      "full_encode_s": 0.17911635991185904,
+      "crt_index_encode_s": 0.11266736686229706,
+      "keys_64": {
+        "create_s": 2.0154323130846024,
+        "coefficient_bytes": 13762560,
+        "cpu_prepare_s": 0.18590743001550436,
+        "cuda_prepare_s": 0.4414214128628373
+      },
+      "keys_128": {
+        "create_s": 2.2652839981019497,
+        "coefficient_bytes": 15728640,
+        "cpu_prepare_s": 0.21517702098935843,
+        "cuda_prepare_s": 0.22363580204546452
+      },
+      "full_index": {
+        "ciphertexts": 63,
+        "coefficient_bytes": 30965760,
+        "encrypt_expand_s": 0.9762502242811024,
+        "cpu_prepare_s": 0.41139572812244296,
+        "cuda_prepare_s": 0.4146496099419892
+      },
+      "separate_index": {
+        "ciphertexts": 32,
+        "coefficient_bytes": 15728640,
+        "encrypt_expand_s": 0.4770247149281204,
+        "cpu_prepare_s": 0.19377650134265423,
+        "cuda_prepare_s": 0.19419243792071939
+      },
+      "crt_index": {
+        "ciphertexts": 32,
+        "coefficient_bytes": 15728640,
+        "encrypt_expand_s": 0.4882493703626096,
+        "cpu_prepare_s": 0.19721362693235278,
+        "cuda_prepare_s": 0.19978618621826172
+      }
+    },
+    "warmup": {
+      "separate/cuda": {
+        "query_transform_s": 0.007929462008178234,
+        "encrypt_s": 0.16900998633354902,
+        "query_expand_s": 0.0672333580441773,
+        "evaluate_s": 0.2178147118538618,
+        "response_pack_s": 0.0442062858492136,
+        "decrypt_s": 0.13904942339286208,
+        "decode_select_s": 0.03123176796361804,
+        "server_s": 0.3292543557472527,
+        "client_s": 0.3472206396982074,
+        "local_total_s": 0.6764749954454601,
+        "query_bytes": 3933856,
+        "response_bytes": 2098592,
+        "query_ciphertexts": 16,
+        "response_ciphertexts": 16
+      },
+      "crt_masks/cuda": {
+        "query_transform_s": 0.0032836529426276684,
+        "encrypt_s": 0.01101171039044857,
+        "query_expand_s": 0.004074268043041229,
+        "evaluate_s": 0.018226718995720148,
+        "response_pack_s": 0.0027451529167592525,
+        "decrypt_s": 0.008863569237291813,
+        "decode_select_s": 0.006565054878592491,
+        "server_s": 0.02504613995552063,
+        "client_s": 0.029723987448960543,
+        "local_total_s": 0.05477012740448117,
+        "query_bytes": 245866,
+        "response_bytes": 131162,
+        "query_ciphertexts": 1,
+        "response_ciphertexts": 1
+      },
+      "full/cpu": {
+        "query_transform_s": 0.00010023172944784164,
+        "encrypt_s": 0.011447928845882416,
+        "query_expand_s": 0.003889304120093584,
+        "evaluate_s": 0.6081431657075882,
+        "response_pack_s": 0.002682431135326624,
+        "decrypt_s": 0.008724057115614414,
+        "decode_select_s": 0.005861262790858746,
+        "server_s": 0.6147149009630084,
+        "client_s": 0.026133480481803417,
+        "local_total_s": 0.6408483814448118,
+        "query_bytes": 245866,
+        "response_bytes": 131162,
+        "query_ciphertexts": 1,
+        "response_ciphertexts": 1
+      },
+      "crt/cuda": {
+        "query_transform_s": 0.010667484253644943,
+        "encrypt_s": 0.011128883343189955,
+        "query_expand_s": 0.00409028772264719,
+        "evaluate_s": 0.01735534192994237,
+        "response_pack_s": 0.0026736408472061157,
+        "decrypt_s": 0.00871441699564457,
+        "decode_select_s": 0.011275525204837322,
+        "server_s": 0.024119270499795675,
+        "client_s": 0.04178630979731679,
+        "local_total_s": 0.06590558029711246,
+        "query_bytes": 245866,
+        "response_bytes": 131162,
+        "query_ciphertexts": 1,
+        "response_ciphertexts": 1
+      },
+      "crt_masks/cpu": {
+        "query_transform_s": 0.0032836529426276684,
+        "encrypt_s": 0.01101171039044857,
+        "query_expand_s": 0.004074268043041229,
+        "evaluate_s": 0.31101753609254956,
+        "response_pack_s": 0.002723021898418665,
+        "decrypt_s": 0.008673215750604868,
+        "decode_select_s": 0.006475383881479502,
+        "server_s": 0.31781482603400946,
+        "client_s": 0.02944396296516061,
+        "local_total_s": 0.34725878899917006,
+        "query_bytes": 245866,
+        "response_bytes": 131162,
+        "query_ciphertexts": 1,
+        "response_ciphertexts": 1
+      },
+      "separate/cpu": {
+        "query_transform_s": 0.007929462008178234,
+        "encrypt_s": 0.16900998633354902,
+        "query_expand_s": 0.0672333580441773,
+        "evaluate_s": 0.7952391090802848,
+        "response_pack_s": 0.043711266946047544,
+        "decrypt_s": 0.13753030402585864,
+        "decode_select_s": 0.025425597093999386,
+        "server_s": 0.9061837340705097,
+        "client_s": 0.3398953494615853,
+        "local_total_s": 1.246079083532095,
+        "query_bytes": 3933856,
+        "response_bytes": 2098592,
+        "query_ciphertexts": 16,
+        "response_ciphertexts": 16
+      },
+      "crt/cpu": {
+        "query_transform_s": 0.010667484253644943,
+        "encrypt_s": 0.011128883343189955,
+        "query_expand_s": 0.00409028772264719,
+        "evaluate_s": 0.3112930008210242,
+        "response_pack_s": 0.0027538929134607315,
+        "decrypt_s": 0.008836858905851841,
+        "decode_select_s": 0.011662614066153765,
+        "server_s": 0.3181371814571321,
+        "client_s": 0.042295840568840504,
+        "local_total_s": 0.3604330220259726,
+        "query_bytes": 245866,
+        "response_bytes": 131162,
+        "query_ciphertexts": 1,
+        "response_ciphertexts": 1
+      },
+      "full/cuda": {
+        "query_transform_s": 0.00010023172944784164,
+        "encrypt_s": 0.011447928845882416,
+        "query_expand_s": 0.003889304120093584,
+        "evaluate_s": 0.02161454362794757,
+        "response_pack_s": 0.0027056820690631866,
+        "decrypt_s": 0.0087546082213521,
+        "decode_select_s": 0.005519645754247904,
+        "server_s": 0.02820952981710434,
+        "client_s": 0.02582241455093026,
+        "local_total_s": 0.0540319443680346,
+        "query_bytes": 245866,
+        "response_bytes": 131162,
+        "query_ciphertexts": 1,
+        "response_ciphertexts": 1
+      }
+    },
+    "samples": {
+      "full/cpu": [
+        {
+          "query_transform_s": 0.00012233201414346695,
+          "encrypt_s": 0.010687575209885836,
+          "query_expand_s": 0.0038053933531045914,
+          "evaluate_s": 0.6110603222623467,
+          "response_pack_s": 0.0027036122046411037,
+          "decrypt_s": 0.008778187911957502,
+          "decode_select_s": 0.005747760180383921,
+          "server_s": 0.6175693278200924,
+          "client_s": 0.025335855316370726,
+          "local_total_s": 0.6429051831364632,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00012367311865091324,
+          "encrypt_s": 0.010872217826545238,
+          "query_expand_s": 0.003843794111162424,
+          "evaluate_s": 0.6103894491679966,
+          "response_pack_s": 0.0027776830829679966,
+          "decrypt_s": 0.008823228999972343,
+          "decode_select_s": 0.005884412210434675,
+          "server_s": 0.6170109263621271,
+          "client_s": 0.02570353215560317,
+          "local_total_s": 0.6427144585177302,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00010109180584549904,
+          "encrypt_s": 0.010976050049066544,
+          "query_expand_s": 0.0039019151590764523,
+          "evaluate_s": 0.6044073947705328,
+          "response_pack_s": 0.002707161009311676,
+          "decrypt_s": 0.008805749006569386,
+          "decode_select_s": 0.005697770044207573,
+          "server_s": 0.611016470938921,
+          "client_s": 0.025580660905689,
+          "local_total_s": 0.63659713184461,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00013334210962057114,
+          "encrypt_s": 0.011096321977674961,
+          "query_expand_s": 0.004050857853144407,
+          "evaluate_s": 0.6062583108432591,
+          "response_pack_s": 0.002731221728026867,
+          "decrypt_s": 0.008744677994400263,
+          "decode_select_s": 0.005801341030746698,
+          "server_s": 0.6130403904244304,
+          "client_s": 0.025775683112442493,
+          "local_total_s": 0.6388160735368729,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0001406921073794365,
+          "encrypt_s": 0.011103791650384665,
+          "query_expand_s": 0.003956055734306574,
+          "evaluate_s": 0.6053476831875741,
+          "response_pack_s": 0.002679100725799799,
+          "decrypt_s": 0.008709156885743141,
+          "decode_select_s": 0.005752719938755035,
+          "server_s": 0.6119828396476805,
+          "client_s": 0.025706360582262278,
+          "local_total_s": 0.6376892002299428,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00010456191375851631,
+          "encrypt_s": 0.011013311333954334,
+          "query_expand_s": 0.003915664739906788,
+          "evaluate_s": 0.6061007976531982,
+          "response_pack_s": 0.0028381943702697754,
+          "decrypt_s": 0.008838909678161144,
+          "decode_select_s": 0.005768020637333393,
+          "server_s": 0.6128546567633748,
+          "client_s": 0.025724803563207388,
+          "local_total_s": 0.6385794603265822,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00014892267063260078,
+          "encrypt_s": 0.010925258975476027,
+          "query_expand_s": 0.004119548946619034,
+          "evaluate_s": 0.6061228788457811,
+          "response_pack_s": 0.0027050520293414593,
+          "decrypt_s": 0.008854999672621489,
+          "decode_select_s": 0.005803321022540331,
+          "server_s": 0.6129474798217416,
+          "client_s": 0.025732502341270447,
+          "local_total_s": 0.638679982163012,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00014379294589161873,
+          "encrypt_s": 0.010955230332911015,
+          "query_expand_s": 0.004050057847052813,
+          "evaluate_s": 0.6056872196495533,
+          "response_pack_s": 0.0027026119641959667,
+          "decrypt_s": 0.00871758721768856,
+          "decode_select_s": 0.005747610237449408,
+          "server_s": 0.6124398894608021,
+          "client_s": 0.0255642207339406,
+          "local_total_s": 0.6380041101947427,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        }
+      ],
+      "full/cuda": [
+        {
+          "query_transform_s": 0.00012233201414346695,
+          "encrypt_s": 0.010687575209885836,
+          "query_expand_s": 0.0038053933531045914,
+          "evaluate_s": 0.021234147250652313,
+          "response_pack_s": 0.002775633241981268,
+          "decrypt_s": 0.008821349125355482,
+          "decode_select_s": 0.005690848920494318,
+          "server_s": 0.027815173845738173,
+          "client_s": 0.025322105269879103,
+          "local_total_s": 0.053137279115617275,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00012367311865091324,
+          "encrypt_s": 0.010872217826545238,
+          "query_expand_s": 0.003843794111162424,
+          "evaluate_s": 0.02146784123033285,
+          "response_pack_s": 0.002741062082350254,
+          "decrypt_s": 0.008611025288701057,
+          "decode_select_s": 0.005464185029268265,
+          "server_s": 0.02805269742384553,
+          "client_s": 0.025071101263165474,
+          "local_total_s": 0.053123798687011003,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00010109180584549904,
+          "encrypt_s": 0.010976050049066544,
+          "query_expand_s": 0.0039019151590764523,
+          "evaluate_s": 0.021724996156990528,
+          "response_pack_s": 0.0027379924431443214,
+          "decrypt_s": 0.008779289200901985,
+          "decode_select_s": 0.005835631862282753,
+          "server_s": 0.028364903759211302,
+          "client_s": 0.02569206291809678,
+          "local_total_s": 0.05405696667730808,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00013334210962057114,
+          "encrypt_s": 0.011096321977674961,
+          "query_expand_s": 0.004050857853144407,
+          "evaluate_s": 0.02164572523906827,
+          "response_pack_s": 0.0027087917551398277,
+          "decrypt_s": 0.008746948093175888,
+          "decode_select_s": 0.005716378800570965,
+          "server_s": 0.028405374847352505,
+          "client_s": 0.025692990981042385,
+          "local_total_s": 0.05409836582839489,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0001406921073794365,
+          "encrypt_s": 0.011103791650384665,
+          "query_expand_s": 0.003956055734306574,
+          "evaluate_s": 0.021825267933309078,
+          "response_pack_s": 0.0027152118273079395,
+          "decrypt_s": 0.00875798799097538,
+          "decode_select_s": 0.010970369912683964,
+          "server_s": 0.02849653549492359,
+          "client_s": 0.030972841661423445,
+          "local_total_s": 0.059469377156347036,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00010456191375851631,
+          "encrypt_s": 0.011013311333954334,
+          "query_expand_s": 0.003915664739906788,
+          "evaluate_s": 0.02160980412736535,
+          "response_pack_s": 0.002675680909305811,
+          "decrypt_s": 0.008700377307832241,
+          "decode_select_s": 0.005491204559803009,
+          "server_s": 0.02820114977657795,
+          "client_s": 0.0253094551153481,
+          "local_total_s": 0.05351060489192605,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00014892267063260078,
+          "encrypt_s": 0.010925258975476027,
+          "query_expand_s": 0.004119548946619034,
+          "evaluate_s": 0.021812607999891043,
+          "response_pack_s": 0.0027775331400334835,
+          "decrypt_s": 0.008734378032386303,
+          "decode_select_s": 0.005933584179729223,
+          "server_s": 0.02870969008654356,
+          "client_s": 0.025742143858224154,
+          "local_total_s": 0.054451833944767714,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.00014379294589161873,
+          "encrypt_s": 0.010955230332911015,
+          "query_expand_s": 0.004050057847052813,
+          "evaluate_s": 0.021503361873328686,
+          "response_pack_s": 0.0027071419171988964,
+          "decrypt_s": 0.008732987102121115,
+          "decode_select_s": 0.0057411701418459415,
+          "server_s": 0.028260561637580395,
+          "client_s": 0.02557318052276969,
+          "local_total_s": 0.053833742160350084,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        }
+      ],
+      "separate/cpu": [
+        {
+          "query_transform_s": 0.0077403876930475235,
+          "encrypt_s": 0.17100104503333569,
+          "query_expand_s": 0.06360205821692944,
+          "evaluate_s": 0.7968026590533555,
+          "response_pack_s": 0.043949722312390804,
+          "decrypt_s": 0.13939204905182123,
+          "decode_select_s": 0.025418437086045742,
+          "server_s": 0.9043544395826757,
+          "client_s": 0.3435519188642502,
+          "local_total_s": 1.2479063584469259,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007888630963861942,
+          "encrypt_s": 0.1696303989738226,
+          "query_expand_s": 0.06051626801490784,
+          "evaluate_s": 0.7954791239462793,
+          "response_pack_s": 0.04391606105491519,
+          "decrypt_s": 0.14029883686453104,
+          "decode_select_s": 0.026427465956658125,
+          "server_s": 0.8999114530161023,
+          "client_s": 0.3442453327588737,
+          "local_total_s": 1.244156785774976,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007921942044049501,
+          "encrypt_s": 0.17106454586610198,
+          "query_expand_s": 0.06065421178936958,
+          "evaluate_s": 0.7970043942332268,
+          "response_pack_s": 0.043799929320812225,
+          "decrypt_s": 0.13846859242767096,
+          "decode_select_s": 0.030800300184637308,
+          "server_s": 0.9014585353434086,
+          "client_s": 0.34825538052245975,
+          "local_total_s": 1.2497139158658683,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007921981625258923,
+          "encrypt_s": 0.17075695982202888,
+          "query_expand_s": 0.06044542836025357,
+          "evaluate_s": 0.7866113749332726,
+          "response_pack_s": 0.044031642843037844,
+          "decrypt_s": 0.13947364082559943,
+          "decode_select_s": 0.025777194183319807,
+          "server_s": 0.891088446136564,
+          "client_s": 0.34392977645620704,
+          "local_total_s": 1.235018222592771,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007932362146675587,
+          "encrypt_s": 0.1702056396752596,
+          "query_expand_s": 0.060759013053029776,
+          "evaluate_s": 0.7876240252517164,
+          "response_pack_s": 0.044237876776605844,
+          "decrypt_s": 0.13908164389431477,
+          "decode_select_s": 0.025629310868680477,
+          "server_s": 0.892620915081352,
+          "client_s": 0.3428489565849304,
+          "local_total_s": 1.2354698716662824,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007960082031786442,
+          "encrypt_s": 0.1716374671086669,
+          "query_expand_s": 0.060948487371206284,
+          "evaluate_s": 0.7861752072349191,
+          "response_pack_s": 0.04391038091853261,
+          "decrypt_s": 0.1383548602461815,
+          "decode_select_s": 0.025027279742062092,
+          "server_s": 0.891034075524658,
+          "client_s": 0.3429796891286969,
+          "local_total_s": 1.2340137646533549,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.0080029028467834,
+          "encrypt_s": 0.1701529291458428,
+          "query_expand_s": 0.06056516012176871,
+          "evaluate_s": 0.7874397812411189,
+          "response_pack_s": 0.04355737427249551,
+          "decrypt_s": 0.1373269697651267,
+          "decode_select_s": 0.025525049306452274,
+          "server_s": 0.8915623156353831,
+          "client_s": 0.34100785106420517,
+          "local_total_s": 1.2325701666995883,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.00802578404545784,
+          "encrypt_s": 0.17157318629324436,
+          "query_expand_s": 0.06075805379077792,
+          "evaluate_s": 0.7972549400292337,
+          "response_pack_s": 0.044184116180986166,
+          "decrypt_s": 0.1390239130705595,
+          "decode_select_s": 0.025849576108157635,
+          "server_s": 0.9021971100009978,
+          "client_s": 0.34447245951741934,
+          "local_total_s": 1.2466695695184171,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        }
+      ],
+      "separate/cuda": [
+        {
+          "query_transform_s": 0.0077403876930475235,
+          "encrypt_s": 0.17100104503333569,
+          "query_expand_s": 0.06360205821692944,
+          "evaluate_s": 0.2160753677599132,
+          "response_pack_s": 0.0437981691211462,
+          "decrypt_s": 0.139883438590914,
+          "decode_select_s": 0.025158701930195093,
+          "server_s": 0.32347559509798884,
+          "client_s": 0.3437835732474923,
+          "local_total_s": 0.6672591683454812,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007888630963861942,
+          "encrypt_s": 0.1696303989738226,
+          "query_expand_s": 0.06051626801490784,
+          "evaluate_s": 0.21501001715660095,
+          "response_pack_s": 0.043537893798202276,
+          "decrypt_s": 0.13772774673998356,
+          "decode_select_s": 0.025083899963647127,
+          "server_s": 0.31906417896971107,
+          "client_s": 0.3403306766413152,
+          "local_total_s": 0.6593948556110263,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007921942044049501,
+          "encrypt_s": 0.17106454586610198,
+          "query_expand_s": 0.06065421178936958,
+          "evaluate_s": 0.21095112105831504,
+          "response_pack_s": 0.044542312156409025,
+          "decrypt_s": 0.13878450775519013,
+          "decode_select_s": 0.02579650515690446,
+          "server_s": 0.31614764500409365,
+          "client_s": 0.3435675008222461,
+          "local_total_s": 0.6597151458263397,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007921981625258923,
+          "encrypt_s": 0.17075695982202888,
+          "query_expand_s": 0.06044542836025357,
+          "evaluate_s": 0.20955958403646946,
+          "response_pack_s": 0.04368231585249305,
+          "decrypt_s": 0.13873963663354516,
+          "decode_select_s": 0.031078055035322905,
+          "server_s": 0.3136873282492161,
+          "client_s": 0.34849663311615586,
+          "local_total_s": 0.6621839613653719,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007932362146675587,
+          "encrypt_s": 0.1702056396752596,
+          "query_expand_s": 0.060759013053029776,
+          "evaluate_s": 0.20674982899799943,
+          "response_pack_s": 0.04382434021681547,
+          "decrypt_s": 0.13976233592256904,
+          "decode_select_s": 0.025426796171814203,
+          "server_s": 0.3113331822678447,
+          "client_s": 0.3433271339163184,
+          "local_total_s": 0.6546603161841631,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.007960082031786442,
+          "encrypt_s": 0.1716374671086669,
+          "query_expand_s": 0.060948487371206284,
+          "evaluate_s": 0.20696728397160769,
+          "response_pack_s": 0.04437849996611476,
+          "decrypt_s": 0.14000358106568456,
+          "decode_select_s": 0.025493008084595203,
+          "server_s": 0.31229427130892873,
+          "client_s": 0.3450941382907331,
+          "local_total_s": 0.6573884095996618,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.0080029028467834,
+          "encrypt_s": 0.1701529291458428,
+          "query_expand_s": 0.06056516012176871,
+          "evaluate_s": 0.20825449842959642,
+          "response_pack_s": 0.04437406035140157,
+          "decrypt_s": 0.1378799299709499,
+          "decode_select_s": 0.02588419569656253,
+          "server_s": 0.3131937189027667,
+          "client_s": 0.3419199576601386,
+          "local_total_s": 0.6551136765629053,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        },
+        {
+          "query_transform_s": 0.00802578404545784,
+          "encrypt_s": 0.17157318629324436,
+          "query_expand_s": 0.06075805379077792,
+          "evaluate_s": 0.20776569889858365,
+          "response_pack_s": 0.044361609034240246,
+          "decrypt_s": 0.13948149234056473,
+          "decode_select_s": 0.02616581181064248,
+          "server_s": 0.3128853617236018,
+          "client_s": 0.3452462744899094,
+          "local_total_s": 0.6581316362135112,
+          "query_bytes": 3933856,
+          "response_bytes": 2098592,
+          "query_ciphertexts": 16,
+          "response_ciphertexts": 16
+        }
+      ],
+      "crt/cpu": [
+        {
+          "query_transform_s": 0.01062227413058281,
+          "encrypt_s": 0.011069431900978088,
+          "query_expand_s": 0.004136618692427874,
+          "evaluate_s": 0.3114223941229284,
+          "response_pack_s": 0.002693871036171913,
+          "decrypt_s": 0.008702526800334454,
+          "decode_select_s": 0.011637973133474588,
+          "server_s": 0.31825288385152817,
+          "client_s": 0.04203220596536994,
+          "local_total_s": 0.3602850898168981,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0106429741717875,
+          "encrypt_s": 0.01055487198755145,
+          "query_expand_s": 0.003831202629953623,
+          "evaluate_s": 0.3111216980032623,
+          "response_pack_s": 0.002711281646043062,
+          "decrypt_s": 0.008763206657022238,
+          "decode_select_s": 0.01164722302928567,
+          "server_s": 0.31766418227925897,
+          "client_s": 0.04160827584564686,
+          "local_total_s": 0.3592724581249058,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.010745625011622906,
+          "encrypt_s": 0.010743576101958752,
+          "query_expand_s": 0.003784141968935728,
+          "evaluate_s": 0.3108427128754556,
+          "response_pack_s": 0.0026822411455214024,
+          "decrypt_s": 0.008718457072973251,
+          "decode_select_s": 0.011580790858715773,
+          "server_s": 0.31730909598991275,
+          "client_s": 0.04178844904527068,
+          "local_total_s": 0.35909754503518343,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.01055853208526969,
+          "encrypt_s": 0.010699224192649126,
+          "query_expand_s": 0.0037914919666945934,
+          "evaluate_s": 0.3111609690822661,
+          "response_pack_s": 0.0027365018613636494,
+          "decrypt_s": 0.008814978878945112,
+          "decode_select_s": 0.0123054850846529,
+          "server_s": 0.31768896291032434,
+          "client_s": 0.04237822024151683,
+          "local_total_s": 0.36006718315184116,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.010790146887302399,
+          "encrypt_s": 0.010777956806123257,
+          "query_expand_s": 0.0037802718579769135,
+          "evaluate_s": 0.31116746878251433,
+          "response_pack_s": 0.0028251740150153637,
+          "decrypt_s": 0.008788179140537977,
+          "decode_select_s": 0.011744054965674877,
+          "server_s": 0.3177729146555066,
+          "client_s": 0.04210033779963851,
+          "local_total_s": 0.3598732524551451,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.010733665898442268,
+          "encrypt_s": 0.010852687992155552,
+          "query_expand_s": 0.003786643035709858,
+          "evaluate_s": 0.31097564473748207,
+          "response_pack_s": 0.002778302878141403,
+          "decrypt_s": 0.008758877869695425,
+          "decode_select_s": 0.01688746316358447,
+          "server_s": 0.31754059065133333,
+          "client_s": 0.047232694923877716,
+          "local_total_s": 0.36477328557521105,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.010637593921273947,
+          "encrypt_s": 0.010725155007094145,
+          "query_expand_s": 0.0037878118455410004,
+          "evaluate_s": 0.3114004139788449,
+          "response_pack_s": 0.002797774039208889,
+          "decrypt_s": 0.008765387814491987,
+          "decode_select_s": 0.011731284204870462,
+          "server_s": 0.31798599986359477,
+          "client_s": 0.04185942094773054,
+          "local_total_s": 0.3598454208113253,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.01084572821855545,
+          "encrypt_s": 0.010772845707833767,
+          "query_expand_s": 0.0037838933058083057,
+          "evaluate_s": 0.3116516191512346,
+          "response_pack_s": 0.002735442016273737,
+          "decrypt_s": 0.008813869208097458,
+          "decode_select_s": 0.011757336091250181,
+          "server_s": 0.31817095447331667,
+          "client_s": 0.042189779225736856,
+          "local_total_s": 0.3603607336990535,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        }
+      ],
+      "crt/cuda": [
+        {
+          "query_transform_s": 0.01062227413058281,
+          "encrypt_s": 0.011069431900978088,
+          "query_expand_s": 0.004136618692427874,
+          "evaluate_s": 0.018141607753932476,
+          "response_pack_s": 0.00265682116150856,
+          "decrypt_s": 0.008665026165544987,
+          "decode_select_s": 0.016567987855523825,
+          "server_s": 0.02493504760786891,
+          "client_s": 0.04692472005262971,
+          "local_total_s": 0.07185976766049862,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0106429741717875,
+          "encrypt_s": 0.01055487198755145,
+          "query_expand_s": 0.003831202629953623,
+          "evaluate_s": 0.01723843114450574,
+          "response_pack_s": 0.0026597310788929462,
+          "decrypt_s": 0.008649645373225212,
+          "decode_select_s": 0.01143096899613738,
+          "server_s": 0.02372936485335231,
+          "client_s": 0.041278460528701544,
+          "local_total_s": 0.06500782538205385,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.010745625011622906,
+          "encrypt_s": 0.010743576101958752,
+          "query_expand_s": 0.003784141968935728,
+          "evaluate_s": 0.017597286961972713,
+          "response_pack_s": 0.002664111088961363,
+          "decrypt_s": 0.008668446447700262,
+          "decode_select_s": 0.011353717185556889,
+          "server_s": 0.024045540019869804,
+          "client_s": 0.04151136474683881,
+          "local_total_s": 0.06555690476670861,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.01055853208526969,
+          "encrypt_s": 0.010699224192649126,
+          "query_expand_s": 0.0037914919666945934,
+          "evaluate_s": 0.01774003030732274,
+          "response_pack_s": 0.0027805729769170284,
+          "decrypt_s": 0.008790689054876566,
+          "decode_select_s": 0.01181002613157034,
+          "server_s": 0.024312095250934362,
+          "client_s": 0.04185847146436572,
+          "local_total_s": 0.06617056671530008,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.010790146887302399,
+          "encrypt_s": 0.010777956806123257,
+          "query_expand_s": 0.0037802718579769135,
+          "evaluate_s": 0.017480225302278996,
+          "response_pack_s": 0.0026909210719168186,
+          "decrypt_s": 0.009483581874519587,
+          "decode_select_s": 0.011300306301563978,
+          "server_s": 0.023951418232172728,
+          "client_s": 0.04235199186950922,
+          "local_total_s": 0.06630341010168195,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.010733665898442268,
+          "encrypt_s": 0.010852687992155552,
+          "query_expand_s": 0.003786643035709858,
+          "evaluate_s": 0.017623897176235914,
+          "response_pack_s": 0.002669032197445631,
+          "decrypt_s": 0.008707685861736536,
+          "decode_select_s": 0.011391398962587118,
+          "server_s": 0.024079572409391403,
+          "client_s": 0.041685438714921474,
+          "local_total_s": 0.06576501112431288,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.010637593921273947,
+          "encrypt_s": 0.010725155007094145,
+          "query_expand_s": 0.0037878118455410004,
+          "evaluate_s": 0.017623657826334238,
+          "response_pack_s": 0.002708712127059698,
+          "decrypt_s": 0.00869738683104515,
+          "decode_select_s": 0.011286056134849787,
+          "server_s": 0.024120181798934937,
+          "client_s": 0.04134619189426303,
+          "local_total_s": 0.06546637369319797,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.01084572821855545,
+          "encrypt_s": 0.010772845707833767,
+          "query_expand_s": 0.0037838933058083057,
+          "evaluate_s": 0.017669429071247578,
+          "response_pack_s": 0.00268632173538208,
+          "decrypt_s": 0.008720376994460821,
+          "decode_select_s": 0.011335046961903572,
+          "server_s": 0.024139644112437963,
+          "client_s": 0.04167399788275361,
+          "local_total_s": 0.06581364199519157,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        }
+      ],
+      "crt_masks/cpu": [
+        {
+          "query_transform_s": 0.0033170338720083237,
+          "encrypt_s": 0.011054682079702616,
+          "query_expand_s": 0.004105257801711559,
+          "evaluate_s": 0.31072683073580265,
+          "response_pack_s": 0.002719102893024683,
+          "decrypt_s": 0.008748196996748447,
+          "decode_select_s": 0.006363261956721544,
+          "server_s": 0.3175511914305389,
+          "client_s": 0.02948317490518093,
+          "local_total_s": 0.3470343663357198,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.003226201981306076,
+          "encrypt_s": 0.010627342853695154,
+          "query_expand_s": 0.0037689823657274246,
+          "evaluate_s": 0.31131644221022725,
+          "response_pack_s": 0.002688020933419466,
+          "decrypt_s": 0.00866639707237482,
+          "decode_select_s": 0.011486518662422895,
+          "server_s": 0.31777344550937414,
+          "client_s": 0.034006460569798946,
+          "local_total_s": 0.3517799060791731,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.003284761682152748,
+          "encrypt_s": 0.010678484104573727,
+          "query_expand_s": 0.0037594418972730637,
+          "evaluate_s": 0.31064097862690687,
+          "response_pack_s": 0.0027571027167141438,
+          "decrypt_s": 0.008732996881008148,
+          "decode_select_s": 0.006402472034096718,
+          "server_s": 0.3171575232408941,
+          "client_s": 0.02909871470183134,
+          "local_total_s": 0.3462562379427254,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.003208212088793516,
+          "encrypt_s": 0.010697025340050459,
+          "query_expand_s": 0.0037814020179212093,
+          "evaluate_s": 0.31123405089601874,
+          "response_pack_s": 0.0027073118835687637,
+          "decrypt_s": 0.008744977880269289,
+          "decode_select_s": 0.006372862029820681,
+          "server_s": 0.3177227647975087,
+          "client_s": 0.029023077338933945,
+          "local_total_s": 0.34674584213644266,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0032661031000316143,
+          "encrypt_s": 0.010700255166739225,
+          "query_expand_s": 0.003764932043850422,
+          "evaluate_s": 0.3110604379326105,
+          "response_pack_s": 0.0027291723527014256,
+          "decrypt_s": 0.008791488129645586,
+          "decode_select_s": 0.006411622744053602,
+          "server_s": 0.31755454232916236,
+          "client_s": 0.029169469140470028,
+          "local_total_s": 0.3467240114696324,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0032370821572840214,
+          "encrypt_s": 0.010700094979256392,
+          "query_expand_s": 0.0039426847361028194,
+          "evaluate_s": 0.31124411057680845,
+          "response_pack_s": 0.0027699130587279797,
+          "decrypt_s": 0.008739368058741093,
+          "decode_select_s": 0.006361581850796938,
+          "server_s": 0.31795670837163925,
+          "client_s": 0.029038127046078444,
+          "local_total_s": 0.3469948354177177,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0032772431150078773,
+          "encrypt_s": 0.010616204235702753,
+          "query_expand_s": 0.003764871973544359,
+          "evaluate_s": 0.31091689597815275,
+          "response_pack_s": 0.002752572763711214,
+          "decrypt_s": 0.008799489121884108,
+          "decode_select_s": 0.0064300429075956345,
+          "server_s": 0.3174343407154083,
+          "client_s": 0.029122979380190372,
+          "local_total_s": 0.3465573200955987,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0033021229319274426,
+          "encrypt_s": 0.010721506085246801,
+          "query_expand_s": 0.003767971880733967,
+          "evaluate_s": 0.31030339282006025,
+          "response_pack_s": 0.002692831214517355,
+          "decrypt_s": 0.008787848986685276,
+          "decode_select_s": 0.0063874321058392525,
+          "server_s": 0.3167641959153116,
+          "client_s": 0.029198910109698772,
+          "local_total_s": 0.34596310602501035,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        }
+      ],
+      "crt_masks/cuda": [
+        {
+          "query_transform_s": 0.0033170338720083237,
+          "encrypt_s": 0.011054682079702616,
+          "query_expand_s": 0.004105257801711559,
+          "evaluate_s": 0.017471705097705126,
+          "response_pack_s": 0.0026741810142993927,
+          "decrypt_s": 0.008660356048494577,
+          "decode_select_s": 0.006203258875757456,
+          "server_s": 0.024251143913716078,
+          "client_s": 0.029235330875962973,
+          "local_total_s": 0.05348647478967905,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.003226201981306076,
+          "encrypt_s": 0.010627342853695154,
+          "query_expand_s": 0.0037689823657274246,
+          "evaluate_s": 0.01757461717352271,
+          "response_pack_s": 0.0027086730115115643,
+          "decrypt_s": 0.008729626890271902,
+          "decode_select_s": 0.00616900809109211,
+          "server_s": 0.0240522725507617,
+          "client_s": 0.028752179816365242,
+          "local_total_s": 0.05280445236712694,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.003284761682152748,
+          "encrypt_s": 0.010678484104573727,
+          "query_expand_s": 0.0037594418972730637,
+          "evaluate_s": 0.01849768403917551,
+          "response_pack_s": 0.002764953300356865,
+          "decrypt_s": 0.008833409287035465,
+          "decode_select_s": 0.006552596110850573,
+          "server_s": 0.02502207923680544,
+          "client_s": 0.029349251184612513,
+          "local_total_s": 0.05437133042141795,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.003208212088793516,
+          "encrypt_s": 0.010697025340050459,
+          "query_expand_s": 0.0037814020179212093,
+          "evaluate_s": 0.017400233075022697,
+          "response_pack_s": 0.002704691607505083,
+          "decrypt_s": 0.00871734693646431,
+          "decode_select_s": 0.006156766787171364,
+          "server_s": 0.02388632670044899,
+          "client_s": 0.02877935115247965,
+          "local_total_s": 0.05266567785292864,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0032661031000316143,
+          "encrypt_s": 0.010700255166739225,
+          "query_expand_s": 0.003764932043850422,
+          "evaluate_s": 0.017516254913061857,
+          "response_pack_s": 0.002692802343517542,
+          "decrypt_s": 0.008777407929301262,
+          "decode_select_s": 0.006279239896684885,
+          "server_s": 0.02397398930042982,
+          "client_s": 0.029023006092756987,
+          "local_total_s": 0.05299699539318681,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0032370821572840214,
+          "encrypt_s": 0.010700094979256392,
+          "query_expand_s": 0.0039426847361028194,
+          "evaluate_s": 0.017390192952007055,
+          "response_pack_s": 0.00268003111705184,
+          "decrypt_s": 0.008661256171762943,
+          "decode_select_s": 0.00606538588181138,
+          "server_s": 0.024012908805161715,
+          "client_s": 0.028663819190114737,
+          "local_total_s": 0.05267672799527645,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0032772431150078773,
+          "encrypt_s": 0.010616204235702753,
+          "query_expand_s": 0.003764871973544359,
+          "evaluate_s": 0.017566415946930647,
+          "response_pack_s": 0.0026732617989182472,
+          "decrypt_s": 0.008758706972002983,
+          "decode_select_s": 0.011872936971485615,
+          "server_s": 0.024004549719393253,
+          "client_s": 0.03452509129419923,
+          "local_total_s": 0.05852964101359248,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        },
+        {
+          "query_transform_s": 0.0033021229319274426,
+          "encrypt_s": 0.010721506085246801,
+          "query_expand_s": 0.003767971880733967,
+          "evaluate_s": 0.01746919471770525,
+          "response_pack_s": 0.0026830718852579594,
+          "decrypt_s": 0.008747457060962915,
+          "decode_select_s": 0.01183898700401187,
+          "server_s": 0.023920238483697176,
+          "client_s": 0.03461007308214903,
+          "local_total_s": 0.058530311565846205,
+          "query_bytes": 245866,
+          "response_bytes": 131162,
+          "query_ciphertexts": 1,
+          "response_ciphertexts": 1
+        }
+      ]
+    },
+    "summary": {
+      "full/cpu": {
+        "query_transform_s": {
+          "mean": 0.00012730108574032784,
+          "median": 0.0001285076141357422,
+          "min": 0.00010109180584549904,
+          "max": 0.00014892267063260078
+        },
+        "encrypt_s": {
+          "mean": 0.010953719669487327,
+          "median": 0.010965640190988779,
+          "min": 0.010687575209885836,
+          "max": 0.011103791650384665
+        },
+        "query_expand_s": {
+          "mean": 0.003955410968046635,
+          "median": 0.003935860237106681,
+          "min": 0.0038053933531045914,
+          "max": 0.004119548946619034
+        },
+        "evaluate_s": {
+          "mean": 0.6069217570475303,
+          "median": 0.6061118382494897,
+          "min": 0.6044073947705328,
+          "max": 0.6110603222623467
+        },
+        "response_pack_s": {
+          "mean": 0.0027305796393193305,
+          "median": 0.0027061065193265676,
+          "min": 0.002679100725799799,
+          "max": 0.0028381943702697754
+        },
+        "decrypt_s": {
+          "mean": 0.008784062170889229,
+          "median": 0.008791968459263444,
+          "min": 0.008709156885743141,
+          "max": 0.008854999672621489
+        },
+        "decode_select_s": {
+          "mean": 0.005775369412731379,
+          "median": 0.005760370288044214,
+          "min": 0.005697770044207573,
+          "max": 0.005884412210434675
+        },
+        "server_s": {
+          "mean": 0.6136077476548962,
+          "median": 0.6129010682925582,
+          "min": 0.611016470938921,
+          "max": 0.6175693278200924
+        },
+        "client_s": {
+          "mean": 0.025640452338848263,
+          "median": 0.025704946368932724,
+          "min": 0.025335855316370726,
+          "max": 0.025775683112442493
+        },
+        "local_total_s": {
+          "mean": 0.6392481999937445,
+          "median": 0.6386297212447971,
+          "min": 0.63659713184461,
+          "max": 0.6429051831364632
+        },
+        "query_bytes": {
+          "mean": 245866,
+          "median": 245866.0,
+          "min": 245866,
+          "max": 245866
+        },
+        "response_bytes": {
+          "mean": 131162,
+          "median": 131162.0,
+          "min": 131162,
+          "max": 131162
+        },
+        "query_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        },
+        "response_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "full/cuda": {
+        "query_transform_s": {
+          "mean": 0.00012730108574032784,
+          "median": 0.0001285076141357422,
+          "min": 0.00010109180584549904,
+          "max": 0.00014892267063260078
+        },
+        "encrypt_s": {
+          "mean": 0.010953719669487327,
+          "median": 0.010965640190988779,
+          "min": 0.010687575209885836,
+          "max": 0.011103791650384665
+        },
+        "query_expand_s": {
+          "mean": 0.003955410968046635,
+          "median": 0.003935860237106681,
+          "min": 0.0038053933531045914,
+          "max": 0.004119548946619034
+        },
+        "evaluate_s": {
+          "mean": 0.021602968976367265,
+          "median": 0.02162776468321681,
+          "min": 0.021234147250652313,
+          "max": 0.021825267933309078
+        },
+        "response_pack_s": {
+          "mean": 0.002729880914557725,
+          "median": 0.0027266021352261305,
+          "min": 0.002675680909305811,
+          "max": 0.0027775331400334835
+        },
+        "decrypt_s": {
+          "mean": 0.008735542767681181,
+          "median": 0.008740663062781096,
+          "min": 0.008611025288701057,
+          "max": 0.008821349125355482
+        },
+        "decode_select_s": {
+          "mean": 0.006355421675834805,
+          "median": 0.005728774471208453,
+          "min": 0.005464185029268265,
+          "max": 0.010970369912683964
+        },
+        "server_s": {
+          "mean": 0.028288260858971626,
+          "median": 0.02831273269839585,
+          "min": 0.027815173845738173,
+          "max": 0.02870969008654356
+        },
+        "client_s": {
+          "mean": 0.02617198519874364,
+          "median": 0.025632621720433235,
+          "min": 0.025071101263165474,
+          "max": 0.030972841661423445
+        },
+        "local_total_s": {
+          "mean": 0.05446024605771527,
+          "median": 0.05394535441882908,
+          "min": 0.053123798687011003,
+          "max": 0.059469377156347036
+        },
+        "query_bytes": {
+          "mean": 245866,
+          "median": 245866.0,
+          "min": 245866,
+          "max": 245866
+        },
+        "response_bytes": {
+          "mean": 131162,
+          "median": 131162.0,
+          "min": 131162,
+          "max": 131162
+        },
+        "query_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        },
+        "response_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "separate/cpu": {
+        "query_transform_s": {
+          "mean": 0.007924259174615145,
+          "median": 0.007927171885967255,
+          "min": 0.0077403876930475235,
+          "max": 0.00802578404545784
+        },
+        "encrypt_s": {
+          "mean": 0.17075277148978785,
+          "median": 0.17087900242768228,
+          "min": 0.1696303989738226,
+          "max": 0.1716374671086669
+        },
+        "query_expand_s": {
+          "mean": 0.06103108508978039,
+          "median": 0.06070613279007375,
+          "min": 0.06044542836025357,
+          "max": 0.06360205821692944
+        },
+        "evaluate_s": {
+          "mean": 0.7917989382403903,
+          "median": 0.7915515745989978,
+          "min": 0.7861752072349191,
+          "max": 0.7972549400292337
+        },
+        "response_pack_s": {
+          "mean": 0.043948387959972024,
+          "median": 0.043932891683653,
+          "min": 0.04355737427249551,
+          "max": 0.044237876776605844
+        },
+        "decrypt_s": {
+          "mean": 0.13892756326822564,
+          "median": 0.13905277848243713,
+          "min": 0.1373269697651267,
+          "max": 0.14029883686453104
+        },
+        "decode_select_s": {
+          "mean": 0.026306826679501683,
+          "median": 0.025703252526000142,
+          "min": 0.025027279742062092,
+          "max": 0.030800300184637308
+        },
+        "server_s": {
+          "mean": 0.8967784112901427,
+          "median": 0.8962661840487272,
+          "min": 0.891034075524658,
+          "max": 0.9043544395826757
+        },
+        "client_s": {
+          "mean": 0.3439114206121303,
+          "median": 0.3437408476602286,
+          "min": 0.34100785106420517,
+          "max": 0.34825538052245975
+        },
+        "local_total_s": {
+          "mean": 1.240689831902273,
+          "median": 1.2398133287206292,
+          "min": 1.2325701666995883,
+          "max": 1.2497139158658683
+        },
+        "query_bytes": {
+          "mean": 3933856,
+          "median": 3933856.0,
+          "min": 3933856,
+          "max": 3933856
+        },
+        "response_bytes": {
+          "mean": 2098592,
+          "median": 2098592.0,
+          "min": 2098592,
+          "max": 2098592
+        },
+        "query_ciphertexts": {
+          "mean": 16,
+          "median": 16.0,
+          "min": 16,
+          "max": 16
+        },
+        "response_ciphertexts": {
+          "mean": 16,
+          "median": 16.0,
+          "min": 16,
+          "max": 16
+        }
+      },
+      "separate/cuda": {
+        "query_transform_s": {
+          "mean": 0.007924259174615145,
+          "median": 0.007927171885967255,
+          "min": 0.0077403876930475235,
+          "max": 0.00802578404545784
+        },
+        "encrypt_s": {
+          "mean": 0.17075277148978785,
+          "median": 0.17087900242768228,
+          "min": 0.1696303989738226,
+          "max": 0.1716374671086669
+        },
+        "query_expand_s": {
+          "mean": 0.06103108508978039,
+          "median": 0.06070613279007375,
+          "min": 0.06044542836025357,
+          "max": 0.06360205821692944
+        },
+        "evaluate_s": {
+          "mean": 0.21016667503863573,
+          "median": 0.20890704123303294,
+          "min": 0.20674982899799943,
+          "max": 0.2160753677599132
+        },
+        "response_pack_s": {
+          "mean": 0.044062400062102824,
+          "median": 0.04409297462552786,
+          "min": 0.043537893798202276,
+          "max": 0.044542312156409025
+        },
+        "decrypt_s": {
+          "mean": 0.13903283362742513,
+          "median": 0.13913300004787743,
+          "min": 0.13772774673998356,
+          "max": 0.14000358106568456
+        },
+        "decode_select_s": {
+          "mean": 0.0262608717312105,
+          "median": 0.02564475662074983,
+          "min": 0.025083899963647127,
+          "max": 0.031078055035322905
+        },
+        "server_s": {
+          "mean": 0.31526016019051895,
+          "median": 0.3134405235759914,
+          "min": 0.3113331822678447,
+          "max": 0.32347559509798884
+        },
+        "client_s": {
+          "mean": 0.3439707360230386,
+          "median": 0.3436755370348692,
+          "min": 0.3403306766413152,
+          "max": 0.34849663311615586
+        },
+        "local_total_s": {
+          "mean": 0.6592308962135576,
+          "median": 0.6587632459122688,
+          "min": 0.6546603161841631,
+          "max": 0.6672591683454812
+        },
+        "query_bytes": {
+          "mean": 3933856,
+          "median": 3933856.0,
+          "min": 3933856,
+          "max": 3933856
+        },
+        "response_bytes": {
+          "mean": 2098592,
+          "median": 2098592.0,
+          "min": 2098592,
+          "max": 2098592
+        },
+        "query_ciphertexts": {
+          "mean": 16,
+          "median": 16.0,
+          "min": 16,
+          "max": 16
+        },
+        "response_ciphertexts": {
+          "mean": 16,
+          "median": 16.0,
+          "min": 16,
+          "max": 16
+        }
+      },
+      "crt/cpu": {
+        "query_transform_s": {
+          "mean": 0.010697067540604621,
+          "median": 0.010688320035114884,
+          "min": 0.01055853208526969,
+          "max": 0.01084572821855545
+        },
+        "encrypt_s": {
+          "mean": 0.010774468712043017,
+          "median": 0.01075821090489626,
+          "min": 0.01055487198755145,
+          "max": 0.011069431900978088
+        },
+        "query_expand_s": {
+          "mean": 0.003835259412880987,
+          "median": 0.003787227440625429,
+          "min": 0.0037802718579769135,
+          "max": 0.004136618692427874
+        },
+        "evaluate_s": {
+          "mean": 0.31121786509174854,
+          "median": 0.3111642189323902,
+          "min": 0.3108427128754556,
+          "max": 0.3116516191512346
+        },
+        "response_pack_s": {
+          "mean": 0.0027450735797174275,
+          "median": 0.002735971938818693,
+          "min": 0.0026822411455214024,
+          "max": 0.0028251740150153637
+        },
+        "decrypt_s": {
+          "mean": 0.008765685430262238,
+          "median": 0.008764297235757113,
+          "min": 0.008702526800334454,
+          "max": 0.008814978878945112
+        },
+        "decode_select_s": {
+          "mean": 0.012411451316438615,
+          "median": 0.01173766958527267,
+          "min": 0.011580790858715773,
+          "max": 0.01688746316358447
+        },
+        "server_s": {
+          "mean": 0.31779819808434695,
+          "median": 0.3177309387829155,
+          "min": 0.31730909598991275,
+          "max": 0.31825288385152817
+        },
+        "client_s": {
+          "mean": 0.04264867299934849,
+          "median": 0.042066271882504225,
+          "min": 0.04160827584564686,
+          "max": 0.047232694923877716
+        },
+        "local_total_s": {
+          "mean": 0.36044687108369544,
+          "median": 0.35997021780349314,
+          "min": 0.35909754503518343,
+          "max": 0.36477328557521105
+        },
+        "query_bytes": {
+          "mean": 245866,
+          "median": 245866.0,
+          "min": 245866,
+          "max": 245866
+        },
+        "response_bytes": {
+          "mean": 131162,
+          "median": 131162.0,
+          "min": 131162,
+          "max": 131162
+        },
+        "query_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        },
+        "response_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "crt/cuda": {
+        "query_transform_s": {
+          "mean": 0.010697067540604621,
+          "median": 0.010688320035114884,
+          "min": 0.01055853208526969,
+          "max": 0.01084572821855545
+        },
+        "encrypt_s": {
+          "mean": 0.010774468712043017,
+          "median": 0.01075821090489626,
+          "min": 0.01055487198755145,
+          "max": 0.011069431900978088
+        },
+        "query_expand_s": {
+          "mean": 0.003835259412880987,
+          "median": 0.003787227440625429,
+          "min": 0.0037802718579769135,
+          "max": 0.004136618692427874
+        },
+        "evaluate_s": {
+          "mean": 0.0176393206929788,
+          "median": 0.017623777501285076,
+          "min": 0.01723843114450574,
+          "max": 0.018141607753932476
+        },
+        "response_pack_s": {
+          "mean": 0.0026895279297605157,
+          "median": 0.0026776769664138556,
+          "min": 0.00265682116150856,
+          "max": 0.0027805729769170284
+        },
+        "decrypt_s": {
+          "mean": 0.00879785482538864,
+          "median": 0.008702536346390843,
+          "min": 0.008649645373225212,
+          "max": 0.009483581874519587
+        },
+        "decode_select_s": {
+          "mean": 0.012059438566211611,
+          "median": 0.011372558074072003,
+          "min": 0.011286056134849787,
+          "max": 0.016567987855523825
+        },
+        "server_s": {
+          "mean": 0.024164108035620302,
+          "median": 0.02409987710416317,
+          "min": 0.02372936485335231,
+          "max": 0.02493504760786891
+        },
+        "client_s": {
+          "mean": 0.04232882964424789,
+          "median": 0.04167971829883754,
+          "min": 0.041278460528701544,
+          "max": 0.04692472005262971
+        },
+        "local_total_s": {
+          "mean": 0.06649293767986819,
+          "median": 0.06578932655975223,
+          "min": 0.06500782538205385,
+          "max": 0.07185976766049862
+        },
+        "query_bytes": {
+          "mean": 245866,
+          "median": 245866.0,
+          "min": 245866,
+          "max": 245866
+        },
+        "response_bytes": {
+          "mean": 131162,
+          "median": 131162.0,
+          "min": 131162,
+          "max": 131162
+        },
+        "query_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        },
+        "response_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "crt_masks/cpu": {
+        "query_transform_s": {
+          "mean": 0.0032648451160639524,
+          "median": 0.003271673107519746,
+          "min": 0.003208212088793516,
+          "max": 0.0033170338720083237
+        },
+        "encrypt_s": {
+          "mean": 0.01072444935562089,
+          "median": 0.010698560159653425,
+          "min": 0.010616204235702753,
+          "max": 0.011054682079702616
+        },
+        "query_expand_s": {
+          "mean": 0.003831943089608103,
+          "median": 0.0037684771232306957,
+          "min": 0.0037594418972730637,
+          "max": 0.004105257801711559
+        },
+        "evaluate_s": {
+          "mean": 0.31093039247207344,
+          "median": 0.31098866695538163,
+          "min": 0.31030339282006025,
+          "max": 0.31131644221022725
+        },
+        "response_pack_s": {
+          "mean": 0.002727003477048129,
+          "median": 0.0027241376228630543,
+          "min": 0.002688020933419466,
+          "max": 0.0027699130587279797
+        },
+        "decrypt_s": {
+          "mean": 0.008751345390919596,
+          "median": 0.008746587438508868,
+          "min": 0.00866639707237482,
+          "max": 0.008799489121884108
+        },
+        "decode_select_s": {
+          "mean": 0.007026974286418408,
+          "median": 0.006394952069967985,
+          "min": 0.006361581850796938,
+          "max": 0.011486518662422895
+        },
+        "server_s": {
+          "mean": 0.31748933903872967,
+          "median": 0.3175528668798506,
+          "min": 0.3167641959153116,
+          "max": 0.31795670837163925
+        },
+        "client_s": {
+          "mean": 0.029767614149022847,
+          "median": 0.0291462242603302,
+          "min": 0.029023077338933945,
+          "max": 0.034006460569798946
+        },
+        "local_total_s": {
+          "mean": 0.3472569531877525,
+          "median": 0.3467349268030375,
+          "min": 0.34596310602501035,
+          "max": 0.3517799060791731
+        },
+        "query_bytes": {
+          "mean": 245866,
+          "median": 245866.0,
+          "min": 245866,
+          "max": 245866
+        },
+        "response_bytes": {
+          "mean": 131162,
+          "median": 131162.0,
+          "min": 131162,
+          "max": 131162
+        },
+        "query_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        },
+        "response_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "crt_masks/cuda": {
+        "query_transform_s": {
+          "mean": 0.0032648451160639524,
+          "median": 0.003271673107519746,
+          "min": 0.003208212088793516,
+          "max": 0.0033170338720083237
+        },
+        "encrypt_s": {
+          "mean": 0.01072444935562089,
+          "median": 0.010698560159653425,
+          "min": 0.010616204235702753,
+          "max": 0.011054682079702616
+        },
+        "query_expand_s": {
+          "mean": 0.003831943089608103,
+          "median": 0.0037684771232306957,
+          "min": 0.0037594418972730637,
+          "max": 0.004105257801711559
+        },
+        "evaluate_s": {
+          "mean": 0.017610787239391357,
+          "median": 0.01749398000538349,
+          "min": 0.017390192952007055,
+          "max": 0.01849768403917551
+        },
+        "response_pack_s": {
+          "mean": 0.0026977082598023117,
+          "median": 0.0026879371143877506,
+          "min": 0.0026732617989182472,
+          "max": 0.002764953300356865
+        },
+        "decrypt_s": {
+          "mean": 0.008735695912037045,
+          "median": 0.008738541975617409,
+          "min": 0.008660356048494577,
+          "max": 0.008833409287035465
+        },
+        "decode_select_s": {
+          "mean": 0.0076422724523581564,
+          "median": 0.00624124938622117,
+          "min": 0.00606538588181138,
+          "max": 0.011872936971485615
+        },
+        "server_s": {
+          "mean": 0.02414043858880177,
+          "median": 0.024008729262277484,
+          "min": 0.02388632670044899,
+          "max": 0.02502207923680544
+        },
+        "client_s": {
+          "mean": 0.030367262836080045,
+          "median": 0.02912916848435998,
+          "min": 0.028663819190114737,
+          "max": 0.03461007308214903
+        },
+        "local_total_s": {
+          "mean": 0.054507701424881816,
+          "median": 0.05324173509143293,
+          "min": 0.05266567785292864,
+          "max": 0.058530311565846205
+        },
+        "query_bytes": {
+          "mean": 245866,
+          "median": 245866.0,
+          "min": 245866,
+          "max": 245866
+        },
+        "response_bytes": {
+          "mean": 131162,
+          "median": 131162.0,
+          "min": 131162,
+          "max": 131162
+        },
+        "query_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        },
+        "response_ciphertexts": {
+          "mean": 1,
+          "median": 1.0,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    "plaintext_full_index_control": {
+      "local_total_s": {
+        "mean": 0.0025963211082853377,
+        "median": 0.002425191691145301,
+        "min": 0.0022593531757593155,
+        "max": 0.0031684008426964283
+      }
+    },
+    "all_distances_and_stable_top3_exact": true,
+    "complete_cpu_cuda_output_equal": true
+  }
+}

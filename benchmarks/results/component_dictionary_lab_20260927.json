@@ -1,0 +1,3371 @@
+{
+  "utc": "2026-09-27T16:42:55.973980+00:00",
+  "command": [
+    "benchmarks/component_dictionary_lab.py",
+    "--cache-dir",
+    "../research-data/uci-20260927",
+    "--json-out",
+    "benchmarks/results/component_dictionary_lab_20260927.json"
+  ],
+  "git_head": "cfb7ef06fe2ae76091649e883c4b96a97f8ff35c",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/component_dictionary_lab.py": "3ef986989787a711aee7480e7d48d02266ea8b35c4bdf086fc9f9527ad519149",
+    "benchmarks/certified_filter_lab.py": "4faa08db3d109cc5c4e90573a7fc0999effb62e9a78679189059e9df13d7ea89",
+    "benchmarks/dictionary_layout_lab.py": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31",
+    "experiments/bfv_search_lab/affine_dictionary.py": "b2a0bd7ffe5b1e9118faba77efaea795f8a6e531d3075d9e8b01ab0b63382bc3",
+    "experiments/bfv_search_lab/crt_multiplex.py": "8998c749598f2506b7ab5d2c709a041e4b439ee9deb1da967a8dee09bf725d0a",
+    "experiments/bfv_search_lab/private_residual_lookup.py": "06232754a0683bda04ae31534ea5e835b27edb0d1a2d0407a629ab256a3db04d",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/folded_dictionary.py": "ffcf1a874b3ced51acde17c018047005c34121e72f0221237b7b77377de7f35c",
+    "experiments/bfv_search_lab/linear_packing.py": "60664b62a7c225cc1a552040da51f4fe2532bdd0d213b145bb20623dea8b523d"
+  },
+  "kind": "exact_affine_component_model",
+  "datasets": {
+    "semeion": {
+      "url": "https://archive.ics.uci.edu/static/public/178/semeion%2Bhandwritten%2Bdigit.zip",
+      "member": "semeion.data",
+      "count": 1593,
+      "dimension": 256,
+      "archive_sha256": "6fb091394714cddda5751d4e1c2781ab094e7cf15de07917fb40e581f19efc75",
+      "file_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "citation": "Semeion Handwritten Digit [Dataset] (1998), https://doi.org/10.24432/C5SC8V"
+    },
+    "mushroom": {
+      "url": "https://archive.ics.uci.edu/static/public/73/mushroom.zip",
+      "member": "agaricus-lepiota.data",
+      "count": 8124,
+      "dimension": 126,
+      "archive_sha256": "face32f32647e0d939f6233f36dd30dd5d619ae9f3f9b8e10bea4ac7e1f60b1a",
+      "file_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "citation": "Mushroom [Dataset] (1981), https://doi.org/10.24432/C5959T"
+    }
+  },
+  "notes": "Exact integer/field oracle, not encrypted latency. Fixed public T partitions, common worst-block padding, CRT virtual padding, index-only metric order. Map bytes include anchors and sparse nonpivot field relations. Stable ID arrays, encrypted setup, epoch binding, private arithmetic and authentication remain separate costs.",
+  "results": [
+    {
+      "name": "semeion",
+      "seed": 3001,
+      "count": 1465,
+      "dimension": 256,
+      "unique_rows": 1465,
+      "query_ids": [
+        1099,
+        154,
+        1463,
+        1175,
+        39,
+        826,
+        392,
+        1306,
+        501,
+        750,
+        1316,
+        1569,
+        1233,
+        922,
+        338,
+        1211
+      ],
+      "heldout_queries_equal_index_row": 0,
+      "variants": [
+        {
+          "layout": "input",
+          "result": {
+            "parts": 1,
+            "padded": 256,
+            "counts": [
+              1465
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 23,
+              "switches": 123,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 0.2817606437020004,
+              "ranks": [
+                256
+              ],
+              "map_body_bytes": 296,
+              "map_zlib9_bytes": 307,
+              "map_sha256": "cd1dbbbd75c49f59cecd902202c46df3dc6d14c049d051afbb153c6de7d73674",
+              "dense_field_basis_elements": 65536,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25989,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 4,
+            "padded": 256,
+            "counts": [
+              366,
+              366,
+              366,
+              367
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1468,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 24,
+              "switches": 172,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 0.34322437178343534,
+              "ranks": [
+                256,
+                256,
+                256,
+                256
+              ],
+              "map_body_bytes": 1184,
+              "map_zlib9_bytes": 413,
+              "map_sha256": "10e5714ef5d7a8c3c3024c5867b114350a13a5b931b9aa1b66a1b2c0da769989",
+              "dense_field_basis_elements": 262144,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25989,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 8,
+            "padded": 256,
+            "counts": [
+              183,
+              183,
+              183,
+              183,
+              183,
+              183,
+              183,
+              184
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1472,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 24,
+              "switches": 192,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 0.30557648791000247,
+              "ranks": [
+                182,
+                182,
+                182,
+                182,
+                182,
+                182,
+                182,
+                183
+              ],
+              "map_body_bytes": 325540,
+              "map_zlib9_bytes": 277617,
+              "map_sha256": "0a1db0d2945f7e092b8b58771d5942a5b5cae9089eaa9c196237a0c94d6dee5b",
+              "dense_field_basis_elements": 372992,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25989,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 16,
+            "padded": 128,
+            "counts": [
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              92,
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              92
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 1472,
+              "input_tiles": 12,
+              "switches": 63,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 16,
+              "switches": 128,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 0.20173912402242422,
+              "ranks": [
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                91,
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                91
+              ],
+              "map_body_bytes": 724971,
+              "map_zlib9_bytes": 593677,
+              "map_sha256": "c654f3ff7a0b5f7c7432fa9435af6d24615f0b2d9bb0a2353ce88d24d9101583",
+              "dense_field_basis_elements": 370944,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25989,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 32,
+            "padded": 64,
+            "counts": [
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 1472,
+              "input_tiles": 6,
+              "switches": 31,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 224,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 0.14555121678858995,
+              "ranks": [
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45
+              ],
+              "map_body_bytes": 903301,
+              "map_zlib9_bytes": 687653,
+              "map_sha256": "2e8814ea18f0a859de6a1ec0fc5634d4772c4a779424d8fe34a244058b5adddf",
+              "dense_field_basis_elements": 366848,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25989,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 1,
+            "padded": 256,
+            "counts": [
+              1465
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 23,
+              "switches": 123,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 0.2804417102597654,
+              "ranks": [
+                256
+              ],
+              "map_body_bytes": 296,
+              "map_zlib9_bytes": 307,
+              "map_sha256": "c793e6b332eced125c8d17166496c4ff0c5baacb3e3b441b91cc6bdda0f146bf",
+              "dense_field_basis_elements": 65536,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25700,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 4,
+            "padded": 256,
+            "counts": [
+              366,
+              366,
+              366,
+              367
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1468,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 24,
+              "switches": 172,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 0.34700119495391846,
+              "ranks": [
+                256,
+                256,
+                256,
+                256
+              ],
+              "map_body_bytes": 1184,
+              "map_zlib9_bytes": 405,
+              "map_sha256": "a0b3e45d324828361760e1a904c88ba096c7d62cddd7441a8432cc08f52ed847",
+              "dense_field_basis_elements": 262144,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25700,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 8,
+            "padded": 256,
+            "counts": [
+              183,
+              183,
+              183,
+              183,
+              183,
+              183,
+              183,
+              184
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1472,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 24,
+              "switches": 192,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 0.3081160169094801,
+              "ranks": [
+                182,
+                182,
+                182,
+                182,
+                182,
+                182,
+                182,
+                183
+              ],
+              "map_body_bytes": 323227,
+              "map_zlib9_bytes": 275662,
+              "map_sha256": "bde3772d7320743ca442a4ca851b8f5d92dbcf31f0921b52488610abbfed89d5",
+              "dense_field_basis_elements": 372992,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25700,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 16,
+            "padded": 128,
+            "counts": [
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              92,
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              92
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 1472,
+              "input_tiles": 12,
+              "switches": 63,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 16,
+              "switches": 128,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 0.19870429718866944,
+              "ranks": [
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                91,
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                91
+              ],
+              "map_body_bytes": 691554,
+              "map_zlib9_bytes": 554065,
+              "map_sha256": "938a361a396850bb948ce1ce1f828446f80fd617a51f31f7eb99b04fb1d26c2e",
+              "dense_field_basis_elements": 370944,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25700,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 32,
+            "padded": 64,
+            "counts": [
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 1472,
+              "input_tiles": 6,
+              "switches": 31,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 224,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 0.1422102628275752,
+              "ranks": [
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45
+              ],
+              "map_body_bytes": 793252,
+              "map_zlib9_bytes": 540871,
+              "map_sha256": "a13954d4599a0df41a795bdf353ac09abaf248acc9866b901fbb8cdf37b5432f",
+              "dense_field_basis_elements": 366848,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25700,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "semeion",
+      "seed": 3002,
+      "count": 1465,
+      "dimension": 256,
+      "unique_rows": 1465,
+      "query_ids": [
+        295,
+        1258,
+        1231,
+        243,
+        1006,
+        1408,
+        90,
+        537,
+        128,
+        854,
+        990,
+        1148,
+        504,
+        946,
+        306,
+        1293
+      ],
+      "heldout_queries_equal_index_row": 0,
+      "variants": [
+        {
+          "layout": "input",
+          "result": {
+            "parts": 1,
+            "padded": 256,
+            "counts": [
+              1465
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 23,
+              "switches": 123,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 0.2831855141557753,
+              "ranks": [
+                256
+              ],
+              "map_body_bytes": 296,
+              "map_zlib9_bytes": 307,
+              "map_sha256": "c0661b8b20f13da4d09304d96511f4125e510b0f45c9f547b39cfe93f35ca4a5",
+              "dense_field_basis_elements": 65536,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25962,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 4,
+            "padded": 256,
+            "counts": [
+              366,
+              366,
+              366,
+              367
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1468,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 24,
+              "switches": 172,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 0.3443487756885588,
+              "ranks": [
+                256,
+                256,
+                256,
+                256
+              ],
+              "map_body_bytes": 1184,
+              "map_zlib9_bytes": 417,
+              "map_sha256": "843da44fc8b09fad9d249f51989e7122262f1aa7cab05c4bc94c153471c4c9cb",
+              "dense_field_basis_elements": 262144,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25962,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 8,
+            "padded": 256,
+            "counts": [
+              183,
+              183,
+              183,
+              183,
+              183,
+              183,
+              183,
+              184
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1472,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 24,
+              "switches": 192,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 0.3125470816157758,
+              "ranks": [
+                182,
+                182,
+                182,
+                182,
+                182,
+                182,
+                182,
+                183
+              ],
+              "map_body_bytes": 325588,
+              "map_zlib9_bytes": 277677,
+              "map_sha256": "61354d41ff9331a7e1a329ff995068e10a1401ce1f99271561a30646250c0659",
+              "dense_field_basis_elements": 372992,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25962,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 16,
+            "padded": 128,
+            "counts": [
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              92,
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              92
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 1472,
+              "input_tiles": 12,
+              "switches": 63,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 16,
+              "switches": 128,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 0.2003876487724483,
+              "ranks": [
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                91,
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                91
+              ],
+              "map_body_bytes": 724755,
+              "map_zlib9_bytes": 593363,
+              "map_sha256": "c1da8d475497734d239cc4a62f096345d794d199efed56d4abdd5d559c36dee7",
+              "dense_field_basis_elements": 370944,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25962,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 32,
+            "padded": 64,
+            "counts": [
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 1472,
+              "input_tiles": 6,
+              "switches": 31,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 224,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 0.14377360371872783,
+              "ranks": [
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45
+              ],
+              "map_body_bytes": 907180,
+              "map_zlib9_bytes": 692751,
+              "map_sha256": "1cb3f86fddcf25a5bb80b2690378251a1607741dee526e17c39761dfd83d2ceb",
+              "dense_field_basis_elements": 366848,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25962,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 1,
+            "padded": 256,
+            "counts": [
+              1465
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 23,
+              "switches": 123,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 0.27872251020744443,
+              "ranks": [
+                256
+              ],
+              "map_body_bytes": 296,
+              "map_zlib9_bytes": 307,
+              "map_sha256": "07f5eccc0597116851b85c8f41efc2ac886a2685df050c64f15a5e6735b866cb",
+              "dense_field_basis_elements": 65536,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25697,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 4,
+            "padded": 256,
+            "counts": [
+              366,
+              366,
+              366,
+              367
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1468,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 24,
+              "switches": 172,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 0.34971476905047894,
+              "ranks": [
+                256,
+                256,
+                256,
+                256
+              ],
+              "map_body_bytes": 1184,
+              "map_zlib9_bytes": 424,
+              "map_sha256": "0101730036a2da6a2e8dff1b5bfdb06612accedf6552790bd840d27e1ada4887",
+              "dense_field_basis_elements": 262144,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25697,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 8,
+            "padded": 256,
+            "counts": [
+              183,
+              183,
+              183,
+              183,
+              183,
+              183,
+              183,
+              184
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 1472,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 24,
+              "switches": 192,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 0.31912568816915154,
+              "ranks": [
+                182,
+                182,
+                182,
+                182,
+                182,
+                182,
+                182,
+                183
+              ],
+              "map_body_bytes": 324340,
+              "map_zlib9_bytes": 276625,
+              "map_sha256": "5db82d091a9f2682a3ccbf4168bbab464592b10d4d81edf44894b75f02e104de",
+              "dense_field_basis_elements": 372992,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25697,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 16,
+            "padded": 128,
+            "counts": [
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              92,
+              91,
+              92,
+              91,
+              92,
+              91,
+              92,
+              92
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 1472,
+              "input_tiles": 12,
+              "switches": 63,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 16,
+              "switches": 128,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 0.20079935807734728,
+              "ranks": [
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                91,
+                90,
+                91,
+                90,
+                91,
+                90,
+                91,
+                91
+              ],
+              "map_body_bytes": 695280,
+              "map_zlib9_bytes": 562048,
+              "map_sha256": "bda54c3c32fafdeb314cf991a3e26837796079546d5d789fea21edb6bc3667b3",
+              "dense_field_basis_elements": 370944,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25697,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 32,
+            "padded": 64,
+            "counts": [
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46,
+              45,
+              46,
+              46,
+              46,
+              46
+            ],
+            "full_scan": {
+              "features": 256,
+              "padded": 256,
+              "count": 1465,
+              "input_tiles": 23,
+              "switches": 123,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 1472,
+              "input_tiles": 6,
+              "switches": 31,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 224,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 0.14221209520474076,
+              "ranks": [
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45,
+                44,
+                45,
+                45,
+                45,
+                45
+              ],
+              "map_body_bytes": 799384,
+              "map_zlib9_bytes": 547428,
+              "map_sha256": "36d3a0d65fb6596a2a68e386a7e5bbab473b4f8b7cb173f523ac1dea8b564b0a",
+              "dense_field_basis_elements": 366848,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 46880,
+            "plaintext_zlib9_bytes": 25697,
+            "stable_id_array_bytes": 2930,
+            "all_distances_and_stable_top3_exact": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "mushroom",
+      "seed": 3001,
+      "count": 7996,
+      "dimension": 126,
+      "unique_rows": 7996,
+      "query_ids": [
+        893,
+        687,
+        3851,
+        6760,
+        5697,
+        1698,
+        5335,
+        2453,
+        5096,
+        517,
+        8074,
+        3876,
+        55,
+        3601,
+        56,
+        7265
+      ],
+      "heldout_queries_equal_index_row": 0,
+      "variants": [
+        {
+          "layout": "input",
+          "result": {
+            "parts": 1,
+            "padded": 128,
+            "counts": [
+              7996
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 63,
+              "switches": 189,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 0.23148327227681875,
+              "ranks": [
+                85
+              ],
+              "map_body_bytes": 752,
+              "map_zlib9_bytes": 514,
+              "map_sha256": "b36ea14464de66f9a22b3de0d9ebb5a3c420d53101b07e2cdedc90383e76bcfb",
+              "dense_field_basis_elements": 10710,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28889,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 4,
+            "padded": 128,
+            "counts": [
+              1999,
+              1999,
+              1999,
+              1999
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 316,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 0.23152796318754554,
+              "ranks": [
+                82,
+                84,
+                83,
+                85
+              ],
+              "map_body_bytes": 3311,
+              "map_zlib9_bytes": 1421,
+              "map_sha256": "c42cf12929949dead06bde7731e640d57266879e5bd029bbd1b180ee6704263e",
+              "dense_field_basis_elements": 42084,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28889,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 8,
+            "padded": 128,
+            "counts": [
+              999,
+              1000,
+              999,
+              1000,
+              999,
+              1000,
+              999,
+              1000
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 8000,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 376,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 0.21368810394778848,
+              "ranks": [
+                81,
+                82,
+                81,
+                83,
+                81,
+                82,
+                80,
+                83
+              ],
+              "map_body_bytes": 6538,
+              "map_zlib9_bytes": 1802,
+              "map_sha256": "d385bb3d0ddd9fb84ebea8e67b938bb4c751c35cf858a0cfd96be5ad35af430e",
+              "dense_field_basis_elements": 82278,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28889,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 16,
+            "padded": 128,
+            "counts": [
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 8000,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 432,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 0.25496027804911137,
+              "ranks": [
+                78,
+                71,
+                77,
+                79,
+                73,
+                78,
+                77,
+                80,
+                76,
+                78,
+                78,
+                81,
+                77,
+                79,
+                77,
+                80
+              ],
+              "map_body_bytes": 13818,
+              "map_zlib9_bytes": 4232,
+              "map_sha256": "51a00e916e6358859b8a854da696f69762a9a4dc8c96014d1eb2bd7912adfbb8",
+              "dense_field_basis_elements": 156114,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28889,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 32,
+            "padded": 128,
+            "counts": [
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 8000,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 480,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 0.2538812877610326,
+              "ranks": [
+                69,
+                70,
+                66,
+                66,
+                68,
+                72,
+                76,
+                69,
+                67,
+                64,
+                72,
+                72,
+                68,
+                67,
+                73,
+                71,
+                67,
+                69,
+                72,
+                70,
+                70,
+                72,
+                72,
+                74,
+                71,
+                72,
+                74,
+                71,
+                67,
+                70,
+                72,
+                71
+              ],
+              "map_body_bytes": 29646,
+              "map_zlib9_bytes": 8722,
+              "map_sha256": "4e9d53b931d9507f41f2012f6cd28d115129f6d7fc414f34544f67adbfed125b",
+              "dense_field_basis_elements": 282744,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28889,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 1,
+            "padded": 128,
+            "counts": [
+              7996
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 63,
+              "switches": 189,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 0.197165850084275,
+              "ranks": [
+                85
+              ],
+              "map_body_bytes": 752,
+              "map_zlib9_bytes": 514,
+              "map_sha256": "2428d293d0f8a7605b92b91d70aace435024939266388ae30566e960e6cf623b",
+              "dense_field_basis_elements": 10710,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22518,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 4,
+            "padded": 128,
+            "counts": [
+              1999,
+              1999,
+              1999,
+              1999
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 316,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 0.1418596375733614,
+              "ranks": [
+                47,
+                75,
+                53,
+                46
+              ],
+              "map_body_bytes": 2620,
+              "map_zlib9_bytes": 1173,
+              "map_sha256": "8a2f6e232c9284f3908832af3ed9fd01ee26510740aa6d53b988022b35cf734b",
+              "dense_field_basis_elements": 27846,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22518,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 8,
+            "padded": 64,
+            "counts": [
+              999,
+              1000,
+              999,
+              1000,
+              999,
+              1000,
+              999,
+              1000
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 8000,
+              "input_tiles": 32,
+              "switches": 95,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 184,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 0.11010422417894006,
+              "ranks": [
+                38,
+                44,
+                58,
+                56,
+                25,
+                44,
+                13,
+                46
+              ],
+              "map_body_bytes": 4527,
+              "map_zlib9_bytes": 1669,
+              "map_sha256": "a0e7bc95dadf4b754d1614c324cd6e34993a12d9c7c6427981df988eba78d095",
+              "dense_field_basis_elements": 40824,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22518,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 16,
+            "padded": 64,
+            "counts": [
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 8000,
+              "input_tiles": 32,
+              "switches": 95,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 208,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 0.09238868718966842,
+              "ranks": [
+                38,
+                11,
+                42,
+                38,
+                51,
+                31,
+                41,
+                47,
+                14,
+                23,
+                44,
+                12,
+                13,
+                13,
+                27,
+                39
+              ],
+              "map_body_bytes": 7856,
+              "map_zlib9_bytes": 2307,
+              "map_sha256": "31f05e824d3d05df0161c54098dd440754d51cf2530c3824d908f5c52b45ff6e",
+              "dense_field_basis_elements": 60984,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22518,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 32,
+            "padded": 64,
+            "counts": [
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 8000,
+              "input_tiles": 32,
+              "switches": 95,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 224,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 0.08745692297816277,
+              "ranks": [
+                28,
+                32,
+                11,
+                11,
+                37,
+                22,
+                31,
+                30,
+                37,
+                41,
+                31,
+                12,
+                31,
+                29,
+                41,
+                37,
+                12,
+                14,
+                12,
+                21,
+                32,
+                34,
+                12,
+                12,
+                13,
+                13,
+                13,
+                13,
+                12,
+                26,
+                37,
+                12
+              ],
+              "map_body_bytes": 13771,
+              "map_zlib9_bytes": 3186,
+              "map_sha256": "788f440ed37cd77b721807fa631aae689088bcaebc56b05c6a46a7adabda6c15",
+              "dense_field_basis_elements": 94374,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22518,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "mushroom",
+      "seed": 3002,
+      "count": 7996,
+      "dimension": 126,
+      "unique_rows": 7996,
+      "query_ids": [
+        7233,
+        3300,
+        5823,
+        1940,
+        4555,
+        6452,
+        5414,
+        84,
+        7591,
+        5743,
+        230,
+        735,
+        4381,
+        8046,
+        6413,
+        7851
+      ],
+      "heldout_queries_equal_index_row": 0,
+      "variants": [
+        {
+          "layout": "input",
+          "result": {
+            "parts": 1,
+            "padded": 128,
+            "counts": [
+              7996
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 63,
+              "switches": 189,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 0.20808213716372848,
+              "ranks": [
+                85
+              ],
+              "map_body_bytes": 752,
+              "map_zlib9_bytes": 511,
+              "map_sha256": "eae5c3c587c45236eb96141e866c98ee326f0f4ba773c44744f35b2ebc4edb00",
+              "dense_field_basis_elements": 10710,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28985,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 4,
+            "padded": 128,
+            "counts": [
+              1999,
+              1999,
+              1999,
+              1999
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 316,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 0.23455859208479524,
+              "ranks": [
+                85,
+                85,
+                84,
+                83
+              ],
+              "map_body_bytes": 3182,
+              "map_zlib9_bytes": 1058,
+              "map_sha256": "7a695be09dc23615967b74c8cd35e386980a51903fc91e434bbb5990ba8735ff",
+              "dense_field_basis_elements": 42462,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28985,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 8,
+            "padded": 128,
+            "counts": [
+              999,
+              1000,
+              999,
+              1000,
+              999,
+              1000,
+              999,
+              1000
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 8000,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 376,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 0.2454260280355811,
+              "ranks": [
+                82,
+                84,
+                82,
+                83,
+                81,
+                82,
+                81,
+                82
+              ],
+              "map_body_bytes": 6756,
+              "map_zlib9_bytes": 1812,
+              "map_sha256": "f1810c443339e52f275e2fa58199742ce973d76e885010f35e43a973618bd3e8",
+              "dense_field_basis_elements": 82782,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28985,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 16,
+            "padded": 128,
+            "counts": [
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 8000,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 432,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 0.2576905908063054,
+              "ranks": [
+                78,
+                79,
+                76,
+                79,
+                76,
+                79,
+                81,
+                77,
+                78,
+                79,
+                77,
+                81,
+                78,
+                75,
+                81,
+                76
+              ],
+              "map_body_bytes": 13186,
+              "map_zlib9_bytes": 4085,
+              "map_sha256": "a0f086e84bc5e4da7d939bc0eed40eec763b930a53ac93f4c7d7671c4e5175b2",
+              "dense_field_basis_elements": 157500,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28985,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 32,
+            "padded": 128,
+            "counts": [
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 8000,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 480,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 0.25685753487050533,
+              "ranks": [
+                71,
+                73,
+                73,
+                75,
+                70,
+                63,
+                72,
+                76,
+                71,
+                69,
+                74,
+                70,
+                74,
+                70,
+                70,
+                71,
+                69,
+                68,
+                71,
+                70,
+                73,
+                71,
+                72,
+                67,
+                72,
+                65,
+                69,
+                70,
+                72,
+                72,
+                72,
+                65
+              ],
+              "map_body_bytes": 30749,
+              "map_zlib9_bytes": 9069,
+              "map_sha256": "2408c7303acd9554420f544fc27c0c64545e513cd4e89de9c22ad9ac7413c969",
+              "dense_field_basis_elements": 284760,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 28985,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 1,
+            "padded": 128,
+            "counts": [
+              7996
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 63,
+              "switches": 189,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 0.1957612936384976,
+              "ranks": [
+                85
+              ],
+              "map_body_bytes": 752,
+              "map_zlib9_bytes": 512,
+              "map_sha256": "613fe293fad2947a2deab16a84da38cebf87e578974e1f3e54cbfc5fdf28dd46",
+              "dense_field_basis_elements": 10710,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22698,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 4,
+            "padded": 128,
+            "counts": [
+              1999,
+              1999,
+              1999,
+              1999
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 316,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 0.1481139580719173,
+              "ranks": [
+                74,
+                27,
+                74,
+                47
+              ],
+              "map_body_bytes": 2733,
+              "map_zlib9_bytes": 1234,
+              "map_sha256": "0731c66aafa84d2d859570e50a12ba0d87a978f6e7afa5ccaa338c3bb2630ca1",
+              "dense_field_basis_elements": 27972,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22698,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 8,
+            "padded": 128,
+            "counts": [
+              999,
+              1000,
+              999,
+              1000,
+              999,
+              1000,
+              999,
+              1000
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 8000,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 376,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 0.1206757458858192,
+              "ranks": [
+                57,
+                56,
+                12,
+                27,
+                49,
+                65,
+                40,
+                45
+              ],
+              "map_body_bytes": 4848,
+              "map_zlib9_bytes": 1710,
+              "map_sha256": "40daf700491fc5b79d7e2d54e21149ddce20ce07d7624154e40551f45036ed68",
+              "dense_field_basis_elements": 44226,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22698,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 16,
+            "padded": 64,
+            "counts": [
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500,
+              499,
+              500,
+              500,
+              500
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 8000,
+              "input_tiles": 32,
+              "switches": 95,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 208,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 0.10375413438305259,
+              "ranks": [
+                46,
+                35,
+                56,
+                12,
+                12,
+                12,
+                27,
+                13,
+                41,
+                42,
+                58,
+                48,
+                29,
+                38,
+                45,
+                14
+              ],
+              "map_body_bytes": 8271,
+              "map_zlib9_bytes": 2545,
+              "map_sha256": "2ebe19bfe4dcfb6ebd3d2b7a977c119f962d08363021f3fc95ab762ed5b23cbc",
+              "dense_field_basis_elements": 66528,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22698,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "metric",
+          "result": {
+            "parts": 32,
+            "padded": 64,
+            "counts": [
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              249,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250,
+              250
+            ],
+            "full_scan": {
+              "features": 126,
+              "padded": 128,
+              "count": 7996,
+              "input_tiles": 63,
+              "switches": 189,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 8000,
+              "input_tiles": 32,
+              "switches": 95,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 224,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 0.09176518581807613,
+              "ranks": [
+                13,
+                46,
+                35,
+                11,
+                16,
+                47,
+                12,
+                12,
+                12,
+                12,
+                12,
+                12,
+                27,
+                12,
+                13,
+                12,
+                33,
+                36,
+                22,
+                37,
+                49,
+                36,
+                32,
+                42,
+                29,
+                13,
+                16,
+                37,
+                38,
+                34,
+                14,
+                13
+              ],
+              "map_body_bytes": 13888,
+              "map_zlib9_bytes": 3344,
+              "map_sha256": "aef03c8e0df40ba9bdea307f86c9fbb665555001d7e2ca08ca0f624f3711d460",
+              "dense_field_basis_elements": 98910,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 127936,
+            "plaintext_zlib9_bytes": 22698,
+            "stable_id_array_bytes": 15992,
+            "all_distances_and_stable_top3_exact": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "piecewise_exact",
+      "count": 8192,
+      "dimension": 512,
+      "unique_rows": 8192,
+      "query_seed": 3004,
+      "variants": [
+        {
+          "layout": "input",
+          "result": {
+            "parts": 1,
+            "padded": 512,
+            "counts": [
+              8192
+            ],
+            "full_scan": {
+              "features": 512,
+              "padded": 512,
+              "count": 8192,
+              "input_tiles": 256,
+              "switches": 767,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 512,
+              "padded": 512,
+              "count": 8192,
+              "input_tiles": 256,
+              "switches": 767,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 256,
+              "switches": 767,
+              "queries": 1,
+              "responses": 1
+            },
+            "private_representation": {
+              "enroll_s": 47.9722159630619,
+              "ranks": [
+                384
+              ],
+              "map_body_bytes": 197532,
+              "map_zlib9_bytes": 148358,
+              "map_sha256": "835fbe595f2b654aa7d0c337f4e465d40c24514fbcf88c0c099bd40b84196a6b",
+              "dense_field_basis_elements": 196608,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 524288,
+            "plaintext_zlib9_bytes": 524454,
+            "stable_id_array_bytes": 16384,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 4,
+            "padded": 128,
+            "counts": [
+              2048,
+              2048,
+              2048,
+              2048
+            ],
+            "full_scan": {
+              "features": 512,
+              "padded": 512,
+              "count": 8192,
+              "input_tiles": 256,
+              "switches": 767,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 128,
+              "padded": 128,
+              "count": 8192,
+              "input_tiles": 64,
+              "switches": 191,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 64,
+              "switches": 316,
+              "queries": 4,
+              "responses": 4
+            },
+            "private_representation": {
+              "enroll_s": 2.7344770249910653,
+              "ranks": [
+                96,
+                96,
+                96,
+                96
+              ],
+              "map_body_bytes": 60403,
+              "map_zlib9_bytes": 17668,
+              "map_sha256": "f81616ebd1e7b845c443aeaff4aa9d1e9bc4884ab46c1737d0d2ef70d46b68ce",
+              "dense_field_basis_elements": 196608,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 524288,
+            "plaintext_zlib9_bytes": 524454,
+            "stable_id_array_bytes": 16384,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 8,
+            "padded": 64,
+            "counts": [
+              1024,
+              1024,
+              1024,
+              1024,
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "full_scan": {
+              "features": 512,
+              "padded": 512,
+              "count": 8192,
+              "input_tiles": 256,
+              "switches": 767,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 8192,
+              "input_tiles": 32,
+              "switches": 95,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 184,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 1.1233745450153947,
+              "ranks": [
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48
+              ],
+              "map_body_bytes": 19904,
+              "map_zlib9_bytes": 5940,
+              "map_sha256": "38abfc32bc03f07bc39fc25d8da96fefb7cb4b56eb40fab6314419613419b43c",
+              "dense_field_basis_elements": 196608,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 524288,
+            "plaintext_zlib9_bytes": 524454,
+            "stable_id_array_bytes": 16384,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 16,
+            "padded": 64,
+            "counts": [
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512,
+              512
+            ],
+            "full_scan": {
+              "features": 512,
+              "padded": 512,
+              "count": 8192,
+              "input_tiles": 256,
+              "switches": 767,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 64,
+              "padded": 64,
+              "count": 8192,
+              "input_tiles": 32,
+              "switches": 95,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 32,
+              "switches": 208,
+              "queries": 16,
+              "responses": 16
+            },
+            "private_representation": {
+              "enroll_s": 1.155407345853746,
+              "ranks": [
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48,
+                48
+              ],
+              "map_body_bytes": 39808,
+              "map_zlib9_bytes": 6821,
+              "map_sha256": "dd3d1e4dde90c04591f8c0174151bf1141a15846f282e14d3ea28142c257888b",
+              "dense_field_basis_elements": 393216,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 524288,
+            "plaintext_zlib9_bytes": 524454,
+            "stable_id_array_bytes": 16384,
+            "all_distances_and_stable_top3_exact": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "uniform_random",
+      "count": 8192,
+      "dimension": 512,
+      "unique_rows": 8192,
+      "query_seed": 3004,
+      "variants": [
+        {
+          "layout": "input",
+          "result": {
+            "parts": 8,
+            "padded": 512,
+            "counts": [
+              1024,
+              1024,
+              1024,
+              1024,
+              1024,
+              1024,
+              1024,
+              1024
+            ],
+            "full_scan": {
+              "features": 512,
+              "padded": 512,
+              "count": 8192,
+              "input_tiles": 256,
+              "switches": 767,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 512,
+              "padded": 512,
+              "count": 8192,
+              "input_tiles": 256,
+              "switches": 767,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 256,
+              "switches": 1528,
+              "queries": 8,
+              "responses": 8
+            },
+            "private_representation": {
+              "enroll_s": 11.456247906666249,
+              "ranks": [
+                512,
+                512,
+                512,
+                512,
+                512,
+                512,
+                512,
+                512
+              ],
+              "map_body_bytes": 8768,
+              "map_zlib9_bytes": 1405,
+              "map_sha256": "c355eeaed38d8ca3e8e6f3ebdf9281e8e6738cac410df1a58662b533b7975136",
+              "dense_field_basis_elements": 2097152,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 524288,
+            "plaintext_zlib9_bytes": 524454,
+            "stable_id_array_bytes": 16384,
+            "all_distances_and_stable_top3_exact": true
+          }
+        },
+        {
+          "layout": "input",
+          "result": {
+            "parts": 32,
+            "padded": 256,
+            "counts": [
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256,
+              256
+            ],
+            "full_scan": {
+              "features": 512,
+              "padded": 512,
+              "count": 8192,
+              "input_tiles": 256,
+              "switches": 767,
+              "response_ciphertexts": 1
+            },
+            "crt": {
+              "features": 256,
+              "padded": 256,
+              "count": 8192,
+              "input_tiles": 128,
+              "switches": 383,
+              "response_ciphertexts": 1
+            },
+            "separate": {
+              "products": 128,
+              "switches": 992,
+              "queries": 32,
+              "responses": 32
+            },
+            "private_representation": {
+              "enroll_s": 6.2913138549774885,
+              "ranks": [
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ],
+              "map_body_bytes": 6320870,
+              "map_zlib9_bytes": 5472326,
+              "map_sha256": "cb5d454cb464a3c927d01a1301a6e52341871757719e43ae493e25704c8ae34b",
+              "dense_field_basis_elements": 4177920,
+              "owner_state_scaling": "O(parts*dimension^2) field entries; no per-row values. Stable IDs/permutation separate."
+            },
+            "plaintext_body_bytes": 524288,
+            "plaintext_zlib9_bytes": 524454,
+            "stable_id_array_bytes": 16384,
+            "all_distances_and_stable_top3_exact": true
+          }
+        }
+      ]
+    }
+  ],
+  "scalar_hidden_lookup_control": {
+    "query_ciphertexts": 513,
+    "index_ciphertexts": 163840,
+    "ciphertext_products": 8388608,
+    "relinearizations": 8388608,
+    "multiplicative_depth": 10,
+    "response_ciphertexts_before_packing": 8192,
+    "bilinear_scalar_features_without_query_offset_lower_bound": 512
+  }
+}

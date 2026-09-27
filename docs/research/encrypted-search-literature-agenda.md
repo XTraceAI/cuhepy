@@ -1,5 +1,21 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-27 fourth creative follow-up:**
+[exact local affine maps and CRT query components](affine-component-results.md)
+now test shared query work with bounded-per-map owner state. Targeted primary
+reading adds [Smart and Vercauteren's homomorphic SIMD/lookup work](https://eprint.iacr.org/2011/133)
+and [Zheng, Li and Wang's tensor-ring matrix framework](https://eprint.iacr.org/2023/1649)
+to the comparison agenda. The latter was inspected at abstract/metadata level,
+not reproduced. Polynomial CRT, affine factorization and binary-mask query
+contractions are established ingredients; the open question is a useful joint
+rank/padding/state/update tradeoff for exact encrypted search. An expensive
+scalar encrypted residual lookup is retained as one control, not a lower bound
+for optimized private lookup. The updated
+[E26 experiment card](creative-experiment-priorities.md#e26--can-private-local-representations-share-one-encrypted-query)
+prioritizes unequal capacities, bounded-state planning, exact exceptions and
+query conversion fused with private component statistics. These measurements
+do not establish novelty or close the authentication/side-channel boundary.
+
 Reviewed 2026-09-26 on `research/bfv-search-lab`, after `5f4a550`.
 This supplements the [main experiment plan](bfv-search-experiment-plan.md).
 E13–E19 below began as **proposals**. The 2026-09-27 follow-up now records an

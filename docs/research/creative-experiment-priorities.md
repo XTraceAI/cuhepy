@@ -33,13 +33,25 @@ residual data; on the measured fixture its compressed hint is almost as large
 as the compressed full database. This is a changed-state reference, not an
 established practical protocol win.
 
-**Next cycle:** prioritize encrypted exact residual evaluation with bounded
-owner state, block-dependent dictionaries with shared query work, and the
-state/update-rate tradeoff. Compare compressed full data and direct local search
-whenever owner hints are proposed. Keep simple signature ordering as a strong
-control: it often beat the metric partition. Preserve E17 and the separate
-private-refinement question. Do not default to resident-gather/kernel tuning
-merely because this cycle exposed an implementation bottleneck.
+**Fourth cycle implemented:** [exact affine dictionaries and CRT components](affine-component-results.md)
+replace per-row residuals with private block maps and multiplex their different
+queries inside one full-size homemade BGV ciphertext (E26). Public categorical
+data gives about 1.85× CPU local improvement, with CUDA total nearly unchanged.
+A deliberately block-structured 8,192-vector fixture gives 7.10× CPU and 1.31×
+CUDA local improvement. Binary-mask query contractions rescue the initial CUDA
+regression. Traffic equals full scan; separate block queries cost much more.
+Dense map blowup on digit/random data and a rank-64→65 padding boundary are
+retained counterexamples. A scalar encrypted residual lookup also works but is
+expensive; its cost is not a lower bound for better packed constructions.
+
+**Next cycle:** prioritize bounded-state, padding-aware partitions and update
+robustness; unequal component capacity/rank schedules; and an exact affine core
+with encrypted exceptions. E17 can ask whether query conversion directly forms
+the component statistics. Compare compressed full data, a complete affine cache
+and direct local search whenever owner maps/hints are proposed. Keep global,
+input/signature/metric layouts as controls; no single one has won every cycle.
+Preserve the separate private-refinement question. Do not default to kernel or
+codec tuning instead of testing these representation/protocol hypotheses.
 
 ## Objective and working method
 
@@ -185,11 +197,11 @@ sweeps, signature/metric physical orders and stable original IDs are in the
 did not reliably help search. Signature order often beats the more complicated
 metric partition; neither helps uniform random data enough to rescue pruning.
 
-**Next experiment:** compare small families of per-block dictionaries, optimizing
-padded products, complete tile work, owner state and query/key duplication
-together. Test whether common query transformations can be shared rather than
-charging one full query ciphertext per dictionary. Include the existing one-map
-layout and exact full scoring. Keep query fitting separate from index enrollment.
+**Implemented per-block follow-up:** E26 below replaces coordinate grouping
+with exact local affine relations and shares their query ciphertext through
+polynomial CRT. Common worst-block padding and map memory determine whether it
+wins. The next layout experiment must optimize those costs jointly, retaining
+the one-map/full-scan controls and separate query holdouts.
 
 **Falsifiable prediction:** an HE-aware dictionary/layout reduces complete
 search work on a real binary distribution after charging queries, keys,
@@ -262,6 +274,57 @@ The question is whether a useful exact outsourced-search tradeoff survives an
 equal storage/privacy contract; the elementary signed correction is not a new
 cryptographic identity. Compare hint-bearing and hintless PIR literature without
 transferring their different security or retrieval guarantees.
+
+**Fourth-cycle probe:** a homemade encrypted scalar multiplexer selects a query
+bit at an encrypted residual position, then applies an encrypted sign. It is
+exact but needs `d` products per residual before any output packing. This rules
+out the literal scalar construction at our dimensions, not better SIMD lookup
+or nonlinear/multiround methods. A narrow bilinear rank obstruction prevents
+assuming a tiny exact linear feature encoding for unrestricted addresses. E26
+avoids those per-row lookups by exploiting exact restricted affine structure.
+
+## E26 — Can private local representations share one encrypted query?
+
+**Implemented:** an exact modular affine basis per block represents binary rows
+as `a + uB`. The owner computes the query-only offset and `B(1-2q)`; the server
+evaluates encrypted `u`. Polynomial CRT components of the same full-size ring
+carry different blocks' queries. The existing butterfly preserves components
+when common padded rank divides component degree. Equal-coefficient bit masks
+contract binary queries; no new CUDA kernel or external HE implementation is
+needed. Independent polynomial and homemade encrypted tests establish exactness.
+
+**Observed tradeoff:** Mushroom local affine rank crosses padding 128→64 on one
+split with 8 blocks, but needs 16 on the other. Canonical maps are 4,527/8,271 B;
+stable IDs add 15,992 B. Maps have no per-row residual array, but contain private
+anchors/relations and compiled Python objects exceed compressed full data on
+this fixture. Semeion and finely partitioned uniform data reduce rank only with
+maps much larger than the full database. Preserve those failures. Components
+save traffic versus separate queries, not versus the existing full scan.
+
+**Next experiments, in order:**
+
+1. Plan blocks from index data under a fixed map-byte/update budget, scoring
+   actual padded products, switches and imbalance. Include an out-of-span row
+   that raises rank 64→65; prove exact epoch rejection and charge re-enrollment.
+2. Test unequal capacities and mixed rank classes. Derive the trace/CRT schedule
+   before implementing it, and charge every key, query, product and fusion.
+   Common worst-block padding is the current control, not a free assumption.
+3. Combine a low-rank exact core with encrypted support-class exceptions,
+   testing tiny-domain or factored private lookup and alternative schemes.
+   Compare complete affine/plaintext caching and bound owner state explicitly.
+4. Couple E17 query conversion with the required component linear forms; price
+   privacy of the data-derived maps instead of making them public for convenience.
+
+**Possible contribution:** a useful exact-search representation/schedule with
+measured state/update/compute tradeoffs. Affine algebra, CRT, SIMD and bit masks
+are established ingredients. Compare tensor-ring matrix methods, encrypted
+lookup and dictionary/compression work before claiming a new construction.
+
+**Falsification:** a single outlier doubles work, maps effectively retain the
+database, or a second query/reply and map processing erase the reduction in
+encrypted products. The current GPU tie on public data is already informative.
+Fixed scheduling removes adaptive tile requests, but does not authenticate the
+server or establish private side-channel/parameter assurance.
 
 ## E17 — Can query conversion and matching share work?
 

@@ -1,5 +1,11 @@
 # Dictionaries, owner hints, mixed score packing and exact residual correction
 
+Follow-up: [exact affine dictionaries inside one BGV query](affine-component-results.md)
+implements block maps without per-row residual arrays, shared queries through
+polynomial CRT, and an encrypted hidden-position lookup control. It keeps this
+cycle's results/checkpoint intact and compares the new state/compute tradeoff
+with full-data retention.
+
 2026-09-27, `experiment/creative-search-algebra`. This extends the
 [certified folding experiments](certified-folding-results.md), preserving the
 earlier company and research checkpoints. All encrypted arithmetic here is our

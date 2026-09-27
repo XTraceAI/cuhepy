@@ -23,6 +23,14 @@ controls. Complete native benchmarks charge selected-index preparation and
 compare hints with compressed full data and local plaintext search. State and
 leakage costs accompany every apparent win.
 
+The [fourth creative cycle](../../docs/research/affine-component-results.md)
+adds exact blockwise affine maps, homemade polynomial CRT multiplexing of their
+queries, and binary-mask contractions. One full-size BGV query/reply serves
+different block maps, with paired native CPU/CUDA measurements on public and
+structured synthetic data. Private-state costs, padding sensitivity, dense-map
+regressions and a deliberately expensive encrypted residual-lookup control are
+retained. The new `t=1153` profile is explicit and matched across comparisons.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -85,6 +93,9 @@ assurance. The raw CUDA path does not provide attestation.
 | `interval_filter.py` | E23 trusted owner radii, stable score intervals and one-batch whole-tile refinement |
 | `witness_packing.py` | E24 disjoint honest output support, monomial fusion and decoding of different trace scales |
 | `owner_residuals.py` | E25 canonical sparse private owner hints and exact two-popcount score correction; changed client-state contract |
+| `private_residual_lookup.py` | E25 tiny homemade encrypted address/sign multiplexer; expensive scalar control, not a general lookup cost bound |
+| `affine_dictionary.py` | E26 exact modular local affine bases, whole-index certification, private map audit and compiled binary-query masks |
+| `crt_multiplex.py` | E26 standard polynomial CRT components within the full encryption ring; shared query, existing butterfly and exact score decoding |
 | `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
 | `adaptive_refinement.py` | Local exact threshold discovery, stable ties and whole-ciphertext-tile accounting; exposes the access schedule |
