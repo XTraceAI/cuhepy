@@ -231,6 +231,13 @@ bound can be harder to evaluate under HE than the exact score.
 
 ## What to pursue next
 
+**Follow-up implemented:** [the second creative cycle](certified-folding-results.md)
+tests one-sided lookup compression and E22 coordinate folding, then connects
+bounds to actual threshold discovery and whole-tile refinement. It retains the
+lookup's negative result and measures a structured-data CPU/CUDA folding gain.
+Its experiment cards supersede the execution order below, which records the
+questions at the end of this first cycle.
+
 1. Investigate a different cost model for the coupled filter: compact nonlinear
    lookup, shared computation across records, or a declared mixed protocol. For
    pure per-block bilinear lookup, the measured rank is already a constraint;

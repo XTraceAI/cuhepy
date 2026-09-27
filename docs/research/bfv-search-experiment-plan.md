@@ -71,6 +71,15 @@ filtering and exact lookup factorization](creative-algebra-results.md). The
 results retain unsuccessful constructions and identify the next representation
 and protocol questions. No production-size encrypted speedup is established.
 
+**Second creative cycle, 2026-09-27:** [certified filters and E22 coordinate
+folding](certified-folding-results.md) add exhaustive integer certificates,
+whole-tile refinement without an oracle threshold, and a paired full-size
+homemade CPU/CUDA experiment. Exact redundant-column folding reduces server
+time on a deliberately structured fixture; query/response bytes stay fixed.
+Unstructured data, unrelated queries and excessive compression expose the
+limits. This is a representation experiment, not a general-data or production
+security result. The next cards prioritize dictionary/layout/residual algorithms.
+
 ## Expanded scheme portfolio after the first implementations
 
 The objective is exact/private search under a declared contract, not adherence

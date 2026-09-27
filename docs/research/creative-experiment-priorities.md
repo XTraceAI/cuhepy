@@ -16,11 +16,20 @@ modeled encrypted lookup cost, but that lookup still needs 8× the original
 scan's ciphertext products. These are useful limits and experiment controls,
 not an established novel contribution or a new production speedup.
 
-**Next cycle:** prioritize an alternative lookup/selection mechanism and E17's
-conversion fused with useful query statistics. The per-block bilinear rank and
-the cheaper exact-distance baseline must constrain the next design. Keep
-threshold discovery, routing privacy and complete coverage in the protocol
-question; do not default to CUDA tuning of these losing reference constructions.
+**Second cycle implemented:** [certified filters and coordinate folding](certified-folding-results.md)
+test a one-sided low-rank lookup, an owner-derived coordinate dictionary (E22),
+and exact threshold discovery with whole-ciphertext-tile refinement. The lookup
+loses selectivity after certification. Exact folding wins a paired full-size
+CPU/CUDA experiment on deliberately redundant columns; it does not compress
+uniform random data. No general-data speedup or novelty is established.
+
+**Next cycle:** prioritize padding-aware dictionaries, exact sparse residual
+correction, joint dictionary/tile layouts and private refinement across schemes.
+Use unrelated queries, overcompression and real binary data as early rejection
+tests. Preserve the E17 conversion question and compare its closest PIR work;
+query/response bytes did not shrink in the measured exact-folding experiment.
+Threshold discovery, schedule privacy and complete coverage remain protocol
+questions. Do not default to another round of CUDA kernel tuning.
 
 ## Objective and working method
 
@@ -150,6 +159,34 @@ that information, or label the changed leakage contract explicitly.
 
 **Falsification:** the bound is weak, or hiding/verifying routing erases the
 pruning gain. A fast plaintext filter alone is not a private-search result.
+
+## E22 — Can an index-specific representation avoid most score arithmetic?
+
+The [implemented first probe](certified-folding-results.md) groups equal or
+complementary database columns and folds query weights on the owner. Near
+groups add exact per-row residual budgets, yielding safe Hamming lower bounds.
+The ring and security parameters stay fixed. This uses standard factorization
+and triangle-inequality ideas; the proposed research question is their joint
+optimization for ciphertext padding, coverage and refinement.
+
+**Next experiment:** compare dictionaries with 63 groups plus one residual
+feature against the current greedy rule. Optimize the worst residuals and the
+number of original ciphertext tiles fetched, not just average reconstruction
+error or survivor count. Explore sparse exact correction and per-tile mappings
+as competing noninteractive constructions. Preserve stable original IDs after
+any owner-side reordering.
+
+**Falsifiable prediction:** an HE-aware dictionary/layout reduces complete
+search work on a real binary distribution after charging queries, keys,
+fallback index, authenticated private refinement and epoch updates. Compare
+ordinary coordinate sampling, full scoring and row deduplication. Failure on
+unrelated queries or loss after padding/routing charges is an informative result.
+
+**Protocol scope:** only the owner holds the data-dependent map; sharing it
+changes the contract. Adaptive tile IDs and schedule length are currently
+visible. PIR alone does not solve integrity or selective-failure privacy.
+Model authenticated PIR and padded/attested routing separately before adopting
+either, and charge offline hints rather than treating retrieval as free.
 
 ## E17 — Can query conversion and matching share work?
 

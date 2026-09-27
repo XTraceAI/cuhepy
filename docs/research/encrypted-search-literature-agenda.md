@@ -30,6 +30,13 @@ the stronger filter's reduced candidate count does not yet pay for its
 encrypted lookup. The next experiments target that representation/protocol gap
 and E17 query statistics, rather than another round of routine kernel tuning.
 
+**Second creative follow-up:** [certified filtering and E22 coordinate folding](certified-folding-results.md)
+now include a failed one-sided lookup compression, a measured exact folding
+win on structured data, and whole-tile adaptive refinement with discovered
+thresholds. Index-specific dictionaries, binary matrix factorization and
+authenticated PIR join the comparison agenda. The extra reading is targeted;
+it does not establish novelty or implement a secure adaptive protocol.
+
 ## 1. What the literature changes
 
 The user-supplied [BioZKFHE, v1](https://arxiv.org/html/2607.22065v1)
@@ -92,6 +99,10 @@ against our machine, parameters or workload.
 | [HEIR, relinearization scheduling](https://heir.dev/docs/design/relinearization_ilp/) | Existing lazy relinearization and explicit key-basis/placement models | E20 must account for transformed secrets and compare against an equally delayed conventional circuit |
 | [Azogagh–Killijian–Larose-Gervais, blind counting sort/top-k, PETS 2025](https://eprint.iacr.org/2024/1894.pdf) | TFHE counting/LUT selection and private k-NN with an honest-but-curious server and plaintext corpus | Counting/selection are established; adapt the corpus, output and integrity contracts explicitly |
 | [Alman–Williams, probabilistic polynomials and Hamming neighbors, FOCS 2015](https://arxiv.org/abs/1507.05106) | Randomized polynomial constructions and batch Hamming-neighbor algorithms | E21 does not establish a new polynomial-search primitive; any probabilistic variant needs its own exactness/error contract |
+| [Kumar et al., binary matrix factorization, ICML 2019](https://proceedings.mlr.press/v97/kumar19a.html) | Approximation algorithms for binary factorizations over integer and binary-field arithmetic | E22's signed column dictionary is a restricted representation; factorization and residual bounds are established ingredients |
+| [SimplePIR/DoublePIR, USENIX Security 2023](https://eprint.iacr.org/2022/949) and [Piano, author implementation](https://github.com/wuwuz/Piano-PIR-new) | Different single-server PIR preprocessing, storage and online-computation tradeoffs | Compare private refinement of owner-encrypted raw records with encrypted distance reranking; charge client state and updates |
+| [Colombo et al., authenticated PIR, USENIX Security 2023](https://www.usenix.org/system/files/usenixsecurity23-colombo.pdf) | Authenticity with selective-failure privacy, including a single-server model | Record signatures/AEAD inside an ordinary PIR result do not by themselves protect an observed accept/reject bit |
+| [Distributional PIR, 2025 preprint](https://eprint.iacr.org/2025/132.pdf) | Distribution-dependent retrieval correctness and RLWE-to-LWE improvements for SimplePIR | Conversion is close E17 prior work; relaxed retrieval success cannot silently replace exact search |
 
 ## 2. Freeze the contract before comparing systems
 

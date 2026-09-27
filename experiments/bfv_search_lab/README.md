@@ -8,6 +8,13 @@ syndrome/weight filtering and public lookup factorization. The retained negative
 results determine the next questions; no novel contribution or production
 speedup is established by these prototypes.
 
+The [second creative cycle](../../docs/research/certified-folding-results.md)
+adds certified one-sided lookup compression, data-dependent coordinate folding
+and exact whole-tile refinement. Exact folding has a paired full-size homemade
+CPU/CUDA measurement on structured columns. Its failure controls and exposed
+adaptive routing remain explicit; none of these modules authorizes remote
+decryption or changes the production clients.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -63,6 +70,10 @@ assurance. The raw CUDA path does not provide attestation.
 | `reduction_oracles.py`, `deferred_bgv.py` | E20 independent secret-basis/projection oracle, switch/key/noise models and homemade delayed-switch evaluator |
 | `answer_oracles.py`, `aggregate_bgv.py` | E21 exact polynomial/interpolation/Walsh references, stable-ID recovery, rank/tie obstructions and encrypted factor circuit |
 | `syndrome_oracle.py` | E19 safe coupled block bounds, exact public table factorization and owner-side layouts checked through homemade BGV encryption |
+| `certified_lookup.py` | E19 public SVD proposals with exhaustive integer one-sided certificates; retained negative selectivity result |
+| `folded_filter.py` | E22 owner-side coordinate dictionaries, exact per-row residuals and weighted-query layouts |
+| `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
+| `adaptive_refinement.py` | Local exact threshold discovery, stable ties and whole-ciphertext-tile accounting; exposes the access schedule |
 | `layout_oracles.py` | Independent plaintext algebra and operation counts |
 | `partial.py` | Layout, reference circuit, native/CUDA experimental servers and decoder |
 | `query.py` | Public-key or seeded symmetric query, one-use preprocessing pool, native encoder wrapper |
