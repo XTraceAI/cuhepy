@@ -132,12 +132,15 @@ def fold_models(args):
     groups = min(48, args.dimension // 4)
     for seed in args.seeds:
         rng = random.Random(seed)
-        cases = [("uniform", rng.getrandbits(args.dimension),
-                  [rng.getrandbits(args.dimension) for _ in range(args.count)], 0)]
+        uniform_query = rng.getrandbits(args.dimension)
+        uniform_rows = [rng.getrandbits(args.dimension) for _ in range(args.count)]
+        cases = [("uniform", uniform_query, uniform_rows, 0),
+                 ("uniform-forced-one-group", uniform_query, uniform_rows, args.count // 2)]
         for flips in (0, 2, 8, 16):
             query, rows = structured_fixture(args.count, args.dimension, groups, flips, seed)
-            cases.append((f"foldable-{flips}-flips", query, rows,
-                          min(args.count // 2, 4 * flips * args.count // args.dimension)))
+            threshold = min(args.count // 2, 4 * flips * args.count // args.dimension)
+            cases.append((f"foldable-{flips}-flips", query, rows, threshold))
+            cases.append((f"foldable-{flips}-flips-uniform-query", rng.getrandbits(args.dimension), rows, threshold))
         for name, query, rows, threshold in cases:
             setup_s, plan = timed(folded.prepare, rows, args.dimension, threshold)
             distances = [(query ^ row).bit_count() for row in rows]
