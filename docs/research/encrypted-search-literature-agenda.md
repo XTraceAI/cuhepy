@@ -5,8 +5,10 @@ This supplements the [main experiment plan](bfv-search-experiment-plan.md).
 E13–E19 below began as **proposals**. The 2026-09-27 follow-up now records an
 [E15 deterministic bound and measured precision improvement](bgv-support-bounds.md)
 and [E13/E14 stage inventory and arithmetic oracles](bgv-verification-relations.md),
-followed by [E16 radix/client measurements](bgv-radix-results.md) and
-[E13 CPU/GPU boundary measurements](bgv-digit-boundary-results.md). These do not
+followed by [E16 radix/client measurements](bgv-radix-results.md),
+[joint layout/precision/setup selection](bgv-layout-planning.md),
+[E13 CPU/GPU boundary measurements](bgv-digit-boundary-results.md) and a
+[complete reference/native key-switch stage check](bgv-checked-switch.md). These do not
 implement a complete GPU verification protocol or proof. None establishes
 novelty or production security. Existing E01–E12,
 implementations, negative results and independent oracles remain the baseline.
@@ -182,8 +184,21 @@ CPU workers. Aligned 16-byte integers beat tightly packed 15-byte integers even
 with 6.7% more traffic. Eight-worker aligned boundaries cost 43.95/121.41 ms at
 8,192/32,768 vectors, excluding all protocol work and Nitro/vsock copies. E16
 radix schedules reduce that cost, but no measured authenticated GPU service
-results from summing these component timings. Next implement and cost one
-complete checked subcircuit before committing to the whole partition.
+results from summing these component timings.
+
+The [complete stage follow-up](bgv-checked-switch.md) now checks canonical
+batched relinearization with fresh full-field weights after immutable output
+commitment. Trusted digit extraction precedes linear batch folding; all output
+coefficients are read and both components/limbs are checked. Three repetitions
+per limb give a conditional miss bound below 2^-177 per fixed incorrect output
+under the specified assumptions. This is statistical checking soundness, not
+an HE security estimate. No secret preprocessing pool or refill is used.
+Homemade C++/RNS arithmetic reduces paired reference checker costs by
+37.9–99.3× for batches 1/8/32; native costs including input binding are
+9.29/23.15/90.73 ms. It does not establish its input tensors or remaining search
+stages, and it is not a receipt. Next bind the preceding fixed-index tensor
+product, compare to matched native recomputation, and measure complete trace
+traffic before extending the partition or making a verified-service claim.
 
 Separately evaluate an attested-GPU deployment when suitable hardware is
 available. It has a larger hardware/firmware trust boundary and needs its own
@@ -337,8 +352,17 @@ decoding. Packed ciphertext handling plus independently checked NumPy plaintext
 decoding reduces complete owner-index local latency at 32,768 vectors by
 29.1%/37.0% for g=2/g=3. Only g=2 also saves total bytes there (12,290 B). Both
 increase traffic at 8,192, and g=3 loses on the measured paced links at either
-size. Joint workload/network planning is therefore the next packing step;
-this is not an unconditional replacement for the existing layout.
+size. This is not an unconditional replacement for the existing layout.
+
+The [joint planning follow-up](bgv-layout-planning.md) measures all 12 available
+layout/precision plans at each size. A model using local timings selects five
+of six separate paced-link winners; its one miss costs 1.64 ms. Charging fresh
+keys/index preparation and coefficient upload changes the recommendation:
+at 32,768 vectors, a resident ordinary index needs a modeled 6,680-query epoch
+to amortize g=2 at symmetric 10 Mbps. Actual registration overhead is absent,
+so this is a lower bound under the current representation. Next measure real
+epoch turnover and registration, include resident memory, and validate other
+dimensions/tails and independent runs before proposing an online policy.
 
 ## 7. E17 — Make query upload proportional to useful input
 
@@ -468,7 +492,7 @@ Keep the main worktree and baseline intact. Proposed descendant branches are
 (E16). E17–E19 start with models/oracles before native backends. The initial
 literature-only update created no branches or scheme implementations. The
 2026-09-27 work uses `experiment/bgv-verification-packing` for E13/E14 oracles,
-E15 bounds, E16 radix/client experiments and E13 transfer measurements, leaving
+E15 bounds, E16 layout/setup experiments and E13 transfer/stage checks, leaving
 the baseline PR branch unchanged.
 
 | Order | Concrete output | Decision gate |

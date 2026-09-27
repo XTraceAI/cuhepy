@@ -32,6 +32,12 @@ decoders, and measures client/server/traffic tradeoffs. The
 [E13 boundary experiment](../../docs/research/bgv-digit-boundary-results.md)
 measures exact CRT/digit work and four host/GPU transfer layouts; it does not
 authorize GPU responses.
+The [joint layout report](../../docs/research/bgv-layout-planning.md) measures
+all radix/precision choices and includes fresh setup, directional links and
+index-epoch projections. The
+[checked-switch follow-up](../../docs/research/bgv-checked-switch.md) adds
+independent reference and C++/RNS checks for one complete arithmetic stage.
+Its inputs must already be trusted; it does not authorize full GPU searches.
 
 These are explicit research entry points, outside the default client and its
 authenticated protocols. They operate on synthetic, owner-controlled data.
@@ -50,6 +56,9 @@ assurance. The raw CUDA path does not provide attestation.
 | `support_bounds_bgv.py` | Opt-in whole-polynomial support bound for the same joint native circuit |
 | `verification_oracles.py` | Toy field checks, exact integer relations and internal-traffic model; no authorization API |
 | `radix_bgv.py`, `radix_client_bgv.py` | Separate radix index layout, precision plans and gated local-fixture decoder; scalar and packed/vectorized paths |
+| `radix_planner.py` | Explicit ranking of measured layout/precision/setup choices; no parameter approval or online routing |
+| `checked_switch_bgv.py` | One-use batched key-switch stage check with trusted input binding and fresh post-output weights |
+| `native_check_bgv.py`, `_verify/` | Optional homemade public C++/RNS/NTT check arithmetic; wrapper supplies required sampling/lifecycle |
 | `_native/digit_boundary.h`, `_native/digit_boundary.cu`, `_native/test_digit_boundary.cpp` | Public CRT/digit conversion, standalone CPU/GPU boundary benchmark and host sanitizer oracle |
 | `native_bgv.py`, `_native/` | Isolated C++/RNS/CUDA evaluators with resident public keys/index |
 | `_native/compact.h` | Exact terminal reduction in C++, before exporting the small result |
@@ -70,6 +79,13 @@ this checkout; old binaries do not have the experimental factories. The
 accepted `create_server` path defaults to one complete sum as before.
 The BGV follow-up has its **own** native extensions under `_native/`; it does
 not add a BGV mode to the production BFV factories.
+
+The separate `_verify/` extension accelerates public stage checking. It loads
+no HE secret and does not change the private backend. Low-level
+`check_arithmetic` accepts weights for differential testing; caller-selected
+weights do not establish sound verification. Use `context.begin(...,
+native=NativeCheckArithmetic(context)).check_once(packet)` only for the bounded
+stage statement described in the report, never as a full-search acceptance gate.
 
 ## Build, test and measure
 
@@ -92,7 +108,27 @@ make -C src/cuhepy/bfv/_gpu_ext PYTHON="$PWD/.venv/bin/python" \
   --json-out benchmarks/results/trace_bgv_lab_65.json
 ```
 
-The first benchmark reuses one index/key set across all CUDA/query variants,
+Build the optional stage-check backend before its native tests or benchmark:
+
+```bash
+make -C experiments/bfv_search_lab/_verify PYTHON="$PWD/.venv/bin/python" CXX=g++-12
+.venv/bin/python -m pytest experiments/bfv_search_lab/test_checked_switch_bgv.py \
+  experiments/bfv_search_lab/test_native_checked_switch_bgv.py -q
+.venv/bin/python benchmarks/bgv_checked_switch.py --ring-degree 16384 \
+  --batches 1 8 32 --repeats 5 --native --json-out /tmp/bgv-checked-switch.json
+.venv/bin/python benchmarks/bgv_layout_report.py \
+  benchmarks/results/bgv_radix_all_precision_32768.json \
+  --json-out /tmp/bgv-layout-planner.json
+```
+
+The stage benchmark measures trusted-input parsing, fresh sampling and the
+complete check. Fixture byte packing, server-result construction and key setup
+are recorded separately; transport and establishing the trusted tensor are
+excluded. The layout report consumes measured data and needs no GPU. Reproduce
+its inputs using the commands in the
+[layout report](../../docs/research/bgv-layout-planning.md).
+
+The `bfv_search_lab.py` benchmark reuses one index/key set across all CUDA/query variants,
 warms each variant, shuffles paired query rounds, and verifies every distance
 and stable top-three result outside timing. Index setup and factory setup are
 separate. **Online pool timings exclude refill; `total_with_refill_s` includes

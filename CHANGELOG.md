@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add joint E16 layout/precision/setup reporting over all 12 measured plans at
+  8,192 and 32,768 vectors. Charge fresh index/key preparation and coefficient
+  upload, correct terminal-cache setup accounting, and validate predictions
+  against separate paced-link samples: five of six winners matched, with a
+  1.64 ms miss retained. Record the setup horizons that reverse steady choices.
+- Add a complete E13 batched canonical key-switch stage checker with post-output
+  fresh weights, exact trusted CRT/digits, context binding and one-use attempts.
+  Preserve the independent Python/GMP reference and add optional homemade
+  C++/RNS/NTT arithmetic. Paired stage checks including input binding take
+  9.29/23.15/90.73 ms for batches of 1/8/32 at N=16,384, versus
+  922.06/1,426.67/3,440.14 ms in the reference. These are stage costs, not
+  authenticated full-search results; trusted inputs and the remaining chain
+  are still required. Validate 1,029 full-suite tests and 53 ASan/UBSan tests.
 - Add E16 balanced and direct-distance radix layouts to the homemade BGV lab,
   including a smaller-base modular distance construction, exact tail handling,
   context-bound fixture envelopes and public t-dependent precision planning.

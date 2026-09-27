@@ -151,9 +151,15 @@ including partial and multiple response groups.
 .venv/bin/python -m pytest experiments/bfv_search_lab/test_verification_oracles.py -q
 ```
 
-With [boundary measurements](bgv-digit-boundary-results.md) now available,
-choose a complete small statement and compare a trusted nonlinear core with
-a reviewed proof backend. Any [radix layout](bgv-radix-results.md) must also
+The [boundary measurements](bgv-digit-boundary-results.md) are followed by a
+[complete canonical key-switch stage check](bgv-checked-switch.md), with
+independent reference and native arithmetic, post-output challenges, one-use
+binding and paired timings. It recomputes canonical digits from already-trusted
+input tensors before checking the batched linear map. It does not establish
+that preceding tensor product or the full search. Next bind the tensor to its
+fixed-index/query inputs, compare against native recomputation, and account for
+all stage transfers before composing the full chain or a reviewed proof backend.
+Any [radix layout](bgv-radix-results.md) must also
 bind its base/mode, digit count, t, logical/physical counts and tail policy.
 Continue only
 after mutations of every stage, context and coverage rule are rejected and the

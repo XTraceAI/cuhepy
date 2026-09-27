@@ -682,6 +682,11 @@ or stop. Never store private keys in measurement artifacts.
   measurements, including cases where fewer tiles still lose on the network.
 - [Trusted digit-boundary costs](bgv-digit-boundary-results.md): exact CPU/GPU
   conversion, transfer layouts and radix-reduced schedules; no verifier claim.
+- [Joint layout/precision/setup planning](bgv-layout-planning.md): all 12
+  measured plans, separate paced-link checks and epoch break-even projections.
+- [Complete key-switch stage checking](bgv-checked-switch.md): one-use
+  reference/native checkers, conditional soundness, CPU/CUDA differential tests
+  and actual trusted work; complete search authentication remains open.
 
 The oracle passes **1,131 partial-layout cases and 367 coefficient-layout cases**.
 It exhausts all query/vector pairs up to four bits and adds deterministic random
@@ -711,6 +716,12 @@ Follow-up work is on `experiment/bgv-verification-packing`:
   (distance g=2) or 54.41 ms (g=3). Only g=2 also improves total traffic there;
   at 8,192, larger packets lose on both measured links. The scalar reference,
   negative initial results and packed/vectorized ablations are retained.
+  The [joint planning follow-up](bgv-layout-planning.md) measures all 12
+  layout/precision combinations and three directional links. Its local-sample
+  model picks five of six paced winners, with a 1.64 ms miss. Setup amortization
+  matters: switching a resident ordinary index to g=2 at 32,768 vectors needs
+  a modeled 6,680-query epoch at symmetric 10 Mbps; full registration overhead
+  is unmeasured, so this is a floor under the current representation.
 - **E13/E14 specification/oracles and E13 boundary measurements implemented:** the
   [stage/constraint inventory](bgv-verification-relations.md) includes integer
   rounding, canonical CRT, digit ranges, coverage and exact response binding.
@@ -721,12 +732,22 @@ Follow-up work is on `experiment/bgv-verification-packing`:
   words and eight CPU workers. These omit the actual verification protocol
   and enclave transport. Radix g=3 reduces those schedule costs further to
   20.60/50.01 ms; substantial trusted/transfer work remains.
-- **Next:** build one complete small checked subcircuit/proof with all binding,
-  challenge/refill and deployment transfer costs; compare nonlinear-boundary
-  choices. Join E16 layout selection with the precision/network planner and
-  charge fresh setup when changing t. Extend protected client and receipt
-  contracts only after that specification is complete. E17–E19 remain
-  independent model-first experiments.
+- **E13 complete stage check implemented:** [canonical batched key switching](bgv-checked-switch.md)
+  binds trusted inputs and full output packets, samples fresh weights after
+  output commitment, and checks both components in both limbs. The independent
+  Python/GMP implementation and optional homemade C++/RNS checker pass mutation,
+  lifecycle, toy exhaustive-soundness, CUDA and native sanitizer tests. Paired
+  native costs including input binding are 9.29/23.15/90.73 ms for batches of
+  1/8/32 at N=16,384. These verify one stage with already-trusted inputs, not
+  the complete query or an untrusted preceding tensor product.
+- **Next:** bind the preceding fixed-index tensor product to the query/index,
+  compose adjacent checked stages, and compare against matched native CPU
+  recomputation. Measure native packet handling and all intermediate/enclave
+  transfers before selecting a complete verifier partition. For E16, measure
+  registration, epoch turnover, additional dimensions/tails and independent
+  reruns; budget resident memory and switching margins. Extend protected client
+  and receipt contracts only after the complete statement is established.
+  E14 proofs and E17–E19 remain independent model-first experiments.
 
 The strongest current paper direction is **exact encrypted search with
 verification, client work and communication included in the optimization**.
@@ -737,10 +758,10 @@ or a raw GPU fixture as today's authenticated service performance.
 
 | ID | New experiment | First concrete deliverable | Main reason it may fail |
 |---|---|---|---|
-| E13 | Trusted CPU checks an untrusted GPU's public ciphertext arithmetic | Stage inventory and one-use field-check prototype, with trusted digit/rounding work | Intermediate traffic or trusted work approaches full recomputation |
+| E13 | Trusted CPU checks an untrusted GPU's public ciphertext arithmetic | Complete reference/native key-switch check done; next bind inputs and compose stages | Intermediate traffic or trusted work approaches native recomputation |
 | E14 | Design the HE circuit and its proof together | Canonical evaluation relation including integer rounding, compression and index coverage | Proof generation/bytes overwhelm the fast search |
 | E15 | Coefficient-specific trace/noise bounds | Exact symbolic support model, then a justified deterministic or explicitly probabilistic bound | Shared errors/rounding invalidate optimistic independence assumptions |
-| E16 | Balanced and direct-distance radix digits inside coefficient-packed correlations | Completed g=1/2/3 reference and measurements; next, joint layout/precision/network selection | Larger t/Q and wider output erase the reduction in tile count |
+| E16 | Balanced and direct-distance radix digits inside coefficient-packed correlations | Joint layout/precision/setup report done; next actual epochs, registration and memory costs | Larger t/Q, wider output or setup erase the reduction in tile count |
 | E17 | Short LWE/MLWE or symmetric query upload with server conversion | Conversion+search cost model against the current rounded query | Conversion depth/setup costs exceed saved transfer time |
 | E18 | Exact stable top-k followed by sparse output encoding | Selection and moment-encoding oracles, with real output-conversion costs | Comparisons cost more than the roughly 80 KB response they replace |
 | E19 | Exact private substring indexing and coverage certificates | Bucket/selectivity model, omission tests and explicit leakage contract | Enumeration, padding, proof traffic and extra rounds erase pruning |

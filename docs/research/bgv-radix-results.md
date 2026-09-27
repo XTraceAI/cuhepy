@@ -217,10 +217,13 @@ used as a precisely isolated conversion-only ablation. Independent phase
 medians need not add to the median complete request. Ten local/five transport
 rounds support this machine-specific comparison, not a tail-latency claim.
 
-The next packing experiment should join layout choice with the existing
-precision/network planner, charge re-encryption/setup for changing layouts,
-and extend protected client/receipt contracts before any deployment use.
-Changing t still requires independent security-parameter assessment.
+The [joint planning follow-up](bgv-layout-planning.md) now measures all 12
+layout/precision choices and charges fresh index/key setup when switching.
+It validates five of six paced-link winners, retains the 1.64 ms miss, and
+records setup horizons where the recommendation changes. Actual registration,
+resident-memory budgets and additional workload validation come next. Protected
+client/receipt contracts and independent assessment of changed t remain
+requirements before deployment use.
 
 ## Reproduction
 
