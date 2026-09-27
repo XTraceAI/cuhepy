@@ -100,6 +100,92 @@ The mathematical argument and regression checks address correctness. They do
 not certify lattice hardness, private side channels or malicious-server safety.
 Independent review remains necessary. Tiny rings are algebra tests only.
 
+## Measured precision and complete request cost
+
+The [8,192-vector artifact](../../benchmarks/results/bgv_support_bounds_8192.json)
+and [32,768-vector artifact](../../benchmarks/results/bgv_support_bounds_32768.json)
+were measured at source commit `8b47f31` on the RTX 3080 10 GiB, Ryzen 7 5800X,
+with the checkpoint's native binaries. Both use N=16,384, dimension D=512,
+Q120, t=1,031 and eta=21. Q120 is a modulus size, not a security level.
+Each pair shares its keys, index and fresh query ciphertext. Both policies use
+the indexed NTT, CUDA level 4, persistent workspace, GPU terminal conversion,
+native codecs and packed owner finishing. The planner minimizes query plus
+response **bytes**, without assuming that this also minimizes latency.
+
+All sizes below are exact framed application bytes. TCP adds eight bytes for
+the two length prefixes; TLS, IP and authentication are excluded. The old and
+new policies use the **same response size** in these selected plans.
+
+| Vectors | Index encryption | Old query | New query | Response | Old total | New total | Total reduction |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 8,192 | Public-key | 149,612 | 133,228 | 79,971 | 229,583 | 213,199 | 7.14% |
+| 8,192 | Owner | 118,892 | 102,508 | 79,971 | 198,863 | 182,479 | 8.24% |
+| 32,768 | Public-key | 153,708 | 135,276 | 155,754 | 309,462 | 291,030 | 5.96% |
+| 32,768 | Owner | 122,988 | 104,556 | 155,754 | 278,742 | 260,310 | 6.61% |
+
+At 8,192 vectors, query drop increases by eight bits (58→66 for public-key
+index, 73→81 for owner index). At 32,768, it increases by nine bits (56→65 and
+71→80). Terminal precision stays 25 bits; response c0 drop stays 22/23 bits
+respectively. That saves 16/18 KiB of upload. The smaller uniform bound stops
+charging for unrelated tiles, but cannot remove terminal rounding's floor.
+
+Owner index encryption is a separate ingestion option with a smaller fresh
+phase bound. It does not make an existing public-key index smaller automatically;
+switching modes requires rebuilding the encrypted index. Within a row the index
+and keys are identical under both policies. Full index coefficient bytes remain
+125,829,120 and 503,316,480, respectively; serialized keys were not remeasured.
+
+The following are median **complete** milliseconds: query encoding/encryption,
+query codec, public server expansion/evaluation/codec, response handling and
+private distance/top-three finishing. Local runs have ten fresh paired trials;
+each paced TCP link has five, with one excluded warmup. Median components need
+not sum to the median total. These samples support a small experiment, not a
+p95/tail claim or a hardware-general performance claim.
+
+| Vectors | Index | Local old → new | 10 Mbps up / 100 Mbps down, 40 ms RTT | 10 Mbps both ways, 40 ms RTT |
+|---:|---|---:|---:|---:|
+| 8,192 | Public-key | 48.88 → 48.86 | 216.79 → 203.82 | 274.29 → 261.47 |
+| 8,192 | Owner | 48.06 → 48.37 | 192.27 → 178.91 | 249.51 → 236.27 |
+| 32,768 | Public-key | 89.97 → 88.74 | 266.46 → 249.98 | 378.66 → 364.03 |
+| 32,768 | Owner | 90.35 → 89.58 | 242.46 → 227.81 | 353.76 → 340.13 |
+
+The compute circuit is unchanged and these local fluctuations do not establish
+a compute speedup. All four local paired-difference ranges cross zero. All paced
+link pairs improved: the public-index median paired change is -13.07/-16.12 ms
+on the asymmetric link and -12.68/-14.76 ms on the symmetric link, at 8,192/32,768
+vectors. Saving 16/18 KiB at a 10 Mbps upload rate predicts 13.11/14.75 ms of
+transfer reduction alone. These are paced localhost fixtures, not an AWS/WAN
+deployment measurement.
+
+Excluded duplicate expected-response evaluation has a median cost around
+30.5–31.5 ms at 8,192 and 66.0–67.5 ms at 32,768, depending on policy/index mode.
+Its complete pinned bytes are checked before private processing. This work is
+necessary to the current benchmark fixture, and **must not** be represented as
+free efficient GPU authentication. Key generation/evaluation-key setup took
+roughly 0.10/2.94 s. Public index encryption took 33.00/135.89 s and owner index
+encryption/expansion took 4.12/16.53 s at the two sizes. Per-policy server/index
+preparation and workspace allocation are also recorded separately in the JSON.
+
+Every measured distance and stable top-three result was correct. At the same
+precision, both policies also produced identical complete ciphertext packets.
+The 22 focused symbolic/encrypted CPU/CUDA tests passed before measurement.
+No native arithmetic changes were made for this experiment.
+
+The complete package/BFV-example/research regression on 2026-09-27, with CUDA
+required and the independent SEAL oracle enabled, passed **927 tests**, with
+one live AWS Nitro integration test skipped and the existing fork deprecation
+warning, in 208.38 s. This includes the 19 new verification-oracle tests.
+Package Ruff, full Ruff on the new Python files, package mypy (34 source files)
+and whitespace checks passed. Sanitizers and real enclave deployment were not
+rerun for this Python/model-only change.
+
+This is a positive E15 result: a deterministic bound improvement reduces upload
+without changing the ring or evaluator. The next performance experiment can
+combine it with E16 radix packing, accounting for the larger plaintext modulus
+and terminal precision rather than assuming that fewer tiles halve wire bytes.
+The [verification inventory](bgv-verification-relations.md) separately begins
+E13/E14; the GPU authentication gap remains open.
+
 ## Reproduction
 
 Build the existing BGV native and CUDA modules as documented in the

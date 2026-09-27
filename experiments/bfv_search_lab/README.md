@@ -20,6 +20,12 @@ The [compute follow-up](../../docs/research/bgv-compute-followup.md) adds NTT
 schedule choices, exact GPU terminal rounding and an unchanged-format packed
 server/client path. Select `ntt_variant` explicitly on `NativeServer`, and
 `gpu_terminal=True` on a workspace call; existing defaults remain the reference.
+The [E15 support-bound experiment](../../docs/research/bgv-support-bounds.md)
+adds a separately selected deterministic bound, symbolic support tests, and
+paired precision/transport measurements. The
+[E13/E14 verification inventory](../../docs/research/bgv-verification-relations.md)
+starts with arithmetic oracles and a trusted-boundary cost model, not a complete
+proof system or GPU authentication protocol.
 
 These are explicit research entry points, outside the default client and its
 authenticated protocols. They operate on synthetic, owner-controlled data.
@@ -35,6 +41,8 @@ assurance. The raw CUDA path does not provide attestation.
 | `shallow_bgv.py` | Depth-one RLWE reference, conservative correctness bound, signed coefficient layout |
 | `trace_bgv.py` | Public evaluation keys, ring-trace projection and dense coefficient-result packing |
 | `butterfly_bgv.py` | Joint trace/packing reference, public bound schedule and key validation |
+| `support_bounds_bgv.py` | Opt-in whole-polynomial support bound for the same joint native circuit |
+| `verification_oracles.py` | Toy field checks, exact integer relations and internal-traffic model; no authorization API |
 | `native_bgv.py`, `_native/` | Isolated C++/RNS/CUDA evaluators with resident public keys/index |
 | `_native/compact.h` | Exact terminal reduction in C++, before exporting the small result |
 | `compact_bgv.py` | Congruence-preserving terminal modulus reduction and its correctness bound |

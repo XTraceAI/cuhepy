@@ -691,6 +691,27 @@ python3 experiments/bfv_search_lab/layout_oracles.py \
 
 ## 7. Next experiments after the literature review
 
+The baseline is preserved in pushed checkpoint tags and
+[PR #14 into staging](https://github.com/XTraceAI/cuhepy/pull/14), at `3c0a547`.
+Follow-up work is on `experiment/bgv-verification-packing`:
+
+- **E15 implemented and measured:** the [deterministic support bound](bgv-support-bounds.md)
+  keeps the ciphertext circuit unchanged, saves 16/18 KiB of query traffic at
+  8,192/32,768 vectors and reduces paced-link latency. Original bounds, codecs
+  and Nitro policies remain available. Whole-polynomial symbolic tests and
+  complete CPU/CUDA comparisons precede the precision measurements.
+- **E13/E14 first specification/oracles implemented:** the
+  [stage/constraint inventory](bgv-verification-relations.md) includes integer
+  rounding, canonical CRT, digit ranges, coverage and exact response binding.
+  Exhaustive toy field and integer mutation tests validate these arithmetic
+  references. There is no complete proof or authenticated GPU protocol yet.
+  The naive trusted-digit boundary models 0.38–2.68 GB of internal traffic per
+  request across the two sizes/representations; measure it before committing
+  to that partition.
+- **Next:** measure trusted digit/transfer costs and produce one complete small
+  verification statement/proof; add the E16 radix reference with full t/noise/
+  precision costs. E17–E19 remain independent model-first experiments.
+
 The strongest current paper direction is **exact encrypted search with
 verification, client work and communication included in the optimization**.
 The earlier E01–E12 descriptions retain their original hypotheses and dated

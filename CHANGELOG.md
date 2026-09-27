@@ -7,7 +7,12 @@ All notable changes to this project will be documented in this file.
 - Add a separate E15 joint-packing support-bound policy, with a deterministic
   whole-polynomial derivation, independent symbolic error propagation and
   CPU/CUDA precision-frontier regressions. Retain the conservative bound and
-  authentication policies. Add paired byte/compute/transport measurements.
+  authentication policies. Record 16/18 KiB less query upload at 8,192/32,768
+  vectors, unchanged response bytes and local compute, and reduced paced-link
+  latency with paired raw measurements and source/binary provenance.
+- Begin E13/E14 with a complete evaluator-stage/constraint inventory, exact
+  CRT/gadget/rounding oracles, exhaustive toy field checks and a modeled trusted
+  digit-conversion boundary. This adds no proof system or GPU authorization API.
 - Update the experimental agenda after a primary-source literature review of
   BioZKFHE, encrypted search, verifiable FHE, packing and conversion. Add E13–E19
   hypotheses with mathematical starting points, comparison contracts, cost

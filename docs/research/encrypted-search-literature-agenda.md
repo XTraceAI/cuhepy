@@ -2,8 +2,11 @@
 
 Reviewed 2026-09-26 on `research/bfv-search-lab`, after `5f4a550`.
 This supplements the [main experiment plan](bfv-search-experiment-plan.md).
-E13–E19 below are **proposals**, not implemented protocols, measured gains,
-novelty findings, or a production-security assessment. Existing E01–E12,
+E13–E19 below began as **proposals**. The 2026-09-27 follow-up now records an
+[E15 deterministic bound and measured precision improvement](bgv-support-bounds.md)
+and [E13/E14 stage inventory and arithmetic oracles](bgv-verification-relations.md).
+The latter are not implemented verification protocols or proofs. Neither update
+establishes novelty or production security. Existing E01–E12,
 implementations, negative results and independent oracles remain the baseline.
 
 The most promising paper question is: **can exact search over an encrypted
@@ -435,8 +438,10 @@ reranking stage. A revealed-access variant belongs in a separate leakage row.
 Keep the main worktree and baseline intact. Proposed descendant branches are
 `experiment/bgv-checked-gpu` (E13), `experiment/bgv-evaluation-proof` (E14),
 `experiment/bgv-trace-bounds` (E15), and `experiment/bgv-radix-correlation`
-(E16). E17–E19 start with models/oracles before native backends. No branches or
-new scheme implementations are created by this literature-only update.
+(E16). E17–E19 start with models/oracles before native backends. The initial
+literature-only update created no branches or scheme implementations. The
+2026-09-27 work uses `experiment/bgv-verification-packing` for the first E13/E14
+oracles and E15 bound, leaving the baseline PR branch unchanged.
 
 | Order | Concrete output | Decision gate |
 |---|---|---|
