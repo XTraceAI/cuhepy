@@ -99,6 +99,11 @@ def prepare(args, rows, mode, stack):
 def trials(args, rows, cases):
     variants = {"g1-native": "g1", "g1-generic": "g1", "balanced2": "balanced2",
                 "distance2": "distance2", "distance3": "distance3"}
+    methods = {name: ("native" if name == "g1-native" else "numpy" if args.vectorized_radix else "scalar") for name in variants}
+    if args.vectorized_radix:
+        for case in ("g1", "distance2", "distance3"):
+            variants[case+"-scalar"] = case
+            methods[case+"-scalar"] = "scalar"
     samples, warmup, gates = {}, {}, []
     query_rng, order_rng = random.Random(20260927), random.Random(20260929)
     with closing(Loopback()) as tcp:
@@ -140,14 +145,15 @@ def trials(args, rows, cases):
                 else:
                     actual, server_phases = tcp.request(packet, c["handler"], link)
                 private_begin = time.perf_counter()
-                if name == "g1-native":
+                if methods[name] == "native":
                     wire.require_expected_fixture(actual, known)
                     raw, final_bounds = expand_response(layout.unwrap(actual, len(rows), "response"),
                         client.pk, len(rows), args.embed_len, c["variant"], bounds)
                     result = client.finish_packed_fixture(raw, known_expanded, len(rows), args.embed_len,
                         bits=plan.terminal_bits, bounds=final_bounds)
                 else:
-                    result = client.finish_radix_fixture(actual, known, len(rows), layout, plan)
+                    result = client.finish_radix_fixture(actual, known, len(rows), layout, plan,
+                        packed=args.packed_radix, vectorized=methods[name] == "numpy")
                 phases["client_response_s"] = time.perf_counter()-private_begin
                 request_s = time.perf_counter()-begin
                 check_result(result, expected)
@@ -158,7 +164,7 @@ def trials(args, rows, cases):
                     response_bytes=len(actual), tcp_frame_header_bytes=0 if link == "local" else 8)
                 (samples if repeat else warmup).setdefault(name+"/"+link, []).append(phases)
             print("Finished radix round", repeat, "of", args.repeats, flush=True)
-    return dict(cases={name: c["report"] for name, c in cases.items()}, variants=variants,
+    return dict(cases={name: c["report"] for name, c in cases.items()}, variants=variants, plaintext_decoders=methods,
         samples=samples, warmup=warmup, excluded_expected_fixture_costs=gates,
         medians={name: {k: statistics.median(row[k] for row in entries) for k in entries[0]}
                  for name, entries in samples.items()}, all_distances_and_stable_top3_correct=True)
@@ -171,6 +177,8 @@ def main():
     parser.add_argument("--ring-degree", type=int, default=16384, choices=(2048, 4096, 8192, 16384))
     parser.add_argument("--repeats", type=int, default=10)
     parser.add_argument("--transport-repeats", type=int, default=5)
+    parser.add_argument("--packed-radix", action="store_true", help="Use the retained packed native private boundary before radix decoding")
+    parser.add_argument("--vectorized-radix", action="store_true", help="Use NumPy plaintext decoding and retain matched scalar controls")
     parser.add_argument("--links", nargs="+", choices=tuple(LINKS), default=["10up-100down-40ms", "10Mbps-40ms"])
     parser.add_argument("--index-modes", nargs="+", choices=("public", "owner"), default=["public", "owner"])
     parser.add_argument("--json-out", type=Path, required=True)
@@ -198,6 +206,7 @@ def main():
         python=sys.version, platform=platform.platform(),
         gpu=subprocess.check_output(["nvidia-smi", "--query-gpu=name,driver_version,memory.total", "--format=csv,noheader"], text=True).strip(),
         num_vectors=len(rows), dimension=args.embed_len, repeats=args.repeats, transport_repeats=args.transport_repeats,
+        packed_radix=args.packed_radix, vectorized_radix=args.vectorized_radix,
         plaintext_index_seed=1701, query_seed=20260927, variant_order_seed=20260929,
         links_upload_mbps_download_mbps_rtt_ms={link: LINKS[link] for link in args.links},
         results=results, source_and_binary_sha256=hashes)

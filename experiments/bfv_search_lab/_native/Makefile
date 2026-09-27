@@ -12,9 +12,15 @@ PY_INC := $(shell $(PYTHON) -c 'import sysconfig; print(sysconfig.get_paths()["i
 EXT := $(shell $(PYTHON) -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
 TARGET := _bgv_trace$(EXT)
 CUDA_TARGET := _bgv_trace_cuda$(EXT)
+BOUNDARY_TARGET ?= /tmp/cuhepy-bgv-digit-boundary
 .PHONY: all cuda clean
 all: $(TARGET)
 cuda: $(CUDA_TARGET)
+.PHONY: digit-boundary
+digit-boundary: digit_boundary.cu digit_boundary.h test_digit_boundary.cpp
+	$(NVCC) $(NVCCFLAGS) -std=c++17 -ccbin $(CUDA_CXX) -Xcompiler=-fopenmp \
+		-gencode arch=compute_$(CUDA_ARCH),code=sm_$(CUDA_ARCH) \
+		-I$(CPU) digit_boundary.cu -lgmpxx -lgmp -o $(BOUNDARY_TARGET)
 $(TARGET): bindings.cpp trace_server.h residue_trace.h compact.h query_codec.h word_codec.h $(wildcard $(CPU)/*.h) Makefile
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++17 -Wall -Wextra -fPIC -shared \
 		-I$(PY_INC) -I$(CPU) bindings.cpp $(LDFLAGS) -lgmpxx -lgmp -o $@

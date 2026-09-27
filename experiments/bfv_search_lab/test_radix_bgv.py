@@ -1,9 +1,11 @@
 """Integer carry oracles, complete encrypted results, framing and private-work gates."""
 
 from contextlib import closing
+from dataclasses import replace
 from itertools import product
 import random
 
+import gmpy2
 import msgpack
 import pytest
 
@@ -80,6 +82,7 @@ def test_exhaustive_binary_layout_and_negacyclic_boundaries(mode):
                     layout.padded*correlations[lane*layout.padded+layout.padded-1]) % t
         assert layout.decode(plaintexts, count, n, t) == [
             sum(a != b for a, b in zip(query, row, strict=True)) for row in rows]
+        assert layout.decode_numpy(plaintexts, count, n, t) == layout.decode(plaintexts, count, n, t)
 
 
 @pytest.mark.parametrize("mode,group", [("balanced", 1), ("balanced", 2), ("balanced", 3),
@@ -119,17 +122,29 @@ def test_encrypted_cpu_frontier_and_complete_private_gate(mode, group, monkeypat
             raw = layout.wrap(raw, count, "response")
             expected = tuple(sum(a != b for a, b in zip(query, row, strict=True)) for row in rows)
             result = client.finish_radix_fixture(raw, raw, count, layout, plan)
+            assert client.finish_radix_fixture(raw, raw, count, layout, plan, packed=True) == result
+            assert client.finish_radix_fixture(raw, raw, count, layout, plan, packed=True, vectorized=True) == result
             assert result.distances == expected
             assert result.top == tuple(sorted(enumerate(expected), key=lambda x: (x[1], x[0]))[:3])
         def private_forbidden(*args):
             pytest.fail("A malformed or unpinned response reached private arithmetic")
         monkeypatch.setattr(client, "decrypt_compact", private_forbidden)
-        with pytest.raises(ValueError, match="pinned"):
-            client.finish_radix_fixture(raw+b"bad", raw, count, layout, plan)
-        # A trusted-fixture mistake must still parse every response before decryption.
-        malformed = layout.wrap(b"bad", count, "response")
-        with pytest.raises(ValueError):
-            client.finish_radix_fixture(malformed, malformed, count, layout, plan)
+        monkeypatch.setattr(client._product, "decrypt_packed", private_forbidden)
+        for packed in (False, True):
+            with pytest.raises(ValueError, match="pinned"):
+                client.finish_radix_fixture(raw+b"bad", raw, count, layout, plan, packed=packed)
+            # A trusted-fixture mistake must still parse every response before decryption.
+            malformed = layout.wrap(b"bad", count, "response")
+            with pytest.raises(ValueError):
+                client.finish_radix_fixture(malformed, malformed, count, layout, plan, packed=packed)
+            fields = msgpack.unpackb(compact.pack(response, layout.groups(count), layout.dimension, pk))
+            modulus = response[0].modulus
+            fields[1][-1][1] = gmpy2.pack([modulus]+[0]*(n-1), modulus.bit_length()).to_bytes(
+                n*modulus.bit_length()//8, "little")
+            malformed = layout.wrap(msgpack.packb(fields, use_bin_type=True), count, "response")
+            unrounded = replace(plan, response_drop=None, final_bounds=plan.terminal_bounds)
+            with pytest.raises(ValueError):
+                client.finish_radix_fixture(malformed, malformed, count, layout, unrounded, packed=packed)
 
 
 def test_envelope_context_count_direction_types_and_bounds():
@@ -149,3 +164,25 @@ def test_envelope_context_count_direction_types_and_bounds():
             layout.validate(n, t, count)
     with pytest.raises(ValueError):
         layout.decode_value(0, 17, 2)
+
+
+@pytest.mark.parametrize("mode", ["balanced", "distance"])
+def test_vectorized_decoder_large_modulus_and_invalid_tail(mode):
+    layout, n, count, t = Layout(13, 3, mode), 64, 43, (1 << 30)-35
+    rng = random.Random(916)
+    distances = [rng.randrange(14) for _ in range(count)]
+    plains = [[0]*n]
+    for group in range(layout.groups(count)):
+        h = distances[group*3:group*3+3]
+        signed = sum((13-2*d)*layout.base**j for j, d in enumerate(h))
+        tile, lane = divmod(group, n//layout.padded)
+        plains[0][lane*layout.padded+tile] = layout.padded*signed % t
+    assert layout.decode(plains, count, n, t) == distances
+    assert layout.decode_numpy(plains, count, n, t) == distances
+    tile, lane = divmod(layout.groups(count)-1, n//layout.padded)
+    # Last group has one active vector. Supply a nonzero extra radix digit.
+    bogus = (13-2*layout.base) if mode == "distance" else (13+layout.base)
+    plains[0][lane*layout.padded+tile] = layout.padded*bogus % t
+    for decode in (layout.decode, layout.decode_numpy):
+        with pytest.raises(ValueError):
+            decode(plains, count, n, t)

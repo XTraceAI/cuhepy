@@ -59,6 +59,11 @@ def test_full_cpu_gpu_radix_and_wide_terminal_agreement(n, d, group, mode, owner
             assert actual == expected_packet
         result = client.finish_radix_fixture(layout.wrap(actual, count, "response"),
             layout.wrap(expected_packet, count, "response"), count, layout, plan)
+        assert client.finish_radix_fixture(layout.wrap(actual, count, "response"),
+            layout.wrap(expected_packet, count, "response"), count, layout, plan, packed=True) == result
+        assert client.finish_radix_fixture(layout.wrap(actual, count, "response"),
+            layout.wrap(expected_packet, count, "response"), count, layout, plan,
+            packed=True, vectorized=True) == result
         expected = tuple(sum(a != b for a, b in zip(query, row, strict=True)) for row in rows)
         assert result.distances == expected
         assert result.top == tuple(sorted(enumerate(expected), key=lambda x: (x[1], x[0]))[:3])

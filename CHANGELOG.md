@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ### Research
 
+- Add E16 balanced and direct-distance radix layouts to the homemade BGV lab,
+  including a smaller-base modular distance construction, exact tail handling,
+  context-bound fixture envelopes and public t-dependent precision planning.
+  Retain scalar decoding as an oracle for packed/vectorized client paths and
+  compare complete CPU/CUDA ciphertexts at the new plaintext moduli.
+- Add an E13 standalone CRT/gadget-digit boundary benchmark with independent
+  GMP checks, native/shared/packed transfer layouts and one/eight CPU workers.
+  It measures transfer and conversion costs, not authenticated GPU execution.
 - Add a separate E15 joint-packing support-bound policy, with a deterministic
   whole-polynomial derivation, independent symbolic error propagation and
   CPU/CUDA precision-frontier regressions. Retain the conservative bound and

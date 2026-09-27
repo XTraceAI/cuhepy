@@ -58,6 +58,17 @@ class NativeTernaryProduct:
                                     self._pack(components[1], modulus), format(modulus, "x"), t)
         return list(struct.unpack(f"<{self.n}I", data))
 
+    def decrypt_packed(self, components: tuple[bytes, bytes], modulus: mpz, t: int) -> list[int]:
+        """Same native private arithmetic without exporting/repacking coefficients.
+
+        The fixture caller must pin the whole response and validate ALL pairs
+        before calling this per-pair operation. This is not an authorization API.
+        """
+        if len(components) != 2 or any(type(c) is not bytes for c in components):
+            raise ValueError("Expected two packed native owner components")
+        data = self._native.decrypt(self._handle, components[0], components[1], format(modulus, "x"), t)
+        return list(struct.unpack(f"<{self.n}I", data))
+
     def clear(self) -> None:
         self._native.close(self._handle)
 

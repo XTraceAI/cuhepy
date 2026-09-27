@@ -135,6 +135,57 @@ class Layout:
             output.extend(self.decode_value(residue, t, min(self.group, count-i*self.group)))
         return output
 
+    def decode_numpy(self, plaintexts, count, n, t):
+        """Vectorized *plaintext* decoder, independently checked against scalar digits.
+
+        t<2^30 bounds products below 2^60, so uint64 operations are exact. This
+        is after private decryption and is not a constant-time secret-key path.
+        """
+        import numpy as np
+
+        self.validate(n, t, count)
+        groups = self.groups(count)
+        if (len(plaintexts) != (groups+n-1)//n
+            or any(len(p) != n or any(type(c) is not int or not 0 <= c < t for c in p) for p in plaintexts)):
+            raise ValueError("Invalid canonical radix plaintext shape")
+        plain = np.asarray(plaintexts, dtype=np.uint64)
+        position = np.arange(groups, dtype=np.int64)
+        local, capacity = position % n, n//self.padded
+        selected = plain[position//n, (local % capacity)*self.padded+local//capacity]
+        residue = selected*np.uint64(pow(self.padded, -1, t)) % np.uint64(t)
+        active = count % self.group or self.group
+        b, d = self.base, self.dimension
+        if self.mode == "distance":
+            offsets = np.full(groups, b**self.group-1, dtype=np.uint64)
+            offsets[-1] = b**active-1
+            value = ((offsets+np.uint64(t)-residue) % np.uint64(t))*np.uint64((t+1)//2) % np.uint64(t)
+        else:
+            value = residue.astype(np.int64)
+            value = np.where(value > t//2, value-t, value)
+        output = np.empty((groups, self.group), dtype=np.int64)
+        for digit in range(self.group):
+            if self.mode == "distance":
+                distance = value % b
+                value = value//b
+            else:
+                dot = (value+d) % b-d
+                value = (value-dot)//b
+                # Ignore nonexistent final-group digits; their mathematical dot
+                # is zero, which need not have the parity of an odd dimension.
+                used = dot[:-1] if digit >= active else dot
+                if np.any((d-used) % 2):
+                    raise ValueError("Invalid balanced correlation parity")
+                distance = (d-dot)//2
+            used = distance[:-1] if digit >= active else distance
+            if np.any(used < 0) or np.any(used > d):
+                raise ValueError("Invalid radix distance")
+            output[:, digit] = distance
+            if digit+1 == active and value[-1] != 0:
+                raise ValueError("Radix value exceeds the declared active group")
+        if np.any(value):
+            raise ValueError("Radix value exceeds the declared active group")
+        return output.ravel()[:count].tolist()
+
     def _header(self, count, kind):
         self.groups(count)
         if kind not in ("query", "response"):
