@@ -55,11 +55,15 @@ encryption/key-generation assurance and parameter review remain open. See
 **Literature/agenda update, 2026-09-26:** the
 [related-work review and E13–E19 proposals](encrypted-search-literature-agenda.md)
 cover the supplied BioZKFHE paper, encrypted search/packing, verifiable FHE,
-TEE-assisted verification, conversion and private indexing. The next priority
-is a complete verified GPU path alongside stronger noise/packing models.
-The [current execution order](#7-next-experiments-after-the-literature-review)
-supersedes the initial ordering below. These proposals add no new performance
-measurements or security/novelty claims.
+TEE-assisted verification, conversion and private indexing. That review initially
+prioritized a complete verified GPU path alongside noise/packing models.
+
+**Research priority update, 2026-09-27:** prioritize creative algorithm,
+representation and protocol experiments before routine optimization or
+completing the current verifier. The [creative experiment priorities](creative-experiment-priorities.md)
+add E20/E21 and promote competing E17/E19/E14 hypotheses. This supersedes earlier
+execution orders; existing results and implementations remain the baseline.
+These proposals add no new performance measurements or security/novelty claims.
 
 ## Expanded scheme portfolio after the first implementations
 
@@ -751,18 +755,27 @@ Follow-up work is on `experiment/bgv-verification-packing`:
   checked-stage medians of 61.27/155.85 ms at 32/64 tiles versus optimized native
   recomputation at 91.58/197.97 ms. One tile loses and eight are near parity.
   These are ciphertext tiles and an initial subcircuit, not complete searches.
-- **Next:** extend the exact relation through butterfly/key-switch transitions,
-  then terminal rounding/compression and final-byte binding. Benchmark matched
-  CPU thread budgets, bound block coverage above 64 tiles, resident memory and
-  actual enclave transfers before selecting a complete verifier partition.
-  The trusted checks now dominate the 32-tile result. For E16, measure
-  registration, epoch turnover, additional dimensions/tails and independent
-  reruns; budget resident memory and switching margins. Extend protected client
-  and receipt contracts only after the complete statement is established.
-  E14 proofs and E17–E19 remain independent model-first experiments.
+- **Next, under the updated research priority:** test alternative algebra and
+  protocols with small independent models before extending the existing native
+  pipeline. E20 asks whether expensive ciphertext transformations can follow
+  reduction; E21 asks whether direct answer aggregates can replace distance
+  materialization. Explore E19 certified pruning and E17 conversion fused with
+  matching alongside E14 arithmetic designed for cheaper verification. The
+  [experiment cards](creative-experiment-priorities.md) specify first tests,
+  prior-art questions and likely failure modes.
+- **Retained engineering backlog:** butterfly/key-switch composition, terminal
+  rounding and final-byte binding, complete coverage, matched CPU thread
+  budgets, resident memory and real enclave transfers remain necessary for a
+  full verified GPU service. E16 still needs actual registration/epoch costs
+  and broader validation. These are not prerequisites for trying independent
+  research ideas. Protected client/receipt extensions still require a complete
+  statement and the relevant security review.
 
-The strongest current paper direction is **exact encrypted search with
-verification, client work and communication included in the optimization**.
+The paper direction remains open: a new algebraic schedule, output-oriented
+algorithm, private pruning protocol or cheaper complete verification could
+each be a contribution if the mathematics, prior art and experiments support it.
+Include client work, communication and the declared security contract when
+assessing any candidate.
 The earlier E01–E12 descriptions retain their original hypotheses and dated
 baselines; their follow-up reports record what was implemented and what lost.
 Use the updated agenda for new decisions, rather than treating an old estimate
@@ -770,21 +783,24 @@ or a raw GPU fixture as today's authenticated service performance.
 
 | ID | New experiment | First concrete deliverable | Main reason it may fail |
 |---|---|---|---|
-| E13 | Trusted CPU checks an untrusted GPU's public ciphertext arithmetic | Bound product/switch and direct-RNS checked GPU subcircuit done; next reduction/terminal/coverage chain | Intermediate traffic or trusted work approaches matched native recomputation |
+| E13 | Trusted CPU checks an untrusted GPU's public ciphertext arithmetic | Bound product/switch and direct-RNS checked GPU subcircuit retained as a control; complete integration deferred | Intermediate traffic or trusted work approaches matched native recomputation |
 | E14 | Design the HE circuit and its proof together | Canonical evaluation relation including integer rounding, compression and index coverage | Proof generation/bytes overwhelm the fast search |
 | E15 | Coefficient-specific trace/noise bounds | Exact symbolic support model, then a justified deterministic or explicitly probabilistic bound | Shared errors/rounding invalidate optimistic independence assumptions |
-| E16 | Balanced and direct-distance radix digits inside coefficient-packed correlations | Joint layout/precision/setup report done; next actual epochs, registration and memory costs | Larger t/Q, wider output or setup erase the reduction in tile count |
-| E17 | Short LWE/MLWE or symmetric query upload with server conversion | Conversion+search cost model against the current rounded query | Conversion depth/setup costs exceed saved transfer time |
+| E16 | Balanced and direct-distance radix digits inside coefficient-packed correlations | Joint layout/precision/setup report retained; broader service measurements deferred | Larger t/Q, wider output or setup erase the reduction in tile count |
+| E17 | Short LWE/MLWE or symmetric query upload with server conversion | Test whether conversion and matching can share work, against a separate-conversion baseline | Conversion depth/setup costs exceed saved transfer time |
 | E18 | Exact stable top-k followed by sparse output encoding | Selection and moment-encoding oracles, with real output-conversion costs | Comparisons cost more than the roughly 80 KB response they replace |
 | E19 | Exact private substring indexing and coverage certificates | Bucket/selectivity model, omission tests and explicit leakage contract | Enumeration, padding, proof traffic and extra rounds erase pruning |
+| E20 | Reduction before expensive ciphertext transformations | Symbolic secret-term oracle for delayed relinearization, automorphisms and projection | Secret-term growth, key material or noise cancels the saving |
+| E21 | Direct answer aggregates using the integer Hamming score domain | Tiny polynomial/histogram oracle with complete stable-ID recovery costs | Depth, polynomial growth or tie refinement exceeds ordinary scoring/selection |
 
 The [companion agenda](encrypted-search-literature-agenda.md) gives the equations,
-closest literature, security boundaries, experiment sequence and stop criteria.
-Use E13's measured boundary costs and E15/E16's mathematical references and
-full-request measurements to choose the next complete verification experiment.
-Proceed to new kernels or scheme implementations only after those models
-leave a credible complete-request improvement. E17–E19 remain
-independent exploratory tracks; BFV is not a restriction on the design space.
+closest reviewed literature and security boundaries. The
+[creative experiment priorities](creative-experiment-priorities.md) now govern
+execution order. Test several hypotheses cheaply, including uncertain or
+high-risk ones; an early prototype need not beat optimized CUDA to reveal a
+useful idea. Use E13–E16 as controls, choose the most informative survivors,
+then invest in native kernels and complete-request measurements. BFV is not a
+restriction on the design space.
 
 Keep the four original size categories and add authentication/proof bytes,
 verifier/accelerator traffic and preprocessing refill. Compare exact with exact,

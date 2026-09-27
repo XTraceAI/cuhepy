@@ -14,11 +14,14 @@ implement a complete GPU verification protocol or proof. None establishes
 novelty or production security. Existing E01–E12,
 implementations, negative results and independent oracles remain the baseline.
 
-The most promising paper question is: **can exact search over an encrypted
-database and encrypted queries retain low latency and low communication when
-malicious-server verification and safe client processing are included?**
-Faster arithmetic remains useful, but the current verification/accelerator gap
-offers a more substantial systems and security question.
+**Priority update, 2026-09-27:** the project prioritizes creative research over
+incremental optimization and production completion. The
+[creative experiment priorities](creative-experiment-priorities.md) add
+speculative E20/E21 directions and move competing algebra, output, query and
+indexing experiments ahead of completing the current verifier. The next paper
+direction is deliberately open. Complete verified search remains one candidate;
+it is not a prerequisite for investigating the others. This update is a research
+plan, not a new literature review or a novelty claim.
 
 ## 1. What the literature changes
 
@@ -208,9 +211,11 @@ RNS/batched GPU subcircuit with local-c2 checking costs 61.27/155.85 ms for
 32/64 ciphertext tiles versus 91.58/197.97 ms for optimized native recomputation.
 Small batches lose or reach only near parity. These measurements include
 allocation, export, framing and checking, but no enclave channel or remaining
-search stages. Next compose butterfly and terminal relations, charge complete
-coverage and deployment traffic, and compare matched CPU thread budgets. This
-is conditional systems evidence, not a novelty or full-service security claim.
+search stages. Completing this path would require butterfly and terminal
+relations, complete coverage and deployment traffic, and matched CPU thread
+budgets. That integration is retained as a backlog under the new research
+priority. This is conditional systems evidence, not a novelty or full-service
+security claim.
 
 Separately evaluate an attested-GPU deployment when suitable hardware is
 available. It has a larger hardware/firmware trust boundary and needs its own
@@ -505,16 +510,25 @@ Keep the main worktree and baseline intact. Proposed descendant branches are
 literature-only update created no branches or scheme implementations. The
 2026-09-27 work uses `experiment/bgv-verification-packing` for E13/E14 oracles,
 E15 bounds, E16 layout/setup experiments and E13 transfer/stage checks, leaving
-the baseline PR branch unchanged.
+the baseline PR branch unchanged. The implemented checkpoint `7dd927f` and
+`checkpoint/bgv-product-checks-2026-09-27` preserve that work. The order below
+supersedes the earlier engineering-first sequence and follows the project's
+2026-09-27 priority update. See the
+[experiment cards](creative-experiment-priorities.md) for E20/E21 and the
+sharpened E17/E19/E14 questions.
 
 | Order | Concrete output | Decision gate |
 |---|---|---|
-| 1 | Freeze a same-workload baseline manifest: code hashes, exact bytes, phase timings, adversary/output contract, offline costs and parameter assumptions | Re-run comparisons with equal contracts; no mixed raw/verified speedups |
-| 2 | E13 stage inventory/checker prototype and E14 exact relation/constraint inventory | Find the smallest complete verification boundary; reject missing digit/rounding/coverage relations |
-| 3 | E15 symbolic support bound and E16 radix reference | Favor a deterministic improvement first; falsify packing before expensive CUDA changes |
-| 4 | E13 protected GPU prototype; E14 one complete small proof | Bind the exact response and retain chosen-response/replay tests; measure internal transfers |
-| 5 | E17 upload/conversion model, E18 selection/output model, E19 plaintext coverage/selectivity study | Implement encrypted variants only where a complete cost budget remains plausible |
-| 6 | Promote the best two complementary changes and run ablations | Require improvements on complete requests, including tails, update rates and network regimes |
+| 1 | Use the preserved implementation as a control; state each competing hypothesis and its difference from the closest prior work | No novelty assumption; no need to finish the current verifier before exploring |
+| 2 | E20 symbolic secret-term/schedule oracle and E21 answer-aggregate oracle with stable-ID recovery | Find an identity, counterexample or informative cost tradeoff before native optimization |
+| 3 | E19 exact pruning/coverage study and E17 fused conversion/matching model; E14 alternative arithmetic/constraint model | Include adverse data, changed leakage, setup, rounds and required integer constraints |
+| 4 | Independent homemade encrypted references for the most informative survivors | A toy speed loss is acceptable; correctness, assumptions and the reason to continue must be explicit |
+| 5 | Focused implementation and ablations for promising candidates | Establish whether the proposed mechanism, rather than unequal baselines, explains a benefit |
+| 6 | Choose a paper direction; deepen proofs, parameter assurance, complete protocol and representative measurements | Claim only what the prior-art review, mathematics and equal-contract results support |
+
+Routine fusion, codec tuning, broad benchmark sweeps and full E13 deployment are
+deferred unless they are needed to test a research hypothesis or repair a
+correctness issue. Negative results and failed constructions remain evidence.
 
 For external reproduction, first pin BioZKFHE's artifact version and labels,
 HERS/coefficient-packing and vertical/lookup search baselines, and a compatible
@@ -537,10 +551,11 @@ key/index lifetimes, and actual distinct data at large sizes. Measure a second
 GPU before generalizing hardware claims. Report every security, approximation,
 leakage and client-output difference beside the result it affects.
 
-The first paper candidate is **verification-aware exact encrypted search**:
-a specified protocol and complete threat model, an efficient verified evaluator,
-and a measured cost model spanning client/network/GPU/trusted work. E15/E16 can
-support a second, more algebraic contribution if they yield a new justified
-bound or packing tradeoff. E17–E19 are independent higher-risk alternatives.
-The contribution claim should follow the proof and experiments; this review
-does not establish that a combination is unpublished or secure.
+Keep several paper candidates in contention: a new search-specific algebraic
+schedule, direct answer aggregation, private certified pruning, query conversion
+fused with matching, and arithmetic designed for cheaper complete verification.
+E13–E16 provide controls and may support a contribution if deeper analysis
+establishes a new bound or useful tradeoff. Select the direction after the cheap
+experiments, not from the amount of code already invested in one path. The
+contribution claim should follow the proof and experiments; this review does
+not establish that a combination is unpublished or secure.

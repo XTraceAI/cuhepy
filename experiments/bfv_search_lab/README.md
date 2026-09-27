@@ -1,5 +1,10 @@
 # BFV search research sandbox
 
+The [current research priorities](../../docs/research/creative-experiment-priorities.md)
+favor creative algebra, algorithms and protocols before further routine tuning
+or completing the existing verifier. E20/E21 and the revised E17/E19/E14 cards
+are proposals, not implemented results or established novel contributions.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
