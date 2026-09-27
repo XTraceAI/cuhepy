@@ -91,7 +91,14 @@ def main():
                        "certificates, threshold discovery, traffic and server/client timings are unimplemented. "
                        "Data are synthetic, including deliberately favorable and adverse fixtures.",
               "code_columns": [list(code.columns) for code in codes],
-              "onehot_lookup_cost_model": oracle.lookup_expansion(codes, args.count), "results": rows}
+              "onehot_lookup_cost_model": oracle.lookup_expansion(codes, args.count),
+              "factorized_lookup_cost_model": oracle.lookup_expansion(codes, args.count, factorized_prime=1031),
+              "factorized_block_ranks": [oracle.factor_table(code, 1031).rank for code in codes],
+              "rank_sweep_first_block": [
+                  {"syndrome_rank": rank, "buckets": len(oracle.factor_table(oracle.make_code(8, rank, 20260927), 1031).buckets),
+                   "lookup_rank": oracle.factor_table(oracle.make_code(8, rank, 20260927), 1031).rank}
+                  for rank in range(1, 9)],
+              "results": rows}
     args.json_out.parent.mkdir(parents=True, exist_ok=True)
     args.json_out.write_text(json.dumps(output, indent=2) + "\n")
 

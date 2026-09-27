@@ -9,7 +9,10 @@ implemented here.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 import random
+
+from experiments.bfv_search_lab.answer_oracles import validate_field
 
 
 @dataclass(frozen=True)
@@ -104,7 +107,60 @@ def _buckets(code: BlockCode) -> tuple[int, ...]:
                          for x, s in enumerate(code.syndromes)}))
 
 
-def lookup_expansion(codes: list[BlockCode], count: int, n: int = 16384) -> dict[str, int]:
+@dataclass(frozen=True)
+class LookupBasis:
+    prime: int
+    buckets: tuple[int, ...]
+    query_features: tuple[tuple[int, ...], ...]
+    index_features: tuple[tuple[int, ...], ...]
+
+    @property
+    def rank(self) -> int:
+        return len(self.query_features[0])
+
+
+@lru_cache(maxsize=64)
+def factor_table(code: BlockCode, prime: int) -> LookupBasis:
+    """Exact public rank factorization A=C*R mod p, using original columns C.
+
+    A[q,b] is the conditioned distance to bucket b. All possible query blocks
+    are enumerated, so this preprocessing reveals no actual query or index.
+    The index features can be full-field values: do not reuse binary/sparse
+    noise bounds. Rank is a bilinear-feature count, not a universal cost bound.
+    """
+    validate_field(prime, code.width, 0)
+    if code.width > 8:
+        raise ValueError("Public factorization reference limited to eight-bit blocks")
+    buckets = _buckets(code)
+    original = []
+    for query in range(1 << code.width):
+        table = conditioned_table(code, query)
+        original.append([table[bucket] for bucket in buckets])
+    work = [row.copy() for row in original]
+    pivots: list[int] = []
+    for column in range(len(buckets)):
+        rank = len(pivots)
+        pivot = next((i for i in range(rank, len(work)) if work[i][column]), None)
+        if pivot is None:
+            continue
+        work[rank], work[pivot] = work[pivot], work[rank]
+        inverse = pow(work[rank][column], -1, prime)
+        row = [x * inverse % prime for x in work[rank]]
+        work[rank] = row
+        # Reduced row echelon form makes each pivot column a unit vector.
+        for i in range(len(work)):
+            if i != rank and work[i][column]:
+                scale = work[i][column]
+                work[i] = [(a - scale * b) % prime for a, b in zip(work[i], row, strict=True)]
+        pivots.append(column)
+    query_features = tuple(tuple(row[j] for j in pivots) for row in original)
+    index_features = tuple(tuple(work[i][j] for i in range(len(pivots))) for j in range(len(buckets)))
+    return LookupBasis(prime, buckets, query_features, index_features)
+
+
+def lookup_expansion(
+    codes: list[BlockCode], count: int, n: int = 16384, *, factorized_prime: int | None = None,
+) -> dict[str, int]:
     """Cost gate for an exact depth-one encrypted one-hot lookup construction.
 
     Encrypt one-hot index features and a query-dependent table, then take their
@@ -112,7 +168,11 @@ def lookup_expansion(codes: list[BlockCode], count: int, n: int = 16384) -> dict
     model, not a fast private routing or authentication implementation.
     """
     dimension = sum(c.width for c in codes)
-    features = sum(len(_buckets(c)) for c in codes)
+    if factorized_prime is not None:
+        validate_field(factorized_prime, dimension, 0)
+    prefix = "onehot" if factorized_prime is None else "factorized"
+    features = sum(len(_buckets(c)) if factorized_prime is None else factor_table(c, factorized_prime).rank
+                   for c in codes)
     if (not codes or type(count) is not int or count < 1 or type(n) is not int
             or n < 2 or n & (n - 1)):
         raise ValueError("Expected codes, positive count and power-of-two ring")
@@ -133,14 +193,14 @@ def lookup_expansion(codes: list[BlockCode], count: int, n: int = 16384) -> dict
 
     base_padded, base_tiles, base_switches = cost(dimension)
     padded, tiles, switches = cost(features)
-    return {"onehot_features": features, "onehot_padded": padded, "onehot_input_tiles": tiles,
-            "onehot_switches": switches, "original_features": dimension,
+    return {f"{prefix}_features": features, f"{prefix}_padded": padded, f"{prefix}_input_tiles": tiles,
+            f"{prefix}_switches": switches, "original_features": dimension,
             "original_padded": base_padded, "original_input_tiles": base_tiles,
             "original_switches": base_switches, "query_plaintext_entries": features}
 
 
 def lookup_inputs(
-    query: int, rows: list[int], codes: list[BlockCode], n: int,
+    query: int, rows: list[int], codes: list[BlockCode], n: int, *, factorized_prime: int | None = None,
 ) -> tuple[list[int], list[list[int]], int]:
     """Owner-side exact one-hot/table layout for the homemade encrypted pilot.
 
@@ -152,25 +212,37 @@ def lookup_inputs(
     if (type(query) is not int or not 0 <= query < 1 << dimension
             or any(type(x) is not int or not 0 <= x < 1 << dimension for x in rows)):
         raise ValueError("Invalid binary lookup fixture")
-    model = lookup_expansion(codes, max(1, len(rows)), n)
-    padded, capacity = model["onehot_padded"], n // model["onehot_padded"]
+    if factorized_prime is not None:
+        validate_field(factorized_prime, dimension, 0)
+    model = lookup_expansion(codes, max(1, len(rows)), n, factorized_prime=factorized_prime)
+    prefix = "onehot" if factorized_prime is None else "factorized"
+    padded = model[f"{prefix}_padded"]
+    capacity = n // padded
     query_poly = [0] * n
     tiles = [[0] * n for _ in range((len(rows) + capacity - 1) // capacity)]
     bit_offset = feature_offset = 0
     for code in codes:
         bucket_ids = _buckets(code)
-        positions = {bucket: feature_offset + i for i, bucket in enumerate(bucket_ids)}
+        positions = {bucket: i for i, bucket in enumerate(bucket_ids)}
         mask = (1 << code.width) - 1
-        table = conditioned_table(code, (query >> bit_offset) & mask)
-        for bucket, position in positions.items():
-            query_poly[padded - 1 - position] = table[bucket]
+        q = (query >> bit_offset) & mask
+        basis = None if factorized_prime is None else factor_table(code, factorized_prime)
+        table = conditioned_table(code, q)
+        weights = tuple(table[bucket] for bucket in bucket_ids) if basis is None else basis.query_features[q]
+        for j, weight in enumerate(weights):
+            query_poly[padded - 1 - feature_offset - j] = weight
         for i, row in enumerate(rows):
             block = (row >> bit_offset) & mask
             bucket = code.syndromes[block] * (code.width + 1) + block.bit_count()
             tile, lane = divmod(i, capacity)
-            tiles[tile][lane * padded + positions[bucket]] = 1
+            if basis is None:
+                tiles[tile][lane * padded + feature_offset + positions[bucket]] = 1
+            else:
+                features = basis.index_features[positions[bucket]]
+                for j, value in enumerate(features):
+                    tiles[tile][lane * padded + feature_offset + j] = value
         bit_offset += code.width
-        feature_offset += len(bucket_ids)
+        feature_offset += len(weights)
     return query_poly, tiles, padded
 
 

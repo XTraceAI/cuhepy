@@ -81,7 +81,8 @@ def test_onehot_cost_model_accounts_for_query_and_index_expansion():
     assert model["onehot_switches"] > 15 * model["original_switches"]
 
 
-def test_onehot_filter_is_an_exact_depth_one_homemade_encrypted_dot_product():
+@pytest.mark.parametrize("factorized", [False, True])
+def test_lookup_filter_is_an_exact_depth_one_homemade_encrypted_dot_product(factorized):
     n, dimension = 128, 8
     codes = [oracle.make_code(4, 2, i) for i in range(2)]
     rng = random.Random(2709)
@@ -89,11 +90,12 @@ def test_onehot_filter_is_an_exact_depth_one_homemade_encrypted_dot_product():
     for count in (0, 1, 5, n + 1):
         query = rng.getrandbits(dimension)
         rows = [rng.getrandbits(dimension) for _ in range(count)]
-        qp, tiles, padded = oracle.lookup_inputs(query, rows, codes, n)
+        qp, tiles, padded = oracle.lookup_inputs(query, rows, codes, n,
+                                                factorized_prime=pk.t if factorized else None)
         expected = oracle.vector_bounds(query, rows, codes)["conditioned"]
         # Plain integer product is an independent layout oracle.
         plain_products = [reduction.ring_product(tuple(qp), tuple(tile)) for tile in tiles]
-        assert [plain_products[i // (n // padded)][(i % (n // padded)) * padded + padded - 1]
+        assert [plain_products[i // (n // padded)][(i % (n // padded)) * padded + padded - 1] % pk.t
                 for i in range(count)] == expected
         keys = trace.evaluation_keys(pk, sk, padded, 12)
         output = butterfly.search(bgv.encrypt(qp, pk), [bgv.encrypt(tile, pk) for tile in tiles], count, pk, keys)
@@ -104,3 +106,19 @@ def test_onehot_filter_is_an_exact_depth_one_homemade_encrypted_dot_product():
             tile, lane = divmod(within, n // padded)
             decoded.append(plaintexts[group][lane * padded + tile] * pow(padded, -1, pk.t) % pk.t)
         assert decoded == expected
+
+
+@pytest.mark.parametrize("width", [2, 3, 4, 5, 6])
+def test_public_rank_factorization_is_exact_for_every_query_and_reachable_bucket(width):
+    for rank in range(1, width + 1):
+        code = oracle.make_code(width, rank, 27)
+        basis = oracle.factor_table(code, 1031)
+        for query in range(1 << width):
+            expected = oracle.conditioned_table(code, query)
+            for bucket, features in zip(basis.buckets, basis.index_features, strict=True):
+                assert sum(x * y for x, y in zip(basis.query_features[query], features, strict=True)) % 1031 == expected[bucket]
+        if rank == width:
+            # A singleton bucket gives ordinary Hamming distance, whose full
+            # bilinear matrix rank is w+1. The existing signed layout also
+            # removes the known constant and needs only w product features.
+            assert basis.rank == width + 1
