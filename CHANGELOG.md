@@ -2,6 +2,126 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Research
+
+- Update the experimental agenda after a primary-source literature review of
+  BioZKFHE, encrypted search, verifiable FHE, packing and conversion. Add E13–E19
+  hypotheses with mathematical starting points, comparison contracts, cost
+  ceilings and stop criteria. Separate raw GPU results from protected CPU
+  execution and preserve all existing implementation/results baselines.
+- Add a separate BGV Nitro protocol with owner-authorized immutable setup and
+  queries, measured CPU evaluation, domain-separated receipts, replay/lease
+  limits and mandatory verification before response parsing or decryption.
+  Preserve the unauthenticated CUDA/fixture baselines. Add a local regression
+  demonstrating why plaintext distance validation permits key recovery.
+- Add a homemade fixed-work BGV terminal decoder using locked/wiped buffers,
+  public-parameter selection of one-prime or exact two-prime NTT arithmetic,
+  bounded native packed input and compiled GCC/Clang secret-taint tests. Query
+  encryption/key generation and plaintext processing remain outside its scope.
+  Include an isolated Nitro service/image recipe and authentication benchmarks;
+  this remains research code pending independent review and real AWS testing.
+- Record an additional 30.1%/33.8% reduction in complete local BGV search time
+  at 8,192/32,768 vectors versus the previous persistent/RNS baseline. Record
+  joint-precision payload reductions and codec/link tradeoffs for both index
+  types, with raw paired trials and source/binary provenance. Validate 787 full
+  suite tests, 118 public and 96 private ASan/UBSan tests, plus GPU memcheck,
+  racecheck and synccheck on the public evaluator and new kernels.
+- Add a bounded unsigned-128-bit public query/response codec specialization and
+  native canonical response validation. Preserve the GMP mapping as an explicit
+  reference and fallback; exhaustively compare drop positions across width and
+  byte-alignment boundaries. Record complete compute gains and joint-precision
+  tradeoffs in `docs/research/bgv-compute-followup.md`.
+- Add c0-only terminal-response rounding and a joint query/response precision
+  planner using complete public correctness bounds and exact framed byte counts.
+  Retain independent Python/native codecs and malformed-input tests. Add paired
+  compute ablations and joint-precision local/TCP benchmarks with complete
+  ciphertext/distance checks and separate setup/fixture costs.
+- Add independent BGV NTT indexing/warp/tile experiments and exact 192-bit
+  terminal reduction on the GPU. Keep the existing kernels and CPU reduction
+  as defaults and coefficient-level oracles.
+- Add native packed response export and packed owner fixture finishing to
+  remove Python coefficient round trips while preserving compact-v1 bytes,
+  the expected-ciphertext gate and validation before private arithmetic.
+- Add an explicit C++/GMP backend for the public BGV query codec, retaining
+  byte-identical packets, the Python reference, strict native boundary checks
+  and independent CPU/CUDA search comparisons.
+- Record reduced BGV query traffic, codec costs and ingestion tradeoffs in
+  `docs/research/bgv-query-compression.md`. Validate the public codec under
+  ASan/UBSan (53 tests); the complete package/BFV-example/research suite passes
+  719 tests with only the live Nitro integration skipped.
+- Add an opt-in BGV seeded-query codec that rounds c0 by bounded multiples of
+  the plaintext modulus, preserving exact messages under propagated no-wrap
+  bounds. Add strict packet parsing, CPU/CUDA differential tests, a public
+  precision planner, and paired local/TCP experiments with public-key and
+  owner-encrypted index variants. Keep the current query format as a baseline.
+- Add explicitly leased persistent BGV GPU workspaces with per-request completion,
+  close/fork guards and concurrent-use tests. Add a separate private RNS/NTT owner
+  backend, preserving the GMP reference and unchanged ciphertext formats.
+- Add Nsight capture/summary tools, paired workspace and owner benchmarks, and
+  bounded loopback TCP trials with application bandwidth/latency pacing. The
+  transport fixture pins expected ciphertexts before decryption; it is not a
+  remotely deployable authentication protocol.
+- Add a homemade 30-bit CUDA NTT microbenchmark, an encrypted feature-major
+  accumulate-before-relinearization reference, and a plaintext certified-filter
+  cost oracle. Record negative results and communication tradeoffs explicitly.
+- Validate the public CUDA oracle with Compute Sanitizer 12.9 memcheck/racecheck;
+  extend private ASan/UBSan coverage to the opt-in owner RNS arithmetic.
+- Add a fresh-query comparison of homemade BGV, BFV and Paillier CPU/CUDA paths,
+  including Paillier lookup with the current 280-bit exponent configuration,
+  role timings, actual packet sizes and source/binary provenance.
+- Record the 8,192/32,768-vector workspace, private RNS and TCP studies,
+  same-workload BFV/Paillier comparisons (including the Paillier hybrid),
+  reversed-order narrow NTT results and algorithm tradeoffs in
+  `docs/research/bgv-service-results.md`. The complete CUDA-enabled suite passes
+  635 tests with only the live Nitro integration skipped.
+- Add exact BGV result lookup tables, bounded heap top-k with stable ties, and
+  a fused native owner finish path. Add explicit same-key/index multi-query
+  CUDA evaluation with optional shared index reads, reusable per-call scratch,
+  and a 4 GiB coefficient-workspace limit. Preserve independent single-query
+  and reference paths; add paired latency/throughput and result-handling trials.
+- Record ten-round finish/batch experiments at 8,192 and 32,768 vectors in
+  `docs/research/bgv-finish-batch-results.md`, including faster client finishing,
+  cases where existing host workers beat fused batches, memory/latency tradeoffs,
+  native allocation refusals and public measurement artifacts.
+- Add fresh BGV owner-query ablations: bulk independent OS error sampling,
+  identical bulk SHAKE stream decoding, exact shifted-ternary GMP products, and
+  a separate optional C++/GMP private owner extension. Add paired complete-search
+  benchmarks, exhaustive sampling/algebra checks, native boundary and lifecycle
+  tests. Keep the original reference and the public server independent; private
+  arithmetic remains variable-time and outside the authenticated client paths.
+- Record ten-trial owner comparisons at 8,192 and 32,768 vectors in
+  `docs/research/bgv-owner-results.md`, with unchanged communication sizes,
+  separate cache/setup costs, raw measurements and committed source hashes.
+- Add paired BGV public-pipeline ablations: GPU query NTTs, fused and gathered
+  automorphism/gadget kernels, shared evaluation-key reads, and exact C++ terminal
+  compaction before export. Preserve every baseline and cryptographic parameter.
+  Add concurrent-request throughput experiments and differential rounding,
+  malformed-input, tail, stream-ordering and complete-ciphertext checks.
+- Add a paired terminal-precision sweep with full-plaintext comparisons and
+  explicit correctness-bound refusals; keep the 32-bit default and measure
+  smaller responses under the same Q120 evaluation context.
+- Record ten-trial BGV pipeline measurements at 8,192 and 32,768 vectors,
+  concurrent-request throughput, and a 25-bit response experiment in
+  `docs/research/bgv-public-pipeline-results.md`, with public measurement artifacts.
+- Add joint BGV trace/packing with the established automorphism butterfly,
+  an isolated native public evaluator with cached key/index transforms, and
+  an independent SEAL 4.1.2 BGV circuit oracle. Preserve the per-tile reference
+  and compare complete ciphertexts before measuring performance.
+- Extend the isolated BGV evaluator with persistent RNS and CUDA, bounded
+  terminal modulus reduction, fresh seeded owner queries, and paired 8,192-vector
+  measurements. Fix query-upload ordering between pageable host transfers and
+  nonblocking CUDA streams; add repeated-query and canonical-boundary regressions.
+- Add a BFV search experiment plan covering client preparation, alternative
+  circuits and layouts, GPU arithmetic, and communication. Include independent
+  plaintext layout checks and an analytical partial-reduction cost model.
+- Implement opt-in encrypted partial-sum CPU/CUDA experiments, a native SIMD
+  encoder, seeded queries, and a bounded one-use preprocessing pool. Add paired
+  complete-search measurements, capability-filtered network projections, and
+  a depth-one BGV-style coefficient-packing reference with a correctness bound
+  and three-product multiplication, plus encrypted ring-trace result packing.
+  Preserve default clients and protocol
+  bindings; the experiments have no production-security or novelty claim.
+
 ### Changed
 
 - **The project is now `cuhepy`: a homomorphic-encryption library, not a client

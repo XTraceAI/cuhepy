@@ -1,0 +1,217 @@
+{
+  "kind": "bgv_narrow_limb_arithmetic_ablation",
+  "scope": "Resident forward-plus-inverse NTT only. Same buffer byte count, approximately 120-bit prime products but different Q. No CRT, key switching, transfers or full encrypted search timed. CUDA-event samples exclude one warmup. Correctness checked against CPU forward transform and exact inverse round trip before timing.",
+  "gpu": "NVIDIA GeForce RTX 3080, 10 GiB, driver 580.173.02",
+  "source_commit": "07c99f07b3fb0efbb9f55b322c9a6cbfd0d198e0",
+  "compile_command": "nvcc -O3 -std=c++17 -ccbin g++-12 -gencode arch=compute_86,code=sm_86 -Isrc/cuhepy/bfv/_cpu_ext experiments/bfv_search_lab/_native/narrow_ntt.cu -lgmpxx -lgmp -o /tmp/cuhepy-narrow-ntt",
+  "paired_orders": [
+    {
+      "kind": "ntt_limb_microbenchmark",
+      "n": 16384,
+      "polynomials": 1024,
+      "variants": [
+        {
+          "limb_bits": 60,
+          "primes": 2,
+          "q_hex": "ffffffffffc00020000003bffc0001",
+          "buffer_bytes": 268435456,
+          "roundtrip_gpu_ms": [
+            5.96246,
+            5.03398,
+            5.03197,
+            5.02989,
+            5.02989,
+            5.84192,
+            5.16378,
+            5.13741,
+            5.13741,
+            5.13843,
+            5.13843,
+            5.13946,
+            5.13933,
+            5.13834,
+            5.13843,
+            5.13741,
+            5.13946,
+            5.14253,
+            5.18246,
+            5.18422
+          ],
+          "forward_and_inverse_exact": true,
+          "median_gpu_ms": 5.13843
+        },
+        {
+          "limb_bits": 30,
+          "primes": 4,
+          "q_hex": "ff9e0c8b64327bbd90c0c8bfe78001",
+          "buffer_bytes": 268435456,
+          "roundtrip_gpu_ms": [
+            6.23309,
+            6.23616,
+            6.23821,
+            6.24026,
+            6.9417,
+            7.09018,
+            7.09222,
+            7.0912,
+            7.0912,
+            7.0912,
+            7.07379,
+            7.97389,
+            7.03085,
+            7.94918,
+            6.9161,
+            6.87616,
+            6.8567,
+            7.61446,
+            6.91302,
+            6.91712
+          ],
+          "forward_and_inverse_exact": true,
+          "median_gpu_ms": 6.986275
+        }
+      ],
+      "order": "wide_then_narrow",
+      "command": "/tmp/cuhepy-narrow-ntt 16384 1024 20"
+    },
+    {
+      "kind": "ntt_limb_microbenchmark",
+      "n": 16384,
+      "polynomials": 1024,
+      "variants": [
+        {
+          "limb_bits": 30,
+          "primes": 4,
+          "q_hex": "ff9e0c8b64327bbd90c0c8bfe78001",
+          "buffer_bytes": 268435456,
+          "roundtrip_gpu_ms": [
+            7.03283,
+            7.36742,
+            7.03283,
+            7.03283,
+            7.03283,
+            7.03283,
+            7.03181,
+            7.03283,
+            7.03283,
+            8.45619,
+            8.31386,
+            7.03069,
+            7.37987,
+            7.03283,
+            7.03283,
+            7.03078,
+            7.03386,
+            7.03002,
+            7.0185,
+            7.01952
+          ],
+          "forward_and_inverse_exact": true,
+          "median_gpu_ms": 7.03283
+        },
+        {
+          "limb_bits": 60,
+          "primes": 2,
+          "q_hex": "ffffffffffc00020000003bffc0001",
+          "buffer_bytes": 268435456,
+          "roundtrip_gpu_ms": [
+            5.79072,
+            5.74464,
+            4.54349,
+            4.54534,
+            4.87741,
+            5.01043,
+            5.01146,
+            5.00941,
+            5.02579,
+            5.22445,
+            5.22547,
+            5.2265,
+            5.22547,
+            5.22752,
+            5.22342,
+            6.72461,
+            5.66506,
+            5.22342,
+            5.22752,
+            5.1927
+          ],
+          "forward_and_inverse_exact": true,
+          "median_gpu_ms": 5.223935
+        }
+      ],
+      "order": "narrow_then_wide",
+      "command": "/tmp/cuhepy-narrow-ntt 16384 1024 20 reverse"
+    }
+  ],
+  "boundary_correctness_only_not_performance": [
+    {
+      "kind": "ntt_limb_microbenchmark",
+      "n": 8,
+      "polynomials": 3,
+      "variants": [
+        {
+          "limb_bits": 60,
+          "primes": 2,
+          "q_hex": "ffffffffffffb02000000000055a01",
+          "buffer_bytes": 384,
+          "roundtrip_gpu_ms": [
+            0.008192
+          ],
+          "forward_and_inverse_exact": true
+        },
+        {
+          "limb_bits": 30,
+          "primes": 4,
+          "q_hex": "ffffcb1003c8744452ddd673eee1c1",
+          "buffer_bytes": 384,
+          "roundtrip_gpu_ms": [
+            0.008192
+          ],
+          "forward_and_inverse_exact": true
+        }
+      ]
+    },
+    {
+      "kind": "ntt_limb_microbenchmark",
+      "n": 32768,
+      "polynomials": 3,
+      "variants": [
+        {
+          "limb_bits": 60,
+          "primes": 2,
+          "q_hex": "fffffffff80000200001efff800001",
+          "buffer_bytes": 1572864,
+          "roundtrip_gpu_ms": [
+            0.053248
+          ],
+          "forward_and_inverse_exact": true
+        },
+        {
+          "limb_bits": 30,
+          "primes": 4,
+          "q_hex": "fe64d966dd871bbb6ecd98ff990001",
+          "buffer_bytes": 1572864,
+          "roundtrip_gpu_ms": [
+            0.063328
+          ],
+          "forward_and_inverse_exact": true
+        }
+      ]
+    }
+  ],
+  "source_and_binary_sha256": {
+    "experiments/bfv_search_lab/_native/narrow_ntt.cu": "7b430bdb8de064608b18589f4a6ef29d8413d4369ff623c31615575b1b4c2bbd",
+    "/tmp/cuhepy-narrow-ntt": "85c77bbbc3715894fc72b8f6e89c104251f81109d74baca8a3133a03a37da50c",
+    "src/cuhepy/bfv/_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/cuhepy/bfv/_cpu_ext/bfv_residue.h": "e8704caa4f62d93fe3a397b128cfe91bc2a349be815264f381b2d2eff80bca66",
+    "src/cuhepy/bfv/_cpu_ext/batch_encoder.h": "2e1d66860afe495f3b638c2ca878bef70b3c3425dbbf63d9c040211a833bd457",
+    "src/cuhepy/bfv/_cpu_ext/bfv_server.h": "6a0a26a5f24a76340cc8a33f6c0df9b11221f57c158b1e199fec574ddac7e520",
+    "src/cuhepy/bfv/_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/cuhepy/bfv/_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/cuhepy/bfv/_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+    "src/cuhepy/bfv/_cpu_ext/rns_ntt.h": "f9886933ab66eeac9a4b25968b9bf485e065ab62d8f2efe4223598c927062f67",
+    "src/cuhepy/bfv/_gpu_ext/server.cuh": "587442eaca2179adf3c4f3dcdc08d54867c3c503b3f1fc46f6e320556eaeeca9",
+    "src/cuhepy/bfv/_gpu_ext/kernels.cuh": "06e6cdc447f16d54338dd7689a958f292d9e3d344c0a03e6b9a51088b0e05140"
+  }
+}

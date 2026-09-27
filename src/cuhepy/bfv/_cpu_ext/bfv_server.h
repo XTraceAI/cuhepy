@@ -81,8 +81,9 @@ protected:
         std::vector<Word> evaluations(ring->n);
         unsigned log_n = 0;
         for (std::size_t v = ring->n; v > 1; v >>= 1) ++log_n;
-        Word g = 1;
-        for (std::size_t lane = 0; lane < lanes; ++lane) {
+        for (std::size_t part = 0; part < partial_count; ++part) {
+          Word g = power_mod(3, part * reduction_span * lanes, 2 * ring->n);
+          for (std::size_t lane = 0; lane < lanes; ++lane) {
             for (std::size_t row = 0; row < 2; ++row) {
                 if (row * lanes + lane >= count) continue;
                 std::size_t position = ((row ? 2 * ring->n - g : g) - 1) / 2;
@@ -91,6 +92,7 @@ protected:
                 evaluations[reversed] = 1;
             }
             g = g * 3 % (2 * ring->n);
+          }
         }
         plaintext_.inverse(evaluations);
         Polynomial result(ring->n);
@@ -103,14 +105,21 @@ public:
     const std::size_t padded, lanes, capacity;
     const Word t;
     const mpz_class target;
+    // Experimental partial sums keep the original input layout and keys.
+    // Each response packs reduction_span tiles in partial_count disjoint bands.
+    const std::size_t partial_count, reduction_span;
 
     HammingServer(KeyHandle relin, std::map<Word, KeyHandle> keys,
-                  std::size_t padded, Word t, const mpz_class& target, bool prepare_mask = true)
+                  std::size_t padded, Word t, const mpz_class& target, bool prepare_mask = true,
+                  std::size_t partials = 1)
         : relin_(std::move(relin)), keys_(std::move(keys)), plaintext_(relin_->ring->n, t, relin_->ring->fast),
           ring(relin_->ring), padded(padded), lanes(ring->n / (2 * padded)),
-          capacity(2 * lanes), t(t), target(target) {
+          capacity(2 * lanes), t(t), target(target), partial_count(partials),
+          reduction_span(partials ? padded / partials : 0) {
+        if (!partials || partials > padded || (partials & (partials - 1)))
+            throw std::invalid_argument("Invalid partial-sum count");
         // The binding checks algebraic parameters before constructing the NTT.
-        for (std::size_t size = 1; size < padded; size *= 2) {
+        for (std::size_t size = 1; size < reduction_span; size *= 2) {
             left_.push_back(exponent(lanes * size));
             right_.push_back(exponent(ring->n / 2 - lanes * size));
             key(left_.back()); key(right_.back());
@@ -158,7 +167,7 @@ public:
         const auto tiles = (count + capacity - 1) / capacity;
         std::unique_ptr<PreparedPlain> partial;
         if (count % capacity) partial = std::make_unique<PreparedPlain>(*ring, mask(count % capacity));
-        merge_hamming_tiles<Ciphertext>(tiles, padded, [&](std::size_t at) {
+        merge_hamming_tiles<Ciphertext>(tiles, reduction_span, [&](std::size_t at) {
             const auto& selected = at + 1 == tiles && partial ? *partial : *full_mask_;
             return tile(query, read_tile(at), selected);
         }, [&](const Ciphertext& result, std::size_t level) {

@@ -1,0 +1,104 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 3.67kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/rust:1.94-slim-bookworm@sha256:cf9dd0ec73e75f827fe59123fff9dc65af1a1c8363c3c31ee8d7f8ad0b6a5fb2
+#3 DONE 0.0s
+
+#4 [nsm 2/6] ADD --checksum=sha256:f78f9683ce02c857b944c84865ca2808f90f67a52605f120ac234095b1d03c35 https://codeload.github.com/aws/aws-nitro-enclaves-nsm-api/tar.gz/1993eeb0620d35f5cefc50b17638b432325328f9 /tmp/nsm.tar.gz
+#4 DONE 0.0s
+
+#5 [arithmetic 1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254 0.0s done
+#5 DONE 0.0s
+
+#6 [nsm 1/6] FROM docker.io/library/rust:1.94-slim-bookworm@sha256:cf9dd0ec73e75f827fe59123fff9dc65af1a1c8363c3c31ee8d7f8ad0b6a5fb2
+#6 resolve docker.io/library/rust:1.94-slim-bookworm@sha256:cf9dd0ec73e75f827fe59123fff9dc65af1a1c8363c3c31ee8d7f8ad0b6a5fb2 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 27B 0.0s
+#7 transferring context: 38.92kB 0.0s done
+#7 DONE 0.1s
+
+#8 [arithmetic 3/5] COPY src/cuhepy/bfv/_cpu_ext /build/src/cuhepy/bfv/_cpu_ext
+#8 CACHED
+
+#9 [arithmetic 2/5] RUN apt-get update && apt-get install -y --no-install-recommends g++ make libgmp-dev && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [arithmetic 4/5] COPY experiments/bfv_search_lab/_native /build/experiments/bfv_search_lab/_native
+#10 CACHED
+
+#11 [arithmetic 5/5] RUN make -C /build/experiments/bfv_search_lab/_native CXXFLAGS='-O3 -fstack-protector-strong -D_FORTIFY_SOURCE=3' LDFLAGS='-Wl,-z,relro,-z,now,-z,noexecstack'
+#11 CACHED
+
+#12 [stage-2  7/14] COPY experiments/bfv_nitro/__init__.py experiments/bfv_nitro/transport.py /app/experiments/bfv_nitro/
+#12 CACHED
+
+#13 [stage-2  6/14] COPY src/cuhepy /app/src/cuhepy
+#13 CACHED
+
+#14 [stage-2  5/14] RUN pip install --no-cache-dir --require-hashes -r /tmp/requirements.lock
+#14 CACHED
+
+#15 [stage-2  4/14] COPY experiments/bfv_nitro/requirements.lock /tmp/requirements.lock
+#15 CACHED
+
+#16 [stage-2  2/14] RUN apt-get update && apt-get install -y --no-install-recommends libgmp10 libgmpxx4ldbl && rm -rf /var/lib/apt/lists/*
+#16 CACHED
+
+#17 [stage-2  3/14] WORKDIR /app
+#17 CACHED
+
+#18 [stage-2  8/14] COPY experiments/bgv_nitro/__init__.py experiments/bgv_nitro/transport.py experiments/bgv_nitro/service.py /app/experiments/bgv_nitro/
+#18 CACHED
+
+#19 [nsm 3/6] WORKDIR /build/nsm
+#19 CACHED
+
+#20 [nsm 2/6] ADD --checksum=sha256:f78f9683ce02c857b944c84865ca2808f90f67a52605f120ac234095b1d03c35 https://codeload.github.com/aws/aws-nitro-enclaves-nsm-api/tar.gz/1993eeb0620d35f5cefc50b17638b432325328f9 /tmp/nsm.tar.gz
+#20 CACHED
+
+#21 [nsm 4/6] RUN tar -xzf /tmp/nsm.tar.gz --strip-components=1
+#21 CACHED
+
+#22 [nsm 5/6] COPY experiments/bfv_nitro/nsmlib.Cargo.lock ./Cargo.lock
+#22 CACHED
+
+#23 [nsm 6/6] RUN cargo build --release --locked -p nsm-lib
+#23 CACHED
+
+#24 [stage-2  9/14] COPY experiments/bfv_search_lab/*.py /app/experiments/bfv_search_lab/
+#24 DONE 0.0s
+
+#25 [stage-2 10/14] COPY --from=arithmetic /build/experiments/bfv_search_lab/_native/_bgv_trace*.so /app/experiments/bfv_search_lab/_native/
+#25 DONE 0.0s
+
+#26 [stage-2 11/14] COPY --from=nsm /build/nsm/target/release/libnsm.so /usr/local/lib/libnsm.so
+#26 DONE 0.0s
+
+#27 [stage-2 12/14] COPY --from=nsm /build/nsm/LICENSE /build/nsm/NOTICE /usr/local/share/licenses/aws-nsm/
+#27 DONE 0.0s
+
+#28 [stage-2 13/14] COPY LICENSE /usr/local/share/licenses/xtrace-sdk/LICENSE
+#28 DONE 0.0s
+
+#29 [stage-2 14/14] RUN python -c 'from experiments.bfv_search_lab._native import _bgv_trace; assert callable(_bgv_trace.search_compact); from experiments.bgv_nitro.service import EnclaveApplication'
+#29 DONE 0.3s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 0.3s done
+#30 exporting manifest sha256:2f314bf973ee9a9204b88a405a099eaf0c976b7685a665936885cc02534a2d0f 0.0s done
+#30 exporting config sha256:2e2c0a3fa91fdf3f3d73c8f3a5f6c0b18a7dacfa8ab9c196fe06136fdf9f9e4a 0.0s done
+#30 exporting attestation manifest sha256:c53365d6782170eb1b58a848bbff60c33ccb40d6f19cf5fe89629ab4e451351b 0.0s done
+#30 exporting manifest list sha256:fa39f70a7e794aebf050d5a0a96b460e810fbdf1b009bf47e77aaf7989f6363e 0.0s done
+#30 naming to docker.io/library/cuhepy-bgv-nitro:research-local done
+#30 unpacking to docker.io/library/cuhepy-bgv-nitro:research-local 0.1s done
+#30 DONE 0.5s

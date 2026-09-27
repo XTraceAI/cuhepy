@@ -2,6 +2,9 @@ from typing import Any
 
 ABI_VERSION: int
 
+def create_batch_encoder(n: int, t: int) -> object: ...
+def batch_encode(encoder: object, slots: bytes) -> bytes: ...
+
 def create_ring(
     n: int, q_hex: str, digit_bits: int, fast: bool = False, residue: bool = False,
     kernel_level: int = 0,
@@ -28,6 +31,10 @@ def key_bytes(key: object) -> int: ...
 def profile_hamming_tile(*args: Any) -> tuple[tuple[bytes, bytes], dict[str, Any]]: ...
 def create_server(
     relin: object, keys: tuple[tuple[int, object], ...], padded: int, t: int, target_hex: str
+) -> object: ...
+def create_partial_server(
+    relin: object, keys: tuple[tuple[int, object], ...], padded: int, t: int,
+    target_hex: str, partials: int,
 ) -> object: ...
 def packed_search(
     server: object,

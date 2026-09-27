@@ -1,0 +1,833 @@
+{
+  "kind": "homemade_bgv_service_transport",
+  "utc": "2026-09-25T05:49:13.453171+00:00",
+  "command": [
+    "benchmarks/bgv_service_pipeline.py",
+    "--mode",
+    "transport",
+    "--num-vectors",
+    "8192",
+    "--repeats",
+    "10",
+    "--json-out",
+    "benchmarks/results/bgv_transport_8192.json",
+    "--owner-rns"
+  ],
+  "git_head": "07c99f07b3fb0efbb9f55b322c9a6cbfd0d198e0",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "gpu": "NVIDIA GeForce RTX 3080, 580.173.02, 10240 MiB",
+  "num_vectors": 8192,
+  "dimension": 512,
+  "n": 16384,
+  "t": 1031,
+  "q_hex": "ffffffffffc00020000003bffc0001",
+  "eta": 21,
+  "terminal_bits": 25,
+  "requests": 4,
+  "repeats": 10,
+  "owner_rns": true,
+  "setup": {
+    "keygen_s": 0.09752215212211013,
+    "evaluation_keys_s": 2.8589940699748695,
+    "index_encrypt_s": 31.900639072060585,
+    "server_create_s": 0.5501404129900038,
+    "index_prepare_s": 1.8321503535844386,
+    "owner_create_s": 0.005187349859625101,
+    "owner_terminal_prepare_s": 0.0008202786557376385
+  },
+  "result": {
+    "local_plus_transport_seconds": {
+      "loopback": {
+        "median": 0.06654263101518154,
+        "minimum": 0.06599588226526976,
+        "maximum": 0.06854828167706728,
+        "p95_nearest_rank": 0.06854828167706728,
+        "samples": [
+          0.06662049842998385,
+          0.0665115057490766,
+          0.06854828167706728,
+          0.06599588226526976,
+          0.06780836451798677,
+          0.06657375628128648,
+          0.066725829616189,
+          0.06629177741706371,
+          0.06602707225829363,
+          0.06639122031629086
+        ]
+      },
+      "100Mbps-20ms": {
+        "median": 0.1143479598686099,
+        "minimum": 0.11368229193612933,
+        "maximum": 0.11578835872933269,
+        "p95_nearest_rank": 0.11578835872933269,
+        "samples": [
+          0.11368229193612933,
+          0.11468594335019588,
+          0.11578835872933269,
+          0.11444560717791319,
+          0.11423327261582017,
+          0.11440207622945309,
+          0.11429384350776672,
+          0.11472787288948894,
+          0.11396591318771243,
+          0.1139297429472208
+        ]
+      },
+      "10up-100down-40ms": {
+        "median": 0.31177461077459157,
+        "minimum": 0.3109368486329913,
+        "maximum": 0.3137167911045253,
+        "p95_nearest_rank": 0.3137167911045253,
+        "samples": [
+          0.31148125836625695,
+          0.3137167911045253,
+          0.31170778069645166,
+          0.3126554610207677,
+          0.31249921349808574,
+          0.3125875284895301,
+          0.3109368486329913,
+          0.31184144085273147,
+          0.3111799596808851,
+          0.3110623462125659
+        ]
+      },
+      "10Mbps-40ms": {
+        "median": 0.38555355626158416,
+        "minimum": 0.38456413708627224,
+        "maximum": 0.38627083832398057,
+        "p95_nearest_rank": 0.38627083832398057,
+        "samples": [
+          0.38564398419111967,
+          0.385134419426322,
+          0.385592816863209,
+          0.38500798121094704,
+          0.38627083832398057,
+          0.3858335791155696,
+          0.3855142956599593,
+          0.3851920156739652,
+          0.3856849945150316,
+          0.38456413708627224
+        ]
+      }
+    },
+    "phases": {
+      "loopback": [
+        {
+          "server_expand_s": 0.00477147102355957,
+          "server_evaluate_s": 0.033374144695699215,
+          "response_pack_s": 0.002718054223805666,
+          "request_response_s": 0.04282329510897398,
+          "parse_s": 0.0026869219727814198,
+          "finish_s": 0.009122531861066818,
+          "local_plus_transport_s": 0.06662049842998385,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0044858441688120365,
+          "server_evaluate_s": 0.032455625012516975,
+          "response_pack_s": 0.0027000526897609234,
+          "request_response_s": 0.04153316468000412,
+          "parse_s": 0.002916538156569004,
+          "finish_s": 0.009495880920439959,
+          "local_plus_transport_s": 0.0665115057490766,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004036263097077608,
+          "server_evaluate_s": 0.03413628414273262,
+          "response_pack_s": 0.0027336832135915756,
+          "request_response_s": 0.04175855964422226,
+          "parse_s": 0.0030809608288109303,
+          "finish_s": 0.010969474911689758,
+          "local_plus_transport_s": 0.06854828167706728,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004925254266709089,
+          "server_evaluate_s": 0.033313093706965446,
+          "response_pack_s": 0.0028087650425732136,
+          "request_response_s": 0.04298218758776784,
+          "parse_s": 0.002262732945382595,
+          "finish_s": 0.00887559587135911,
+          "local_plus_transport_s": 0.06599588226526976,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0047262199223041534,
+          "server_evaluate_s": 0.03417912358418107,
+          "response_pack_s": 0.002728173043578863,
+          "request_response_s": 0.043594643007963896,
+          "parse_s": 0.0028156661428511143,
+          "finish_s": 0.00929276505485177,
+          "local_plus_transport_s": 0.06780836451798677,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004775330889970064,
+          "server_evaluate_s": 0.03253222489729524,
+          "response_pack_s": 0.002719404175877571,
+          "request_response_s": 0.040652293246239424,
+          "parse_s": 0.002702653408050537,
+          "finish_s": 0.011092748027294874,
+          "local_plus_transport_s": 0.06657375628128648,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004855903331190348,
+          "server_evaluate_s": 0.03329541301354766,
+          "response_pack_s": 0.0027511739172041416,
+          "request_response_s": 0.04155825497582555,
+          "parse_s": 0.0023312540724873543,
+          "finish_s": 0.010854771826416254,
+          "local_plus_transport_s": 0.066725829616189,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004679528996348381,
+          "server_evaluate_s": 0.03250547405332327,
+          "response_pack_s": 0.002697922755032778,
+          "request_response_s": 0.04059757199138403,
+          "parse_s": 0.0027284929528832436,
+          "finish_s": 0.010849251877516508,
+          "local_plus_transport_s": 0.06629177741706371,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004870192613452673,
+          "server_evaluate_s": 0.03242142219096422,
+          "response_pack_s": 0.0027570133097469807,
+          "request_response_s": 0.0420000939629972,
+          "parse_s": 0.00266770226880908,
+          "finish_s": 0.00912429066374898,
+          "local_plus_transport_s": 0.06602707225829363,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004733349662274122,
+          "server_evaluate_s": 0.03243870195001364,
+          "response_pack_s": 0.0027498239651322365,
+          "request_response_s": 0.04059923207387328,
+          "parse_s": 0.0027499040588736534,
+          "finish_s": 0.011090497951954603,
+          "local_plus_transport_s": 0.06639122031629086,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        }
+      ],
+      "100Mbps-20ms": [
+        {
+          "server_expand_s": 0.004842262715101242,
+          "server_evaluate_s": 0.03262479789555073,
+          "response_pack_s": 0.0026741931214928627,
+          "request_response_s": 0.08987561799585819,
+          "parse_s": 0.0027764439582824707,
+          "finish_s": 0.009066820610314608,
+          "local_plus_transport_s": 0.11368229193612933,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0047950418666005135,
+          "server_evaluate_s": 0.03302241675555706,
+          "response_pack_s": 0.0027033230289816856,
+          "request_response_s": 0.09040967980399728,
+          "parse_s": 0.002682832069694996,
+          "finish_s": 0.009072599932551384,
+          "local_plus_transport_s": 0.11468594335019588,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004924463573843241,
+          "server_evaluate_s": 0.033028687350451946,
+          "response_pack_s": 0.002878316678106785,
+          "request_response_s": 0.09065985586494207,
+          "parse_s": 0.0028007649816572666,
+          "finish_s": 0.009433119092136621,
+          "local_plus_transport_s": 0.11578835872933269,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.005025316961109638,
+          "server_evaluate_s": 0.03264883765950799,
+          "response_pack_s": 0.0027702352963387966,
+          "request_response_s": 0.09028789587318897,
+          "parse_s": 0.0030440310947597027,
+          "finish_s": 0.009116170927882195,
+          "local_plus_transport_s": 0.11444560717791319,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.00460845697671175,
+          "server_evaluate_s": 0.03260218724608421,
+          "response_pack_s": 0.0027156732976436615,
+          "request_response_s": 0.08821974880993366,
+          "parse_s": 0.002903228159993887,
+          "finish_s": 0.010807640850543976,
+          "local_plus_transport_s": 0.11423327261582017,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0046242279931902885,
+          "server_evaluate_s": 0.03287424286827445,
+          "response_pack_s": 0.00272710295394063,
+          "request_response_s": 0.09013636223971844,
+          "parse_s": 0.0028151660226285458,
+          "finish_s": 0.009334696922451258,
+          "local_plus_transport_s": 0.11440207622945309,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004682047758251429,
+          "server_evaluate_s": 0.03326669288799167,
+          "response_pack_s": 0.0027317930944263935,
+          "request_response_s": 0.09041637787595391,
+          "parse_s": 0.0027677440084517,
+          "finish_s": 0.009035849943757057,
+          "local_plus_transport_s": 0.11429384350776672,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004687708802521229,
+          "server_evaluate_s": 0.03288363292813301,
+          "response_pack_s": 0.0031104120425879955,
+          "request_response_s": 0.09067800315096974,
+          "parse_s": 0.002643641084432602,
+          "finish_s": 0.009212663862854242,
+          "local_plus_transport_s": 0.11472787288948894,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004551696125417948,
+          "server_evaluate_s": 0.03246293310075998,
+          "response_pack_s": 0.002715802751481533,
+          "request_response_s": 0.08802774082869291,
+          "parse_s": 0.002677822019904852,
+          "finish_s": 0.011003614868968725,
+          "local_plus_transport_s": 0.11396591318771243,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004761380143463612,
+          "server_evaluate_s": 0.032653278205543756,
+          "response_pack_s": 0.002764343749731779,
+          "request_response_s": 0.09004998859018087,
+          "parse_s": 0.002701472956687212,
+          "finish_s": 0.009194623213261366,
+          "local_plus_transport_s": 0.1139297429472208,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        }
+      ],
+      "10up-100down-40ms": [
+        {
+          "server_expand_s": 0.004562785848975182,
+          "server_evaluate_s": 0.0336280120536685,
+          "response_pack_s": 0.002708062995225191,
+          "request_response_s": 0.2877213964238763,
+          "parse_s": 0.0028253463096916676,
+          "finish_s": 0.008943838067352772,
+          "local_plus_transport_s": 0.31148125836625695,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.005021987017244101,
+          "server_evaluate_s": 0.03415326401591301,
+          "response_pack_s": 0.0027218032628297806,
+          "request_response_s": 0.2888546930626035,
+          "parse_s": 0.0029608490876853466,
+          "finish_s": 0.009432469960302114,
+          "local_plus_transport_s": 0.3137167911045253,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0047150407917797565,
+          "server_evaluate_s": 0.03263671789318323,
+          "response_pack_s": 0.0027114031836390495,
+          "request_response_s": 0.2869186047464609,
+          "parse_s": 0.0028708968311548233,
+          "finish_s": 0.009076610207557678,
+          "local_plus_transport_s": 0.31170778069645166,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004957755096256733,
+          "server_evaluate_s": 0.03332987381145358,
+          "response_pack_s": 0.0027254228480160236,
+          "request_response_s": 0.2878598957322538,
+          "parse_s": 0.0028854068368673325,
+          "finish_s": 0.009926311206072569,
+          "local_plus_transport_s": 0.3126554610207677,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004673148039728403,
+          "server_evaluate_s": 0.03257368691265583,
+          "response_pack_s": 0.002807884942740202,
+          "request_response_s": 0.2869412708096206,
+          "parse_s": 0.0026777321472764015,
+          "finish_s": 0.010455542709678411,
+          "local_plus_transport_s": 0.31249921349808574,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0046828389167785645,
+          "server_evaluate_s": 0.03427413618192077,
+          "response_pack_s": 0.002719922922551632,
+          "request_response_s": 0.2886163601651788,
+          "parse_s": 0.002689181827008724,
+          "finish_s": 0.009141813032329082,
+          "local_plus_transport_s": 0.3125875284895301,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004667447879910469,
+          "server_evaluate_s": 0.03252061503008008,
+          "response_pack_s": 0.002689962275326252,
+          "request_response_s": 0.28676616633310914,
+          "parse_s": 0.0029008369892835617,
+          "finish_s": 0.00920075410977006,
+          "local_plus_transport_s": 0.3109368486329913,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004804091993719339,
+          "server_evaluate_s": 0.03326724097132683,
+          "response_pack_s": 0.002705513034015894,
+          "request_response_s": 0.28772475104779005,
+          "parse_s": 0.002870496828109026,
+          "finish_s": 0.00917257321998477,
+          "local_plus_transport_s": 0.31184144085273147,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004687528591603041,
+          "server_evaluate_s": 0.03242209181189537,
+          "response_pack_s": 0.0027221632190048695,
+          "request_response_s": 0.2868260331451893,
+          "parse_s": 0.0027126329950988293,
+          "finish_s": 0.009336396120488644,
+          "local_plus_transport_s": 0.3111799596808851,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0046039060689508915,
+          "server_evaluate_s": 0.032524754758924246,
+          "response_pack_s": 0.0027617737650871277,
+          "request_response_s": 0.2866738699376583,
+          "parse_s": 0.002798814792186022,
+          "finish_s": 0.009530981071293354,
+          "local_plus_transport_s": 0.3110623462125659,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        }
+      ],
+      "10Mbps-40ms": [
+        {
+          "server_expand_s": 0.004767239559441805,
+          "server_evaluate_s": 0.03372553316876292,
+          "response_pack_s": 0.00272346381098032,
+          "request_response_s": 0.36198369413614273,
+          "parse_s": 0.002604410983622074,
+          "finish_s": 0.009090811014175415,
+          "local_plus_transport_s": 0.38564398419111967,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004749700892716646,
+          "server_evaluate_s": 0.03254747577011585,
+          "response_pack_s": 0.0027033528313040733,
+          "request_response_s": 0.3609131765551865,
+          "parse_s": 0.0028448859229683876,
+          "finish_s": 0.009068080689758062,
+          "local_plus_transport_s": 0.385134419426322,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004643817897886038,
+          "server_evaluate_s": 0.03293381491675973,
+          "response_pack_s": 0.002715732902288437,
+          "request_response_s": 0.36093016481027007,
+          "parse_s": 0.002772544976323843,
+          "finish_s": 0.009065700694918633,
+          "local_plus_transport_s": 0.385592816863209,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0045473347418010235,
+          "server_evaluate_s": 0.03283883398398757,
+          "response_pack_s": 0.0030728611163794994,
+          "request_response_s": 0.3610416050069034,
+          "parse_s": 0.002903467044234276,
+          "finish_s": 0.00907179107889533,
+          "local_plus_transport_s": 0.38500798121094704,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004885973874479532,
+          "server_evaluate_s": 0.03361104987561703,
+          "response_pack_s": 0.0027069728821516037,
+          "request_response_s": 0.3620847170241177,
+          "parse_s": 0.002933317795395851,
+          "finish_s": 0.009178163018077612,
+          "local_plus_transport_s": 0.38627083832398057,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004667448345571756,
+          "server_evaluate_s": 0.03258969681337476,
+          "response_pack_s": 0.002739983145147562,
+          "request_response_s": 0.36067461408674717,
+          "parse_s": 0.00310521200299263,
+          "finish_s": 0.00993340089917183,
+          "local_plus_transport_s": 0.3858335791155696,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.004649927839636803,
+          "server_evaluate_s": 0.032893313094973564,
+          "response_pack_s": 0.0030853119678795338,
+          "request_response_s": 0.3613951141014695,
+          "parse_s": 0.002730144187808037,
+          "finish_s": 0.009277445264160633,
+          "local_plus_transport_s": 0.3855142956599593,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.005147329065948725,
+          "server_evaluate_s": 0.032516663894057274,
+          "response_pack_s": 0.0027287229895591736,
+          "request_response_s": 0.36117706820368767,
+          "parse_s": 0.002865476068109274,
+          "finish_s": 0.00917220301926136,
+          "local_plus_transport_s": 0.3851920156739652,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.00462757796049118,
+          "server_evaluate_s": 0.032937484327703714,
+          "response_pack_s": 0.0027259327471256256,
+          "request_response_s": 0.3610465922392905,
+          "parse_s": 0.0027173729613423347,
+          "finish_s": 0.0096432538703084,
+          "local_plus_transport_s": 0.3856849945150316,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        },
+        {
+          "server_expand_s": 0.0046212272718548775,
+          "server_evaluate_s": 0.03250098368152976,
+          "response_pack_s": 0.0027034031227231026,
+          "request_response_s": 0.3604327770881355,
+          "parse_s": 0.00288563733920455,
+          "finish_s": 0.009219774045050144,
+          "local_plus_transport_s": 0.38456413708627224,
+          "query_bytes": 245866,
+          "response_bytes": 102488,
+          "tcp_frame_header_bytes": 8
+        }
+      ]
+    },
+    "warmup": {
+      "10Mbps-40ms": {
+        "server_expand_s": 0.005764584057033062,
+        "server_evaluate_s": 0.037043871358036995,
+        "response_pack_s": 0.0027642035856842995,
+        "request_response_s": 0.367128225043416,
+        "parse_s": 0.002850806340575218,
+        "finish_s": 0.00999574176967144,
+        "local_plus_transport_s": 0.39228575909510255,
+        "query_bytes": 245866,
+        "response_bytes": 102488,
+        "tcp_frame_header_bytes": 8
+      },
+      "loopback": {
+        "server_expand_s": 0.0048772431910037994,
+        "server_evaluate_s": 0.033238912001252174,
+        "response_pack_s": 0.002735862974077463,
+        "request_response_s": 0.042922317050397396,
+        "parse_s": 0.002721223048865795,
+        "finish_s": 0.00908617116510868,
+        "local_plus_transport_s": 0.06778499530628324,
+        "query_bytes": 245866,
+        "response_bytes": 102488,
+        "tcp_frame_header_bytes": 8
+      },
+      "10up-100down-40ms": {
+        "server_expand_s": 0.004515825305134058,
+        "server_evaluate_s": 0.03402220970019698,
+        "response_pack_s": 0.002704222686588764,
+        "request_response_s": 0.2880953890271485,
+        "parse_s": 0.0028575859032571316,
+        "finish_s": 0.009103971067816019,
+        "local_plus_transport_s": 0.3131322800181806,
+        "query_bytes": 245866,
+        "response_bytes": 102488,
+        "tcp_frame_header_bytes": 8
+      },
+      "100Mbps-20ms": {
+        "server_expand_s": 0.004751829896122217,
+        "server_evaluate_s": 0.03338703606277704,
+        "response_pack_s": 0.002690793015062809,
+        "request_response_s": 0.0907083791680634,
+        "parse_s": 0.002652541734278202,
+        "finish_s": 0.00894947862252593,
+        "local_plus_transport_s": 0.11536793224513531,
+        "query_bytes": 245866,
+        "response_bytes": 102488,
+        "tcp_frame_header_bytes": 8
+      }
+    },
+    "preparation": [
+      {
+        "warmup": true,
+        "encode_s": 4.738103598356247e-05,
+        "encrypt_s": 0.01218913309276104
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.0940940380096436e-05,
+        "encrypt_s": 0.011095968075096607
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.151090979576111e-05,
+        "encrypt_s": 0.011416074819862843
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.029087722301483e-05,
+        "encrypt_s": 0.01194456685334444
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.076119512319565e-05,
+        "encrypt_s": 0.01109929708763957
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.090089350938797e-05,
+        "encrypt_s": 0.011158318724483252
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.035094752907753e-05,
+        "encrypt_s": 0.011233432218432426
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.038121551275253e-05,
+        "encrypt_s": 0.011171200312674046
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.0451064705848694e-05,
+        "encrypt_s": 0.011044746730476618
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.145130515098572e-05,
+        "encrypt_s": 0.011359964031726122
+      },
+      {
+        "warmup": false,
+        "encode_s": 4.043104127049446e-05,
+        "encrypt_s": 0.011075657326728106
+      }
+    ],
+    "excluded_expected_ciphertext_evaluation_s": [
+      0.03305593924596906,
+      0.033026688266545534,
+      0.03281998308375478,
+      0.033566359896212816,
+      0.03391673834994435,
+      0.03279484203085303,
+      0.03281149175018072,
+      0.03388449689373374,
+      0.034564602188766,
+      0.03279096120968461,
+      0.032947514206171036
+    ],
+    "links_upload_mbps_download_mbps_rtt_ms": {
+      "loopback": [
+        0,
+        0,
+        0
+      ],
+      "100Mbps-20ms": [
+        100,
+        100,
+        20
+      ],
+      "10up-100down-40ms": [
+        10,
+        100,
+        40
+      ],
+      "10Mbps-40ms": [
+        10,
+        10,
+        40
+      ]
+    },
+    "all_distances_and_stable_top3_correct": true,
+    "scope": "Trusted loopback TCP experiment, including actual parsing and client finishing.\n\nAn excluded local evaluation pins each expected ciphertext before measurement.\nThis fixture gate avoids decrypting an arbitrary TCP response; its cost is not\na deployment authentication estimate. No client decision goes back to server.\nBandwidth/RTT are application pacing settings, not measured WAN conditions.\n"
+  },
+  "source_and_binary_sha256": {
+    "benchmarks/bgv_service_pipeline.py": "40ce41b533d0e3945ec6e641407bd84e9f975d6ba6332df4457eaaccf0fed5e0",
+    "benchmarks/bfv_client_matrix.py": "6720e62b98a93b100e1f72b816889299b2865489d3b40883870c515f63e48718",
+    "benchmarks/coefficient_search_lab.py": "c8bce962079e9f7411bec4d7a93241e4392f6762afa976a6868d3dd4daf6e373",
+    "experiments/bfv_search_lab/butterfly_bgv.py": "07a1312356851b670dfc51da9bd648aee6aad22250b48d7a13575903ae388167",
+    "experiments/bfv_search_lab/compact_bgv.py": "4b98630622c75052a74ae4f1380bc529f2db088ad961716147b858f3936e0ff9",
+    "experiments/bfv_search_lab/feature_major_bgv.py": "19a4f40b8d49aa44a5a7df5787d25ec69cfe242d30de4f9cabe26ad49ad223ed",
+    "experiments/bfv_search_lab/filter_oracle.py": "1d749ec5fcb6350d8516d69e0338f8b00e3a687663d689afd7b8d9cc5f8c6f05",
+    "experiments/bfv_search_lab/layout_oracles.py": "ea30c80dd1d89f305c7dba332c1a4ae13e54723241b5e6fe4e6d8003ebd5e9d1",
+    "experiments/bfv_search_lab/native_bgv.py": "3aa35e87d65e3c88f3d81612fdcdd91dfd4fc5b107d30ad6b259ad8e5781755d",
+    "experiments/bfv_search_lab/native_owner_bgv.py": "e607e5b2cf493ff1309f166614083949173c05082683d15f10abbf539e9aa4b4",
+    "experiments/bfv_search_lab/owner_bgv.py": "6979b4a918a037b40e589cbd6c4fcf096332997e5775e0a7362b41e7ac0c1a9f",
+    "experiments/bfv_search_lab/partial.py": "bd14b80524a3f8a0e8fb54494ee167e5476b93fe6722ec9032ade9d9502da3a7",
+    "experiments/bfv_search_lab/planner.py": "d7409c208d5527cb214f9d9e9b25bd5248be31c23794746b3c73ab82682b3e09",
+    "experiments/bfv_search_lab/query.py": "102eb1a02a8c0eaa3b5077cbd93239680ff56d6fbffe2b4547d0a63ce5da0823",
+    "experiments/bfv_search_lab/results_bgv.py": "56d1ba8295b51e36d298b86056137d9814d70335787b956e73700a162324034a",
+    "experiments/bfv_search_lab/seeded_bgv.py": "c62416035e0cad7b02c704a93f3652758f333e1a7b30f9614ae6903166dce21f",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/test_butterfly_bgv.py": "1c65a728ef8e7e1f608239d035680fb96596558bc6bf82b5a539a61c4ad5a857",
+    "experiments/bfv_search_lab/test_compact_bgv.py": "7635301031cb10e7af78dd370dd651e1424ed3d85b988c6b1c679f3978859eaf",
+    "experiments/bfv_search_lab/test_cuda_batch_bgv.py": "0da7d8d26a93b409a9808358bb46f63b0900f9c360e28229d3c480d61e3cfef0",
+    "experiments/bfv_search_lab/test_cuda_bgv.py": "43c35762e34b34840d8addd66f05562abc902fa95e0797486852d81d697cedb1",
+    "experiments/bfv_search_lab/test_cuda_workspace_bgv.py": "787d93800ed04c3d416dcd9ab66d12e1c4fac7dda73fd203748f9cf8ca542a82",
+    "experiments/bfv_search_lab/test_filter_oracle.py": "19b012cd95cdbf6125ac963f46249b7fd1b0d9541f5496dd6323ded192f685d8",
+    "experiments/bfv_search_lab/test_native_bgv.py": "f23c6d519007674fe59fffc17e145c810bb9910500fc1a1e12b5a85737f5339b",
+    "experiments/bfv_search_lab/test_native_compact_bgv.py": "77bd3c8ece59ed3f793c6a7f9e877786b3fd836f8a9cf5fb27f907c2f45fc3e4",
+    "experiments/bfv_search_lab/test_native_owner_bgv.py": "663fdc85751e7767f86fd0caaf13cb5520d750e3e49ba737909d8c221c2b19c5",
+    "experiments/bfv_search_lab/test_owner_bgv.py": "0b5933a292c6b487e988b14dae016085c793592421e11bcf085af757bf6a3e38",
+    "experiments/bfv_search_lab/test_partial.py": "a898ab8bf0e65ffe6df70a0e53a899dd885eeaab608a7ee937ba9c1b133e0941",
+    "experiments/bfv_search_lab/test_planner.py": "78c798f526b634a154d88426ad61a0d833672787be3bd6c3f374a33d907d461f",
+    "experiments/bfv_search_lab/test_query.py": "8ce2c1c9ce3cf8cdce196b076b16e704393fb7021f0e8447766892cfb0db46ab",
+    "experiments/bfv_search_lab/test_results_bgv.py": "d2fc0f878dcf2712f087dd1f80a5cde063daed3f8b9d7d27c030931df1ede1c8",
+    "experiments/bfv_search_lab/test_seal_bgv_oracle.py": "e7b0e88745206221d6588446875263b696e0925b49af1fc246666c35f9849853",
+    "experiments/bfv_search_lab/test_seeded_bgv.py": "66206df194439a2d3f3b989df4e048a8e439f97851241543223dc1058b98c0d6",
+    "experiments/bfv_search_lab/test_shallow_bgv.py": "ff97ae244070a8a3ebc27591e3cd91095104bc100ef34f73437ba9937ce7ee4b",
+    "experiments/bfv_search_lab/test_trace_bgv.py": "965604905301ee7a92aede96923fad746f9fb6bcae80acf7279b898eee380fca",
+    "experiments/bfv_search_lab/test_transport_feature_bgv.py": "074989e4bfb2db2a62bba58da6cfaf00a39b896c8b4408b5aab4dde7dd0abc1a",
+    "experiments/bfv_search_lab/trace_bgv.py": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5",
+    "experiments/bfv_search_lab/transport_bgv.py": "82862c15b2ec7fad8bb59ca6869e441094881c1a562b32a7b75ec3e51c0ed9af",
+    "experiments/bfv_search_lab/seal_bgv_oracle.cpp": "28a5132c15e6a7bd8385534a954aa4a4ac26e62c2a3b41c12a77e8a741e8b7fe",
+    "experiments/bfv_search_lab/_native/compact.h": "384a35dec51de848e5ea98d16a137d222054e1bc2060d4ac7911004f3bea2de0",
+    "experiments/bfv_search_lab/_native/residue_trace.h": "b24841d01c67be525dd219339f109f3c59d6dcf45e31b42d38f3056ea3e73a47",
+    "experiments/bfv_search_lab/_native/trace_server.h": "522500097d81f59eb789694fb2fb9714ffb4b12a6a1c90dd9e0efa4636946c11",
+    "experiments/bfv_search_lab/_native/cuda_batch.cuh": "395c19956905e3327cab1f2caab66c5b58a0b37780dc8a92b7e5cd1af504ba9f",
+    "experiments/bfv_search_lab/_native/cuda_trace.cuh": "d5020226913c0c6318bedcb5803e7fcba68e41007378149966e931641cca6305",
+    "experiments/bfv_search_lab/_native/bindings.cpp": "81389034eb10abaa1bbd161193d2064a341539eb995e5461d932dc87c0bf130b",
+    "experiments/bfv_search_lab/_native/bindings.cu": "52b69e53a8b26d405ff0c61eb5e1bca77a93368a74cd07e4040408a08771e81d",
+    "experiments/bfv_search_lab/_native/narrow_ntt.cu": "7b430bdb8de064608b18589f4a6ef29d8413d4369ff623c31615575b1b4c2bbd",
+    "experiments/bfv_search_lab/_native/sanitize_cuda.cu": "9087dbc376a20a45c77abcc64f2747e2dcb229476093263cc2a54130c463a2d8",
+    "experiments/bfv_search_lab/_native/_bgv_trace.pyi": "ce20bab077d0cb7d1ff4ac5f2a8c038e174c518c405475fc785d3b8296f65e03",
+    "experiments/bfv_search_lab/_native/Makefile": "1021e13481609aa295e5fa97a9e4dd52934a94194e522530d412a34ffae8b01e",
+    "experiments/bfv_search_lab/_native/_bgv_trace.cpython-312-x86_64-linux-gnu.so": "11ec24eb1c135c25008b98d833d943adc3c04f8e52808ec721a590b61015d3db",
+    "experiments/bfv_search_lab/_native/_bgv_trace_cuda.cpython-312-x86_64-linux-gnu.so": "d856404e49bcea32f20f89794e3d695b66305ecb6a0ded6c7d9ebddb4a248b81",
+    "experiments/bfv_search_lab/_owner/finish.h": "efbf9333538900f7fbf002b528a8d15b80e9e385bc6c3076a2fd2abab09c9575",
+    "experiments/bfv_search_lab/_owner/owner.h": "5e6a14e24c4b83589973f1281f0bac4ca9d8c0c8cffd3f037949bc040943d9c2",
+    "experiments/bfv_search_lab/_owner/rns_product.h": "7d932bbba358fe9f62d45071da9ed8c7c05af066b6b433562256b42019417bcc",
+    "experiments/bfv_search_lab/_owner/bindings.cpp": "be6c4f9bbb9747c2bb4050265497525e3ef7a22cc90bdaa1cdd9cca38fd7ff2f",
+    "experiments/bfv_search_lab/_owner/_bgv_owner.pyi": "bcb40fc0f40052ce4bca0dc9c675b0b746e0739397137667f2c39db09d7d9f21",
+    "experiments/bfv_search_lab/_owner/Makefile": "6330343040b6a7451650ceb71d6b96936b9901f3c16044d21a137136399dcaab",
+    "experiments/bfv_search_lab/_owner/_bgv_owner.cpython-312-x86_64-linux-gnu.so": "77de2d200863e22106e7f4eda42d21f811b8fbae81b876566c4d0e6f3027d8ba",
+    "src/cuhepy/bfv/_cpu_ext/__init__.py": "5b403430d7bea9a571afeecf51f39d99b1360f162f33f6340dfca0b257d2b320",
+    "src/cuhepy/bfv/_cpu_ext/batch_encoder.h": "2e1d66860afe495f3b638c2ca878bef70b3c3425dbbf63d9c040211a833bd457",
+    "src/cuhepy/bfv/_cpu_ext/bfv_residue.h": "e8704caa4f62d93fe3a397b128cfe91bc2a349be815264f381b2d2eff80bca66",
+    "src/cuhepy/bfv/_cpu_ext/bfv_server.h": "6a0a26a5f24a76340cc8a33f6c0df9b11221f57c158b1e199fec574ddac7e520",
+    "src/cuhepy/bfv/_cpu_ext/packed_wire.h": "0fe06f2c6cb333ef90cf0b66847815dbf521e81be881ffd55aff21009cde42fd",
+    "src/cuhepy/bfv/_cpu_ext/private_decoder.h": "66aceec7cc8452dabdde0061d347195e49a9500fba7bcbbe805c967b7171d767",
+    "src/cuhepy/bfv/_cpu_ext/profile.h": "3a98bb8c322dec75d1c3ed2531767ac1f5b43a1d7e79a9927d47052d43541252",
+    "src/cuhepy/bfv/_cpu_ext/rns_ntt.h": "f9886933ab66eeac9a4b25968b9bf485e065ab62d8f2efe4223598c927062f67",
+    "src/cuhepy/bfv/_cpu_ext/rns_scale.h": "3f191dc1532afe2e8774279d251d3374b34dc8b40b4e8a97d3dc341959ab89d1",
+    "src/cuhepy/bfv/_cpu_ext/bindings.cpp": "49c399103f7f7df8fe6969fe1ff972650870f3c48f6e37b3dd78a76ed88a6997",
+    "src/cuhepy/bfv/_cpu_ext/private_bindings.cpp": "7b48d92e526147d97d9401e868c8d3e9dbf0b8ba567a67e05047e01f2a371fc0",
+    "src/cuhepy/bfv/_cpu_ext/_bfv_private.pyi": "11275c66776f344a015364d05af9d30534536c64dd82a08a6fd8de9f3a9fb098",
+    "src/cuhepy/bfv/_cpu_ext/_bfv_rns.pyi": "43b8d6e23f1a5d4a603bac44138f1d2be41816418a9ba9b36a25ec0fc4d305db",
+    "src/cuhepy/bfv/_cpu_ext/Makefile": "eaa18da724ccb1d24cb90a39c424194880e4979250edec4546ba134eba7dd285",
+    "src/cuhepy/bfv/_cpu_ext/_bfv_private.cpython-312-x86_64-linux-gnu.so": "11d0c6bc949db2de7ccf2cf9921522f2c8bc330d07151dec2d94d9ad953ec9d7",
+    "src/cuhepy/bfv/_cpu_ext/_bfv_rns.cpython-312-x86_64-linux-gnu.so": "cd6503bbeb9c7c7cd468338b4b9b4b1dcf0ea88c478c9a0a7abda5b1b7cb77ef",
+    "src/cuhepy/bfv/_gpu_ext/__init__.py": "23dc7117fdbc45885c3a4ab36b6002ea007a2b33077d6f3069ee3535efe6884c",
+    "src/cuhepy/bfv/_gpu_ext/kernels.cuh": "06e6cdc447f16d54338dd7689a958f292d9e3d344c0a03e6b9a51088b0e05140",
+    "src/cuhepy/bfv/_gpu_ext/server.cuh": "587442eaca2179adf3c4f3dcdc08d54867c3c503b3f1fc46f6e320556eaeeca9",
+    "src/cuhepy/bfv/_gpu_ext/bindings.cu": "19d9e1c077f4e96f8b75691b4e55acaadf19a474ac3996ca23f8459633a030c2",
+    "src/cuhepy/bfv/_gpu_ext/_bfv_cuda.pyi": "7ee3a1980940cc39148711ae9a25f3353e022cdda87d06af96936cd5e8543b8c",
+    "src/cuhepy/bfv/_gpu_ext/Makefile": "b95829c86918cd6c9e154e5b47aff0f9025ca825501cf1e965028df181d18788",
+    "src/cuhepy/bfv/_gpu_ext/_bfv_cuda.cpython-312-x86_64-linux-gnu.so": "1020fbde349f1d8b3a5005172ee9e46bd539473c2690360f00d93a7a140a1f0b"
+  }
+}

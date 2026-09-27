@@ -1,0 +1,183 @@
+{
+  "kind": "bgv_algorithm_reference_portfolio",
+  "scope": "E07 encrypted reference and E10 PLAINTEXT bound-quality experiments.\n\nNeither experiment is a GPU or end-to-end performance claim. E07 compares two\nswitch schedules with the same encrypted features. E10 declares all access\nleakage and reports exact-score counts; encrypted filtering is not implemented.\n",
+  "encrypted_feature_major": [
+    {
+      "n": 256,
+      "dimension": 8,
+      "num_vectors": 513,
+      "q_hex": "fffffffffffb6020000000027fb601",
+      "costs": {
+        "query_ciphertexts": 8,
+        "seeded_query_coefficient_bytes": 30720,
+        "index_ciphertexts": 24,
+        "ciphertext_products": 24,
+        "eager_key_switches": 24,
+        "delayed_key_switches": 3,
+        "rotations": 0,
+        "response_ciphertexts": 3
+      },
+      "index_encrypt_s": 0.04563999595120549,
+      "query_encrypt_s": 0.014745309017598629,
+      "server_seconds": {
+        "eager": [
+          0.06290445476770401,
+          0.061490437015891075,
+          0.062496807891875505,
+          0.061981077305972576,
+          0.06250504776835442
+        ],
+        "delayed": [
+          0.029252892825752497,
+          0.0295114079490304,
+          0.02875771326944232,
+          0.028910555876791477,
+          0.029073060024529696
+        ]
+      },
+      "warmup_seconds": {
+        "delayed": 0.02891481574624777,
+        "eager": 0.06317239115014672
+      },
+      "all_distances_correct": true
+    },
+    {
+      "n": 256,
+      "dimension": 32,
+      "num_vectors": 513,
+      "q_hex": "fffffffffffb6020000000027fb601",
+      "costs": {
+        "query_ciphertexts": 32,
+        "seeded_query_coefficient_bytes": 122880,
+        "index_ciphertexts": 96,
+        "ciphertext_products": 96,
+        "eager_key_switches": 96,
+        "delayed_key_switches": 3,
+        "rotations": 0,
+        "response_ciphertexts": 3
+      },
+      "index_encrypt_s": 0.176866858266294,
+      "query_encrypt_s": 0.058374082669615746,
+      "server_seconds": {
+        "eager": [
+          0.2685804679058492,
+          0.26107295509427786,
+          0.2649343842640519,
+          0.2589148422703147,
+          0.25744069181382656
+        ],
+        "delayed": [
+          0.10748193087056279,
+          0.10436445707455277,
+          0.10655393218621612,
+          0.10722336499020457,
+          0.10408375086262822
+        ]
+      },
+      "warmup_seconds": {
+        "delayed": 0.10199099918827415,
+        "eager": 0.2680797684006393
+      },
+      "all_distances_correct": true
+    }
+  ],
+  "plaintext_filter": [
+    {
+      "dataset": "uniform",
+      "num_vectors": 8192,
+      "dimension": 512,
+      "block_bits": 16,
+      "exact_evaluations": 8192,
+      "weight_comparisons": 262144,
+      "exact_top3": true
+    },
+    {
+      "dataset": "uniform",
+      "num_vectors": 8192,
+      "dimension": 512,
+      "block_bits": 32,
+      "exact_evaluations": 8192,
+      "weight_comparisons": 131072,
+      "exact_top3": true
+    },
+    {
+      "dataset": "uniform",
+      "num_vectors": 8192,
+      "dimension": 512,
+      "block_bits": 64,
+      "exact_evaluations": 8192,
+      "weight_comparisons": 65536,
+      "exact_top3": true
+    },
+    {
+      "dataset": "uniform",
+      "num_vectors": 8192,
+      "dimension": 512,
+      "block_bits": 128,
+      "exact_evaluations": 8192,
+      "weight_comparisons": 32768,
+      "exact_top3": true
+    },
+    {
+      "dataset": "clustered_3pct_flips",
+      "num_vectors": 8192,
+      "dimension": 512,
+      "block_bits": 16,
+      "exact_evaluations": 15,
+      "weight_comparisons": 262144,
+      "exact_top3": true
+    },
+    {
+      "dataset": "clustered_3pct_flips",
+      "num_vectors": 8192,
+      "dimension": 512,
+      "block_bits": 32,
+      "exact_evaluations": 39,
+      "weight_comparisons": 131072,
+      "exact_top3": true
+    },
+    {
+      "dataset": "clustered_3pct_flips",
+      "num_vectors": 8192,
+      "dimension": 512,
+      "block_bits": 64,
+      "exact_evaluations": 144,
+      "weight_comparisons": 65536,
+      "exact_top3": true
+    },
+    {
+      "dataset": "clustered_3pct_flips",
+      "num_vectors": 8192,
+      "dimension": 512,
+      "block_bits": 128,
+      "exact_evaluations": 319,
+      "weight_comparisons": 32768,
+      "exact_top3": true
+    }
+  ],
+  "large_feature_major_cost_model": {
+    "query_ciphertexts": 512,
+    "seeded_query_coefficient_bytes": 125829120,
+    "index_ciphertexts": 512,
+    "ciphertext_products": 512,
+    "eager_key_switches": 512,
+    "delayed_key_switches": 1,
+    "rotations": 0,
+    "response_ciphertexts": 1
+  },
+  "sha256": {
+    "benchmarks/bgv_algorithm_portfolio.py": "1c260501290139b3d6e48a96528e2c58b9910afab964d5302b46694e1005a21d",
+    "experiments/bfv_search_lab/feature_major_bgv.py": "19a4f40b8d49aa44a5a7df5787d25ec69cfe242d30de4f9cabe26ad49ad223ed",
+    "experiments/bfv_search_lab/filter_oracle.py": "1d749ec5fcb6350d8516d69e0338f8b00e3a687663d689afd7b8d9cc5f8c6f05",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/trace_bgv.py": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5"
+  },
+  "implementation_commit": "07c99f07b3fb0efbb9f55b322c9a6cbfd0d198e0",
+  "run_command": ".venv/bin/python benchmarks/bgv_algorithm_portfolio.py --json-out benchmarks/results/bgv_algorithm_portfolio.json",
+  "plaintext_fixture_seed": 20260925,
+  "environment": {
+    "cpu": "AMD Ryzen 7 5800X",
+    "python": "3.12",
+    "arithmetic": "Python/GMP reference, no CUDA"
+  }
+}

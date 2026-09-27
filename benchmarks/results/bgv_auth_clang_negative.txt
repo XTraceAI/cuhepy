@@ -1,0 +1,19 @@
+==2== Memcheck, a memory error detector
+==2== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==2== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==2== Command: /tmp/cuhepy-bgv-private-clang-taint negative
+==2== Parent PID: 1
+==2==
+==2== Conditional jump or move depends on uninitialised value(s)
+==2==    at 0x10A500: main (test_private.cpp:32)
+==2==
+==2==
+==2== HEAP SUMMARY:
+==2==     in use at exit: 0 bytes in 0 blocks
+==2==   total heap usage: 2 allocs, 2 frees, 77,824 bytes allocated
+==2==
+==2== All heap blocks were freed -- no leaks are possible
+==2==
+==2== Use --track-origins=yes to see where uninitialised values come from
+==2== For lists of detected and suppressed errors, rerun with: -s
+==2== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
