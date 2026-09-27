@@ -59,6 +59,7 @@ def map_memory(plans):
 
 
 def run(args):
+    fixture_sha256 = None
     if args.dataset == "piecewise":
         rows, dimension = piecewise_rows(), 512
         ids = list(range(len(rows)))
@@ -69,7 +70,8 @@ def run(args):
         query_ids = []
     else:
         data = fixtures.load(args.dataset, args.cache_dir / fixtures.SOURCES[args.dataset]["member"])
-        ids, holdout = fixtures.split(data, 3001)
+        fixture_sha256 = data.sha256
+        ids, holdout = fixtures.split(data, args.seed)
         rows, dimension = [data.rows[i] for i in ids], data.dimension
         order = dictionary.metric_order(rows, dimension, 32)
         query_ids = holdout[103:104 + args.repeats]  # Warmup + reserved queries 104:112.
@@ -193,6 +195,7 @@ def run(args):
                     warmup[label] = sample
             print(f"{args.dataset} paired query {repeat}/{args.repeats}", file=sys.stderr, flush=True)
     return {"dataset": args.dataset, "dimension": dimension, "count": len(rows), "unique_rows": len(set(rows)),
+            "split_seed": args.seed if args.dataset != "piecewise" else None, "fixture_sha256": fixture_sha256,
             "query_ids_with_warmup": query_ids, "setup": setup, "warmup": warmup, "samples": samples,
             "summary": {k: summary(v) for k, v in samples.items()}, "plaintext_full_index_control": summary(local_plaintext),
             "all_distances_and_stable_top3_exact": True,
@@ -205,6 +208,7 @@ def main():
     parser.add_argument("--json-out", type=Path, required=True)
     parser.add_argument("--dataset", choices=("mushroom", "semeion", "piecewise"), default="mushroom")
     parser.add_argument("--parts", type=int, default=8)
+    parser.add_argument("--seed", type=int, default=3001)
     parser.add_argument("--ring-degree", type=int, default=16384)
     parser.add_argument("--repeats", type=int, default=8)
     parser.add_argument("--devices", nargs="+", choices=("cpu", "cuda"), default=["cpu", "cuda"])
