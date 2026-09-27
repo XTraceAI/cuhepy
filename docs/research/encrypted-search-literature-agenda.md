@@ -1,5 +1,19 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-27 fifth creative follow-up:**
+[rank repair, unequal CRT capacity and cache/update controls](dyadic-rank-results.md)
+now implement E27. The interesting comparison is a joint owner-state/rank/
+capacity/update tradeoff, with a complete plaintext affine cache as an explicit
+alternative. Positive HE timings alone do not choose the paper direction.
+Targeted new primary reading adds
+[Mali, Generalized BGV, BFV, and CKKS for Homomorphic Encryption over Matrix Rings](https://eprint.iacr.org/2025/972)
+as an alternative matrix-valued/Module-LWE arithmetic lead. Only the abstract
+and available technical-overview excerpt were reviewed in this cycle. The
+[E28 card](creative-experiment-priorities.md#e28--is-matrix-valued-he-a-better-arithmetic-model-for-exact-search)
+requires a full read and homemade small oracle before implementation or timing
+claims; charge noncommutative switching, keys and batch-one utilization. This
+does not establish novelty, a scheme conversion or a security estimate.
+
 **2026-09-27 fourth creative follow-up:**
 [exact local affine maps and CRT query components](affine-component-results.md)
 now test shared query work with bounded-per-map owner state. Targeted primary

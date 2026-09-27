@@ -1,5 +1,10 @@
 # Exact affine dictionaries inside one full-size BGV query
 
+Follow-up: [rank-boundary repair and unequal component capacity](dyadic-rank-results.md)
+implements the next cycle, preserves these controls, and adds a complete local
+affine cache plus a one-row update experiment. Its full ring and parameter
+profile match this cycle; the earlier artifacts remain unchanged.
+
 2026-09-27, `experiment/creative-search-algebra`. E26 follows the
 [dictionary/residual cycle](dictionary-witness-results.md). All encryption,
 evaluation and decryption use our homemade Python/GMP, C++/RNS and CUDA BGV.

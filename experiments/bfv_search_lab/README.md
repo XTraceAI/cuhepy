@@ -31,6 +31,13 @@ structured synthetic data. Private-state costs, padding sensitivity, dense-map
 regressions and a deliberately expensive encrypted residual-lookup control are
 retained. The new `t=1153` profile is explicit and matched across comparisons.
 
+The [fifth creative cycle](../../docs/research/dyadic-rank-results.md)
+adds targeted rank-boundary splits and unequal-degree plaintext CRT components,
+plus exact capacity allocation for fixed maps. Benchmarks separate the codec
+from changed encrypted work, retain a third public index split and negative
+state-budget cases, and implement complete local affine-cache and one-row epoch
+controls. Full encryption degree and the preceding parameter profile are kept.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -96,6 +103,8 @@ assurance. The raw CUDA path does not provide attestation.
 | `private_residual_lookup.py` | E25 tiny homemade encrypted address/sign multiplexer; expensive scalar control, not a general lookup cost bound |
 | `affine_dictionary.py` | E26 exact modular local affine bases, whole-index certification, private map audit and compiled binary-query masks |
 | `crt_multiplex.py` | E26 standard polynomial CRT components within the full encryption ring; shared query, existing butterfly and exact score decoding |
+| `dyadic_crt.py` | E27 unequal plaintext-factor degrees, recursive CRT and exact reuse of the full-ring butterfly; common padded rank remains explicit |
+| `rank_partition.py` | E27 index-only rank-boundary splits, fixed-map minimax capacity, deduplicated map budgets, local epoch checks and full-scan fallback |
 | `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
 | `adaptive_refinement.py` | Local exact threshold discovery, stable ties and whole-ciphertext-tile accounting; exposes the access schedule |

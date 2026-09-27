@@ -1,0 +1,581 @@
+{
+  "utc": "2026-09-27T21:59:15.609861+00:00",
+  "command": [
+    "benchmarks/dyadic_state_epoch_lab.py",
+    "--cache-dir",
+    "../research-data/uci-20260927",
+    "--json-out",
+    "benchmarks/results/dyadic_state_epoch_lab_20260927.json"
+  ],
+  "git_head": "80fcf0085e6559168a212a51ed23c3339c5ec0f6",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/dyadic_state_epoch_lab.py": "61151430e421873c6f5eb0082c7e5428cc449c381f9bdc498e82871651a92d0c",
+    "benchmarks/dyadic_layout_lab.py": "16df3224df5883e7bb3b197d6e21bef9ddf7277d86000a671e648168e675431b",
+    "benchmarks/component_bgv_native.py": "3e334fc351fd4a600cdf4869ff6a1c9740330ec8be33d9ee49c297ac0459b2b9",
+    "benchmarks/component_dictionary_lab.py": "3ef986989787a711aee7480e7d48d02266ea8b35c4bdf086fc9f9527ad519149",
+    "benchmarks/dictionary_layout_lab.py": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31",
+    "benchmarks/certified_filter_lab.py": "4faa08db3d109cc5c4e90573a7fc0999effb62e9a78679189059e9df13d7ea89",
+    "experiments/bfv_search_lab/dyadic_crt.py": "364e017962129982f383956bdf6ecc384d1ed8a567d00dbc7e69de58bd3bf384",
+    "experiments/bfv_search_lab/rank_partition.py": "3d4c772feb11c2a1615566166f2c940b3388d98df5b499d668a7837c0b3e688f",
+    "experiments/bfv_search_lab/affine_dictionary.py": "0f811f9a5cd2628f1c6c2f048c1d32e65eaaf9aa5e3f942118342b3edf6daf05",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/folded_dictionary.py": "ffcf1a874b3ced51acde17c018047005c34121e72f0221237b7b77377de7f35c",
+    "experiments/bfv_search_lab/linear_packing.py": "60664b62a7c225cc1a552040da51f4fe2532bdd0d213b145bb20623dea8b523d"
+  },
+  "kind": "dyadic_plaintext_cache_and_epoch_controls",
+  "cache_results": [
+    {
+      "name": "mushroom/3001",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "query_ids_with_warmup": [
+        4594,
+        396,
+        775,
+        5834,
+        417,
+        7785,
+        51,
+        6560,
+        2950
+      ],
+      "result": {
+        "canonical_map_bytes": 9542,
+        "map_zlib9_bytes": 2591,
+        "packed_coordinate_bytes": 25236,
+        "blockwise_coordinate_zlib9_bytes": 20026,
+        "complete_maps_plus_pivots_body_bytes": 34778,
+        "complete_maps_plus_pivots_zlib9_bytes": 22532,
+        "full_rows_same_layout_bytes": 127936,
+        "full_rows_same_layout_zlib9_bytes": 22123,
+        "python_compiled_maps_bytes": 137172,
+        "python_prepared_cache_query_state_bytes_including_ids": 457669,
+        "common_stable_id_body_bytes": 15992,
+        "samples": {
+          "packed_pivots": [
+            {
+              "local_total_s": 0.006649150978773832
+            },
+            {
+              "local_total_s": 0.0023936061188578606
+            },
+            {
+              "local_total_s": 0.002345066051930189
+            },
+            {
+              "local_total_s": 0.002373216673731804
+            },
+            {
+              "local_total_s": 0.0022656447254121304
+            },
+            {
+              "local_total_s": 0.002347296103835106
+            },
+            {
+              "local_total_s": 0.002213982865214348
+            },
+            {
+              "local_total_s": 0.002349726390093565
+            }
+          ],
+          "zlib_pivots": [
+            {
+              "local_total_s": 0.0024195569567382336
+            },
+            {
+              "local_total_s": 0.0024518980644643307
+            },
+            {
+              "local_total_s": 0.0024768584407866
+            },
+            {
+              "local_total_s": 0.0024958187714219093
+            },
+            {
+              "local_total_s": 0.002505029086023569
+            },
+            {
+              "local_total_s": 0.0023979670368134975
+            },
+            {
+              "local_total_s": 0.0025749499909579754
+            },
+            {
+              "local_total_s": 0.0024762689135968685
+            }
+          ]
+        },
+        "summary": {
+          "packed_pivots": {
+            "local_total_s": {
+              "mean": 0.0028672112384811044,
+              "median": 0.0023485112469643354,
+              "min": 0.002213982865214348,
+              "max": 0.006649150978773832
+            }
+          },
+          "zlib_pivots": {
+            "local_total_s": {
+              "mean": 0.002474793407600373,
+              "median": 0.0024765636771917343,
+              "min": 0.0023979670368134975,
+              "max": 0.0025749499909579754
+            }
+          }
+        },
+        "all_rows_reconstructed_and_all_query_scores_exact": true
+      }
+    },
+    {
+      "name": "mushroom/3002",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "query_ids_with_warmup": [
+        5926,
+        313,
+        355,
+        5764,
+        716,
+        2417,
+        93,
+        1788,
+        3400
+      ],
+      "result": {
+        "canonical_map_bytes": 11386,
+        "map_zlib9_bytes": 2959,
+        "packed_coordinate_bytes": 24395,
+        "blockwise_coordinate_zlib9_bytes": 19044,
+        "complete_maps_plus_pivots_body_bytes": 35781,
+        "complete_maps_plus_pivots_zlib9_bytes": 22353,
+        "full_rows_same_layout_bytes": 127936,
+        "full_rows_same_layout_zlib9_bytes": 22213,
+        "python_compiled_maps_bytes": 157816,
+        "python_prepared_cache_query_state_bytes_including_ids": 478013,
+        "common_stable_id_body_bytes": 15992,
+        "samples": {
+          "packed_pivots": [
+            {
+              "local_total_s": 0.002406938001513481
+            },
+            {
+              "local_total_s": 0.0024254070594906807
+            },
+            {
+              "local_total_s": 0.002491218037903309
+            },
+            {
+              "local_total_s": 0.0024119270965456963
+            },
+            {
+              "local_total_s": 0.002379097044467926
+            },
+            {
+              "local_total_s": 0.0023743356578052044
+            },
+            {
+              "local_total_s": 0.0023305946961045265
+            },
+            {
+              "local_total_s": 0.0024367980659008026
+            }
+          ],
+          "zlib_pivots": [
+            {
+              "local_total_s": 0.0024845092557370663
+            },
+            {
+              "local_total_s": 0.002491309307515621
+            },
+            {
+              "local_total_s": 0.002488388679921627
+            },
+            {
+              "local_total_s": 0.0024277279153466225
+            },
+            {
+              "local_total_s": 0.002527679782360792
+            },
+            {
+              "local_total_s": 0.002475388813763857
+            },
+            {
+              "local_total_s": 0.0025739409029483795
+            },
+            {
+              "local_total_s": 0.0025021079927682877
+            }
+          ]
+        },
+        "summary": {
+          "packed_pivots": {
+            "local_total_s": {
+              "mean": 0.0024070394574664533,
+              "median": 0.0024094325490295887,
+              "min": 0.0023305946961045265,
+              "max": 0.002491218037903309
+            }
+          },
+          "zlib_pivots": {
+            "local_total_s": {
+              "mean": 0.0024963815812952816,
+              "median": 0.002489848993718624,
+              "min": 0.0024277279153466225,
+              "max": 0.0025739409029483795
+            }
+          }
+        },
+        "all_rows_reconstructed_and_all_query_scores_exact": true
+      }
+    },
+    {
+      "name": "uneven_given",
+      "result": {
+        "canonical_map_bytes": 19904,
+        "map_zlib9_bytes": 5960,
+        "packed_coordinate_bytes": 49152,
+        "blockwise_coordinate_zlib9_bytes": 49394,
+        "complete_maps_plus_pivots_body_bytes": 69056,
+        "complete_maps_plus_pivots_zlib9_bytes": 55984,
+        "full_rows_same_layout_bytes": 524288,
+        "full_rows_same_layout_zlib9_bytes": 524454,
+        "python_compiled_maps_bytes": 137832,
+        "python_prepared_cache_query_state_bytes_including_ids": 489924,
+        "common_stable_id_body_bytes": 16384,
+        "samples": {
+          "packed_pivots": [
+            {
+              "local_total_s": 0.002184953074902296
+            },
+            {
+              "local_total_s": 0.002199724316596985
+            },
+            {
+              "local_total_s": 0.0022325338795781136
+            },
+            {
+              "local_total_s": 0.0021908930502831936
+            },
+            {
+              "local_total_s": 0.0020631300285458565
+            },
+            {
+              "local_total_s": 0.002141132950782776
+            },
+            {
+              "local_total_s": 0.002088661305606365
+            },
+            {
+              "local_total_s": 0.0021699732169508934
+            }
+          ],
+          "zlib_pivots": [
+            {
+              "local_total_s": 0.002130692359060049
+            },
+            {
+              "local_total_s": 0.0021174009889364243
+            },
+            {
+              "local_total_s": 0.0022544940002262592
+            },
+            {
+              "local_total_s": 0.0021147909574210644
+            },
+            {
+              "local_total_s": 0.002165433019399643
+            },
+            {
+              "local_total_s": 0.0021286020055413246
+            },
+            {
+              "local_total_s": 0.002178482711315155
+            },
+            {
+              "local_total_s": 0.0020715612918138504
+            }
+          ]
+        },
+        "summary": {
+          "packed_pivots": {
+            "local_total_s": {
+              "mean": 0.00215887522790581,
+              "median": 0.0021774631459265947,
+              "min": 0.0020631300285458565,
+              "max": 0.0022325338795781136
+            }
+          },
+          "zlib_pivots": {
+            "local_total_s": {
+              "mean": 0.0021451821667142212,
+              "median": 0.002129647182300687,
+              "min": 0.0020715612918138504,
+              "max": 0.0022544940002262592
+            }
+          }
+        },
+        "all_rows_reconstructed_and_all_query_scores_exact": true
+      }
+    }
+  ],
+  "notes": "Owner-only complete plaintext coordinate cache, changed state contract. Body compression excludes layout/ID/framing. Python object sums are not RSS. All cache queries include unpack/decompression, transforms, scores and stable top3; no server/HE/network. Owner maps compiled exactly as in HE; private arithmetic variable-time. Eight fresh queries plus warmup, separate from native timing. Full rebuilds are not an incremental update protocol.",
+  "single_row_update": {
+    "changed_rows": 1,
+    "count": 8192,
+    "dimension": 512,
+    "stale_epoch_and_old_map_rejected": true,
+    "old": {
+      "fit_s": 2.8280191477388144,
+      "result": {
+        "cost": {
+          "features": 64,
+          "padded": 64,
+          "count": 8192,
+          "input_tiles": 32,
+          "switches": 95,
+          "response_ciphertexts": 1
+        },
+        "padded": 64,
+        "leaf_paths": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ],
+        "counts": [
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024
+        ],
+        "ranks": [
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64
+        ],
+        "unique_maps": 8,
+        "map_body_bytes": 19496,
+        "map_zlib9_bytes": 6152,
+        "map_sha256": "74924e45a20dd2c9eb320b0984489102f6a267c96b4a0b15521a87a36c92bde7",
+        "local_epoch_digest": "20253395d6238b643b6a2b8e1de090a13591b534d1eb6add13344239642cd6b9",
+        "full_affine_cache_modeled_bytes": 85032,
+        "cut_count": 0,
+        "coordinate_cut_count": 0,
+        "all_distances_and_stable_top3_exact": true
+      }
+    },
+    "rebuilt_fixed_partition": {
+      "fit_s": 2.9418156133033335,
+      "result": {
+        "cost": {
+          "features": 128,
+          "padded": 128,
+          "count": 8192,
+          "input_tiles": 64,
+          "switches": 191,
+          "response_ciphertexts": 1
+        },
+        "padded": 128,
+        "leaf_paths": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ],
+        "counts": [
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024
+        ],
+        "ranks": [
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          65
+        ],
+        "unique_maps": 8,
+        "map_body_bytes": 19496,
+        "map_zlib9_bytes": 6154,
+        "map_sha256": "ce7997f1a7d347758bcf3619bef14fb1d30aeaf684742074e182ba13aad45712",
+        "local_epoch_digest": "f0144b5406bc26833ae3ddb4274a771908ef920fa94526e19017345f284812e8",
+        "full_affine_cache_modeled_bytes": 85160,
+        "cut_count": 0,
+        "coordinate_cut_count": 0,
+        "all_distances_and_stable_top3_exact": true
+      }
+    },
+    "rebuilt_repaired_partition": {
+      "fit_s": 3.4968101331032813,
+      "result": {
+        "cost": {
+          "features": 64,
+          "padded": 64,
+          "count": 8192,
+          "input_tiles": 32,
+          "switches": 95,
+          "response_ciphertexts": 1
+        },
+        "padded": 64,
+        "leaf_paths": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "1110",
+          "1111"
+        ],
+        "counts": [
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          512,
+          512
+        ],
+        "ranks": [
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          63
+        ],
+        "unique_maps": 9,
+        "map_body_bytes": 21891,
+        "map_zlib9_bytes": 6278,
+        "map_sha256": "201cec56a4695b880c65a408046fc291d0805acdca7ba990acd4bfac77152718",
+        "local_epoch_digest": "f0144b5406bc26833ae3ddb4274a771908ef920fa94526e19017345f284812e8",
+        "full_affine_cache_modeled_bytes": 87363,
+        "cut_count": 1,
+        "coordinate_cut_count": 1,
+        "all_distances_and_stable_top3_exact": true
+      }
+    },
+    "reallocated": {
+      "allocation_s": 2.7449242817237973,
+      "result": {
+        "cost": {
+          "features": 64,
+          "padded": 64,
+          "count": 8192,
+          "input_tiles": 32,
+          "switches": 95,
+          "response_ciphertexts": 1
+        },
+        "padded": 64,
+        "leaf_paths": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "1110",
+          "1111"
+        ],
+        "counts": [
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          512,
+          512
+        ],
+        "ranks": [
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          64,
+          63
+        ],
+        "unique_maps": 9,
+        "map_body_bytes": 21891,
+        "map_zlib9_bytes": 6278,
+        "map_sha256": "201cec56a4695b880c65a408046fc291d0805acdca7ba990acd4bfac77152718",
+        "local_epoch_digest": "f0144b5406bc26833ae3ddb4274a771908ef920fa94526e19017345f284812e8",
+        "full_affine_cache_modeled_bytes": 87363,
+        "cut_count": 1,
+        "coordinate_cut_count": 1,
+        "all_distances_and_stable_top3_exact": true
+      }
+    },
+    "cost_change": {
+      "before": {
+        "features": 64,
+        "padded": 64,
+        "count": 8192,
+        "input_tiles": 32,
+        "switches": 95,
+        "response_ciphertexts": 1
+      },
+      "after_fixed": {
+        "features": 128,
+        "padded": 128,
+        "count": 8192,
+        "input_tiles": 64,
+        "switches": 191,
+        "response_ciphertexts": 1
+      },
+      "after_repair": {
+        "features": 64,
+        "padded": 64,
+        "count": 8192,
+        "input_tiles": 32,
+        "switches": 95,
+        "response_ciphertexts": 1
+      },
+      "after_allocation": {
+        "features": 64,
+        "padded": 64,
+        "count": 8192,
+        "input_tiles": 32,
+        "switches": 95,
+        "response_ciphertexts": 1
+      }
+    },
+    "notes": "Full owner rebuilds, not incremental HE updates. Re-encryption, native index preparation, key changes and epoch authorization excluded."
+  }
+}

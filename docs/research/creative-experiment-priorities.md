@@ -44,14 +44,23 @@ Dense map blowup on digit/random data and a rank-64→65 padding boundary are
 retained counterexamples. A scalar encrypted residual lookup also works but is
 expensive; its cost is not a lower bound for better packed constructions.
 
-**Next cycle:** prioritize bounded-state, padding-aware partitions and update
-robustness; unequal component capacity/rank schedules; and an exact affine core
-with encrypted exceptions. E17 can ask whether query conversion directly forms
-the component statistics. Compare compressed full data, a complete affine cache
-and direct local search whenever owner maps/hints are proposed. Keep global,
-input/signature/metric layouts as controls; no single one has won every cycle.
-Preserve the separate private-refinement question. Do not default to kernel or
-codec tuning instead of testing these representation/protocol hypotheses.
+**Fifth cycle implemented:** [rank repair and unequal CRT capacity](dyadic-rank-results.md)
+(E27) splits only blocks that exceed a chosen padded rank, then optionally
+allocates component capacity independently. Public Mushroom CPU local time is
+206–214 ms versus the previous 347–348 ms and full scan's 639–640 ms; CUDA remains
+about 51 ms. Three public index splits, rejected digit/random controls, exact
+fixed-map allocation and a one-row update that doubles fixed-layout work are
+retained. A complete affine plaintext cache is now implemented and measured,
+not just modeled: it answers these public queries in about 2.5 ms with extra
+per-row client state. The state/deployment justification remains central.
+
+**Next cycle:** identify the actual memory/scale/update boundary against that
+complete cache; try stable main dictionaries plus a bounded encrypted update
+buffer; and test joint rank/capacity cuts under equal map budgets. In parallel,
+E28 opens a distinct matrix-valued/Module-LWE arithmetic direction based on new
+primary reading, starting with a homemade algebra/count oracle. Preserve E17
+query conversion and private refinement as alternatives. Do not default to
+kernel tuning or select a paper claim solely from a favorable HE speedup.
 
 ## Objective and working method
 
@@ -325,6 +334,61 @@ database, or a second query/reply and map processing erase the reduction in
 encrypted products. The current GPU tie on public data is already informative.
 Fixed scheduling removes adaptive tile requests, but does not authenticate the
 server or establish private side-channel/parameter assurance.
+
+## E27 — Can rank-boundary repair and unequal capacity make small maps useful?
+
+**Implemented:** dyadic plaintext CRT factors have unequal degrees while the
+full encryption ring remains fixed. All leaves still use a common padded rank;
+there is no unpriced mixed-rank trace. Median and hybrid coordinate cuts repair
+only over-rank blocks. An exact slot-feasibility test minimizes the maximum
+tile count for fixed maps/common padding. Replicated components share private
+maps; complete coverage, zero tails, stable IDs and public geometry are charged.
+
+**Evidence:** hybrid rank-32 maps reduce Mushroom products 63→18/20/18 across
+three splits with 9,542/11,386/13,983 B of canonical maps. Median-only and input-
+order fits fail that target within the depth budget. The 8 KiB selector instead
+chooses 32-product layouts; 4 KiB selects full scan. Semeion's reductions exceed
+32 KiB; the uniform control does not save work. Allocation saves one product
+on one public split and none on the others. It strongly helps given unequal
+synthetic groups, but those favorable generative boundaries are explicit.
+
+**Update/state limit:** one new direction doubles a fixed synthetic layout's
+products 32→64; targeted repair restores 32 with one extra map. This takes a
+full owner rebuild, not incremental HE updates. Complete maps plus all pivot
+bits compress to about 22 kB on the public fixture and support ~2.5 ms local
+search. Compiled maps/IDs occupy additional memory in both approaches. The
+question is where a fixed-state outsourced design pays off as distinct data
+and updates grow; current small-index measurements do not establish that.
+
+**Next experiments:** keep a stable main representation and a bounded encrypted
+delta for inserts/replacements/deletions; derive a shared-query/reply schedule
+with charged reserve capacity and correct stable-ID replacement semantics.
+Compare it with full rebuild and complete local caches at fixed working-memory
+budgets. Try a bounded beam/Pareto search over rank, maps and allocated work;
+the current greedy splitter is the control, not an optimal algorithm. Epoch
+hashes do not authorize server output, hide update locations or bind external IDs.
+
+## E28 — Is matrix-valued HE a better arithmetic model for exact search?
+
+**New primary lead:** [Bence Mali's generalized BGV/BFV/CKKS preprint](https://eprint.iacr.org/2025/972)
+studies matrix-ring plaintext/ciphertext spaces, Module-LWE and a superoperator
+approach to noncommutative relinearization. This is existing work to understand
+and compare, not our construction. So far only its abstract and available
+technical-overview excerpt have been reviewed; no implementation is claimed.
+
+**First experiment:** read the complete construction and write a homemade tiny
+integer/polynomial oracle for our rectangular exact Hamming products. Derive all
+secret-key terms before implementing multiplication/relinearization. Count
+ciphertexts, useful coordinates, key material, products, conversion and noise
+at a matched effective lattice dimension. Check whether a single query wastes
+most matrix capacity; report batch-one latency separately from throughput.
+
+**Possible direction:** combine index-specific affine structure with an
+arithmetic representation that needs fewer slot moves. Test the existing
+scalar-ring pipeline as the full control. A lower polynomial degree alone is
+not a security-preserving improvement; parameter and related-key assumptions
+must be assessed before any practical comparison. Reject the idea if matrix
+key/switch expansion or unused query capacity erases the useful-work saving.
 
 ## E17 — Can query conversion and matching share work?
 
