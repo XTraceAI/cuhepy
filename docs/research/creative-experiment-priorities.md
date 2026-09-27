@@ -23,13 +23,23 @@ loses selectivity after certification. Exact folding wins a paired full-size
 CPU/CUDA experiment on deliberately redundant columns; it does not compress
 uniform random data. No general-data speedup or novelty is established.
 
-**Next cycle:** prioritize padding-aware dictionaries, exact sparse residual
-correction, joint dictionary/tile layouts and private refinement across schemes.
-Use unrelated queries, overcompression and real binary data as early rejection
-tests. Preserve the E17 conversion question and compare its closest PIR work;
-query/response bytes did not shrink in the measured exact-folding experiment.
-Threshold discovery, schedule privacy and complete coverage remain protocol
-questions. Do not default to another round of CUDA kernel tuning.
+**Third cycle implemented:** [dictionaries, hints and exact residuals](dictionary-witness-results.md)
+tests E22 layouts on two public datasets, E23 two-round interval refinement,
+E24 exact witnesses sharing response coefficients, and E25 owner-held exact
+residuals. All use homemade encrypted arithmetic. Complete native CPU/CUDA
+measurements charge subset preparation: the two-round variants lose there.
+E25 preserves one query/response and reduces server work, but retains private
+residual data; on the measured fixture its compressed hint is almost as large
+as the compressed full database. This is a changed-state reference, not an
+established practical protocol win.
+
+**Next cycle:** prioritize encrypted exact residual evaluation with bounded
+owner state, block-dependent dictionaries with shared query work, and the
+state/update-rate tradeoff. Compare compressed full data and direct local search
+whenever owner hints are proposed. Keep simple signature ordering as a strong
+control: it often beat the metric partition. Preserve E17 and the separate
+private-refinement question. Do not default to resident-gather/kernel tuning
+merely because this cycle exposed an implementation bottleneck.
 
 ## Objective and working method
 
@@ -169,12 +179,17 @@ The ring and security parameters stay fixed. This uses standard factorization
 and triangle-inequality ideas; the proposed research question is their joint
 optimization for ciphertext padding, coverage and refinement.
 
-**Next experiment:** compare dictionaries with 63 groups plus one residual
-feature against the current greedy rule. Optimize the worst residuals and the
-number of original ciphertext tiles fetched, not just average reconstruction
-error or survivor count. Explore sparse exact correction and per-tile mappings
-as competing noninteractive constructions. Preserve stable original IDs after
-any owner-side reordering.
+**Implemented follow-up:** fixed representative budgets, row-tail medoid
+sweeps, signature/metric physical orders and stable original IDs are in the
+[third-cycle report](dictionary-witness-results.md). Smaller worst residuals
+did not reliably help search. Signature order often beats the more complicated
+metric partition; neither helps uniform random data enough to rescue pruning.
+
+**Next experiment:** compare small families of per-block dictionaries, optimizing
+padded products, complete tile work, owner state and query/key duplication
+together. Test whether common query transformations can be shared rather than
+charging one full query ciphertext per dictionary. Include the existing one-map
+layout and exact full scoring. Keep query fitting separate from index enrollment.
 
 **Falsifiable prediction:** an HE-aware dictionary/layout reduces complete
 search work on a real binary distribution after charging queries, keys,
@@ -187,6 +202,66 @@ changes the contract. Adaptive tile IDs and schedule length are currently
 visible. PIR alone does not solve integrity or selective-failure privacy.
 Model authenticated PIR and padded/attested routing separately before adopting
 either, and charge offline hints rather than treating retrieval as free.
+
+## E23 — Can trusted intervals remove threshold-discovery rounds?
+
+**Implemented:** owner-retained exact radii turn encrypted template distances
+into lower and upper bounds. The kth upper score/ID pair supplies a safe cutoff
+before exact refinement. All qualifying original tiles are requested in one
+batch, preserving ties. Point intervals are already exact. No oracle radius is
+used. This removes the encrypted radius feature and can avoid a padding doubling.
+
+**Observed limit:** it fetches more tiles than adaptive discovery, often loses
+on digit data, doubles query/reply traffic on the measured native workload,
+and per-query selected-index preparation overwhelms the CUDA saving. Routing
+and round counts remain exposed; mathematical bounds do not authenticate replies.
+
+**Next gate:** compare a fixed private/attested schedule and its complete cost
+before treating lower product counts as a protocol improvement. A resident
+subset API is engineering follow-up only if that protocol survives the cost model.
+
+## E24 — Can unused response support pay for useful exact side information?
+
+**Implemented:** two honest butterfly outputs with different trace scales share
+one ciphertext after a certified disjoint monomial shift. Fixed exact witness
+scores tighten interval thresholds. A separate query and prepacked witness
+index are charged, and phase bounds add. Placement can fail despite sufficient
+total empty coefficients; no arbitrary free scatter is assumed.
+
+**Observed limit:** the arithmetic is correct, but witness sampling mostly
+adds work or saves too few tiles. It saves a reply relative to separate filter
+and witness outputs, not relative to the single-response full scan. Python
+fusion is also charged in the native benchmark.
+
+**Next experiment:** ask whether a different fixed exact statistic buys a much
+stronger bound per product/switch. Compare with no statistic, include complete
+coverage and ties, and stop if it only fills coefficients without improving
+complete work. Linear addition and mixed coefficient layouts alone are not novelty.
+
+## E25 — Where should an exact sparse correction live?
+
+**Implemented reference:** the owner retains differing positions and original
+bits between every row and its folded template. Two AND/popcounts recover the
+exact score correction after one encrypted template evaluation. This removes
+refinement and its routing, but gives private residual information to the hint
+holder and grows owner state linearly with residuals. It is an owner-only
+reference, with variable-time private Python correction, not a general reader API.
+
+**Observed tradeoff:** on 7,996 categorical vectors, local CPU time improves
+3.31× and CUDA local time 1.09×, with unchanged traffic. Canonical hints are
+60,514 B versus 127,936 B of raw rows; lossless compression narrows that to
+21,319 versus 23,466 B, and full plaintext local search is much faster. The
+expanded hint uses more Python memory than the raw row integers. Uniform-data
+hints exceed raw data by 6.86×. Preserve these unfavorable controls.
+
+**Priority experiment:** evaluate sparse corrections while keeping their support
+and values encrypted and owner state bounded. Derive the encrypted selection/
+lookup cost instead of assuming plaintext sparsity makes HE cheap. In parallel,
+measure map/hint/ID storage and updates against a compressed full-data cache.
+The question is whether a useful exact outsourced-search tradeoff survives an
+equal storage/privacy contract; the elementary signed correction is not a new
+cryptographic identity. Compare hint-bearing and hintless PIR literature without
+transferring their different security or retrieval guarantees.
 
 ## E17 — Can query conversion and matching share work?
 

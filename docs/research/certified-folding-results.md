@@ -257,7 +257,14 @@ There are 150 passing focused regressions, including 49 new tests; Ruff and
 Mypy pass. No full production/security-suite rerun is claimed for this sandbox
 change.
 
-The next discriminating experiments, before ordinary CUDA tuning, are:
+The [next cycle now implements](dictionary-witness-results.md) budgeted
+dictionaries, stable physical reordering, public data, interval/witness
+refinement and exact owner-held residuals. Its complete native measurements
+charge subset preparation and expose the client-state tradeoff. The questions
+below record the original follow-up agenda; remaining priorities are updated
+in the [experiment cards](creative-experiment-priorities.md).
+
+The discriminating experiments proposed after this cycle were:
 
 1. **Padding-aware dictionary design.** Compare the current threshold/first
    representative rule with a fixed budget of 63 representatives plus one

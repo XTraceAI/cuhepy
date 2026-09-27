@@ -15,6 +15,14 @@ CPU/CUDA measurement on structured columns. Its failure controls and exposed
 adaptive routing remain explicit; none of these modules authorizes remote
 decryption or changes the production clients.
 
+The [third creative cycle](../../docs/research/dictionary-witness-results.md)
+adds budgeted dictionaries and physical layouts, two-round owner-radius hints,
+mixed-scale exact witnesses in spare output coefficients, and one-round exact
+owner residual correction. Pinned public UCI datasets join the synthetic
+controls. Complete native benchmarks charge selected-index preparation and
+compare hints with compressed full data and local plaintext search. State and
+leakage costs accompany every apparent win.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -60,7 +68,8 @@ execution against native recomputation. This still covers the initial
 subcircuit, before butterfly reduction and terminal output.
 
 These are explicit research entry points, outside the default client and its
-authenticated protocols. They operate on synthetic, owner-controlled data.
+authenticated protocols. They operate on synthetic or pinned public fixtures
+under local owner control.
 Partial scores and coefficient products expose additional information to the
 decrypting owner; private Python/GMP and encoder code has no side-channel
 assurance. The raw CUDA path does not provide attestation.
@@ -72,6 +81,11 @@ assurance. The raw CUDA path does not provide attestation.
 | `syndrome_oracle.py` | E19 safe coupled block bounds, exact public table factorization and owner-side layouts checked through homemade BGV encryption |
 | `certified_lookup.py` | E19 public SVD proposals with exhaustive integer one-sided certificates; retained negative selectivity result |
 | `folded_filter.py` | E22 owner-side coordinate dictionaries, exact per-row residuals and weighted-query layouts |
+| `folded_dictionary.py` | E22 fixed column budgets, row-tail medoid proposals and signature/metric physical ordering |
+| `interval_filter.py` | E23 trusted owner radii, stable score intervals and one-batch whole-tile refinement |
+| `witness_packing.py` | E24 disjoint honest output support, monomial fusion and decoding of different trace scales |
+| `owner_residuals.py` | E25 canonical sparse private owner hints and exact two-popcount score correction; changed client-state contract |
+| `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
 | `adaptive_refinement.py` | Local exact threshold discovery, stable ties and whole-ciphertext-tile accounting; exposes the access schedule |
 | `layout_oracles.py` | Independent plaintext algebra and operation counts |

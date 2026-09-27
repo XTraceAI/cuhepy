@@ -37,6 +37,16 @@ thresholds. Index-specific dictionaries, binary matrix factorization and
 authenticated PIR join the comparison agenda. The extra reading is targeted;
 it does not establish novelty or implement a secure adaptive protocol.
 
+**Third creative follow-up:** [dictionaries, hints and residuals](dictionary-witness-results.md)
+tests public binary/categorical data, owner interval hints, exact witness
+packing and owner-held sparse corrections through homemade CPU/CUDA BGV.
+Hint-bearing search must be compared with compressed full-data retention and
+local scan, not just the encrypted server baseline. SimplePIR/DoublePIR and
+YPIR's offline-communication tradeoffs are related design questions, with
+different retrieval/security contracts. E25's next question keeps correction
+support encrypted and owner state bounded; the observed changed-state speedup
+is not yet a paper contribution. See updated E22–E25 cards before continuing.
+
 ## 1. What the literature changes
 
 The user-supplied [BioZKFHE, v1](https://arxiv.org/html/2607.22065v1)
