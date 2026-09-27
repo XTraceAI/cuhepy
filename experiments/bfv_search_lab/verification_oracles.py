@@ -132,5 +132,6 @@ def digit_boundary_counts(n, padded, count):
                 switch_input_coefficients=coefficients,
                 native_layout_roundtrip_bytes=coefficients*(2*8+4*2*8),
                 shared_uint64_digits_roundtrip_bytes=coefficients*(2*8+4*8),
+                aligned_words_roundtrip_bytes=coefficients*(2*8+2*8),
                 ideally_packed_roundtrip_bytes=coefficients*(15+15),
                 terminal_coefficients=((count+n-1)//n)*2*n)

@@ -50,6 +50,7 @@ def main():
     for field, predicted in (("switch_coefficients", "switch_input_coefficients"),
         ("native_roundtrip_bytes", "native_layout_roundtrip_bytes"),
         ("shared_roundtrip_bytes", "shared_uint64_digits_roundtrip_bytes"),
+        ("word_packed_roundtrip_bytes", "aligned_words_roundtrip_bytes"),
         ("packed_roundtrip_bytes", "ideally_packed_roundtrip_bytes")):
         if measured[field] != model[predicted]:
             raise AssertionError("Measured schedule differs from the independent boundary model")

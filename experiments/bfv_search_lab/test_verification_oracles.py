@@ -151,3 +151,4 @@ def test_digit_boundary_counts_against_existing_schedule_and_known_workloads():
     small, large = (oracle.digit_boundary_counts(16384, 512, count) for count in (8192, 32768))
     assert (small["native_layout_roundtrip_bytes"], small["ideally_packed_roundtrip_bytes"]) == (1005322240, 376995840)
     assert (large["native_layout_roundtrip_bytes"], large["ideally_packed_roundtrip_bytes"]) == (2681733120, 1005649920)
+    assert (small["aligned_words_roundtrip_bytes"], large["aligned_words_roundtrip_bytes"]) == (402128896, 1072693248)

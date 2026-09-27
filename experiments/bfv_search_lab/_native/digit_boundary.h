@@ -8,7 +8,7 @@
 
 namespace cuhepy_bgv_lab::digit_boundary {
 using namespace xtrace_bfv;
-enum class Layout { native = 0, shared = 1, packed = 2 };
+enum class Layout { native = 0, shared = 1, packed = 2, words = 3 };
 static_assert(__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__, "This fixture uses little-endian byte packing");
 
 inline Wide load120(const unsigned char* source) {
@@ -58,7 +58,7 @@ public:
 inline void convert(const CRT& crt, const void* source, void* destination,
                     int n, int batch, Layout layout, int threads) {
     if (n<8 || n>32768 || (n&(n-1)) || batch<1 || batch>512 || !source || !destination
-        || threads<1 || threads>8 || unsigned(layout)>2)
+        || threads<1 || threads>8 || unsigned(layout)>3)
         throw std::invalid_argument("Invalid bounded CRT/digit conversion");
     const auto* words=static_cast<const Word*>(source);
     auto* out=static_cast<Word*>(destination);
@@ -78,6 +78,7 @@ inline void convert(const CRT& crt, const void* source, void* destination,
         if (first>=crt.p0 || second>=crt.p1) { invalid=1; continue; }
         Wide value=crt.compose(first,second);
         if (layout==Layout::packed) store120(packed+15*std::size_t(at),value);
+        else if (layout==Layout::words) { out[2*at]=Word(value);out[2*at+1]=Word(value>>64); }
         else for (int d=0;d<4;++d) {
             Word digit=Word(value>>(30*d))&((Word(1)<<30)-1);
             if (layout==Layout::shared) out[(b*4+d)*n+i]=digit;
@@ -97,7 +98,7 @@ inline void self_test(const CRT& crt) {
     std::mt19937_64 rng(20260927);
     for (int n:{8,2048}) {
         int batch=33;
-        std::vector<Word> source(2*batch*n), native(8*batch*n), shared(4*batch*n);
+        std::vector<Word> source(2*batch*n), native(8*batch*n), shared(4*batch*n), words(2*batch*n);
         std::vector<unsigned char> packed(15*batch*n), result(packed.size());
         for (int b=0;b<batch;++b) for (int i=0;i<n;++i) {
             Word first=rng()%crt.p0, second=rng()%crt.p1;
@@ -109,9 +110,12 @@ inline void self_test(const CRT& crt) {
             convert(crt,source.data(),native.data(),n,batch,Layout::native,threads);
             convert(crt,source.data(),shared.data(),n,batch,Layout::shared,threads);
             convert(crt,packed.data(),result.data(),n,batch,Layout::packed,threads);
+            convert(crt,source.data(),words.data(),n,batch,Layout::words,threads);
             for (int b=0;b<batch;++b) for (int i=0;i<n;++i) {
                 Wide expected=crt.oracle(source[(b*2)*n+i],source[(b*2+1)*n+i]);
                 if (load120(result.data()+15*(b*n+i))!=expected) throw std::runtime_error("Packed CRT mismatch");
+                if ((Wide(words[2*(b*n+i)])|(Wide(words[2*(b*n+i)+1])<<64))!=expected)
+                    throw std::runtime_error("Aligned CRT mismatch");
                 for (int d=0;d<4;++d) {
                     Word digit=Word(expected>>(30*d))&((Word(1)<<30)-1);
                     if (shared[(b*4+d)*n+i]!=digit || native[((b*4+d)*2)*n+i]!=digit
@@ -121,7 +125,7 @@ inline void self_test(const CRT& crt) {
         }
         for (int limb:{0,1}) {
             Word old=source[limb*n]; source[limb*n]=limb?crt.p1:crt.p0;
-            for (Layout layout:{Layout::native,Layout::shared,Layout::packed}) {
+            for (Layout layout:{Layout::native,Layout::shared,Layout::packed,Layout::words}) {
                 store120(packed.data(),Wide(source[0])|(Wide(source[n])<<60));
                 bool rejected=false;
                 try { convert(crt,layout==Layout::packed?static_cast<void*>(packed.data()):source.data(),

@@ -33,17 +33,20 @@ __global__ void pack_residues120(const U* source,unsigned char* out,int n,int ba
     for(int j=0;j<7;++j) out[15*std::size_t(at)+8+j]=high>>(8*j);
 }
 
-__global__ void expand_digits(const unsigned char* packed,const U* shared,U* out,int n,int batch,bool compact) {
+__global__ void expand_digits(const unsigned char* packed,const U* shared,U* out,int n,int batch,int layout) {
     int at=blockIdx.x*blockDim.x+threadIdx.x;
     if(at>=n*batch) return;
     int b=at>>(__ffs(n)-1),i=at&(n-1);
     U digits[4];
-    if(compact) {
+    if(layout==2 || layout==3) {
         U low=0,high=0;
-        #pragma unroll
-        for(int j=0;j<8;++j) low|=U(packed[15*std::size_t(at)+j])<<(8*j);
-        #pragma unroll
-        for(int j=0;j<7;++j) high|=U(packed[15*std::size_t(at)+8+j])<<(8*j);
+        if(layout==3) { low=shared[2*at];high=shared[2*at+1]; }
+        else {
+            #pragma unroll
+            for(int j=0;j<8;++j) low|=U(packed[15*std::size_t(at)+j])<<(8*j);
+            #pragma unroll
+            for(int j=0;j<7;++j) high|=U(packed[15*std::size_t(at)+8+j])<<(8*j);
+        }
         U mask=(U(1)<<30)-1;
         digits[0]=low&mask;digits[1]=(low>>30)&mask;digits[2]=((low>>60)|(high<<4))&mask;digits[3]=high>>26;
     } else {
@@ -96,7 +99,9 @@ int main(int argc,char** argv) {
         using L=boundary::Layout;
         std::vector<Variant> variants{{"gpu",true,L::native,1},
             {"cpu-native-1",false,L::native,1},{"cpu-shared-1",false,L::shared,1},{"cpu-packed-1",false,L::packed,1},
-            {"cpu-native-8",false,L::native,8},{"cpu-shared-8",false,L::shared,8},{"cpu-packed-8",false,L::packed,8}};
+            {"cpu-words-1",false,L::words,1},
+            {"cpu-native-8",false,L::native,8},{"cpu-shared-8",false,L::shared,8},{"cpu-packed-8",false,L::packed,8},
+            {"cpu-words-8",false,L::words,8}};
         auto run=[&](const Variant& v,const std::vector<int>& schedule) {
             Sample sample;auto whole=Clock::now();
             for(int batch:schedule) {
@@ -117,11 +122,11 @@ int main(int argc,char** argv) {
                 phase=Clock::now();
                 boundary::convert(crt,host_input.data(),host_output.data(),n,batch,v.layout,v.threads);
                 sample.cpu+=seconds(phase);phase=Clock::now();
-                std::size_t up_bytes=size*(v.layout==L::packed?15:(v.layout==L::shared?4:8)*sizeof(U));
+                std::size_t up_bytes=size*(v.layout==L::packed?15:(v.layout==L::words?2:v.layout==L::shared?4:8)*sizeof(U));
                 void* up=v.layout==L::native?static_cast<void*>(output.data()):uploaded.data();
                 check(cudaMemcpyAsync(up,host_output.data(),up_bytes,cudaMemcpyHostToDevice,stream.value));
                 if(v.layout!=L::native) expand_digits<<<blocks(size),256,0,stream.value>>>(uploaded.data(),
-                    reinterpret_cast<const U*>(uploaded.data()),output.data(),n,batch,v.layout==L::packed);
+                    reinterpret_cast<const U*>(uploaded.data()),output.data(),n,batch,int(v.layout));
                 check(cudaStreamSynchronize(stream.value));sample.up+=seconds(phase);
             }
             check(cudaGetLastError());check(cudaStreamSynchronize(stream.value));
@@ -155,6 +160,7 @@ int main(int argc,char** argv) {
                  <<",\"rns_primes\":["<<p0<<','<<p1<<"],\"switch_coefficients\":"<<coefficients
                  <<",\"native_roundtrip_bytes\":"<<80*coefficients<<",\"shared_roundtrip_bytes\":"<<48*coefficients
                  <<",\"packed_roundtrip_bytes\":"<<30*coefficients<<",\"host_pinned_bytes\":"<<80*slots
+                 <<",\"word_packed_roundtrip_bytes\":"<<32*coefficients
                  <<",\"complete_cpu_gpu_digits_equal\":true,\"gmp_oracle_and_rejections_passed\":true,\"samples\":";
         print_samples(samples);std::cout<<",\"warmup\":";print_samples(warmup);std::cout<<"}\n";
     } catch(const std::exception& error) {std::cerr<<error.what()<<'\n';return 1;}
