@@ -23,8 +23,8 @@ def schoolbook(a, b, q):
     return tuple(x % q for x in out)
 
 
-@pytest.fixture
-def fixture():
+@pytest.fixture(params=[False, True], ids=["reference", "native"])
+def fixture(request):
     pk, sk = bgv.key_gen(8, q_bits=120, rns_modulus=True)
     keys = trace.evaluation_keys(pk, sk, 1)
     context = check.Context.from_bgv(pk, keys)
@@ -42,12 +42,17 @@ def fixture():
                 poly = [(a+b) % int(pk.q) for a, b in zip(poly, product, strict=True)]
             pair.append(tuple(poly))
         outputs.append(tuple(pair))
-    return context, context.pack_full(tensors, 3), outputs
+    native = None
+    if request.param:
+        pytest.importorskip("experiments.bfv_search_lab._verify._bgv_checked")
+        from experiments.bfv_search_lab.native_check_bgv import NativeCheckArithmetic
+        native = NativeCheckArithmetic(context)
+    return context, context.pack_full(tensors, 3), outputs, native
 
 
 def begin(fixture, binding=b'b'*32):
-    context, raw, outputs = fixture
-    request = context.begin(raw, len(outputs), binding)
+    context, raw, outputs, native = fixture
+    request = context.begin(raw, len(outputs), binding, native=native)
     return request, request.result_packet(outputs)
 
 
@@ -80,10 +85,10 @@ def test_reordering_and_different_trusted_tensor_are_rejected(fixture, monkeypat
     monkeypatch.setattr(check.secrets, 'randbelow', lambda p: next(numbers) % p)
     request, _ = begin(fixture)
     assert not request.check_once(request.result_packet(list(reversed(fixture[2])))).accepted
-    ctx, raw, outputs = fixture
+    ctx, raw, outputs, native = fixture
     first = struct.unpack_from('<Q', raw)[0]
     changed = struct.pack('<Q', (first+1) % ctx.primes[0])+raw[8:]
-    other = ctx.begin(changed, 3, b'b'*32)
+    other = ctx.begin(changed, 3, b'b'*32, native=native)
     assert not other.check_once(other.result_packet(outputs)).accepted
 
 
@@ -148,16 +153,16 @@ def test_entropy_failure_copy_pickle_fork_and_concurrent_reuse(fixture, monkeypa
 
 
 def test_canonical_input_snapshot_and_declared_shape(fixture):
-    ctx, raw, outputs = fixture
+    ctx, raw, outputs, native = fixture
     for value in (raw[:-8], bytearray(raw), struct.pack('<Q', ctx.primes[0])+raw[8:]):
         with pytest.raises(ValueError):
-            ctx.begin(value, 3, b'b'*32)
+            ctx.begin(value, 3, b'b'*32, native=native)
     for batch in (True, 0, 65):
         with pytest.raises(ValueError):
-            ctx.begin(raw, batch, b'b'*32)
+            ctx.begin(raw, batch, b'b'*32, native=native)
     with pytest.raises(ValueError):
-        ctx.begin(raw, 3, b'b')
-    request = ctx.begin(raw, 3, b'b'*32)
+        ctx.begin(raw, 3, b'b', native=native)
+    request = ctx.begin(raw, 3, b'b'*32, native=native)
     with pytest.raises(ValueError):
         request.result_packet(outputs[:2])
 

@@ -89,8 +89,8 @@ class Context:
                     out.extend(struct.pack(f"<{self.n}Q", *(int(c % p) for c in poly)))
         return bytes(out)
 
-    def begin(self, trusted_tensors, batch, binding):
-        return Request(self, trusted_tensors, batch, binding)
+    def begin(self, trusted_tensors, batch, binding, *, native=None):
+        return Request(self, trusted_tensors, batch, binding, native=native)
 
 
 @dataclass(frozen=True)
@@ -104,13 +104,21 @@ class Result:
 class Request:
     """One local attempt, including malformed/rejected responses; never a receipt."""
 
-    def __init__(self, context, trusted_tensors, batch, binding):
+    def __init__(self, context, trusted_tensors, batch, binding, *, native=None):
         _size(context.n, batch)
         if type(binding) is not bytes or len(binding) != 32:
             raise ValueError("Pin a 32-byte parent statement binding")
         # Tuple copies eliminate aliases to caller-owned lists. No challenge yet.
-        tensors = _parse(trusted_tensors, context.n, batch, 3, context.primes)
+        if native is None:
+            tensors = _parse(trusted_tensors, context.n, batch, 3, context.primes)
+        else:
+            from experiments.bfv_search_lab.native_check_bgv import NativeCheckArithmetic
+            if type(native) is not NativeCheckArithmetic or native.context is not context:
+                raise ValueError('Wrong native checker context')
+            native.validate(trusted_tensors, batch, 3)
+            tensors = None
         self._context, self._tensors, self._batch = context, tensors, batch
+        self._native, self._raw = native, trusted_tensors if native is not None else None
         self._pid, self._lock, self._used = os.getpid(), threading.Lock(), False
         self.statement_digest = hashlib.sha256(TAG+context.digest+binding+struct.pack("<I", batch)
             +secrets.token_bytes(32)+hashlib.sha256(trusted_tensors).digest()).digest()
@@ -138,12 +146,25 @@ class Request:
                 raise RuntimeError("Stage attempt already consumed")
             self._used = True
             tensors, self._tensors = self._tensors, None
+            raw, self._raw = self._raw, None
         ctx, n, batch = self._context, self._context.n, self._batch
         started = time.perf_counter()
         if (type(packet) is not bytes or len(packet) != len(TAG)+32+batch*2*2*n*8
             or not packet.startswith(TAG+self.statement_digest)):
             raise ValueError("Incorrect stage output binding/size")
         output_digest = hashlib.sha256(packet).digest()
+        if self._native is not None:
+            body = packet[len(TAG)+32:]
+            self._native.validate(body, batch, 2)
+            parsed = time.perf_counter()
+            weights = tuple(secrets.randbelow(p) for p in ctx.primes for _ in range(CHECKS) for _ in range(batch))
+            packed = struct.pack(f'<{len(weights)}Q', *weights)
+            sampled = time.perf_counter()
+            accepted = self._native.check_arithmetic(raw, body, packed, batch)
+            return Result(bool(accepted), self.statement_digest, output_digest,
+                          dict(parse_s=parsed-started, fresh_weights_s=sampled-parsed,
+                               native_arithmetic_s=time.perf_counter()-sampled,
+                               total_s=time.perf_counter()-started))
         output = _parse(packet[len(TAG)+32:], n, batch, 2, ctx.primes)
         parsed = time.perf_counter()
         p0, p1 = ctx.primes

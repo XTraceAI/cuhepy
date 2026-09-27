@@ -90,3 +90,16 @@ def test_transport_predictions_use_local_samples_then_score_other_samples():
     assert result['predicted']['layout'] == "distance2"
     assert result['measured_best'] == "distance2-p0"
     assert result['measured_regret_ms'] == 0
+
+
+def test_fresh_layout_costs_terminal_preparation_despite_later_cache_hit():
+    d = report()
+    r = d['results']['owner']
+    r['cases']['g1-p1'] = deepcopy(r['cases']['g1-p0'])
+    r['cases']['g1-p1']['setup']['terminal_prepare_s'] = 0
+    r['samples']['g1-p1/local'] = deepcopy(r['samples']['g1-p0/local'])
+    r['variants']['g1-p1'] = 'g1-p1'
+    r['plaintext_decoders']['g1-p1'] = 'native'
+    rows = planner.rank(d)
+    assert rows[0].setup_compute_ms == pytest.approx(1000)
+    assert rows[1].setup_compute_ms == rows[0].setup_compute_ms

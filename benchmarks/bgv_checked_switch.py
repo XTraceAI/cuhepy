@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CPU/GMP reference stage checking, not verified GPU/search performance.
+"""CPU reference/native stage checking, not verified GPU/search performance.
 
 Inputs are already trusted canonical synthetic tensors. Fresh CSPRNG batch
 weights, full output parsing, trusted CRT/digits and all checking are timed.
@@ -42,17 +42,25 @@ def main():
     parser.add_argument('--ring-degree', type=int, default=16384, choices=(64, 2048, 16384))
     parser.add_argument('--batches', type=int, nargs='+', default=[1, 8, 32])
     parser.add_argument('--repeats', type=int, default=10)
+    parser.add_argument('--native', action='store_true', help='Add a paired native checker on the same canonical tensors/output')
     parser.add_argument('--json-out', type=Path, required=True)
     args = parser.parse_args()
     if not 1 <= args.repeats <= 30 or any(not 1 <= b <= 64 for b in args.batches) or len(set(args.batches)) != len(args.batches):
         parser.error('Invalid bounded reference workload')
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
     hashes = provenance()
+    for path in sorted((REPO_ROOT/'experiments/bfv_search_lab/_verify').glob('*')):
+        if path.is_file() and (path.suffix in ('.py', '.h', '.cpp', '.so') or path.name == 'Makefile'):
+            hashes[str(path.relative_to(REPO_ROOT))] = hashlib.sha256(path.read_bytes()).hexdigest()
     hashes[str(Path(__file__).resolve().relative_to(REPO_ROOT))] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     setup = {}
     setup['keygen_s'], (pk, sk) = timed(bgv.key_gen, args.ring_degree, q_bits=120, rns_modulus=True)
     setup['evaluation_key_s'], keys = timed(trace.evaluation_keys, pk, sk, 1)
     setup['context_s'], context = timed(Context.from_bgv, pk, keys)
+    native = None
+    if args.native:
+        from experiments.bfv_search_lab.native_check_bgv import NativeCheckArithmetic
+        setup['native_context_s'], native = timed(NativeCheckArithmetic, context)
     del sk
     data_rng, order_rng = random.Random(20260928), random.Random(20260929)
     samples, warmup, cases = {}, {}, {}
@@ -66,16 +74,24 @@ def main():
             packet_s, packet = timed(request.result_packet, output)
             # Complete immutable proposed output precedes every private weight.
             order = ['reference', 'check']
+            if native is not None:
+                native_begin_s, native_request = timed(context.begin, raw, batch, b'b'*32, native=native)
+                native_packet = native_request.result_packet(output)
+                order.append('native')
             order_rng.shuffle(order)
             for operation in order:
                 if operation == 'reference':
                     reference_s, expected = timed(recompute, tensors, pk, keys)
                     if expected != output:
                         raise AssertionError('Reference recomputation changed')
-                else:
+                elif operation == 'check':
                     start = time.perf_counter()
                     checked = request.check_once(packet)
                     check_s = time.perf_counter()-start
+                else:
+                    native_check_s, native_result = timed(native_request.check_once, native_packet)
+                    if not native_result.accepted:
+                        raise AssertionError('Honest native stage rejected')
             if not checked.accepted:
                 raise AssertionError('Honest stage result rejected')
             row = dict(reference_full_q_arithmetic_s=reference_s,
@@ -83,6 +99,10 @@ def main():
                        input_pack_s=input_pack_s, begin_parse_bind_s=request_s,
                        result_pack_s=packet_s, check_s=check_s, **checked.phase_seconds)
             row['verifier_with_begin_s'] = request_s+check_s
+            if native is not None:
+                row.update(native_begin_s=native_begin_s, native_check_s=native_check_s,
+                           native_with_begin_s=native_begin_s+native_check_s,
+                           **{'native_'+k: v for k, v in native_result.phase_seconds.items()})
             (entries if repeat else warmup.setdefault(str(batch), [])).append(row)
             if not repeat:
                 mutation = context.begin(raw, batch, b'b'*32)
@@ -98,10 +118,11 @@ def main():
                                 whole_polynomial_checks_per_limb=CHECKS,
                                 single_attempt_statistical_bound_bits_at_least=59*CHECKS,
                                 soundness_bound='For fixed invalid output: <= min(p0,p1)^(-3), conditional on trusted inputs/key and hidden fresh weights.')
-    report = dict(kind='bgv_checked_switch_reference', scope=__doc__, git_head=head, utc=datetime.now(UTC).isoformat(),
+    report = dict(kind='bgv_checked_switch_native_comparison' if args.native else 'bgv_checked_switch_reference',
+                  scope=__doc__, git_head=head, utc=datetime.now(UTC).isoformat(),
                   command=sys.argv, n=pk.n, q_hex=format(pk.q, 'x'), primes=context.primes, setup=setup,
                   public_fixture_seed=20260928, measurement_order_seed=20260929,
-                  repeats=args.repeats, cases=cases, samples=samples, warmup=warmup,
+                  repeats=args.repeats, native=args.native, cases=cases, samples=samples, warmup=warmup,
                   all_honest_stages_accepted=True, all_mutation_checks_rejected=True,
                   python=sys.version, platform=platform.platform(), source_and_binary_sha256=hashes,
                   medians={k: {f: statistics.median(r[f] for r in rows) for f in rows[0]} for k, rows in samples.items()})

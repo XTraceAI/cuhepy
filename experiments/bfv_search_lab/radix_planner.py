@@ -92,7 +92,12 @@ def rank(report, *, index_mode="owner", upload_mbps=None, download_mbps=None,
         local_ms = 1000*statistics.median(row["total_s"] for row in rows)
         network = 0 if local else rtt_ms+8*(query+4)/(upload_mbps*1000)+8*(response+4)/(download_mbps*1000)
         setup = case["setup"]
-        compute = 1000*sum(_number(setup[k]) for k in SETUP_FIELDS)
+        # Frontier variants share a client: repeated terminal widths can hit
+        # its cache. Fresh-layout costing must charge the first preparation,
+        # not silently inherit the near-zero cost of a later cache hit.
+        terminal = max(_number(c['setup']['terminal_prepare_s']) for c in measured['cases'].values()
+                       if c['layout_name'] == label and c['selected']['terminal_bits'] == plan['terminal_bits'])
+        compute = 1000*(sum(_number(setup[k]) for k in SETUP_FIELDS if k != 'terminal_prepare_s')+terminal)
         byte_fields = (setup["full_index_coefficient_bytes"], setup["full_key_coefficient_bytes"])
         if any(type(v) is not int or v <= 0 for v in byte_fields):
             raise ValueError("Missing coefficient registration-size floor")
