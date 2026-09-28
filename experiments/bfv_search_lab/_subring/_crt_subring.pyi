@@ -1,0 +1,6 @@
+"""Public-only word arithmetic for the isolated E29 experiment."""
+
+ABI_VERSION: int
+
+def prepare(n: int, slots: int, columns: int, replies: int, q: int, psi: int, data: bytes) -> object: ...
+def evaluate(index: object, corrections: bytes, saved: bytes) -> bytes: ...
