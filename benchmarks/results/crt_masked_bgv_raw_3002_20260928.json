@@ -1,0 +1,346 @@
+{
+  "utc": "2026-09-28T18:25:35.841020+00:00",
+  "command": [
+    "benchmarks/crt_masked_bgv_lab.py",
+    "--cache-dir",
+    "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+    "--json-out",
+    "benchmarks/results/crt_masked_bgv_raw_3002_20260928.json",
+    "--layout",
+    "raw",
+    "--q-bits",
+    "32",
+    "--seed",
+    "3002",
+    "--repeats",
+    "3"
+  ],
+  "git_head": "b6e41c8ab5df6175459b8b5d0f429e3b25382b39",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/crt_masked_bgv_lab.py": "d5d47f8a6ad1802a8c665c72bad056d9997a5e57879b7ca29dca41051017cb08",
+    "benchmarks/dictionary_layout_lab.py": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31",
+    "benchmarks/certified_filter_lab.py": "4faa08db3d109cc5c4e90573a7fc0999effb62e9a78679189059e9df13d7ea89",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "experiments/bfv_search_lab/crt_query_space.py": "0db18b53a6f58d6cdbc10d7d8bb83e011a6dae234748f12737f1f9560e8ef1cf",
+    "experiments/bfv_search_lab/crt_masked_bgv.py": "4c4519e061ec91706bd1eedcf0350b16bddd376cfa6797bd90f80e2740f1d9d9",
+    "experiments/bfv_search_lab/crt_linear_check.py": "ff3c67e97a4807f98bca34eac93e43ae7f1e6fb2543ab8d4bf76b1036e80dad0",
+    "experiments/bfv_search_lab/crt_native_bgv.py": "7f8466beeb70363caf9eb29f4964ebd3dbc0a6ea522bc5e7a2862ba966285e1e",
+    "experiments/bfv_search_lab/dyadic_crt.py": "364e017962129982f383956bdf6ecc384d1ed8a567d00dbc7e69de58bd3bf384",
+    "experiments/bfv_search_lab/rank_partition.py": "3d4c772feb11c2a1615566166f2c940b3388d98df5b499d668a7837c0b3e688f",
+    "experiments/bfv_search_lab/affine_dictionary.py": "0f811f9a5cd2628f1c6c2f048c1d32e65eaaf9aa5e3f942118342b3edf6daf05",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/folded_dictionary.py": "ffcf1a874b3ced51acde17c018047005c34121e72f0221237b7b77377de7f35c",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/seeded_bgv.py": "7e8631304dde122c4755f5f7391ef8ba6b9be213fd2c667a473b388175890272",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/test_crt_masked_bgv.py": "d696516a28a247789e87fa7f96153f02aee930db523a39272610cab21ee22af6",
+    "experiments/bfv_search_lab/test_crt_linear_check.py": "ab608736eeb3b1b9e97a1279712c88be91a5904842d1b0844901a96eb489844a",
+    "experiments/bfv_search_lab/test_crt_native_bgv.py": "63f1c4725ba46d4efbd220491ded94c832279ebaf00acb22d6da2057769f6351",
+    "experiments/bfv_search_lab/_subring/bindings.cpp": "fb634b218df0a548b830f92c1ffdbe24d1dc3f7bbf07f6b6cbfc1da896faa429",
+    "experiments/bfv_search_lab/_subring/Makefile": "cfd7d7188f378646bee184798df677d7fdd473d75084705f3366ad2b5d223033",
+    "experiments/bfv_search_lab/_subring/_crt_subring.pyi": "2fc37074a488c04d6435507f81b3a8ba56b16f4343cc587f7fa63fdc45608323",
+    "experiments/bfv_search_lab/_subring/_crt_subring.cpython-312-x86_64-linux-gnu.so": "ecd3611af5fd16077afcb050af555374b4d9659a50e397a72a0295c2a6abb07d"
+  },
+  "kind": "crt_response_transposition_masked_seeded_bgv",
+  "scope": "Research only. New key/index and conditional trusted preprocessing; no complete security or parameter approval. Paired GMP and new single-thread C++ public arithmetic; historical BGV is not a paired speedup. Full-q output checked without terminal rounding. Offline owner holds plaintext coordinates. Counts omit envelopes, authenticated transport, durable one-use state and network latency.",
+  "result": {
+    "dataset": "mushroom",
+    "layout": "raw",
+    "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+    "split_seed": 3002,
+    "count": 7996,
+    "dimension": 126,
+    "unique_rows": 7996,
+    "setup": {
+      "n": 16384,
+      "t": 1153,
+      "q_bits_requested": 32,
+      "eta": 21,
+      "order_s": 0.0,
+      "fit_s": 0.0,
+      "allocation_s": 0.6170720662921667,
+      "allocation_candidates": [
+        {
+          "slots": 1,
+          "old_input_tiles": 63,
+          "response_ciphertexts": 1,
+          "selected": true
+        }
+      ],
+      "coordinate_enroll_s": 0.30379570182412863,
+      "key_gen_s": 0.09077798016369343,
+      "q": "4294475777",
+      "q_bits_actual": 32,
+      "map_body_bytes": 150,
+      "map_zlib9_bytes": 142,
+      "full_plaintext_cache_bytes": 127936,
+      "full_plaintext_cache_zlib9_bytes": 28985,
+      "common_stable_id_bytes": 15992,
+      "full_affine_cache_modeled_bytes": 126087,
+      "unique_maps": 1,
+      "map_ranks": [
+        126
+      ],
+      "leaf_paths": [
+        ""
+      ],
+      "private_map_body_bytes": 0,
+      "map_ids": [
+        0
+      ],
+      "counts": [
+        7996
+      ],
+      "previous_input_ciphertexts": 63,
+      "previous_key_switches": 189,
+      "private_coordinate_entries": 1007496,
+      "transposed_index_s": 3.4255658192560077,
+      "index_seeded_packet_bytes": 8270892,
+      "native_prepare_s": 0.586839955765754,
+      "conditional_checker_prepare_s": 1.7910647708922625
+    },
+    "cost_model": {
+      "n": 16384,
+      "t": 1153,
+      "q_bits": 32,
+      "query_coordinates": 126,
+      "coordinate_columns": 126,
+      "subring_degree": 1,
+      "replies": 1,
+      "online_query_body_bytes": 252,
+      "online_response_body_bytes": 131072,
+      "expanded_index_body_bytes": 16515072,
+      "naive_scalar_basis_index_body_bytes": 16515072,
+      "offline_seeded_answer_body_bytes_per_token": 65568,
+      "stored_expanded_answer_bytes_per_token": 131072,
+      "owner_private_mask_seed_bytes_per_token": 32,
+      "online_ring_products": 0,
+      "online_scalar_products": 4128768,
+      "native_ntt_index_word_bytes": 33030144,
+      "native_online_pointwise_scalar_products": 4128768,
+      "online_ciphertext_products": 0,
+      "online_key_switches": 0,
+      "worst_case_phase_bound": 1799111253,
+      "fresh_phase_bound": 24789,
+      "checker_rounds": 5,
+      "checker_prepare_ring_products": 0,
+      "checker_prepare_scalar_products": 20643840,
+      "checker_epoch_residue_body_bytes": 657880,
+      "checker_epoch_seeded_body_bytes": 2680,
+      "checker_token_residue_body_bytes": 20,
+      "checker_online_scalar_products": 164470,
+      "full_degree_single_encryption_ciphertext_body_bytes": 131072
+    },
+    "query_ids_with_warmup": [
+      6785,
+      462,
+      2252,
+      4158
+    ],
+    "offline_samples": [
+      {
+        "owner_answer_prepare_s": 0.08846270618960261,
+        "trusted_answer_fingerprint_s": 0.04029407165944576,
+        "answer_seeded_packet_bytes": 65642,
+        "server_expanded_answer_bytes": 131072
+      },
+      {
+        "owner_answer_prepare_s": 0.0888375318609178,
+        "trusted_answer_fingerprint_s": 0.039971236139535904,
+        "answer_seeded_packet_bytes": 65642,
+        "server_expanded_answer_bytes": 131072
+      },
+      {
+        "owner_answer_prepare_s": 0.08810332883149385,
+        "trusted_answer_fingerprint_s": 0.04101182613521814,
+        "answer_seeded_packet_bytes": 65642,
+        "server_expanded_answer_bytes": 131072
+      },
+      {
+        "owner_answer_prepare_s": 0.08831528201699257,
+        "trusted_answer_fingerprint_s": 0.04095579497516155,
+        "answer_seeded_packet_bytes": 65642,
+        "server_expanded_answer_bytes": 131072
+      }
+    ],
+    "warmup": {
+      "query_id": 6785,
+      "owner_request_s": 0.00019940314814448357,
+      "public_evaluate_s": 1.463072615209967,
+      "public_native_evaluate_s": 0.016850152052938938,
+      "response_pack_s": 0.0038576042279601097,
+      "conditional_verify_s": 0.03977985214442015,
+      "decrypt_s": 0.01616200990974903,
+      "decode_select_s": 0.00590240303426981,
+      "online_local_s": 1.5289738876745105,
+      "online_native_local_s": 0.08275142451748252,
+      "online_query_body_bytes": 252,
+      "online_response_body_bytes": 131072,
+      "plaintext_cache_s": 0.005676889326423407,
+      "maximum_phase_bound": 898873929,
+      "all_distances_and_stable_top3_exact": true,
+      "score_digest": "7ed81865139e9264d79ffe8a8721a930a4b0690bc43916dcf9453edab59e9f9f"
+    },
+    "samples": [
+      {
+        "query_id": 462,
+        "owner_request_s": 0.0001896335743367672,
+        "public_evaluate_s": 1.4507119660265744,
+        "public_native_evaluate_s": 0.01679176092147827,
+        "response_pack_s": 0.0038978843949735165,
+        "conditional_verify_s": 0.04002584796398878,
+        "decrypt_s": 0.016392364166676998,
+        "decode_select_s": 0.006307501345872879,
+        "online_local_s": 1.5175251974724233,
+        "online_native_local_s": 0.08360499236732721,
+        "online_query_body_bytes": 252,
+        "online_response_body_bytes": 131072,
+        "plaintext_cache_s": 0.012615161947906017,
+        "maximum_phase_bound": 840966825,
+        "all_distances_and_stable_top3_exact": true,
+        "score_digest": "d4bd7e8f8095f013f25f7c15ce61571f343dd045c32b33c4f4e66a21638ba8b2"
+      },
+      {
+        "query_id": 2252,
+        "owner_request_s": 0.0001726839691400528,
+        "public_evaluate_s": 1.4670777888968587,
+        "public_native_evaluate_s": 0.016980426385998726,
+        "response_pack_s": 0.0038640941493213177,
+        "conditional_verify_s": 0.04056022688746452,
+        "decrypt_s": 0.01650303741917014,
+        "decode_select_s": 0.006274479907006025,
+        "online_local_s": 1.5344523112289608,
+        "online_native_local_s": 0.08435494871810079,
+        "online_query_body_bytes": 252,
+        "online_response_body_bytes": 131072,
+        "plaintext_cache_s": 0.002856764942407608,
+        "maximum_phase_bound": 978644931,
+        "all_distances_and_stable_top3_exact": true,
+        "score_digest": "061acb4fcb6c53b0491b5246e7b23b046c52610a8320ebb1e5a519f0302bd317"
+      },
+      {
+        "query_id": 4158,
+        "owner_request_s": 0.00017922371625900269,
+        "public_evaluate_s": 1.4551991899497807,
+        "public_native_evaluate_s": 0.01684287190437317,
+        "response_pack_s": 0.003957906272262335,
+        "conditional_verify_s": 0.039918814320117235,
+        "decrypt_s": 0.016615489032119513,
+        "decode_select_s": 0.0062131090089678764,
+        "online_local_s": 1.5220837322995067,
+        "online_native_local_s": 0.08372741425409913,
+        "online_query_body_bytes": 252,
+        "online_response_body_bytes": 131072,
+        "plaintext_cache_s": 0.0028836852870881557,
+        "maximum_phase_bound": 924381810,
+        "all_distances_and_stable_top3_exact": true,
+        "score_digest": "cf5fa1b8f653037b14c2104fab0cd8e278fd123533c85523a85c2db1593c1a24"
+      }
+    ],
+    "summary": {
+      "owner_request_s": {
+        "mean": 0.00018051375324527422,
+        "median": 0.00017922371625900269,
+        "min": 0.0001726839691400528,
+        "max": 0.0001896335743367672
+      },
+      "public_evaluate_s": {
+        "mean": 1.4576629816244047,
+        "median": 1.4551991899497807,
+        "min": 1.4507119660265744,
+        "max": 1.4670777888968587
+      },
+      "public_native_evaluate_s": {
+        "mean": 0.016871686403950054,
+        "median": 0.01684287190437317,
+        "min": 0.01679176092147827,
+        "max": 0.016980426385998726
+      },
+      "response_pack_s": {
+        "mean": 0.003906628272185723,
+        "median": 0.0038978843949735165,
+        "min": 0.0038640941493213177,
+        "max": 0.003957906272262335
+      },
+      "conditional_verify_s": {
+        "mean": 0.040168296390523515,
+        "median": 0.04002584796398878,
+        "min": 0.039918814320117235,
+        "max": 0.04056022688746452
+      },
+      "decrypt_s": {
+        "mean": 0.016503630205988884,
+        "median": 0.01650303741917014,
+        "min": 0.016392364166676998,
+        "max": 0.016615489032119513
+      },
+      "decode_select_s": {
+        "mean": 0.00626503008728226,
+        "median": 0.006274479907006025,
+        "min": 0.0062131090089678764,
+        "max": 0.006307501345872879
+      },
+      "online_local_s": {
+        "mean": 1.5246870803336303,
+        "median": 1.5220837322995067,
+        "min": 1.5175251974724233,
+        "max": 1.5344523112289608
+      },
+      "online_native_local_s": {
+        "mean": 0.0838957851131757,
+        "median": 0.08372741425409913,
+        "min": 0.08360499236732721,
+        "max": 0.08435494871810079
+      },
+      "online_query_body_bytes": {
+        "mean": 252,
+        "median": 252,
+        "min": 252,
+        "max": 252
+      },
+      "online_response_body_bytes": {
+        "mean": 131072,
+        "median": 131072,
+        "min": 131072,
+        "max": 131072
+      },
+      "plaintext_cache_s": {
+        "mean": 0.00611853739246726,
+        "median": 0.0028836852870881557,
+        "min": 0.002856764942407608,
+        "max": 0.012615161947906017
+      }
+    },
+    "token_utilization_model": [
+      {
+        "tokens_prepared": 1,
+        "tokens_used": 1,
+        "offline_plus_online_bytes_per_completed_query": 196966.0
+      },
+      {
+        "tokens_prepared": 100,
+        "tokens_used": 100,
+        "offline_plus_online_bytes_per_completed_query": 196966.0
+      },
+      {
+        "tokens_prepared": 100,
+        "tokens_used": 50,
+        "offline_plus_online_bytes_per_completed_query": 262608.0
+      },
+      {
+        "tokens_prepared": 100,
+        "tokens_used": 10,
+        "offline_plus_online_bytes_per_completed_query": 787744.0
+      }
+    ],
+    "baseline_120bit_index_bytes": 30965760,
+    "baseline_best_allocated_120bit_index_bytes": 30965760,
+    "checker_ideal_error_bits_lower_bound": 153,
+    "baseline_previous_online_query_and_reply_bytes": 377028,
+    "all_distances_and_stable_top3_exact": true,
+    "conditional_check_before_decryption": true,
+    "all_gmp_native_ciphertext_coefficients_equal": true
+  }
+}

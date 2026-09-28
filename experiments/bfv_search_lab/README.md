@@ -47,6 +47,14 @@ The source/key, offline traffic, expanded index and token costs are retained.
 These new small-parameter entries are correctness/count experiments, not a
 secure matrix scheme, a native speedup or complete preprocessing verification.
 
+The [seventh creative cycle](../../docs/research/crt-masked-query-results.md)
+implements response-transposed CRT columns and one-use masked search with
+independently encrypted offline answers. It compares private affine maps with
+raw bit columns on full-size public indexes. Full-Q output permits a conditional
+complete linear check; the new standalone C++ subring evaluator agrees with
+GMP coefficient for coefficient. Token work/state, a mask-recovery failure,
+modulus changes and the missing production protocol are explicit in the report.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -118,6 +126,10 @@ assurance. The raw CUDA path does not provide attestation.
 | `matrix_search_cost.py` | E28/E17 explicit source/key/query/state accounting, seeded-mask controls and narrow E25 support-class obstruction |
 | `matrix_masked_query.py` | E17 one-use full/constant-subspace masks, charged offline answers/index conversion and scalar online evaluation; local lifecycle only |
 | `matrix_linear_check.py` | E14 private one-use fingerprints of the scalar online relation from trusted offline inputs; no preprocessing proof |
+| `crt_query_space.py` | E29 public CRT query embedding, response-coordinate columns, direct short-subring corrections and complete byte/work accounting |
+| `crt_masked_bgv.py` | E29 seeded linear-circuit key profile, trusted owner enrollment/one-use offline answers and independent GMP evaluation |
+| `crt_linear_check.py` | Conditional full-Q response checking, private seeded challenges, adjoint/scalar preprocessing and bounded local epoch reuse |
+| `crt_native_bgv.py`, `_subring/bindings.cpp` | Separate homemade public C++ scalar/short-NTT evaluator over full-ring ciphertexts; no production or GPU integration |
 | `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
 | `adaptive_refinement.py` | Local exact threshold discovery, stable ties and whole-ciphertext-tile accounting; exposes the access schedule |

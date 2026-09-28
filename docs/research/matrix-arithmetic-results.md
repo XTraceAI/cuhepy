@@ -264,6 +264,13 @@ public toy-fixture identifiers/counts, timings and hashes, not customer data.
 
 ## 6. The next discriminating experiments
 
+**Follow-up implemented:** [E29 CRT response columns](crt-masked-query-results.md)
+now tests items 1–3 below on the actual search layout, including a failed
+deterministic-cache construction, independently encrypted tokens, complete
+conditional checks and full-size homemade GMP/C++ controls. The remaining
+questions move to cheaper trustworthy correlations, mixed spaces and lifetime
+costs; these original E28 results are unchanged.
+
 1. **Extend masks to the actual CRT query space.** Derive a public embedding
    for the E26/E27 component queries while leaving the owner map private.
    Compare masks in that space with full-ring masks. Charge the resulting

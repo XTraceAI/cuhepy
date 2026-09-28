@@ -64,16 +64,28 @@ fingerprint under trusted offline inputs. All 234 tiny encrypted searches are
 exact; 148 count/state models retain costs and failures. These are known
 ingredients and new local experiments, not an established novel primitive.
 
-**Next cycle:** derive masks in the actual E26/E27 CRT query space, keeping
-private maps private, and compare the resulting index/token/verification costs
-with scalar-ring search and complete caching. Price trusted preprocessing and
-update invalidation before claiming a protocol win. Keep the independent-key
-matrix orientation as an alternative; the literal general matrix key growth
-does not yet justify a CUDA implementation. Routine packed-workspace, codec
-and rank/capacity tuning remain secondary. The preceding company/research
-implementation remains checkpointed at
-`checkpoint/dyadic-rank-capacity-2026-09-27` (`10a9125`); the new oracle source
-is committed at `87e4b21`.
+**Seventh cycle implemented:** [CRT response columns and masked search](crt-masked-query-results.md)
+(E29) extend the idea to actual E26/E27 maps and full-degree homemade BGV.
+Transposing the index into the reply layout removes online ciphertext products,
+switching and terminal rounding; one-use independently encrypted answers and
+public scalar/subring corrections preserve a complete linear verification
+relation. A public linear-solve regression rejects deterministic ciphertext
+mask caches. Two full-size public splits compare affine/40-bit and raw/32-bit
+representations, including token upload, enrollment, verification and full-cache
+controls. All 16 encrypted queries and 336 regressions pass. The separate C++
+subring evaluator is exact against GMP; no CUDA or production path changed.
+
+**Next cycle:** select query spaces jointly with verification and token lifetime.
+The affine path reduces server index size; raw bit columns need much less private
+checking state and communication. Test mixed representations and representative
+scaling before choosing between them. Investigate trustworthy, cheaper token
+preparation and updateable correlations, retaining the demonstrated mask-recovery
+failure. A matching GPU experiment follows a precise state/trust comparison.
+Keep the independent-key matrix orientation as another candidate; its literal
+key growth still does not justify a general matrix CUDA implementation.
+Previous checkpoints include `checkpoint/dyadic-rank-capacity-2026-09-27`
+(`10a9125`) and `checkpoint/matrix-query-space-2026-09-28` (`cee16cf`). E29 source
+is committed at `26e8ffb` and `b6e41c8`.
 
 ## Objective and working method
 
@@ -93,7 +105,7 @@ be known. Check the closest work before presenting a contribution claim.
 For the next research cycle:
 
 1. Investigate several competing hypotheses with small independent algebraic
-   models. Use the completed E19–E28 results above to choose the next competing
+   models. Use the completed E19–E29 results above to choose the next competing
    questions. A plausible but uncertain idea deserves
    a cheap test.
 2. For each, write the claimed difference from its closest known construction,
@@ -460,10 +472,13 @@ traffic and total index/token state increase. Tests reject a query outside the
 mask space and demonstrate leakage after token rollback/reuse. This does not
 establish a complete secure preprocessing protocol.
 
-**Next discriminating test:** generalize to the existing CRT component-query
-space without revealing the owner's affine map. Compare equal total state,
-offline/online communication, authenticated preprocessing and update lifetime.
-No ciphertext-only upload conversion has yet been implemented.
+**Seventh-cycle result:** E29 now implements that CRT extension and a raw-column
+control. Fresh encrypted offline answers are necessary in the tested design;
+deterministic combinations of the public index disclose their masks by solving
+a public linear system. Independent owner encryption blocks that exact relation
+but requires access to the plaintext coordinates. The next discriminating test
+is trusted/verified preprocessing with lower total cost and useful update
+lifetime. No general ciphertext-only upload conversion is implemented.
 
 Extend the [query-upload proposal](encrypted-search-literature-agenda.md#7-e17--make-query-upload-proportional-to-useful-input):
 instead of converting a short encrypted query into a general-purpose full-ring
@@ -494,6 +509,41 @@ composite-modulus and poisoned-offline-state controls retain the limits. It is
 not a proof of preprocessing or a replacement for existing response authority.
 Next test whether compact output and updates preserve a useful verifiable
 relation after all offline trust and private arithmetic costs are charged.
+
+**Seventh-cycle result:** E29's linear-circuit correctness bound permits full-Q
+40-bit or 32-bit replies, avoiding terminal rounding in this experiment. It
+implements complete output fingerprints with adjoint preprocessing and bounded
+epoch reuse of hidden challenges, following known Freivalds/Slalom ideas. Raw
+query coordinates have larger encrypted index storage but much smaller checking
+hints. Trusted preprocessing, durable lifetime budgets and private arithmetic
+are still obligations; poisoned trusted-state and rounded-output failures are
+retained. The next question is a representation that reduces complete owner
+state and trusted token work together, not just a faster field check.
+
+## E29 — Can query space, reply layout and verification be designed together?
+
+**Implemented probe:** encrypted coordinate columns already occupy the final
+reply positions. Public correction polynomials are constant inside CRT leaves
+and use a short subring, while encryption retains the full degree. A separate
+homemade C++ implementation contracts prepared short NTT fibers; the raw-column
+case uses scalar products. Exact full-size encrypted experiments compare both
+representations and charge their offline answers, private checking state and
+expired-token costs. See the [report](crt-masked-query-results.md).
+
+**Possible contribution:** a useful joint search/state/verification tradeoff,
+with a new bound or protocol if subsequent work establishes one. Transposition,
+CRT, NTT, input blinding and secret Freivalds preprocessing are known tools.
+The lower online bytes and standalone arithmetic timings alone are insufficient.
+
+**Next experiments:** mixed raw/affine public spaces, index-size/client-state
+Pareto curves, alternative ways of preparing authenticated correlations, and
+update/expiry workloads. Derive the token and epoch invariants first. Test
+complete caching and ordinary seeded BGV at equal contracts. A GPU backend is
+useful when it tests the new contraction, not as a substitute for this analysis.
+
+**Falsification:** retaining the index or paying for fresh tokens dominates;
+the mask leaks through a proposed shortcut; verification state becomes another
+database cache; or consumed/expired token costs erase the apparent IO benefit.
 
 Use the current checked-product stage as a measured control, not a mandatory
 path to extend layer by layer. Ask whether a different representation or

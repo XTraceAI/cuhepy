@@ -1,5 +1,19 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-28 seventh creative follow-up:**
+[CRT response columns, query masks and complete linear checking](crt-masked-query-results.md)
+now implement E29 on the actual full-degree search layout. Targeted primary
+reading adds [Slalom](https://arxiv.org/html/1806.03287v2), Sections 3.2–3.3 and
+Appendix B, for secret verification preprocessing, bounded reuse and one-use
+blinding, plus [HintlessPIR](https://eprint.iacr.org/2023/1733) at abstract level
+as a preprocessing lead. These precedents preclude claiming those ingredients
+as new. The experiment's question is the combined representation/state/lifetime
+tradeoff. Independently encrypted offline answers prevent a demonstrated exact
+mask-recovery shortcut; trusted preprocessing itself remains an obligation.
+The next comparison is mixed raw/affine query spaces, complete caching and
+updateable authenticated correlations, with native/GPU work conditional on the
+resulting protocol costs. E29 is not a new production authorization path.
+
 **2026-09-28 sixth creative follow-up:**
 [matrix arithmetic, query masks and conditional verification](matrix-arithmetic-results.md)
 now implement the first E28 oracles and new E17/E14 probes. The matrix
@@ -616,8 +630,8 @@ hypotheses, failures and follow-up options.
 | Order | Concrete output | Decision gate |
 |---|---|---|
 | 1 | Use the preserved implementation as a control; state each competing hypothesis and its difference from the closest prior work | No novelty assumption; no need to finish the current verifier before exploring |
-| 2 | Use the completed E28 orientation/gadget and E17 full/constant-mask references to model the actual CRT query space | Charge offline upload, converted index, token pool, output packing and private maps; do not substitute online savings for total savings |
-| 3 | Test E17 query space and E14 complete verification together, retaining E25/E26 encrypted exceptions as a competing direction | Trusted offline state is an obligation, not a solved premise. Include token lifecycle, updates, private arithmetic, parameter changes and outside-subspace leakage |
+| 2 | Extend completed E29 raw/affine controls to mixed query spaces and larger distinct indexes | Compare complete private owner state, encrypted index, setup, offline upload and verification; the old product-count objective no longer applies |
+| 3 | Test less costly authenticated token preparation and updateable correlations, retaining E28/E25 alternatives | Trusted offline state is an obligation. Preserve the deterministic-cache mask-recovery regression; include expiry, retries, parameter changes and private leakage |
 | 4 | Independent homemade encrypted references for the most informative survivors | A toy speed loss is acceptable; correctness, assumptions and the reason to continue must be explicit |
 | 5 | Focused implementation and ablations for promising candidates | Establish whether the proposed mechanism, rather than unequal baselines, explains a benefit |
 | 6 | Choose a paper direction; deepen proofs, parameter assurance, complete protocol and representative measurements | Claim only what the prior-art review, mathematics and equal-contract results support |
