@@ -200,8 +200,10 @@ def evaluate(index: Index, answer: Answer, request: Request, pk: bgv.PublicKey) 
     result = []
     for i, (saved, limit) in enumerate(zip(answer.ciphertexts, limits, strict=True)):
         parts = list(saved.components)
-        for column, poly in zip(index.columns, polys, strict=True):
-            parts = [tuple((x + y) % pk.q for x, y in zip(part, _ring_product(c, poly, pk.q), strict=True))
-                     for part, c in zip(parts, column[i].components, strict=True)]
+        for column, poly, short in zip(index.columns, polys, coefficients, strict=True):
+            products = [tuple(x * short[0] % pk.q for x in c) if index.space.slots == 1 else _ring_product(c, poly, pk.q)
+                        for c in column[i].components]
+            parts = [tuple((x + y) % pk.q for x, y in zip(part, product, strict=True))
+                     for part, product in zip(parts, products, strict=True)]
         result.append(bgv.Ciphertext(tuple(parts), pk.key_id, limit))
     return tuple(result)

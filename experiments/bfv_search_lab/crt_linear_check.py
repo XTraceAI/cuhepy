@@ -63,6 +63,11 @@ class EpochCheck:
         for rho in self._challenges():
             row = []
             for column in index.columns:
+                if self.space.slots == 1:
+                    row.append((sum((a * b for cipher, pair in zip(column, rho, strict=True)
+                                     for component, weights in zip(cipher.components, pair, strict=True)
+                                     for a, b in zip(component, weights, strict=True)), mpz(0)) % pk.q,))
+                    continue
                 total = [mpz(0)] * pk.n
                 for cipher, pair in zip(column, rho, strict=True):
                     for component, weights in zip(cipher.components, pair, strict=True):

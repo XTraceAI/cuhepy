@@ -10,13 +10,17 @@ import pytest
 from experiments.bfv_search_lab import crt_linear_check as check
 from experiments.bfv_search_lab import crt_masked_bgv as masked
 from experiments.bfv_search_lab import crt_query_space as space
+from experiments.bfv_search_lab import dyadic_crt as tree
 from experiments.bfv_search_lab import owner_bgv as owner
 from experiments.bfv_search_lab import reduction_oracles as reduction
 from experiments.bfv_search_lab.test_crt_masked_bgv import EPOCH, SEED, TOKEN, fixture
 
 
-def prepared():
+def prepared(scalar=False):
     s, rows = fixture()
+    if scalar:
+        s = space.space(tree.layout(tree.context(32, ("",), 97), (3,), (29,)), (0,))
+        rows = [[[i % 2, i % 3 - 1, i % 5 - 2] for i in range(29)]]
     pk, sk = masked.key_gen(s, q_bits=32, eta=1)
     with closing(owner.OwnerClient(pk, sk)) as client:
         index, _ = masked.enroll(s, rows, EPOCH, client)
@@ -25,8 +29,9 @@ def prepared():
     return pk, index, answer, request, masked.evaluate(index, answer, request, pk)
 
 
-def test_adjoint_preparation_matches_independent_signed_coefficient_shifts():
-    pk, index, _, _, _ = prepared()
+@pytest.mark.parametrize("scalar", (False, True))
+def test_adjoint_preparation_matches_independent_signed_coefficient_shifts(scalar):
+    pk, index, answer, request, result = prepared(scalar)
     gate = check.EpochCheck(index, pk, rng=random.Random(7200))
     for rho, fingerprints in zip(gate._challenges(), gate._fingerprints, strict=True):
         for column, hs in zip(index.columns, fingerprints, strict=True):
@@ -38,6 +43,8 @@ def test_adjoint_preparation_matches_independent_signed_coefficient_shifts():
                         shifted = reduction.ring_product(tuple(map(int, p)), monomial)
                         actual += sum(a * b for a, b in zip(shifted, weights, strict=True))
                 assert actual % pk.q == expected
+    gate.prepare_answer(answer)
+    assert gate.verify_once(request, result)
 
 
 def test_every_full_ciphertext_coefficient_is_checked_before_decryption():
