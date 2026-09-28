@@ -53,19 +53,20 @@ def pilot(n, rank, seed, mask_space):
         owner_s, (ticket, packet) = timed(masked.prepare, ctx, secret, out_secret, mask_seed, epoch, token_id, rng,
                                          mask_space=mask_space)
         server_s, answer = timed(masked.evaluate_offline, ctx, index, packet)
+        check_prepare_s, gate = (timed(check.LinearTicket, converted, answer, random.Random(16000 + token))
+                                 if mask_space == "constant" else (None, None))
         assert packet.packet.coefficient_bytes == model["offline_query_coefficient_bytes_per_token"]
         offline_samples.append({"token_id": token_id.hex(), "owner_prepare_s": owner_s, "server_prepare_s": server_s,
+                                "conditional_check_prepare_s": check_prepare_s,
                                 "upload_coefficient_bytes": packet.packet.coefficient_bytes,
                                 "stored_answer_coefficient_bytes": len(answer.results) * (rank + 1) * n * 8})
-        prepared.append((ticket, answer))
+        prepared.append((ticket, answer, gate))
     samples, score_hashes = [], []
     queries = list(range(1 << rank))
     rng.shuffle(queries)
-    for query, (ticket, answer) in zip(queries, prepared, strict=True):
+    for query, (ticket, answer, gate) in zip(queries, prepared, strict=True):
         weights = tuple(ctx.constant(1 - 2 * ((query >> bit) & 1)) for bit in range(rank))
         owner_s, request = timed(ticket.consume, weights, epoch)
-        check_prepare_s, gate = (timed(check.LinearTicket, converted, answer, random.Random(16000 + query))
-                                 if mask_space == "constant" else (None, None))
         online_s, result = timed(masked.evaluate_online, converted, answer, request)
         check_s = None
         if gate is not None:
@@ -88,7 +89,7 @@ def pilot(n, rank, seed, mask_space):
                         "online_server_s": online_s, "decrypt_decode_s": finish_s,
                         "online_upload_coefficient_bytes": len(request.coefficient_body()),
                         "response_coefficient_bytes": len(result) * (rank + 1) * n * 8,
-                        "conditional_check_prepare_s": check_prepare_s, "conditional_check_s": check_s,
+                        "conditional_check_s": check_s,
                         "conditional_check_before_decryption": gate is not None,
                         "all_distances_and_stable_top3_exact": True, "local_reuse_rejected": True})
     return {"parameters": asdict(ctx), "seed": seed, "mask_space": mask_space,
