@@ -1,5 +1,30 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-28 sixth creative follow-up:**
+[matrix arithmetic, query masks and conditional verification](matrix-arithmetic-results.md)
+now implement the first E28 oracles and new E17/E14 probes. The matrix
+construction has been read beyond its abstract; targeted new reading includes
+[Park's CC-MM paper](https://eprint.iacr.org/2025/448),
+[Bae et al.'s matrix formats/external products](https://arxiv.org/html/2503.16080v1),
+and the overview of [Yang et al.'s preprocessing tradeoffs](https://arxiv.org/html/2606.25349v1).
+The report distinguishes reading depth, established ingredients and our
+experiments. A restricted query-mask space preserves scalar online arithmetic,
+with larger preprocessing/state costs and a conditional linear check. The next
+test is the actual private-map/CRT query space and its complete protocol costs,
+not a claim that these algebraic ingredients are novel or production ready.
+
+**2026-09-28 execution priority:** the user reaffirmed that creative, potentially
+original experiments take precedence over completing or maximally tuning the
+current pipeline. The updated
+[research priorities](creative-experiment-priorities.md#research-priority-reaffirmed-2026-09-28)
+put E28 alternative arithmetic, E17 conversion fused with matching, and E25/E26
+encrypted exceptions ahead of further E27 layout tuning or packed-workspace
+integration, with E14 co-design as another candidate. Each starts with a precise
+difference from prior work and a cheap falsifiable model. This is a change of
+execution order, not a new literature review or an established novelty claim.
+The E27 implementation remains checkpointed at
+`checkpoint/dyadic-rank-capacity-2026-09-27` (`10a9125`).
+
 **2026-09-27 fifth creative follow-up:**
 [rank repair, unequal CRT capacity and cache/update controls](dyadic-rank-results.md)
 now implement E27. The interesting comparison is a joint owner-state/rank/
@@ -581,17 +606,18 @@ literature-only update created no branches or scheme implementations. The
 2026-09-27 work uses `experiment/bgv-verification-packing` for E13/E14 oracles,
 E15 bounds, E16 layout/setup experiments and E13 transfer/stage checks, leaving
 the baseline PR branch unchanged. The implemented checkpoint `7dd927f` and
-`checkpoint/bgv-product-checks-2026-09-27` preserve that work. The order below
-supersedes the earlier engineering-first sequence and follows the project's
-2026-09-27 priority update. See the
-[experiment cards](creative-experiment-priorities.md) for E20/E21 and the
-sharpened E17/E19/E14 questions.
+`checkpoint/bgv-product-checks-2026-09-27` preserve that work. E20–E27 then ran
+on `experiment/creative-search-algebra`, with E27 preserved at `10a9125` in
+`checkpoint/dyadic-rank-capacity-2026-09-27`. The order below follows the
+project's 2026-09-28 research priority. The
+[experiment cards](creative-experiment-priorities.md) retain the earlier
+hypotheses, failures and follow-up options.
 
 | Order | Concrete output | Decision gate |
 |---|---|---|
 | 1 | Use the preserved implementation as a control; state each competing hypothesis and its difference from the closest prior work | No novelty assumption; no need to finish the current verifier before exploring |
-| 2 | Use the completed E20/E21 oracles, encrypted pilots and negative results to rule out unhelpful shortcuts | The existing full scan is the control; a compact mathematical answer is not automatically a cheap encrypted answer |
-| 3 | Extend E19 beyond its costly one-hot/factorized lookup; model E17 conversion fused with useful statistics and E14 verification of the proposed arithmetic | Include measured rank, adverse data, changed leakage, setup, rounds and required integer constraints |
+| 2 | Use the completed E28 orientation/gadget and E17 full/constant-mask references to model the actual CRT query space | Charge offline upload, converted index, token pool, output packing and private maps; do not substitute online savings for total savings |
+| 3 | Test E17 query space and E14 complete verification together, retaining E25/E26 encrypted exceptions as a competing direction | Trusted offline state is an obligation, not a solved premise. Include token lifecycle, updates, private arithmetic, parameter changes and outside-subspace leakage |
 | 4 | Independent homemade encrypted references for the most informative survivors | A toy speed loss is acceptable; correctness, assumptions and the reason to continue must be explicit |
 | 5 | Focused implementation and ablations for promising candidates | Establish whether the proposed mechanism, rather than unequal baselines, explains a benefit |
 | 6 | Choose a paper direction; deepen proofs, parameter assurance, complete protocol and representative measurements | Claim only what the prior-art review, mathematics and equal-contract results support |

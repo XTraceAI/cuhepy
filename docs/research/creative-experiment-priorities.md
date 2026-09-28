@@ -1,6 +1,6 @@
 # Creative experiment priorities
 
-Priority update, 2026-09-27, following the project's research direction.
+Priority update, 2026-09-28, following the project's research direction.
 This supersedes the execution order in earlier plans; it does not change their
 results. The implementation baseline is `7dd927f` on
 `experiment/bgv-verification-packing`, preserved in the pushed tag
@@ -54,13 +54,26 @@ retained. A complete affine plaintext cache is now implemented and measured,
 not just modeled: it answers these public queries in about 2.5 ms with extra
 per-row client state. The state/deployment justification remains central.
 
-**Next cycle:** identify the actual memory/scale/update boundary against that
-complete cache; try stable main dictionaries plus a bounded encrypted update
-buffer; and test joint rank/capacity cuts under equal map budgets. In parallel,
-E28 opens a distinct matrix-valued/Module-LWE arithmetic direction based on new
-primary reading, starting with a homemade algebra/count oracle. Preserve E17
-query conversion and private refinement as alternatives. Do not default to
-kernel tuning or select a paper claim solely from a favorable HE speedup.
+**Sixth cycle implemented:** [matrix arithmetic, query masks and a conditional
+linear check](matrix-arithmetic-results.md) builds homemade E28 matrix-BGV
+oracles, projected/symmetric secret-source expansions and opposite input
+orientations. An E17 owner-prepared gadget query trades fewer server sources
+for larger upload. One-use preprocessing then preserves the constant query
+subspace: online corrections use scalar coefficients and admit an E14 linear
+fingerprint under trusted offline inputs. All 234 tiny encrypted searches are
+exact; 148 count/state models retain costs and failures. These are known
+ingredients and new local experiments, not an established novel primitive.
+
+**Next cycle:** derive masks in the actual E26/E27 CRT query space, keeping
+private maps private, and compare the resulting index/token/verification costs
+with scalar-ring search and complete caching. Price trusted preprocessing and
+update invalidation before claiming a protocol win. Keep the independent-key
+matrix orientation as an alternative; the literal general matrix key growth
+does not yet justify a CUDA implementation. Routine packed-workspace, codec
+and rank/capacity tuning remain secondary. The preceding company/research
+implementation remains checkpointed at
+`checkpoint/dyadic-rank-capacity-2026-09-27` (`10a9125`); the new oracle source
+is committed at `87e4b21`.
 
 ## Objective and working method
 
@@ -80,8 +93,8 @@ be known. Check the closest work before presenting a contribution claim.
 For the next research cycle:
 
 1. Investigate several competing hypotheses with small independent algebraic
-   models. The first cycle tested E20, E21 and E19; use the results above to
-   choose the next E19/E17/E14 questions. A plausible but uncertain idea deserves
+   models. Use the completed E19–E28 results above to choose the next competing
+   questions. A plausible but uncertain idea deserves
    a cheap test.
 2. For each, write the claimed difference from its closest known construction,
    one falsifiable prediction, and the assumptions needed for correctness and
@@ -100,6 +113,47 @@ For the next research cycle:
 Do not require an early prototype to beat optimized CUDA. First establish
 whether the idea changes a meaningful cost or enables a useful tradeoff. A
 negative result or a proved obstruction can justify retaining the experiment.
+
+## Research priority reaffirmed, 2026-09-28
+
+The user's highest priority is now the originality and scientific value of the
+question being tested. Use that priority to choose between tasks, including
+when the easier task would produce a more reliable benchmark improvement.
+Correctness and honest comparisons remain requirements; production hardening
+and maximal performance can follow a promising research result.
+
+The latest CPU improvement supports the usefulness of the E27 representation
+on the measured data. It does not by itself establish novelty. The small CUDA
+improvement identifies a bottleneck, but that is not an instruction to spend
+the next cycle on conversions, kernels or client tuning. Those measurements
+are controls for a new idea when relevant, not the research agenda themselves.
+
+The following was the initial order for this cycle. The sixth-cycle results
+above now determine the next probes; retain these questions and their failure
+criteria without rerunning the completed first experiments. They are not
+novelty claims:
+
+| Priority / direction | Difference to investigate | First discriminating experiment |
+|---|---|---|
+| 1. E28: a different arithmetic model | Can an exact-search representation use matrix-valued arithmetic to avoid enough rearrangement/switching to pay for its extra secret terms and keys? Implementing the published scheme alone is not the contribution. | Read the complete construction, derive rectangular Hamming products with a homemade tiny secret-expression oracle, and count useful output capacity, switches and keys against scalar-ring packing. Separate one-query latency from batched throughput; hold effective lattice dimension fixed as an initial accounting control, not a security proof. |
+| 2. E17: query conversion fused with matching | Can conversion directly produce the private map's required linear forms, eliminating an intermediate full query representation? | Derive one complete small conversion-and-score identity and compare with separate conversion plus matching. Charge conversion keys, owner work, noise and bytes; neither the query secret nor a private dictionary becomes public for convenience. |
+| 3. E25/E26: exact exceptions without a rank cliff | Can structured encrypted exceptions preserve a small exact core without per-row owner hints or a scalar lookup for every residual? | Try shared support classes or factored selectors on tiny exact instances, including one out-of-span insertion and unrelated residual supports. Count the full encrypted selector cost and record any exposed structure; compare with full-rank scoring and complete local caching. |
+| 4. E14: arithmetic chosen for complete verification | Can changing the representation reduce both search work and the integer relations needed to authenticate its result? | Compare complete tiny circuits, including carries, canonical ranges and output binding. Find counterexamples to omitted checks before implementing a fast verifier. |
+
+For each probe, keep a short contribution ledger: what is already known, the
+precise proposed difference, an identity or falsifiable prediction, the
+cheapest counterexample, and the evidence needed to advance or abandon it.
+Assess novelty against the closest primary work; neither an unfamiliar idea
+nor a fast implementation establishes it. A new tradeoff, useful bound or
+well-scoped obstruction is worth exploring even before a latency win appears.
+
+Avoid letting one successful implementation consume the whole exploration
+cycle: test the first alternatives cheaply before committing to a native/CUDA
+backend. Preserve failed constructions and adversarial controls. Keep homemade
+implementations as the default, with external schemes and libraries clearly
+labeled as prior work or reference implementations. BFV/BGV are not constraints
+on the eventual design. The follow-ups inside older experiment cards are local
+options; the current **Next cycle** paragraph governs the execution order.
 
 ## E20 — Can reduction happen before expensive ciphertext transformations?
 
@@ -370,18 +424,22 @@ hashes do not authorize server output, hide update locations or bind external ID
 
 ## E28 — Is matrix-valued HE a better arithmetic model for exact search?
 
-**New primary lead:** [Bence Mali's generalized BGV/BFV/CKKS preprint](https://eprint.iacr.org/2025/972)
+**Primary lead:** [Bence Mali's generalized BGV/BFV/CKKS preprint](https://eprint.iacr.org/2025/972)
 studies matrix-ring plaintext/ciphertext spaces, Module-LWE and a superoperator
 approach to noncommutative relinearization. This is existing work to understand
-and compare, not our construction. So far only its abstract and available
-technical-overview excerpt have been reviewed; no implementation is claimed.
+and compare, not our construction. The sixth cycle read the construction and
+built a separate tiny matrix-BGV oracle, with independent entrywise expansion
+and compact output under another module key. It does not implement every
+operation or the full generalized ciphertext format from the paper.
 
-**First experiment:** read the complete construction and write a homemade tiny
-integer/polynomial oracle for our rectangular exact Hamming products. Derive all
-secret-key terms before implementing multiplication/relinearization. Count
-ciphertexts, useful coordinates, key material, products, conversion and noise
-at a matched effective lattice dimension. Check whether a single query wastes
-most matrix capacity; report batch-one latency separately from throughput.
+**Implemented evidence:** right/right, commuting-entry combination,
+independent right/left and transposed-secret right/left products agree with
+direct noisy phase evaluation and exact search. Modeled rank-eight sources per
+output fall 576→548→192→100, with an owner-gadget alternative using 16. All
+switching work, keys, query bodies and the changed output format are charged;
+this is not a measured speedup over scalar-ring BGV. Seeded-mask controls keep
+ordinary query upload smaller than the gadget query. Masking a query in its
+constant subspace supports a separate offline/online experiment below.
 
 **Possible direction:** combine index-specific affine structure with an
 arithmetic representation that needs fewer slot moves. Test the existing
@@ -391,6 +449,21 @@ must be assessed before any practical comparison. Reject the idea if matrix
 key/switch expansion or unused query capacity erases the useful-work saving.
 
 ## E17 — Can query conversion and matching share work?
+
+**Sixth-cycle probe implemented:** the owner directly encrypts private affine
+query weights and their product with the matrix secret in gadget form. This
+specializes an external product; it is not an arbitrary-reader LWE conversion.
+One-use offline random-query answers plus a converted index reduce the online
+step to a public correction. Restricting the mask to the constant query space
+keeps the correction scalar and drastically reduces its online body. Offline
+traffic and total index/token state increase. Tests reject a query outside the
+mask space and demonstrate leakage after token rollback/reuse. This does not
+establish a complete secure preprocessing protocol.
+
+**Next discriminating test:** generalize to the existing CRT component-query
+space without revealing the owner's affine map. Compare equal total state,
+offline/online communication, authenticated preprocessing and update lifetime.
+No ciphertext-only upload conversion has yet been implemented.
 
 Extend the [query-upload proposal](encrypted-search-literature-agenda.md#7-e17--make-query-upload-proportional-to-useful-input):
 instead of converting a short encrypted query into a general-purpose full-ring
@@ -411,6 +484,16 @@ in the literature agenda; a smaller upload alone is not enough.
 keys/noise dominate, or saving bytes requires enough batching to harm latency.
 
 ## E14 — Can changing the arithmetic make verification cheaper?
+
+**Sixth-cycle probe implemented:** constant-mask online computation is a scalar
+linear relation over all public ciphertext coefficients. A private one-use
+fingerprint checks that complete online relation, canonical coefficients and
+derived bounds, assuming trusted converted-index and offline-answer inputs.
+Prime-field collision probabilities are exhaustively checked on a tiny field;
+composite-modulus and poisoned-offline-state controls retain the limits. It is
+not a proof of preprocessing or a replacement for existing response authority.
+Next test whether compact output and updates preserve a useful verifiable
+relation after all offline trust and private arithmetic costs are charged.
 
 Use the current checked-product stage as a measured control, not a mandatory
 path to extend layer by layer. Ask whether a different representation or

@@ -38,6 +38,15 @@ from changed encrypted work, retain a third public index split and negative
 state-budget cases, and implement complete local affine-cache and one-row epoch
 controls. Full encryption degree and the preceding parameter profile are kept.
 
+The [sixth creative cycle](../../docs/research/matrix-arithmetic-results.md)
+adds tiny homemade matrix-BGV oracles with exact noncommutative secret terms,
+opposite input orientations and owner-prepared gadget queries. One-use offline
+query masks preserve a constant query subspace and leave scalar online work;
+a conditional fingerprint checks that online relation from trusted inputs.
+The source/key, offline traffic, expanded index and token costs are retained.
+These new small-parameter entries are correctness/count experiments, not a
+secure matrix scheme, a native speedup or complete preprocessing verification.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -105,6 +114,10 @@ assurance. The raw CUDA path does not provide attestation.
 | `crt_multiplex.py` | E26 standard polynomial CRT components within the full encryption ring; shared query, existing butterfly and exact score decoding |
 | `dyadic_crt.py` | E27 unequal plaintext-factor degrees, recursive CRT and exact reuse of the full-ring butterfly; common padded rank remains explicit |
 | `rank_partition.py` | E27 index-only rank-boundary splits, fixed-map minimax capacity, deduplicated map budgets, local epoch checks and full-scan fallback |
+| `matrix_bgv_oracle.py` | E28 tiny schoolbook matrix-BGV phases, entrywise secret sources, opposite orientations, exact gadget switching and owner-prepared query reference |
+| `matrix_search_cost.py` | E28/E17 explicit source/key/query/state accounting, seeded-mask controls and narrow E25 support-class obstruction |
+| `matrix_masked_query.py` | E17 one-use full/constant-subspace masks, charged offline answers/index conversion and scalar online evaluation; local lifecycle only |
+| `matrix_linear_check.py` | E14 private one-use fingerprints of the scalar online relation from trusted offline inputs; no preprocessing proof |
 | `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
 | `adaptive_refinement.py` | Local exact threshold discovery, stable ties and whole-ciphertext-tile accounting; exposes the access schedule |
