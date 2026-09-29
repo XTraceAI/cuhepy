@@ -100,8 +100,11 @@ def run_prepared(args, data, ids, holdout, rows, candidate, setup, s, groups, ma
     setup.update({"map_body_bytes": len(map_body), "map_zlib9_bytes": len(zlib.compress(map_body, 9)),
                   "full_plaintext_cache_bytes": len(raw), "full_plaintext_cache_zlib9_bytes": len(zlib.compress(raw, 9)),
                   "common_stable_id_bytes": len(ids) * max(1, (max(ids).bit_length() + 7) // 8),
-                  "full_affine_cache_modeled_bytes": len(map_body) + sum((len(b.positions) * b.mapping.rank + 7) // 8
-                                                                         for b in candidate.blocks),
+                  # This is the ORIGINAL pivot-bit cache control. Mixed-space
+                  # coordinates need field residues, priced separately in E30;
+                  # combining their map body with old pivot bits is invalid.
+                  "baseline_original_affine_cache_modeled_bytes": sum(len(affine.canonical_map(p)) for p in maps)
+                  + sum((len(b.positions) * b.mapping.rank + 7) // 8 for b in candidate.blocks),
                   "unique_maps": len(maps), "map_ranks": [p.rank for p in maps], "leaf_paths": [b.path for b in candidate.blocks],
                   "private_map_body_bytes": private_map_bytes,
                   "map_ids": map_ids, "counts": s.layout.counts, "previous_input_ciphertexts": s.layout.cost.input_tiles,
