@@ -62,8 +62,8 @@ class EpochCheck:
         fingerprints = []
         for rho in self._challenges():
             row = []
-            for column in index.columns:
-                if self.space.slots == 1:
+            for column, degree in zip(index.columns, self.space.column_degrees, strict=True):
+                if degree == 1:
                     row.append((sum((a * b for cipher, pair in zip(column, rho, strict=True)
                                      for component, weights in zip(cipher.components, pair, strict=True)
                                      for a, b in zip(component, weights, strict=True)), mpz(0)) % pk.q,))
@@ -74,8 +74,8 @@ class EpochCheck:
                         product = _ring_product(component, adjoint(weights, pk.q), pk.q)
                         total = [(a + b) % pk.q for a, b in zip(total, product, strict=True)]
                 # <rho, X^k*c> = coefficient_0(X^k * (c*rho*)).
-                row.append(tuple(total[0] if k == 0 else -total[pk.n - k * self.space.stride] % pk.q
-                                 for k in range(self.space.slots)))
+                row.append(tuple(total[0] if k == 0 else -total[pk.n - k * (pk.n // degree)] % pk.q
+                                 for k in range(degree)))
             fingerprints.append(tuple(row))
         self._fingerprints = tuple(fingerprints)
         # The large encrypted index is intentionally not retained by the checker.

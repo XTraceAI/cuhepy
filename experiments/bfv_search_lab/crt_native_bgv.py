@@ -39,14 +39,20 @@ class NativeIndex:
         for column in index.columns:
             masked.validate_ciphertexts(column, count, pk)
         self._bounds = tuple(tuple(c.phase_bound for c in column) for column in index.columns)
-        q, slots = int(pk.q), self.space.slots
-        psi = next((pow(a, (q - 1) // (2 * slots), q) for a in range(2, 1000)
-                    if pow(pow(a, (q - 1) // (2 * slots), q), slots, q) == q - 1), None)
-        if psi is None:
-            raise ValueError("No subring root found in the bounded search")
         self._native = _crt_subring
-        self._handle = _crt_subring.prepare(pk.n, slots, self.space.columns, count, q, psi,
-                                           b"".join(pack(column) for column in index.columns))
+        self._handles = []
+        q = int(pk.q)
+        # E30 mixes scalar columns and local CRT columns. Chain raw native
+        # buffers so their partial sums require no intermediate Python integers.
+        for slots in dict.fromkeys(self.space.column_degrees):
+            positions = tuple(j for j, degree in enumerate(self.space.column_degrees) if degree == slots)
+            psi = next((pow(a, (q - 1) // (2 * slots), q) for a in range(2, 1000)
+                        if pow(pow(a, (q - 1) // (2 * slots), q), slots, q) == q - 1), None)
+            if psi is None:
+                raise ValueError("No subring root found in the bounded search")
+            handle = _crt_subring.prepare(pk.n, slots, len(positions), count, q, psi,
+                                         b"".join(pack(index.columns[j]) for j in positions))
+            self._handles.append((positions, handle))
 
     def evaluate(self, answer: masked.Answer, request: masked.Request) -> tuple[bgv.Ciphertext, ...]:
         masked.validate_request(request)
@@ -61,8 +67,10 @@ class NativeIndex:
                        for i, c in enumerate(answer.ciphertexts))
         if any(2 * b >= self.pk.q for b in limits):
             raise ValueError("Prepared linear phase bound exceeds Q")
-        weights = [v for p in short for v in p]
-        data = self._native.evaluate(self._handle, struct.pack(f"<{len(weights)}q", *weights), pack(answer.ciphertexts))
+        data = pack(answer.ciphertexts)
+        for positions, handle in self._handles:
+            weights = [v for j in positions for v in short[j]]
+            data = self._native.evaluate(handle, struct.pack(f"<{len(weights)}q", *weights), data)
         words = tuple(mpz(v) for v in struct.unpack(f"<{len(data) // 8}Q", data))
         n = self.pk.n
         return tuple(bgv.Ciphertext((words[2 * i * n:(2 * i + 1) * n], words[(2 * i + 1) * n:(2 * i + 2) * n]),

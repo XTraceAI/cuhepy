@@ -74,13 +74,27 @@ def run(args):
     s = space.space(candidate.layout, map_ids)
     setup["coordinate_enroll_s"], groups = timed(lambda: [affine.index_features(b.mapping, [rows[i] for i in b.positions])
                                                         for b in candidate.blocks])
+    map_body = b"".join(affine.canonical_map(p) for p in maps)
+    return run_prepared(args, data, ids, holdout, rows, candidate, setup, s, groups, map_body,
+                        private_map_bytes=0 if args.layout == "raw" else len(map_body))
+
+
+def run_prepared(args, data, ids, holdout, rows, candidate, setup, s, groups, map_body, *,
+                 private_map_bytes, query_transform=None):
+    """Shared E29/E30 measurement harness; preparation remains explicitly charged.
+
+    The supplied candidate pins row ordering and original affine anchors. E30
+    can provide a different exact coordinate space and owner query transform.
+    Full private maps/coordinates are benchmark inputs, not server inputs.
+    """
+    maps = list(dict.fromkeys(b.mapping for b in candidate.blocks))
+    map_ids = s.map_ids
     compiled = [affine.compile_bits(p) for p in maps]
     rounds = 5 if args.q_bits == 32 else 4
     model = space.cost(s, q_bits=args.q_bits, rounds=rounds)
     setup["key_gen_s"], (pk, sk) = timed(masked.key_gen, s, q_bits=args.q_bits)
     setup["q"], setup["q_bits_actual"] = str(pk.q), pk.q.bit_length()
     raw = b"".join(row.to_bytes((data.dimension + 7) // 8, "little") for row in rows)
-    map_body = b"".join(affine.canonical_map(p) for p in maps)
     epoch = hashlib.sha256(bytes.fromhex(candidate.source_digest) + s.binding + bytes.fromhex(pk.key_id)
                            + map_body + json.dumps(ids).encode()).digest()
     setup.update({"map_body_bytes": len(map_body), "map_zlib9_bytes": len(zlib.compress(map_body, 9)),
@@ -89,7 +103,7 @@ def run(args):
                   "full_affine_cache_modeled_bytes": len(map_body) + sum((len(b.positions) * b.mapping.rank + 7) // 8
                                                                          for b in candidate.blocks),
                   "unique_maps": len(maps), "map_ranks": [p.rank for p in maps], "leaf_paths": [b.path for b in candidate.blocks],
-                  "private_map_body_bytes": 0 if args.layout == "raw" else len(map_body),
+                  "private_map_body_bytes": private_map_bytes,
                   "map_ids": map_ids, "counts": s.layout.counts, "previous_input_ciphertexts": s.layout.cost.input_tiles,
                   "previous_key_switches": s.layout.cost.switches, "private_coordinate_entries": sum(len(g) * f for g, f in zip(groups, s.layout.features, strict=True))})
     rng = random.Random(7300 + args.seed)
@@ -110,18 +124,26 @@ def run(args):
             pool.append((ticket, answer))
         query_ids = holdout[112:112 + args.repeats + 1]
         samples, warmup = [], None
-        for query_id, (ticket, answer) in zip(query_ids, pool, strict=True):
+        for query_number, (query_id, (ticket, answer)) in enumerate(zip(query_ids, pool, strict=True)):
             q = data.rows[query_id]
             plain_s, expected = timed(lambda q=q: sorted(((q ^ row).bit_count(), i) for row, i in zip(rows, ids, strict=True)))
 
             def request_for_query(q=q, ticket=ticket):
+                if query_transform is not None:
+                    weights, offsets = query_transform(q)
+                    return ticket.consume(weights, epoch), offsets
                 transforms = [affine.bit_query_features(p, q) for p in compiled]
                 weights = tuple(w for ws, _ in transforms for w in ws)
                 return ticket.consume(weights, epoch), [offset for _, offset in transforms]
 
             request_s, (request, offsets) = timed(request_for_query)
-            evaluate_s, result = timed(masked.evaluate, index, answer, request, pk)
-            native_s, native_result = timed(prepared.evaluate, answer, request)
+            native_first = bool(getattr(args, "alternate_order", False) and (query_number + args.seed) % 2)
+            if native_first:
+                native_s, native_result = timed(prepared.evaluate, answer, request)
+                evaluate_s, result = timed(masked.evaluate, index, answer, request, pk)
+            else:
+                evaluate_s, result = timed(masked.evaluate, index, answer, request, pk)
+                native_s, native_result = timed(prepared.evaluate, answer, request)
             assert native_result == result  # Every coefficient, context and bound.
             check_s, accepted = timed(gate.verify_once, request, native_result)
             assert accepted
@@ -140,7 +162,8 @@ def run(args):
 
             finish_s, actual = timed(finish)
             assert actual == expected and actual[:3] == expected[:3]
-            sample = {"query_id": query_id, "owner_request_s": request_s, "public_evaluate_s": evaluate_s,
+            sample = {"query_id": query_id, "native_evaluated_first": native_first,
+                      "owner_request_s": request_s, "public_evaluate_s": evaluate_s,
                       "public_native_evaluate_s": native_s, "response_pack_s": pack_s,
                       "conditional_verify_s": check_s, "decrypt_s": decrypt_s, "decode_select_s": finish_s,
                       "online_local_s": request_s + evaluate_s + pack_s + check_s + decrypt_s + finish_s,
@@ -167,7 +190,7 @@ def run(args):
             "summary": summary([{k: v for k, v in sample.items() if k.endswith("_s") or k.endswith("_bytes")} for sample in samples]),
             "token_utilization_model": utilization,
             "baseline_120bit_index_bytes": s.layout.cost.input_tiles * 2 * pk.n * 15,
-            "baseline_best_allocated_120bit_index_bytes": min(c.layout.cost.input_tiles for _, c in alternatives) * 2 * pk.n * 15,
+            "baseline_best_allocated_120bit_index_bytes": min(c["old_input_tiles"] for c in setup["allocation_candidates"]) * 2 * pk.n * 15,
             "checker_ideal_error_bits_lower_bound": rounds * (pk.q.bit_length() - 1) - (args.repeats + 1 - 1).bit_length(),
             "baseline_previous_online_query_and_reply_bytes": 245866 + 131162,
             "all_distances_and_stable_top3_exact": True, "conditional_check_before_decryption": True,

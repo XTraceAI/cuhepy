@@ -22,10 +22,11 @@ class Space:
     layout: crt.Layout
     map_ids: tuple[int, ...]
     dimensions: tuple[int, ...]
+    shared: int = 0  # E30: a common prefix of private query forms, masked once.
 
     @property
     def dimension(self) -> int:
-        return sum(self.dimensions)
+        return self.shared + sum(f - self.shared for f in self.dimensions)
 
     @property
     def columns(self) -> int:
@@ -40,11 +41,18 @@ class Space:
         return self.layout.context.n // self.stride
 
     @property
+    def column_degrees(self) -> tuple[int, ...]:
+        return (1,) * self.shared + (self.slots,) * (self.columns - self.shared)
+
+    @property
     def binding(self) -> bytes:
-        return hashlib.sha256(json.dumps(asdict(self), sort_keys=True, separators=(",", ":")).encode()).digest()
+        body = asdict(self)
+        if not self.shared:
+            del body["shared"]  # Preserve existing E29 epoch/mask bindings.
+        return hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).digest()
 
 
-def space(layout: crt.Layout, map_ids: tuple[int, ...]) -> Space:
+def space(layout: crt.Layout, map_ids: tuple[int, ...], *, shared: int = 0) -> Space:
     crt.validate_layout(layout)
     if (type(map_ids) is not tuple or len(map_ids) != len(layout.features)
             or any(type(i) is not int or i < 0 for i in map_ids)
@@ -56,11 +64,13 @@ def space(layout: crt.Layout, map_ids: tuple[int, ...]) -> Space:
         if len(sizes) != 1:
             raise ValueError("Replicated maps must have the same public feature count")
         dimensions.append(sizes.pop())
-    return Space(layout, map_ids, tuple(dimensions))
+    if type(shared) is not int or not 0 <= shared <= min(dimensions):
+        raise ValueError("Invalid common query prefix")
+    return Space(layout, map_ids, tuple(dimensions), shared)
 
 
 def validate(s: Space) -> None:
-    if s != space(s.layout, s.map_ids):
+    if s != space(s.layout, s.map_ids, shared=s.shared):
         raise ValueError("Inconsistent public CRT query space")
 
 
@@ -68,10 +78,11 @@ def split(s: Space, values: tuple[int, ...]) -> tuple[tuple[int, ...], ...]:
     validate(s)
     if len(values) != s.dimension or any(type(x) is not int for x in values):
         raise ValueError("Incorrect public query-space coordinates")
-    result, start = [], 0
+    result, start = [], s.shared
     for dimension in s.dimensions:
-        result.append(values[start:start + dimension])
-        start += dimension
+        width = dimension - s.shared
+        result.append(values[:s.shared] + values[start:start + width])
+        start += width
     return tuple(result)
 
 
@@ -90,8 +101,12 @@ def corrections(s: Space, values: tuple[int, ...]) -> tuple[tuple[int, ...], ...
     groups = split(s, values)
     ctx = s.layout.context
     stride, p = s.stride, ctx.prime
-    result = []
+    result: list[tuple[int, ...]] = []
     for j in range(s.columns):
+        if j < s.shared:
+            x = groups[0][j] % p
+            result.append((x if x <= p // 2 else x - p,))
+            continue
         # Interpolate directly in Y=X**stride, not N mostly-zero coefficients.
         work = {leaf.path: [groups[i][j] % p if j < len(groups[i]) else 0] + [0] * (leaf.degree // stride - 1)
                 for i, leaf in zip(s.map_ids, ctx.leaves, strict=True)}
@@ -105,10 +120,10 @@ def corrections(s: Space, values: tuple[int, ...]) -> tuple[tuple[int, ...], ...
 
 
 def expand(s: Space, short: tuple[int, ...]) -> list[int]:
-    if len(short) != s.slots or any(type(x) is not int for x in short):
+    if len(short) not in s.column_degrees or any(type(x) is not int for x in short):
         raise ValueError("Incorrect subring coefficient vector")
     result = [0] * s.layout.context.n
-    result[::s.stride] = short
+    result[::s.layout.context.n // len(short)] = short
     return result
 
 
@@ -161,24 +176,28 @@ def cost(s: Space, *, q_bits: int = 40, eta: int = 21, rounds: int = 4) -> dict[
     n, t, replies = s.layout.context.n, s.layout.context.prime, s.layout.cost.response_ciphertexts
     width, fresh = (q_bits + 7) // 8, t // 2 + t * eta  # Seeded symmetric owner encryption.
     body = replies * 2 * n * width
+    coefficients = sum(s.column_degrees)
+    scalar_columns = s.column_degrees.count(1)
+    ring_columns = s.columns - scalar_columns
     return {"n": n, "t": t, "q_bits": q_bits, "query_coordinates": s.dimension,
             "coordinate_columns": s.columns, "subring_degree": s.slots, "replies": replies,
+            "shared_query_coordinates": s.shared, "correction_coefficients": coefficients,
             "online_query_body_bytes": s.dimension * ((t.bit_length() + 7) // 8),
             "online_response_body_bytes": body, "expanded_index_body_bytes": s.columns * body,
             "naive_scalar_basis_index_body_bytes": s.dimension * body,
             "offline_seeded_answer_body_bytes_per_token": replies * ((n * q_bits + 7) // 8 + 32),
             "stored_expanded_answer_bytes_per_token": body, "owner_private_mask_seed_bytes_per_token": 32,
-            "online_ring_products": 0 if s.slots == 1 else 2 * replies * s.columns,
-            "online_scalar_products": 2 * replies * s.columns * n if s.slots == 1 else 0,
+            "online_ring_products": 2 * replies * ring_columns,
+            "online_scalar_products": 2 * replies * scalar_columns * n,
             "native_ntt_index_word_bytes": s.columns * replies * 2 * n * 8,
             "native_online_pointwise_scalar_products": 2 * replies * s.columns * n,
             "online_ciphertext_products": 0, "online_key_switches": 0,
-            "worst_case_phase_bound": fresh * (1 + s.columns * s.slots * (t // 2)),
+            "worst_case_phase_bound": fresh * (1 + coefficients * (t // 2)),
             "fresh_phase_bound": fresh, "checker_rounds": rounds,
-            "checker_prepare_ring_products": 0 if s.slots == 1 else rounds * 2 * replies * s.columns,
-            "checker_prepare_scalar_products": rounds * 2 * replies * s.columns * n if s.slots == 1 else 0,
-            "checker_epoch_residue_body_bytes": rounds * (2 * replies * n + s.columns * s.slots) * width,
-            "checker_epoch_seeded_body_bytes": rounds * (32 + s.columns * s.slots * width),
+            "checker_prepare_ring_products": rounds * 2 * replies * ring_columns,
+            "checker_prepare_scalar_products": rounds * 2 * replies * scalar_columns * n,
+            "checker_epoch_residue_body_bytes": rounds * (2 * replies * n + coefficients) * width,
+            "checker_epoch_seeded_body_bytes": rounds * (32 + coefficients * width),
             "checker_token_residue_body_bytes": rounds * width,
-            "checker_online_scalar_products": rounds * (2 * replies * n + s.columns * s.slots),
+            "checker_online_scalar_products": rounds * (2 * replies * n + coefficients),
             "full_degree_single_encryption_ciphertext_body_bytes": 2 * n * width}

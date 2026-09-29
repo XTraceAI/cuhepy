@@ -201,7 +201,7 @@ def evaluate(index: Index, answer: Answer, request: Request, pk: bgv.PublicKey) 
     for i, (saved, limit) in enumerate(zip(answer.ciphertexts, limits, strict=True)):
         parts = list(saved.components)
         for column, poly, short in zip(index.columns, polys, coefficients, strict=True):
-            products = [tuple(x * short[0] % pk.q for x in c) if index.space.slots == 1 else _ring_product(c, poly, pk.q)
+            products = [tuple(x * short[0] % pk.q for x in c) if len(short) == 1 else _ring_product(c, poly, pk.q)
                         for c in column[i].components]
             parts = [tuple((x + y) % pk.q for x, y in zip(part, product, strict=True))
                      for part, product in zip(parts, products, strict=True)]
