@@ -31,5 +31,5 @@ def test_third_public_linear_combination_leaks_query_relation_despite_uniform_ma
                     for a, b in itertools.product(range(t), repeat=2)]
         assert all(set(Counter(row[j] for row in observed).values()) == {t} for j in range(3))
         assert all((d[2] - d[0] - d[1]) % t == (weights[2] - weights[0] - weights[1]) % t for d in observed)
-        # If two queries are known, the third transformed coordinate is exact.
+        # Known transformed coordinates (e.g. public raw forms) reveal the third.
         assert all((d[2] - d[0] - d[1] + weights[0] + weights[1]) % t == weights[2] for d in observed)

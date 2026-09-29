@@ -55,6 +55,14 @@ complete linear check; the new standalone C++ subring evaluator agrees with
 GMP coefficient for coefficient. Token work/state, a mask-recovery failure,
 modulus changes and the missing production protocol are explicit in the report.
 
+The [eighth creative cycle](../../docs/research/shared-query-basis-results.md)
+adds exact common/private residual query bases, mixed scalar/subring evaluation
+and matching complete fingerprints. It measures index, client-state and token
+costs on two full encrypted public splits, plus a second dataset's negative
+curves. A global affine control and explicit private-image/public-linear-pool
+masking failures keep the tradeoffs visible. Existing code uses the zero-shared
+default; earlier epoch bindings and production interfaces are preserved.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -130,6 +138,8 @@ assurance. The raw CUDA path does not provide attestation.
 | `crt_masked_bgv.py` | E29 seeded linear-circuit key profile, trusted owner enrollment/one-use offline answers and independent GMP evaluation |
 | `crt_linear_check.py` | Conditional full-Q response checking, private seeded challenges, adjoint/scalar preprocessing and bounded local epoch reuse |
 | `crt_native_bgv.py`, `_subring/bindings.cpp` | Separate homemade public C++ scalar/short-NTT evaluator over full-ring ciphertexts; no production or GPU integration |
+| `shared_query_basis.py` | E30 exact common/residual affine bases, private query transforms and index-only overlap/raw-coordinate trajectories |
+| `test_correlation_pool_limits.py` | Exhaustive controls showing why public linear expansion of a fixed mask bank leaks joint query relations |
 | `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
 | `adaptive_refinement.py` | Local exact threshold discovery, stable ties and whole-ciphertext-tile accounting; exposes the access schedule |

@@ -1,0 +1,37 @@
+case local shared 0 q_bits 40
+index ready 3001 columns 32 mask dimensions 523
+query 5311 GMP_s 0.9283 native_s 0.0753
+query 5077 GMP_s 0.9211 native_s 0.0758
+query 1227 GMP_s 0.9224 native_s 0.0764
+query 1058 GMP_s 0.9229 native_s 0.0758
+case equal_index shared 4 q_bits 40
+index ready 3001 columns 32 mask dimensions 459
+query 5311 GMP_s 0.864 native_s 0.0747
+query 5077 GMP_s 0.8667 native_s 0.0758
+query 1227 GMP_s 0.8623 native_s 0.0754
+query 1058 GMP_s 0.8617 native_s 0.0759
+case shared32 shared 32 q_bits 40
+index ready 3001 columns 46 mask dimensions 222
+query 5311 GMP_s 0.8084 native_s 0.074
+query 5077 GMP_s 0.8056 native_s 0.0747
+query 1227 GMP_s 0.8032 native_s 0.0746
+query 1058 GMP_s 0.8056 native_s 0.0747
+case small_word shared 77 q_bits 32
+index ready 3001 columns 79 mask dimensions 89
+query 5311 GMP_s 1.0015 native_s 0.0822
+query 5077 GMP_s 1.0012 native_s 0.0822
+query 1227 GMP_s 1.0093 native_s 0.0829
+query 1058 GMP_s 0.9902 native_s 0.0819
+case global rank 85
+index ready 3001 columns 85 mask dimensions 85
+query 5311 GMP_s 1.0467 native_s 0.0798
+query 5077 GMP_s 1.0424 native_s 0.08
+query 1227 GMP_s 1.0395 native_s 0.0802
+query 1058 GMP_s 1.0393 native_s 0.081
+case raw rank 126
+index ready 3001 columns 126 mask dimensions 126
+query 5311 GMP_s 1.5265 native_s 0.0845
+query 5077 GMP_s 1.5088 native_s 0.0835
+query 1227 GMP_s 1.5065 native_s 0.0839
+query 1058 GMP_s 1.5097 native_s 0.0837
+{"output": "benchmarks/results/shared_query_basis_mushroom_3001_20260929.json", "cases": 6, "curve_points": 86}

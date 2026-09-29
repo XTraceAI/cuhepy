@@ -4,6 +4,10 @@ Research cycle seven, 2026-09-28, on `experiment/creative-search-algebra`.
 Implementation commits: `26e8ffb`, then `b6e41c8` for the scalar-space control.
 The preceding company and E27/E28 checkpoints remain unchanged.
 
+Follow-up: [E30 common and local query directions](shared-query-basis-results.md)
+now tests the mixed-space recommendation below. This report retains the original
+E29 measurements and assumptions.
+
 **Result:** a new homemade representation removes online ciphertext products,
 key switching and terminal rounding. It works on the actual E26/E27 private
 affine maps and unequal CRT components. It also works without those maps, using

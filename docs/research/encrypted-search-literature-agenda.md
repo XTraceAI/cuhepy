@@ -1,5 +1,24 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-29 eighth creative follow-up:**
+[common and local query directions](shared-query-basis-results.md) implement
+E30's mixed scalar/CRT representation and measure its state/index frontier.
+New primary reading includes [JIVE](https://pubmed.ncbi.nlm.nih.gov/23745156/)
+at abstract/model level, [Oraqle](https://eprint.iacr.org/2024/1409.pdf) Section 5
+on common-subexpression elimination, and
+[cFHE](https://eprint.iacr.org/2026/845) at abstract/metadata level on low-rank
+factorization and CKKS precision co-design. These are precedents, not reproduced
+baselines. Exact finite-field factorization alone is not a novelty claim.
+
+The measured global affine control and the Semeion/missed-intersection failures
+motivate E31: hierarchical sharing whose objective includes the sum of public
+correction degrees, not just matrix rank. A separate exact mask-pool obstruction
+rules out free expansion by public linear mixing. The abstract/overview of
+[Boyle et al.'s PCGs](https://eprint.iacr.org/2019/448) supplies a next protocol
+lead, subject to specifying the encrypted matrix correlation, malicious setup,
+authentication, conversion and lifetime costs. No PCG or new production
+authorization path is implemented by these experiments.
+
 **2026-09-28 seventh creative follow-up:**
 [CRT response columns, query masks and complete linear checking](crt-masked-query-results.md)
 now implement E29 on the actual full-degree search layout. Targeted primary

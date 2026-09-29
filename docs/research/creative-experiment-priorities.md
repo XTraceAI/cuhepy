@@ -1,6 +1,6 @@
 # Creative experiment priorities
 
-Priority update, 2026-09-28, following the project's research direction.
+Priority update, 2026-09-29, following the project's research direction.
 This supersedes the execution order in earlier plans; it does not change their
 results. The implementation baseline is `7dd927f` on
 `experiment/bgv-verification-packing`, preserved in the pushed tag
@@ -75,17 +75,31 @@ representations, including token upload, enrollment, verification and full-cache
 controls. All 16 encrypted queries and 336 regressions pass. The separate C++
 subring evaluator is exact against GMP; no CUDA or production path changed.
 
-**Next cycle:** select query spaces jointly with verification and token lifetime.
-The affine path reduces server index size; raw bit columns need much less private
-checking state and communication. Test mixed representations and representative
-scaling before choosing between them. Investigate trustworthy, cheaper token
-preparation and updateable correlations, retaining the demonstrated mask-recovery
-failure. A matching GPU experiment follows a precise state/trust comparison.
+**Eighth cycle implemented:** [common and local query directions](shared-query-basis-results.md)
+(E30) share private affine query forms across blocks. Common directions require
+scalar corrections; residual directions retain CRT subring corrections. At
+equal encrypted index size, query coordinates decrease by 12–16% and private
+map/check bodies by 7–12%. More aggressive sharing trades about 41% smaller
+map/check bodies for 41–44% more index storage, with similar native online time.
+A global affine control is competitive; Semeion and a missed-intersection
+counterexample retain failures. All 48 encrypted comparisons are exact. Two
+additional pool tests show why public linear expansion cannot turn a small
+one-use mask bank into arbitrarily many independent private requests.
+
+**Next cycle:** test hierarchical sharing across CRT subtrees and exact small
+subspace-intersection optima. Optimize column count, mask dimension and the sum
+of correction degrees together, retaining global affine, raw and full-cache
+controls. A separate protocol track should specify the exact
+authenticated-correlation functionality and lifetime cost before
+adapting a PCG or verified preprocessing scheme. Retain the deterministic-cache
+and public-linear-pool privacy failures. A matching GPU experiment follows a
+precise state/trust comparison.
 Keep the independent-key matrix orientation as another candidate; its literal
 key growth still does not justify a general matrix CUDA implementation.
 Previous checkpoints include `checkpoint/dyadic-rank-capacity-2026-09-27`
 (`10a9125`) and `checkpoint/matrix-query-space-2026-09-28` (`cee16cf`). E29 source
-is committed at `26e8ffb` and `b6e41c8`.
+is committed at `26e8ffb` and `b6e41c8`, checkpointed at `15c6737`. E30 source
+is committed at `fc5aa84` and `185ffc7`.
 
 ## Objective and working method
 
@@ -105,7 +119,7 @@ be known. Check the closest work before presenting a contribution claim.
 For the next research cycle:
 
 1. Investigate several competing hypotheses with small independent algebraic
-   models. Use the completed E19–E29 results above to choose the next competing
+   models. Use the completed E19–E30 results above to choose the next competing
    questions. A plausible but uncertain idea deserves
    a cheap test.
 2. For each, write the claimed difference from its closest known construction,
@@ -560,6 +574,50 @@ Field equations alone do not establish the intended integer computation.
 verification cost. Randomized checks and ordinary batching are known tools.
 **Falsification:** omitted range constraints explain the gain, or restoring
 them, binding the index/query and covering every output erases it.
+
+## E30 — Can common query directions buy a better state/index tradeoff?
+
+**Implemented:** exact quotient-space factorization `x=a_g+cC+vR_g`, a greedy
+overlap trajectory and raw-coordinate control. The mixed scalar/subring
+evaluator and conditional checker run at full encryption degree. The
+[report](shared-query-basis-results.md) prices `F=K+max r_g`, `h=K+sum r_g`
+and `W=K+S*max r_g`, complete modeled owner bodies, token work and expired pools.
+Global affine compression is an essential simpler control. The basis-row
+candidate pool provably misses a better intersection in a retained tiny case.
+
+**Candidate contribution:** an exact search representation with a useful
+frontier or a bound/selection algorithm for that frontier. Common/individual
+subspaces, common-subexpression elimination and rank-aware HE are prior ideas;
+the current measurements do not establish originality.
+
+**Rejected preprocessing shortcuts:** restricting masks to a private image
+reveals its relations; publishing linearly mixed requests beyond the rank of a
+fixed mask bank reveals relations among queries, even when every marginal looks
+uniform. Fresh independent owner-encrypted tokens remain the working reference.
+
+## E31 — Can a hierarchy of query subspaces improve the frontier?
+
+**Next falsifiable probe:** share directions among selected CRT subtrees, not
+only globally or inside individual maps. Derive a valid piecewise-constant
+correction for every encrypted column, with degree `S_j`, and compare
+`(F, h, sum_j S_j)` against E30. Keep the full secret/ring degree. The selector
+must charge private bases, anchors, geometry leakage and full checking state.
+
+First implement exact two-/four-block identities and exhaustive tiny optima.
+Include directions found only through intersection combinations, which E30
+can miss. Compare greedy subtree allocation with a single global map, raw
+coordinates and ordinary CRT leaves before adding native/GPU code.
+
+**Falsification:** aligning directions with CRT geometry forces deeper
+corrections, dense private maps or more columns; the joint frontier is still
+dominated by global affine compression or local caching. A new grouping's
+leakage cannot be silently treated as the original metadata contract.
+
+The independent protocol track should specify who knows the matrix, query mask,
+output share and authentication material for a proposed correlation generator.
+Account trusted/distributed setup, BGV conversion, updates, unused correlations
+and durable one-use consumption. A PCG citation does not implement this missing
+functionality or close the preprocessing trust gap.
 
 ## Evidence and deferred work
 
