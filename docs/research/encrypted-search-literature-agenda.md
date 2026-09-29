@@ -1,5 +1,22 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-29 ninth creative follow-up:**
+[hierarchical query intersections](hierarchical-query-basis-results.md) test
+exact partial sharing and CRT regrouping. The targeted new primary reading is
+[Yi, Wong and Gaynanova's hierarchical nuclear-norm work](https://onlinelibrary.wiley.com/doi/full/10.1111/biom.13893),
+abstract and Sections 1–2.2: a precedent for recursive partially shared spaces.
+It is a statistical estimation method, not a reproduced encrypted-search
+baseline. Finite-field intersections and tree sharing alone are not novel.
+
+The measured query savings largely come from simple equal-row merging. Full
+hierarchy adds state and native overhead; Semeion supplies a negative case.
+The next priority is E32's independently reviewed lifetime/carry/noise analysis,
+followed by an explicit experimental parameter profile if justified. The
+prospective q32 calculation is not an implemented profile or security claim.
+The [correlation contract](authenticated-correlation-contract.md) also makes
+E33's trusted setup, collusion, two-field conversion and durable consumption
+obligations explicit. These experiments do not change production authorization.
+
 **2026-09-29 eighth creative follow-up:**
 [common and local query directions](shared-query-basis-results.md) implement
 E30's mixed scalar/CRT representation and measure its state/index frontier.

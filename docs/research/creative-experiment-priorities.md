@@ -597,27 +597,76 @@ uniform. Fresh independent owner-encrypted tokens remain the working reference.
 
 ## E31 — Can a hierarchy of query subspaces improve the frontier?
 
-**Next falsifiable probe:** share directions among selected CRT subtrees, not
-only globally or inside individual maps. Derive a valid piecewise-constant
-correction for every encrypted column, with degree `S_j`, and compare
-`(F, h, sum_j S_j)` against E30. Keep the full secret/ring degree. The selector
-must charge private bases, anchors, geometry leakage and full checking state.
+**Implemented:** exact intersections, per-column subring degrees, fixed-tree
+coordinate-count bound, exhaustive small optima and capacity-preserving greedy
+regrouping. The [report](hierarchical-query-basis-results.md) retains 64 complete
+encrypted searches and an explicit equal-row-deduplication control. Query bodies
+shrink by 69–71% after regrouping at unchanged local index size, but total online
+bytes shrink only 0.4–0.5%; owner state and native latency do not improve.
+Semeion has no useful sharing. Geometry chosen for fewer coordinates can worsen
+the correction-degree sum. These negative results redirect the next experiment.
 
-First implement exact two-/four-block identities and exhaustive tiny optima.
-Include directions found only through intersection combinations, which E30
-can miss. Compare greedy subtree allocation with a single global map, raw
-coordinates and ordinary CRT leaves before adding native/GPU code.
+The fixed-tree laminar coordinate optimum and `h <= sum S_j` are restricted
+algebraic bounds, not a new cryptographic primitive or a global memory/time
+optimum. Hierarchical partial sharing has prior statistical formulations; the
+report records targeted primary reading and makes no originality claim.
 
-**Falsification:** aligning directions with CRT geometry forces deeper
-corrections, dense private maps or more columns; the joint frontier is still
-dominated by global affine compression or local caching. A new grouping's
-leakage cannot be silently treated as the original metadata contract.
+The [correlation contract](authenticated-correlation-contract.md) now specifies
+who knows the matrix, query masks, encrypted outputs and authentication material,
+the two arithmetic fields, malicious setup, collusion, updates, expiry and durable
+consumption. No PCG or new production protocol has been implemented.
 
-The independent protocol track should specify who knows the matrix, query mask,
-output share and authentication material for a proposed correlation generator.
-Account trusted/distributed setup, BGV conversion, updates, unused correlations
-and durable one-use consumption. A PCG citation does not implement this missing
-functionality or close the preprocessing trust gap.
+## E32 — Can a lifetime noise bound change the IO frontier?
+
+**Next priority:** test a different mathematical bottleneck. E29–E31's full
+deterministic `L1` phase bound charges maximal symmetric error with aligned
+signs everywhere. A self-contained CBD tail calculation, including deterministic
+message/carry terms and a finite query/reply union bound, suggests the original
+Mushroom and Semeion local circuits might fit a 32-bit modulus. That would
+reduce full coefficient bodies by 20% without increasing encrypted columns.
+The [prospective calculation](hierarchical-query-basis-results.md#more-promising-next-experiment-the-phase-bound-itself)
+is a model only; current key gates and phase semantics remain deterministic.
+
+First independently check the MGF derivation and integer rounding, enumerate
+small exact error distributions, and measure full secret phases in homemade
+toy/full-size references. Include error-dependent coefficients as a failed
+control. Fix the index/key/token lifetime and distinguish fixed queries from
+adaptive queries, seeded masks and reused ciphertext errors. Statistical tests
+cannot establish the claimed negligible tail probability. Charge every reply
+coefficient and lifetime query, not just one output score.
+
+Only then prototype a separate explicit probabilistic-correctness profile with
+its own context binding and budget. Do not relabel a probabilistic bound as the
+existing deterministic `phase_bound`, bypass validation, or generalize the
+symmetric linear-circuit calculation to public-key encryption, multiplication,
+rounding or a different sampler. RLWE security estimation is a separate task.
+
+**Possible contribution:** a useful search/verification/parameter schedule with
+a rigorously scoped lifetime guarantee; noise concentration itself is known.
+**Falsification:** message carries, adversarial dependence, seed assumptions,
+epoch lifetime or complete-circuit checks invalidate the apparent smaller Q.
+Keep the deterministic profile as the control and fallback.
+
+## E33 — Can authenticated correlations cross the two fields cheaply?
+
+Use the explicit correlation contract before selecting a PCG or helper model.
+The exact server check is over `F_Q`, but masks and query geometry are over
+`F_t`; centered CRT lifts are nonlinear between those fields. Explore whether
+the lift/carry relations admit a cheaper complete checked conversion or a
+different arithmetic representation, with public rank/geometry kept explicit.
+
+Start with a tiny end-to-end oracle covering every coefficient, carry/range
+constraint, fresh output encryption and malicious setup. Compare its complete
+work/state with fresh owner preparation and full-coefficient fingerprints.
+Noncolluding helpers, trusted attestation and a single malicious server are
+different contracts. A deterministic rerandomization slogan or a public linear
+mask bank is not a solution. Query reuse, expiry and crash semantics belong in
+the experiment, not in a later footnote.
+
+**Falsification:** the allegedly saved work is merely shifted to a trusted
+party, discarded correlations dominate, or restoring authentication/field
+conversion costs erases the gain. A new assumption must appear beside the
+performance comparison.
 
 ## Evidence and deferred work
 

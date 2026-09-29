@@ -63,6 +63,16 @@ curves. A global affine control and explicit private-image/public-linear-pool
 masking failures keep the tradeoffs visible. Existing code uses the zero-shared
 default; earlier epoch bindings and production interfaces are preserved.
 
+The [ninth creative cycle](../../docs/research/hierarchical-query-basis-results.md)
+adds exact subtree intersections, per-column correction degrees, exhaustive
+small fixed-tree optima and equal-capacity CRT regrouping. Query bodies shrink
+at the same index size, but response size, total owner state and native latency
+do not improve. Complete encrypted comparisons retain the simple equal-row
+control and the negative dataset. The next probe is a separately scoped
+probabilistic phase bound; its size projections have not changed any encryption
+profile. An [offline-correlation contract](../../docs/research/authenticated-correlation-contract.md)
+records the remaining protocol obligations.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -139,6 +149,7 @@ assurance. The raw CUDA path does not provide attestation.
 | `crt_linear_check.py` | Conditional full-Q response checking, private seeded challenges, adjoint/scalar preprocessing and bounded local epoch reuse |
 | `crt_native_bgv.py`, `_subring/bindings.cpp` | Separate homemade public C++ scalar/short-NTT evaluator over full-ring ciphertexts; no production or GPU integration |
 | `shared_query_basis.py` | E30 exact common/residual affine bases, private query transforms and index-only overlap/raw-coordinate trajectories |
+| `hierarchical_query_basis.py` | E31 exact subspace intersections, private tree bases, equal-form schedules and balanced greedy overlap grouping |
 | `test_correlation_pool_limits.py` | Exhaustive controls showing why public linear expansion of a fixed mask bank leaks joint query relations |
 | `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
