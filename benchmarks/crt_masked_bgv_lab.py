@@ -90,6 +90,7 @@ def run_prepared(args, data, ids, holdout, rows, candidate, setup, s, groups, ma
     maps = list(dict.fromkeys(b.mapping for b in candidate.blocks))
     map_ids = s.map_ids
     compiled = [affine.compile_bits(p) for p in maps]
+    block_compiled = [affine.compile_bits(b.mapping) for b in candidate.blocks]
     rounds = 5 if args.q_bits == 32 else 4
     model = space.cost(s, q_bits=args.q_bits, rounds=rounds)
     setup["key_gen_s"], (pk, sk) = timed(masked.key_gen, s, q_bits=args.q_bits)
@@ -158,8 +159,8 @@ def run_prepared(args, data, ids, holdout, rows, candidate, setup, s, groups, ma
             def finish(plaintexts=plaintexts, offsets=offsets):
                 dots = tree.unpack(s.layout, plaintexts)
                 actual = []
-                for block, values, group in zip(candidate.blocks, dots, map_ids, strict=True):
-                    actual.extend(zip(affine.bit_decode(compiled[group], values, offsets[group]),
+                for block, original, values, group in zip(candidate.blocks, block_compiled, dots, map_ids, strict=True):
+                    actual.extend(zip(affine.bit_decode(original, values, offsets[group]),
                                       (ids[i] for i in block.positions), strict=True))
                 return sorted(actual)
 

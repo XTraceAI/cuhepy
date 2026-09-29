@@ -23,9 +23,12 @@ class Space:
     map_ids: tuple[int, ...]
     dimensions: tuple[int, ...]
     shared: int = 0  # E30: a common prefix of private query forms, masked once.
+    coordinate_ids: tuple[tuple[int, ...], ...] = ()  # E31: explicit per-map form IDs.
 
     @property
     def dimension(self) -> int:
+        if self.coordinate_ids:
+            return 1 + max(i for row in self.coordinate_ids for i in row)
         return self.shared + sum(f - self.shared for f in self.dimensions)
 
     @property
@@ -42,6 +45,20 @@ class Space:
 
     @property
     def column_degrees(self) -> tuple[int, ...]:
+        if self.coordinate_ids:
+            # Collapse siblings only when they name the SAME masked variable.
+            # Equal values in one request never justify a smaller declared ring.
+            result = []
+            for j in range(self.columns):
+                work = {leaf.path: (self.coordinate_ids[i][j] if j < self.dimensions[i] else -1)
+                        for leaf, i in zip(self.layout.context.leaves, self.map_ids, strict=True)}
+                for node in reversed(self.layout.context.splits):
+                    left, right = node.path + "0", node.path + "1"
+                    if left in work and right in work and work[left] == work[right]:
+                        work[node.path] = work.pop(left)
+                        del work[right]
+                result.append(1 << max(map(len, work)))
+            return tuple(result)
         return (1,) * self.shared + (self.slots,) * (self.columns - self.shared)
 
     @property
@@ -49,10 +66,13 @@ class Space:
         body = asdict(self)
         if not self.shared:
             del body["shared"]  # Preserve existing E29 epoch/mask bindings.
+        if not self.coordinate_ids:
+            del body["coordinate_ids"]  # Preserve E29 AND E30 bindings.
         return hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).digest()
 
 
-def space(layout: crt.Layout, map_ids: tuple[int, ...], *, shared: int = 0) -> Space:
+def space(layout: crt.Layout, map_ids: tuple[int, ...], *, shared: int = 0,
+          coordinate_ids: tuple[tuple[int, ...], ...] = ()) -> Space:
     crt.validate_layout(layout)
     if (type(map_ids) is not tuple or len(map_ids) != len(layout.features)
             or any(type(i) is not int or i < 0 for i in map_ids)
@@ -66,11 +86,22 @@ def space(layout: crt.Layout, map_ids: tuple[int, ...], *, shared: int = 0) -> S
         dimensions.append(sizes.pop())
     if type(shared) is not int or not 0 <= shared <= min(dimensions):
         raise ValueError("Invalid common query prefix")
-    return Space(layout, map_ids, tuple(dimensions), shared)
+    if type(coordinate_ids) is not tuple:
+        raise ValueError("Expected immutable coordinate schedule")
+    if coordinate_ids:
+        if (shared or len(coordinate_ids) != len(dimensions)
+                or any(type(row) is not tuple or len(row) != f
+                       or any(type(i) is not int or i < 0 for i in row) or len(set(row)) != len(row)
+                       for row, f in zip(coordinate_ids, dimensions, strict=True))):
+            raise ValueError("Invalid scheduled query coordinates")
+        ids = tuple(dict.fromkeys(i for row in coordinate_ids for i in row))
+        if ids != tuple(range(len(ids))):
+            raise ValueError("Expected canonical dense query-coordinate identifiers")
+    return Space(layout, map_ids, tuple(dimensions), shared, coordinate_ids)
 
 
 def validate(s: Space) -> None:
-    if s != space(s.layout, s.map_ids, shared=s.shared):
+    if s != space(s.layout, s.map_ids, shared=s.shared, coordinate_ids=s.coordinate_ids):
         raise ValueError("Inconsistent public CRT query space")
 
 
@@ -78,6 +109,8 @@ def split(s: Space, values: tuple[int, ...]) -> tuple[tuple[int, ...], ...]:
     validate(s)
     if len(values) != s.dimension or any(type(x) is not int for x in values):
         raise ValueError("Incorrect public query-space coordinates")
+    if s.coordinate_ids:
+        return tuple(tuple(values[i] for i in row) for row in s.coordinate_ids)
     result, start = [], s.shared
     for dimension in s.dimensions:
         width = dimension - s.shared
@@ -102,7 +135,7 @@ def corrections(s: Space, values: tuple[int, ...]) -> tuple[tuple[int, ...], ...
     ctx = s.layout.context
     stride, p = s.stride, ctx.prime
     result: list[tuple[int, ...]] = []
-    for j in range(s.columns):
+    for j, degree in enumerate(s.column_degrees):
         if j < s.shared:
             x = groups[0][j] % p
             result.append((x if x <= p // 2 else x - p,))
@@ -115,7 +148,11 @@ def corrections(s: Space, values: tuple[int, ...]) -> tuple[tuple[int, ...], ...
             inverse, gamma_inverse = pow(2, -1, p), pow(2 * node.gamma, -1, p)
             work[node.path] = ([(a + b) * inverse % p for a, b in zip(left, right, strict=True)]
                                + [(a - b) * gamma_inverse % p for a, b in zip(left, right, strict=True)])
-        result.append(tuple(x if x <= p // 2 else x - p for x in work[""]))
+        full = work[""]
+        step = s.slots // degree
+        if any(x for i, x in enumerate(full) if i % step):
+            raise AssertionError("Declared correction subring misses a coefficient")
+        result.append(tuple(x if x <= p // 2 else x - p for x in full[::step]))
     return tuple(result)
 
 

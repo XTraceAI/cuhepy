@@ -151,6 +151,7 @@ def test_changed_shared_prefix_context_rejected_and_e29_bindings_preserved():
     old = space.space(s.layout, s.map_ids)
     body = asdict(old)
     del body["shared"]
+    del body["coordinate_ids"]
     assert old.binding == hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).digest()
     assert old.binding != s.binding and old.dimension > s.dimension
     pk, sk = masked.key_gen(s, q_bits=32, eta=1)
