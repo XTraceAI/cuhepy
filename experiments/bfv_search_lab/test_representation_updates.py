@@ -9,6 +9,7 @@ from experiments.bfv_search_lab import crt_linear_check as check
 from experiments.bfv_search_lab import crt_masked_bgv as masked
 from experiments.bfv_search_lab import crt_native_bgv as native
 from experiments.bfv_search_lab import field_frontier as fields
+from experiments.bfv_search_lab import integer_phase_audit as audit
 from experiments.bfv_search_lab import owner_bgv as owner
 from experiments.bfv_search_lab import representation_oracle as oracle
 from experiments.bfv_search_lab import representation_updates as updates
@@ -92,3 +93,25 @@ def test_reusing_an_exposed_pad_would_reveal_query_difference():
     delta_a = tuple((w - r) % t for w, r in zip(a, pad, strict=True))
     delta_b = tuple((w - r) % t for w, r in zip(b, pad, strict=True))
     assert tuple((x - y) % t for x, y in zip(delta_a, delta_b, strict=True)) == tuple((x - y) % t for x, y in zip(a, b, strict=True))
+
+
+def test_repair_phase_oracle_covers_accumulated_input_and_answer_bounds():
+    p = plan()
+    pk, sk = masked.key_gen(p.query_space, q_bits=32, eta=1)
+    with closing(owner.OwnerClient(pk, sk)) as client:
+        pool = updates.RepairPool(p, client)
+        token = pool.prepare(bytes(16))
+        for edit in ({0: 1}, {0: 2}, {0: 3}):
+            pool.edit(edit)
+        bound = max(c.phase_bound for c in token.answer.ciphertexts)
+        old_fresh_oracle = audit.Audit(pool.index, pk, sk)
+        current_oracle = audit.Audit(pool.index, pk, sk, maximum_answer_bound=bound)
+        assert current_oracle.modulus > old_fresh_oracle.modulus
+        values, _ = oracle.query(pool.plan.client_view(), 0)
+        request = token.consume(values, pool.index.epoch)
+        output = masked.evaluate(pool.index, token.answer, request, pk)
+        with pytest.raises(ValueError, match="declared phase budget"):
+            old_fresh_oracle.measure(request, token.answer, output)
+        measured = current_oracle.measure(request, token.answer, output)
+        assert measured["all_integer_phase_coefficients_match_ciphertext"]
+        assert measured["maximum_unreduced_integer_phase"] <= measured["maximum_deterministic_response_bound"]

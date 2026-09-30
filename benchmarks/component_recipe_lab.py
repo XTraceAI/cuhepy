@@ -15,6 +15,7 @@ from contextlib import closing
 import json
 from pathlib import Path
 import secrets
+from statistics import median
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,14 +66,14 @@ def main():
         setup["server_prepare_s"], server = timed(native.NativeIndex, index, pk)
         setup["public_cached_recipe_prepare_s"], cached = timed(recipe.Reconstructor, manifest, pk, mode="cached")
         setup["public_streaming_recipe_prepare_s"], streaming = timed(recipe.Reconstructor, manifest, pk, mode="streaming")
-        gates = {name: checks.NativeVectorCheck(index, pk, rounds=fields.rounds(int(pk.q)), budget=1024)
-                 for name in ("full", "cached", "streaming")}
+        setup["three_equal_full_checkers_prepare_s"], gates = timed(lambda: {
+            name: checks.NativeVectorCheck(index, pk, rounds=fields.rounds(int(pk.q)), budget=1024)
+            for name in ("full", "cached", "streaming")})
         setup["offline_pool_s"], pool = timed(lambda: [recipe.prepare(s, groups, epoch, i.to_bytes(16, "little"),
                                                                      secrets.token_bytes(32), client)
                                                      for i in range(args.repeats + 1)])
-        for gate in gates.values():
-            for _, answer, _ in pool:
-                gate.prepare_answer(answer)
+        setup["three_equal_answer_checker_pools_s"], _ = timed(lambda: [
+            gate.prepare_answer(answer) for gate in gates.values() for _, answer, _ in pool])
         previous = 0
         for i, (ticket, answer, answer_seeds) in enumerate(pool):
             word = data.rows[heldout[64 + 2 * i + (previous & 1)]]
@@ -82,7 +83,13 @@ def main():
                 return ticket.consume(weights, epoch), tuple(off for _, off in transformed)
             transform_s, (req, offsets) = timed(request)
             server_s, output = timed(server.evaluate, answer, req)
-            full_pack_s, full_body = timed(codec.pack, tuple(int(x) for c in output for p in c.components for x in p), int(pk.q))
+            def pack_full():
+                # Both codecs charge validation and GMP-to-integer conversion
+                # inside their timer. The first pilot omitted this conversion
+                # only for the full packet; its raw run remains at d2c198d.
+                masked.validate_ciphertexts(output, len(output), pk)
+                return codec.pack(tuple(int(x) for c in output for p in c.components for x in p), int(pk.q))
+            full_pack_s, full_body = timed(pack_full)
             full_parse_s, full = timed(parse_bits, full_body, pk, tuple(c.phase_bound for c in output))
             full_check_s, accepted = timed(gates["full"].verify_once, req, full)
             assert accepted
@@ -105,7 +112,9 @@ def main():
                         actual[position] = score
                 return tuple(actual), sorted(zip(actual, ids, strict=True))[:3]
             decode_s, (scores, winners) = timed(decode)
-            assert scores == tuple((word ^ row).bit_count() for row in rows)
+            cache_s, cached_scores = timed(lambda: tuple((word ^ row).bit_count() for row in rows))
+            cache_select_s, cached_winners = timed(lambda: sorted(zip(cached_scores, ids, strict=True))[:3])
+            assert scores == cached_scores and winners == cached_winners
             for v in variants.values():
                 v["local_online_s_stage_sum"] = transform_s + server_s + decrypt_s + decode_s + v["response_pack_s"] + v["public_restore_s"] + v["full_check_s"]
                 v["directional_link_models_s"] = {str(mbps): v["local_online_s_stage_sum"] + 8 * v["response_body_bytes"] / (mbps * 1000000)
@@ -113,12 +122,26 @@ def main():
             samples.append({"warmup": i == 0, "query_policy_previous_winner": previous, "next_winner": winners[0][1],
                             "transform_s": transform_s, "native_server_s": server_s, "decrypt_s": decrypt_s,
                             "decode_select_s": decode_s, "all_full_ciphertext_coefficients_identical": True,
+                            "full_plaintext_cache_scores_and_selection_s_control": cache_s + cache_select_s,
                             "all_gates_pass_before_secret_decryption": True, "all_scores_and_stable_top3_exact": True,
                             "variants": variants})
             previous = winners[0][1]
-    result = metadata([Path(__file__), ROOT / "experiments/bfv_search_lab/component_recipe.py"])
+    paths = [Path(__file__), *(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
+        "component_recipe", "owner_bgv", "seeded_bgv", "shallow_bgv", "crt_masked_bgv", "crt_query_space",
+        "crt_native_bgv", "native_linear_check", "crt_linear_check", "coefficient_body", "field_frontier")),
+        ROOT / "src/cuhepy/bfv/scheme.py"]
+    paths.extend(p for folder in ("_subring", "_fingerprint")
+                 for p in (ROOT / "experiments/bfv_search_lab" / folder).glob("*.so"))
+    differences = {name: median(sample["variants"][name]["local_online_s_stage_sum"] -
+                                sample["variants"]["full"]["local_online_s_stage_sum"] for sample in samples[1:])
+                   for name in ("cached", "streaming")}
+    result = metadata(paths)
     result.update(kind="public_component_seed_recipe", dataset=data.name, fixture_sha256=data.sha256,
                   count=len(rows), dimension=data.dimension, n=pk.n, q=int(pk.q), t=t, setup=setup, samples=samples,
+                  extra_local_work_s_paired_median=differences,
+                  directional_response_only_crossover_mbps_model={name: (8 * (len(full_body) - len(short_body)) / value / 1e6 if value > 0 else None)
+                                                                  for name, value in differences.items()},
+                  plaintext_cache_packed_rows_and_stable_ids_bytes_model=len(rows) * ((data.dimension + 7) // 8 + 8),
                   summary={name: summary([{k: sample["variants"][name][k] for k in (
                       "response_pack_s", "public_restore_s", "full_check_s", "local_online_s_stage_sum", "response_body_bytes")}
                                          for sample in samples[1:]]) for name in ("full", "cached", "streaming")},

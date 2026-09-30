@@ -21,13 +21,23 @@ from experiments.bfv_search_lab import shallow_bgv as bgv
 
 
 class Audit:
-    def __init__(self, index: masked.Index, pk: bgv.PublicKey, sk: bgv.SecretKey):
+    def __init__(self, index: masked.Index, pk: bgv.PublicKey, sk: bgv.SecretKey, *, maximum_answer_bound: int | None = None):
         if sk.key_id != pk.key_id:
             raise ValueError("Incorrect owner audit context")
         self.index, self.pk = index, pk
         self.product = owner.TernaryProduct(sk.s, pk.q)
         self.product.prepare(pk.q)
-        maximum = crt.cost(index.space, q_bits=max(32, pk.q.bit_length()), eta=pk.eta)["worst_case_phase_bound"]
+        fresh = pk.t // 2 + pk.t * pk.eta
+        self.maximum_answer_bound = fresh if maximum_answer_bound is None else maximum_answer_bound
+        if type(self.maximum_answer_bound) is not int or not 0 <= self.maximum_answer_bound < pk.q // 2:
+            raise ValueError("Invalid owner audit answer phase budget")
+        # Accumulated encrypted updates carry larger public input bounds.
+        # Reusing the fresh-only diagnostic modulus would wrap the independent
+        # integer oracle, so cover the actual declared index AND answer ages.
+        maximum = max(self.maximum_answer_bound + sum(
+            degree * (pk.t // 2) * column[r].phase_bound
+            for degree, column in zip(index.space.column_degrees, index.columns, strict=True))
+            for r in range(index.space.layout.cost.response_ciphertexts))
         if 2 * maximum >= pk.q:
             raise ValueError("Audit requires the complete deterministic circuit bound")
         self.modulus = mpz(2 * maximum + 1)
@@ -43,6 +53,8 @@ class Audit:
         return phase
 
     def measure(self, request: masked.Request, answer: masked.Answer, output: tuple[bgv.Ciphertext, ...]) -> dict:
+        if any(c.phase_bound > self.maximum_answer_bound for c in answer.ciphertexts):
+            raise ValueError("Answer exceeds the owner audit's declared phase budget")
         short = crt.corrections(self.index.space, request.delta)
         polynomials = [tuple(mpz(x) % self.modulus for x in crt.expand(self.index.space, row)) for row in short]
         digest, maximum = hashlib.sha256(), 0
