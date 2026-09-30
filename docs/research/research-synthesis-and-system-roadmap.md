@@ -1,5 +1,14 @@
 # From the experiment portfolio to a system and a paper
 
+**Publication planning revision, 2026-09-30:** the
+[closest-work comparison](closest-work-comparison-20260930.md) and
+[executable publication plan](publication-research-plan.md) now govern the
+next steps. They add EMVP, trapdoored linear algebra, recent vLHE, search and
+compiler comparisons, and prioritize joint representation, backend and update
+experiments before deployment. This document remains the E01–E40 evidence
+synthesis. Its historical version is preserved at `02e06c0` and the
+`checkpoint/verification-frontier-2026-09-30` tag.
+
 2026-09-30, `experiment/creative-search-algebra`. This consolidates E01–E40;
 the individual reports and raw observations remain the evidence. The latest
 [E36–E40 report](verification-frontier-results.md) supplies paired measurements
@@ -146,7 +155,11 @@ already answer the small public workloads in milliseconds; any outsourced
 system must explain why that cache is disallowed, too large, undesirable or
 outside the intended device/service separation.
 
-## Attested correlation factory: the most concrete protocol experiment
+## Attested correlation factory: a later protocol integration experiment
+
+The new publication plan places this after the representation/baseline gates.
+It remains a useful trusted-preprocessing implementation option; deploying
+it does not establish the proposed algorithmic contribution.
 
 The current owner computes `M*r` and freshly encrypts it. A proposed factory
 can move **this offline matrix computation** into an owner-approved enclave,
@@ -236,9 +249,11 @@ complete privacy/CCA/side-channel theorem.
 | Homemade GPU/native system artifact | Many prior GPU HE systems and packing implementations | Existing exact CPU/CUDA comparisons, Nsight profiles and retained sanitizer controls | Same-workload/security comparisons against current external systems, complete authorized request timings |
 
 [Slalom](https://arxiv.org/html/1806.03287v2), Sections 3.2–3.3 and Appendix B,
-is the closest preprocessing/integrity context; its neural-network setting
-does not itself prove our encrypted-index protocol. Merely adding HE to a
-known masked linear check is not an originality argument.
+was an important initial preprocessing/integrity reference; its neural-network
+setting does not itself prove our encrypted-index protocol. The new
+[closest-work review](closest-work-comparison-20260930.md) adds more directly
+related encrypted-matrix and vLHE protocols. Merely adding HE to a known masked
+linear check is not an originality argument.
 
 [SANNS](https://www.microsoft.com/en-us/research/wp-content/uploads/2019/04/SANNS-Scaling-Up-Secure-Approximate.pdf),
 Sections I, III-C and IV-B, gives an especially useful comparison: coefficient
@@ -257,17 +272,18 @@ The E37 families and E39 equal-power-sum construction are identified in the
 new results report. Novelty search still needs complete comparison against
 authenticated outsourced linear algebra, preprocessing PIR/correlation
 generators, search-specific packing, and output-private secure selection.
-Abstract-only leads in the [literature agenda](encrypted-search-literature-agenda.md)
-remain leads, not reviewed constructions.
+The new review records targeted primary reading and artifact pins; remaining
+abstract-only leads in the [literature agenda](encrypted-search-literature-agenda.md)
+still remain leads, not reviewed constructions.
 
 ## Prioritized unresolved experiments and stopping rules
 
 | Order | Discriminating experiment | Advance if | Abandon / retain as negative if |
 |---|---|---|---|
-| 1 | Complete E34 transcript/game specification and E33 attested-factory local lifecycle prototype | Proof premises map to actual messages/state and crash tests preserve one-use semantics | Simulation needs a forbidden decryption oracle, public tags, current-mask selection or unpriced trusted online search |
-| 2 | Same-data general BGV/CUDA vs reply-column CPU/GPU, with one chosen complete checker and real state measurements | A compatible verified request wins after token utilization, setup and owner-cache controls | A fast kernel loses on owner/check work or the changed-state deployment is unjustified |
-| 3 | Representation compiler with exact small optima and larger index-only trajectories | A new greedy/DP/relaxation approach improves the joint frontier or has a useful guarantee | Benefits are explained entirely by existing merging/rank/padding controls |
-| 4 | Update-stable correction layers or bounded exception classes | One/few insertions avoid global rank/padding/token invalidation while preserving bindings | Selector cost, map disclosure or token migration cancels the gain; keep E27 update control |
+| 1 | P00/P01 contract and closest-baseline reproduction; begin E34 transcript specification | Comparable owner-data/output/state/security contracts and a justified outsourcing use case | A compatible existing protocol or full cache dominates; pivot before large engineering work |
+| 2 | E41 joint representation/capacity oracle and E42 backend/security-dimension comparison | A precise joint choice beats independent rank/layout controls without weakening parameters or verification | The win is ordinary merging/packing or vanishes under code dimensions, client work or state costs |
+| 3 | Exact restricted-grammar planner, then E43 update/dependency experiments | A useful guarantee or measured full-cost gain survives strong static/delta controls | Sharing couples so much state that repair/token waste cancels the gain |
+| 4 | Complete same-data CPU/GPU system comparisons and E33 lifecycle integration after the preceding gates | A verified request wins with setup, actual state, consumed/unused tokens and client controls charged | An isolated kernel or unpriced trusted service explains the apparent benefit |
 | 5 | Output-private selection: exact Boolean/MPC/attested stable top-k with full coverage | Conversion/selection/proof total beats full-score transfer under its stated contract | Only approximate recall, unpriced comparisons, omitted IDs/ties or trusted access leakage produce the apparent win |
 | 6 | Genuine two-field/correlation generator | Small complete authenticated share-to-token oracle succeeds with fresh errors and declared collusion | Missing carry/centering/rerandomization or public mask-bank leakage remains |
 | 7 | Matrix HE / CKKS certified refinement / alternate exact modulus arithmetic | A proved identity and matched full cost crosses a current frontier | Literal key growth, unbounded error or recall-only evidence; no native backend before the oracle survives |
@@ -278,6 +294,10 @@ justified when it tests a new representation, verified relation or larger
 throughput regime. It must retain an equally optimized native control and
 charge transfer/initialization; a faster untrusted kernel cannot be signed
 unchecked by the existing CPU Nitro path.
+
+The [publication plan](publication-research-plan.md) specifies task dependencies,
+exact deliverables, proposed E41–E47 experiments, proof obligations and go/pivot
+criteria. Its work-package order supersedes historical next-step prose.
 
 ## Paper evaluation and outline
 

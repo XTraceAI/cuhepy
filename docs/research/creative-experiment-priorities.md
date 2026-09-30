@@ -1,5 +1,10 @@
 # Creative experiment priorities
 
+**Current execution plan:** [publication research plan](publication-research-plan.md),
+with a [closest-work comparison](closest-work-comparison-20260930.md) and
+[machine-readable work packages](publication-work-packages.json). Proposed
+E41–E47 are not implemented. The E01–E40 results below remain the evidence.
+
 Priority update, 2026-09-30, following the project's research direction.
 This supersedes the execution order in earlier plans; it does not change their
 results. The implementation baseline is `7dd927f` on
@@ -122,17 +127,17 @@ the different known hash family has a smaller additional benefit. Norm
 tightening does not cross a byte boundary. Small-ring models retain both
 unchanged-payload and spare-capacity cases; changed N needs new assurance.
 
-**Next cycle:** follow the [system/paper synthesis](research-synthesis-and-system-roadmap.md),
-which inventories E01–E40, compatible contracts, contribution candidates,
-proof premises, strong baselines and stopping rules. Prioritize E34's complete
-transcript/game and E33's authenticated correlation/lifecycle experiment,
-then same-data verified CPU/GPU/full-cache comparisons and a stronger joint
-representation/update algorithm. Preserve the general BGV/CUDA path and
-all failed constructions. The ring models, classic hash families and native
-engineering gains are controls, not an established original contribution.
-Output-private Boolean/MPC/attested selection, real two-field correlations,
-matrix HE and certified approximate refinement remain explicit competing
-tracks. Their complete costs and changed contracts are unresolved.
+**Next cycle:** execute P00–P04 of the [publication plan](publication-research-plan.md):
+freeze the functionality/leakage, reproduce closest compatible protocols,
+build an exact joint-representation oracle, test the backend/security-dimension
+tradeoff and E47's proposed vLHE layer over public ciphertext coefficients, then
+develop the surviving algorithm. E43 investigates sharing versus
+update/token invalidation. Begin the E34 transcript proof alongside this work;
+defer E33 service deployment and new GPU kernels until the mechanism/full-cost
+gates pass. The [E01–E40 synthesis](research-synthesis-and-system-roadmap.md)
+remains the complete results ledger. Preserve the general BGV/CUDA path and
+all failed constructions. Exact certified refinement and output-only selection
+remain bounded alternate hypotheses, not established contributions.
 Previous checkpoints include `checkpoint/dyadic-rank-capacity-2026-09-27`
 (`10a9125`) and `checkpoint/matrix-query-space-2026-09-28` (`cee16cf`). E29 source
 is committed at `26e8ffb` and `b6e41c8`, checkpointed at `15c6737`. E30 source
@@ -751,7 +756,9 @@ costs cancel the apparent bit reduction.
 
 ## E36 — Can the correction image give a uniform adaptive norm bound?
 
-**Next mathematical priority; not implemented.** The universal phase gate uses
+**Implemented in the twelfth cycle; no new byte boundary on the measured layouts.**
+See the [E36–E40 report](verification-frontier-results.md). The original
+hypothesis and falsifier below are retained as history. The universal phase gate uses
 `sum |alpha_j| <= W*floor(t/2)` even though alpha is a linear image of only h
 masked coordinates over F_t. Can duplicated forms, zero coordinates or code
 constraints lower the maximum centered-lift L1 norm enough to change a byte

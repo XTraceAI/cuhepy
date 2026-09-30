@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "plan_date": "2026-09-30",
+  "plan": "docs/research/publication-research-plan.md",
+  "baseline_commit": "02e06c0f5636def284ed6864b3e208538fcb10a6",
+  "baseline_tag": "checkpoint/verification-frontier-2026-09-30",
+  "primary_question": "Joint exact private representation, reply capacity, complete verification and update/lifetime cost under stated state and leakage budgets.",
+  "implementation_policy": "Homemade deliverable arithmetic/protocols; external artifacts are pinned baselines and differential references.",
+  "critical_path": [
+    "P00",
+    "P01 and P02",
+    "P03",
+    "P04",
+    "P06",
+    "go_or_pivot"
+  ],
+  "gate_C_initial_targets": {
+    "amortized_cost_reduction_fraction": 0.2,
+    "alternative_binding_state_or_update_reduction_factor": 2.0,
+    "scope": "Project decision thresholds, not promised gains or conference criteria; disclose all regressions and uncertainty."
+  },
+  "all_new_experiments_are_proposals": true,
+  "tasks": [
+    {
+      "id": "P00",
+      "title": "Freeze exact-search contract",
+      "suggested_role": "protocol/system",
+      "status": "planned",
+      "dependencies": [],
+      "proposed_experiments": [],
+      "output_paths": [
+        "docs/research/exact-search-contract.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "All candidates classified by data ownership, output, leakage, preprocessing, state and parameter assurance; justified outsourcing use case.",
+      "stop_or_pivot_if": [
+        "State budgets invented solely to exclude local cache",
+        "Different metric/trust silently compared"
+      ],
+      "requires_new_gpu_code": false
+    },
+    {
+      "id": "P01",
+      "title": "Reproduce closest baselines",
+      "suggested_role": "reproducibility",
+      "status": "planned",
+      "dependencies": [
+        "P00"
+      ],
+      "proposed_experiments": [],
+      "output_paths": [
+        "docs/research/baseline-reproduction.md",
+        "experiments/bfv_search_lab/references/"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Pinned native author modes and exact adaptations distinguished; inputs, outputs, assumptions, bytes and state retained.",
+      "stop_or_pivot_if": [
+        "Borrowed paper speedups presented as local",
+        "Strongest competitor dropped without explanation"
+      ],
+      "requires_new_gpu_code": false
+    },
+    {
+      "id": "P02",
+      "title": "Exact joint-representation oracle",
+      "suggested_role": "algebra",
+      "status": "planned",
+      "dependencies": [
+        "P00"
+      ],
+      "proposed_experiments": [
+        "E41"
+      ],
+      "output_paths": [
+        "experiments/bfv_search_lab/representation_contract.py",
+        "experiments/bfv_search_lab/representation_oracle.py",
+        "experiments/bfv_search_lab/test_representation_oracle.py"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Every row/ID/capacity certified; exhaustive tiny cases; a joint-choice counterexample survives simple controls.",
+      "stop_or_pivot_if": [
+        "Only rank reduction or ordinary merging explains benefit"
+      ],
+      "requires_new_gpu_code": false
+    },
+    {
+      "id": "P03",
+      "title": "Backend and security-dimension frontier",
+      "suggested_role": "protocol/algebra",
+      "status": "planned",
+      "dependencies": [
+        "P00",
+        "P01",
+        "P02"
+      ],
+      "proposed_experiments": [
+        "E42",
+        "E47"
+      ],
+      "output_paths": [
+        "experiments/bfv_search_lab/backend_frontier.py",
+        "experiments/bfv_search_lab/ciphertext_linear_oracle.py",
+        "docs/research/backend-frontier-results.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Raw/global/local choices priced with actual code dimensions, response shares, client work, setup and integrity; nested vLHE oracle includes full-Q output, centered lifts/carries, explicit matrix expansion and outer parameter costs.",
+      "stop_or_pivot_if": [
+        "Unsupported small-field security",
+        "Code-dimension floor erases expected gain",
+        "Outer field width, matrix expansion, admissible-database bounds or preprocessing erase any replacement of owner mask-answer generation"
+      ],
+      "requires_new_gpu_code": false,
+      "additional_gate": "P07 specifies composition assumptions before relying on outer verification or removing an existing inner check."
+    },
+    {
+      "id": "P04",
+      "title": "Restricted-grammar representation planner",
+      "suggested_role": "algorithm",
+      "status": "planned",
+      "dependencies": [
+        "P02",
+        "P03"
+      ],
+      "proposed_experiments": [
+        "E41"
+      ],
+      "output_paths": [
+        "experiments/bfv_search_lab/representation_planner.py",
+        "experiments/bfv_search_lab/test_representation_planner.py",
+        "docs/research/representation-planner-analysis.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Exact DP agrees with exhaustive grammar oracle; sufficient boundary state proof; bounded-search costs and gaps reported.",
+      "stop_or_pivot_if": [
+        "Unsound Pareto pruning",
+        "Only a parameter sweep without mechanism"
+      ],
+      "requires_new_gpu_code": false
+    },
+    {
+      "id": "P05",
+      "title": "Update dependencies and token invalidation",
+      "suggested_role": "lifecycle/protocol",
+      "status": "planned",
+      "dependencies": [
+        "P02",
+        "P04"
+      ],
+      "proposed_experiments": [
+        "E43"
+      ],
+      "output_paths": [
+        "experiments/bfv_search_lab/representation_updates.py",
+        "experiments/bfv_search_lab/test_representation_updates.py",
+        "docs/research/representation-update-results.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Insert/edit/delete preserve scores and IDs; no exposed-mask reuse; complete lifetime cost beats appropriate static/delta control.",
+      "stop_or_pivot_if": [
+        "Fragment distributions or joint binding invalid after migration",
+        "Rebuild/token waste cancels steady-state saving"
+      ],
+      "requires_new_gpu_code": false,
+      "additional_gate": "P07 review required before remote untrusted deployment; local research oracles may precede it."
+    },
+    {
+      "id": "P06",
+      "title": "Native complete-cost mechanism evaluation",
+      "suggested_role": "benchmark",
+      "status": "planned",
+      "dependencies": [
+        "P01",
+        "P04"
+      ],
+      "proposed_experiments": [],
+      "output_paths": [
+        "benchmarks/representation_lifetime_lab.py",
+        "benchmarks/representation_lifetime_summary.py"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Gate C assessed on held-out data with setup, search, all prepared tokens, state and cache controls; model vs measured separated.",
+      "stop_or_pivot_if": [
+        "Server-only speedup",
+        "Result depends only on favorable small public data"
+      ],
+      "requires_new_gpu_code": false
+    },
+    {
+      "id": "P07",
+      "title": "Transcript and security reduction agenda",
+      "suggested_role": "security",
+      "status": "planned",
+      "dependencies": [
+        "P00",
+        "P02"
+      ],
+      "proposed_experiments": [],
+      "output_paths": [
+        "docs/research/exact-search-security-game.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Real/ideal transcript, leakage, hybrid premises, authentication, adaptive failure budget and parameter assumptions match code.",
+      "stop_or_pivot_if": [
+        "Simulator needs unauthorized decryption",
+        "Unpriced trusted online computation",
+        "Masks or verifier keys exposed"
+      ],
+      "requires_new_gpu_code": false
+    },
+    {
+      "id": "P08",
+      "title": "Authenticated lifecycle and optional factory",
+      "suggested_role": "systems",
+      "status": "planned",
+      "dependencies": [
+        "P05",
+        "P07"
+      ],
+      "proposed_experiments": [],
+      "output_paths": [
+        "docs/research/authenticated-correlation-contract.md",
+        "experiments/bfv_search_lab/correlation_lifecycle.py",
+        "experiments/bfv_search_lab/test_correlation_lifecycle.py"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Durable consume, concurrency, crash/retry, rollback, stale epochs and producer/provisioning costs exercised; attestation mode explicit.",
+      "stop_or_pivot_if": [
+        "Simulated attestation claimed as hardware",
+        "Rollback permits released-mask reuse"
+      ],
+      "requires_new_gpu_code": false,
+      "additional_gate": "Gate C practical-effect decision must pass before this task starts."
+    },
+    {
+      "id": "P09",
+      "title": "Optimize surviving native/CUDA path",
+      "suggested_role": "native/CUDA",
+      "status": "planned",
+      "dependencies": [
+        "P06",
+        "P07"
+      ],
+      "proposed_experiments": [],
+      "output_paths": [
+        "docs/research/representation-acceleration-results.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Gate C passed; public evaluator exact against references; full request and throughput measured with transfers and checking.",
+      "stop_or_pivot_if": [
+        "Optimizes losing mechanism",
+        "Secret challenge/HE key reaches untrusted GPU"
+      ],
+      "requires_new_gpu_code": true,
+      "additional_gate": "Gate C practical-effect decision must pass; P07 defines the complete verifier boundary before new GPU kernels."
+    },
+    {
+      "id": "P10",
+      "title": "Bounded alternate hypotheses",
+      "suggested_role": "exploratory algebra",
+      "status": "planned",
+      "dependencies": [
+        "P00",
+        "P02"
+      ],
+      "proposed_experiments": [
+        "E44",
+        "E45",
+        "E46"
+      ],
+      "output_paths": [
+        "docs/research/representation-alternatives.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "One exact independent oracle, closest-work delta, complete cost bound and negative control per promoted alternative.",
+      "stop_or_pivot_if": [
+        "Recall-only evidence called exact",
+        "Insecure ring shrink",
+        "Omitted IDs/ties/coverage/proof costs"
+      ],
+      "requires_new_gpu_code": false
+    },
+    {
+      "id": "P11",
+      "title": "Freeze paper evaluation artifact",
+      "suggested_role": "evaluation/artifact",
+      "status": "planned",
+      "dependencies": [
+        "P01",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09"
+      ],
+      "proposed_experiments": [],
+      "output_paths": [
+        "docs/research/publication-evaluation.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Selected-scope evaluation has pinned workloads, raw observations, environment, figures, uncertainty and negative results.",
+      "stop_or_pivot_if": [
+        "Unexplained baseline omissions",
+        "Modeled network or capacity called measured"
+      ],
+      "requires_new_gpu_code": false,
+      "dependency_note": "Record a scoped amendment if update, factory or GPU work is not part of the selected paper; never mark an omitted package complete."
+    },
+    {
+      "id": "P12",
+      "title": "Validate claims and write paper",
+      "suggested_role": "research",
+      "status": "planned",
+      "dependencies": [
+        "P07",
+        "P11"
+      ],
+      "proposed_experiments": [],
+      "output_paths": [
+        "docs/research/paper-claims.md"
+      ],
+      "paths_note": "Proposed unless already present; paths do not imply implementation.",
+      "acceptance": "Claim-to-theorem-to-experiment-to-prior-work ledger supports one coherent contribution; independent key proof/parameter review.",
+      "stop_or_pivot_if": [
+        "Novelty consists only of C++/CUDA optimization",
+        "Theorem assumptions do not describe implementation"
+      ],
+      "requires_new_gpu_code": false
+    }
+  ],
+  "handoff_fields": [
+    "task_id",
+    "base_commit",
+    "contract_profile",
+    "literature_dependencies",
+    "hypothesis",
+    "falsifier",
+    "inputs_and_seeds",
+    "source_paths",
+    "reproduction_command",
+    "raw_artifact_hashes",
+    "result_classification",
+    "next_gate"
+  ],
+  "historical_artifacts_policy": "Do not rewrite prior measurements/manifests; validate their planning-document hashes at baseline_commit.",
+  "proposed_experiment_ids": [
+    "E41",
+    "E42",
+    "E43",
+    "E44",
+    "E45",
+    "E46",
+    "E47"
+  ]
+}

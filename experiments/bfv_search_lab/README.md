@@ -1,5 +1,14 @@
 # BFV search research sandbox
 
+Start new research with the
+[publication plan](../../docs/research/publication-research-plan.md) and
+[closest-work comparison](../../docs/research/closest-work-comparison-20260930.md).
+The plan defines proposed E41–E47 experiments, exact deliverables, dependencies
+and stopping rules in [work packages](../../docs/research/publication-work-packages.json).
+It prioritizes an original representation/update algorithm and strong external
+baselines before more deployment or kernel work. These new tasks are planned;
+the protected E01–E40 implementation remains the baseline.
+
 The [E01–E40 system and paper synthesis](../../docs/research/research-synthesis-and-system-roadmap.md)
 now inventories the entire portfolio, proposed compatible system paths,
 precise contribution candidates and unresolved proof/measurement gates. It

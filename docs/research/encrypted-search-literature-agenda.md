@@ -1,5 +1,15 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-30 publication planning review:** read the new
+[closest-work comparison](closest-work-comparison-20260930.md),
+[versioned primary-source registry](publication-literature-sources.json), and
+[executable publication plan](publication-research-plan.md). The comparison
+adds secret-dual-code EMVP, trapdoored linear algebra, recent vLHE, unified
+vector-search benchmarks, packing compilers, low-rank CKKS and updatable PIR.
+The next priority is a falsifiable joint representation/backend/update
+algorithm, with proof work alongside it; deployment is later. The dated
+entries below retain the historical readings and experiment motivations.
+
 **2026-09-30 twelfth creative follow-up:**
 [E36–E40 complete verification and competing controls](verification-frontier-results.md)
 adds uniform correction-image bounds, exact native-vector checking, homemade
@@ -25,8 +35,9 @@ its own costs. Its semi-honest approximate Euclidean/data-owner contract
 differs from ours. The artifact has not been reproduced in this cycle.
 The proposed attested correlation factory is an explicitly changed trusted
 offline service, with [AWS measurement/channel context](https://docs.aws.amazon.com/enclaves/latest/user/verify-root.html),
-not an implemented or attested GPU proof. E33/E34 proof/lifecycle work and
-compatible baseline reproduction are now the first gates in the synthesis.
+not an implemented or attested GPU proof. The publication plan above updates
+the execution order: contract/baseline and algorithmic gates first, with
+E34 proof work alongside them and E33 service integration later.
 
 **2026-09-29 eleventh creative follow-up:**
 [adaptive transcripts and joint field/geometry selection](adaptive-field-frontier-results.md)
