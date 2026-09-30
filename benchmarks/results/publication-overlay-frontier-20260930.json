@@ -1,0 +1,1289 @@
+{
+  "utc": "2026-09-30T18:32:32.861356+00:00",
+  "command": [
+    "benchmarks/overlay_lifetime_lab.py",
+    "--json-out",
+    "benchmarks/results/publication-overlay-frontier-20260930.json"
+  ],
+  "git_head": "cfa46ec6862f3cb11a9e5fed053f37ae8b02afcb",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/overlay_lifetime_lab.py": "1f1dfd3c51e34a3fe0a811de7f70a131c9c2897827a5f03c4486f54115bf2e58",
+    "experiments/bfv_search_lab/overlay_lifetime.py": "3aa2ccc79b97d442638286cdab844920999be9f492d45513083d8cbca8648856",
+    "experiments/bfv_search_lab/lifetime_planner.py": "3eca858638c2836a01ff22e6c7c6bab014d4580c77b0d0b6d4ab4ba31a9e2922",
+    "experiments/bfv_search_lab/representation_oracle.py": "562b1ca0a1f59767f425126a90cd13961d761b6fdf9985e2808b89b4cc3aec36",
+    "experiments/bfv_search_lab/representation_contract.py": "dfd3d5393f1ae50162203827eab65ad70db26b3cf788957ad8262e1462be4bff",
+    "experiments/bfv_search_lab/client_delta.py": "02a26e110b5ec92f921ecf0ef68c791ff974cc7a468f34e3ef5d27ebe45d86c5"
+  },
+  "kind": "exact_checkpoint_exception_frontier_model",
+  "catalog_fitting_s": 0.00039402800030075014,
+  "cases": [
+    {
+      "name": "outside-span-and-restore",
+      "trace": {
+        "revisions": [
+          {
+            "rows": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "ids": [
+              7,
+              2,
+              100,
+              9
+            ],
+            "dimension": 3
+          },
+          {
+            "rows": [
+              0,
+              3,
+              2,
+              1
+            ],
+            "ids": [
+              7,
+              2,
+              100,
+              9
+            ],
+            "dimension": 3
+          },
+          {
+            "rows": [
+              2,
+              7,
+              0,
+              3
+            ],
+            "ids": [
+              7,
+              2,
+              100,
+              9
+            ],
+            "dimension": 3
+          },
+          {
+            "rows": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "ids": [
+              7,
+              2,
+              100,
+              9
+            ],
+            "dimension": 3
+          }
+        ],
+        "queries": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "prepared_tokens": 8
+      },
+      "compile_s": 0.0018709290015976876,
+      "exhaustive_s": 0.014864908996969461,
+      "dp_s": 0.004654556003515609,
+      "exhaustive_prefixes": [
+        3,
+        9,
+        18,
+        72
+      ],
+      "dp_prefixes": [
+        3,
+        5,
+        7,
+        19
+      ],
+      "frontier": [
+        {
+          "entry": 0,
+          "base_revision": 0,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 576,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 32,
+              "private_certification_terms_model": 12,
+              "public_evaluate_products": 384,
+              "full_check_products": 4835,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 506,
+              "peak_owner_int8_coordinates_bytes": 4,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 512
+            },
+            "private_owner_update_body_bytes_model": 282,
+            "client_delta_popcounts": 28,
+            "client_delta_range_scan_entries": 40,
+            "owner_delta_word_operations_model": 27,
+            "peak_private_delta_body_bytes_model": 94,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ]
+          ]
+        },
+        {
+          "entry": 0,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 896,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 48,
+              "private_certification_terms_model": 21,
+              "public_evaluate_products": 384,
+              "full_check_products": 6440,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 506,
+              "peak_owner_int8_coordinates_bytes": 4,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 512
+            },
+            "private_owner_update_body_bytes_model": 188,
+            "client_delta_popcounts": 28,
+            "client_delta_range_scan_entries": 24,
+            "owner_delta_word_operations_model": 18,
+            "peak_private_delta_body_bytes_model": 94,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "frozen-fit",
+              "refresh",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 2,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1088,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 92,
+              "private_certification_terms_model": 48,
+              "public_evaluate_products": 768,
+              "full_check_products": 7440,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 178,
+            "client_delta_popcounts": 40,
+            "client_delta_range_scan_entries": 32,
+            "owner_delta_word_operations_model": 15,
+            "peak_private_delta_body_bytes_model": 94,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              2
+            ],
+            [
+              "reserve-all",
+              "client_delta",
+              2
+            ]
+          ]
+        },
+        {
+          "entry": 0,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1408,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 108,
+              "private_certification_terms_model": 60,
+              "public_evaluate_products": 512,
+              "full_check_products": 9025,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 84,
+            "client_delta_popcounts": 16,
+            "client_delta_range_scan_entries": 16,
+            "owner_delta_word_operations_model": 6,
+            "peak_private_delta_body_bytes_model": 84,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              2
+            ],
+            [
+              "frozen-fit",
+              "migrate",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 0,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1472,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 104,
+              "private_certification_terms_model": 48,
+              "public_evaluate_products": 576,
+              "full_check_products": 9345,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 525,
+              "peak_owner_int8_coordinates_bytes": 8,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1024
+            },
+            "private_owner_update_body_bytes_model": 104,
+            "client_delta_popcounts": 16,
+            "client_delta_range_scan_entries": 8,
+            "owner_delta_word_operations_model": 12,
+            "peak_private_delta_body_bytes_model": 104,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-1",
+              "migrate",
+              1
+            ],
+            [
+              "reserve-1",
+              "client_delta",
+              1
+            ],
+            [
+              "frozen-fit",
+              "migrate",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 0,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1984,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 164,
+              "private_certification_terms_model": 84,
+              "public_evaluate_products": 640,
+              "full_check_products": 11925,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 0,
+            "client_delta_popcounts": 0,
+            "client_delta_range_scan_entries": 0,
+            "owner_delta_word_operations_model": 0,
+            "peak_private_delta_body_bytes_model": 0,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-1",
+              "migrate",
+              1
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              2
+            ],
+            [
+              "frozen-fit",
+              "migrate",
+              3
+            ]
+          ]
+        }
+      ],
+      "exact_agreement": true
+    },
+    {
+      "name": "persistent-growth",
+      "trace": {
+        "revisions": [
+          {
+            "rows": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "ids": [
+              7,
+              2,
+              100,
+              9
+            ],
+            "dimension": 3
+          },
+          {
+            "rows": [
+              0,
+              3,
+              0,
+              1
+            ],
+            "ids": [
+              7,
+              2,
+              100,
+              9
+            ],
+            "dimension": 3
+          },
+          {
+            "rows": [
+              0,
+              3,
+              4,
+              1
+            ],
+            "ids": [
+              7,
+              2,
+              100,
+              9
+            ],
+            "dimension": 3
+          },
+          {
+            "rows": [
+              2,
+              3,
+              4,
+              7
+            ],
+            "ids": [
+              7,
+              2,
+              100,
+              9
+            ],
+            "dimension": 3
+          }
+        ],
+        "queries": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "prepared_tokens": 8
+      },
+      "compile_s": 0.0014844410034129396,
+      "exhaustive_s": 0.009968996993848123,
+      "dp_s": 0.00954025800456293,
+      "exhaustive_prefixes": [
+        3,
+        9,
+        18,
+        36
+      ],
+      "dp_prefixes": [
+        3,
+        7,
+        13,
+        24
+      ],
+      "frontier": [
+        {
+          "entry": 0,
+          "base_revision": 0,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 576,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 32,
+              "private_certification_terms_model": 12,
+              "public_evaluate_products": 384,
+              "full_check_products": 4835,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 506,
+              "peak_owner_int8_coordinates_bytes": 4,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 512
+            },
+            "private_owner_update_body_bytes_model": 232,
+            "client_delta_popcounts": 48,
+            "client_delta_range_scan_entries": 40,
+            "owner_delta_word_operations_model": 12,
+            "peak_private_delta_body_bytes_model": 104,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1024,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 80,
+              "private_certification_terms_model": 48,
+              "public_evaluate_products": 640,
+              "full_check_products": 7110,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 148,
+            "client_delta_popcounts": 16,
+            "client_delta_range_scan_entries": 24,
+            "owner_delta_word_operations_model": 6,
+            "peak_private_delta_body_bytes_model": 84,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 1,
+          "base_revision": 1,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1152,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 88,
+              "private_certification_terms_model": 36,
+              "public_evaluate_products": 704,
+              "full_check_products": 7750,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 525,
+              "peak_owner_int8_coordinates_bytes": 8,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1024
+            },
+            "private_owner_update_body_bytes_model": 158,
+            "client_delta_popcounts": 28,
+            "client_delta_range_scan_entries": 24,
+            "owner_delta_word_operations_model": 9,
+            "peak_private_delta_body_bytes_model": 94,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-1",
+              "migrate",
+              1
+            ],
+            [
+              "reserve-1",
+              "client_delta",
+              1
+            ],
+            [
+              "reserve-1",
+              "client_delta",
+              1
+            ]
+          ]
+        },
+        {
+          "entry": 1,
+          "base_revision": 1,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1216,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 120,
+              "private_certification_terms_model": 30,
+              "public_evaluate_products": 768,
+              "full_check_products": 8080,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 525,
+              "peak_owner_int8_coordinates_bytes": 8,
+              "peak_pending_body_bytes_model": 2224,
+              "peak_server_native_word_bytes_model": 1024
+            },
+            "private_owner_update_body_bytes_model": 158,
+            "client_delta_popcounts": 28,
+            "client_delta_range_scan_entries": 24,
+            "owner_delta_word_operations_model": 9,
+            "peak_private_delta_body_bytes_model": 94,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "reserve-1",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-1",
+              "refresh",
+              1
+            ],
+            [
+              "reserve-1",
+              "client_delta",
+              1
+            ],
+            [
+              "reserve-1",
+              "client_delta",
+              1
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 2,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1216,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 156,
+              "private_certification_terms_model": 45,
+              "public_evaluate_products": 1152,
+              "full_check_products": 8120,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2232,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 158,
+            "client_delta_popcounts": 24,
+            "client_delta_range_scan_entries": 32,
+            "owner_delta_word_operations_model": 9,
+            "peak_private_delta_body_bytes_model": 84,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "reserve-all",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-all",
+              "client_delta",
+              0
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              2
+            ],
+            [
+              "reserve-all",
+              "client_delta",
+              2
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1536,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 140,
+              "private_certification_terms_model": 66,
+              "public_evaluate_products": 768,
+              "full_check_products": 9695,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 74,
+            "client_delta_popcounts": 8,
+            "client_delta_range_scan_entries": 16,
+            "owner_delta_word_operations_model": 3,
+            "peak_private_delta_body_bytes_model": 74,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "frozen-fit",
+              "client_delta",
+              0
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              2
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1600,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 136,
+              "private_certification_terms_model": 72,
+              "public_evaluate_products": 832,
+              "full_check_products": 10015,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 74,
+            "client_delta_popcounts": 4,
+            "client_delta_range_scan_entries": 8,
+            "owner_delta_word_operations_model": 3,
+            "peak_private_delta_body_bytes_model": 74,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-1",
+              "migrate",
+              1
+            ],
+            [
+              "reserve-1",
+              "client_delta",
+              1
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1664,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 164,
+              "private_certification_terms_model": 66,
+              "public_evaluate_products": 1024,
+              "full_check_products": 10355,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 74,
+            "client_delta_popcounts": 4,
+            "client_delta_range_scan_entries": 8,
+            "owner_delta_word_operations_model": 3,
+            "peak_private_delta_body_bytes_model": 74,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              1
+            ],
+            [
+              "reserve-all",
+              "client_delta",
+              1
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1664,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 168,
+              "private_certification_terms_model": 66,
+              "public_evaluate_products": 896,
+              "full_check_products": 10345,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2224,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 74,
+            "client_delta_popcounts": 4,
+            "client_delta_range_scan_entries": 8,
+            "owner_delta_word_operations_model": 3,
+            "peak_private_delta_body_bytes_model": 74,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "reserve-1",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-1",
+              "refresh",
+              1
+            ],
+            [
+              "reserve-1",
+              "client_delta",
+              1
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1664,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 204,
+              "private_certification_terms_model": 63,
+              "public_evaluate_products": 1152,
+              "full_check_products": 10375,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2232,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 74,
+            "client_delta_popcounts": 8,
+            "client_delta_range_scan_entries": 16,
+            "owner_delta_word_operations_model": 3,
+            "peak_private_delta_body_bytes_model": 74,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "reserve-all",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-all",
+              "client_delta",
+              0
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              2
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 2,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1728,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 176,
+              "private_certification_terms_model": 57,
+              "public_evaluate_products": 1024,
+              "full_check_products": 10675,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 84,
+            "client_delta_popcounts": 16,
+            "client_delta_range_scan_entries": 16,
+            "owner_delta_word_operations_model": 6,
+            "peak_private_delta_body_bytes_model": 84,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              1
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              2
+            ],
+            [
+              "reserve-all",
+              "client_delta",
+              2
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1792,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 228,
+              "private_certification_terms_model": 63,
+              "public_evaluate_products": 1152,
+              "full_check_products": 11015,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2232,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 74,
+            "client_delta_popcounts": 4,
+            "client_delta_range_scan_entries": 8,
+            "owner_delta_word_operations_model": 3,
+            "peak_private_delta_body_bytes_model": 74,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "reserve-all",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              1
+            ],
+            [
+              "reserve-all",
+              "client_delta",
+              1
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 2,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 1856,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 240,
+              "private_certification_terms_model": 54,
+              "public_evaluate_products": 1152,
+              "full_check_products": 11335,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2232,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 84,
+            "client_delta_popcounts": 16,
+            "client_delta_range_scan_entries": 16,
+            "owner_delta_word_operations_model": 6,
+            "peak_private_delta_body_bytes_model": 84,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "reserve-all",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              1
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              2
+            ],
+            [
+              "reserve-all",
+              "client_delta",
+              2
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 2112,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 196,
+              "private_certification_terms_model": 90,
+              "public_evaluate_products": 896,
+              "full_check_products": 12595,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 0,
+            "client_delta_popcounts": 0,
+            "client_delta_range_scan_entries": 0,
+            "owner_delta_word_operations_model": 0,
+            "peak_private_delta_body_bytes_model": 0,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-1",
+              "migrate",
+              1
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              2
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 2176,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 224,
+              "private_certification_terms_model": 75,
+              "public_evaluate_products": 1024,
+              "full_check_products": 12930,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2216,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 0,
+            "client_delta_popcounts": 0,
+            "client_delta_range_scan_entries": 0,
+            "owner_delta_word_operations_model": 0,
+            "peak_private_delta_body_bytes_model": 0,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "frozen-fit",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              1
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              2
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 2176,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 228,
+              "private_certification_terms_model": 84,
+              "public_evaluate_products": 960,
+              "full_check_products": 12925,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2224,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 0,
+            "client_delta_popcounts": 0,
+            "client_delta_range_scan_entries": 0,
+            "owner_delta_word_operations_model": 0,
+            "peak_private_delta_body_bytes_model": 0,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "reserve-1",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-1",
+              "refresh",
+              1
+            ],
+            [
+              "reserve-all",
+              "migrate",
+              2
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              3
+            ]
+          ]
+        },
+        {
+          "entry": 2,
+          "base_revision": 3,
+          "cost": {
+            "encrypted": {
+              "fresh_ciphertext_coefficients": 2304,
+              "added_ciphertext_coefficients": 0,
+              "private_dot_terms": 288,
+              "private_certification_terms_model": 72,
+              "public_evaluate_products": 1152,
+              "full_check_products": 13590,
+              "response_body_bytes": 1536,
+              "peak_client_body_bytes_model": 544,
+              "peak_owner_int8_coordinates_bytes": 12,
+              "peak_pending_body_bytes_model": 2232,
+              "peak_server_native_word_bytes_model": 1536
+            },
+            "private_owner_update_body_bytes_model": 0,
+            "client_delta_popcounts": 0,
+            "client_delta_range_scan_entries": 0,
+            "owner_delta_word_operations_model": 0,
+            "peak_private_delta_body_bytes_model": 0,
+            "peak_owner_base_and_current_row_body_bytes_model": 8
+          },
+          "actions": [
+            [
+              "reserve-all",
+              "enroll",
+              0
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              1
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              2
+            ],
+            [
+              "reserve-all",
+              "refresh",
+              3
+            ]
+          ]
+        }
+      ],
+      "exact_agreement": true
+    }
+  ],
+  "scope": "Finite hindsight count oracle; all unused fresh replacement tokens charged. No native performance, online policy, global optimum, production proof or novelty is inferred."
+}

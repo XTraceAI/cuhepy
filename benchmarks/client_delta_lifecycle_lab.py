@@ -142,7 +142,7 @@ def main():
     if (not 64 <= args.count <= 16384 or not 1 <= args.rank <= 128
             or not args.rank <= args.dimension <= 512 or args.dimension % args.rank
             or not 2 <= args.pool <= 64 or not 1 <= args.updates <= 8 or not 1 <= args.repeats <= 8
-            or not 1 <= args.edit_rows <= args.count or not 1 <= args.queries_per_update
+            or not 1 <= args.edit_rows <= args.count or args.queries_per_update < 1
             or args.queries_per_update * (args.updates + 1) > args.pool):
         parser.error("Invalid bounded matched delta workload")
     profile = Profile(args.n, args.prime, q_bits=args.q_bits, eta=21)
