@@ -71,7 +71,10 @@ def matrix(index: masked.Index, pk: bgv.PublicKey, *, entry_limit: int = 1000000
                 row = []
                 for column, degree in zip(index.columns, index.space.column_degrees, strict=True):
                     for k in range(degree):
-                        shift = k * index.space.stride
+                        # Collapsed/shared columns may use a proper subring
+                        # smaller than the final leaf cover. Their true spacing
+                        # is N/degree, not the cover's minimum leaf degree.
+                        shift = k * (pk.n // degree)
                         value = int(column[r].components[component][(coefficient - shift) % pk.n])
                         value = value if value <= pk.q // 2 else value - int(pk.q)
                         row.append(value if coefficient >= shift else -value)

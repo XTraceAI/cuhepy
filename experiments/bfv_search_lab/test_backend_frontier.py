@@ -64,3 +64,16 @@ def test_centering_carries_break_naive_outer_field_linearity():
     c = outer.cost(s, q)
     assert c["outer_plaintext_modulus_required"] == q
     assert not c["implicit_matrix_supported_by_outer_reference"]
+
+
+def test_literal_matrix_uses_each_collapsed_columns_actual_stride():
+    layout = tree.layout(tree.context(16, ("00", "01", "10", "11"), 17), (1,) * 4, (1,) * 4)
+    s = space.space(layout, (0, 0, 1, 1), coordinate_ids=((0,), (1,)))
+    assert s.slots == 4 and s.column_degrees == (2,)
+    groups = [[[1]], [[0]], [[1]], [[-1]]]
+    pk, sk = masked.key_gen(s, q_bits=32, eta=1)
+    with closing(owner.OwnerClient(pk, sk)) as client:
+        index, _ = masked.enroll(s, groups, b"b" * 32, client)
+    operator = outer.matrix(index, pk)
+    for values in itertools.product(range(17), repeat=2):
+        assert outer.evaluate(operator, outer.alpha(s, values)) == outer.independent(index, pk, values)

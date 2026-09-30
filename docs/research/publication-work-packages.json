@@ -111,7 +111,8 @@
         "experiments/bfv_search_lab/ciphertext_linear_oracle.py",
         "docs/research/backend-frontier-results.md",
         "docs/research/parameter-frontier-results.md",
-        "docs/research/ciphertext-factory-results.md"
+        "docs/research/ciphertext-factory-results.md",
+        "docs/research/global-representation-controls.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Raw/global/local choices priced with actual code dimensions, response shares, client work, setup and integrity; nested vLHE oracle includes full-Q output, centered lifts/carries, explicit matrix expansion and outer parameter costs.",
@@ -122,7 +123,7 @@
       ],
       "requires_new_gpu_code": false,
       "additional_gate": "P07 specifies composition assumptions before relying on outer verification or removing an existing inner check.",
-      "execution_evidence": "E42/E47 code-floor and full-Q/carry screening retained; E49 encrypted-only factory loses to a vectorized plaintext control. E51 smaller-full-ring/capacity tests and measured frontier added with pinned heuristic parameter screens; no reviewed composition/parameter assurance.",
+      "execution_evidence": "E42/E47 code-floor and full-Q/carry screening retained; E49 encrypted-only factory loses to a vectorized plaintext control. E51 smaller-full-ring/capacity tests and measured frontier added with pinned heuristic parameter screens; no reviewed composition/parameter assurance. Strong global raw/affine controls now outperform local online profiles; cached plaintext still dominates when allowed.",
       "acceptance_met": false
     },
     {
@@ -202,7 +203,8 @@
         "benchmarks/representation_lifetime_summary.py",
         "benchmarks/representation_lifecycle_lab.py",
         "benchmarks/coordinate_cache_lab.py",
-        "benchmarks/score_layout_lab.py"
+        "benchmarks/score_layout_lab.py",
+        "docs/research/global-representation-controls.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Gate C assessed on held-out data with setup, search, all prepared tokens, state and cache controls; model vs measured separated.",
@@ -211,7 +213,7 @@
         "Result depends only on favorable small public data"
       ],
       "requires_new_gpu_code": false,
-      "execution_evidence": "Complete eight-edit lifecycle includes affine discovery and every token: 15.07% paired median saving; smaller case regresses. E49 stronger vectorized factory control wins. E50 full/coordinate caches and E51 ring/occupancy adverse case included. No held-out calibrated lifetime/Gate C pass.",
+      "execution_evidence": "Complete eight-edit lifecycle includes affine discovery and every token: 15.07% paired median saving; smaller case regresses. E49 stronger vectorized factory control wins. E50 full/coordinate caches and E51 ring/occupancy adverse case included. No held-out calibrated lifetime/Gate C pass. Strong global raw/affine controls now outperform local online profiles; cached plaintext still dominates when allowed.",
       "acceptance_met": false
     },
     {
@@ -227,7 +229,8 @@
       "output_paths": [
         "docs/research/exact-search-security-game.md",
         "benchmarks/bgv_parameter_estimation.py",
-        "docs/research/parameter-frontier-results.md"
+        "docs/research/parameter-frontier-results.md",
+        "docs/research/seed-composition-obstruction.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Real/ideal transcript, leakage, hybrid premises, authentication, adaptive failure budget and parameter assumptions match code.",
@@ -237,7 +240,7 @@
         "Masks or verifier keys exposed"
       ],
       "requires_new_gpu_code": false,
-      "execution_evidence": "Adaptive game and E48/E49 seed/noise premises recorded. Pinned Sage classical/quantum-sensitivity screening rejects N1024; N2048 remains research-only, with Arora-GB timeouts and protocol/private timing review open. No complete theorem or assurance.",
+      "execution_evidence": "Adaptive game and E48/E49 seed/noise premises recorded. Pinned Sage classical/quantum-sensitivity screening rejects N1024; N2048 remains research-only, with Arora-GB timeouts and protocol/private timing review open. No complete theorem or assurance. E53 proves/tests a conditional multi-coordinate public-zero-seed obstruction; genuine factory seed remains private.",
       "acceptance_met": false
     },
     {
@@ -300,7 +303,8 @@
         "E45",
         "E46",
         "E48",
-        "E49"
+        "E49",
+        "E53"
       ],
       "output_paths": [
         "docs/research/representation-alternatives.md",
@@ -350,7 +354,7 @@
       "id": "P12",
       "title": "Validate claims and write paper",
       "suggested_role": "research",
-      "status": "planned",
+      "status": "in_progress",
       "dependencies": [
         "P07",
         "P11"
@@ -365,7 +369,9 @@
         "Novelty consists only of C++/CUDA optimization",
         "Theorem assumptions do not describe implementation"
       ],
-      "requires_new_gpu_code": false
+      "requires_new_gpu_code": false,
+      "acceptance_met": false,
+      "execution_evidence": "Claim-to-oracle/measurement/prior-work ledger created. No coherent novelty claim, complete reviewed theorem or paper draft is declared."
     }
   ],
   "handoff_fields": [

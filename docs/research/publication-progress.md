@@ -78,6 +78,10 @@ the enrollment-cost correction at `cf88c1b`, and complete eight-edit work/E49 at
 recorded Git HEAD may precede uncommitted experiment files. Later reports
 correct scope without rewriting historical observations.
 
+Second source/results checkpoint: `7058a47` (cache/factory controls, parameter
+screening, full-ring layout and E52 lifetime model). Follow-on global controls
+and E53's composition regression are retained separately.
+
 | Completed subcomponent | Result class / evidence | Return-to-plan decision |
 |---|---|---|
 | E43 eight edits / all 32 tokens | **Measured:** 115.478 vs 135.963 s including discovery, 15.07% paired saving; [report](representation-update-results.md) | P05/P06 open. Earlier four-edit 18.6% excluded discovery. Test real-data failures/reserve/rebase and vectorized controls. |
@@ -92,6 +96,16 @@ The company checkpoint and homemade arithmetic remain retained. External
 author code and the estimator are pinned baselines/tools. No new GPU
 measurement or hardware-attestation deployment was performed. P08/P09 remain
 behind Gate C; no full package is declared accepted from these pilots.
+
+Stronger [global controls](global-representation-controls.md) subsequently reach
+25.933 ms/64 KiB on Mushroom and 9.826 ms/16 KiB on Semeion at N2048. Their
+larger F/index state and vectorized preparation are charged. These replace
+partitioned layouts as the stronger online comparator, while raw/zlib caches
+still dominate when allowed. [E53](seed-composition-obstruction.md) generalizes
+the hypothetical public-zero-seed failure to multiple coordinates and fixes
+an intermediate-subring spacing bug in the E47 **research matrix oracle**.
+The genuine factory still keeps that seed private; production arithmetic was
+unaffected. The [claims ledger](paper-claims.md) records all promotion limits.
 
 ### Next executable sequence
 

@@ -1,0 +1,988 @@
+{
+  "utc": "2026-09-30T12:51:17.407345+00:00",
+  "command": [
+    "benchmarks/score_layout_lab.py",
+    "--dataset",
+    "mushroom",
+    "--cache-dir",
+    "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+    "--representations",
+    "global_raw",
+    "global_affine",
+    "--vectorized-owner",
+    "--json-out",
+    "benchmarks/results/publication-global-control-mushroom-20260930.json"
+  ],
+  "git_head": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/score_layout_lab.py": "f9fd86ad1a601c13d13053920670ab26f86585135df5cbd4cf31362149f8bf93",
+    "experiments/bfv_search_lab/score_layout.py": "de8a6f1c6ae4aed50c7e8ec7174c2bd1b444183db85315402e88cf2b4d24d082",
+    "experiments/bfv_search_lab/dyadic_crt.py": "d55ad0683b765944a078b4012927206a5d48c05613278c204b2e819eaaebe5a2",
+    "experiments/bfv_search_lab/crt_query_space.py": "2bc431424dc9679c62ef806f33b81e501f222f1837ebac8d515e22475e4fd8a3",
+    "experiments/bfv_search_lab/crt_masked_bgv.py": "ef2cece17e1b0a31a71e69ce01db380e3266293bca728dc923d1defb0e261152",
+    "experiments/bfv_search_lab/crt_native_bgv.py": "b9b8f816ae7360dec87c4fcbf170e2ab4e861908c133cb2c63cbd04d512c5c84",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/seeded_bgv.py": "7e8631304dde122c4755f5f7391ef8ba6b9be213fd2c667a473b388175890272",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/native_linear_check.py": "6bc6fb004019dca6c8e5c9f155bd3f45570f7e5daef3e9d0e7274d0399ad33cd",
+    "experiments/bfv_search_lab/crt_linear_check.py": "86081119ae715e17d92cd2132f57971f222cddcc04f2c0aad7adc115ebd1cee7",
+    "experiments/bfv_search_lab/integer_phase_audit.py": "787627023ff8a2d183b8c5cc95073d364780bb1339fd46cf468ccd39a9664a54",
+    "experiments/bfv_search_lab/coefficient_body.py": "cd00bfca329d08bacfc04481de58756d9673e1baf304c6afa4db9ee8a8d4ed10",
+    "experiments/bfv_search_lab/coordinate_factory.py": "67d7712f1cae4173c9ba1d892dcdc55f0029407b309acc2c1753dfed0a6841e6",
+    "experiments/bfv_search_lab/representation_oracle.py": "562b1ca0a1f59767f425126a90cd13961d761b6fdf9985e2808b89b4cc3aec36",
+    "experiments/bfv_search_lab/representation_contract.py": "dfd3d5393f1ae50162203827eab65ad70db26b3cf788957ad8262e1462be4bff",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "experiments/bfv_search_lab/_subring/_crt_subring.cpython-312-x86_64-linux-gnu.so": "ecd3611af5fd16077afcb050af555374b4d9659a50e397a72a0295c2a6abb07d",
+    "experiments/bfv_search_lab/_fingerprint/_fingerprint.cpython-312-x86_64-linux-gnu.so": "273413089b89db47eb76e083504d0f260a970b17ec310501f358038738466458"
+  },
+  "kind": "score_only_full_ring_frontier",
+  "dataset": "mushroom",
+  "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+  "count": 7996,
+  "dimension": 126,
+  "t": 193,
+  "common_fixture_load_order_s": 0.0796214859947213,
+  "local_private_map_discovery_s": 0,
+  "global_private_map_discovery_s": {
+    "global_raw": 0.003931060004106257,
+    "global_affine": 0.21795496799313696
+  },
+  "vectorized_owner": true,
+  "cases": [
+    {
+      "kind": "global_raw",
+      "n": 16384,
+      "q": 4294475777,
+      "status": "measured_research_only",
+      "setup": {
+        "map_allocation_and_coordinate_certification_s": 1.2308368160011014,
+        "key_gen_s": 0.0904778760013869,
+        "private_owner_backend_prepare_s": 0.00375518600048963,
+        "private_vectorized_coordinate_factory_prepare_s": 0.06908328300050925,
+        "enroll_s": 3.4132437339940225,
+        "native_index_prepare_s": 0.5770179940009257,
+        "full_checker_prepare_s": 1.8000084419982159
+      },
+      "upload_bytes": 8270892,
+      "geometry": {
+        "n": 16384,
+        "t": 193,
+        "q_bits": 32,
+        "query_coordinates": 126,
+        "coordinate_columns": 126,
+        "subring_degree": 1,
+        "replies": 1,
+        "shared_query_coordinates": 0,
+        "correction_coefficients": 126,
+        "online_query_body_bytes": 126,
+        "online_response_body_bytes": 131072,
+        "expanded_index_body_bytes": 16515072,
+        "naive_scalar_basis_index_body_bytes": 16515072,
+        "offline_seeded_answer_body_bytes_per_token": 65568,
+        "stored_expanded_answer_bytes_per_token": 131072,
+        "owner_private_mask_seed_bytes_per_token": 32,
+        "online_ring_products": 0,
+        "online_scalar_products": 4128768,
+        "native_ntt_index_word_bytes": 33030144,
+        "native_online_pointwise_scalar_products": 4128768,
+        "online_ciphertext_products": 0,
+        "online_key_switches": 0,
+        "worst_case_phase_bound": 50190453,
+        "fresh_phase_bound": 4149,
+        "checker_rounds": 5,
+        "checker_prepare_ring_products": 0,
+        "checker_prepare_scalar_products": 20643840,
+        "checker_epoch_residue_body_bytes": 657880,
+        "checker_epoch_seeded_body_bytes": 2680,
+        "checker_token_residue_body_bytes": 20,
+        "checker_online_scalar_products": 164470,
+        "full_degree_single_encryption_ciphertext_body_bytes": 131072
+      },
+      "private_map_body_bytes": 150,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "stages": {
+            "transform_and_one_use_s": 0.00022109400015324354,
+            "native_server_s": 0.017488202996901236,
+            "serialize_s": 0.006066441994335037,
+            "parse_s": 0.0033356080020894296,
+            "full_gate_s": 0.02386446100717876,
+            "secret_decrypt_s": 0.016596175002632663,
+            "decode_and_stable_top3_s": 0.003497110999887809
+          },
+          "online_stage_sum_s": 0.07106909400317818,
+          "offline_produce_and_check_s": 0.0343463140015956,
+          "prepared_answer_packet_bytes": 65642,
+          "response_body_bytes": 131072,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1786853,
+            "maximum_deterministic_response_bound": 24873255,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0008321635015709625,
+            "private_phase_digest_diagnostic_only": "95829295d78565a0d30da5188598d0a74055195a00dacfcc908d7b5265180000"
+          },
+          "top3": [
+            [
+              2,
+              9
+            ],
+            [
+              2,
+              20
+            ],
+            [
+              2,
+              62
+            ]
+          ]
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00021094499970786273,
+            "native_server_s": 0.016638845998386387,
+            "serialize_s": 0.00598203999834368,
+            "parse_s": 0.0025942130014300346,
+            "full_gate_s": 0.007012740999925882,
+            "secret_decrypt_s": 0.016079105000244454,
+            "decode_and_stable_top3_s": 0.0035420420026639476
+          },
+          "online_stage_sum_s": 0.05205993200070225,
+          "offline_produce_and_check_s": 0.032851822004886344,
+          "prepared_answer_packet_bytes": 65642,
+          "response_body_bytes": 131072,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1968986,
+            "maximum_deterministic_response_bound": 27557658,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0009169854958993287,
+            "private_phase_digest_diagnostic_only": "58724c06fdaf73e5ce3b738cb890b7fdc21baedaf8583c48444b79413c3046a0"
+          },
+          "top3": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              108
+            ],
+            [
+              2,
+              158
+            ]
+          ]
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00020647399651352316,
+            "native_server_s": 0.016838479998114053,
+            "serialize_s": 0.006130874004156794,
+            "parse_s": 0.002630431998113636,
+            "full_gate_s": 0.007124604002456181,
+            "secret_decrypt_s": 0.016175035998458043,
+            "decode_and_stable_top3_s": 0.003589993000787217
+          },
+          "online_stage_sum_s": 0.05269589299859945,
+          "offline_produce_and_check_s": 0.03322484100499423,
+          "prepared_answer_packet_bytes": 65642,
+          "response_body_bytes": 131072,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1488223,
+            "maximum_deterministic_response_bound": 22388004,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0006930871553499043,
+            "private_phase_digest_diagnostic_only": "f16e946fd7c3d24ea1fb0cbbe9ff83a2f8392e1507d5fd88b456aa2700c2b2ac"
+          },
+          "top3": [
+            [
+              2,
+              2179
+            ],
+            [
+              2,
+              2760
+            ],
+            [
+              2,
+              3066
+            ]
+          ]
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00020785500237252563,
+            "native_server_s": 0.016720517000067048,
+            "serialize_s": 0.005948101003014017,
+            "parse_s": 0.0025861320027615875,
+            "full_gate_s": 0.007000220997724682,
+            "secret_decrypt_s": 0.016112415003590286,
+            "decode_and_stable_top3_s": 0.003601062002417166
+          },
+          "online_stage_sum_s": 0.05217630301194731,
+          "offline_produce_and_check_s": 0.033228308995603584,
+          "prepared_answer_packet_bytes": 65642,
+          "response_body_bytes": 131072,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1628215,
+            "maximum_deterministic_response_bound": 25188579,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0007582834713937659,
+            "private_phase_digest_diagnostic_only": "d15af51b94eadc4ad3aeacb2f07243096c21d6c68aed3c468a44cbf3e4e661e2"
+          },
+          "top3": [
+            [
+              2,
+              5517
+            ],
+            [
+              2,
+              6070
+            ],
+            [
+              2,
+              6264
+            ]
+          ]
+        }
+      ],
+      "summary": {
+        "online_stage_sum_s": {
+          "mean": 0.052310709337083004,
+          "median": 0.05217630301194731,
+          "min": 0.05205993200070225,
+          "max": 0.05269589299859945
+        },
+        "offline_produce_and_check_s": {
+          "mean": 0.033101657335161384,
+          "median": 0.03322484100499423,
+          "min": 0.032851822004886344,
+          "max": 0.033228308995603584
+        },
+        "response_body_bytes": {
+          "mean": 131072,
+          "median": 131072,
+          "min": 131072,
+          "max": 131072
+        }
+      }
+    },
+    {
+      "kind": "global_affine",
+      "n": 16384,
+      "q": 4294475777,
+      "status": "measured_research_only",
+      "setup": {
+        "map_allocation_and_coordinate_certification_s": 1.1769770800019614,
+        "key_gen_s": 0.08847595599945635,
+        "private_owner_backend_prepare_s": 0.0036851939948974177,
+        "private_vectorized_coordinate_factory_prepare_s": 0.04384369399485877,
+        "enroll_s": 2.2088292119951802,
+        "native_index_prepare_s": 0.3786063799998374,
+        "full_checker_prepare_s": 1.1950857060001
+      },
+      "upload_bytes": 5579570,
+      "geometry": {
+        "n": 16384,
+        "t": 193,
+        "q_bits": 32,
+        "query_coordinates": 85,
+        "coordinate_columns": 85,
+        "subring_degree": 1,
+        "replies": 1,
+        "shared_query_coordinates": 0,
+        "correction_coefficients": 85,
+        "online_query_body_bytes": 85,
+        "online_response_body_bytes": 131072,
+        "expanded_index_body_bytes": 11141120,
+        "naive_scalar_basis_index_body_bytes": 11141120,
+        "offline_seeded_answer_body_bytes_per_token": 65568,
+        "stored_expanded_answer_bytes_per_token": 131072,
+        "owner_private_mask_seed_bytes_per_token": 32,
+        "online_ring_products": 0,
+        "online_scalar_products": 2785280,
+        "native_ntt_index_word_bytes": 22282240,
+        "native_online_pointwise_scalar_products": 2785280,
+        "online_ciphertext_products": 0,
+        "online_key_switches": 0,
+        "worst_case_phase_bound": 33859989,
+        "fresh_phase_bound": 4149,
+        "checker_rounds": 5,
+        "checker_prepare_ring_products": 0,
+        "checker_prepare_scalar_products": 13926400,
+        "checker_epoch_residue_body_bytes": 657060,
+        "checker_epoch_seeded_body_bytes": 1860,
+        "checker_token_residue_body_bytes": 20,
+        "checker_online_scalar_products": 164265,
+        "full_degree_single_encryption_ciphertext_body_bytes": 131072
+      },
+      "private_map_body_bytes": 565,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "stages": {
+            "transform_and_one_use_s": 0.00018996400467585772,
+            "native_server_s": 0.014156584999000188,
+            "serialize_s": 0.005870578999747522,
+            "parse_s": 0.003306846003397368,
+            "full_gate_s": 0.00693596999917645,
+            "secret_decrypt_s": 0.016528804000699893,
+            "decode_and_stable_top3_s": 0.0035133109995513223
+          },
+          "online_stage_sum_s": 0.0505020590062486,
+          "offline_produce_and_check_s": 0.03376190199924167,
+          "prepared_answer_packet_bytes": 65642,
+          "response_body_bytes": 131072,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1292521,
+            "maximum_deterministic_response_bound": 16483977,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0006019458798311904,
+            "private_phase_digest_diagnostic_only": "aadb4a43b0442913dd8e10fdb66711b44bfae9900cf8089f4c145807e9ed7bd9"
+          },
+          "top3": [
+            [
+              2,
+              9
+            ],
+            [
+              2,
+              20
+            ],
+            [
+              2,
+              62
+            ]
+          ]
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00018831399938790128,
+            "native_server_s": 0.013440840994007885,
+            "serialize_s": 0.0059479200062924065,
+            "parse_s": 0.002576122002210468,
+            "full_gate_s": 0.006833427003584802,
+            "secret_decrypt_s": 0.015943561993481126,
+            "decode_and_stable_top3_s": 0.003575593000277877
+          },
+          "online_stage_sum_s": 0.048505778999242466,
+          "offline_produce_and_check_s": 0.03271110000059707,
+          "prepared_answer_packet_bytes": 65642,
+          "response_body_bytes": 131072,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1407549,
+            "maximum_deterministic_response_bound": 16334613,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0006555160969999808,
+            "private_phase_digest_diagnostic_only": "9893a9d8f716e72584c6b56018d3ab8fc379595f13128d001a3d04aa1b7155ab"
+          },
+          "top3": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              108
+            ],
+            [
+              2,
+              158
+            ]
+          ]
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00019310399511596188,
+            "native_server_s": 0.013608464003482368,
+            "serialize_s": 0.006112823000876233,
+            "parse_s": 0.0025882420013658702,
+            "full_gate_s": 0.00694474000192713,
+            "secret_decrypt_s": 0.016085324001323897,
+            "decode_and_stable_top3_s": 0.0035619020054582506
+          },
+          "online_stage_sum_s": 0.04909459900954971,
+          "offline_produce_and_check_s": 0.03279374199337326,
+          "prepared_answer_packet_bytes": 65642,
+          "response_body_bytes": 131072,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1180388,
+            "maximum_deterministic_response_bound": 15645879,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.000549723906383091,
+            "private_phase_digest_diagnostic_only": "c374554da0afe660838b4f8be8cb6d8053b2369a822bb18cae525565b74fdfb2"
+          },
+          "top3": [
+            [
+              2,
+              2179
+            ],
+            [
+              2,
+              2760
+            ],
+            [
+              2,
+              3066
+            ]
+          ]
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00018692400044528767,
+            "native_server_s": 0.013615023999591358,
+            "serialize_s": 0.006121843005530536,
+            "parse_s": 0.0026118829991901293,
+            "full_gate_s": 0.006948881004063878,
+            "secret_decrypt_s": 0.01605221300269477,
+            "decode_and_stable_top3_s": 0.0035098310036119074
+          },
+          "online_stage_sum_s": 0.04904659901512787,
+          "offline_produce_and_check_s": 0.032719561000703834,
+          "prepared_answer_packet_bytes": 65642,
+          "response_body_bytes": 131072,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1512348,
+            "maximum_deterministic_response_bound": 18359325,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0007043225196889962,
+            "private_phase_digest_diagnostic_only": "131e7ca3f91f32ac02a1734ac8d86abddffb2941ccfea97a50a0764c14fbee95"
+          },
+          "top3": [
+            [
+              2,
+              5517
+            ],
+            [
+              2,
+              6070
+            ],
+            [
+              2,
+              6264
+            ]
+          ]
+        }
+      ],
+      "summary": {
+        "online_stage_sum_s": {
+          "mean": 0.048882325674640015,
+          "median": 0.04904659901512787,
+          "min": 0.048505778999242466,
+          "max": 0.04909459900954971
+        },
+        "offline_produce_and_check_s": {
+          "mean": 0.03274146766489139,
+          "median": 0.032719561000703834,
+          "min": 0.03271110000059707,
+          "max": 0.03279374199337326
+        },
+        "response_body_bytes": {
+          "mean": 131072,
+          "median": 131072,
+          "min": 131072,
+          "max": 131072
+        }
+      }
+    },
+    {
+      "kind": "global_raw",
+      "n": 2048,
+      "q": 4294955009,
+      "status": "measured_research_only",
+      "setup": {
+        "map_allocation_and_coordinate_certification_s": 1.2428685600025347,
+        "key_gen_s": 0.011147615005029365,
+        "private_owner_backend_prepare_s": 0.0004996900024707429,
+        "private_vectorized_coordinate_factory_prepare_s": 0.062002250997466035,
+        "enroll_s": 1.7134211560041877,
+        "native_index_prepare_s": 0.28162793299998157,
+        "full_checker_prepare_s": 0.9056772960029775
+      },
+      "upload_bytes": 4181184,
+      "geometry": {
+        "n": 2048,
+        "t": 193,
+        "q_bits": 32,
+        "query_coordinates": 126,
+        "coordinate_columns": 126,
+        "subring_degree": 1,
+        "replies": 4,
+        "shared_query_coordinates": 0,
+        "correction_coefficients": 126,
+        "online_query_body_bytes": 126,
+        "online_response_body_bytes": 65536,
+        "expanded_index_body_bytes": 8257536,
+        "naive_scalar_basis_index_body_bytes": 8257536,
+        "offline_seeded_answer_body_bytes_per_token": 32896,
+        "stored_expanded_answer_bytes_per_token": 65536,
+        "owner_private_mask_seed_bytes_per_token": 32,
+        "online_ring_products": 0,
+        "online_scalar_products": 2064384,
+        "native_ntt_index_word_bytes": 16515072,
+        "native_online_pointwise_scalar_products": 2064384,
+        "online_ciphertext_products": 0,
+        "online_key_switches": 0,
+        "worst_case_phase_bound": 50190453,
+        "fresh_phase_bound": 4149,
+        "checker_rounds": 5,
+        "checker_prepare_ring_products": 0,
+        "checker_prepare_scalar_products": 10321920,
+        "checker_epoch_residue_body_bytes": 330200,
+        "checker_epoch_seeded_body_bytes": 2680,
+        "checker_token_residue_body_bytes": 20,
+        "checker_online_scalar_products": 82550,
+        "full_degree_single_encryption_ciphertext_body_bytes": 16384
+      },
+      "private_map_body_bytes": 150,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "stages": {
+            "transform_and_one_use_s": 0.00019967399566667154,
+            "native_server_s": 0.009221496002282947,
+            "serialize_s": 0.003127023002889473,
+            "parse_s": 0.0017257650033570826,
+            "full_gate_s": 0.010478372001671232,
+            "secret_decrypt_s": 0.007673414998862427,
+            "decode_and_stable_top3_s": 0.003055840999877546
+          },
+          "online_stage_sum_s": 0.03548158600460738,
+          "offline_produce_and_check_s": 0.018596904999867547,
+          "prepared_answer_packet_bytes": 33184,
+          "response_body_bytes": 65536,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1527520,
+            "maximum_deterministic_response_bound": 24595272,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0007113089644939747,
+            "private_phase_digest_diagnostic_only": "70b106fbc7fc45fd33eed47ceef9c9e8b7e27dceb92a66b0821b342aa8286662"
+          },
+          "top3": [
+            [
+              2,
+              9
+            ],
+            [
+              2,
+              20
+            ],
+            [
+              2,
+              62
+            ]
+          ]
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.0001977440042537637,
+            "native_server_s": 0.008653655000671279,
+            "serialize_s": 0.003193113996530883,
+            "parse_s": 0.0013626079962705262,
+            "full_gate_s": 0.0037830360015504993,
+            "secret_decrypt_s": 0.007670425002288539,
+            "decode_and_stable_top3_s": 0.003116542000498157
+          },
+          "online_stage_sum_s": 0.027977124002063647,
+          "offline_produce_and_check_s": 0.018320799004868604,
+          "prepared_answer_packet_bytes": 33184,
+          "response_body_bytes": 65536,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1439071,
+            "maximum_deterministic_response_bound": 27088821,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0006701215714644055,
+            "private_phase_digest_diagnostic_only": "64617c879cdb749e3fc6ef8d6b13e22d9faa573ed272df8a9861029e321cea14"
+          },
+          "top3": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              108
+            ],
+            [
+              2,
+              158
+            ]
+          ]
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.000206995006010402,
+            "native_server_s": 0.00866680499893846,
+            "serialize_s": 0.003181604995916132,
+            "parse_s": 0.0013839279999956489,
+            "full_gate_s": 0.003846348001388833,
+            "secret_decrypt_s": 0.007659333998162765,
+            "decode_and_stable_top3_s": 0.0030966519989306107
+          },
+          "online_stage_sum_s": 0.02804166699934285,
+          "offline_produce_and_check_s": 0.018476981997082476,
+          "prepared_answer_packet_bytes": 33184,
+          "response_body_bytes": 65536,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1595405,
+            "maximum_deterministic_response_bound": 24881553,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0007429204714167472,
+            "private_phase_digest_diagnostic_only": "f874de00ad951fb3d07722307a0967c7a28704a7d6c7dd22d520ed91b8a90c2e"
+          },
+          "top3": [
+            [
+              2,
+              2179
+            ],
+            [
+              2,
+              2760
+            ],
+            [
+              2,
+              3066
+            ]
+          ]
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00020048399892402813,
+            "native_server_s": 0.008668835005664732,
+            "serialize_s": 0.003152764002152253,
+            "parse_s": 0.0013679070034413598,
+            "full_gate_s": 0.0039167289942270145,
+            "secret_decrypt_s": 0.007689785001275595,
+            "decode_and_stable_top3_s": 0.0031000319941085763
+          },
+          "online_stage_sum_s": 0.02809653599979356,
+          "offline_produce_and_check_s": 0.0184349909904995,
+          "prepared_answer_packet_bytes": 33184,
+          "response_body_bytes": 65536,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1460364,
+            "maximum_deterministic_response_bound": 23346423,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0006800369256207964,
+            "private_phase_digest_diagnostic_only": "e4b1313490a175bef61cb883dd23f58e39b381171c9f86a026507bb465abed87"
+          },
+          "top3": [
+            [
+              2,
+              5517
+            ],
+            [
+              2,
+              6070
+            ],
+            [
+              2,
+              6264
+            ]
+          ]
+        }
+      ],
+      "summary": {
+        "online_stage_sum_s": {
+          "mean": 0.028038442333733354,
+          "median": 0.02804166699934285,
+          "min": 0.027977124002063647,
+          "max": 0.02809653599979356
+        },
+        "offline_produce_and_check_s": {
+          "mean": 0.018410923997483526,
+          "median": 0.0184349909904995,
+          "min": 0.018320799004868604,
+          "max": 0.018476981997082476
+        },
+        "response_body_bytes": {
+          "mean": 65536,
+          "median": 65536,
+          "min": 65536,
+          "max": 65536
+        }
+      }
+    },
+    {
+      "kind": "global_affine",
+      "n": 2048,
+      "q": 4294955009,
+      "status": "measured_research_only",
+      "setup": {
+        "map_allocation_and_coordinate_certification_s": 1.156809013999009,
+        "key_gen_s": 0.011158665001858026,
+        "private_owner_backend_prepare_s": 0.0005797819976578467,
+        "private_vectorized_coordinate_factory_prepare_s": 0.045842364997952245,
+        "enroll_s": 1.1515831090000574,
+        "native_index_prepare_s": 0.19051995500194607,
+        "full_checker_prepare_s": 0.6105900420006947
+      },
+      "upload_bytes": 2820640,
+      "geometry": {
+        "n": 2048,
+        "t": 193,
+        "q_bits": 32,
+        "query_coordinates": 85,
+        "coordinate_columns": 85,
+        "subring_degree": 1,
+        "replies": 4,
+        "shared_query_coordinates": 0,
+        "correction_coefficients": 85,
+        "online_query_body_bytes": 85,
+        "online_response_body_bytes": 65536,
+        "expanded_index_body_bytes": 5570560,
+        "naive_scalar_basis_index_body_bytes": 5570560,
+        "offline_seeded_answer_body_bytes_per_token": 32896,
+        "stored_expanded_answer_bytes_per_token": 65536,
+        "owner_private_mask_seed_bytes_per_token": 32,
+        "online_ring_products": 0,
+        "online_scalar_products": 1392640,
+        "native_ntt_index_word_bytes": 11141120,
+        "native_online_pointwise_scalar_products": 1392640,
+        "online_ciphertext_products": 0,
+        "online_key_switches": 0,
+        "worst_case_phase_bound": 33859989,
+        "fresh_phase_bound": 4149,
+        "checker_rounds": 5,
+        "checker_prepare_ring_products": 0,
+        "checker_prepare_scalar_products": 6963200,
+        "checker_epoch_residue_body_bytes": 329380,
+        "checker_epoch_seeded_body_bytes": 1860,
+        "checker_token_residue_body_bytes": 20,
+        "checker_online_scalar_products": 82345,
+        "full_degree_single_encryption_ciphertext_body_bytes": 16384
+      },
+      "private_map_body_bytes": 565,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "stages": {
+            "transform_and_one_use_s": 0.00017985400336328894,
+            "native_server_s": 0.007344017998548225,
+            "serialize_s": 0.0030505920003633946,
+            "parse_s": 0.0017295450015808456,
+            "full_gate_s": 0.003623433003667742,
+            "secret_decrypt_s": 0.007594423004775308,
+            "decode_and_stable_top3_s": 0.0031023830015328713
+          },
+          "online_stage_sum_s": 0.026624248013831675,
+          "offline_produce_and_check_s": 0.02580501099146204,
+          "prepared_answer_packet_bytes": 33184,
+          "response_body_bytes": 65536,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1215246,
+            "maximum_deterministic_response_bound": 18367623,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0005658946356613628,
+            "private_phase_digest_diagnostic_only": "24fe2266d153bb6d526dd320ac7d0e86044296fc5c0d8ceb7dfef9eed2bff253"
+          },
+          "top3": [
+            [
+              2,
+              9
+            ],
+            [
+              2,
+              20
+            ],
+            [
+              2,
+              62
+            ]
+          ]
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00018885300232795998,
+            "native_server_s": 0.006990212001255713,
+            "serialize_s": 0.003074322004977148,
+            "parse_s": 0.0013438169989967719,
+            "full_gate_s": 0.0036036329984199256,
+            "secret_decrypt_s": 0.007538892001321074,
+            "decode_and_stable_top3_s": 0.0031099019979592413
+          },
+          "online_stage_sum_s": 0.025849631005257834,
+          "offline_produce_and_check_s": 0.017897741992783267,
+          "prepared_answer_packet_bytes": 33184,
+          "response_body_bytes": 65536,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1209535,
+            "maximum_deterministic_response_bound": 15471621,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0005632352364415653,
+            "private_phase_digest_diagnostic_only": "4299c7b5a43679e8b23ff72e93f96ae2e8d2becfc6bb835f4844d1601ea0d17c"
+          },
+          "top3": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              108
+            ],
+            [
+              2,
+              158
+            ]
+          ]
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00018963400361826643,
+            "native_server_s": 0.0069927719960105605,
+            "serialize_s": 0.0031229530068230815,
+            "parse_s": 0.0013946179969934747,
+            "full_gate_s": 0.0036622339976020157,
+            "secret_decrypt_s": 0.007682244999159593,
+            "decode_and_stable_top3_s": 0.003159394000249449
+          },
+          "online_stage_sum_s": 0.02620385000045644,
+          "offline_produce_and_check_s": 0.01796235199435614,
+          "prepared_answer_packet_bytes": 33184,
+          "response_body_bytes": 65536,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1139921,
+            "maximum_deterministic_response_bound": 15894819,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0005308185988497278,
+            "private_phase_digest_diagnostic_only": "54e344273aedec0b701ea1cad5ffe98b6c28280ae89bab0c0f6b62d6aef549bc"
+          },
+          "top3": [
+            [
+              2,
+              2179
+            ],
+            [
+              2,
+              2760
+            ],
+            [
+              2,
+              3066
+            ]
+          ]
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00018352399638388306,
+            "native_server_s": 0.0069715299978270195,
+            "serialize_s": 0.003027342005225364,
+            "parse_s": 0.0013535170000977814,
+            "full_gate_s": 0.003698355001688469,
+            "secret_decrypt_s": 0.007621503995324019,
+            "decode_and_stable_top3_s": 0.0030776920029893517
+          },
+          "online_stage_sum_s": 0.02593346399953589,
+          "offline_produce_and_check_s": 0.017986683000344783,
+          "prepared_answer_packet_bytes": 33184,
+          "response_body_bytes": 65536,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1184752,
+            "maximum_deterministic_response_bound": 16579404,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0005516947197432214,
+            "private_phase_digest_diagnostic_only": "b3b5f6d7087c82e253a343351f0f0341b3cd8903fdb09bf2a53363e2094ff9e0"
+          },
+          "top3": [
+            [
+              2,
+              5517
+            ],
+            [
+              2,
+              6070
+            ],
+            [
+              2,
+              6264
+            ]
+          ]
+        }
+      ],
+      "summary": {
+        "online_stage_sum_s": {
+          "mean": 0.025995648335083388,
+          "median": 0.02593346399953589,
+          "min": 0.025849631005257834,
+          "max": 0.02620385000045644
+        },
+        "offline_produce_and_check_s": {
+          "mean": 0.01794892566249473,
+          "median": 0.01796235199435614,
+          "min": 0.017897741992783267,
+          "max": 0.017986683000344783
+        },
+        "response_body_bytes": {
+          "mean": 65536,
+          "median": 65536,
+          "min": 65536,
+          "max": 65536
+        }
+      }
+    }
+  ],
+  "scope": "Same public fixture, IDs and held-out queries, exact complete scores/stable top3; local-layout cases share approved maps, global raw/affine controls use their own certified whole-index maps. Full-ring N changes, unlike a public correction subring change; estimates and seeded/protocol assumptions remain unreviewed. Complete check, serialization, parse, native server, secret decrypt and selection all timed. Setup and diagnostics reported separately; this is not a full lifetime, network, new GPU or production-parameter claim."
+}
