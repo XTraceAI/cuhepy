@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import random
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,7 +35,11 @@ def key(plan):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json-out", type=Path, required=True)
+    parser.add_argument("--random-cases", type=int, default=0)
+    parser.add_argument("--seed", type=int, default=67501)
     args = parser.parse_args()
+    if not 0 <= args.random_cases <= 32:
+        parser.error("Bounded0..32 additional tiny random catalogs required")
     datasets = (("two_affine_planes", (0, 1, 2, 3, 8, 9, 10, 11), 4),
                 ("unequal_planes", (0, 1, 2, 4, 5, 6), 3),
                 ("duplicate_rows", (0, 0, 1, 1, 4, 4, 5, 5), 3),
@@ -100,11 +105,37 @@ def main():
                               "fixed_geometry_balancing_not_optimal_count": sum(balanced[k].response_body_bytes_model > v.response_body_bytes_model
                                                                                for k, v in by_geometry.items()),
                               "fixed_geometry_changes": changes})
+    rng, random_cases = random.Random(args.seed), []
+    for ordinal in range(args.random_cases):
+        d, count, n = rng.randrange(2, 5), rng.randrange(3, 13), rng.choice((16, 32, 64))
+        rows, cut = tuple(rng.randrange(1 << d) for _ in range(count)), rng.randrange(1, count)
+        w, p = Workload(rows, tuple(range(count)), d), Profile(n, 17, eta=1)
+        root = oracle.Node("", tuple(range(count)), (oracle.Node("0", tuple(range(cut))), oracle.Node("1", tuple(range(cut, count)))))
+        search_s, result = timed(supported.search, w, root, p, equal_forms=True)
+        grouped = {}
+        for view in result.plans:
+            assert view.certificate == support.matrix_oracle(view.compiled.candidate.layout)
+            k = key(view.compiled)
+            grouped[k] = min(grouped.get(k, view.response_body_bytes_model), view.response_body_bytes_model)
+        for view in result.original_controls:
+            assert set(supported.allocations(view.compiled)) == set(supported.cartesian_oracle_counts(view.compiled))
+        controls = supported.pareto(result.original_controls + result.balanced_controls)
+        control_vectors = {v.static_vector for v in controls}
+        missing = tuple(v for v in result.frontier if v.static_vector not in control_vectors)
+        random_cases.append({"ordinal": ordinal, "dimension": d, "rows": rows, "n": n, "split": cut,
+                             "search_s": search_s, "retained_plans": len(result.plans),
+                             "independent_cartesian_allocations_and_decoder_columns_checked": True,
+                             "fixed_geometries_balancing_not_optimal": sum(v.response_body_bytes_model > grouped[key(v.compiled)]
+                                                                          for v in result.balanced_controls),
+                             "joint_frontier_vectors_missing_from_simple_control_frontier": tuple(sorted({v.static_vector for v in missing})),
+                             "minimum_joint_online_bytes_model": min(v.static_vector[0] for v in result.plans),
+                             "minimum_control_online_bytes_model": min(v.static_vector[0] for v in controls)})
     result = metadata([Path(__file__), *(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
         "support_planner", "representation_oracle", "representation_planner", "representation_contract",
         "affine_dictionary", "crt_query_space", "dyadic_crt", "decryption_support", "rank_partition",
         "field_frontier", "reduction_oracles"))])
     result.update(kind="support_aware_static_grammar_oracle", cases=cases, exact_full_score_query_checks=score_checks,
+                  random_seed=args.seed, additional_random_cases=random_cases,
                   scope="Finite fixed-tree raw/affine, contiguous-map CRT cover, all capacity-valid canonical row allocations; no arbitrary layout optimum. "
                         "Static projected-body objective keeps full index/answer/verifier/state charges; no lifecycle base/age/exposure/seed/budget optimization. "
                         "Known greedy balancing/global controls mandatory; counts/search cost, not native timing, assurance or established originality.")
@@ -112,7 +143,9 @@ def main():
     args.json_out.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({"output": str(args.json_out), "cases": len(cases), "score_checks": score_checks,
                       "cases_better_than_best_balancing": sum(c["minimum_joint_projected_online_bytes_model"] < c["minimum_balanced_projected_online_bytes_model"] for c in cases),
-                      "fixed_geometries_balancing_not_optimal": sum(c["fixed_geometry_balancing_not_optimal_count"] for c in cases)}))
+                      "fixed_geometries_balancing_not_optimal": sum(c["fixed_geometry_balancing_not_optimal_count"] for c in cases),
+                      "random_cases": len(random_cases),
+                      "random_cases_with_frontier_missing_from_controls": sum(bool(c["joint_frontier_vectors_missing_from_simple_control_frontier"]) for c in random_cases)}))
 
 
 if __name__ == "__main__":
