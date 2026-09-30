@@ -137,13 +137,18 @@ def main():
     parser.add_argument("--edit-rows", type=int, default=1)
     parser.add_argument("--queries-per-update", type=int, default=2)
     parser.add_argument("--repeats", type=int, default=2)
+    parser.add_argument("--methods", nargs="+", choices=("full_reencrypt", "tile_reencrypt", "private_client_delta"),
+                        default=("full_reencrypt", "private_client_delta"))
+    parser.add_argument("--edit-layout", choices=("contiguous", "spread"), default="contiguous")
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
     if (not 64 <= args.count <= 16384 or not 1 <= args.rank <= 128
             or not args.rank <= args.dimension <= 512 or args.dimension % args.rank
             or not 2 <= args.pool <= 64 or not 1 <= args.updates <= 8 or not 1 <= args.repeats <= 8
             or not 1 <= args.edit_rows <= args.count or args.queries_per_update < 1
-            or args.queries_per_update * (args.updates + 1) > args.pool):
+            or args.queries_per_update * (args.updates + 1) > args.pool
+            or len(set(args.methods)) != len(args.methods) or len(args.methods) < 2
+            or args.methods[0] != "full_reencrypt"):
         parser.error("Invalid bounded matched delta workload")
     profile = Profile(args.n, args.prime, q_bits=args.q_bits, eta=21)
     profile.validate(args.dimension)
@@ -158,12 +163,13 @@ def main():
     for revision in range(args.updates):
         batch = {}
         for offset in range(args.edit_rows):
-            identifier = (revision * args.edit_rows + offset) % args.count
+            identifier = ((revision * args.edit_rows + offset) % args.count if args.edit_layout == "contiguous"
+                          else ((revision * args.edit_rows + offset) * 7919) % args.count)
             current[identifier] = lift((current[identifier] & ((1 << args.rank) - 1)) ^ ((1 << min(3, args.rank)) - 1))
             batch[identifier] = current[identifier]
         edits.append(batch)
     cases = []
-    methods = ("full_reencrypt", "private_client_delta")
+    methods = tuple(args.methods)
     for repetition in range(args.repeats):
         for method in methods[::1 if repetition % 2 == 0 else -1]:
             cases.append(run(plan, args, method, repetition, edits, {"discovery_s": discovery_s, "compile_s": compile_s}))
@@ -171,10 +177,13 @@ def main():
             args.json_out.with_suffix(".partial.json").write_text(json.dumps({"kind": "incomplete_client_delta_lifecycle", "cases": cases}, indent=2) + "\n")
     paired = []
     for repetition in range(args.repeats):
-        full, patched = (next(c for c in cases if c["method"] == method and c["repetition"] == repetition) for method in methods)
-        assert [(s["scores_sha256"], s["top3"]) for s in full["online"]] == [(s["scores_sha256"], s["top3"]) for s in patched["online"]]
-        paired.append({"repetition": repetition, "fresh_s": full["complete_lifetime_s"], "delta_s": patched["complete_lifetime_s"],
-                       "reduction_fraction": 1 - patched["complete_lifetime_s"] / full["complete_lifetime_s"]})
+        full = next(c for c in cases if c["method"] == methods[0] and c["repetition"] == repetition)
+        for method in methods[1:]:
+            patched = next(c for c in cases if c["method"] == method and c["repetition"] == repetition)
+            assert [(s["scores_sha256"], s["top3"]) for s in full["online"]] == [(s["scores_sha256"], s["top3"]) for s in patched["online"]]
+            paired.append({"repetition": repetition, "method": method, "fresh_s": full["complete_lifetime_s"],
+                           "alternative_s": patched["complete_lifetime_s"],
+                           "reduction_fraction": 1 - patched["complete_lifetime_s"] / full["complete_lifetime_s"]})
     paths = [Path(__file__), *(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
         "client_delta", "representation_updates", "coordinate_factory", "representation_oracle", "affine_dictionary",
         "representation_contract", "crt_query_space", "crt_masked_bgv", "crt_native_bgv", "crt_linear_check",
@@ -185,7 +194,8 @@ def main():
     result.update(kind="private_client_delta_complete_lifecycle", profile=asdict(profile), workload={
         "count": args.count, "rank": plan.maps[0].rank, "dimension": args.dimension, "digest_owner_local": w.digest},
         arguments={k: v for k, v in vars(args).items() if k != "json_out"}, resources_model=asdict(plan.resources),
-        cases=cases, paired=paired, paired_median_reduction_fraction=median(p["reduction_fraction"] for p in paired),
+        cases=cases, paired=paired, paired_median_reduction_fraction_by_method={
+            method: median(p["reduction_fraction"] for p in paired if p["method"] == method) for method in methods[1:]},
         publication_gate_C_passed=False,
         scope="Measured local CPU complete stage sums; independent GMP/phase diagnostics excluded. "
               "Same fixed synthetic rows/edits/adaptive-query policy and all original tokens. "

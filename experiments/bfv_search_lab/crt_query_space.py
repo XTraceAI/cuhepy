@@ -164,21 +164,34 @@ def expand(s: Space, short: tuple[int, ...]) -> list[int]:
     return result
 
 
-def outputs(plan: crt.Layout, values: list[list[int]]) -> list[list[int]]:
+def reply_selection(plan: crt.Layout, replies: tuple[int, ...] | None) -> tuple[int, ...]:
+    """Canonical public tile selection; never derive it from a private mask."""
+    count = plan.cost.response_ciphertexts
+    if replies is None:
+        return tuple(range(count))
+    if (type(replies) is not tuple or not replies
+            or any(type(i) is not int or not 0 <= i < count for i in replies)
+            or tuple(sorted(set(replies))) != replies):
+        raise ValueError("Invalid canonical public response tile selection")
+    return replies
+
+
+def outputs(plan: crt.Layout, values: list[list[int]], *, replies: tuple[int, ...] | None = None) -> list[list[int]]:
     """Put scores in the exact coefficient locations consumed by E27 unpack()."""
     crt.validate_layout(plan)
     if (len(values) != len(plan.counts)
             or any(len(row) != count or any(type(x) is not int for x in row)
                    for row, count in zip(values, plan.counts, strict=True))):
         raise ValueError("Invalid component score vectors")
-    components = [[[0] * leaf.degree for leaf in plan.context.leaves]
-                  for _ in range(plan.cost.response_ciphertexts)]
+    selected = reply_selection(plan, replies)
+    components = [[[0] * leaf.degree for leaf in plan.context.leaves] for _ in selected]
     for component, (row, leaf) in enumerate(zip(values, plan.context.leaves, strict=True)):
         capacity = leaf.degree // plan.padded
-        for i, value in enumerate(row):
-            reply, within = divmod(i, leaf.degree)
-            tile, lane = divmod(within, capacity)
-            components[reply][component][lane * plan.padded + tile] = plan.padded * value
+        for ordinal, reply in enumerate(selected):
+            start = reply * leaf.degree
+            for within, value in enumerate(row[start:start + leaf.degree]):
+                tile, lane = divmod(within, capacity)
+                components[ordinal][component][lane * plan.padded + tile] = plan.padded * value
     return [crt.encode(plan.context, rows) for rows in components]
 
 
@@ -190,10 +203,10 @@ def validate_rows(s: Space, groups: list[list[list[int]]]) -> None:
         raise ValueError("Invalid transposed enrollment rows")
 
 
-def columns(s: Space, groups: list[list[list[int]]]) -> tuple[tuple[list[int], ...], ...]:
+def columns(s: Space, groups: list[list[list[int]]], *, replies: tuple[int, ...] | None = None) -> tuple[tuple[list[int], ...], ...]:
     """Owner-only plaintext transposition: F columns, not sum(map ranks)."""
     validate_rows(s, groups)
-    return tuple(tuple(outputs(s.layout, [[row[j] if j < len(row) else 0 for row in rows] for rows in groups]))
+    return tuple(tuple(outputs(s.layout, [[row[j] if j < len(row) else 0 for row in rows] for rows in groups], replies=replies))
                  for j in range(s.columns))
 
 

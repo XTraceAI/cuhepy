@@ -43,7 +43,7 @@ class Coordinates:
     def scores(self, values):
         return self.scores_many((values,))[0]
 
-    def scores_many(self, values):
+    def scores_many(self, values, *, replies=None):
         """Batch unused pads without changing their field or encryption law."""
         weights = [space.split(self.space, row) for row in values]
         t = self.space.layout.context.prime
@@ -51,8 +51,20 @@ class Coordinates:
             raise ValueError("Private plaintext factory weight outside bounded field")
         if not values:
             return []
-        blocks = [(array @ np.asarray([w[i] for w in weights], dtype=np.int64).T % t).T.tolist()
-                  for array, i in zip(self._arrays, self.space.map_ids, strict=True)]
+        selected = space.reply_selection(self.space.layout, replies)
+        blocks = []
+        for array, i, leaf in zip(self._arrays, self.space.map_ids, self.space.layout.context.leaves, strict=True):
+            vectors = np.asarray([w[i] for w in weights], dtype=np.int64).T
+            if replies is None:
+                result = (array @ vectors % t).T
+            else:
+                # Untouched scores are zero placeholders, never encrypted as
+                # replacements. Charge complete output validation separately.
+                result = np.zeros((len(values), len(array)), dtype=np.int64)
+                for reply in selected:
+                    start = reply * leaf.degree
+                    result[:, start:start + leaf.degree] = (array[start:start + leaf.degree] @ vectors % t).T
+            blocks.append(result.tolist())
         return [[block[j] for block in blocks] for j in range(len(values))]
 
 

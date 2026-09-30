@@ -10,6 +10,12 @@ claims. This local prototype has no durable journal, remote authentication,
 rollback protection, erasure or private-timing assurance. No consumed pad is
 repaired/reused. New epochs are independent random handles: owner-local hashes
 of plaintext rows/private maps are not published as commitments.
+
+The optional tile_reencrypt control rebuilds every column and unused answer
+only at publicly selected reply tiles. Its schedule exposes affected tile
+locations, never their values or a private mask-dependent sparsity pattern.
+It retains the frozen maps/key/geometry and charges a new complete checker
+outside this owner class. This is ordinary selective rebuilding, not novelty.
 """
 
 from __future__ import annotations
@@ -110,22 +116,13 @@ class RepairPool:
         """Atomic local edit/repair; fixed IDs, geometry, key and private maps."""
         with self._lock:
             if (type(edits) is not dict or not edits
-                    or method not in ("sparse_delta", "full_reencrypt")
+                    or method not in ("sparse_delta", "full_reencrypt", "tile_reencrypt")
                     or any(type(identifier) is not int or identifier not in self._id_positions for identifier in edits)
                     or any(type(row) is not int or not 0 <= row < 1 << self.plan.dimension for row in edits.values())):
                 raise ValueError("Invalid approved fixed-ID row edits")
             s, pk = self.plan.query_space, self.client.pk
             fresh = pk.t // 2 + pk.t * pk.eta
             pending = [p for p in self._tokens.values() if p._pad is not None]
-            # Gate the WHOLE circuit before any target can change. Every
-            # possible centered query correction is covered, not one sample.
-            maximum_answer = (max((c.phase_bound + fresh for p in pending for c in p.answer.ciphertexts), default=fresh)
-                              if method == "sparse_delta" else fresh)
-            universal = max(maximum_answer + sum(degree * (pk.t // 2) * (column[r].phase_bound + fresh if method == "sparse_delta" else fresh)
-                                                for degree, column in zip(s.column_degrees, self.index.columns, strict=True))
-                            for r in range(s.layout.cost.response_ciphertexts))
-            if 2 * universal >= pk.q:
-                raise ValueError("Repair exceeds universal phase budget; fresh rebase required")
             groups, rows, changes = self._groups(), list(self.plan.workload.rows), []
             for identifier, value in edits.items():
                 position = self._id_positions[identifier]
@@ -136,11 +133,27 @@ class RepairPool:
                 groups[block][row] = new
                 rows[position] = value
                 changes.append((block, row, difference))
+            selected = (tuple(sorted({row // s.layout.context.leaves[block].degree for block, row, _ in changes}))
+                        if method == "tile_reencrypt" else space.reply_selection(s.layout, None))
+            sparse = method == "sparse_delta"
+            # Gate EVERY reply, including unchanged tiles with old noise. An
+            # edited tile cannot refresh the phase age of a different tile.
+            universal = 0
+            for r in range(s.layout.cost.response_ciphertexts):
+                answer_bound = (max((p.answer.ciphertexts[r].phase_bound + fresh for p in pending), default=fresh)
+                                if sparse else fresh if r in selected else
+                                max((p.answer.ciphertexts[r].phase_bound for p in pending), default=fresh))
+                column_bound = sum(degree * (pk.t // 2) * (column[r].phase_bound + fresh if sparse else
+                                   fresh if r in selected else column[r].phase_bound)
+                                   for degree, column in zip(s.column_degrees, self.index.columns, strict=True))
+                universal = max(universal, answer_bound + column_bound)
+            if 2 * universal >= pk.q:
+                raise ValueError("Repair exceeds universal phase budget; fresh rebase required")
             coordinates = (coordinate_factory.Coordinates(s, groups) if self.arithmetic == "numpy" else None)
             # Sparse owner arithmetic, followed by the SAME padded encryption
             # schedule on every update. No plaintext-sized ciphertext shortcut.
-            if method == "full_reencrypt":
-                patch_columns = space.columns(s, groups)
+            if not sparse:
+                patch_columns = space.columns(s, groups, replies=selected)
             else:
                 patch_columns = []
                 for j in range(s.columns):
@@ -153,12 +166,15 @@ class RepairPool:
             for original, patches in zip(self.index.columns, patch_columns, strict=True):
                 packets = [self.client.encrypt(p) for p in patches]
                 upload += sum(map(len, packets))
-                updated_columns.append(tuple(add(old, owner.expand(packet, pk), pk) if method == "sparse_delta" else owner.expand(packet, pk)
-                                             for old, packet in zip(original, packets, strict=True)))
+                replacement = list(original)
+                for r, packet in zip(selected, packets, strict=True):
+                    cipher = owner.expand(packet, pk)
+                    replacement[r] = add(original[r], cipher, pk) if sparse else cipher
+                updated_columns.append(tuple(replacement))
             updated_answers = []
             pads = tuple(token._pad for token in pending)
-            if coordinates is not None and method == "full_reencrypt":
-                all_scores = coordinates.scores_many(pads)
+            if coordinates is not None and not sparse:
+                all_scores = coordinates.scores_many(pads, replies=selected if method == "tile_reencrypt" else None)
             elif coordinates is not None:
                 all_scores = self._sparse_scores(changes, pads)
             else:
@@ -166,18 +182,20 @@ class RepairPool:
             for ordinal, token in enumerate(pending):
                 if all_scores is not None:
                     values = all_scores[ordinal]
-                elif method == "full_reencrypt":
+                elif not sparse:
                     values = space.scores(s, groups, token._pad)
                 else:
                     weights = space.split(s, token._pad)
                     values = [[0] * count for count in s.layout.counts]
                     for block, row, difference in changes:
                         values[block][row] = sum(a * b for a, b in zip(difference, weights[s.map_ids[block]], strict=True)) % pk.t
-                packets = [self.client.encrypt(p) for p in space.outputs(s.layout, values)]
+                packets = [self.client.encrypt(p) for p in space.outputs(s.layout, values, replies=selected)]
                 upload += sum(map(len, packets))
-                cipher = tuple(add(old, owner.expand(packet, pk), pk) if method == "sparse_delta" else owner.expand(packet, pk)
-                               for old, packet in zip(token.answer.ciphertexts, packets, strict=True))
-                updated_answers.append(masked.Answer(s, epoch, token.token_id, cipher))
+                cipher = list(token.answer.ciphertexts)
+                for r, packet in zip(selected, packets, strict=True):
+                    fresh_cipher = owner.expand(packet, pk)
+                    cipher[r] = add(cipher[r], fresh_cipher, pk) if sparse else fresh_cipher
+                updated_answers.append(masked.Answer(s, epoch, token.token_id, tuple(cipher)))
             workload = replace(self.plan.workload, rows=tuple(rows))
             candidate = replace(self.plan.candidate, source_digest=partition.epoch_digest(rows, workload.dimension))
             # Commit only after every ciphertext and answer has been prepared.
@@ -192,7 +210,12 @@ class RepairPool:
                     "coordinate_array_bytes": self.coordinate_array_bytes,
                     "edited_rows": len(edits), "repaired_unused_tokens": len(pending),
                     "consumed_tokens_untouched": len(self._tokens) - len(pending),
-                    "ciphertexts_freshly_encrypted": (s.columns + len(pending)) * s.layout.cost.response_ciphertexts,
+                    "ciphertexts_freshly_encrypted": (s.columns + len(pending)) * len(selected),
+                    "public_reply_tiles_rebuilt": selected,
+                    "public_update_schedule": "affected reply locations" if method == "tile_reencrypt" else "all reply locations",
+                    "full_dot_products_per_token_selected_tiles": sum(max(0, min(leaf.degree, count - r * leaf.degree)) * f
+                                                                       for r in selected for count, f, leaf in
+                                                                       zip(s.layout.counts, s.layout.features, s.layout.context.leaves, strict=True)),
                     "seeded_patch_packet_bytes": upload,
                     "universal_phase_bound_after_repair": universal,
                     "sparse_dot_products_per_token": sum(len(delta) for _, _, delta in changes),
