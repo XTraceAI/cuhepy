@@ -59,13 +59,15 @@ def _rows(rows, ids, dimension):
         raise ValueError("Invalid complete authorized cache rows/IDs")
 
 
-def seal(rows, ids, dimension, key, *, compressed=True):
+def seal(rows, ids, dimension, key, *, compressed=True, compression_level=9):
     _key(key)
     _rows(rows, ids, dimension)
+    if type(compression_level) is not int or not 1 <= compression_level <= 9:
+        raise ValueError("Invalid cache compression effort")
     manifest = Manifest(len(rows), dimension, compressed, secrets.token_bytes(32))
     width = (dimension + 7) // 8
     body = b"".join(i.to_bytes(8, "little") for i in ids) + b"".join(x.to_bytes(width, "little") for x in rows)
-    payload = zlib.compress(body, level=9) if compressed else body
+    payload = zlib.compress(body, level=compression_level) if compressed else body
     nonce = secrets.token_bytes(12)
     cipher = AES.new(key, AES.MODE_GCM, nonce=nonce, mac_len=16)
     cipher.update(manifest.header())
