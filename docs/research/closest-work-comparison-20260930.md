@@ -1,18 +1,20 @@
 # Closest work and the remaining research opportunity
 
-Review date: 2026-09-30. Evidence baseline: `02e06c0f5636def284ed6864b3e208538fcb10a6`,
-tag `checkpoint/verification-frontier-2026-09-30`. This review informs the
+Review date: 2026-09-30. Current evidence: `6207455`,
+tag `checkpoint/publication-controls-2026-09-30`; original E01–E40 baseline:
+`02e06c0`. This review informs the
 [publication research plan](publication-research-plan.md); it does not report
 new benchmarks, certify security, or establish that an idea is novel.
 
 ## Recommendation
 
-Pursue **exact private search with a representation chosen jointly for reply
-capacity, verification, client state, and index lifetime**. The strongest
-candidate is an algorithm that changes the private representation and its
-update dependencies, with a complete cost and correctness account. A faster
-BGV implementation, a new comparison harness, or combining masking with a
-linear check is insufficient as the main contribution.
+Prioritize a construction that reduces **per-query trusted preparation while
+preserving exact, safely verified release**, with structured outer evaluation
+as the leading hypothesis. The current static and causal representation
+optimizers did not survive stronger controls. A larger optimizer is conditional
+on first finding useful protocol choices. The final supplement below is the
+current construction-level comparison; earlier tables retain the reasoning
+that led to E41–E65, not an accepted novelty claim.
 
 The comparison has materially changed our next steps. General encrypted
 matrix-vector protocols and recent verifiable linear homomorphic encryption
@@ -38,8 +40,9 @@ constructions. The linked sections below were read at the stated depth;
 neither all proofs nor all related literature have been audited. “Not
 established in the sections reviewed” is not evidence of absence elsewhere.
 
-The [source registry](publication-literature-sources.json) pins 15 downloaded
-primary PDFs by SHA-256, five artifact revisions, and additional web readings.
+The [source registry](publication-literature-sources.json) retains the original
+15 primary PDFs and now pins nine additional PDFs in a separate cache, plus
+five previously recorded artifact revisions and additional web readings.
 The EMVP full version is dated August 24, 2026, although its conference paper
 is CCS 2025. Paper and artifact versions must be distinguished. No external
 artifact was executed or timed in the initial review snapshot; the supplement
@@ -106,7 +109,7 @@ data comprise 108 exact encrypted searches including warmups, two splits per
 dataset, and eight measured queries per profile/run. They motivate broader
 evaluation; they are not a population estimate or a p95 service benchmark.
 
-## Novelty assessment and falsifiable differences
+## Initial novelty hypotheses, subsequently tested through E65
 
 | Candidate | Already known | Difference we would need to demonstrate |
 |---|---|---|
@@ -224,14 +227,88 @@ The [supported-relation argument](supported-decoder-relation.md) and
 coordinate-deletion domain, under explicit assumptions. The
 [E65 static study](support-planner-results.md) supplies a stronger negative:
 ordinary balancing plus one-row refinement recovers every tested frontier in
-20 named and32 irregular catalogs. Its one initially missed point is an8 B
-wire improvement at a2 B owner-body tradeoff; global wire/client state is better.
+20 named and 32 irregular catalogs. Its one initially missed point is an 8 B
+wire improvement at a 2 B owner-body tradeoff; global wire/client state is better.
 This does not survive as a useful originality claim.
 
-The [plan §11](publication-research-plan.md) now prioritizes recipe/decoder
-admissibility as a known control, complete cold/ready/private-provisioning
-costs and strongest unresolved competitors. Only a new useful protocol
-consequence justifies the proposed lifecycle compiler. Otherwise pivot to
-explicitly changed exact selection/certified approximation/mixed-context
-functionality, with its own contract and closest-work review. Current company
-engineering and negative findings are retained; all paper gates remain open.
+The [preceding plan §11](publication-research-plan-through-e65.md) prioritized
+recipe/decoder controls and complete provisioning costs. The canonical plan
+now turns that screening into a bounded control task before new protocol work.
+Company engineering and negative findings are retained; all paper gates remain
+open.
+
+## Focused revision: preparation, compact release and the closest constructions
+
+This revision follows citations into nine additional primary PDFs, with
+targeted construction/definition reading as stated below. They are hash-pinned
+in `../research-data/literature-plan-revision-20260930` (workspace path relative
+to the repository). No full proof audit, new external run or first-of-its-kind
+claim follows. In particular, the new sources substantially narrow any claim
+based on compression plus verification.
+
+| Primary source and reading scope | Established construction / relevant boundary | Consequence for the proposed work |
+|---|---|---|
+| **Verifiable Fully Homomorphic Encryption**, Viand–Knabenhans–Hithnawi, [2301.07041v2](https://arxiv.org/html/2301.07041v2), §§III–IV, especially IV-D/E | Explicit malicious-security definitions address reaction/decryption oracles; generic constructions combine circuit correctness with input admissibility. | A generic verify-before-decrypt wrapper, an input-validity predicate, or the key-recovery motivation is not ours. Any safe-release theorem must identify its narrower new transformation or improved cost. |
+| **HELIOPOLIS**, Aranha et al., [2023/1949](https://eprint.iacr.org/2023/1949.pdf), §§1.1, 3.1, 6.5 and Appendix D context | HE-IOPs move checks to the plaintext layer. Terminal extraction, key-switch repacking and decomposition/recomposition reduce verifier decryption overhead. §3.1 explicitly excludes verification feedback and subsequent-output oracles from its verifier-privacy definition and discusses those risks. | **Required comparator for E66.** Smaller verified outputs and decoupled terminal parameters are established. Its oracle contract differs from our intended observable-abort service; this is a stated boundary, not a vulnerability discovered here. Its artifact has not been run. |
+| **Leveraging Linear Decryption: Rate-1 FHE**, Brakerski et al., [2019/720](https://eprint.iacr.org/2019/720.pdf), §§1.3, 4.1–4.2 | Defines compression with a separate decoder and combines linear decryption with high-rate LHE; terminal homomorphic capabilities and assumptions matter. | Neither a dedicated compressed decoder nor asymptotically compact post-evaluation responses is new. Distinguish concrete costs, valid-ciphertext prerequisites and malicious release from the rate statement. |
+| **HE is all you need / ZipPIR**, Akhavan Mahdavi–Diaa–Kerschbaum, [2303.09043v2](https://arxiv.org/html/2303.09043v2), §§3–4, 6.1 | Encrypts an LWE/RLWE key under a separate additive scheme; the server evaluates linear decryption, with packing, key-size and rescaling tradeoffs. Its compression propositions concern semantic security/correctness; the PIR database is server-held. | **Required terminal baseline**, including an honest independent-key Paillier implementation/control. Charge compression key, exponentiations, output decryptions and matching malicious integrity. Replacing one key by another does not automatically protect observable rejection. |
+| **Downlink (T)FHE ciphertexts compression**, Bondarchuk et al., [SAC 2025 preproceedings](https://sacworkshop.org/SAC25/preproceedings/sac2025-2-paper3.pdf), §§1–2, 4–6 | Studies terminal coefficient truncation, compact LHE conversion and combinations; explicitly prices decryption-error probability and output count. Includes compressed Paillier-ElGamal. | Our precision/packing sweep must beat applicable combined controls. A small observed error or tiny output context does not justify deterministic exactness or a new security parameter. Paper timings are not local baselines. |
+| **Efficient PCGs from Ring-LPN**, Boyle et al., [2022/1035](https://eprint.iacr.org/2022/1035.pdf), overview and §7.4–7.5 | Programmable correlations support matrix products and circuit-dependent preprocessing; matrix-triple generation is already studied. Its discussion distinguishes correlation size and practical expansion cost. | E69 needs a fixed-private-M, fresh-encryption, recipient-specific, full-Q authentication conversion. Generic matrix triples and short seeds alone cannot be its contribution. Read the exact setup/security theorem before selecting parameters. |
+| **Efficient PCGs for Any Finite Field**, Li et al., [2025/169](https://eprint.iacr.org/2025/169.pdf), introduction, techniques overview and contents | Provides any-field programmable OLE and authenticated-triple/matrix applications, with separate setup and parameter analyses. | Small field support is not an unoccupied gap. Construction/proof-level §5–9 review remains a prerequisite to using it; we have not verified a conversion or inherited its assurance. |
+| **SIMD-Aware Homomorphic Compression**, Cheon et al., [2408.17063v1](https://arxiv.org/html/2408.17063v1), §§I-B, III and V | Sparse index and payload compression uses power sums, a matching index indicator and SIMD matrix multiplication; terminal ring switching is explicit. | E46 must produce and certify sparse winners first. Encoding IDs, using moments, applying SIMD or switching rings afterward cannot be claimed as new. Compare threshold ties and payload recovery, not only digest size. |
+| **SophOMR**, Lee–Yeo, [USENIX Security 2026 prepublication](https://www.usenix.org/system/files/conference/usenixsecurity26/sec26_prepub_lee.pdf), §§1.3, 2.4, 4.1–4.2 | Extends SIMD sparse compression to multi-slot payloads using precomputation/stacking and terminal ring switching. It requires a sparsity bound; detection precedes compression. | Stronger E46 compression control than a naive per-slot scheme. Any new claim must address winner discovery/coverage, not reinvent efficient packing of an already sparse vector. We pin this prepublication version, not an assumed final artifact match. |
+
+The any-field PCG reading is deliberately shallower than the other new
+construction readings. The full reductions and concrete attacks for its
+assumptions are still a task. Primary-source sections supporting each claim,
+retrieval/hash records and the distinction between old and new caches are in
+the registry. No changed parameter/security labels have been approved.
+
+### Contract matrix: what is actually comparable
+
+“Required baseline” means align or adapt the contract and charge the adaptation;
+it does not mean every row is an interchangeable production protocol.
+
+| Family | Server's logical database | Client result / preparation | Integrity and local reproduction status |
+|---|---|---|---|
+| Current direct-fresh BGV | Owner-encrypted columns | All scores; fresh answer tokens plus private maps/check state | Conditional private full-field gate; local implementation and timings, full reviewed protocol open |
+| General homemade BFV/BGV / Paillier | Owner-encrypted index | Exact scores; scheme-specific keys and encoding | Company baselines; compare each actual verifier/TEE mode separately |
+| Original EMVP | Encoded hidden matrix | Exact product via response shares; cached/key-only client modes | Original CPU reproduction plus separately added private gate; strongest paper/parameter assurance not reproduced |
+| BNTM | Masked/encoded matrix | Delegated linear algebra; recursive mode changes client costs | Unified simple mode only; per-answer integrity must be distinguished from its detection policy |
+| vReinsPIRe | Server-plaintext matrix; may be our ciphertext operator in a proposed composition | Private linear result; server preprocessing | Full theorem and experimental admissibility differ; no local reproduction yet |
+| Small-state vPIR/vLHE | Server-plaintext matrix with extractable binding | Private linear result; reusable proof plus query material | Protocol explicitly handles selective failure in its own auxiliary-key setting; no local reproduction yet |
+| HELIOPOLIS | Encrypted inputs / HE proof computation | Private verification uses decrypted proof material; compact terminal ciphertexts | Different oracle definition above; no local run |
+| ZipPIR / terminal LHE conversion | Plaintext PIR database, or generic input ciphertexts to compress | Compact linear-decryption output under another key | Compression semantic security is not our complete malicious service guarantee; no local run |
+| PCG/MPC correlations | Distributed shares under the selected setup model | Correlated random shares/triples | A building block, not an encrypted-search protocol or a reproduced token factory |
+| BioZKFHE | Committed encrypted gallery | Similarity evaluation with threshold/proof pipeline | Public/threshold trust and proof scope need their own comparison; no local run |
+| SIMD compression / SophOMR | Ciphertexts with a sparse indicator after matching/detection | Sparse IDs/payloads | Useful terminal component, not full exact top-k or our owner-epoch service; no local run |
+| Authenticated local cache | Server stores/transmits an owner-authenticated cache packet | Client obtains owned data and computes exact results locally | Locally measured acquisition/search control; permitted by the user |
+
+### The distinctions that still deserve experiments
+
+The following are **our inferences and proposed research questions**, not
+absence-of-prior-art claims:
+
+1. **Structure through the entire verifier.** E47's implicit operator could
+   save storage while outer admissibility and extraction force expansion
+   elsewhere. E68 should test a norm-aware structured construction end to end.
+   ReinsPIRe already compiles polynomial sums to matrices, so a matrix view
+   or faster convolution is insufficient. The new step must preserve proof
+   premises while changing a complete resource bound.
+2. **Exact fixed-index correlation conversion.** Existing PCGs do not by name
+   supply our full recipient/distribution contract. E69 should either give
+   that conversion with a benefit or exhibit its precise obstruction. A
+   privacy test against a public linear mask bank is only a negative control.
+3. **Compact release with reactions.** Generic vFHE already supplies the
+   framework. A useful specialized transformation would have to preserve
+   owner binding, carries and seed/key provenance at substantially lower cost;
+   neither plaintext verification nor extraction alone proves this.
+4. **Certified sparse winners.** New work, if any, lies in exact selection and
+   complete omitted-row/tie coverage. Existing SIMD compression supplies a
+   strong way to ship the winner vector once that problem is solved.
+
+These questions are prioritized and falsified in the
+[mechanism agenda](publication-mechanism-agenda.md). The strongest unresolved
+baseline reproductions remain part of the next tasks. We have enough evidence
+to reject several weak claims, but not to certify that the remaining ideas
+are original or that any will produce a publishable positive result.

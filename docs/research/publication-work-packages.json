@@ -1,18 +1,17 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "plan_date": "2026-09-30",
   "plan": "docs/research/publication-research-plan.md",
   "baseline_commit": "02e06c0f5636def284ed6864b3e208538fcb10a6",
   "baseline_tag": "checkpoint/verification-frontier-2026-09-30",
-  "primary_question": "Joint exact private representation, reply capacity, complete verification and update/lifetime cost under stated state and leakage budgets.",
+  "primary_question": "Reduce per-query trusted preparation for exact owner-private linear search while preserving safe compact release under observable rejection. Leading hypothesis: structured outer verified evaluation.",
   "implementation_policy": "Homemade deliverable arithmetic/protocols; external artifacts are pinned baselines and differential references.",
   "critical_path": [
-    "P00",
-    "P01 and P02",
-    "P03",
-    "P04",
-    "P06",
-    "go_or_pivot"
+    "R0",
+    "R1 and R2",
+    "R3",
+    "R6",
+    "R7 if selected mechanism passes gates"
   ],
   "gate_C_initial_targets": {
     "amortized_cost_reduction_fraction": 0.2,
@@ -40,7 +39,8 @@
       "requires_new_gpu_code": false,
       "execution_evidence": "Contract and explicit all-data cache permission recorded; encrypted base/current overlays and supported-decoder changed relation separated. A justified outsourcing/usefulness regime remains unestablished.",
       "acceptance_met": false,
-      "experiment_ids": []
+      "experiment_ids": [],
+      "current_activity": "Clarified owner retention contract fixed; deployment/useful frontier open."
     },
     {
       "id": "P01",
@@ -51,7 +51,8 @@
         "P00"
       ],
       "proposed_experiments": [
-        "E67"
+        "E67",
+        "E68"
       ],
       "output_paths": [
         "docs/research/baseline-reproduction.md",
@@ -75,7 +76,8 @@
         "E58",
         "E61",
         "E67"
-      ]
+      ],
+      "current_activity": "R0/R2: strongest vLHE and recursive BNTM contract cards/reproduction; terminal compression controls. Preserve unavailable modes as gaps."
     },
     {
       "id": "P02",
@@ -85,7 +87,10 @@
       "dependencies": [
         "P00"
       ],
-      "proposed_experiments": [],
+      "proposed_experiments": [
+        "E68",
+        "E46"
+      ],
       "output_paths": [
         "experiments/bfv_search_lab/representation_contract.py",
         "experiments/bfv_search_lab/representation_oracle.py",
@@ -105,11 +110,12 @@
         "E41",
         "E63",
         "E65"
-      ]
+      ],
+      "current_activity": "R3 exact implicit/digit operator and optional R5 stable-selection oracles; prior representation oracles are references."
     },
     {
       "id": "P03",
-      "title": "Backend and security-dimension frontier",
+      "title": "Structured backend and preparation frontier",
       "suggested_role": "protocol/algebra",
       "status": "in_progress",
       "dependencies": [
@@ -119,7 +125,9 @@
       ],
       "proposed_experiments": [
         "E47",
-        "E66"
+        "E66",
+        "E68",
+        "E69"
       ],
       "output_paths": [
         "experiments/bfv_search_lab/backend_frontier.py",
@@ -150,7 +158,8 @@
         "E62",
         "E64",
         "E66"
-      ]
+      ],
+      "current_activity": "Lead R3/E68 after bounded baseline controls; E69 alternate conversion."
     },
     {
       "id": "P04",
@@ -188,7 +197,9 @@
         "E55",
         "E57",
         "E65"
-      ]
+      ],
+      "current_activity": "Deferred expansion: E57/E65 failed stronger controls. Resume only after R6 identifies two useful safe protocol actions.",
+      "scheduling": "deferred_until_protocol_selection"
     },
     {
       "id": "P05",
@@ -226,7 +237,9 @@
         "E56",
         "E59",
         "E64"
-      ]
+      ],
+      "current_activity": "Preserve known private buffers/deltas/tile controls; scope lifecycle work to a surviving protocol after R6.",
+      "scheduling": "conditional_on_selected_protocol"
     },
     {
       "id": "P06",
@@ -271,7 +284,8 @@
         "E60",
         "E61",
         "E67"
-      ]
+      ],
+      "current_activity": "R2/E67 full private provisioning, socket and same-state cache/protocol resource frontier; later held-out selected-mechanism evaluation."
     },
     {
       "id": "P07",
@@ -283,7 +297,9 @@
         "P02"
       ],
       "proposed_experiments": [
-        "E66"
+        "E66",
+        "E68",
+        "E69"
       ],
       "output_paths": [
         "docs/research/exact-search-security-game.md",
@@ -309,7 +325,8 @@
         "E53",
         "E64",
         "E66"
-      ]
+      ],
+      "current_activity": "R0 admissibility/feedback comparison; R1 release relation; R3/E68 outer composition or R4/E69 correlation conversion. Existing drafts do not transfer automatically."
     },
     {
       "id": "P08",
@@ -335,7 +352,8 @@
       "requires_new_gpu_code": false,
       "additional_gate": "Gate C practical-effect decision must pass before this task starts.",
       "experiment_ids": [],
-      "acceptance_met": false
+      "acceptance_met": false,
+      "current_activity": "After mechanism/useful-effect gates, implement only lifecycle/TEE obligations the chosen protocol requires."
     },
     {
       "id": "P09",
@@ -359,7 +377,8 @@
       "requires_new_gpu_code": true,
       "additional_gate": "Gate C practical-effect decision must pass; P07 defines the complete verifier boundary before new GPU kernels.",
       "experiment_ids": [],
-      "acceptance_met": false
+      "acceptance_met": false,
+      "current_activity": "No new CUDA until R6 selection and useful-effect/protocol gates. Preserve current optimized company backends."
     },
     {
       "id": "P10",
@@ -374,7 +393,8 @@
         "E44",
         "E45",
         "E46",
-        "E66"
+        "E66",
+        "E69"
       ],
       "output_paths": [
         "docs/research/representation-alternatives.md",
@@ -405,7 +425,8 @@
         "E64",
         "E65",
         "E66"
-      ]
+      ],
+      "current_activity": "R1 compaction controls; bounded R4/R5 alternatives; E44/E45 fallback scopes unchanged."
     },
     {
       "id": "P11",
@@ -437,7 +458,8 @@
       "dependency_note": "Record a scoped amendment if update, factory or GPU work is not part of the selected paper; never mark an omitted package complete.",
       "execution_evidence": "59 completed raw runs and181 exact source versions verified (118 historical Git blobs/63 separate cache dependencies);205 related tests in30 files and explicit lint on46 changed Python paths pass. Original/failure/control raws immutable. Publication-size uncertainty, full protocol proof and final paper artifact gate remain open.",
       "acceptance_met": false,
-      "experiment_ids": []
+      "experiment_ids": [],
+      "current_activity": "Retain 59 runs/181 source versions and historical 205-test receipt; validate planning links/source hashes separately."
     },
     {
       "id": "P12",
@@ -463,7 +485,8 @@
       "requires_new_gpu_code": false,
       "acceptance_met": false,
       "execution_evidence": "Claims and closest-work comparison updated after original author reproduction, user caching clarification, known extraction/Recifhe/basis-synthesis reads and E57/E65 negatives. No coherent originality claim, reviewed full theorem, useful outsourcing result or paper draft declared.",
-      "experiment_ids": []
+      "experiment_ids": [],
+      "current_activity": "Closest-work and plan revised; publication claim remains conditional. New protocol theorem+complete benefit required, not known compaction/PCG/selection ingredients."
     }
   ],
   "handoff_fields": [
@@ -478,7 +501,11 @@
     "reproduction_command",
     "raw_artifact_hashes",
     "result_classification",
-    "next_gate"
+    "next_gate",
+    "closest_construction",
+    "proposed_new_step",
+    "all_charged_resources",
+    "decision_task_id"
   ],
   "historical_artifacts_policy": "Do not rewrite prior measurements/manifests; validate their planning-document hashes at baseline_commit.",
   "proposed_experiment_ids": [
@@ -487,13 +514,15 @@
     "E46",
     "E47",
     "E66",
-    "E67"
+    "E67",
+    "E68",
+    "E69"
   ],
   "execution_log": "docs/research/publication-progress.md",
   "execution_date": "2026-09-30",
-  "execution_note": "Every completed subcomponent returns to the plan. E65 static grammar is only partial execution of its lifecycle proposal. All Gates A-D/full package acceptances remain open; no novelty, useful-effect or production-assurance label inferred from a pilot.",
+  "execution_note": "Historical E41-E65 scopes remain unchanged. R0-R7 are proposed decision tasks, not completed implementations. Return to the canonical plan after each subcomponent. No Gates A-D/full package acceptance follows from this planning review.",
   "client_retention": "User explicitly permits retaining all owned plaintext data; mandatory raw/compressed/mutable cache controls. No customer device/session limit inferred.",
-  "current_execution_priority": "publication-research-plan.md section11: recipe/decoder admissibility known controls and full cold/ready/private-provisioning comparison before conditional lifecycle compiler; static support optimizer failed stronger-control discriminator.",
+  "current_execution_priority": "R0-R2 close construction/compaction/full-cost controls; R3/E68 is the leading new mechanism. R4/E69 and R5/E46 are bounded alternatives. No expanded optimizer or CUDA before a surviving protocol and useful-cost gate.",
   "initial_proposed_experiment_ids": [
     "E41",
     "E42",
@@ -535,10 +564,10 @@
         "P07",
         "P10"
       ],
-      "status": "proposed",
-      "specification": "publication-research-plan.md section11 item1",
-      "hypothesis": "A safe recipe/decoder relation can yield a useful complete-cost resource tradeoff beyond fresh extraction/reconstruction and locally known rows.",
-      "falsifier": "Known controls explain the gain, private-state/CPU/provisioning overwhelms wire reduction, or transcript/carry/provenance assumptions fail."
+      "status": "proposed_control",
+      "specification": "publication-mechanism-agenda.md section D",
+      "hypothesis": "Known recipe/support/extraction and terminal-conversion controls establish the actual safe-release frontier.",
+      "falsifier": "Wire reduction is repaid in private state, client work, verification or setup; no new mechanism is claimed."
     },
     {
       "id": "E67",
@@ -547,9 +576,264 @@
         "P06"
       ],
       "status": "proposed",
-      "specification": "publication-research-plan.md section11 item2",
-      "hypothesis": "A justified cold/ready/device/link regime survives full private provisioning, cache and strongest protocol controls.",
-      "falsifier": "Allowed cache dominates the relevant regime, private/setup traffic was omitted, or parameter/output/trust mismatch explains comparison."
+      "specification": "publication-research-plan.md sections 2/6 and publication-mechanism-agenda.md section E",
+      "hypothesis": "A measured useful resource frontier survives private provisioning, cache acquisition and strongest compatible protocol controls.",
+      "falsifier": "Cache dominates or the apparent frontier relies on omitted resources/changed trust; models alone do not demonstrate deployment usefulness."
+    },
+    {
+      "id": "E68",
+      "work_packages": [
+        "P02",
+        "P03",
+        "P07"
+      ],
+      "status": "proposed",
+      "specification": "publication-mechanism-agenda.md section A",
+      "hypothesis": "A new structured outer evaluation construction eliminates per-query owner answers without literal shift/digit expansion or inadmissible norms.",
+      "falsifier": "Outer norm/field/proof/state costs erase the margin, only a dense wrapper works, or closest prior construction already supplies the new step."
+    },
+    {
+      "id": "E69",
+      "work_packages": [
+        "P03",
+        "P07",
+        "P10"
+      ],
+      "status": "proposed_alternative",
+      "specification": "publication-mechanism-agenda.md section B",
+      "hypothesis": "A fixed-private-matrix PCG conversion supplies the complete fresh encrypted/full-Q authenticated token functionality more cheaply.",
+      "falsifier": "Only generic random shares are generated, recipient/seed privacy or carries fail, or full setup/expansion costs reproduce the owner factory."
     }
-  ]
+  ],
+  "revision": "post-E65 mechanism review",
+  "planning_evidence_commit": "6207455db8d86fbe1394d3ef2294fe8e0c877163",
+  "planning_evidence_tag": "checkpoint/publication-controls-2026-09-30",
+  "historical_plan": "docs/research/publication-research-plan-through-e65.md",
+  "mechanism_specifications": "docs/research/publication-mechanism-agenda.md",
+  "initial_critical_path": [
+    "P00",
+    "P01 and P02",
+    "P03",
+    "P04",
+    "P06",
+    "go_or_pivot"
+  ],
+  "planning_revision_is_implementation": false,
+  "decision_tasks": [
+    {
+      "id": "R0",
+      "title": "Close strongest baseline contracts",
+      "status": "planned",
+      "work_packages": [
+        "P00",
+        "P01",
+        "P07"
+      ],
+      "dependencies": [],
+      "activation": "default",
+      "initial_effort_cap_sessions": [
+        2,
+        3
+      ],
+      "specification": "docs/research/publication-mechanism-agenda.md",
+      "proposed_deliverables": [
+        "docs/research/protocol-baseline-cards.md",
+        "Selected pinned baseline reproduction receipts"
+      ],
+      "acceptance": "Fields, norm/extraction, feedback, binding, state and preparation align or mismatch is explicit.",
+      "acceptance_met": false,
+      "evidence": []
+    },
+    {
+      "id": "R1",
+      "title": "Close E66 terminal-release controls",
+      "status": "planned",
+      "work_packages": [
+        "P03",
+        "P07",
+        "P10"
+      ],
+      "dependencies": [
+        "R0"
+      ],
+      "activation": "default",
+      "initial_effort_cap_sessions": [
+        2,
+        3
+      ],
+      "specification": "docs/research/publication-mechanism-agenda.md",
+      "proposed_deliverables": [
+        "docs/research/terminal-release-controls.md"
+      ],
+      "acceptance": "Independent relation oracle and complete costs; known composition explicitly classified as control.",
+      "acceptance_met": false,
+      "evidence": []
+    },
+    {
+      "id": "R2",
+      "title": "Measure E67 complete resource frontier",
+      "status": "planned",
+      "work_packages": [
+        "P01",
+        "P06"
+      ],
+      "dependencies": [
+        "R0"
+      ],
+      "activation": "default",
+      "initial_effort_cap_sessions": [
+        2,
+        3
+      ],
+      "specification": "docs/research/publication-mechanism-agenda.md",
+      "proposed_deliverables": [
+        "Matched cold/enrolled/returning-client report and immutable raw transfer/provisioning records"
+      ],
+      "acceptance": "Actual same-contract measured frontier or negative result, with permitted cache and all private bytes.",
+      "acceptance_met": false,
+      "evidence": []
+    },
+    {
+      "id": "R3",
+      "title": "Screen E68 structured outer evaluation",
+      "status": "planned",
+      "work_packages": [
+        "P02",
+        "P03",
+        "P07"
+      ],
+      "dependencies": [
+        "R0"
+      ],
+      "activation": "default",
+      "initial_effort_cap_sessions": [
+        3,
+        3
+      ],
+      "specification": "docs/research/publication-mechanism-agenda.md",
+      "proposed_deliverables": [
+        "experiments/bfv_search_lab/structured_operator_oracle.py",
+        "benchmarks/structured_operator_lab.py",
+        "docs/research/structured-operator-results.md"
+      ],
+      "acceptance": "Exact forward/adjoint/digit oracle, outer admissibility and cost screen; identifies an actual new step or rejects this track.",
+      "acceptance_met": false,
+      "evidence": [],
+      "promotion_dependencies": [
+        "R1",
+        "R2"
+      ]
+    },
+    {
+      "id": "R4",
+      "title": "Screen E69 complete correlation conversion",
+      "status": "planned",
+      "work_packages": [
+        "P03",
+        "P07",
+        "P10"
+      ],
+      "dependencies": [
+        "R0"
+      ],
+      "activation": "R3 fails or an independently demonstrated preparation bottleneck justifies this alternative",
+      "initial_effort_cap_sessions": [
+        2,
+        2
+      ],
+      "specification": "docs/research/publication-mechanism-agenda.md",
+      "proposed_deliverables": [
+        "docs/research/fixed-matrix-correlation-reduction.md",
+        "experiments/bfv_search_lab/correlation_conversion_oracle.py"
+      ],
+      "acceptance": "Complete ideal share-to-token conversion plus trust/field/distribution costs, or precise obstruction.",
+      "acceptance_met": false,
+      "evidence": []
+    },
+    {
+      "id": "R5",
+      "title": "Screen exact top-k selection and coverage",
+      "status": "planned",
+      "work_packages": [
+        "P02",
+        "P10"
+      ],
+      "dependencies": [
+        "R0"
+      ],
+      "activation": "Explicit changed-output track if R3 fails or an independent complete-cost screen justifies it",
+      "initial_effort_cap_sessions": [
+        2,
+        2
+      ],
+      "specification": "docs/research/publication-mechanism-agenda.md",
+      "proposed_deliverables": [
+        "docs/research/exact-selection-screen.md"
+      ],
+      "acceptance": "Stable IDs/ties/coverage and full conversion/round/proof costs versus all-score and known selection/compression controls.",
+      "acceptance_met": false,
+      "evidence": []
+    },
+    {
+      "id": "R6",
+      "title": "Select one mechanism and preregister evaluation",
+      "status": "planned",
+      "work_packages": [
+        "P04",
+        "P06",
+        "P07",
+        "P12"
+      ],
+      "dependencies": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "activation": "default",
+      "initial_effort_cap_sessions": [
+        1,
+        1
+      ],
+      "specification": "docs/research/publication-mechanism-agenda.md",
+      "proposed_deliverables": [
+        "Selected mechanism, theorem obligations, held-out preregistration and amended integration scope"
+      ],
+      "acceptance": "Gates A/B and credible C/D path for one selected mechanism; otherwise record a scoped pivot/negative. Alternatives need their own completed screens.",
+      "acceptance_met": false,
+      "evidence": []
+    },
+    {
+      "id": "R7",
+      "title": "Develop, prove and evaluate selected system",
+      "status": "planned",
+      "work_packages": [
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P11",
+        "P12"
+      ],
+      "dependencies": [
+        "R6"
+      ],
+      "activation": "Only after R6 selects a surviving mechanism and writes scope",
+      "initial_effort_cap_sessions": null,
+      "specification": "docs/research/publication-mechanism-agenda.md",
+      "proposed_deliverables": [
+        "Homemade implementation, matching proof, reviewed profiles, reproducible evaluation and claim ledger"
+      ],
+      "acceptance": "Gates C/D and independent key-proof/parameter review for the selected scope; inactive packages are not marked complete.",
+      "acceptance_met": false,
+      "evidence": []
+    }
+  ],
+  "plan_review": {
+    "status": "complete",
+    "scope": "Primary-source/accumulated-results reassessment and executable planning only; documentation validation recorded separately.",
+    "new_experiments_run": 0,
+    "new_primary_pdfs_pinned": 9,
+    "evidence_commit": "6207455db8d86fbe1394d3ef2294fe8e0c877163"
+  }
 }

@@ -3,11 +3,14 @@
 Start new research with the
 [publication plan](../../docs/research/publication-research-plan.md) and
 [closest-work comparison](../../docs/research/closest-work-comparison-20260930.md).
-The plan defines proposed E41–E47 experiments, exact deliverables, dependencies
-and stopping rules in [work packages](../../docs/research/publication-work-packages.json).
-It prioritizes an original representation/update algorithm and strong external
-baselines before more deployment or kernel work. These new tasks are planned;
-the protected E01–E40 implementation remains the baseline.
+The plan defines R0–R7 decision tasks, deliverables, dependencies and stopping
+rules in [work packages](../../docs/research/publication-work-packages.json).
+The [mechanism agenda](../../docs/research/publication-mechanism-agenda.md)
+prioritizes structured verified evaluation (proposed E68), with correlation
+generation (proposed E69) and exact selection as bounded alternatives. E41–E65
+executed scopes, strong cache controls and negative findings are retained in
+the progress log. Company E01–E40 and the E65 checkpoint remain preserved;
+new protocol work is separate from deployment and kernel optimization.
 
 The [E01–E40 system and paper synthesis](../../docs/research/research-synthesis-and-system-roadmap.md)
 now inventories the entire portfolio, proposed compatible system paths,

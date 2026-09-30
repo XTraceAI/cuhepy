@@ -75,12 +75,15 @@ ciphertexts, keys or snapshots. Encrypted-base insertion/deletion, remote
 authorization and durable migration remain different unimplemented work.
 
 E62 separately tests a dedicated decoder with a smaller checked ciphertext
-relation. It authenticates every supplied C0 coefficient and ALL C1 before
-selected secret arithmetic, and supports only one full-ring score-only leaf.
-It is not an existing-client option or a reviewed replacement for whole-cipher
-verification. Split/legacy decoder support is an E63 algebra oracle, not a
-deployed projected protocol. New output/verification semantics require their
-matching proof; generic unverified or plaintext-field projection is rejected.
+relation for one full-ring leaf. E64 adds a separate owner-pinned split/legacy
+CRT prototype, with 112 toy encrypted searches and eleven tests. Both
+authenticate every supplied C0 coefficient and ALL C1 before selected secret
+arithmetic. E63 remains the independent decoder-matrix support oracle. These
+are research profiles, not deployed existing-client options or reviewed
+replacements for whole-cipher verification. New output/verification semantics
+require their matching proof; generic unverified or plaintext-field projection
+is rejected. The current proposed protocol tracks are specified in the
+[mechanism agenda](publication-mechanism-agenda.md).
 
 An accepted server result must cover every row exactly once for the authorized
 epoch, query and plan. Complete verification precedes use of the long-lived HE

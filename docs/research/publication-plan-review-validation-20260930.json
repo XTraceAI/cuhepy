@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "utc": "2026-09-30T23:47:52.656894+00:00",
+  "scope": "Planning/documentation validation and retained-evidence review only. No performance run, cryptographic theorem validation or implementation test rerun.",
+  "baseline_commit": "6207455db8d86fbe1394d3ef2294fe8e0c877163",
+  "baseline_tag": "checkpoint/publication-controls-2026-09-30",
+  "branch": "experiment/creative-search-algebra",
+  "checks": {
+    "changed_files_are_markdown_or_json": true,
+    "git_diff_check": "passed",
+    "markdown_documents_checked": 11,
+    "local_markdown_links_resolved": 206,
+    "markdown_fences_balanced": true,
+    "changed_json_parses": true,
+    "package_dependency_dag_nodes": 13,
+    "decision_dependency_and_promotion_dag_nodes": 8,
+    "all_package_and_decision_acceptances_remain_false": true,
+    "existing_executed_experiment_scope_records_unchanged": 22,
+    "archived_plan_byte_identical_to_baseline": true,
+    "original_source_records_unchanged": 15,
+    "original_artifact_heads_unchanged": 5,
+    "cached_pdf_sizes_and_sha256_verified": 24,
+    "historical_execution_manifest_and_test_receipt_byte_unchanged": true,
+    "src_and_benchmarks_unchanged_from_baseline": true,
+    "src_unchanged_from_protected_02e06c0_checkpoint": true
+  },
+  "manifest_verification": {
+    "command": ".venv/bin/python benchmarks/publication_artifact_manifest.py --verify docs/research/publication-execution-manifest.json",
+    "result": {
+      "runs": 59,
+      "source_versions": 181,
+      "errors": []
+    }
+  },
+  "selected_raw_evidence_spot_checks": [
+    {
+      "raw": "benchmarks/results/publication-original-emvp-mushroom-pinned-20260930.json",
+      "sha256": "8fa8c8ad7c8fb4dfe85097dab48d5b42809fb130b4579e3981c86f48207b1b29",
+      "filter": "verified and not key_only",
+      "case_count": 2,
+      "query_count": 16,
+      "online_mean_ms": 5.942169625,
+      "response_bytes_model": 1471264
+    },
+    {
+      "raw": "benchmarks/results/publication-original-emvp-semeion-pinned-20260930.json",
+      "sha256": "54fe45102ab6825b90ea88cc56f50c6573f6e9c6142fcd5d37416839167defd7",
+      "filter": "verified and not key_only",
+      "case_count": 2,
+      "query_count": 16,
+      "online_mean_ms": 1.363022,
+      "response_bytes_model": 205100
+    },
+    {
+      "raw": "benchmarks/results/publication-connect4-encrypted-controls-20260930.json",
+      "sha256": "bf846e22d064eea0e5fdf8d7f16bb87dec1168e61c6afd876de83cee6134cad6",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "profiles": [
+        {
+          "kind": "global_raw",
+          "summary": {
+            "online_stage_sum_s": {
+              "mean": 0.1109618100017542,
+              "median": 0.11052284399920609,
+              "min": 0.11010469599568751,
+              "max": 0.11225789001036901
+            },
+            "offline_produce_and_check_s": {
+              "mean": 0.07244281300518196,
+              "median": 0.07199012000637595,
+              "min": 0.07087909600522835,
+              "max": 0.07445922300394159
+            },
+            "response_body_bytes": {
+              "mean": 262144,
+              "median": 262144,
+              "min": 262144,
+              "max": 262144
+            }
+          }
+        },
+        {
+          "kind": "global_affine",
+          "summary": {
+            "online_stage_sum_s": {
+              "mean": 0.10246469365180626,
+              "median": 0.102451538972673,
+              "min": 0.1021336949779652,
+              "max": 0.10280884700478055
+            },
+            "offline_produce_and_check_s": {
+              "mean": 0.071157427339737,
+              "median": 0.07072794101259205,
+              "min": 0.07063865000964142,
+              "max": 0.0721056909969775
+            },
+            "response_body_bytes": {
+              "mean": 262144,
+              "median": 262144,
+              "min": 262144,
+              "max": 262144
+            }
+          }
+        }
+      ],
+      "cache_controls": [
+        {
+          "compression_level": null,
+          "actual_download_packet_bytes": 786524,
+          "cold_owner_client_compute_s": 0.03062493600009475,
+          "mean_local_query_s_without_warmup": 0.002942205338816469
+        },
+        {
+          "compression_level": 1,
+          "actual_download_packet_bytes": 305261,
+          "cold_owner_client_compute_s": 0.02809554198756814,
+          "mean_local_query_s_without_warmup": 0.0030769253353355452
+        },
+        {
+          "compression_level": 9,
+          "actual_download_packet_bytes": 247388,
+          "cold_owner_client_compute_s": 0.4004792209889274,
+          "mean_local_query_s_without_warmup": 0.003021560672398967
+        }
+      ],
+      "scope": "Retained CPU research-profile run; one warmup and three timed queries per profile. No new experiment."
+    },
+    {
+      "raw": "benchmarks/results/publication-support-planner-refinement-oracle-20260930.json",
+      "sha256": "61fc2ea5574765d9a497b3200d23ea83b878ada2fad589c6d4185c4b83eb77ef",
+      "named_cases": 20,
+      "additional_random_cases": 32,
+      "exact_full_score_query_checks": 9024,
+      "named_fixed_geometry_refinement_not_optimal_count": 0,
+      "random_frontier_vectors_missing_after_refinement": 0
+    }
+  ],
+  "document_sha256_excluding_this_receipt": {
+    "docs/research/closest-work-comparison-20260930.md": "4c4698c736a8368f7fe82feaacc9ecc745c9e8ce5476cd91cba79bcdbde422e6",
+    "docs/research/creative-experiment-priorities.md": "aa3bc030f44281878a96ecadc4b20ec8d8f5abdd1bf26e4641eab28ac5688e2c",
+    "docs/research/exact-search-contract.md": "026f75d71711b392f6d3fe4af8c4c30774392dd114949a8e13c47c89a7ce5565",
+    "docs/research/paper-claims.md": "2350540f2976e34c7cf51a9c0e9d9e022b611d92d92da7f58336a6db91dc920f",
+    "docs/research/publication-evaluation.md": "d793a6480b934ef7fa2d1d363e974ccdfafa5c4008f6b15d9c13bcaf9ba6fa34",
+    "docs/research/publication-literature-sources.json": "89fb4edaea6d8501ee6336dd1d1c73b5ce66d42fcd4ed0b99b6abca76a6433c4",
+    "docs/research/publication-mechanism-agenda.md": "4e1bed4434dce8b8b17e6a1c1adbed1261fca1a8cb12824171b71738a11dd2e5",
+    "docs/research/publication-progress.md": "e7fca14fbe9fcfab7181a2f00b63f140640e332dc2d3ad85e4523181970f9480",
+    "docs/research/publication-research-plan-through-e65.md": "f4ba2feab82afa473f5b8e86970e6c43d4a55748562cd000153fea91b49d58ab",
+    "docs/research/publication-research-plan.md": "6b0d571fd5f689473586b0d460770d81756d0a1393b5ae69b6fb7280b53e565d",
+    "docs/research/publication-work-packages.json": "53af7db0912d3a92ae19ed232f15b4331917e988e5b5ec3e16c2f1b38ccb6b9b",
+    "docs/research/research-synthesis-and-system-roadmap.md": "e38be03e2c61c6d84d25c5dda79f4243a8e1fe2f9bb572203aab4492cdb09833",
+    "experiments/bfv_search_lab/README.md": "b0bf9631d01ee2921c91518675e6fec49edf4b0aafefaafa3c6883562fff0c5c"
+  },
+  "not_performed": [
+    "New timing/transfer/GPU experiments",
+    "Re-running historical 205-test/46-path-lint suite",
+    "Whole-repository CI",
+    "Full literature proof audit or new external artifact reproduction",
+    "Independent cryptographic or private-side-channel assurance"
+  ],
+  "errors": []
+}

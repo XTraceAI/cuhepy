@@ -1,797 +1,307 @@
-# Research plan: exact private search across representation, verification and lifetime
-
-2026-09-30. This is the current execution plan, following the
-[closest-work comparison](closest-work-comparison-20260930.md). It supersedes
-the next-step ordering in the [E01–E40 synthesis](research-synthesis-and-system-roadmap.md),
-while preserving its evidence and proof caveats. Execution has begun: E41's
-finite oracle/planner, E42/E47 screens and a frozen-map E43 repair prototype
-are implemented, with preliminary retained measurements. The remaining
-mechanisms are proposals. Consult the [execution log](publication-progress.md)
-and result documents before treating a package as complete. The machine-readable handoff is
-[publication-work-packages.json](publication-work-packages.json).
-
-Protected starting point: `02e06c0f5636def284ed6864b3e208538fcb10a6`,
-`checkpoint/verification-frontier-2026-09-30`, on
-`experiment/creative-search-algebra`. Production branches and company
-Paillier/BFV fallbacks stay independent. Our deliverable arithmetic and
-protocol implementation remain homemade; external artifacts are strong
-baselines and differential references.
-
-## 1. The question and the possible contribution
-
-**Can an exact private representation be chosen so that encrypted search is
-efficient over an index's lifetime, rather than merely fast in one server
-kernel?** Specifically, can we jointly choose what is represented, how its
-responses occupy ciphertexts, how the complete response is verified, and how
-updates invalidate preprocessing, under explicit client-memory and leakage
-budgets?
-
-The proposed contribution is a representation algorithm and its analysis,
-instantiated in an end-to-end private search system. It is not a proposal for
-a new encryption primitive. The algorithm may ultimately use BGV, a code-based
-linear protocol, or different backends in separately declared profiles.
-
-The most promising new mechanism is **controlled sharing of exact private
-query directions**: sharing can reduce work/state but couple previously
-independent blocks, increase correction support, or expand the state that an
-update invalidates. Representation, packing, verification and update choices
-therefore need to be made together. We must first demonstrate that this is
-more than ordinary low-rank factorization followed by an existing packer.
-
-A second concrete protocol experiment follows from the new vLHE reading:
-could a verified private linear query over the *public ciphertext coefficients*
-replace our owner-produced encrypted mask answers? E47 below makes that
-composition precise enough to test cheaply. It may lose on field width and
-matrix expansion; it deserves an early test because it targets the trusted
-preprocessing bottleneck directly.
-
-Three contributions would make a coherent paper, if established:
-
-1. A precise joint optimization problem and an algorithm with an exact result
-   for a useful restricted class, or a demonstrably strong approximation or
-   heuristic with exact small-instance controls.
-2. A representation/update protocol with exact score and coverage guarantees,
-   explicit leakage, and a reviewed conditional security argument for the
-   complete transcript.
-3. A homemade implementation showing a reproducible benefit over the closest
-   compatible methods after client work, setup, unused preprocessing, memory,
-   network traffic and updates are charged.
-
-The first contribution must survive the literature and baseline gates before
-we invest heavily in the last. A publishable outcome is not guaranteed.
-
-## 2. Freeze a useful functionality before optimizing
-
-Use one primary contract, and compare alternatives in separate panels.
-
-| Dimension | Primary research contract | Separate extension / control |
-|---|---|---|
-| Parties | Trusted data owner and authorized online client; one malicious compute server | An attested offline factory, or multiple non-colluding helpers, changes trust and is declared separately |
-| Data | Binary vectors with stable owner-assigned IDs and an authenticated index epoch | Quantized real embeddings are a different metric; do not call their Hamming search exact in the original space |
-| Output | Every exact Hamming score, with stable top-k computed locally; initially k=3 | Only-top-k disclosure needs a different functionality and protocol |
-| Query schedule | Adaptive queries after enrollment; current query chosen before exposure to its mask | Fixed-before-enrollment E32 remains a separate restricted control |
-| Server privacy | Hide index values and query values subject to an explicit leakage function | A plaintext server database or exposed approximate geometry is a different contract |
-| Integrity | Each accepted answer corresponds to every row of the authorized epoch and request | Detecting only a fraction of dishonest calls is weaker and labeled |
-| Client state | Persistent, ephemeral, token and peak resident budgets stated separately | Full plaintext/affine caches and download-then-local search are mandatory controls |
-| Preprocessing | Trusted owner-generated correlations are allowed and fully charged | No-preprocessing and key-only-client competitors remain independent candidates |
-| Availability | Server may abort; no availability guarantee | Retry, crash and rollback behavior still must preserve privacy and one-use state |
-
-The owner and authorized client are in the same confidentiality domain for
-this first paper. Full-score access itself can reveal an index: distances to
-zero and each unit vector recover binary coordinates. We therefore do not
-claim database privacy against an authorized full-score client. Multi-tenant
-authorization, client collusion and output-only access require new analysis.
-
-Write the leakage function before the first new benchmark. Include row count,
-dimension, public partition/capacity/rank profile, field and ring choices,
-coordinate-equality schedule, ciphertext counts, request timing, epoch changes,
-and any visible update locations or subsequent item retrieval. Data-dependent
-plan selection can leak structure even if basis values stay encrypted/private.
-Offer a padded public-profile control and charge its loss of efficiency.
-No query-dependent routing in the primary full-scan experiment.
-
-The owner/factory may retain private row coordinates offline. This is real
-state. The user has clarified that the online client owns the data and may
-retain all of it. Treat local plaintext search and authenticated encrypted
-cache delivery as permitted controls. Cold-start acquisition, reuse, updates
-and measured resource frontiers determine whether outsourcing helps. Any
-device limit is a separately justified scenario. Do not invent an artificially
-tiny client budget just to exclude a stronger baseline.
-
-## 3. What to preserve and what to stop treating as a research lead
-
-| Existing evidence | Use in the plan |
-|---|---|
-| E01–E16, general homemade BGV/CUDA and packing | General-data fallback, paired CPU/GPU controls, and building blocks; not a new protocol claim |
-| E22–E27, exact dictionaries/affine maps and CRT allocation | Candidate generation, row certificates, ordering controls, rank-boundary adversaries |
-| E29–E31, reply columns and shared query spaces | The initial algorithmic substrate, with actual state and correction-degree costs |
-| E35, independently fitted fields and final geometry | A real discrete threshold win to generalize; pay the complete search/setup cost |
-| E37, native complete checks and exact bodies | Strong current controls; do not rediscover a C++ gain and call it an algebraic gain |
-| E33/E34 and the authentication contract | Explicit unresolved protocol premises; preserve the failing mask-reuse and carry controls |
-| E36/E38–E40 | Negative results, schema/field constraints, occupancy models, and contract rejection tests |
-
-Do not prioritize another fixed-layout Lee-norm tightening pass, a query-only
-compression pass, or moments-only top-k summary. Their present constructions
-already fail the relevant full-cost or correctness tests. Reopen them only
-with a changed mathematical mechanism and an explicit counterfactual control.
-Do not turn a modeled small ring into a performance claim without a justified
-parameter profile and complete encrypted run.
-
-## 4. The proposed algorithmic core
-
-The proposed integration has the following trust boundary. Existing modules
-supply several pieces; the compiled/lifecycle system is not yet implemented.
-
-```mermaid
-flowchart LR
-  subgraph O[Trusted owner and authorized client]
-    A[Private index and workload contract] --> B[Exact representation compiler]
-    B --> C[Private maps and verification material]
-    B --> D[Encrypted columns and epoch binding]
-    E[Fresh offline correlations] --> F[Private query preparation]
-    C --> F
-    G[Complete response verification] --> H[Decrypt and recover exact scores]
-  end
-  D --> S[Untrusted public CPU or GPU evaluator]
-  F --> S
-  S --> G
-```
-
-E47 tests a different query/verification layer in place of the correlation
-route. Both routes must bind the same owner-authorized representation.
-
-### 4.1 Exact representation and the resources that must remain distinct
-
-For a certified block, use an affine representation over a chosen field:
-
-```text
-x = a_g + u_x B_g                         (mod t)
-H(q,x) = H(q,a_g) + u_x B_g(1 - 2q)       (mod t).
-```
-
-Certify every enrolled row. Choose a score range and query domain so modular
-scores recover the integer answer uniquely. Refit over each field; reducing
-a certificate from one field into another is invalid. Keep private discovery
-groups separate from the final polynomial factors, as E35 already does.
-
-For a plan P, retain at least:
-
-```text
-h(P) : independently masked query coordinates
-F(P) : encrypted response-column count
-W(P) : sum of public correction-polynomial degrees
-R(P) : response ciphertext count
-N,t,Q,eta : ring, plaintext, ciphertext and error parameters
-S_client, S_owner, S_server : persistent/ephemeral/resident state
-I(P,u) : state and unused correlations invalidated by update u
-```
-
-In the common/residual special case, `h=K+sum(r_g)`, `F=K+max(r_g)`,
-and `W=K+S*max(r_g)`. These quantities need not move together. For the
-current two-component, single-Q reply path, the exact coefficient-body size
-is `ceil(2*R*N*bit_length(Q)/8)` bytes. Actual framed traffic and multi-limb
-formats require their own counters.
-
-The current absolute honest-circuit certificate is
-
-```text
-b = floor(t/2)
-B_phase = (b + t*eta) * (1 + W*b) < Q/2.
-```
-
-This is an inherited sufficient correctness condition, not a security
-estimate or a new theorem. The complete checker has an additional parameter
-and lifetime budget. A smaller Q may increase checking work. Final CRT
-root/capacity requirements can prevent an otherwise attractive small t.
-
-### 4.2 A restricted grammar with an independently checkable optimum
-
-Start with an index-only, fixed candidate partition tree. At each node allow:
-raw coordinates; a certified affine leaf; a split into its children; a finite
-catalog of shared/intersection directions; and bounded correction/exception
-variants that already have an exact oracle. Use a finite catalog of reviewed
-or explicitly research-only `(N,t,Q)` profiles and final CRT covers.
-
-For each candidate, construct an immutable record containing row coverage,
-private transforms, public schedule, `h/F/W/R`, exact serialization counts,
-phase certificate, verification state/cost, update dependencies and backend
-eligibility. A candidate is rejected before ranking if it changes the contract.
-
-First enumerate every plan for tiny inputs. Then implement a Pareto dynamic
-program over the restricted tree. A state must preserve boundary information
-needed by a parent: column identities/alignment, shared-form IDs, occupied
-capacity, parameter context and update dependencies. **Rank alone is not a
-sufficient DP state.** Prune only states with equivalent boundary semantics
-and dominated resource vectors. Retain distinct vectors until the user chooses
-a cost objective.
-
-The proposed theorem is optimality **within this finite grammar and exact
-state representation**, proved by exhaustive leaf choices and complete child
-combination. Pareto state count can be exponential. Do not claim polynomial
-time, global partition optimality, or an approximation ratio without proving
-it. A scalable beam/budgeted-search variant is a separate heuristic whose
-optimality gap is measured on small instances and whose search cost is charged.
-
-The inherited fixed-map capacity test
-`sum_i ceil(M_i/(L*c)) <= S` is a useful feasibility primitive, not the new
-contribution. Extend it only after specifying the mixed-degree/alignment
-constraints exactly. Arbitrary column permutations may change CRT support
-and verifier state; recompute both rather than assuming rank preservation
-preserves costs.
-
-### 4.3 Three creative mechanisms to test first
-
-**E41 — Joint representation and capacity, rather than independent minimizers.**
-Construct small examples where the lowest-rank representation loses after
-packing or verification, and where the independently best packing loses after
-state/lifetime costs. Compare the exact grammar optimum against rank-only,
-field-only, packing-only, equal-form merging, global affine and the E35 finite
-frontier. Then test larger real indices with the budgeted algorithm.
-Success requires a strict feasible improvement at equal state/leakage/security
-contract, with an ablation attributing it to a specific joint choice. If
-ordinary merging plus layout search reproduces the win, this is a useful
-engineering improvement, not the main paper algorithm.
-
-**E42 — Representation versus the security-dimension floor of another backend.**
-Test the same exact raw/global/local representations over BGV response columns
-and code-based matrix evaluation. Shrinking a data rank does not necessarily
-shrink an LPN/LSN encoding: dimensions and noise are constrained by security,
-and many independently encoded small leaves may duplicate overhead. Compare
-one padded global encoding, separate leaf encodings, and any justified joint
-encoding. Count the actual EMVP block response, reconstruction, setup and
-integrity; do not substitute a plaintext-sized answer. The hypothesis is a
-measurable crossover in the best representation, not a new code construction.
-Only develop a new encoding if a precise safe algebraic improvement survives
-the author-protocol baseline. A code backend winning outright is a valid pivot.
-
-**E43 — Sharing with a budget for update dependencies.**
-Represent dependencies as a graph/hypergraph: rows and encrypted components
-depend on bases, layouts, shared masked coordinates, fingerprints and epochs.
-An update can invalidate their dependency closure. Hypothesis: limited sharing
-plus reserved rank/capacity and small independently versioned correction
-components beats maximal sharing over realistic update/query sequences.
-Compare full rebuild, no sharing, frozen-base plus delta, ordinary periodic
-compaction, and the proposed dependency-aware plan. Existing incremental
-algebra and delta indexing are credited controls.
-
-Begin with separate, independently masked components. Unused token fragments
-for unchanged components might be preservable, but this is a protocol question:
-their distributions, query bindings and joint authentication must remain valid.
-Any fragment whose mask/correction has been exposed is consumed forever.
-Shared coordinates may force a larger invalidation closure; never claim free
-fragment reuse. The interesting result would be a safe invalidation rule and
-an algorithm that chooses sharing based on the resulting complete lifetime cost.
-
-### 4.4 Bounded exploratory alternatives
-
-**Execution amendment — E48, public ciphertext-component recipes.** The current
-linear masked circuit lets an authorized client reconstruct C1 from public
-encryption seeds and delta, preserving the original full check before
-decryption. This known recomputation tradeoff has been implemented and measured:
-it halves the response coefficient body, while cached client work increases
-and native state exceeds a plaintext cache on both small fixtures. See
-[the matched positive/negative evidence](component-recipe-results.md).
-Treat it as a priced optional dimension, not an originality claim. It does
-not authorize new CUDA work or remove any P07/P08 obligation.
-
-**Execution amendment — E49–E52.** An encrypted-index correlation factory
-was built and independently checked, but its 3.34x isolated preparation gain
-does not survive a vectorized plaintext control (38 vs 54 ms). Keep it as a
-conditional alternative, not the principal speed contribution. The
-[cache controls](coordinate-cache-results.md) show raw/compressed local search
-dominates current small fixtures when retention is allowed. The
-[parameter/output-layout frontier](parameter-frontier-results.md) gives large
-Semeion savings and smaller Mushroom gains; N1024 fails the preliminary target
-and N2048 remains unreviewed. Known parameter/layout tradeoffs do not establish
-a new construction.
-
-Return to the algorithmic hypothesis: [E52's finite lifetime DP](lifetime-planner-analysis.md)
-retains exact reserved spans, pending-token counts and accumulated phase age,
-matches exhaustive schedules, and demonstrates equal-rank/static-cost states
-with different future feasibility. Real encrypted reserved-zero-column repairs
-are exercised. Next calibrate/test a held-out policy and compare delta/static/
-no-reserve/low-state controls plus dynamic-planning prior work. Hindsight count
-models do not pass Gate C; company improvements remain checkpointed if the
-paper pivots.
-
-**Execution amendment — stronger global controls and E53 semantics.**
-[Global raw/affine controls](global-representation-controls.md) improve both
-current public online profiles and now belong in every relevant ablation.
-[E53's conditional public-zero-seed obstruction](seed-composition-obstruction.md)
-shows that fresh versus homomorphically derived correlations have different
-safe seed-visibility rules. Future optimizer boundary states must preserve
-that protocol meaning as well as map/alignment/noise identity; equal byte
-counts are not proof of interchangeable representations. Current E52 entries
-use fresh plaintext correlations only, so no unimplemented mixed-protocol
-optimization is implied. Retain these constraints in the claim/proof ledger.
-
-**E47 — Verified private evaluation of a ciphertext-linear operator.**
-The server already sees the encrypted index columns. Regard their complete
-coefficient vectors and required negacyclic shifts as a public matrix
-`A_C` over `F_Q`. The client privately computes the *actual centered lifts*
-`alpha(w)` of its CRT query forms, and asks a vLHE layer for
-`z = A_C * alpha(w) mod Q`. The entries of z reconstruct the prescribed inner
-BGV ciphertext, which should be decrypted only after the outer protocol's
-complete verification and owner-epoch binding succeed.
-
-This is a proposed composition of known primitives, not a new encryption
-claim. It potentially avoids preparing `Enc(M*r)` in our owner service for
-each query; the outer protocol has its own preprocessing, state and private
-computation, all of which must be counted. The outer matrix contains ciphertext
-coefficients, not the owner's plaintext index, so its usual server-plaintext
-matrix contract could be appropriate at this layer. That observation does not
-by itself prove the composition secure.
-
-First build a tiny exact oracle, including negative negacyclic shifts and
-`F_t`-to-`F_Q` carry/lift controls. The outer operation must return full-Q
-residues, not scores reduced modulo t. A literal matrix can have `2*R*N` rows
-and W columns; quantify this expansion, result width, admissible-database
-bound, outer parameter/security requirements, owner commitment and verifier
-cost before claiming any improvement. Compare explicit and implicit shift
-representations only where the outer protocol actually supports them. Its
-query/output ciphertext sizes may erase the advantage entirely.
-
-Advance only if a complete composition and a same-contract cost bound compete
-with E29's tokens and a direct general-BGV circuit. Keep the old inner check
-until an independently reviewed outer integrity argument justifies removing
-it. This experiment belongs in P03's early backend screening, with P07 defining
-its proof requirements, before implementing another token factory or GPU path.
-
-| Proposed experiment | First inexpensive discriminating test | Advance / stop rule |
-|---|---|---|
-| **E44: heterogeneous final response geometry** | Exact CRT/coverage oracle for mixed capacity and degree choices, at fixed justified security parameters; compare the E40 fixed-map models | Advance only if a realizable plan reduces full reply/check/decode or index cost. Stop if apparent savings require insecure small rings, omitted fragments or ignored multi-context keys. |
-| **E45: approximate arithmetic with exact certification** | For a proposed CKKS/MOSAIC-like path, bound every score error and omitted candidate; either prove error strictly below 1/2 for integer rounding, or give a complete exact-refinement certificate | Compare against cFHE and existing E10/E23 filtering. Advance only if all coverage, tie, proof and extra-round costs fit. High recall or observed small error is insufficient. |
-| **E46: certified output-only top-k** | A complete small arithmetic-to-comparison/selection circuit or all-row coverage certificate, including stable IDs | Compete with full-score download at actual k, dimension and bandwidth. Pay conversion, comparisons, authentication and data retrieval. Keep a separate output/trust contract. |
-
-PCG/VOLE correlation generation and matrix/noncommutative HE remain alternate
-tracks in the earlier ledger. Revisit only when a complete small share-to-token
-or cost inequality improves on the chosen baseline. No native/GPU backend is
-justified by a promising isolated operation count.
-
-## 5. Closest-baseline and novelty gates
-
-The [comparison](closest-work-comparison-20260930.md) is the detailed source
-of attribution. In particular, general EMVP, hidden linear checks, low-state
-vLHE, HE packing compilers, and low-rank/precision co-design already exist.
-The new algorithm must add something beyond those ingredients.
-
-**Gate A — problem and baseline viability.** Reproduce our checkpoint anchors
-and external author configurations. Determine whether outsourced computation
-is useful under justified client budgets. Do not proceed to a large compiler
-if a compressed full cache or a compatible existing protocol dominates it.
-
-**Gate B — mechanism.** Produce one small exact counterexample to independent
-optimization and a new algorithmic/protocol consequence. Run the strongest
-simple control. If the result is only a parameter sweep, change the question.
-
-**Gate C — practical effect.** Before large GPU work, require a full-cost gain
-on at least two independent workload families, or a clearly justified and
-substantial benefit for one important application. Pre-register a resource
-objective and a practical target (initially 20% improvement in amortized cost
-or a 2× reduction of the binding state/update resource, without unreported
-online regression). These are project decision thresholds, not conference
-acceptance rules. Report effect sizes and uncertainty even if they miss them.
-
-**Gate D — defensible paper.** At least one precise originality claim survives
-forward/backward citation review; the relevant security assumptions match the
-implementation; same-contract baselines and adverse controls are included.
-A rejected hypothesis is retained, not silently removed from the experiment log.
-
-Useful outcome if a gate fails: keep the company performance improvement,
-publish an honest artifact/report, and pivot to the demonstrated bottleneck.
-Do not manufacture a new cryptographic primitive claim to justify prior effort.
-
-## 6. Executable work packages
-
-All statuses initially `planned`. Paths below are proposed unless explicitly
-marked existing. Keep algorithm/reference code in `experiments/bfv_search_lab/`,
-benchmarks in `benchmarks/`, and research reports in `docs/research/`. Package
-integration is a later opt-in adapter, not a rewrite of company clients.
-
-| ID / suggested role | Dependencies | Concrete work and deliverable | Acceptance / decision |
+# Research plan: verified encrypted search after E01–E65
+
+Revision: 2026-09-30, following the closest-work and negative-result review.
+Evidence is frozen at `6207455db8d86fbe1394d3ef2294fe8e0c877163`, tag
+`checkpoint/publication-controls-2026-09-30`. This is a **planning revision**:
+it adds no benchmark, implemented cryptographic mechanism or security approval.
+The [preceding plan, through E65](publication-research-plan-through-e65.md)
+retains the original hypotheses, gates and execution amendments unchanged.
+
+## 1. Decision and intended contribution
+
+Prioritize **exact, owner-private linear search with substantially less
+per-query trusted preparation, followed by safe release of a compact answer**.
+The leading experiment is a structured version of the E47 outer-verification
+idea. Its research question is whether one can preserve the compact structure
+of the encrypted operator through private evaluation and verification, instead
+of expanding it into a large matrix or preparing a fresh encrypted answer for
+every request. This is a hypothesis, not an established construction.
+
+Do not build a bigger representation/lifetime optimizer as the next project.
+Its current static and causal variants failed strong simple controls. Existing
+affine/CRT layouts, native/CUDA evaluators, complete checks, decoders and
+update controls remain valuable components and company results. A future
+optimizer is justified only after we discover two useful, safely composable
+protocol choices that create a real decision problem.
+
+The paper should ultimately support one coherent statement of the form:
+
+> For an explicitly defined class of encrypted linear operators, a new
+> construction reduces a specified preparation, state or communication cost
+> while preserving exact outputs and confidentiality under observable rejection;
+> a homemade implementation demonstrates the resulting system tradeoff.
+
+The missing words in that statement—operator class, construction, reduction and
+measured effect—are deliverables. They must not be filled with an attractive
+name or an isolated speedup. The system should select local caching when it
+wins; a useful remote mode needs its own evidence. No current result establishes
+a publishable novelty claim or an outsourced deployment advantage.
+
+Three competing mechanism tracks are defined in the
+[executable hypothesis specifications](publication-mechanism-agenda.md):
+
+| Priority | Track | Cost it attempts to remove | Research discriminator |
 |---|---|---|---|
-| **P00 — protocol/system lead** | None | `exact-search-contract.md`: parties, outputs, leakage, epoch authorization, state budgets, query schedule, security/parameter registry; copy baseline manifest hashes | Every candidate can be classified without unstated trust or metric changes; document why the online device cannot simply hold a full cache |
-| **P01 — reproducibility lead** | P00 | `baseline-reproduction.md` and pinned adapters under `experiments/bfv_search_lab/references/`; run our anchors and EMVP/BNTM author modes, then vLHE/BioZKFHE/packing modes relevant to the selected claim | Exact inputs/outputs, artifact modes, parameters and full state/traffic recorded; native-contract and adapted-contract results separate; no borrowed speedup numbers |
-| **P02 — algebra lead, E41** | P00 | `representation_contract.py`, `representation_oracle.py`, `test_representation_oracle.py`; tiny grammar enumeration and counterexamples to independent choices | Every plan certifies rows/IDs/CRT scores; exhaustive small queries and independent capacity checks; at least one meaningful nonseparable tradeoff before extending grammar |
-| **P03 — protocol/algebra lead, E42/E47** | P00, P01, P02 | `backend_frontier.py`, `ciphertext_linear_oracle.py`, exact-field reference adapters and `backend-frontier-results.md`; rank/security-floor and nested-vLHE count oracles before native implementation | Include client decoding, code response dimensions, outer full-Q/carry/parameter costs and per-request integrity; abort speculative speedups if safe dimensions erase them |
-| **P04 — algorithm lead, E41** | P02, P03 | `representation_planner.py`, `test_representation_planner.py`, `representation-planner-analysis.md`; exact Pareto DP and bounded-search variant | Equal exact optimum on exhaustive grammar fixtures; boundary-state proof, resource counts and measured search budget; simple controls included |
-| **P05 — lifecycle/protocol lead, E43** | P02, P04; P07 before remote use | `representation_updates.py`, `test_representation_updates.py`, `representation-update-results.md`; dependency closure, reserve/delta options, token invalidation | Insert/delete/edit and 64→65 boundaries preserve full scores/IDs; no exposed-mask reuse; compare full rebuild and ordinary delta indexing over identical update traces |
-| **P06 — benchmark lead** | P01, P04 | `representation_lifetime_lab.py`, `representation_lifetime_summary.py`; use existing native arithmetic/checker first | Full setup/pool/query/update cost; equal budgets; held-out runs, uncertainty and compressed-cache controls; pass Gate C before new GPU kernels |
-| **P07 — security lead** | P00, P02; iterate with P03–P05 | `exact-search-security-game.md`, reduction sketch and independent attack/negative controls; review parameter choices | No forbidden decryption oracle in hybrids; leakage and aborts explicit; soundness lifetime, authentic setup and adaptive query premises match code |
-| **P08 — systems lead** | P05, P07 | Authenticated owner/token service and durable journal using the existing E33 contract; optional local attested-factory prototype | Concurrent consume, crash/retry, stale epoch and rollback controls; actual producer work, provisioning and unused-token costs; simulated attestation labeled |
-| **P09 — native/CUDA lead** | P06 passes Gate C; P07 defines verifier boundary | Implement only the surviving public evaluator/packing transformations; preserve GMP/native references and one complete response check | CPU/GPU end-to-end gain survives transfers, client/check cost and memory limits; measure latency separately from batch throughput |
-| **P10 — exploratory algebra lead, E44–E46** | P00, P02; mechanism-specific prerequisites | One independently runnable exact oracle and full-cost bound per alternative, with a negative control | Promote only a changed mechanism that beats its matched control; do not let speculative branches delay a surviving central contribution |
-| **P11 — evaluation/artifact lead** | P05–P09 as applicable | Frozen public benchmark matrix, figures, hashes, environment and reproduction script; adversarial cases and rejected plans retained | Same workload/contract comparisons; no unexplained baseline omissions or modeled numbers labeled measurements |
-| **P12 — research lead** | P07, P11 | `paper-claims.md`: claim→theorem→experiment→closest-work table and manuscript outline | One coherent contribution; independent review of key proof/parameter assumptions; venue selection follows the actual result |
+| 1 | **A: structured verified evaluation**, E47 → proposed E68 | Owner-generated one-use encrypted answers and literal outer-matrix expansion | A structured protocol/algorithm with compatible norms, binding and proof, beyond applying existing vLHE to a dense matrix |
+| 2, bounded alternative | **B: authenticated correlation generation**, proposed E69 | Per-query owner computation/provisioning for the existing fast online circuit | A complete fixed-private-matrix conversion with fresh ciphertexts and full-field authentication, beyond invoking a generic PCG |
+| 3, explicit output change | **C: exact top-k with complete coverage**, E46 continuation | Sending every score | A cheaper way to produce and certify sparse winners, beyond known sparse-result compression or a standard selection network |
 
-Critical path: **P00 → P01/P02 → P03/P04 → P06 → decision**. P07 starts with
-the contract and develops alongside the mathematics, so an impossible proof
-premise is found early. P05 is the strongest extension if static representation
-already survives. P08/P09 are deliberately later: a TEE deployment or another
-kernel speedup should not consume the novelty investigation. These roles are
-handoff boundaries, not instructions to launch agents or send messages.
+Safe response compaction, E66, is a required control and a shared protocol
+obligation. It becomes a standalone research track only if it yields a new
+constructive result beyond existing verifiable/compressed HE. E44 heterogeneous
+contexts and E45 certified approximation remain bounded fallbacks. These
+original experiment IDs retain their meanings.
 
-First bounded tranche: one or two researcher-weeks for P00/P01/P02 feasibility,
-followed by a written go/pivot decision. This is a planning estimate, not a
-runtime or completion promise. A difficult external build should be recorded
-and isolated; it must not lead to silently dropping the strongest competitor.
+## 2. Fixed contract and deployment questions
 
-## 7. Evaluation that can support the paper
+The [exact-search contract](exact-search-contract.md) remains authoritative.
+The owner and querying client may retain all owned plaintext. The compute
+server learns the declared public geometry, epochs, traffic and accept/abort
+events; it must not learn the index or query values beyond that leakage.
+The primary output is every exact Hamming score with stable IDs and local
+top-3 selection. A returned item must belong to the pinned owner-approved epoch.
 
-### Workloads and counterexamples
+No query-dependent routing, extra noncollusion assumption, approximate answer,
+server-visible candidate set or output-only selection is silently added. An
+alternative gets a separate contract row before it gets a timing comparison.
+Owner/client compromise and implementation side channels require separate
+analysis. Availability cannot be guaranteed against a malicious server.
 
-Keep Mushroom/Semeion and the existing seeds for continuity, but they are too
-small and specialized to establish a broad systems claim. Add independent
-larger real binary/categorical workloads with provenance, license and exact
-encoding recorded. A binary projection of an embedding is evaluated as a
-binary metric, with original-metric recall separately labeled.
+Treat client storage as a measured resource axis, not a fabricated restriction.
+Compare three distinct starting states:
 
-Target distinct enrolled records at approximately 1k, 8k, 32k, 128k and,
-where feasible, 1M; report duplicate vectors separately. Use dimensions
-128/256/512 plus the natural dimensions of each dataset.
-Do not call repeated copies of one small dataset independent scale evidence.
-Include uniform random data, controlled local rank, duplicate/nonduplicate
-columns, many ties, unbalanced groups, random/permuted orderings, and ranks on
-both sides of a power-of-two boundary. Index-only fitting may use all enrolled
-rows; held-out queries and future updates cannot influence plan selection.
+1. **Cold owner and client:** include representation discovery, keys, index
+   creation/upload, private provisioning, authentication and first query.
+2. **Enrolled server, new online client:** amortized enrollment is reported;
+   charge every private map, ID table, verifier hint and token the client must
+   acquire. Include an authenticated download-once cache from the same state.
+3. **Returning client:** charge retained state, updates, token production and
+   repeated queries. Include raw/compressed/mutable local caches.
 
-For updates, use random and bursty insert/edit/delete traces plus adversarial
-rank increases. Sweep update/query ratio, active-set churn and token utilization.
-Synthetic and observed application traces are separate categories. Include
-empty/tiny groups, deletes of winners, stable-ID ties and full fallback cases.
+Measure the resource frontier before claiming a customer need. A deployment
+trace can later justify device memory, session duration, churn and link rates.
+Absence of such a trace does not block algebraic research, but does block a
+claim that the measured resource limit describes production. The existing
+Paillier API establishes owner access; it does not establish a memory cap.
 
-### Baselines and fairness
+## 3. What the accumulated results say
 
-1. Homemade Paillier CPU/CUDA, lookup variants, package BFV CPU/CUDA, and
-   general BGV CPU/CUDA on compatible exact full-scan workloads.
-2. Current reply-column GMP/native arithmetic with both the same-family native
-   checker and the explicit polynomial alternative; E35/E37 frozen controls.
-3. Raw/global/local factorization, rank-only split, equal-form merge,
-   hierarchy, layout-only search, independent field search and simple delta
-   indices; these isolate the proposed mechanism.
-4. Strong compatible EMVP/BNTM adaptations and relevant packing reference.
-   vLHE with server-plaintext data and approximate/MPC search belong in
-   separate panels, with the contract difference visible.
-5. Optimized local binary popcount, compressed full-data/affine cache, and
-   download-once then local search. Include cache decompression and device
-   memory limits; do not compare only with Python loops.
+These anchors were checked against retained reports and selected raw JSONs.
+They use different workloads/profiles; **do not combine their speedups**.
+The [E01–E40 synthesis](research-synthesis-and-system-roadmap.md),
+[execution log](publication-progress.md) and
+[claims ledger](paper-claims.md) retain the full chronology.
 
-Use equally justified security targets, not merely equal N or Q. Parameter
-sets belong to a reviewed allowlist with distributions, sample count, estimator
-revision/assumptions and attack estimates recorded. A correctness-only profile
-is still useful for algebraic experiments but cannot substantiate a secure
-performance comparison. Preserve each paper's native parameter mode first.
+| Experiment family | Strongest relevant observation | Planning consequence |
+|---|---|---|
+| E01–E08, E26/E27 | Homemade CPU/CUDA and shallow BGV are strong foundations. Mushroom CPU roughly 639–640 → 206–214 ms, CUDA roughly 53.5–54.3 → 50.9–51.1 ms on the historical paired scope | Preserve the fast backend; a CPU algebra gain may leave GPU, client and wire costs dominant |
+| E10/E19–E25/E39 | Lookup, filtering, moments and residual hints expose coverage, selection, extra-round or local-state costs; complete two-round refinement lost | A new selection proposal must solve the previously measured bottleneck, not repeat a filter-count argument |
+| E29–E37 | Trusted fresh correlations make the online ciphertext circuit linear; field/geometry choices and native checking help | The main unresolved cost is the entire preparation/release protocol; hiding it in an offline column is not a contribution |
+| E30/E31 | About 69–71% query-body reduction becomes only about 0.4–0.5% less total online traffic, with worse CPU/state | Optimize the actual dominant term |
+| E43/E49 with stronger controls | Sparse repair costs 9.25%/7.88% more than vectorized fresh preparation; the initial factory speed advantage also reverses | Close these general speed claims; do not resuscitate a weak baseline |
+| E54/E56/E59 | Private deltas save about 36–62%; selected tiles save about 28% only for localized edits; mutable cache still dominates its matched lifecycle | Keep these known controls in the system; they do not establish a new update algorithm |
+| E57 | All 16 causal decisions choose ordinary deltas, adding policy/training cost | Defer further learned reserve/rebase policy work until a competing useful action exists |
+| E61, 32,768 distinct Connect-4 rows | Affine BGV: 102.46 ms online CPU + 71.16 ms fresh answer/check, 262,144 B reply. Local cache: about 3 ms/query; zlib1 packet 305,261 B once, zlib9 247,388 B once | A whole cache can be smaller than a single reply here. Eliminate hidden preparation and measure cold acquisition before another remote-speed claim |
+| Original author EMVP, E42 supplement | Added-gate cached CPU about 5.94 ms Mushroom / 1.36 ms Semeion, but replies 1,471,264 / 205,100 B | Serious CPU/communication competitor; same data alone does not align its assumptions or gate with our protocol |
+| E47 | Literal full-Q outer matrix expands the index 32–64× in the reproduced layouts | Structure must survive the outer protocol; a literal wrapper is not the proposed innovation |
+| E48/E53 | Public C1 reconstruction trades wire for client work; publishing related factory randomness can expose masks under a precise rank condition | Recipe provenance and seed visibility are protocol constraints, not interchangeable serialization choices |
+| E62–E64 | Dedicated selected-phase decoding works in stated scopes; 112 split/legacy toy encrypted searches pass. C1/carry controls prohibit naive deletion/reduction | Reuse the correctness oracles; do not claim generic optimal compression or a reviewed protocol |
+| E65 | Balancing plus one-row refinement recovers every tested static frontier | Stop the static optimizer as a leading contribution; preserve the negative result |
 
-### Count every stage and every byte category
+Sources: [affine/dyadic results](dyadic-rank-results.md),
+[vectorized controls](vectorized-update-controls.md),
+[larger real control](connect4-encrypted-controls.md),
+[original EMVP](original-emvp-results.md),
+[operator screen](backend-frontier-results.md),
+[decoder](supported-decoder-results.md),
+[static stronger controls](support-planner-results.md).
+E61 is one warmup and three timed queries per HE profile, CPU only, research
+parameters. It is not a service p95, a GPU comparison or parameter assurance.
 
-Record response download, query upload and their sum, encrypted-index
-provisioning, and public/evaluation setup keys as separate quantities. Also
-record proof/attestation packets, one-use answer provisioning, authentication
-framing, update traffic and retries. A verifier secret key is private state,
-not a setup key sent to the server. Count native resident/peak memory separately
-from compressed disk/wire encodings.
+## 4. Closest work determines the novelty boundary
 
-Time discovery, all rejected candidate fits, encryption, parameter/key setup,
-index transfer/preparation, token production, query formation, server work,
-transfer/codec, complete verification, decryption, score decoding and stable
-selection. For updates, include map rebuild, re-encryption, re-authentication,
-token invalidation/replacement and temporary peak memory. Distinguish offline
-owner/factory work from online-device work and report both.
+The [comparison](closest-work-comparison-20260930.md) now includes a focused
+compression/verification/correlation supplement and a contract matrix.
+The [source registry](publication-literature-sources.json) records versions,
+targeted reading depth, hashes and actual reproduction status.
 
-For K completed requests, a useful accounting objective is
+The essential comparisons are:
 
-```text
-total epoch cost = discovery + setup/provisioning
-                 + all prepared-token cost (including unused/invalidated)
-                 + all update/repair cost
-                 + sum of complete online request costs.
-amortized cost = total epoch cost / K.
+- **Hidden-matrix evaluation:** original EMVP and recursive BNTM, including
+  client state, field/code dimensions and verification semantics.
+- **Reusable verified linear evaluation:** ReinsPIRe/vReinsPIRe and small-state
+  vPIR/vLHE, including the admissible database, extraction/norm assumptions and
+  auxiliary-key lifecycle. Their plaintext server matrix could be our public
+  ciphertext operator; that composition must be analyzed, not dismissed.
+- **Safe/compact decryption:** maliciously secure vFHE, HELIOPOLIS,
+  linear-decryption rate-1 HE, ZipPIR/additive-HE compression and downlink TFHE
+  compression. Byte savings and verification alone are already occupied.
+- **Correlation generation:** Slalom and programmable PCGs for matrix products
+  and authenticated triples. A generator for random shares is not automatically
+  our fixed private index, fresh encryption and two-field checker functionality.
+- **Selection and packing:** SIMD-aware compression/SophOMR, SANNS, BioZKFHE,
+  biometric lookup search, Fhelipe/Porcupine and recent polynomial compilers.
+  Sparse compression begins after the hard predicate/coverage problem.
+
+Do not claim a missing feature from an unread proof. In particular, HELIOPOLIS
+is a strong compression/verifier comparator with a different reaction-oracle
+contract; its stated limitation is not a newly discovered vulnerability here.
+No new external timing has been reproduced in this planning revision.
+
+## 5. Execution sequence and bounded decision gates
+
+Use the decision-task IDs R0–R7 in the
+[work packages](publication-work-packages.json). They route work through the
+existing P00–P12 packages; they do not mark unfinished packages complete.
+An effort cap is a research allocation, not a promise of elapsed completion.
+When exhausted, record the unresolved issue and revisit this plan.
+
+| Order / task | Concrete output | Initial effort cap | Advance condition / stop rule |
+|---|---|---|---|
+| **R0: baseline contract closure** (P00/P01/P07) | Construction-level cards for strongest vLHE, recursive BNTM and relevant compression modes: owners, feedback, norm/field/key assumptions and all paid state. Pin/reproduce the selected baseline or document exactly what cannot run | 2–3 focused sessions | No matched malicious-security comparison until premises align; an unavailable baseline remains a gap, not a zero-cost or slow comparator |
+| **R1: close compaction controls**, E66 (P03/P07/P10) | Recipe + supported-decoder reference; priced extraction/repacking and independent-key terminal compression controls; carry/verification dependencies | 2–3 sessions | Known combinations are controls. Stop expansion if saved bytes are repaid in private state, client reconstruction or verification |
+| **R2: useful full-cost frontier**, E67 (P01/P06) | Cold/enrolled/returning comparisons with actual provisioning/socket measurements; CPU/cache and relevant GPU controls; same score/ID hashes | 2–3 sessions for initial screen | Measured nondominated operating point or documented negative. A model only screens; do not build a large optimizer on a dominated profile |
+| **R3: structured protocol screen**, E68 (P02/P03/P07) | Implicit operator, norm-aware/digit alternatives, exact oracle and complete costs; literal outer vLHE and direct BGV/EMVP controls | 3 sessions before expansion | New protocol consequence + plausible full-cost margin; stop if norm inflation or hidden material recreates the old cost |
+| **R4: correlation alternative**, E69 (P03/P07/P10) | Complete small share-to-token conversion, leakage argument and cost bound, or explicit obstruction | 2 sessions before a PCG implementation | All outputs/fields under declared trust; no public mask bank, dropped carry or undeclared helper |
+| **R5: exact selection alternative**, E46 (P02/P10) | Full stable-ID/coverage circuit or certificate; conversion, predicate, compression, proofs and rounds | 2 sessions before native code | Useful complete bound against all-score download and strongest selection controls; dense ties/adverse inputs included |
+| **R6: selection review** (P04/P06/P07/P12) | One selected mechanism, discarded alternatives, theorem statements, held-out preregistration and integration design | 1 session | Gates A/B pass with credible path to C/D; otherwise narrow the question or preserve a negative report |
+| **R7: develop and evaluate survivor** (P05–P12, scope-dependent) | Homemade reference → native implementation → optional CUDA; proof, parameter/implementation review and artifact | Scope after R6 | Gates C/D and claim-to-source evidence, not number of experiments completed |
+
+R0–R2 close controls; R3 is the first substantial new-mechanism priority.
+R4/R5 are alternatives, not mandatory prerequisites for every paper. Run their
+bounded screens if R3 fails or they target an independently demonstrated cost.
+Mathematical screening can precede complete service measurements; expensive
+acceleration cannot. Do not spend months completing every literature artifact
+before testing the central algebraic obstruction.
+
+**Gate A — contract/viability:** same outputs, permitted leakage, trust and
+paid resources; cache remains a feasible action. State any changed contract.
+
+**Gate B — mechanism/originality:** a new construction, algorithm or restricted
+theorem survives the strongest simple control and targeted citation review.
+
+**Gate C — useful effect:** preregister a primary resource objective. Initial
+project targets are at least 20% lower complete cost, or a factor-of-two
+reduction in a genuinely binding state/preparation resource with declared
+latency limits. These are decision thresholds, not conference standards or
+promised gains. Include uncertainty and regressions. A new asymptotic
+result without a practical win must be presented as such, not a fast system.
+
+**Gate D — assurance/artifact:** matching proof, justified parameters, private
+implementation review, durable protocol state where required and reproducible
+same-contract evidence. Correctness tests cannot substitute for this gate.
+
+## 6. Evaluation that can support a paper
+
+Retain the frozen 59-run/181-source artifact. New files use new run IDs and
+hashes. The [evaluation inventory](publication-evaluation.md) lists runners;
+the current 205-test receipt is historical scoped validation, not new testing.
+
+Evaluate along independent axes: rows, bit dimension, exact rank/structure,
+reply occupancy, number of queries, token utilization, update locality, client
+state, link/RTT, concurrent clients and CPU/GPU residency. Use Mushroom/Semeion
+as small explanatory cases, distinct Connect-4 rows as an adverse larger case,
+and justified additional real binary workloads. Synthetic low-rank, uniform,
+boundary-rank and dense-tie data diagnose mechanisms; they do not stand in for
+customer distributions. Never duplicate rows merely to claim real-data scale.
+
+Keep paired exact outputs and stable tie rules. Separate owner setup, server
+setup, offline generation/checking, client preparation, server compute,
+serialization, actual transfer, verification, decoding and selection. Charge
+all created/invalidated tokens and query-independent verifier setup. Private
+provisioning counts even when performed over a separate channel.
+
+For U queries and P prepared tokens, report at least:
+
+```
+total work = enrollment + calibration + P * preparation
+             + sum(query + server + check + decode + selection + updates)
+total bytes = index + public keys + private provisioning + P * token packets
+              + sum(query + reply + proof + framing + updates + retries)
 ```
 
-Publish latency, CPU/GPU work, bytes and memory as separate axes before using
-any weighted score. Link models use directional bandwidth, RTT and packet
-counts; real service timings additionally include overlap, scheduling and
-queues. Never label a sum of medians a measured request latency. The old
-nine-token experiments cannot be extrapolated to an unlimited service.
+Do not equate summed work with wall-clock latency. Measure pipelines, queueing,
+producer throughput and peak resident memory separately. A steady producer
+slower than consumption cannot sustain the quoted online throughput.
+For a first warm-client model only, if cache acquisition costs A, remote costs
+r/query and local cache costs l/query, the crossover is A/(r−l) when r>l.
+Derive these terms from the same starting state; update churn changes it.
 
-A faster online path wins over B only if its per-query savings repay its extra
-setup, token and update costs within the actual index lifetime. Show that
-break-even as a curve with token utilization and updates, not a single chosen
-large query count. If every consumed token requires another expensive full
-offline matvec, measure producer saturation as well as online throughput.
+Required panels: latency versus total communication, client state versus
+latency, cold-to-repeated-query cost, preparation throughput and update cost.
+Use measured confidence intervals after pilot-based sample sizing, independent
+process runs and disjoint tuning/test splits. Do not report p95 from three
+samples. Quote each security/profile tuple beside its point.
 
-### Statistical and hardware protocol
+Baseline ladder: (1) raw/compressed authenticated cache and ordinary deltas;
+(2) Paillier CPU/lookup/CUDA and homemade general BFV/BGV CPU/CUDA;
+(3) strongest direct-fresh BGV/full gate and E48/E64 controls;
+(4) original EMVP and compatible recursive/vLHE constructions;
+(5) relevant terminal compression or exact-selection construction.
+HBC, conditional private-gate, full malicious-proof and actual-attested modes
+receive separate panels. An author-reported number is never a local point.
 
-Use at least three independent index splits/instances and repeated serial
-sessions. For principal latency plots, target at least 100 distinct held-out
-queries per instance and enlarge the sample if p95 remains unstable. Use
-paired inputs, randomized/interleaved execution order, warmups excluded, and
-separate cold-start runs. Bootstrap paired improvements at the independent
-instance/session level; correlated stages or adjacent GPU samples are not
-independent replicates. Report p50/p95 and uncertainty, not only best runs.
+## 7. Security argument to develop with the selected mechanism
 
-Pin CPU/GPU model, clocks/power settings, thread counts, compiler flags, library
-and driver versions. Measure resident and streaming indices, one-request
-latency and batches of 8/32/128, accounting for all host/device transfers.
-Use Nsight after the algorithmic gate to explain remaining bottlenecks. Charge
-batch formation/waiting separately from saturated throughput. No speedup is
-inferred from GPUs running a different verification or state contract.
+Use [the security game](exact-search-security-game.md),
+[direct-fresh draft](direct-fresh-conditional-security.md) and
+[supported relation](supported-decoder-relation.md) as scoped starting points.
+These are not independent reviews or ready-made reductions for E68/E69.
 
-### Essential ablations and paper figures
+1. Define owner enrollment, approved operator/release relation, adaptive query,
+   update and corruption interfaces, public plan leakage and observable abort.
+   Specify whether successful application outputs are later exposed.
+2. Prove exact functionality over actual integer lifts, ciphertext fields,
+   CRT decoder and stable IDs. Bound every allowed query, not just test noise.
+3. Bind verification to the owner's operator, epoch, parameters and request.
+   Extractability of some server database is not automatically owner binding.
+4. Prove first-false-acceptance soundness across the actual lifetime. Replace
+   accepted secret decoding by the authorized ideal result before privacy
+   hybrids. Include rejected/malformed trials, concurrency and key/epoch changes.
+5. Discharge the selected construction's seeded/related-encryption, RLWE/LSN/
+   SIS/PCG and commitment assumptions. A published public seed is not justified
+   by a hidden-seed PRG hybrid. Independent-key conversions need a directed
+   key-dependency argument; ephemeral keys do not generically cure leakage.
+6. Validate the implementation boundary: no long-lived-key operation before its
+   matching gate, authenticated private setup, durable token/attempt accounting
+   if used, private timing/access review and explicit parameter assurance.
 
-| Figure / table | Question it must answer |
-|---|---|
-| Contract and source table | Which protocols solve the same problem, and which require additional adaptation? |
-| Small exact optimum vs heuristics | What specifically does the new algorithm discover that separate rank/packing/state choices miss? |
-| Complete latency breakdown and bandwidth sweep | Which party/stage benefits; does a server gain survive checking, client work and IO? |
-| Client/owner/server state versus lifetime cost | Is outsourcing worthwhile against full-cache and low-state competitors? |
-| Updates and token utilization | When does sharing help, and when does dependency-driven invalidation erase it? |
-| Backend/rank/field crossover | Does the representation help independently of BGV, and where do security dimensions dominate? |
-| Negative-control table | Where do random data, ties, poor occupancy, ordering and adversarial updates defeat the method? |
-| Security assumptions and proof/code coverage | Which properties are proved, tested, assumed or still unreviewed? |
+For the existing ideal full-vector check, a bounded union/first-failure term
+such as sum_e B_e/Q_e^c_e belongs only to its stated challenge distribution.
+It is not a universal security formula for outer vLHE, ring hashes, compressed
+relations or a resettable service. A mechanized small-model check is useful
+support; the computational reduction and independent review remain necessary.
 
-## 8. Security analysis agenda, without making it the current bottleneck
+## 8. System and paper deliverables
 
-P07 should produce a reduction argument for the selected protocol, not an
-attempt to prove security merely from successful tests. Reuse the existing
-[correlation contract](authenticated-correlation-contract.md),
-[adaptive-mask analysis](adaptive-field-frontier-results.md) and
-[conditional checker bounds](verification-frontier-results.md).
+The intended system has an owner enrollment layer, a chosen execution backend,
+a separately specified authenticated release layer and an owner-authorized
+client cache/buffer. Keep full-score and exact-top-k profiles explicit. A small
+measured policy chooses among surviving modes; it need not be a novel compiler.
+An optional TEE is a separate assurance/cost mode, not a proof of the
+cryptographic protocol or a substitute for real hardware attestation.
 
-Specify a real/ideal game for adaptive queries and updates, authorized epochs,
-server-chosen replies, visible accept/abort events, subsequent requests, and
-declared leakage. The ideal functionality computes all scores or aborts. A
-plan compiler is a trusted owner operation; its metadata and timing belong to
-the leakage function. Hidden maps must not be silently promoted to public
-inputs in a proof or implementation.
+Implement first in `experiments/bfv_search_lab/`, benchmark in `benchmarks/`,
+record results here, and use established native/CUDA subdirectories only after
+gates. Promote to `src/cuhepy/` only after review in a separate change. Existing
+production/fallback paths and Microsoft/author reference examples are preserved.
+External artifacts supply baselines; our deliverable stays homemade.
 
-Proposed proof obligations, in order:
+Potential publication outcomes, each conditional:
 
-1. Exact reconstruction, score range, all-row coverage and stable-ID semantics
-   for every compiled plan and allowed update.
-2. Honest adaptive correctness under an explicit deterministic or justified
-   failure bound. Correctness and RLWE/LPN parameter hardness are separate.
-3. Authentic binding of index, token, plan, context, query and epoch; trusted
-   setup is either an explicit assumption or replaced by a proved mechanism.
-4. A bounded-attempt first-false-accept argument for the **entire** prescribed
-   response. Account for all components/contexts, challenge secrecy, adaptive
-   failures and rekeying. Known polynomial or vector families receive credit.
-5. Replace secret decryption of accepted replies with ideal scores until a
-   false acceptance; rejected untrusted responses use no long-lived HE key
-   in the current protocol. Specify what the server learns through retries,
-   future queries and retrieval decisions.
-6. Attempt an adaptive multi-message encryption hybrid for independently
-   encrypted index columns and fresh answers, then a fresh-pad argument in
-   the hybrid. Explain related plaintexts, reused public index, token selection,
-   query-dependent histories and update dependencies. A uniform delta marginal
-   is insufficient. A simulator needing an unauthorized decryption oracle
-   invalidates the argument.
+- **Protocol/system paper:** a new structured verified evaluation or correlation
+  construction, matching reduction, and useful complete measured frontier.
+- **Security-focused paper:** a substantive safe-release/composition result with
+  a constructive efficient instantiation and a clear separation from vFHE and
+  HELIOPOLIS—not merely our own bug fixes or a restated generic wrapper.
+- **Exact-selection paper:** a new complete winner-selection/coverage mechanism
+  under an explicit output contract, with compression as an attributed component.
+- **If none survives:** retain company improvements and rigorous negative
+  results; do not retrofit a novelty claim onto a benchmark collection.
 
-A possible bound will contain encryption/PRG advantages, setup/authentication
-failure, and the complete-check lifetime error, with explicit hybrid factors.
-Its exact form must be derived; writing a sum of these names is not a proof.
-Correctness failure, denial of service and private side channels need separate
-treatment. ReinsPIRe and small-state vPIR supply important real/ideal and
-selective-failure comparisons; their assumptions cannot simply be transferred
-to our different secret-key/token lifecycle.
-
-Test malicious replacement, omitted/duplicated rows, altered coefficients,
-cross-epoch splicing, bad fields/shapes, wrap/carry mistakes, publicized check
-keys, reused masks, concurrent consume and rollback. Tests protect the
-implementation; they do not establish the reduction or constant-time behavior.
-
-Private-key arithmetic and secret verification state need an explicit timing
-and memory-access review. A GPU public evaluator must not receive a secret
-verification challenge or HE key. An attested factory is optional: it may hold
-private coordinates/masks and produce offline work, with its compromise scope
-declared. Attestation alone does not certify unchecked external GPU output.
-Production integration remains gated on independent protocol/parameter/private
-implementation review, separate from a publishable experimental result.
-
-## 9. Paper shape, pivot rules and handoff
-
-Working title, not a settled claim: **Exact Private Search under State and
-Update Budgets**. Lead with one demonstrated algorithmic tension and a small
-worked example, then the joint algorithm, its guarantees, protocol, and full
-evaluation. Put historical BFV→BGV→CUDA engineering in the artifact/history;
-it should not obscure the paper's single central contribution.
-
-If the main result is a verified protocol/system with realistic assumptions,
-security venues such as CCS, USENIX Security or IEEE S&P are plausible targets.
-If the strongest result is a private query/representation optimizer, consider
-a database venue; if it is a general compiler algorithm, compare against the
-bar for PLDI. These are judgments about fit, not acceptance predictions or
-verified calls/deadlines. A narrower privacy tradeoff result could fit PETS.
-Choose the venue after the mechanism and proof scope are known.
-
-If static compression is already matched by EMVP or existing compilers,
-prioritize the update/dependency mechanism. If that also reduces to known
-delta indexing with no net gain, stop enlarging the planner and evaluate the
-bounded alternate hypotheses. If small public data are the only favorable
-case and a local cache wins, narrow the claim or find a justified workload;
-do not hide the cache result. An unsuccessful hypothesis is useful evidence
-for choosing the next question.
-
-Each handoff must contain: work-package ID; base commit; contract/profile;
-literature dependencies; hypothesis and falsifier; exact inputs/seeds; source
-paths; reproduction command; raw output/hash; result classification
-(`proved`, `measured`, `model`, `counterexample`, `unresolved`); and next gate.
-Mark a task complete only when its acceptance evidence is committed. Before
-remote publication, inspect the diff and keep sensitive company data out of
-artifacts. New proposed source files are not evidence of implementation.
-
-Historical manifests remain immutable snapshots. The E36–E40 manifest also
-hashes planning documents as they existed at the protected commit; later
-planning edits are intentional, and historical verification should read that
-commit. Never rewrite old measurements or hashes to make a new plan appear
-to have been measured. This planning revision changes no encryption code,
-tests, parameter allowlists, raw experiment results or production API.
-
-Planning-revision validation on 2026-09-30 checked 137 local Markdown links,
-15 cached primary-PDF hashes, four recorded artifact revision IDs, all 13
-work-package dependencies, and the seven proposed experiment IDs. It verified
-49 historical hash entries against the protected commit and checked the E37
-headline ranges/body counts against the frozen CSVs. Only the four explicitly
-updated historical planning/index documents differ from those snapshot hashes.
-No cryptographic tests or external performance benchmarks were rerun for this
-documentation-only revision.
-
-## 10. Execution revision after E54–E63: what to do next and why
-
-The initial revision-only validation above is historical. Subsequent execution
-now has [a progress log](publication-progress.md), exact source/raw checkpoints
-and new crypto/math tests. The user's ownership clarification permits retaining
-all plaintext. [Authenticated acquisition](cache-acquisition-results.md),
-[private dynamic buffers](client-buffer-results.md) and
-[32,768-row real controls](connect4-encrypted-controls.md) are mandatory strong
-comparators. No application restriction is invented to exclude them.
-
-**Decision:** E57's accurate prices do not make its one-query causal policy
-useful. All16 decisions keep ordinary deltas and pay extra policy/training
-cost. E43 sparse repair also lost to batched fresh controls. Keep these code/
-company results and exact finite oracles, but stop treating a larger reserve/
-rebase sweep as the leading originality claim. E60's small single-query link
-frontier is a hypothesis, not proof of an outsourced deployment advantage.
-
-The next concrete hypothesis is **protocol-aware exact representation and
-decoder selection**. E62 preserves every returned score while authenticating
-all selected C0 and all C1 before a dedicated secret decoder; E63 gives a
-192-vs224 B counterexample at identical old full-response resources. Known
-sample extraction, support unions, secret fingerprints and compiler planning
-are credited. The potential contribution must be the precise safe optimization
-domain, theorem and a useful joint algorithm, not these ingredients alone.
-
-Execute the following sequence, returning to this section after each item:
-
-1. **P07/P02, next proof task:** formalize a supported-coordinate relation.
-   For each approved public decoder D_t, certify the C0 columns with nonzero
-   influence, authenticate them and **all C1**, then center/reduce only those
-   phases before decoding. Prove the omission identity and first-failure
-   composition for fixed trusted representations. Include the mod-t carry
-   counterexample and all-secret C1 dependency witnesses. Restrict any
-   minimality theorem to coefficient deletion/unrestricted phase inputs;
-   do not claim a communication lower bound against reconstruction, extra
-   preprocessing, key switching or client-local known scores. E62 implements
-   only the one-full-leaf profile; E63 is the independent support oracle.
-   **Execution:** [the supported relation](supported-decoder-relation.md)
-   specifies the omission identity, restricted necessity and conditional
-   first-failure argument. It is not an independently reviewed full protocol.
-2. **P10/P05, E64 executed subcomponent:** implement a separately typed legacy/split-CRT
-   projected gate and dedicated decoder **after** the previous relation is
-   specified. Owner binding covers support, exact row/ID order, CRT contexts,
-   honest selected-phase bound and lifetime allowance. Rejected malformed,
-   missing or stale coordinates must use no SK and never revive pads. Test
-   sparse/dense support, mixed-degree leaves, ties, empty/current-private
-   overlays and every native/GMP coefficient in the prescribed relation.
-   Existing full gates remain the reference/fallback. No generic zero-padded
-   ciphertext is passed to ordinary decryption.
-   **Execution:** [112 toy encrypted searches and eleven tests](supported-decoder-results.md)
-   pass. No publication-scale native speed, private timing or production
-   assurance follows. The complete encrypted base may be nonempty even when
-   the current private overlay has deleted every row.
-3. **P02/P04, E65 partially executed:** extend the exact grammar's resource/cost objective
-   with per-reply decoder-support sets and authentic-relation dependencies.
-   Retain boundary alignment needed when supports merge; do not prune distinct
-   successors merely on rank or old full-body vectors. Also retain base
-   identity, phase ages, mask exposure/provenance, recipe seed visibility,
-   key/epoch binding and global remaining allowance. Begin with exhaustive
-   tiny grammar agreement and equal-form/global/simple-alignment controls.
-   Reject if known simple alignment explains all gains or if states cannot be
-   combined without extra unsafe assumptions. Search cost and state growth are
-   results, not hidden engineering overhead.
-   **Execution:** [the bounded static supplement](support-planner-results.md)
-   adds support and all capacity-valid within-map row allocations. Twenty
-   named catalogs plus32 irregular catalogs are checked; ordinary balancing
-   plus one-row refinement recovers every tested static frontier. The proposed
-   lifecycle/provenance extension remains unimplemented, and there is no useful
-   joint-optimizer result to accelerate.
-4. **P01/P06:** evaluate a surviving supported decoder against the **same-
-   profile native full gate**, E48 public C1 reconstruction, original cached/
-   key-only EMVP, strongest compatible recursive/vLHE, and authenticated cache
-   modes. Measure full acquisition and prepaid-owner panels, one/two/repeated
-   queries, actual private provisioning and updates on distinct real corpora.
-   Use the current larger Connect-4 subset as an adverse control and keep
-   full-corpus cache receipts. Narrow useful resource ranges must be measured
-   on declared devices/links, not asserted from an ownership restriction.
-5. **P07/P12/P01:** audit closest work around sample extraction, post-evaluation
-   ciphertext compression, verifiable decryption, FHE layout/poly compilers
-   and recipe synthesis. The targeted supplement adds TFHE/Recifhe/basis
-   synthesis comparisons. A performance win alone does not establish originality.
-   Complete the formal direct-fresh game and independent review; E62/E64's
-   smaller relation needs its own matching theorem. Concrete seeded encryption,
-   parameter and private-side-channel obligations remain.
-6. **Gate review:** only a matched complete practical effect and defensible
-   contribution moves this into native/CUDA optimization or P08 deployment.
-   If support is dense or caching/simple extraction dominates, retain this as
-   a negative/engineering artifact and return to bounded E44–E47 alternate
-   functionalities. State a changed output/trust/approximation contract if
-   needed. Do not silently replace exact full-score access with only-top-k.
-
-Possible paper, still a hypothesis: an exact optimization problem with a
-restricted supported-decoder/correlation grammar; an independently checkable
-algorithm and formal pre-decryption/lifetime composition result; measured
-tradeoffs that survive cache/low-state/known compiler controls. Current E62/E63
-evidence supplies one worked tension, not an accepted original contribution or
-production protocol. All Gates A–D remain open under their stated conditions.
-
-## 11. Return to plan after E64/E65: reject weak wins, keep a falsifiable agenda
-
-The fixed-relation decoder is implemented; its complete reviewed privacy/
-integrity proof is not. The static optimization experiment has **failed its
-current originality/usefulness discriminator**. The8 B irregular-case saving
-is explained by a single-row move and survives one static frontier only for a
-2 B owner-body tradeoff; global query+reply and total client state are better.
-Do not promote it, hide its stronger control or implement an expensive native
-solver. P08/P09 remain behind the practical-effect/security gates.
-
-Next execution should use the following bounded sequence. Proposed identifiers
-below are not implemented or measured; the machine-readable work packages and
-progress log carry completed scopes separately.
-
-1. **P03/P07/P10, proposed E66: recipe and decoder admissibility.** Combine the
-   *existing* E48 trusted public C1 reconstruction with the specified E64
-   supported-C0 relation as a first control. Include ordinary full responses,
-   direct fresh sample extraction and private known/constant rows. Specify the
-   exact projected relation and trusted public reconstruction before using SK;
-   retain full-Q carries, authentic index/answer identities, private factory
-   seed visibility and global lifetime allowance. Independent exhaustive toy
-   oracles must reject public-zero-seed shortcuts, stale recipes and omitted
-   influential coordinates. The combination of known methods is a comparator,
-   not automatically the contribution.
-2. **P01/P06, proposed E67: complete cold/ready comparison.** Price the surviving
-   E48/E64/control choices with actual owner-private provisioning, keys, IDs,
-   private maps, all consumed/prepared tokens, native verifier state and client
-   work. Both cold-owner and prepaid-owner panels are needed. Use distinct real
-   corpora, original cached/key-only EMVP and the strongest compatible recursive
-   vLHE artifact. Keep encrypted-cache acquisition/compression efforts and
-   locally known rows. Declared link/device experiments must distinguish real
-   transfers from modeled crossovers and omit no unavoidable private packet.
-   If permitted cache still dominates the relevant regime, do not invent a ban.
-3. **P04/P07, conditional compiler continuation.** Only a useful competing
-   action from the previous step justifies combining the static support oracle
-   with existing lifetime models. State includes exact decoder dependencies,
-   base identity, full-Q age bounds, pad exposure, recipe/seed provenance and
-   one shared remaining lifetime budget. Compare against global layouts,
-   balancing, one-row refinement, selective tiles, private deltas/buffers and
-   local caches. Require an independent exhaustive successor oracle and a
-   sufficient-state argument; charge exploration/calibration. E65's final
-   static Pareto frontier is not a safe substitute for lifecycle state.
-4. **P07/P12/P01, proof and closest-work gate.** Finish the formal direct-fresh
-   and supported-relation environments, discharge seeded-encryption/PRG and
-   authenticity assumptions, and obtain independent parameter/private-timing
-   review. Review sample extraction, output compression, vLHE/verifiable FHE,
-   dataflow compilers and precomputed basis synthesis at construction/proof
-   depth for the selected mechanism. A lemma/implementation alone does not
-   establish originality. ReinsPIRe's full malicious contract, recursive BNTM
-   and small-state vPIR remain required unresolved comparisons.
-5. **P10 alternate-functionality branch, if E66/E67 loses.** Return to bounded
-   E44 exact selection, E45 certified approximation or E46 mixed-context
-   experiments. Preregister changed output/metric/trust and exact baselines;
-   charge comparisons, selection/coverage/ties, bootstrapping/proof cost and
-   client release. Choose a research question on a demonstrated bottleneck,
-   rather than another parameter/kernel sweep of a dominated contract.
-
-The possible paper remains conditional: a demonstrably useful safe optimization
-domain and algorithm/protocol theorem, or a clearly separated new functionality.
-The reports/oracles already support reproducible company engineering and several
-negative findings. They do not support a completed original research claim.
+Every completed subtask appends to [progress](publication-progress.md), updates
+its R/P task and claims, records immutable source/raw hashes, then returns to
+the earliest unmet applicable gate. A handoff includes the contract, hypothesis,
+closest competitor, falsifier, exact paths/command, result classification and
+next decision. Venue choice follows the result; a presentation opportunity
+and an archival conference paper are different deliverables.

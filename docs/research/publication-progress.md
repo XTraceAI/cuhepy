@@ -219,7 +219,7 @@ is not a held-out speed evaluation. The last benchmark source subsequently
 moves an immediately called closure to a named helper for lint; historical
 timings remain unchanged and hash-resolvable.
 
-Returned to [plan §11](publication-research-plan.md): next E66/E67 proposals
+Returned to [the preceding plan §11](publication-research-plan-through-e65.md): next E66/E67 proposals
 test recipe/decoder composition as a **known control**, complete cold/ready
 costs and strongest protocol competitors before another dynamic compiler.
 Paper/usefulness/security gates all remain open. No new GPU measurement,
@@ -228,14 +228,52 @@ production change or full package completion is claimed.
 ## Retention and verification after this execution cycle
 
 The current [identity manifest](publication-execution-manifest.json) verifies
-59 completed raw runs and181 exact source versions:118 historical Git blobs
-and63 separate workspace dependencies. Earlier failed/negative/pilot sources
+59 completed raw runs and 181 exact source versions: 118 historical Git blobs
+and 63 separate workspace dependencies. Earlier failed/negative/pilot sources
 remain resolvable; no timings or old checkpoint tags are rewritten. The
-[validation receipt](publication-validation-20260930.json) records205 passing
-related CPU tests in30 files, explicit lint on46 changed Python paths, local
+[validation receipt](publication-validation-20260930.json) records 205 passing
+related CPU tests in 30 files, explicit lint on 46 changed Python paths, local
 document checks and no production-source diff from the protected checkpoint.
 These checks do not imply whole-repository CI, new GPU measurements or security
 assurance. A new `checkpoint/publication-controls-2026-09-30` and adjacent local
 bundle/runtime archive preserve this cycle separately from the earlier
 publication checkpoint; their exact hash/verification receipts live in the
 workspace checkpoint directory.
+
+## 2026-09-30: research direction review after the E65 checkpoint
+
+Scope: planning and primary-source review only; implementation baseline
+`6207455`, protected tag `checkpoint/publication-controls-2026-09-30`.
+The old plan is retained verbatim as
+[publication-research-plan-through-e65.md](publication-research-plan-through-e65.md).
+The [canonical plan](publication-research-plan.md) now has one current decision
+sequence instead of accumulating mutually stale next-step amendments.
+
+Nine additional primary PDFs are downloaded and hashed in a separate workspace
+cache. Targeted construction reading covers malicious vFHE, HELIOPOLIS,
+linear-decryption compression, ZipPIR, downlink TFHE compression, programmable
+correlations and SIMD sparse compression/SophOMR. Reading depth is explicit;
+the any-field PCG review remains an overview, and no full-proof or external
+performance reproduction is claimed. The original 15 pinned PDFs remain intact.
+
+Decision: static/lifetime optimization is no longer the leading contribution.
+E66/E67 close known compaction and full-cost controls. E68 screens whether
+structured outer evaluation can remove per-query owner answers without matrix/
+norm/proof expansion. E69 is a bounded fixed-matrix correlation alternative;
+E46 exact selection is a changed-output fallback. Each has a concrete oracle,
+closest construction, falsifier and stop rule in the
+[mechanism agenda](publication-mechanism-agenda.md). R0–R7 route these tasks
+through P00–P12; no full acceptance is marked complete.
+
+The intended system keeps local caching and known deltas as feasible actions.
+Cold owner/client, enrolled-server/new-client and returning-client panels must
+charge all provisioning. Candidate paper claims require a new mechanism plus
+matching proof and useful complete evidence. Preserving a well-supported
+negative outcome remains preferable to relabeling known techniques as novel.
+No raw benchmark, prior manifest, production code, main/staging branch or
+historical checkpoint is changed by this planning revision.
+
+The separate [planning validation receipt](publication-plan-review-validation-20260930.json)
+records document/task consistency, all 24 cached PDF hashes, selected raw-result
+spot checks and the retained 59-run/181-source manifest check. This revision
+does not rerun the historical 205-test suite or any performance experiment.

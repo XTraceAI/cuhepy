@@ -3,9 +3,10 @@
 **Publication planning revision, 2026-09-30:** the
 [closest-work comparison](closest-work-comparison-20260930.md) and
 [executable publication plan](publication-research-plan.md) now govern the
-next steps. They add EMVP, trapdoored linear algebra, recent vLHE, search and
-compiler comparisons, and prioritize joint representation, backend and update
-experiments before deployment. This document remains the E01–E40 evidence
+next steps. After the E65 controls, they prioritize reducing trusted per-query
+preparation through structured verified evaluation, with bounded correlation
+and exact-selection alternatives. The prior joint-optimizer hypothesis did
+not survive its strongest controls. This document remains the E01–E40 evidence
 synthesis. Its historical version is preserved at `02e06c0` and the
 `checkpoint/verification-frontier-2026-09-30` tag.
 

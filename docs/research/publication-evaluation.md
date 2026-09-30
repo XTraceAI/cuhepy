@@ -117,5 +117,5 @@ Original EMVP is faster CPU with larger replies and a distinct assurance
 profile. Permitted caches remain compelling after actual acquisition costs
 and larger real data. The new supported decoder is exact in its stated scope;
 E65's stronger simple controls reject a new static-optimizer contribution.
-See [the results ledger](paper-claims.md) and [plan §11](publication-research-plan.md)
+See [the results ledger](paper-claims.md) and [current plan](publication-research-plan.md)
 before scheduling additional implementation.

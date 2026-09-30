@@ -27,20 +27,24 @@ claim**. Follow the [execution plan](publication-research-plan.md) and
 | Complete verification closes the malicious-response decryption oracle | Scoped direct-fresh conditional argument, not a reviewed theorem | P07 draft, full-Q gates, global local budget and684 ideal policies | Authenticated setup, durable receiver, seeded privacy, private timing and independent review open; E62 not silently covered |
 | New profiles offer production/128-bit security | **Not established** | Pinned heuristic attacks, explicit timeouts and private-timing limitations | HE guidelines/estimator do not certify this protocol or implementation |
 
-The first calibrated lifetime rule failed its useful-effect discriminator;
-enlarging it without a competing safe action/workload is not the next priority.
-The narrower next hypothesis is a **protocol-aware exact representation and
-decoder compiler**: price support/alignment and verify precisely what its
-dedicated decoder needs, while preserving mask provenance, epoch/budget and
-pre-decryption guarantees. E63 supplies a cost tension, not originality.
-Known sample extraction, coefficient support, fingerprints and compiler
-dataflow need explicit comparison. Local caches and ready-remote cold sessions
-remain required alternatives. The [updated plan](publication-research-plan.md)
-gates this direction on formal/exhaustive semantics and measured useful effect.
-E64 now supplies a separate executable supported relation; E65's bounded
-static screen fails the first stronger-control discriminator. Continue only
-with a new protocol consequence or measured competing resource regime; recipe
-composition itself is a known control. See the plan's §11 execution revision.
+The current [plan](publication-research-plan.md) prioritizes reducing per-query
+trusted preparation with safe exact release. The calibrated lifetime rule and
+static optimizer failed stronger controls; a larger compiler is conditional on
+new useful protocol choices. E66 composition is a known control. The deeper
+comparison also credits verifiable/terminal compression, programmable matrix
+correlations and SIMD sparse-result compression.
+
+| Proposed statement | Current status | Evidence required before promotion |
+|---|---|---|
+| E68 structured verified evaluation reduces owner preparation without outer expansion | **Hypothesis only**; E47 supplies an algebra oracle and a negative literal expansion bound | New structured protocol step, admissible norms/owner binding, reduction and complete same-contract measurements |
+| E69 compact correlation generation supplies our exact token functionality | **Hypothesis only**; generic PCGs are known ingredients | Fixed-private-M conversion, recipient/field/encryption distribution proof, complete generation/provisioning benefit |
+| E46 returns exact sparse winners more cheaply than full scores | **Hypothesis only**; known compression starts after winner discovery | Complete selection/tie/coverage mechanism, all conversion/proof/round costs and adverse controls |
+| Safe compact release itself is an original result | **Not established**; vFHE/HELIOPOLIS and terminal compression narrow the claim | A specific new constructive transformation and theorem beyond generic verification or extraction |
+
+The [mechanism agenda](publication-mechanism-agenda.md) defines falsifiers and
+bounded screens. No new benchmark, theorem or security certification is claimed
+by the planning revision. All-data caching and original protocol controls
+remain mandatory comparisons.
 
 To promote a claim: freeze a justified workload/leakage/resource objective;
 reproduce strongest same-contract baselines; calibrate and test held-out traces;

@@ -2,8 +2,9 @@
 
 **Current execution plan:** [publication research plan](publication-research-plan.md),
 with a [closest-work comparison](closest-work-comparison-20260930.md) and
-[machine-readable work packages](publication-work-packages.json). Proposed
-E41–E47 are not implemented. The E01–E40 results below remain the evidence.
+[machine-readable work packages](publication-work-packages.json). E41–E65
+executed scopes and negative findings are recorded in the publication progress
+log; E47 is only an algebra oracle. The E01–E40 results below are historical.
 
 Priority update, 2026-09-30, following the project's research direction.
 This supersedes the execution order in earlier plans; it does not change their
@@ -127,19 +128,17 @@ the different known hash family has a smaller additional benefit. Norm
 tightening does not cross a byte boundary. Small-ring models retain both
 unchanged-payload and spare-capacity cases; changed N needs new assurance.
 
-**Current next cycle:** follow section11 of the
-[publication plan](publication-research-plan.md) after the E54–E65 execution.
-The first causal lifetime policy lost to ordinary deltas, and full authorized
-cache retention is expressly permitted. Prioritize supported-coordinate
-verification/decoder semantics are specified and E64's separate prototype
-passes toy encrypted oracles. E65's static optimizer is matched by ordinary
-balancing plus single-row refinement; retain its exact oracle, but reject a
-novelty/effect headline. Next test recipe/decoder admissibility and complete
-cold/ready costs against known extraction/compiler and cache controls. The
-lifecycle extension remains unimplemented. New CUDA/service work remains
-behind the practical-effect/protocol gates.
+**Current next cycle:** follow R0–R7 in the revised
+[publication plan](publication-research-plan.md). Close known compaction and
+full-cost controls, then screen structured verified evaluation (E68) to reduce
+per-query owner preparation. Fixed-index correlations (E69) and complete exact
+selection (E46) are bounded alternatives. The [mechanism specifications](publication-mechanism-agenda.md)
+give oracles, costs and falsifiers. The static optimizer and causal policy
+failed stronger controls; do not enlarge them without a useful protocol choice.
+All-data client caching remains permitted. New CUDA/service work stays behind
+the practical-effect/protocol gates.
 
-**Historical next cycle (before E41 execution):** execute P00–P04 of the [publication plan](publication-research-plan.md):
+**Historical next cycle (before E41 execution):** execute P00–P04 of the [preceding publication plan](publication-research-plan-through-e65.md):
 freeze the functionality/leakage, reproduce closest compatible protocols,
 build an exact joint-representation oracle, test the backend/security-dimension
 tradeoff and E47's proposed vLHE layer over public ciphertext coefficients, then
