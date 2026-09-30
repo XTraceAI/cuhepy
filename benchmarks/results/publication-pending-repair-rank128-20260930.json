@@ -1,0 +1,482 @@
+{
+  "utc": "2026-09-30T09:02:03.117297+00:00",
+  "command": [
+    "benchmarks/representation_lifetime_lab.py",
+    "--count",
+    "16384",
+    "--rank",
+    "128",
+    "--dimension",
+    "512",
+    "--prime",
+    "1153",
+    "--q-bits",
+    "40",
+    "--pool",
+    "32",
+    "--repeats",
+    "2",
+    "--json-out",
+    "benchmarks/results/publication-pending-repair-rank128-20260930.json"
+  ],
+  "git_head": "00a63627dee19b7cd620328002998da70b29c653",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/representation_lifetime_lab.py": "e0b3fa4d82b1051ddb4bb2af43f707901ad7b3e3a434b1d4b865e6f08afe9a9b",
+    "experiments/bfv_search_lab/representation_contract.py": "dfd3d5393f1ae50162203827eab65ad70db26b3cf788957ad8262e1462be4bff",
+    "experiments/bfv_search_lab/representation_oracle.py": "562b1ca0a1f59767f425126a90cd13961d761b6fdf9985e2808b89b4cc3aec36",
+    "experiments/bfv_search_lab/representation_updates.py": "0efb1b261e3354c6ba01c256bb367df3c942dc8b3685b33ba0a014ac344b325a",
+    "experiments/bfv_search_lab/crt_query_space.py": "2bc431424dc9679c62ef806f33b81e501f222f1837ebac8d515e22475e4fd8a3",
+    "experiments/bfv_search_lab/crt_masked_bgv.py": "ef2cece17e1b0a31a71e69ce01db380e3266293bca728dc923d1defb0e261152",
+    "experiments/bfv_search_lab/crt_native_bgv.py": "b9b8f816ae7360dec87c4fcbf170e2ab4e861908c133cb2c63cbd04d512c5c84",
+    "experiments/bfv_search_lab/crt_linear_check.py": "86081119ae715e17d92cd2132f57971f222cddcc04f2c0aad7adc115ebd1cee7",
+    "experiments/bfv_search_lab/native_linear_check.py": "6bc6fb004019dca6c8e5c9f155bd3f45570f7e5daef3e9d0e7274d0399ad33cd",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be"
+  },
+  "kind": "pending_mask_frozen_representation_update",
+  "count": 16384,
+  "dimension": 512,
+  "rank": 128,
+  "pool_size": 32,
+  "profile": {
+    "n": 16384,
+    "prime": 1153,
+    "q_bits": 40,
+    "eta": 21,
+    "check_bits": 128,
+    "attempt_budget": 1024
+  },
+  "owner_compile_s": 11.982847090999712,
+  "workload_digest_owner_local": "5eda557a1583b4a17dc1c150f71b8274b2ce422f553a5f26c9f93144956d2e7d",
+  "resources_model": {
+    "query_coordinates": 128,
+    "columns": 128,
+    "correction_coefficients": 128,
+    "replies": 1,
+    "query_body_bytes": 256,
+    "response_body_bytes": 163840,
+    "expanded_index_body_bytes": 20971520,
+    "native_index_word_bytes": 33554432,
+    "private_map_body_bytes": 2248,
+    "id_permutation_body_bytes": 196608,
+    "checker_body_bytes_model": 2688,
+    "client_audit_body_bytes_model": 201544,
+    "offline_answer_body_bytes_per_token_model": 81952,
+    "owner_coordinate_body_bytes_model": 4194304,
+    "phase_bound": 1827668181,
+    "checker_rounds": 4,
+    "verifier_products_model": 131584,
+    "server_pointwise_products_model": 4194304
+  },
+  "cases": [
+    {
+      "method": "sparse_delta",
+      "repetition": 0,
+      "key_gen_s": 0.09053384200160508,
+      "initial_enroll_s": 3.9821363529990776,
+      "initial_unused_answer_pool_s": 6.4826001299989,
+      "owner_update_and_all_answer_repair_s": 6.218603892000829,
+      "full_new_checker_prepare_s": 1.5186044389993185,
+      "answer_checker_pool_s": 0.20759227400048985,
+      "public_native_prepare_s": 0.5825704070011852,
+      "total_update_stage_sum_s": 8.527371012001822,
+      "report": {
+        "method": "sparse_delta",
+        "edited_rows": 1,
+        "repaired_unused_tokens": 32,
+        "consumed_tokens_untouched": 0,
+        "ciphertexts_freshly_encrypted": 160,
+        "seeded_patch_packet_bytes": 13124160,
+        "universal_phase_bound_after_repair": 3655336362,
+        "sparse_dot_products_per_token": 128,
+        "full_dot_products_per_token_control": 2097152,
+        "scope": "Local volatile owner prototype; checker re-preparation and durability charged separately."
+      },
+      "online": [
+        {
+          "warmup": true,
+          "elapsed_s": 0.0707690460003505,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              216,
+              10801
+            ],
+            [
+              216,
+              11343
+            ],
+            [
+              216,
+              11592
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        },
+        {
+          "warmup": false,
+          "elapsed_s": 0.07130185700225411,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              172,
+              15184
+            ],
+            [
+              178,
+              4910
+            ],
+            [
+              180,
+              7044
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        },
+        {
+          "warmup": false,
+          "elapsed_s": 0.07302031099970918,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              177,
+              4910
+            ],
+            [
+              177,
+              15184
+            ],
+            [
+              179,
+              7044
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        }
+      ],
+      "unused_after_validation": 29,
+      "epoch_initial_and_update_work_stage_sum_s": 19.082641337001405
+    },
+    {
+      "method": "full_reencrypt",
+      "repetition": 0,
+      "key_gen_s": 0.09123178500158247,
+      "initial_enroll_s": 3.765080578999914,
+      "initial_unused_answer_pool_s": 6.307742903998587,
+      "owner_update_and_all_answer_repair_s": 9.771113334998518,
+      "full_new_checker_prepare_s": 1.5041409449986531,
+      "answer_checker_pool_s": 0.2135790829997859,
+      "public_native_prepare_s": 0.6036496980013908,
+      "total_update_stage_sum_s": 12.092483060998347,
+      "report": {
+        "method": "full_reencrypt",
+        "edited_rows": 1,
+        "repaired_unused_tokens": 32,
+        "consumed_tokens_untouched": 0,
+        "ciphertexts_freshly_encrypted": 160,
+        "seeded_patch_packet_bytes": 13124160,
+        "universal_phase_bound_after_repair": 1827668181,
+        "sparse_dot_products_per_token": 128,
+        "full_dot_products_per_token_control": 2097152,
+        "scope": "Local volatile owner prototype; checker re-preparation and durability charged separately."
+      },
+      "online": [
+        {
+          "warmup": true,
+          "elapsed_s": 0.07136214700221899,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              216,
+              10801
+            ],
+            [
+              216,
+              11343
+            ],
+            [
+              216,
+              11592
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        },
+        {
+          "warmup": false,
+          "elapsed_s": 0.07224949599913089,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              172,
+              15184
+            ],
+            [
+              178,
+              4910
+            ],
+            [
+              180,
+              7044
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        },
+        {
+          "warmup": false,
+          "elapsed_s": 0.07355970199932926,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              177,
+              4910
+            ],
+            [
+              177,
+              15184
+            ],
+            [
+              179,
+              7044
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        }
+      ],
+      "unused_after_validation": 29,
+      "epoch_initial_and_update_work_stage_sum_s": 22.25653832899843
+    },
+    {
+      "method": "full_reencrypt",
+      "repetition": 1,
+      "key_gen_s": 0.08957378200284438,
+      "initial_enroll_s": 3.8622069510020083,
+      "initial_unused_answer_pool_s": 6.316645703998802,
+      "owner_update_and_all_answer_repair_s": 9.619320189995051,
+      "full_new_checker_prepare_s": 1.530650152999442,
+      "answer_checker_pool_s": 0.21413477399619296,
+      "public_native_prepare_s": 0.6084002280040295,
+      "total_update_stage_sum_s": 11.972505344994715,
+      "report": {
+        "method": "full_reencrypt",
+        "edited_rows": 1,
+        "repaired_unused_tokens": 32,
+        "consumed_tokens_untouched": 0,
+        "ciphertexts_freshly_encrypted": 160,
+        "seeded_patch_packet_bytes": 13124160,
+        "universal_phase_bound_after_repair": 1827668181,
+        "sparse_dot_products_per_token": 128,
+        "full_dot_products_per_token_control": 2097152,
+        "scope": "Local volatile owner prototype; checker re-preparation and durability charged separately."
+      },
+      "online": [
+        {
+          "warmup": true,
+          "elapsed_s": 0.07566398699418642,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              210,
+              1660
+            ],
+            [
+              214,
+              15167
+            ],
+            [
+              216,
+              12077
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        },
+        {
+          "warmup": false,
+          "elapsed_s": 0.07277089399576653,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              174,
+              15184
+            ],
+            [
+              178,
+              4910
+            ],
+            [
+              178,
+              7044
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        },
+        {
+          "warmup": false,
+          "elapsed_s": 0.07866983200074174,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              177,
+              4910
+            ],
+            [
+              177,
+              15184
+            ],
+            [
+              179,
+              7044
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        }
+      ],
+      "unused_after_validation": 29,
+      "epoch_initial_and_update_work_stage_sum_s": 22.24093178199837
+    },
+    {
+      "method": "sparse_delta",
+      "repetition": 1,
+      "key_gen_s": 0.0916895510017639,
+      "initial_enroll_s": 3.710082085999602,
+      "initial_unused_answer_pool_s": 6.47969310299959,
+      "owner_update_and_all_answer_repair_s": 6.12913940299768,
+      "full_new_checker_prepare_s": 1.547469340999669,
+      "answer_checker_pool_s": 0.21685623800294707,
+      "public_native_prepare_s": 0.5959062479960267,
+      "total_update_stage_sum_s": 8.489371229996323,
+      "report": {
+        "method": "sparse_delta",
+        "edited_rows": 1,
+        "repaired_unused_tokens": 32,
+        "consumed_tokens_untouched": 0,
+        "ciphertexts_freshly_encrypted": 160,
+        "seeded_patch_packet_bytes": 13124160,
+        "universal_phase_bound_after_repair": 3655336362,
+        "sparse_dot_products_per_token": 128,
+        "full_dot_products_per_token_control": 2097152,
+        "scope": "Local volatile owner prototype; checker re-preparation and durability charged separately."
+      },
+      "online": [
+        {
+          "warmup": true,
+          "elapsed_s": 0.07235667100030696,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              210,
+              1660
+            ],
+            [
+              214,
+              15167
+            ],
+            [
+              216,
+              12077
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        },
+        {
+          "warmup": false,
+          "elapsed_s": 0.07366175499919336,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              174,
+              15184
+            ],
+            [
+              178,
+              4910
+            ],
+            [
+              178,
+              7044
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        },
+        {
+          "warmup": false,
+          "elapsed_s": 0.07370704600180034,
+          "all_scores_and_stable_top3_exact": true,
+          "response_body_bytes": 163840,
+          "top3": [
+            [
+              177,
+              4910
+            ],
+            [
+              177,
+              15184
+            ],
+            [
+              179,
+              7044
+            ]
+          ],
+          "all_gmp_native_coefficients_equal": true
+        }
+      ],
+      "unused_after_validation": 29,
+      "epoch_initial_and_update_work_stage_sum_s": 18.77083596999728
+    }
+  ],
+  "summary": {
+    "sparse_delta": {
+      "owner_update_and_all_answer_repair_s": {
+        "mean": 6.173871647499254,
+        "median": 6.173871647499254,
+        "min": 6.12913940299768,
+        "max": 6.218603892000829
+      },
+      "total_update_stage_sum_s": {
+        "mean": 8.508371120999072,
+        "median": 8.508371120999072,
+        "min": 8.489371229996323,
+        "max": 8.527371012001822
+      },
+      "epoch_initial_and_update_work_stage_sum_s": {
+        "mean": 18.926738653499342,
+        "median": 18.926738653499342,
+        "min": 18.77083596999728,
+        "max": 19.082641337001405
+      }
+    },
+    "full_reencrypt": {
+      "owner_update_and_all_answer_repair_s": {
+        "mean": 9.695216762496784,
+        "median": 9.695216762496784,
+        "min": 9.619320189995051,
+        "max": 9.771113334998518
+      },
+      "total_update_stage_sum_s": {
+        "mean": 12.032494202996531,
+        "median": 12.032494202996531,
+        "min": 11.972505344994715,
+        "max": 12.092483060998347
+      },
+      "epoch_initial_and_update_work_stage_sum_s": {
+        "mean": 22.2487350554984,
+        "median": 22.2487350554984,
+        "min": 22.24093178199837,
+        "max": 22.25653832899843
+      }
+    }
+  },
+  "scope": "Research-only full N=16384 homogeneous known-affine synthetic fixture; constant padded packet counts. Independent fresh OS encryption randomness and private mask seed per initial token. All reused pads were NEVER exposed. Same-pending-pad full-reencryption is the matched strong control. Native full-vector checking before secret GMP decryption; full checker and native index re-preparation charged. Local measured update stage sums are CPU work, not network latency. Small serial sample, no production, security reduction, private timing, durable migration, insertion/deletion or general update support."
+}

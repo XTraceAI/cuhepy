@@ -3,8 +3,11 @@
 2026-09-30. This is the current execution plan, following the
 [closest-work comparison](closest-work-comparison-20260930.md). It supersedes
 the next-step ordering in the [E01–E40 synthesis](research-synthesis-and-system-roadmap.md),
-while preserving its evidence and proof caveats. All new experiments below
-are **proposed**, not implemented or measured. The machine-readable handoff is
+while preserving its evidence and proof caveats. Execution has begun: E41's
+finite oracle/planner, E42/E47 screens and a frozen-map E43 repair prototype
+are implemented, with preliminary retained measurements. The remaining
+mechanisms are proposals. Consult the [execution log](publication-progress.md)
+and result documents before treating a package as complete. The machine-readable handoff is
 [publication-work-packages.json](publication-work-packages.json).
 
 Protected starting point: `02e06c0f5636def284ed6864b3e208538fcb10a6`,
