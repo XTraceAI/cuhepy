@@ -261,6 +261,16 @@ an algorithm that chooses sharing based on the resulting complete lifetime cost.
 
 ### 4.4 Bounded exploratory alternatives
 
+**Execution amendment — E48, public ciphertext-component recipes.** The current
+linear masked circuit lets an authorized client reconstruct C1 from public
+encryption seeds and delta, preserving the original full check before
+decryption. This known recomputation tradeoff has been implemented and measured:
+it halves the response coefficient body, while cached client work increases
+and native state exceeds a plaintext cache on both small fixtures. See
+[the matched positive/negative evidence](component-recipe-results.md).
+Treat it as a priced optional dimension, not an originality claim. It does
+not authorize new CUDA work or remove any P07/P08 obligation.
+
 **E47 — Verified private evaluation of a ciphertext-linear operator.**
 The server already sees the encrypted index columns. Regard their complete
 coefficient vectors and required negacyclic shifts as a public matrix
