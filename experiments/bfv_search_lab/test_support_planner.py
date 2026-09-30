@@ -76,3 +76,20 @@ def test_unequal_replicated_groups_price_every_allocation_and_report_simple_cont
     # A negative is as valid as a gain; enumerate first, then compare controls.
     assert min(p.static_vector[0] for p in result.plans) <= min(p.static_vector[0] for p in result.balanced_controls)
     assert result.row_allocation_attempts == len(result.plans)
+
+
+def test_irregular_frontier_counterexample_is_also_closed_by_known_single_row_refinement():
+    # Discovered in the seed67501 bounded screen, not a held-out speed result.
+    w = Workload((7, 4, 6, 2, 7, 1, 0, 0, 7, 0, 6), tuple(range(11)), 3)
+    root = oracle.Node("", tuple(range(11)), (oracle.Node("0", (0,)), oracle.Node("1", tuple(range(1, 11)))))
+    result = supported.search(w, root, Profile(16, 17, eta=1))
+    original = next(v.compiled for v in result.original_controls if v.compiled.choice.name == "0:affine+1:raw" and v.compiled.allocation == (1, 3))
+    assert supported.balanced_counts(original) == (1, 4, 6)
+    refined, evaluations, steps = supported.refine_balancing(original)
+    assert refined.compiled.candidate.layout.counts == (1, 3, 7)
+    assert refined.static_vector[0] == 124 and evaluations > steps == 1
+    all_pair_controls = result.original_controls + result.balanced_controls + tuple(
+        supported.refine_balancing(v.compiled)[0] for v in result.original_controls)
+    assert {v.static_vector for v in supported.pareto(all_pair_controls)} == {v.static_vector for v in result.frontier}
+    with pytest.raises(ValueError, match="work"):
+        supported.refine_balancing(original, limit=1)

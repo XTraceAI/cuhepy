@@ -81,6 +81,8 @@ def main():
                         score_checks += 1
                 original = {key(v.compiled): v for v in result.original_controls}
                 balanced = {key(v.compiled): v for v in result.balanced_controls}
+                refinement_s, refinements = timed(lambda: tuple(supported.refine_balancing(v.compiled) for v in result.original_controls))
+                refined = {key(v.compiled): v for v, _, _ in refinements}
                 changes = [{"allocation": full.compiled.allocation,
                             "map_ranks": tuple(m.rank for m in full.compiled.maps),
                             "greedy_original_counts": full.compiled.candidate.layout.counts,
@@ -102,6 +104,10 @@ def main():
                               "minimum_original_projected_online_bytes_model": min(v.static_vector[0] for v in original.values()),
                               "minimum_balanced_projected_online_bytes_model": min(v.static_vector[0] for v in balanced.values()),
                               "minimum_joint_projected_online_bytes_model": min(v.static_vector[0] for v in result.plans),
+                              "minimum_refined_projected_online_bytes_model": min(v.static_vector[0] for v in refined.values()),
+                              "refinement_s": refinement_s, "refinement_evaluations": sum(e for _, e, _ in refinements),
+                              "fixed_geometry_refinement_not_optimal_count": sum(refined[k].response_body_bytes_model > v.response_body_bytes_model
+                                                                                for k, v in by_geometry.items()),
                               "fixed_geometry_balancing_not_optimal_count": sum(balanced[k].response_body_bytes_model > v.response_body_bytes_model
                                                                                for k, v in by_geometry.items()),
                               "fixed_geometry_changes": changes})
@@ -122,12 +128,19 @@ def main():
         controls = supported.pareto(result.original_controls + result.balanced_controls)
         control_vectors = {v.static_vector for v in controls}
         missing = tuple(v for v in result.frontier if v.static_vector not in control_vectors)
+        refinement_s, refinements = timed(lambda: tuple(supported.refine_balancing(v.compiled) for v in result.original_controls))
+        refined_controls = supported.pareto(tuple(v for v, _, _ in refinements) + result.original_controls + result.balanced_controls)
+        refined_vectors = {v.static_vector for v in refined_controls}
         random_cases.append({"ordinal": ordinal, "dimension": d, "rows": rows, "n": n, "split": cut,
                              "search_s": search_s, "retained_plans": len(result.plans),
                              "independent_cartesian_allocations_and_decoder_columns_checked": True,
                              "fixed_geometries_balancing_not_optimal": sum(v.response_body_bytes_model > grouped[key(v.compiled)]
                                                                           for v in result.balanced_controls),
                              "joint_frontier_vectors_missing_from_simple_control_frontier": tuple(sorted({v.static_vector for v in missing})),
+                             "joint_frontier_vectors_missing_from_refined_control_frontier": tuple(sorted({v.static_vector for v in result.frontier
+                                                                                                         if v.static_vector not in refined_vectors})),
+                             "refinement_s": refinement_s, "refinement_evaluations": sum(e for _, e, _ in refinements),
+                             "refinement_steps": sum(steps for _, _, steps in refinements),
                              "minimum_joint_online_bytes_model": min(v.static_vector[0] for v in result.plans),
                              "minimum_control_online_bytes_model": min(v.static_vector[0] for v in controls)})
     result = metadata([Path(__file__), *(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
@@ -138,14 +151,16 @@ def main():
                   random_seed=args.seed, additional_random_cases=random_cases,
                   scope="Finite fixed-tree raw/affine, contiguous-map CRT cover, all capacity-valid canonical row allocations; no arbitrary layout optimum. "
                         "Static projected-body objective keeps full index/answer/verifier/state charges; no lifecycle base/age/exposure/seed/budget optimization. "
-                        "Known greedy balancing/global controls mandatory; counts/search cost, not native timing, assurance or established originality.")
+                        "Known greedy balancing/global/single-row-refinement controls mandatory; refinement added after initial bounded screen. "
+                        "Counts/search cost, not held-out native timing, assurance or established originality.")
     args.json_out.parent.mkdir(parents=True, exist_ok=True)
     args.json_out.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({"output": str(args.json_out), "cases": len(cases), "score_checks": score_checks,
                       "cases_better_than_best_balancing": sum(c["minimum_joint_projected_online_bytes_model"] < c["minimum_balanced_projected_online_bytes_model"] for c in cases),
                       "fixed_geometries_balancing_not_optimal": sum(c["fixed_geometry_balancing_not_optimal_count"] for c in cases),
                       "random_cases": len(random_cases),
-                      "random_cases_with_frontier_missing_from_controls": sum(bool(c["joint_frontier_vectors_missing_from_simple_control_frontier"]) for c in random_cases)}))
+                      "random_cases_with_frontier_missing_from_controls": sum(bool(c["joint_frontier_vectors_missing_from_simple_control_frontier"]) for c in random_cases),
+                      "random_cases_with_frontier_missing_from_refined_controls": sum(bool(c["joint_frontier_vectors_missing_from_refined_control_frontier"]) for c in random_cases)}))
 
 
 if __name__ == "__main__":

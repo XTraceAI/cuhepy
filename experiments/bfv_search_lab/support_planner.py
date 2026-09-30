@@ -137,6 +137,39 @@ def balanced_counts(plan):
     return tuple(counts)
 
 
+def refine_balancing(plan, *, limit=4096):
+    """Known strict-descent, single-row-transfer control; no optimum guarantee.
+
+    Move only between leaves of the SAME map, starting from proportional
+    occupancy. Compute the actual support price. Charge all evaluations and
+    reject an exceeded work cap rather than claiming an exact heuristic.
+    """
+    if type(limit) is not int or not 1 <= limit <= 100000:
+        raise ValueError("Invalid local-refinement work budget")
+    current = view(redistribute(plan, balanced_counts(plan)))
+    evaluations, steps = 1, 0
+    while True:
+        counts, s = current.compiled.candidate.layout.counts, plan.query_space
+        best = current
+        for source, target in itertools.permutations(range(len(counts)), 2):
+            if (s.map_ids[source] != s.map_ids[target] or not counts[source]
+                    or counts[target] == plan.resources.replies * s.layout.context.leaves[target].degree):
+                continue
+            if evaluations == limit:
+                raise ValueError("Local support refinement exceeds work budget")
+            moved = list(counts)
+            moved[source] -= 1
+            moved[target] += 1
+            candidate = view(redistribute(plan, tuple(moved)))
+            evaluations += 1
+            if (candidate.response_body_bytes_model, candidate.compiled.candidate.layout.counts) < (
+                    best.response_body_bytes_model, best.compiled.candidate.layout.counts):
+                best = candidate
+        if best.response_body_bytes_model >= current.response_body_bytes_model:
+            return current, evaluations, steps
+        current, steps = best, steps + 1
+
+
 def dominates(left, right):
     if left.compiled.profile != right.compiled.profile:
         return False
