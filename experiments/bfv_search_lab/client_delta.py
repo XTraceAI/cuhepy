@@ -114,3 +114,35 @@ class Ledger:
                     "private_delta_update_body_bytes_model": 64 + len(edits) * (8 + 2 * width),
                     "server_update_body_bytes": 0, "ciphertexts_freshly_encrypted": 0,
                     "scope": "Trusted local owner/client; private update body model, no authenticated remote service."}
+
+    def rebase(self, plan, base_epoch):
+        """Trusted fresh encrypted base; preserve current rows and residuals.
+
+        Only identical fixed maps/layout/IDs/key profile are supported. The
+        caller must finish owner encryption and complete-check preparation;
+        this method neither authenticates that transcript nor repairs pads.
+        A partially refreshed base leaves exact residuals at untouched rows.
+        """
+        with self._lock:
+            masked.binding(base_epoch, bytes(16))
+            plan.workload.validate()
+            view = plan.client_view()
+            old = self.snapshot.base
+            if ((view.dimension, view.ids, view.profile, view.maps, view.query_space, view.candidate.blocks)
+                    != (old.dimension, old.ids, old.profile, old.maps, old.query_space, old.candidate.blocks)):
+                raise ValueError("Private delta rebase changed pinned representation")
+            patches = {}
+            for position, (original, current) in enumerate(zip(plan.workload.rows, self.workload.rows, strict=True)):
+                # A trusted selective refresh installs current values at its
+                # selected rows; other encrypted base values stay unchanged.
+                if original not in (self.plan.workload.rows[position], current):
+                    raise ValueError("Rebase row is neither old base nor current authorized row")
+                mask = original ^ current
+                if mask:
+                    patches[position] = Patch(position, mask & current, mask & original)
+            snapshot = Snapshot(view, base_epoch, secrets.token_bytes(32), tuple(patches.values()))
+            snapshot.validate()
+            self.plan, self.base_epoch = plan, base_epoch
+            self._patches, self.snapshot = patches, snapshot
+            return {"private_snapshot_body_bytes": snapshot.private_body_bytes,
+                    "retained_changed_rows": len(patches), "scope": "Trusted local immutable rebase snapshot only."}

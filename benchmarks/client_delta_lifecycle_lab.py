@@ -34,11 +34,13 @@ from experiments.bfv_search_lab import crt_masked_bgv as masked
 from experiments.bfv_search_lab import crt_native_bgv as native
 from experiments.bfv_search_lab import field_frontier as fields
 from experiments.bfv_search_lab import integer_phase_audit as audit
+from experiments.bfv_search_lab import lifetime_prices as prices
 from experiments.bfv_search_lab import native_linear_check as checks
 from experiments.bfv_search_lab import owner_bgv as owner
 from experiments.bfv_search_lab import representation_oracle as oracle
 from experiments.bfv_search_lab import representation_updates as updates
 from experiments.bfv_search_lab import shallow_bgv as bgv
+from experiments.bfv_search_lab import verification_lifetime as lifetime
 from experiments.bfv_search_lab.representation_contract import Profile, Workload
 
 
@@ -47,20 +49,40 @@ def run(plan, args, method, repetition, edits, common):
     with closing(owner.OwnerClient(pk, sk)) as client:
         enroll_s, pool = timed(updates.RepairPool, plan, client, arithmetic="numpy")
         pool_s, tokens = timed(lambda: [pool.prepare(i.to_bytes(16, "little")) for i in range(args.pool)])
-        ledger_s, ledger = timed(delta.Ledger, plan, pool.index.epoch) if method == "private_client_delta" else (0, None)
-        cursor, word = 0, random.Random(54010 + repetition).randrange(1 << plan.dimension)
+        ledger_s, ledger = timed(delta.Ledger, plan, pool.index.epoch) if method in ("private_client_delta", "priced_policy") else (0, None)
+        budget_s, attempt_budget = timed(lifetime.AttemptBudget, plan.profile.attempt_budget)
+        price_load_s, price_data = timed(lambda: json.loads(args.price_file.read_text())) if method == "priced_policy" else (0, {})
+        model = prices.Models.load(price_data["models"]) if price_data else None
+        training_cost = price_data.get("calibration_fit_s", 0) + price_data.get("training_acquisition_s", 0)
+        cursor, word = 0, random.Random(54010 + args.trace_seed + repetition).randrange(1 << plan.dimension)
         epochs, samples = [], []
         gate = evaluator = phase = None
         for revision in range(len(edits) + 1):
             report, edit_s = {}, 0
+            refreshed = revision == 0 or ledger is None
             if revision:
                 edit_s, report = (timed(ledger.edit, edits[revision - 1]) if ledger is not None
                                   else timed(pool.edit, edits[revision - 1], method=method))
+                if model is not None:
+                    start = time.perf_counter()
+                    dirty = {pool._locations[p.position][1] // plan.query_space.layout.context.leaves[pool._locations[p.position][0]].degree
+                             for p in ledger.snapshot.patches}
+                    action, predicted = model.choose(geometry(plan, args), pending=args.pool - cursor,
+                                                     exceptions=len(ledger.snapshot.patches), dirty_tiles=len(dirty), horizon=1)
+                    report.update(policy_action=action, predicted_next_query_action_cost_s=predicted)
+                    if action != "private_client_delta":
+                        target = {plan.ids[p.position]: ledger.workload.rows[p.position] for p in ledger.snapshot.patches}
+                        report.update(pool.edit(target, method=action))
+                        report.update(ledger.rebase(pool.plan, pool.index.epoch))
+                        refreshed = True
+                    # Price selection, residual snapshot and encryption work
+                    # all belong to the measured update stage.
+                    edit_s += time.perf_counter() - start
             gate_s = answer_s = native_s = phase_setup_s = 0
             pending = tokens[cursor:]
-            if revision == 0 or ledger is None:
-                gate_s, gate = timed(checks.NativeVectorCheck, pool.index, pk,
-                                    rounds=fields.rounds(int(pk.q)), budget=plan.profile.attempt_budget)
+            if refreshed:
+                gate_s, gate = timed(lambda: attempt_budget.bind(checks.NativeVectorCheck(
+                    pool.index, pk, rounds=fields.rounds(int(pk.q)), budget=plan.profile.attempt_budget)))
                 answer_s, _ = timed(lambda gate=gate, pending=pending: [gate.prepare_answer(t.answer) for t in pending])
                 native_s, evaluator = timed(native.NativeIndex, pool.index, pk)
                 phase_setup_s, phase = timed(audit.Audit, pool.index, pk, sk)
@@ -112,16 +134,27 @@ def run(plan, args, method, repetition, edits, common):
                 pass
             else:
                 raise AssertionError("Consumed base pad reappeared")
+        execution_cost = (sum(common.values()) + key_s + enroll_s + pool_s + ledger_s + budget_s + price_load_s
+                          + sum(e["complete_update_or_initial_prepare_s"] for e in epochs)
+                          + sum(s["online_elapsed_s"] for s in samples))
         return {"method": method, "repetition": repetition, "key_s": key_s, "enroll_s": enroll_s,
                 "pool_s": pool_s, "ledger_setup_s": ledger_s, "common": common, "epochs": epochs, "online": samples,
-                "complete_lifetime_s": sum(common.values()) + key_s + enroll_s + pool_s + ledger_s
-                    + sum(e["complete_update_or_initial_prepare_s"] for e in epochs) + sum(s["online_elapsed_s"] for s in samples),
+                "lifetime_attempt_budget_prepare_s": budget_s, "global_verification_attempts": attempt_budget.used,
+                "volatile_global_attempt_budget_enforced": True,
+                "price_model_load_s": price_load_s, "full_training_acquisition_and_fit_s_charged_once": training_cost,
+                "native_execution_lifetime_s_without_training": execution_cost,
+                "complete_lifetime_s": execution_cost + training_cost,
                 "coordinate_array_bytes": pool.coordinate_array_bytes,
                 "peak_additional_private_client_body_bytes": max((e["report"].get("private_snapshot_body_bytes", 64)
                                                                   for e in epochs), default=64) if ledger is not None else 0,
                 "private_owner_client_update_bytes_model": sum(e["report"].get("private_delta_update_body_bytes_model", 0) for e in epochs),
                 "server_seeded_update_packet_bytes": sum(e["report"].get("seeded_patch_packet_bytes", 0) for e in epochs),
                 "all_original_tokens_consumed_once": True}
+
+
+def geometry(plan, args):
+    return (len(plan.ids), plan.dimension, args.rank, args.n, args.prime, args.q_bits, 21,
+            plan.resources.columns, plan.resources.replies, args.edit_rows)
 
 
 def main():
@@ -137,9 +170,11 @@ def main():
     parser.add_argument("--edit-rows", type=int, default=1)
     parser.add_argument("--queries-per-update", type=int, default=2)
     parser.add_argument("--repeats", type=int, default=2)
-    parser.add_argument("--methods", nargs="+", choices=("full_reencrypt", "tile_reencrypt", "private_client_delta"),
+    parser.add_argument("--methods", nargs="+", choices=("full_reencrypt", "tile_reencrypt", "private_client_delta", "priced_policy"),
                         default=("full_reencrypt", "private_client_delta"))
-    parser.add_argument("--edit-layout", choices=("contiguous", "spread"), default="contiguous")
+    parser.add_argument("--edit-layout", choices=("contiguous", "spread", "random"), default="contiguous")
+    parser.add_argument("--trace-seed", type=int, default=0)
+    parser.add_argument("--price-file", type=Path)
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
     if (not 64 <= args.count <= 16384 or not 1 <= args.rank <= 128
@@ -148,7 +183,7 @@ def main():
             or not 1 <= args.edit_rows <= args.count or args.queries_per_update < 1
             or args.queries_per_update * (args.updates + 1) > args.pool
             or len(set(args.methods)) != len(args.methods) or len(args.methods) < 2
-            or args.methods[0] != "full_reencrypt"):
+            or args.methods[0] != "full_reencrypt" or ("priced_policy" in args.methods and args.price_file is None)):
         parser.error("Invalid bounded matched delta workload")
     profile = Profile(args.n, args.prime, q_bits=args.q_bits, eta=21)
     profile.validate(args.dimension)
@@ -160,10 +195,13 @@ def main():
     discovery_s, choices = timed(oracle.choices, w, oracle.median_tree(w, 0), args.prime)
     compile_s, plan = timed(oracle.compile_choice, w, choices[1], profile, (1,))
     current, edits = list(rows), []
+    trace_rng = random.Random(args.trace_seed)
     for revision in range(args.updates):
         batch = {}
+        random_ids = trace_rng.sample(range(args.count), args.edit_rows) if args.edit_layout == "random" else None
         for offset in range(args.edit_rows):
-            identifier = ((revision * args.edit_rows + offset) % args.count if args.edit_layout == "contiguous"
+            identifier = (random_ids[offset] if random_ids is not None else
+                          (revision * args.edit_rows + offset) % args.count if args.edit_layout == "contiguous"
                           else ((revision * args.edit_rows + offset) * 7919) % args.count)
             current[identifier] = lift((current[identifier] & ((1 << args.rank) - 1)) ^ ((1 << min(3, args.rank)) - 1))
             batch[identifier] = current[identifier]
@@ -187,13 +225,17 @@ def main():
     paths = [Path(__file__), *(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
         "client_delta", "representation_updates", "coordinate_factory", "representation_oracle", "affine_dictionary",
         "representation_contract", "crt_query_space", "crt_masked_bgv", "crt_native_bgv", "crt_linear_check",
-        "native_linear_check", "owner_bgv", "integer_phase_audit", "shallow_bgv", "coefficient_body")),
+        "native_linear_check", "owner_bgv", "integer_phase_audit", "shallow_bgv", "coefficient_body",
+        "lifetime_prices", "verification_lifetime")),
         ROOT / "src/cuhepy/bfv/scheme.py"]
     paths.extend(p for folder in ("_subring", "_fingerprint") for p in (ROOT / "experiments/bfv_search_lab" / folder).glob("*.so"))
+    if args.price_file is not None:
+        paths.append(args.price_file)
     result = metadata(paths)
     result.update(kind="private_client_delta_complete_lifecycle", profile=asdict(profile), workload={
         "count": args.count, "rank": plan.maps[0].rank, "dimension": args.dimension, "digest_owner_local": w.digest},
-        arguments={k: v for k, v in vars(args).items() if k != "json_out"}, resources_model=asdict(plan.resources),
+        arguments={k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items() if k != "json_out"},
+        resources_model=asdict(plan.resources),
         cases=cases, paired=paired, paired_median_reduction_fraction_by_method={
             method: median(p["reduction_fraction"] for p in paired if p["method"] == method) for method in methods[1:]},
         publication_gate_C_passed=False,

@@ -14,6 +14,7 @@ from experiments.bfv_search_lab import crt_native_bgv as native
 from experiments.bfv_search_lab import integer_phase_audit as audit
 from experiments.bfv_search_lab import owner_bgv as owner
 from experiments.bfv_search_lab import representation_oracle as oracle
+from experiments.bfv_search_lab import representation_updates as updates
 from experiments.bfv_search_lab import shallow_bgv as bgv
 from experiments.bfv_search_lab.representation_contract import Profile, Workload
 
@@ -85,3 +86,30 @@ def test_encrypted_base_remains_frozen_with_arbitrary_out_of_span_edits():
                 ticket.consume(values, epoch)
             word = (ledger.workload.top_k(scores)[0][1] + revision) % 16
         assert server.epoch == gate.epoch == ledger.base_epoch == epoch
+
+
+def test_trusted_partial_rebase_preserves_residuals_and_rejects_changed_maps():
+    p = plan()
+    pk, sk = masked.key_gen(p.query_space, q_bits=32, eta=1)
+    with closing(owner.OwnerClient(pk, sk)) as client:
+        pool = updates.RepairPool(p, client)
+        ledger = delta.Ledger(p, pool.index.epoch)
+        ledger.edit({99: 3, 33: 1})
+        old_snapshot = ledger.snapshot
+        pool.edit({99: 3}, method="tile_reencrypt")
+        ledger.rebase(pool.plan, pool.index.epoch)
+        assert tuple(p.position for p in ledger.snapshot.patches) == (3,)
+        for word in range(16):
+            assert ledger.snapshot.correct(pool.plan.workload.expected(word), word, epoch=ledger.snapshot.epoch) == ledger.workload.expected(word)
+        assert old_snapshot.base_epoch != ledger.snapshot.base_epoch
+        before = ledger.plan, ledger.snapshot
+        wrong = replace(pool.plan, workload=replace(pool.plan.workload, rows=(2, 1, 2, 3)))
+        with pytest.raises(ValueError, match="authorized"):
+            ledger.rebase(wrong, secrets.token_bytes(32))
+        assert (ledger.plan, ledger.snapshot) == before
+        with pytest.raises(ValueError, match="representation"):
+            ledger.rebase(replace(pool.plan, profile=replace(pool.plan.profile, q_bits=40)), secrets.token_bytes(32))
+        assert (ledger.plan, ledger.snapshot) == before
+        pool.edit({33: 1}, method="full_reencrypt")
+        ledger.rebase(pool.plan, pool.index.epoch)
+        assert not ledger.snapshot.patches

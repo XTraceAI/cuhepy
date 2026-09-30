@@ -91,9 +91,12 @@ Offer a padded public-profile control and charge its loss of efficiency.
 No query-dependent routing in the primary full-scan experiment.
 
 The owner/factory may retain private row coordinates offline. This is real
-state. The target application must justify why that state is unavailable to
-the online device; otherwise local plaintext search may be the better system.
-Do not invent an artificially tiny client budget just to exclude that baseline.
+state. The user has clarified that the online client owns the data and may
+retain all of it. Treat local plaintext search and authenticated encrypted
+cache delivery as permitted controls. Cold-start acquisition, reuse, updates
+and measured resource frontiers determine whether outsourcing helps. Any
+device limit is a separately justified scenario. Do not invent an artificially
+tiny client budget just to exclude a stronger baseline.
 
 ## 3. What to preserve and what to stop treating as a research lead
 

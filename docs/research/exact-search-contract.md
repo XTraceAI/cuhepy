@@ -22,13 +22,22 @@ including adaptively after earlier accept/abort events. Availability is not
 guaranteed. A separate factory, additional non-colluding helpers and output-only
 top-k are changed contracts, each with its own label and analysis.
 
-The intended application is an owner-managed corpus searched from an
-authorized device that does not persist the full plaintext corpus. This can
-arise from data-retention policy or device resource limits. This is a deployment
-scenario, not evidence that any customer has a particular memory budget.
-Experiments sweep state budgets and include full-cache and download-once
-controls. If a full cache is allowed and cheaper, recommend it for that profile.
-The company server/use case alone does not establish an outsourcing benefit.
+The user clarified on 2026-09-30 that the online client queries its own data
+and may access or retain any part of it. Plaintext caching is permitted. No
+data-retention prohibition or customer memory cap is assumed. The existing
+`cuhepy.hamming.paillier` and `paillier_lookup` clients accept plaintext
+embedding vectors for encryption, hold owner keys and decrypt server results;
+they impose no prohibition on retaining the inputs. These SDK interfaces do
+not establish an application-specific device budget or deployment frequency.
+
+Experiments must therefore include full-cache and download-once controls,
+including authenticated encrypted cache delivery, acquisition/setup cost and
+updates. Compare cold sessions, reuse and measured storage/compute/traffic as
+resource axes without inventing a mandatory tiny client budget. A practical
+resource limit, if studied later, must be declared and justified separately.
+When local caching is allowed and cheaper, recommend it for that profile;
+production's current outsourced Paillier flow alone does not prove that
+outsourcing is necessary or a paper contribution.
 
 Full-score access is not database privacy against the authorized client.
 Indeed `H(e_j,x)=H(0,x)+1-2*x_j` reveals each bit after d+1 queries. Privacy
@@ -115,9 +124,9 @@ fingerprint's formal 128-bit collision target is not 128-bit HE assurance.
 
 ## Completion evidence
 
-This freezes P00's research contract and candidate classification. The online
-device separation is an explicit scenario; useful budget ranges and customer
-relevance must be demonstrated in P01/P06. The compiler/oracle enforces binary
+This freezes P00's research contract and candidate classification, including
+the clarified permission to retain all authorized data. Useful resource ranges
+and customer relevance still must be demonstrated in P01/P06. The compiler/oracle enforces binary
 width, stable IDs, complete row coverage, pinned contexts and research-only
 classification. The service proof, parameter review and durable authorization
 remain tasks P07/P08, rather than assumed consequences of this document.
