@@ -65,3 +65,14 @@ def test_work_budget_no_cross_profile_dominance_and_invalid_group_redistribution
         supported.redistribute(full, (len(w.rows), 0))
     with pytest.raises(ValueError, match="allocation"):
         supported.redistribute(full, (-1,) * len(full.query_space.map_ids))
+
+
+def test_unequal_replicated_groups_price_every_allocation_and_report_simple_control():
+    w = Workload((0, 1, 2, 3) * 3 + (8, 9, 10, 11), tuple(range(16)), 4)
+    root = oracle.Node("", tuple(range(16)), (oracle.Node("0", tuple(range(12))), oracle.Node("1", tuple(range(12, 16)))))
+    result = supported.search(w, root, Profile(32, 17, eta=1))
+    for view in result.original_controls:
+        assert set(supported.allocations(view.compiled)) == set(supported.cartesian_oracle_counts(view.compiled))
+    # A negative is as valid as a gain; enumerate first, then compare controls.
+    assert min(p.static_vector[0] for p in result.plans) <= min(p.static_vector[0] for p in result.balanced_controls)
+    assert result.row_allocation_attempts == len(result.plans)

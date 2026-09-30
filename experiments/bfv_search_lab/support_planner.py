@@ -176,7 +176,7 @@ def search(workload, root, profile, *, slots=(1, 2, 4), equal_forms=True, limit=
 def cartesian_oracle_counts(plan):
     """Independent tiny Cartesian traversal, not the composition generator."""
     s = plan.query_space
-    if len(s.map_ids) > 4 or len(plan.workload.rows) > 12:
+    if len(s.map_ids) > 4 or len(plan.workload.rows) > 16:
         raise ValueError("Independent Cartesian row oracle is tiny only")
     widths = tuple(min(len(plan.workload.rows), plan.resources.replies * leaf.degree) + 1
                    for leaf in s.layout.context.leaves)

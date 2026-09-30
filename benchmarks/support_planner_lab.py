@@ -38,13 +38,17 @@ def main():
     datasets = (("two_affine_planes", (0, 1, 2, 3, 8, 9, 10, 11), 4),
                 ("unequal_planes", (0, 1, 2, 4, 5, 6), 3),
                 ("duplicate_rows", (0, 0, 1, 1, 4, 4, 5, 5), 3),
-                ("full_cube", tuple(range(8)), 3))
+                ("full_cube", tuple(range(8)), 3),
+                ("unequal_replicated_planes", (0, 1, 2, 3) * 3 + (8, 9, 10, 11), 4))
     cases, score_checks = [], 0
     for name, rows, d in datasets:
         for n in (16, 32):
             for share in (False, True):
                 w, p = Workload(rows, tuple(100 - i for i in range(len(rows))), d), Profile(n, 17, eta=1)
                 root = oracle.median_tree(w, 1)
+                if name == "unequal_replicated_planes":
+                    root = oracle.Node("", tuple(range(16)), (oracle.Node("0", tuple(range(12))),
+                                                               oracle.Node("1", tuple(range(12, 16)))))
                 search_s, result = timed(supported.search, w, root, p, equal_forms=share, limit=10000)
                 exhaustive, _ = oracle.enumerate_plans(w, root, (p,), slots=(1, 2, 4), equal_forms=share)
                 expected = set()
@@ -84,6 +88,7 @@ def main():
                            for k, optimum in by_geometry.items() if (full := original[k]).response_body_bytes_model != optimum.response_body_bytes_model
                            or balanced[k].response_body_bytes_model != optimum.response_body_bytes_model]
                 cases.append({"workload": name, "rows": rows, "dimension": d, "n": n, "equal_forms": share,
+                              "fixed_discovery_child_counts": tuple(len(child.positions) for child in root.children),
                               "search_s": search_s, "compile_attempts": result.original_compile_attempts,
                               "row_allocation_attempts": result.row_allocation_attempts,
                               "retained_plans": len(result.plans), "static_frontier_plans": len(result.frontier),
