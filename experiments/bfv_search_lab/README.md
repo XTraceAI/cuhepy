@@ -1,5 +1,24 @@
 # BFV search research sandbox
 
+The [E01–E40 system and paper synthesis](../../docs/research/research-synthesis-and-system-roadmap.md)
+now inventories the entire portfolio, proposed compatible system paths,
+precise contribution candidates and unresolved proof/measurement gates. It
+distinguishes implemented experiments from scheme/protocol proposals; no
+exhaustive originality or production-security claim is made.
+
+The [twelfth cycle](../../docs/research/verification-frontier-results.md) adds
+uniform correction-image norm bounds, native complete-vector checking and a
+known polynomial-fingerprint alternative with an independent GMP oracle.
+Exact coefficient bit bodies, schema controls, valid Hamming moment/ID
+counterexamples, contract/pool models and ring/capacity counts retain both
+successes and failures. All 108 full-size encrypted searches agree, and 478
+selected research tests pass. The new C++ code accepts no HE private key and
+has no private-timing assurance. Its isolated build is:
+
+```bash
+make -C experiments/bfv_search_lab/_fingerprint PYTHON=../../../.venv/bin/python
+```
+
 The [current research priorities](../../docs/research/creative-experiment-priorities.md)
 favor creative algebra, algorithms and protocols before further routine tuning
 or completing the existing verifier. The [first creative cycle](../../docs/research/creative-algebra-results.md)
@@ -145,6 +164,12 @@ assurance. The raw CUDA path does not provide attestation.
 
 | File | Role |
 | --- | --- |
+| `correction_image_bounds.py` | E36 exact/projective uniform norm bounds, expectation/witness lower limits and shared-input guards |
+| `polynomial_fingerprint.py`, `native_linear_check.py`, `_fingerprint/bindings.cpp` | E37 known remainder family with GMP/native oracles, exact native old-family control, complete inherited local lifecycle |
+| `coefficient_body.py` | E37 lossless Q-bit coefficient bodies, independent GMP reference and canonical padding/residue rejection |
+| `schema_metric_oracles.py` | E38 public one-hot diameter, invalid-query wrap controls and score-field/CRT-root models |
+| `answer_summary_limits.py`, `portfolio_costs.py` | E39 valid moment/histogram/ID failures, exact coverage and contract-filtered recorded-stage/pool models |
+| `ring_capacity_frontier.py` | E40 fixed-map plaintext allocation and reply fragmentation across N; no new HE profile or timing |
 | `reduction_oracles.py`, `deferred_bgv.py` | E20 independent secret-basis/projection oracle, switch/key/noise models and homemade delayed-switch evaluator |
 | `answer_oracles.py`, `aggregate_bgv.py` | E21 exact polynomial/interpolation/Walsh references, stable-ID recovery, rank/tie obstructions and encrypted factor circuit |
 | `syndrome_oracle.py` | E19 safe coupled block bounds, exact public table factorization and owner-side layouts checked through homemade BGV encryption |

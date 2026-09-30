@@ -1,5 +1,33 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-30 twelfth creative follow-up:**
+[E36–E40 complete verification and competing controls](verification-frontier-results.md)
+adds uniform correction-image bounds, exact native-vector checking, homemade
+known polynomial fingerprints, lossless coefficient bodies, schema limits,
+moment/ID failures and ring/capacity models. The
+[E01–E40 synthesis](research-synthesis-and-system-roadmap.md) replaces an endless
+sequence of local optimizations with a contribution ledger, compatible system
+paths, proof agenda, closest-baseline requirements and stopping rules.
+
+New targeted primary reading: Rabin TR-15-81's sampling/recurrence/collision
+sections (the report's [OCR mirror](https://www.scribd.com/document/811485055/RABIN-ALGORITHM-BYUSING-RANDOM-POLYNOMIAL));
+[Krawczyk 1994](https://link.springer.com/chapter/10.1007/3-540-48658-5_15) at
+abstract/metadata level; [Wright's Section 2](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/977D369B61ECE0FBDFC216CC4822F047/S0013091500002698a.pdf/equal_sums_of_like_powers.pdf)
+for classical equal-power partitions; and
+[Verma–Singh Definition 2.1](https://arxiv.org/html/2507.17654v1) for centered
+Lee weight. These preclude calling the ingredients new. E36 investigates
+maximum image norm, rather than reproducing that paper's coding problem.
+
+Revisited [SANNS](https://www.microsoft.com/en-us/research/wp-content/uploads/2019/04/SANNS-Scaling-Up-Secure-Approximate.pdf),
+Sections I, III-C and IV-B, sharpens the comparison: scalar/coefficient
+arithmetic avoids slot-root restrictions, while mixed-protocol selection has
+its own costs. Its semi-honest approximate Euclidean/data-owner contract
+differs from ours. The artifact has not been reproduced in this cycle.
+The proposed attested correlation factory is an explicitly changed trusted
+offline service, with [AWS measurement/channel context](https://docs.aws.amazon.com/enclaves/latest/user/verify-root.html),
+not an implemented or attested GPU proof. E33/E34 proof/lifecycle work and
+compatible baseline reproduction are now the first gates in the synthesis.
+
 **2026-09-29 eleventh creative follow-up:**
 [adaptive transcripts and joint field/geometry selection](adaptive-field-frontier-results.md)
 implement E34 ideal-mask/failure oracles and E35 independently fitted fields.

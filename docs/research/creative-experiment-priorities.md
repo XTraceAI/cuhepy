@@ -1,6 +1,6 @@
 # Creative experiment priorities
 
-Priority update, 2026-09-29, following the project's research direction.
+Priority update, 2026-09-30, following the project's research direction.
 This supersedes the execution order in earlier plans; it does not change their
 results. The implementation baseline is `7dd927f` on
 `experiment/bgv-verification-packing`, preserved in the pushed tag
@@ -112,16 +112,27 @@ original memberships reproduces the selected layouts, and another checking
 round leaves native local time 4.3–6.0 ms higher. Full frontier setup, unused
 tokens and plaintext-cache alternatives are charged.
 
-**Next cycle:** prioritize E36's uniform correction-image norm bounds. Start
-with exact tiny linear-code/centered-lift oracles, including an expectation
-lower bound on the maximum norm. Can image constraints justify smaller Q or
-more capacity for arbitrary adaptive corrections, without importing E32's
-fixed-query concentration assumptions? E33's authenticated two-field conversion
-and E34's real-transcript argument remain competing protocol questions; retain
-the explicit carry, deterministic-cache and public-linear-pool failures.
-A matching GPU experiment follows a precise state/trust comparison.
-Keep the independent-key matrix orientation as another candidate; its literal
-key growth still does not justify a general matrix CUDA implementation.
+**Twelfth cycle implemented:** [complete verification and competing limits](verification-frontier-results.md)
+(E36–E40) test uniform Lee-norm bounds, a native same-family verifier control,
+known polynomial fingerprints, exact bit bodies, schema range, moment/ID
+counterexamples, contract/pool selection and fixed-map ring fragmentation.
+All 108 full encrypted searches are exact; 478 selected regressions pass.
+Native checking accounts for most of the 1.58–1.76× local stage-total gain;
+the different known hash family has a smaller additional benefit. Norm
+tightening does not cross a byte boundary. Small-ring models retain both
+unchanged-payload and spare-capacity cases; changed N needs new assurance.
+
+**Next cycle:** follow the [system/paper synthesis](research-synthesis-and-system-roadmap.md),
+which inventories E01–E40, compatible contracts, contribution candidates,
+proof premises, strong baselines and stopping rules. Prioritize E34's complete
+transcript/game and E33's authenticated correlation/lifecycle experiment,
+then same-data verified CPU/GPU/full-cache comparisons and a stronger joint
+representation/update algorithm. Preserve the general BGV/CUDA path and
+all failed constructions. The ring models, classic hash families and native
+engineering gains are controls, not an established original contribution.
+Output-private Boolean/MPC/attested selection, real two-field correlations,
+matrix HE and certified approximate refinement remain explicit competing
+tracks. Their complete costs and changed contracts are unresolved.
 Previous checkpoints include `checkpoint/dyadic-rank-capacity-2026-09-27`
 (`10a9125`) and `checkpoint/matrix-query-space-2026-09-28` (`cee16cf`). E29 source
 is committed at `26e8ffb` and `b6e41c8`, checkpointed at `15c6737`. E30 source
@@ -145,7 +156,7 @@ be known. Check the closest work before presenting a contribution claim.
 For the next research cycle:
 
 1. Investigate several competing hypotheses with small independent algebraic
-   models. Use the completed E19–E35 results above to choose the next competing
+   models. Use the completed E19–E40 results above to choose the next competing
    questions. A plausible but uncertain idea deserves
    a cheap test.
 2. For each, write the claimed difference from its closest known construction,
@@ -763,6 +774,58 @@ obstruction that changes the search/verification tradeoff. Linear codes, CRT
 and worst-case norm analysis are known ingredients. **Falsification:** the
 maximum stays near the full coefficient cube, checking/certification costs
 erase the savings, or the bound fails on characteristic/carry counterexamples.
+
+## E37 — Can a known complete fingerprint family improve the joint frontier?
+
+**Implemented:** compare the existing seeded uniform-vector check in GMP and
+native code before attributing a gain to a new family. A separate secret
+irreducible-polynomial remainder check uses the same F_Q and complete formal
+coefficient sequence. Its exact factor-count bound includes length and the
+attempt budget. Full negacyclic adjoint preprocessing handles every wrap term.
+Q35/Q36 need degree five where the vector check uses four rounds, so setup
+and fingerprint state can lose even when native online hashing wins.
+
+**Follow-up:** independently review the verification-only transcript and
+private implementation; do not expose keys/tags or silently extend length or
+lifetime. The family is established prior art. Evaluate any parallel/native
+variant against the equally optimized exact vector control.
+
+## E38 — Can application range and CRT geometry be selected together?
+
+**Implemented:** validated one-hot diameter, exact tiny pairs and invalid-query
+wrap controls. Mushroom's score range permits t=47, but the chosen 32-slot
+geometry still needs t>=193. Raw scalar columns avoid those roots with much
+more index storage. No general small-field affine API is enabled.
+
+**Follow-up:** prove a query-language restriction and exact representation
+before shrinking its field. Compare scalar, CRT and raw/global maps including
+storage and authenticated query validation; schema range alone is insufficient.
+
+## E39 — Which output and cost shortcuts survive exactness and contracts?
+
+**Implemented:** classical equal-moment partitions embedded as valid Hamming
+indices, histogram/ID ambiguity, exact omitted-row coverage with stable ties,
+and a measured-candidate contract/pool planner. All nine tokens are charged;
+online-only and amortized objectives choose different candidates. The default
+contract rejects the current unreviewed research candidates.
+
+**Follow-up:** ID-aware summaries or a complete exact selection protocol must
+beat full-score transfer with conversion, verification and coverage included.
+Distance-only counterexamples are not general top-k impossibility results.
+Canonical state models are not resident-memory or deployed-network benchmarks.
+
+## E40 — Does a smaller encryption ring improve the physical reply frontier?
+
+**Implemented model:** reuse certified fixed maps, allocate final geometry
+afresh, and retain every feasible/rejected ring degree. Mushroom N=8192 needs
+two replies instead of one at N=16384, leaving body size unchanged. Semeion's
+much smaller index has spare capacity and can have substantially smaller body
+models. No lower-degree encryption profile, latency or security is claimed.
+
+**Follow-up:** review lattice parameters/distributions, then perform complete
+encrypted same-data comparisons at any justified degree. Include all replies,
+token headers, checker length, key/setup costs and private map/full-cache state.
+Never infer an admissible smaller encryption ring from plaintext CRT roots.
 
 ## Evidence and deferred work
 
