@@ -1,0 +1,963 @@
+{
+  "schema": 1,
+  "generated_utc": "2026-09-30T13:03:29.594550+00:00",
+  "retention_head": "f19af004f57778a5487fdd8fcdefb8314eee4db2",
+  "baseline": "02e06c0f5636def284ed6864b3e208538fcb10a6",
+  "raw_runs": [
+    {
+      "path": "benchmarks/results/publication-anchor-mushroom-20260930.json",
+      "sha256": "ad7441269a58803e4aa883a22a72ef0facb5ef64a90b8c00c4d2b6e098f43a07",
+      "bytes": 93433,
+      "kind": "complete_verifier_lossless_precision_frontier",
+      "recorded_head": "00a63627dee19b7cd620328002998da70b29c653",
+      "command": [
+        "benchmarks/verification_frontier_lab.py",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--dataset",
+        "mushroom",
+        "--seed",
+        "3001",
+        "--repeats",
+        "2",
+        "--json-out",
+        "benchmarks/results/publication-anchor-mushroom-20260930.json"
+      ],
+      "source_versions": 32
+    },
+    {
+      "path": "benchmarks/results/publication-anchor-semeion-20260930.json",
+      "sha256": "b0261e03e6ca0c7a133611b30199907aee198f6c0a98c0102425c790b43a1a07",
+      "bytes": 93551,
+      "kind": "complete_verifier_lossless_precision_frontier",
+      "recorded_head": "00a63627dee19b7cd620328002998da70b29c653",
+      "command": [
+        "benchmarks/verification_frontier_lab.py",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--dataset",
+        "semeion",
+        "--seed",
+        "3001",
+        "--repeats",
+        "2",
+        "--json-out",
+        "benchmarks/results/publication-anchor-semeion-20260930.json"
+      ],
+      "source_versions": 32
+    },
+    {
+      "path": "benchmarks/results/publication-bgv-estimator-additional-20260930.json",
+      "sha256": "a872a0ce28bc089f8e172ced2975d66ec251239a5f47d1c237167f3d0aaa17c5",
+      "bytes": 6575,
+      "kind": "parameter-estimate",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/bgv_parameter_estimation.py",
+        "--estimator",
+        "/home/pete/yavor-projects/xtrace-work/research-data/reference-artifacts-20260930/lattice-estimator",
+        "--n",
+        "2048",
+        "--q-bits",
+        "32",
+        "40",
+        "--attacks",
+        "bkw,bdd_hybrid,bdd_mitm_hybrid,arora-gb",
+        "--json-out",
+        "benchmarks/results/publication-bgv-estimator-additional-20260930.json"
+      ],
+      "source_versions": 1
+    },
+    {
+      "path": "benchmarks/results/publication-bgv-estimator-classical-20260930.json",
+      "sha256": "0b32f9c28f3f3c5f1db9695f85c57a5c4c6e812c3ebdbc72ee910e4d4230e750",
+      "bytes": 12394,
+      "kind": "parameter-estimate",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/bgv_parameter_estimation.py",
+        "--estimator",
+        "/home/pete/yavor-projects/xtrace-work/research-data/reference-artifacts-20260930/lattice-estimator",
+        "--n",
+        "1024",
+        "2048",
+        "--q-bits",
+        "32",
+        "40",
+        "--attacks",
+        "usvp,bdd,dual,dual_hybrid",
+        "--json-out",
+        "benchmarks/results/publication-bgv-estimator-classical-20260930.json"
+      ],
+      "source_versions": 1
+    },
+    {
+      "path": "benchmarks/results/publication-bgv-estimator-quantum-sensitivity-20260930.json",
+      "sha256": "66b9f42422fb3f54d426dcd0784918315b9934ce98abf5c1e5a1ad1f0a00c71c",
+      "bytes": 7142,
+      "kind": "parameter-estimate",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/bgv_parameter_estimation.py",
+        "--estimator",
+        "/home/pete/yavor-projects/xtrace-work/research-data/reference-artifacts-20260930/lattice-estimator",
+        "--n",
+        "2048",
+        "--q-bits",
+        "32",
+        "40",
+        "--attacks",
+        "usvp,bdd,dual,dual_hybrid",
+        "--model",
+        "ADPS16-quantum",
+        "--json-out",
+        "benchmarks/results/publication-bgv-estimator-quantum-sensitivity-20260930.json"
+      ],
+      "source_versions": 1
+    },
+    {
+      "path": "benchmarks/results/publication-bgv-estimator-retry-20260930.json",
+      "sha256": "617fe6792daf92ce6a842f78d92d0845e3589bd6f7e069699515d916ade8dca6",
+      "bytes": 6438,
+      "kind": "parameter-estimate",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/bgv_parameter_estimation.py",
+        "--estimator",
+        "/home/pete/yavor-projects/xtrace-work/research-data/reference-artifacts-20260930/lattice-estimator",
+        "--n",
+        "2048",
+        "--q-bits",
+        "32",
+        "40",
+        "--attacks",
+        "bkw,bdd_mitm_hybrid,arora-gb",
+        "--attack-timeout-s",
+        "60",
+        "--json-out",
+        "benchmarks/results/publication-bgv-estimator-retry-20260930.json"
+      ],
+      "source_versions": 1
+    },
+    {
+      "path": "benchmarks/results/publication-ciphertext-factory-mushroom-20260930.json",
+      "sha256": "fc11dc540d85d04691e6a6eac840ae4d8cc7b0885b21e9b3ab393610bbb63da5",
+      "bytes": 17249,
+      "kind": "encrypted_index_trusted_factory",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/ciphertext_factory_lab.py",
+        "--dataset",
+        "mushroom",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--repeats",
+        "4",
+        "--json-out",
+        "benchmarks/results/publication-ciphertext-factory-mushroom-20260930.json"
+      ],
+      "source_versions": 15
+    },
+    {
+      "path": "benchmarks/results/publication-ciphertext-factory-semeion-20260930.json",
+      "sha256": "5bf914a9a12b5c10ac3a5a58b33829d409f6d157fd55f9bc188caa81a4ebc69c",
+      "bytes": 17289,
+      "kind": "encrypted_index_trusted_factory",
+      "recorded_head": "cf88c1bea508e6b52298ffdf43b4f6bcc25573c0",
+      "command": [
+        "benchmarks/ciphertext_factory_lab.py",
+        "--dataset",
+        "semeion",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--repeats",
+        "4",
+        "--json-out",
+        "benchmarks/results/publication-ciphertext-factory-semeion-20260930.json"
+      ],
+      "source_versions": 15
+    },
+    {
+      "path": "benchmarks/results/publication-ciphertext-factory-synthetic128-20260930.json",
+      "sha256": "e670f79571922160d348143852ed460514e4cde3999fe68ebeea124beb971912",
+      "bytes": 17285,
+      "kind": "encrypted_index_trusted_factory",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/ciphertext_factory_lab.py",
+        "--dataset",
+        "synthetic128",
+        "--repeats",
+        "4",
+        "--json-out",
+        "benchmarks/results/publication-ciphertext-factory-synthetic128-20260930.json"
+      ],
+      "source_versions": 15
+    },
+    {
+      "path": "benchmarks/results/publication-component-recipe-mushroom-20260930-matched.json",
+      "sha256": "778f8892e7426afe2a1b9990566ac73f02c625cffe20e6926dbb31d581075d06",
+      "bytes": 15494,
+      "kind": "public_component_seed_recipe",
+      "recorded_head": "d2c198d09d88d3f89225e441418eb902d0a77576",
+      "command": [
+        "benchmarks/component_recipe_lab.py",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--dataset",
+        "mushroom",
+        "--repeats",
+        "3",
+        "--json-out",
+        "benchmarks/results/publication-component-recipe-mushroom-20260930-matched.json"
+      ],
+      "source_versions": 15
+    },
+    {
+      "path": "benchmarks/results/publication-component-recipe-mushroom-20260930.json",
+      "sha256": "ae6f41c3a1eb5b4ef0eed283ab1f90387a891cf73ffd932c65914ae742120fb4",
+      "bytes": 13113,
+      "kind": "public_component_seed_recipe",
+      "recorded_head": "e52df4bec9932f88a49621b78cd61c0434fa4750",
+      "command": [
+        "benchmarks/component_recipe_lab.py",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--dataset",
+        "mushroom",
+        "--repeats",
+        "3",
+        "--json-out",
+        "benchmarks/results/publication-component-recipe-mushroom-20260930.json"
+      ],
+      "source_versions": 2
+    },
+    {
+      "path": "benchmarks/results/publication-component-recipe-semeion-20260930-matched.json",
+      "sha256": "a30503820e4014c9bacbe410d9a542359cd448e24ffe207df99c927e7b3da3f6",
+      "bytes": 15506,
+      "kind": "public_component_seed_recipe",
+      "recorded_head": "d2c198d09d88d3f89225e441418eb902d0a77576",
+      "command": [
+        "benchmarks/component_recipe_lab.py",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--dataset",
+        "semeion",
+        "--repeats",
+        "3",
+        "--json-out",
+        "benchmarks/results/publication-component-recipe-semeion-20260930-matched.json"
+      ],
+      "source_versions": 15
+    },
+    {
+      "path": "benchmarks/results/publication-coordinate-cache-mushroom-20260930.json",
+      "sha256": "a2bdb771ccc5b035f6ff6c6f76b90df98b9c803d3af7bcfc7fc7e6b1c0efaa52",
+      "bytes": 16547,
+      "kind": "exact_private_coordinate_cache_control",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/coordinate_cache_lab.py",
+        "--dataset",
+        "mushroom",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--json-out",
+        "benchmarks/results/publication-coordinate-cache-mushroom-20260930.json"
+      ],
+      "source_versions": 4
+    },
+    {
+      "path": "benchmarks/results/publication-coordinate-cache-semeion-20260930.json",
+      "sha256": "1660878bce2407a6f5bc65e6d06fddfba6df23f7133a92a0b45d4502ea8f2155",
+      "bytes": 16656,
+      "kind": "exact_private_coordinate_cache_control",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/coordinate_cache_lab.py",
+        "--dataset",
+        "semeion",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--json-out",
+        "benchmarks/results/publication-coordinate-cache-semeion-20260930.json"
+      ],
+      "source_versions": 4
+    },
+    {
+      "path": "benchmarks/results/publication-coordinate-cache-synthetic128-20260930.json",
+      "sha256": "31639b52bc4b1985d57a78c9f27c912c61de1828deb6c5f9f83edfc8ddd25c41",
+      "bytes": 16788,
+      "kind": "exact_private_coordinate_cache_control",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/coordinate_cache_lab.py",
+        "--dataset",
+        "synthetic128",
+        "--json-out",
+        "benchmarks/results/publication-coordinate-cache-synthetic128-20260930.json"
+      ],
+      "source_versions": 4
+    },
+    {
+      "path": "benchmarks/results/publication-factory-vectorized-synthetic128-20260930.json",
+      "sha256": "e1b48c4c32e30056331c4db42a2eda7ea2ee61faaa8a354d057983301aabdc76",
+      "bytes": 24216,
+      "kind": "encrypted_index_trusted_factory",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/ciphertext_factory_lab.py",
+        "--dataset",
+        "synthetic128",
+        "--vectorized-control",
+        "--json-out",
+        "benchmarks/results/publication-factory-vectorized-synthetic128-20260930.json"
+      ],
+      "source_versions": 16
+    },
+    {
+      "path": "benchmarks/results/publication-global-control-mushroom-20260930.json",
+      "sha256": "1122f1119f228d98ff0f3b294cb924c5ad209bbb79a783d526aead214319ae26",
+      "bytes": 37416,
+      "kind": "score_only_full_ring_frontier",
+      "recorded_head": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05",
+      "command": [
+        "benchmarks/score_layout_lab.py",
+        "--dataset",
+        "mushroom",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--representations",
+        "global_raw",
+        "global_affine",
+        "--vectorized-owner",
+        "--json-out",
+        "benchmarks/results/publication-global-control-mushroom-20260930.json"
+      ],
+      "source_versions": 19
+    },
+    {
+      "path": "benchmarks/results/publication-global-control-semeion-20260930.json",
+      "sha256": "3bdde98e2b4734bc2ecc449a70d77aa01ef962242a6b624a312e480fd8a79ab8",
+      "bytes": 37521,
+      "kind": "score_only_full_ring_frontier",
+      "recorded_head": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05",
+      "command": [
+        "benchmarks/score_layout_lab.py",
+        "--dataset",
+        "semeion",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--representations",
+        "global_raw",
+        "global_affine",
+        "--vectorized-owner",
+        "--json-out",
+        "benchmarks/results/publication-global-control-semeion-20260930.json"
+      ],
+      "source_versions": 19
+    },
+    {
+      "path": "benchmarks/results/publication-joint-oracle-20260930.json",
+      "sha256": "47126960133e78c396f947c186ccbf4a2fb4eb32ad27b1552e405d971246d506",
+      "bytes": 146013,
+      "kind": "publication_joint_frontier_exact_count_oracles",
+      "recorded_head": null,
+      "command": null,
+      "source_versions": 6
+    },
+    {
+      "path": "benchmarks/results/publication-lifetime-oracle-20260930.json",
+      "sha256": "ba72f9c6260ae4274430577f1b5dd5add350dcde9ee1b01f55682f2e62420c63",
+      "bytes": 16907,
+      "kind": "exact_hindsight_lifetime_model",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/lifetime_planner_lab.py",
+        "--json-out",
+        "benchmarks/results/publication-lifetime-oracle-20260930.json"
+      ],
+      "source_versions": 4
+    },
+    {
+      "path": "benchmarks/results/publication-pending-lifecycle-rank128-20260930-complete.json",
+      "sha256": "838dca841870e0a23fe3604e5e2eb24034bb64990204de83b1a9b7ca72b1c86b",
+      "bytes": 148695,
+      "kind": "pending_mask_complete_lifecycle",
+      "recorded_head": "cf88c1bea508e6b52298ffdf43b4f6bcc25573c0",
+      "command": [
+        "benchmarks/representation_lifecycle_lab.py",
+        "--count",
+        "16384",
+        "--pool",
+        "32",
+        "--updates",
+        "8",
+        "--queries-per-update",
+        "2",
+        "--repeats",
+        "2",
+        "--rank",
+        "128",
+        "--dimension",
+        "512",
+        "--prime",
+        "1153",
+        "--q-bits",
+        "40",
+        "--json-out",
+        "benchmarks/results/publication-pending-lifecycle-rank128-20260930-complete.json"
+      ],
+      "source_versions": 16
+    },
+    {
+      "path": "benchmarks/results/publication-pending-lifecycle-rank128-20260930.json",
+      "sha256": "75ebe933dd4c573e85e5d2aa644137d2725a242d58e7172836cafc652d490368",
+      "bytes": 122077,
+      "kind": "pending_mask_complete_lifecycle",
+      "recorded_head": "7f2962bd44e7b0dca414485fadf01604d239de4d",
+      "command": [
+        "benchmarks/representation_lifecycle_lab.py",
+        "--count",
+        "16384",
+        "--pool",
+        "32",
+        "--updates",
+        "4",
+        "--queries-per-update",
+        "2",
+        "--repeats",
+        "2",
+        "--rank",
+        "128",
+        "--dimension",
+        "512",
+        "--prime",
+        "1153",
+        "--q-bits",
+        "40",
+        "--json-out",
+        "benchmarks/results/publication-pending-lifecycle-rank128-20260930.json"
+      ],
+      "source_versions": 16
+    },
+    {
+      "path": "benchmarks/results/publication-pending-lifecycle-rank8-20260930.json",
+      "sha256": "2060afe867e2da54638b398d150db867aaf09eb744cdefbf3676e5378b16983b",
+      "bytes": 66989,
+      "kind": "pending_mask_complete_lifecycle",
+      "recorded_head": "7f2962bd44e7b0dca414485fadf01604d239de4d",
+      "command": [
+        "benchmarks/representation_lifecycle_lab.py",
+        "--count",
+        "8192",
+        "--pool",
+        "12",
+        "--updates",
+        "4",
+        "--queries-per-update",
+        "2",
+        "--repeats",
+        "2",
+        "--rank",
+        "8",
+        "--dimension",
+        "32",
+        "--prime",
+        "193",
+        "--q-bits",
+        "32",
+        "--json-out",
+        "benchmarks/results/publication-pending-lifecycle-rank8-20260930.json"
+      ],
+      "source_versions": 16
+    },
+    {
+      "path": "benchmarks/results/publication-pending-repair-8192-20260930.json",
+      "sha256": "0250787719a566000cdf88c4b87f4aa55dbdfb0d285a458271821895e02aa84d",
+      "bytes": 19905,
+      "kind": "pending_mask_frozen_representation_update",
+      "recorded_head": "00a63627dee19b7cd620328002998da70b29c653",
+      "command": [
+        "benchmarks/representation_lifetime_lab.py",
+        "--count",
+        "8192",
+        "--pool",
+        "12",
+        "--repeats",
+        "3",
+        "--json-out",
+        "benchmarks/results/publication-pending-repair-8192-20260930.json"
+      ],
+      "source_versions": 11
+    },
+    {
+      "path": "benchmarks/results/publication-pending-repair-rank128-20260930.json",
+      "sha256": "402e8b8d11a41354bbc625cf4d4a72ede85148aa276095afd61acfb48d8a9901",
+      "bytes": 15127,
+      "kind": "pending_mask_frozen_representation_update",
+      "recorded_head": "00a63627dee19b7cd620328002998da70b29c653",
+      "command": [
+        "benchmarks/representation_lifetime_lab.py",
+        "--count",
+        "16384",
+        "--rank",
+        "128",
+        "--dimension",
+        "512",
+        "--prime",
+        "1153",
+        "--q-bits",
+        "40",
+        "--pool",
+        "32",
+        "--repeats",
+        "2",
+        "--json-out",
+        "benchmarks/results/publication-pending-repair-rank128-20260930.json"
+      ],
+      "source_versions": 11
+    },
+    {
+      "path": "benchmarks/results/publication-reference-mushroom-20260930.json",
+      "sha256": "d3cc21fc8702ca3aa03e6a06e5e95f51ac6babbe3950b96447b63fb3a4c4ec95",
+      "bytes": 8254,
+      "kind": "matched_binary_exact_author_reference",
+      "recorded_head": null,
+      "command": null,
+      "source_versions": 5
+    },
+    {
+      "path": "benchmarks/results/publication-reference-semeion-20260930.json",
+      "sha256": "c9b17f3e8d74f582a436e3e750775bcf82baa29390d1d3e146a9280f21f5643c",
+      "bytes": 8259,
+      "kind": "matched_binary_exact_author_reference",
+      "recorded_head": null,
+      "command": null,
+      "source_versions": 5
+    },
+    {
+      "path": "benchmarks/results/publication-score-layout-mushroom-20260930.json",
+      "sha256": "209ceb785103420696a1df8f24bdeec2ccb2960eada7c149e9f714e2fbdd923f",
+      "bytes": 36307,
+      "kind": "score_only_full_ring_frontier",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/score_layout_lab.py",
+        "--dataset",
+        "mushroom",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--json-out",
+        "benchmarks/results/publication-score-layout-mushroom-20260930.json"
+      ],
+      "source_versions": 16
+    },
+    {
+      "path": "benchmarks/results/publication-score-layout-semeion-20260930.json",
+      "sha256": "12b959d03b6ca4eda5afe97808dd0239429df15a585a5a737b62ce086dd6fb62",
+      "bytes": 36367,
+      "kind": "score_only_full_ring_frontier",
+      "recorded_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+      "command": [
+        "benchmarks/score_layout_lab.py",
+        "--dataset",
+        "semeion",
+        "--cache-dir",
+        "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+        "--json-out",
+        "benchmarks/results/publication-score-layout-semeion-20260930.json"
+      ],
+      "source_versions": 16
+    }
+  ],
+  "source_versions": [
+    {
+      "path": "benchmarks/verification_frontier_lab.py",
+      "sha256": "52fa90137b80459e751bee155cbad973b1ae0bff4d6d709542a732cabd743124",
+      "location": "git",
+      "revision": "9f7cbd80a6553939548b1a8217f0129a2bfed253"
+    },
+    {
+      "path": "benchmarks/field_frontier_lab.py",
+      "sha256": "6e428caa717e1c5e565a7096dabca479df513f648e73e6c0c916968192aa1009",
+      "location": "git",
+      "revision": "461bb10f75f23a5f230bb7375cfd08e61e2b9c24"
+    },
+    {
+      "path": "benchmarks/certified_filter_lab.py",
+      "sha256": "4faa08db3d109cc5c4e90573a7fc0999effb62e9a78679189059e9df13d7ea89",
+      "location": "git",
+      "revision": "b2937b858f11fd60043eb944d0ec7f6e3b0c8de2"
+    },
+    {
+      "path": "benchmarks/dictionary_layout_lab.py",
+      "sha256": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31",
+      "location": "git",
+      "revision": "f49b5f82f27596e613ce0f4364ee292ef004c96c"
+    },
+    {
+      "path": "src/cuhepy/bfv/scheme.py",
+      "sha256": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+      "location": "git",
+      "revision": "403bf24a6cf8ef2812a1fa2d4b606206a2af7d69"
+    },
+    {
+      "path": "experiments/bfv_search_lab/polynomial_fingerprint.py",
+      "sha256": "71404e27bdc364e30698012606043bb8ddc37bbd0ef5b0e057c4cda31222ef92",
+      "location": "git",
+      "revision": "9f7cbd80a6553939548b1a8217f0129a2bfed253"
+    },
+    {
+      "path": "experiments/bfv_search_lab/native_linear_check.py",
+      "sha256": "6bc6fb004019dca6c8e5c9f155bd3f45570f7e5daef3e9d0e7274d0399ad33cd",
+      "location": "git",
+      "revision": "9f7cbd80a6553939548b1a8217f0129a2bfed253"
+    },
+    {
+      "path": "experiments/bfv_search_lab/coefficient_body.py",
+      "sha256": "cd00bfca329d08bacfc04481de58756d9673e1baf304c6afa4db9ee8a8d4ed10",
+      "location": "git",
+      "revision": "9f7cbd80a6553939548b1a8217f0129a2bfed253"
+    },
+    {
+      "path": "experiments/bfv_search_lab/test_polynomial_fingerprint.py",
+      "sha256": "922f247e4be14bc263a91e718065566e2cd2057ebe2a89e9babe19f1f7997352",
+      "location": "git",
+      "revision": "9f7cbd80a6553939548b1a8217f0129a2bfed253"
+    },
+    {
+      "path": "experiments/bfv_search_lab/field_frontier.py",
+      "sha256": "4a4f747fe272825b1689b064a21583773452eef69716f4aeb1bd438f58863db6",
+      "location": "git",
+      "revision": "461bb10f75f23a5f230bb7375cfd08e61e2b9c24"
+    },
+    {
+      "path": "experiments/bfv_search_lab/integer_phase_audit.py",
+      "sha256": "107f434ecd839a2769900a2104610d5575ee9b5f67d5cc7977e46057a615fcfa",
+      "location": "git",
+      "revision": "461bb10f75f23a5f230bb7375cfd08e61e2b9c24"
+    },
+    {
+      "path": "experiments/bfv_search_lab/crt_noise_budget.py",
+      "sha256": "5d6656211f63b894321cca814349d0758fcc492f6c5e6ca84a80e83ab3381ddb",
+      "location": "git",
+      "revision": "a55bfac93d9bf17547451a3c46173f01211f962d"
+    },
+    {
+      "path": "experiments/bfv_search_lab/crt_query_space.py",
+      "sha256": "2bc431424dc9679c62ef806f33b81e501f222f1837ebac8d515e22475e4fd8a3",
+      "location": "git",
+      "revision": "80f3cc469e3c44efa5bdf92dd87e43af7b21cbba"
+    },
+    {
+      "path": "experiments/bfv_search_lab/crt_masked_bgv.py",
+      "sha256": "ef2cece17e1b0a31a71e69ce01db380e3266293bca728dc923d1defb0e261152",
+      "location": "git",
+      "revision": "fc5aa84fe891a4848aab86f28731a76295ccdaaf"
+    },
+    {
+      "path": "experiments/bfv_search_lab/crt_native_bgv.py",
+      "sha256": "b9b8f816ae7360dec87c4fcbf170e2ab4e861908c133cb2c63cbd04d512c5c84",
+      "location": "git",
+      "revision": "fc5aa84fe891a4848aab86f28731a76295ccdaaf"
+    },
+    {
+      "path": "experiments/bfv_search_lab/crt_linear_check.py",
+      "sha256": "86081119ae715e17d92cd2132f57971f222cddcc04f2c0aad7adc115ebd1cee7",
+      "location": "git",
+      "revision": "fc5aa84fe891a4848aab86f28731a76295ccdaaf"
+    },
+    {
+      "path": "experiments/bfv_search_lab/rank_partition.py",
+      "sha256": "3d4c772feb11c2a1615566166f2c940b3388d98df5b499d668a7837c0b3e688f",
+      "location": "git",
+      "revision": "8db3cb909a32fc21e526efe6eec8af8bde928c07"
+    },
+    {
+      "path": "experiments/bfv_search_lab/affine_dictionary.py",
+      "sha256": "0f811f9a5cd2628f1c6c2f048c1d32e65eaaf9aa5e3f942118342b3edf6daf05",
+      "location": "git",
+      "revision": "d6d9ad89b9eaea3797d8824fdfe0ab3f00afa16a"
+    },
+    {
+      "path": "experiments/bfv_search_lab/folded_dictionary.py",
+      "sha256": "ffcf1a874b3ced51acde17c018047005c34121e72f0221237b7b77377de7f35c",
+      "location": "git",
+      "revision": "e6c4616f9c82dbf3b2eb52b0ef87491df93e5567"
+    },
+    {
+      "path": "experiments/bfv_search_lab/folded_filter.py",
+      "sha256": "c0742a76c0f3daa956b02890f173afd47f027f8cf0b69ef2653836edb20e9605",
+      "location": "git",
+      "revision": "b5f58250868eb0fb003819f27e8032e6cd2e12c1"
+    },
+    {
+      "path": "experiments/bfv_search_lab/binary_fixtures.py",
+      "sha256": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+      "location": "git",
+      "revision": "e6c4616f9c82dbf3b2eb52b0ef87491df93e5567"
+    },
+    {
+      "path": "experiments/bfv_search_lab/dyadic_crt.py",
+      "sha256": "364e017962129982f383956bdf6ecc384d1ed8a567d00dbc7e69de58bd3bf384",
+      "location": "git",
+      "revision": "26c5c47dd19b5ad001de1af75b9e47f12eeb526a"
+    },
+    {
+      "path": "experiments/bfv_search_lab/linear_packing.py",
+      "sha256": "60664b62a7c225cc1a552040da51f4fe2532bdd0d213b145bb20623dea8b523d",
+      "location": "git",
+      "revision": "b5f58250868eb0fb003819f27e8032e6cd2e12c1"
+    },
+    {
+      "path": "experiments/bfv_search_lab/owner_bgv.py",
+      "sha256": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+      "location": "git",
+      "revision": "8dabd3c52ad24bee893edf91ea824437476b8ba2"
+    },
+    {
+      "path": "experiments/bfv_search_lab/seeded_bgv.py",
+      "sha256": "7e8631304dde122c4755f5f7391ef8ba6b9be213fd2c667a473b388175890272",
+      "location": "git",
+      "revision": "d2f2159f27d256b7d807891f142d3b9fd6853578"
+    },
+    {
+      "path": "experiments/bfv_search_lab/shallow_bgv.py",
+      "sha256": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+      "location": "git",
+      "revision": "faf223ac75f6c31bdb65f9d7c863957ba9e732cf"
+    },
+    {
+      "path": "experiments/bfv_search_lab/_fingerprint/bindings.cpp",
+      "sha256": "ea768ee5533783c25e43e9228a17e9d73497c8ccc91ae20b49668c826faa7af1",
+      "location": "git",
+      "revision": "9f7cbd80a6553939548b1a8217f0129a2bfed253"
+    },
+    {
+      "path": "experiments/bfv_search_lab/_fingerprint/Makefile",
+      "sha256": "042a3847a5747cd20f2d68a3551dcd4c96e72d7ccf77c55c54eab922e36e51fe",
+      "location": "git",
+      "revision": "9f7cbd80a6553939548b1a8217f0129a2bfed253"
+    },
+    {
+      "path": "cuhepy-bfv-research/experiments/bfv_search_lab/_fingerprint/_fingerprint.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "273413089b89db47eb76e083504d0f260a970b17ec310501f358038738466458",
+      "location": "workspace-cache"
+    },
+    {
+      "path": "experiments/bfv_search_lab/_subring/bindings.cpp",
+      "sha256": "fb634b218df0a548b830f92c1ffdbe24d1dc3f7bbf07f6b6cbfc1da896faa429",
+      "location": "git",
+      "revision": "26e8ffb52b5d92743ad4e23cf09bc8076646155e"
+    },
+    {
+      "path": "experiments/bfv_search_lab/_subring/Makefile",
+      "sha256": "cfd7d7188f378646bee184798df677d7fdd473d75084705f3366ad2b5d223033",
+      "location": "git",
+      "revision": "26e8ffb52b5d92743ad4e23cf09bc8076646155e"
+    },
+    {
+      "path": "cuhepy-bfv-research/experiments/bfv_search_lab/_subring/_crt_subring.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "ecd3611af5fd16077afcb050af555374b4d9659a50e397a72a0295c2a6abb07d",
+      "location": "workspace-cache"
+    },
+    {
+      "path": "benchmarks/bgv_parameter_estimation.py",
+      "sha256": "d0cd0b74d95eef65e2f5f7f19852cb15492b716583790eb4745c0c2588a60576",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "benchmarks/ciphertext_factory_lab.py",
+      "sha256": "56d6eaeeb3834bfeae603ed3b813c02d66872307fd27e30556fb95512a97bc60",
+      "location": "git",
+      "revision": "4cff0ed8077677b1f5501fda6c125c40fb20f09c"
+    },
+    {
+      "path": "experiments/bfv_search_lab/ciphertext_factory.py",
+      "sha256": "a578d5d6a3368a952458c3c6ceb1abb842ddf425bf563c795327f1791aecded3",
+      "location": "git",
+      "revision": "4cff0ed8077677b1f5501fda6c125c40fb20f09c"
+    },
+    {
+      "path": "experiments/bfv_search_lab/integer_phase_audit.py",
+      "sha256": "787627023ff8a2d183b8c5cc95073d364780bb1339fd46cf468ccd39a9664a54",
+      "location": "git",
+      "revision": "7f2962bd44e7b0dca414485fadf01604d239de4d"
+    },
+    {
+      "path": "benchmarks/component_recipe_lab.py",
+      "sha256": "32461aafb4ec8a08d3862ec7e0adda225b5c0da192411a1025b829002b671da8",
+      "location": "git",
+      "revision": "7f2962bd44e7b0dca414485fadf01604d239de4d"
+    },
+    {
+      "path": "experiments/bfv_search_lab/component_recipe.py",
+      "sha256": "260b6f809b53187c8b466fa9752dce64bca0c6497df24967ca0d51dbbbf6cac4",
+      "location": "git",
+      "revision": "d2c198d09d88d3f89225e441418eb902d0a77576"
+    },
+    {
+      "path": "benchmarks/component_recipe_lab.py",
+      "sha256": "0653c94631e5f808b6482431778567618b1f40dff7da6eaad7c972fab16d90e0",
+      "location": "git",
+      "revision": "d2c198d09d88d3f89225e441418eb902d0a77576"
+    },
+    {
+      "path": "benchmarks/coordinate_cache_lab.py",
+      "sha256": "9d4dfe620c0d2393b9a4e72377a19e1b49ec2b2b3967a3746521a44eff0a222b",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "experiments/bfv_search_lab/coordinate_cache.py",
+      "sha256": "b806b93da033224cd42ff94f219cbb614555ca36387999d910c76d07bdf31772",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "benchmarks/ciphertext_factory_lab.py",
+      "sha256": "f13d6528b994a3fd51c4a090bc0de2868668dcdc79ccb567255735e38ece894b",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "experiments/bfv_search_lab/coordinate_factory.py",
+      "sha256": "67d7712f1cae4173c9ba1d892dcdc55f0029407b309acc2c1753dfed0a6841e6",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "benchmarks/score_layout_lab.py",
+      "sha256": "f9fd86ad1a601c13d13053920670ab26f86585135df5cbd4cf31362149f8bf93",
+      "location": "git",
+      "revision": "f19af004f57778a5487fdd8fcdefb8314eee4db2"
+    },
+    {
+      "path": "experiments/bfv_search_lab/score_layout.py",
+      "sha256": "de8a6f1c6ae4aed50c7e8ec7174c2bd1b444183db85315402e88cf2b4d24d082",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "experiments/bfv_search_lab/dyadic_crt.py",
+      "sha256": "d55ad0683b765944a078b4012927206a5d48c05613278c204b2e819eaaebe5a2",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "experiments/bfv_search_lab/representation_oracle.py",
+      "sha256": "562b1ca0a1f59767f425126a90cd13961d761b6fdf9985e2808b89b4cc3aec36",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "experiments/bfv_search_lab/representation_contract.py",
+      "sha256": "dfd3d5393f1ae50162203827eab65ad70db26b3cf788957ad8262e1462be4bff",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "benchmarks/representation_oracle_lab.py",
+      "sha256": "c00da0c9d0d3407ece441e2a5229dc160d8870e7995124fa2559b607b22cdbb7",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "experiments/bfv_search_lab/representation_planner.py",
+      "sha256": "7cadd4ba9e1febd7c7a8bf7b87c49abb7c80f3986b970d5c8313eb045ce23f33",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "experiments/bfv_search_lab/backend_frontier.py",
+      "sha256": "7ddfc223543ebbf341f1fe4f863e72bed7d06a2b181f8bf134c9d8eae5caf802",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "experiments/bfv_search_lab/ciphertext_linear_oracle.py",
+      "sha256": "60053cdf701f8373f79abd4bd760b9e49f74e98886b642fd66d15e2f6179928d",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "benchmarks/lifetime_planner_lab.py",
+      "sha256": "e1ecf739406f2d83c0de76bf8b73e57805f39d4dcaa3ddb728ffedb292cfee83",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "experiments/bfv_search_lab/lifetime_planner.py",
+      "sha256": "3eca858638c2836a01ff22e6c7c6bab014d4580c77b0d0b6d4ab4ba31a9e2922",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    },
+    {
+      "path": "benchmarks/representation_lifecycle_lab.py",
+      "sha256": "c954f449395a160021bbd797590b14368a23affee19696a0c26952488b066cf4",
+      "location": "git",
+      "revision": "cf88c1bea508e6b52298ffdf43b4f6bcc25573c0"
+    },
+    {
+      "path": "experiments/bfv_search_lab/representation_updates.py",
+      "sha256": "0efb1b261e3354c6ba01c256bb367df3c942dc8b3685b33ba0a014ac344b325a",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "benchmarks/representation_lifecycle_lab.py",
+      "sha256": "125c2cf1bcb392216f0919481a640851ffb7d8a050803884aa5e680d77238fd6",
+      "location": "git",
+      "revision": "7f2962bd44e7b0dca414485fadf01604d239de4d"
+    },
+    {
+      "path": "benchmarks/representation_lifetime_lab.py",
+      "sha256": "e0b3fa4d82b1051ddb4bb2af43f707901ad7b3e3a434b1d4b865e6f08afe9a9b",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "benchmarks/run_secure_vector_reference.py",
+      "sha256": "827058486bdd85c1d944468058605717b95564b2f9218f0cd1cdd2a57ec932db",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "experiments/bfv_search_lab/references/secure_vector_search_adapter/Cargo.toml",
+      "sha256": "07b09a34ca856f58a5b7d0e324fd387c5a7ebc8f813fb57231480ae30133b3f8",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "experiments/bfv_search_lab/references/secure_vector_search_adapter/Cargo.lock",
+      "sha256": "df15a2c782571929210291976332e5ed34eb64f2d11d8067e2b3521ceaff5fcc",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "experiments/bfv_search_lab/references/secure_vector_search_adapter/src/main.rs",
+      "sha256": "a63c41305b40a723849f30e8245c1d51c9aaf1dad879dd8063c010971c2a12fd",
+      "location": "git",
+      "revision": "e52df4bec9932f88a49621b78cd61c0434fa4750"
+    },
+    {
+      "path": "research-data/reference-artifacts-20260930/secure-vector-search/Cargo.lock",
+      "sha256": "5b3a50f4f86cfc09e5206345859a1cccf9823e10f0ef7e9b029db4d6bdc814c6",
+      "location": "workspace-cache"
+    },
+    {
+      "path": "benchmarks/score_layout_lab.py",
+      "sha256": "ad786ff4f0d5610773cace93239dc20143dbe162489f533b467814c0d6c4f4c1",
+      "location": "git",
+      "revision": "7058a4704e04255fd1b00e0bc8c677ac2c72bc05"
+    }
+  ],
+  "external_pins": {
+    "secure-vector-search": "519148cf3fddc11277a111774ca8cb92d891e0e3",
+    "lattice-estimator": "53da5982597709ba0fdf94ea37a84d822310fd84"
+  },
+  "scope": "Identity/retention manifest of TRACKED completed publication pilots. Ignored partial/preliminary duplicates are excluded. Exact historical Git blobs are located by SHA. Workspace binaries and external generated locks are not claimed to be in the Git bundle. Public fixture/external clone/compiler metadata remains in each raw run and baseline report. No complete paper evaluation, protocol proof, parameter or GPU assurance is inferred."
+}
