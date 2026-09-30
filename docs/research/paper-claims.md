@@ -16,15 +16,25 @@ claim**. Follow the [execution plan](publication-research-plan.md) and
 | Encrypted-index factory is faster than plaintext preparation | **Rejected as general speed claim** | E49 first 3.34x gain loses to vectorized fresh plaintext (38 vs 54 ms) | Rerandomization known; retain conditional encrypted-only route, not headline |
 | Publishing that factory's zero seed can reveal private coordinates | Exact conditional full-column-rank argument and own toy regressions; not an attack on genuine private-seed API | E53 multi-coordinate and collapsed-subring oracle | Linear algebra / seed-composition leakage; prior-art audit before any contribution claim |
 | Smaller full rings and global maps improve these public profiles | Measured research-only CPU frontier; two fixtures, adverse local occupancy retained | E51/global controls: ~26 ms/64 KiB Mushroom; ~9.8 ms/16 KiB Semeion | Parameter/global-layout choices known; not security assurance, network or lifetime result |
-| Outsourcing wins over permitted local plaintext caching | **Not established; current small fixtures contradict it** | E50 raw/zlib/coordinate controls | Need real retention/resource scenario and larger scale; no invented budget |
-| Complete verification closes the malicious-response decryption oracle | Conditional first-false-accept outline for a bound/approved relation | P07 exact game, full-Q fingerprints before decrypt | Authenticated setup, durable global budget, seeded privacy and independent proof review open |
+| Private deltas / selected tile rebuilding improve update controls | **Measured known controls:** deltas save36–62%; selected tiles save28% on localized edits and lose on dispersed edits | E54/E56 complete native lifecycles | Ordinary delta indexing/partial rebuild; not a new planner or Gate C contribution |
+| A calibrated causal lifetime rule beats simple controls | **Rejected on tested domain:** all16 choices keep deltas, with more execution/training cost | E57 disjoint synthetic edit seeds and full calibration receipt | Prices can be accurate while optimization is unnecessary; useful competing-action regime still needed |
+| Arbitrary private edit/insert/delete preserves exact current results | Exact/native tests and matched measured lifecycle, trusted local snapshot | E59 frozen base plus private buffer | Known mutable cache control; no encrypted-base migration, erasure or durability |
+| Outsourcing wins over permitted local caching | **Not established:** authenticated caches dominate tested reuse and32,768-row real CPU controls; narrow single-query modeled frontier remains | E58/E60/E61 acquisition/effort/cold-link screens | User allows all retention; no invented cap. Model/ready-remote omission is not a measured deployment win |
+| Omitting provably unused C0 preserves selected exact decryption | Restricted positive/native/tamper and negative C1/carry oracles; separate changed checked relation | E62 actual bodies,14.23% Semeion2048 vs1.20% Mushroom2048 | Known sample extraction; native optimization, matching protocol review and complete-cost effect open |
+| Identical old resource vectors can have different projected wire cost | Exact support/matrix counterexample:192 vs224 B | E63 complete tiny decoder basis columns | Known decoder support/set unions; support-aware compiler/protocol consequence and originality remain hypotheses |
+| Complete verification closes the malicious-response decryption oracle | Scoped direct-fresh conditional argument, not a reviewed theorem | P07 draft, full-Q gates, global local budget and684 ideal policies | Authenticated setup, durable receiver, seeded privacy, private timing and independent review open; E62 not silently covered |
 | New profiles offer production/128-bit security | **Not established** | Pinned heuristic attacks, explicit timeouts and private-timing limitations | HE guidelines/estimator do not certify this protocol or implementation |
 
-The most promising paper question remains whether an exact **lifetime-aware
-representation policy** can jointly price private state, response occupancy,
-sharing, phase age, update dependencies and never-exposed correlations better
-than strong simple/low-state controls. The implemented finite oracle is a
-reference for that question; it does not answer it at useful scale yet.
+The first calibrated lifetime rule failed its useful-effect discriminator;
+enlarging it without a competing safe action/workload is not the next priority.
+The narrower next hypothesis is a **protocol-aware exact representation and
+decoder compiler**: price support/alignment and verify precisely what its
+dedicated decoder needs, while preserving mask provenance, epoch/budget and
+pre-decryption guarantees. E63 supplies a cost tension, not originality.
+Known sample extraction, coefficient support, fingerprints and compiler
+dataflow need explicit comparison. Local caches and ready-remote cold sessions
+remain required alternatives. The [updated plan](publication-research-plan.md)
+gates this direction on formal/exhaustive semantics and measured useful effect.
 
 To promote a claim: freeze a justified workload/leakage/resource objective;
 reproduce strongest same-contract baselines; calibrate and test held-out traces;

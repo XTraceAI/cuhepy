@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 from contextlib import closing
 from dataclasses import replace
+import hashlib
 import heapq
 import json
 from pathlib import Path
@@ -29,7 +30,9 @@ from benchmarks.field_frontier_lab import public_space
 from benchmarks.verification_frontier_lab import parse_bits
 from experiments.bfv_search_lab import affine_dictionary as affine
 from experiments.bfv_search_lab import binary_fixtures as fixtures
+from experiments.bfv_search_lab import cache_snapshot as snapshot
 from experiments.bfv_search_lab import coefficient_body as codec
+from experiments.bfv_search_lab import connect4_fixture as connect4
 from experiments.bfv_search_lab import coordinate_factory
 from experiments.bfv_search_lab import crt_masked_bgv as masked
 from experiments.bfv_search_lab import crt_native_bgv as native
@@ -48,8 +51,11 @@ from experiments.bfv_search_lab import shallow_bgv as bgv
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", choices=("mushroom", "semeion"), required=True)
+    parser.add_argument("--dataset", choices=("mushroom", "semeion", "connect4"), required=True)
     parser.add_argument("--cache-dir", type=Path, required=True)
+    parser.add_argument("--connect4-file", type=Path)
+    parser.add_argument("--max-index-rows", type=int)
+    parser.add_argument("--cache-control", action="store_true")
     parser.add_argument("--n", type=int, nargs="+", default=[16384, 2048])
     parser.add_argument("--repeats", type=int, default=3)
     parser.add_argument("--representations", nargs="+", choices=("legacy", "score_only", "global_raw", "global_affine"),
@@ -59,12 +65,21 @@ def main():
     args = parser.parse_args()
     if not 1 <= args.repeats <= 16 or any(n < 2048 or n > 32768 or n & (n - 1) for n in args.n):
         parser.error("Require 1..16 repeats and bounded full-ring research candidates N>=2048")
+    if ((args.dataset == "connect4" and args.connect4_file is None)
+            or (args.max_index_rows is not None and not 64 <= args.max_index_rows <= 32768)):
+        parser.error("Connect-4 needs a pinned file; optional deterministic index prefix must be64..32768")
     start = time.perf_counter()
-    data = fixtures.load(args.dataset, args.cache_dir / fixtures.SOURCES[args.dataset]["member"])
+    data = (connect4.load(args.connect4_file) if args.dataset == "connect4"
+            else fixtures.load(args.dataset, args.cache_dir / fixtures.SOURCES[args.dataset]["member"]))
     ids, heldout = fixtures.split(data, 3001)
+    available_count = len(ids)
+    if args.max_index_rows is not None:
+        ids = ids[:args.max_index_rows]
+    if len(ids) > 32768:
+        parser.error("Encrypted research compiler limit32768; declare a bounded prefix rather than silently subsample")
     rows = [data.rows[i] for i in ids]
     order = dictionary.metric_order(rows, data.dimension, 32)
-    t, slots = (193, 32) if data.name == "mushroom" else (257, 64)
+    t, slots = (193, 32) if data.name in ("mushroom", "connect4") else (257, 64)
     fixture_s = time.perf_counter() - start
     discovery_s, discovery = (timed(fields.fit, rows, data.dimension, order, prime=t, target=32)
                               if set(args.representations) & {"legacy", "score_only"} else (0, None))
@@ -97,10 +112,14 @@ def main():
                                      args.vectorized_owner))
             except ValueError as error:
                 cases.append({"kind": kind, "n": n, "status": "rejected", "reason": str(error)})
+            args.json_out.parent.mkdir(parents=True, exist_ok=True)
+            args.json_out.with_suffix(".partial.json").write_text(json.dumps({"kind": "incomplete_score_layout", "cases": cases}, indent=2) + "\n")
+    caches = cache_controls(rows, ids, words, data.dimension) if args.cache_control else []
     paths = [Path(__file__), *(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
         "score_layout", "dyadic_crt", "crt_query_space", "crt_masked_bgv", "crt_native_bgv", "owner_bgv", "seeded_bgv",
         "shallow_bgv", "native_linear_check", "crt_linear_check", "integer_phase_audit", "coefficient_body",
-        "coordinate_factory", "representation_oracle", "representation_contract")),
+        "coordinate_factory", "representation_oracle", "representation_contract", "affine_dictionary", "binary_fixtures",
+        "connect4_fixture", "cache_snapshot", "coordinate_cache")),
         ROOT / "src/cuhepy/bfv/scheme.py"]
     paths.extend(p for folder in ("_subring", "_fingerprint")
                  for p in (ROOT / "experiments/bfv_search_lab" / folder).glob("*.so"))
@@ -109,7 +128,10 @@ def main():
                   count=len(rows), dimension=data.dimension, t=t, common_fixture_load_order_s=fixture_s,
                   local_private_map_discovery_s=discovery_s, global_private_map_discovery_s=map_discovery,
                   vectorized_owner=args.vectorized_owner,
-                  cases=cases, scope="Same public fixture, IDs and held-out queries, exact complete scores/stable top3; "
+                  split_seed=3001, available_enrollment_count=available_count, declared_prefix_limit=args.max_index_rows,
+                  query_source_ids=heldout[64:64 + args.repeats + 1], distinct_enrolled_vector_count=len(set(rows)),
+                  connect4_source=connect4.SOURCE if args.dataset == "connect4" else None,
+                  cache_controls=caches, cases=cases, scope="Same public fixture, IDs and held-out queries, exact complete scores/stable top3; "
                   "local-layout cases share approved maps, global raw/affine controls use their own certified whole-index maps. "
                   "Full-ring N changes, unlike a public correction subring change; estimates and seeded/protocol assumptions remain unreviewed. "
                   "Complete check, serialization, parse, native server, secret decrypt and selection all timed. "
@@ -117,6 +139,29 @@ def main():
     args.json_out.parent.mkdir(parents=True, exist_ok=True)
     args.json_out.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({"output": str(args.json_out), "cases": len(cases)}))
+
+
+def cache_controls(rows, ids, words, dimension):
+    controls = []
+    for level in (None, 1, 9):
+        key_s, key = timed(secrets.token_bytes, 32)
+        owner_s, (manifest, packet) = timed(snapshot.seal, tuple(rows), tuple(ids), dimension, key,
+                                           compressed=level is not None, compression_level=level or 9)
+        acquire_s, cache = timed(snapshot.open_snapshot, packet, key, manifest)
+        samples = []
+        for ordinal, word in enumerate(words):
+            query_s, result = timed(cache.query, word)
+            expected = tuple((row ^ word).bit_count() for row in rows)
+            assert result.scores == expected and result.top3 == tuple(sorted(zip(expected, ids, strict=True))[:3])
+            samples.append({"ordinal": ordinal, "warmup": ordinal == 0, "local_exact_query_s": query_s,
+                            "all_scores_and_stable_top3_exact": True,
+                            "scores_sha256": hashlib.sha256(b"".join(x.to_bytes(2, "little") for x in expected)).hexdigest()})
+        controls.append({"compression_level": level, "retained": "raw", "actual_download_packet_bytes": len(packet),
+                         "key_s": key_s, "owner_serialize_compress_seal_s": owner_s,
+                         "client_authenticate_parse_s": acquire_s, "samples": samples,
+                         "cold_owner_client_compute_s": key_s + owner_s + acquire_s,
+                         "retained_body_bytes_model": cache.retained_body_bytes_model})
+    return controls
 
 
 def measure(candidate, s, groups, bitmaps, pk, sk, ids, rows, words, kind, compile_s, key_s, vectorized_owner):
@@ -173,6 +218,7 @@ def measure(candidate, s, groups, bitmaps, pk, sk, ids, rows, words, kind, compi
                             "offline_produce_and_check_s": offline_s + answer_check_s,
                             "prepared_answer_packet_bytes": packet_bytes, "response_body_bytes": len(body),
                             "all_scores_top3_full_native_gmp_coefficients_exact": True,
+                            "scores_sha256": hashlib.sha256(b"".join(x.to_bytes(2, "little") for x in scores)).hexdigest(),
                             "complete_gate_before_secret_decrypt": True, "phase": phase_report, "top3": top3})
     return {"kind": kind, "n": pk.n, "q": int(pk.q), "status": "measured_research_only",
             "setup": setup, "upload_bytes": upload, "geometry": space.cost(s, q_bits=32, rounds=fields.rounds(int(pk.q))),

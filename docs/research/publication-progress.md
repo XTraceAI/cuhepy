@@ -159,5 +159,40 @@ measured. Production/company source and earlier checkpoints remain intact.
 | Replacement span screen | **Exact algebra/measured fits:** learned reserves offer zero Semeion acceptance and small Mushroom gains; global/schema controls accept all tested rows; [report](span-reserve-results.md) | No learned-reserve promotion. Next price selective encrypted tile rebuilding and bounded causal delta/rebase controls. |
 
 These are completed subcomponents, not acceptance of their enclosing P00–P12
-packages. Actual cache-retention constraints, complete protocol/parameter
-assurance and all paper promotion gates remain open.
+packages. This entry predates the user's clarification permitting all data
+retention. Complete protocol/parameter assurance and all paper gates remain open.
+
+## 2026-09-30: permitted caches, causal negatives and decoder-aware alternatives
+
+The user clarified that the client queries its own data and may keep/access
+any part of it. Inspected deployed Paillier/lookup client interfaces: plaintext
+encryption inputs and owner keys are present and no input-retention ban exists.
+The contract now explicitly permits caching. These interfaces do not establish
+customer memory/device/session limits; no artificial restriction is assumed.
+
+| Completed subcomponent | Result class / evidence | Return-to-plan decision |
+|---|---|---|
+| E56 selective encrypted tiles | **Measured:** localized complete lifetime7.651→5.495 s; spread7.478→7.498 s; ordinary private deltas cheaper in both; [report](tile-update-controls.md) | Known partial rebuild is a stronger control, not a novel-policy pass. |
+| E57 prices and causal rule | **Measured negative:** good refresh predictions, all16 unseen-trace choices keep deltas; policy adds execution and full34.029 s training cost; [report](lifetime-price-policy-results.md) | Reject planner speed claim on this domain; preserve exact hindsight oracles and stop enlarging a losing rule. |
+| Shared attempt allowance | **Implemented/tested:** volatile global guard burns before checker calls across fresh epochs, malformed/rejected/exceptional trials included | P07 correspondence improves; no durable receiver/rollback claim. |
+| E58 encrypted cache acquisition | **Measured:**144 then432 exact local queries, actual AES-GCM packets/owner+client acquisition at four compression efforts; real67,429-row Connect-4 cache; [report](cache-acquisition-results.md) | Full authorized caching is mandatory and fast; maximum compression can waste cold CPU time. |
+| E59 arbitrary private inserts/deletes/edits | **Measured/exact:**96 full-current results agree; buffer4.059 s vs authenticated cache0.02659 s complete compute; [report](client-buffer-results.md) | Functionality control implemented; no encrypted-base migration/erasure/durability, no novelty claim. |
+| E60 cold-link screen | **Model:** cold cache favorable37/40 cells; prepaid-owner-cache38/40; narrow single-query slow-link Semeion BGV cells remain | Usefulness unresolved; remote omits provisioning and uses fastest gated sample. Real network/device/assurance data needed. |
+| E61 larger real encrypted control | **Measured:**32,768 distinct Connect-4 prefix, rank126→82; online111→102 ms, cache~3 ms; all HE/cache score hashes agree; [report](connect4-encrypted-controls.md) | Larger corpus still favors local reuse. Known affine reduction does not establish outsourcing advantage. |
+| P07 direct-fresh draft/oracle | **Conditional argument/exact oracle:** explicit advantages/authentic state/leakage;684 ideal rejection paths; reset/conditional-probability negatives; [draft](direct-fresh-conditional-security.md) | Formal environment, assumption discharge, private timing and independent review remain. |
+| E62 dedicated projection | **Measured/exact:**14.23% smaller Semeion2048 body, only1.20% Mushroom2048; all16 public encrypted queries pass; C1/mod-t negatives; [report](decryption-projection-results.md) | Separate changed relation/decoder and Python checker; no native speed or assurance claim; ordinary sample extraction credited. |
+| E63 decoder support | **Exact:** eight complete tiny decoder matrices agree with analytical support; equal old resource vectors give192 vs224 B projected models | Price support/alignment in a protocol-aware hypothesis; split-CRT projected gate and originality still unimplemented/unestablished. |
+
+Reports retain raw filenames, exact executed source hashes and recovery notes.
+The seed57001 encrypted run completed before a reporting-only path failure;
+its cases were recovered and revalidated without changing their timings. The
+next seed completed directly. E58 maximum-effort and subsequent effort-sweep
+runs, initial/expanded E60 screens and all adverse cases remain distinct.
+
+Returned to the plan after each component. The primary calibrated lifetime
+rule has **not** passed Gate C. The new sequence prioritizes a scoped proof and
+exact decoder-support grammar before another native/GPU implementation. Full
+retention permission is settled; actual resource/cold-session usefulness and
+paper originality are not. P08/new GPU work remains gated. P01 strongest
+recursive/vLHE, P07 reviewed seeded privacy/parameters/timing and publication-
+size uncertainty remain open. No full P00–P12 package is falsely marked accepted.

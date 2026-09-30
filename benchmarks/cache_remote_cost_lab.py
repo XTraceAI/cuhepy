@@ -69,6 +69,7 @@ def main():
             assert len(pair) == 2 and len({c["actual_encrypted_packet_bytes"] for c in pair}) == 1
             local_choices.append({"compressed": compressed, "compression_level": level, "retained": retained,
                                   "cold_owner_client_compute_s": mean(c["cold_owner_client_compute_s"] for c in pair),
+                                  "owner_ready_client_acquire_s": mean(c["client_authenticate_decompress_decode_s"] for c in pair),
                                   "online_local_query_s": mean(s["online_local_query_s"] for c in pair for s in c["samples"]),
                                   "actual_download_packet_bytes": pair[0]["actual_encrypted_packet_bytes"],
                                   "retained_body_bytes_model": pair[0]["retained_body_bytes_model"]})
@@ -81,22 +82,29 @@ def main():
                                 for c in remote_choices]
                 local_s, local = min(local_costs, key=lambda item: item[0])
                 remote_s, remote = min(remote_costs, key=lambda item: item[0])
+                ready_costs = [(c["owner_ready_client_acquire_s"] + queries * c["online_local_query_s"]
+                                + 8 * c["actual_download_packet_bytes"] / (mbps * 1e6), c) for c in local_choices]
+                ready_s, ready = min(ready_costs, key=lambda item: item[0])
                 screens.append({"dataset": name, "session_queries_model": queries, "bandwidth_Mbps_model": mbps,
                                 "cold_cache_compute_plus_nominal_transfer_s": local_s, "chosen_cache": local,
                                 "ready_remote_optimistic_compute_plus_nominal_transfer_s": remote_s, "chosen_remote": remote,
-                                "cache_cheaper_in_model": local_s <= remote_s})
+                                "cache_cheaper_in_model": local_s <= remote_s,
+                                "owner_ready_cache_compute_plus_nominal_transfer_s": ready_s, "chosen_owner_ready_cache": ready,
+                                "owner_ready_cache_cheaper_in_model": ready_s <= remote_s})
     result = metadata([Path(__file__), *paths])
     result.update(kind="cache_vs_ready_remote_empirical_cost_screen", inputs=[{"path": str(p.relative_to(ROOT)), "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths],
                   constants=constants, screens=screens,
                   scope="Count/time model with empirical constants; no measured bandwidth, RTT, mobile CPU, contention or assurance equivalence. "
                         "Remote uses its fastest measured non-warmup gated sample and no setup/private-token/checker provisioning charges. "
                         "Cache uses both repetition means and pays full AEAD preparation/acquisition and one actual snapshot packet. "
+                        "Separate owner-ready-cache panel charges client acquisition only; owner preparation/key provisioning prepaid like remote. "
                         "BGV session repetition uses a stationary per-query constant from three timed samples; EMVP/cache each observed eight queries. "
                         "Data/count/dimension hashes match; cache and EMVP all-score query hashes match. "
                         "Different unreviewed protocol/parameter/entropy profiles cannot establish equal-assured-security dominance. "
                         "Independent CPU runs, warm process and small repetitions; no population, novelty or production claim.")
     args.json_out.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({"output": str(args.json_out), "cache_favorable_cells": sum(s["cache_cheaper_in_model"] for s in screens), "cells": len(screens),
+                      "owner_ready_cache_favorable_cells": sum(s["owner_ready_cache_cheaper_in_model"] for s in screens),
                       "remote_favorable": [s for s in screens if not s["cache_cheaper_in_model"]]}, indent=2))
 
 

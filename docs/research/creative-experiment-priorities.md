@@ -127,7 +127,16 @@ the different known hash family has a smaller additional benefit. Norm
 tightening does not cross a byte boundary. Small-ring models retain both
 unchanged-payload and spare-capacity cases; changed N needs new assurance.
 
-**Next cycle:** execute P00–P04 of the [publication plan](publication-research-plan.md):
+**Current next cycle:** follow section10 of the
+[publication plan](publication-research-plan.md) after the E54–E63 execution.
+The first causal lifetime policy lost to ordinary deltas, and full authorized
+cache retention is expressly permitted. Prioritize supported-coordinate
+verification/decoder semantics and the exact support-aware grammar, with
+known extraction/compiler and cache controls. E62/E63 give a bounded positive
+dependency/cost tension, not novelty or production assurance. New CUDA/service
+work remains behind the practical-effect/protocol gates.
+
+**Historical next cycle (before E41 execution):** execute P00–P04 of the [publication plan](publication-research-plan.md):
 freeze the functionality/leakage, reproduce closest compatible protocols,
 build an exact joint-representation oracle, test the backend/security-dimension
 tradeoff and E47's proposed vLHE layer over public ciphertext coefficients, then

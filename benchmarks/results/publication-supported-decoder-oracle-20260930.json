@@ -1,0 +1,415 @@
+{
+  "utc": "2026-09-30T22:04:06.966005+00:00",
+  "command": [
+    "benchmarks/supported_decoder_lab.py",
+    "--json-out",
+    "benchmarks/results/publication-supported-decoder-oracle-20260930.json"
+  ],
+  "git_head": "1fa447645fdade57907bd7ee717c350d76ee476b",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/supported_decoder_lab.py": "e8af9be75b36ddd13429bd1a30162a5ba14094baaf7dffc6f8a94dcec0969449",
+    "experiments/bfv_search_lab/supported_decoder.py": "50aecd1a31a5e12a9d4444ec14a477a42404139481a048fc28482dc769f5031b",
+    "experiments/bfv_search_lab/decryption_support.py": "89342a06b630adf6e96984129b476953f7f86a6fdfaf96388bc1ef9423c0273e",
+    "experiments/bfv_search_lab/coefficient_body.py": "cd00bfca329d08bacfc04481de58756d9673e1baf304c6afa4db9ee8a8d4ed10",
+    "experiments/bfv_search_lab/coordinate_factory.py": "23c18da0997de513ca84f8cad775d84214667bdf2810dc0e8ed28bc0f220605d",
+    "experiments/bfv_search_lab/crt_masked_bgv.py": "ef2cece17e1b0a31a71e69ce01db380e3266293bca728dc923d1defb0e261152",
+    "experiments/bfv_search_lab/crt_native_bgv.py": "b9b8f816ae7360dec87c4fcbf170e2ab4e861908c133cb2c63cbd04d512c5c84",
+    "experiments/bfv_search_lab/crt_query_space.py": "8fdde65ed6bc51b832cfd5c8e26c57ba7e959a2aab0312039178a3639b3b5bcb",
+    "experiments/bfv_search_lab/crt_linear_check.py": "86081119ae715e17d92cd2132f57971f222cddcc04f2c0aad7adc115ebd1cee7",
+    "experiments/bfv_search_lab/native_linear_check.py": "6bc6fb004019dca6c8e5c9f155bd3f45570f7e5daef3e9d0e7274d0399ad33cd",
+    "experiments/bfv_search_lab/dyadic_crt.py": "d55ad0683b765944a078b4012927206a5d48c05613278c204b2e819eaaebe5a2",
+    "experiments/bfv_search_lab/score_layout.py": "de8a6f1c6ae4aed50c7e8ec7174c2bd1b444183db85315402e88cf2b4d24d082",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/integer_phase_audit.py": "787627023ff8a2d183b8c5cc95073d364780bb1339fd46cf468ccd39a9664a54",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/verification_lifetime.py": "196eddc2729dfbb57601ea83268bc9b65ddd066ff63438148af681d0ab466a28",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "experiments/bfv_search_lab/_subring/_crt_subring.cpython-312-x86_64-linux-gnu.so": "ecd3611af5fd16077afcb050af555374b4d9659a50e397a72a0295c2a6abb07d",
+    "experiments/bfv_search_lab/_fingerprint/_fingerprint.cpython-312-x86_64-linux-gnu.so": "273413089b89db47eb76e083504d0f260a970b17ec310501f358038738466458"
+  },
+  "kind": "supported_decoder_exact_oracle",
+  "cases": [
+    {
+      "n": 32,
+      "paths": [
+        ""
+      ],
+      "counts": [
+        19
+      ],
+      "layout": "experiments.bfv_search_lab.dyadic_crt",
+      "kept_c0": [
+        [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          12,
+          13,
+          16,
+          17,
+          20,
+          21,
+          24,
+          25,
+          28,
+          29
+        ]
+      ],
+      "full_body_bytes": 256,
+      "projected_body_bytes": 204,
+      "all_binary_queries": 16,
+      "all_scores_hash": "38e4873d86ee8924586dd560cbf31c778608b51241ee7017351defc4781ccbe4",
+      "max_abs_integer_phase": 421,
+      "native_GMP_all_coefficients_equal": true,
+      "full_gate_before_secret_diagnostics": true,
+      "supported_gate_before_dedicated_secret_decoder": true,
+      "every_decoder_basis_column_checked": true,
+      "every_score_id_and_stable_top3_exact": true
+    },
+    {
+      "n": 32,
+      "paths": [
+        "0",
+        "1"
+      ],
+      "counts": [
+        12,
+        4
+      ],
+      "layout": "experiments.bfv_search_lab.dyadic_crt",
+      "kept_c0": [
+        [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14,
+          16,
+          17,
+          18,
+          20,
+          21,
+          22,
+          24,
+          25,
+          26,
+          28,
+          29,
+          30
+        ]
+      ],
+      "full_body_bytes": 256,
+      "projected_body_bytes": 224,
+      "all_binary_queries": 16,
+      "all_scores_hash": "1bc8fff242657e1dc6388ce68e72fce8c3b485fcdfdf15235ae455b1f97d3898",
+      "max_abs_integer_phase": 620,
+      "native_GMP_all_coefficients_equal": true,
+      "full_gate_before_secret_diagnostics": true,
+      "supported_gate_before_dedicated_secret_decoder": true,
+      "every_decoder_basis_column_checked": true,
+      "every_score_id_and_stable_top3_exact": true
+    },
+    {
+      "n": 32,
+      "paths": [
+        "0",
+        "10",
+        "11"
+      ],
+      "counts": [
+        6,
+        3,
+        1
+      ],
+      "layout": "experiments.bfv_search_lab.dyadic_crt",
+      "kept_c0": [
+        [
+          0,
+          1,
+          4,
+          5,
+          8,
+          9,
+          12,
+          16,
+          17,
+          20,
+          21,
+          24,
+          25,
+          28
+        ]
+      ],
+      "full_body_bytes": 256,
+      "projected_body_bytes": 184,
+      "all_binary_queries": 16,
+      "all_scores_hash": "2c7107c42c9e1a423667a5e632cc66fa4fbd642e87e8e97a3eab39fb593ef382",
+      "max_abs_integer_phase": 731,
+      "native_GMP_all_coefficients_equal": true,
+      "full_gate_before_secret_diagnostics": true,
+      "supported_gate_before_dedicated_secret_decoder": true,
+      "every_decoder_basis_column_checked": true,
+      "every_score_id_and_stable_top3_exact": true
+    },
+    {
+      "n": 32,
+      "paths": [
+        "0",
+        "1"
+      ],
+      "counts": [
+        35,
+        9
+      ],
+      "layout": "experiments.bfv_search_lab.dyadic_crt",
+      "kept_c0": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        [
+          0,
+          4,
+          8,
+          16,
+          20,
+          24
+        ]
+      ],
+      "full_body_bytes": 768,
+      "projected_body_bytes": 664,
+      "all_binary_queries": 16,
+      "all_scores_hash": "3083d9901634c351b8619ad069b5b58953c095454f8184748d1348e37159bd01",
+      "max_abs_integer_phase": 748,
+      "native_GMP_all_coefficients_equal": true,
+      "full_gate_before_secret_diagnostics": true,
+      "supported_gate_before_dedicated_secret_decoder": true,
+      "every_decoder_basis_column_checked": true,
+      "every_score_id_and_stable_top3_exact": true
+    },
+    {
+      "n": 32,
+      "paths": [
+        "0",
+        "1"
+      ],
+      "counts": [
+        12,
+        4
+      ],
+      "layout": "experiments.bfv_search_lab.score_layout",
+      "kept_c0": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      ],
+      "full_body_bytes": 256,
+      "projected_body_bytes": 224,
+      "all_binary_queries": 16,
+      "all_scores_hash": "1bc8fff242657e1dc6388ce68e72fce8c3b485fcdfdf15235ae455b1f97d3898",
+      "max_abs_integer_phase": 527,
+      "native_GMP_all_coefficients_equal": true,
+      "full_gate_before_secret_diagnostics": true,
+      "supported_gate_before_dedicated_secret_decoder": true,
+      "every_decoder_basis_column_checked": true,
+      "every_score_id_and_stable_top3_exact": true
+    },
+    {
+      "n": 32,
+      "paths": [
+        "0",
+        "1"
+      ],
+      "counts": [
+        16,
+        16
+      ],
+      "layout": "experiments.bfv_search_lab.score_layout",
+      "kept_c0": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ]
+      ],
+      "full_body_bytes": 256,
+      "projected_body_bytes": 256,
+      "all_binary_queries": 16,
+      "all_scores_hash": "d370ff3a4e0c0c6baddb389e0854ef191b0f80f8a8a9cdb38e6bd163fa48d5df",
+      "max_abs_integer_phase": 457,
+      "native_GMP_all_coefficients_equal": true,
+      "full_gate_before_secret_diagnostics": true,
+      "supported_gate_before_dedicated_secret_decoder": true,
+      "every_decoder_basis_column_checked": true,
+      "every_score_id_and_stable_top3_exact": true
+    },
+    {
+      "n": 32,
+      "paths": [
+        "0",
+        "1"
+      ],
+      "counts": [
+        0,
+        4
+      ],
+      "layout": "experiments.bfv_search_lab.score_layout",
+      "kept_c0": [
+        [
+          0,
+          1,
+          2,
+          3,
+          16,
+          17,
+          18,
+          19
+        ]
+      ],
+      "full_body_bytes": 256,
+      "projected_body_bytes": 160,
+      "all_binary_queries": 16,
+      "all_scores_hash": "89666d9be0311e2e428d4b3bfaf7ce9a8416079c3b45a0a4141cf0614cea125a",
+      "max_abs_integer_phase": 520,
+      "native_GMP_all_coefficients_equal": true,
+      "full_gate_before_secret_diagnostics": true,
+      "supported_gate_before_dedicated_secret_decoder": true,
+      "every_decoder_basis_column_checked": true,
+      "every_score_id_and_stable_top3_exact": true
+    }
+  ],
+  "global_attempt_limit": 128,
+  "global_attempts_used": 112,
+  "scope": "E64 separate owner-pinned supported-C0/full-C1 relation and dedicated phase decoder. Tiny N32/t17/Q32-bit/eta1 profiles test exactness, not encryption/security assurance or useful runtime. Known CRT/support/sample-extraction/fingerprint ingredients; no original primitive, new GPU, durable state, private-side-channel assurance or reviewed full protocol claim."
+}

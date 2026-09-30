@@ -64,6 +64,24 @@ are independent across released queries; consuming a mask is irreversible.
 Neither an abort, retry, update nor crash can restore a released mask.
 Current local research tickets are not a durable network journal.
 
+The E54/E59 control permits owner-approved arbitrary edits, insertions and
+logical deletions in a private client buffer over a frozen encrypted base.
+Complete base verification/decryption precedes exact correction/filtering and
+local inserted-row scoring. Surviving base IDs retain original order; live
+inserted IDs follow in ascending ID order, with IDs explicit in the result.
+Historical IDs cannot be reused. Current private snapshot and physical base
+epochs are separate trusted bindings. Logical deletion does not erase old
+ciphertexts, keys or snapshots. Encrypted-base insertion/deletion, remote
+authorization and durable migration remain different unimplemented work.
+
+E62 separately tests a dedicated decoder with a smaller checked ciphertext
+relation. It authenticates every supplied C0 coefficient and ALL C1 before
+selected secret arithmetic, and supports only one full-ring score-only leaf.
+It is not an existing-client option or a reviewed replacement for whole-cipher
+verification. Split/legacy decoder support is an E63 algebra oracle, not a
+deployed projected protocol. New output/verification semantics require their
+matching proof; generic unverified or plaintext-field projection is rejected.
+
 An accepted server result must cover every row exactly once for the authorized
 epoch, query and plan. Complete verification precedes use of the long-lived HE
 secret on a remote result. An alternative vLHE layer may change this procedure

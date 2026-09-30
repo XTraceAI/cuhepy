@@ -635,3 +635,88 @@ headline ranges/body counts against the frozen CSVs. Only the four explicitly
 updated historical planning/index documents differ from those snapshot hashes.
 No cryptographic tests or external performance benchmarks were rerun for this
 documentation-only revision.
+
+## 10. Execution revision after E54–E63: what to do next and why
+
+The initial revision-only validation above is historical. Subsequent execution
+now has [a progress log](publication-progress.md), exact source/raw checkpoints
+and new crypto/math tests. The user's ownership clarification permits retaining
+all plaintext. [Authenticated acquisition](cache-acquisition-results.md),
+[private dynamic buffers](client-buffer-results.md) and
+[32,768-row real controls](connect4-encrypted-controls.md) are mandatory strong
+comparators. No application restriction is invented to exclude them.
+
+**Decision:** E57's accurate prices do not make its one-query causal policy
+useful. All16 decisions keep ordinary deltas and pay extra policy/training
+cost. E43 sparse repair also lost to batched fresh controls. Keep these code/
+company results and exact finite oracles, but stop treating a larger reserve/
+rebase sweep as the leading originality claim. E60's small single-query link
+frontier is a hypothesis, not proof of an outsourced deployment advantage.
+
+The next concrete hypothesis is **protocol-aware exact representation and
+decoder selection**. E62 preserves every returned score while authenticating
+all selected C0 and all C1 before a dedicated secret decoder; E63 gives a
+192-vs224 B counterexample at identical old full-response resources. Known
+sample extraction, support unions, secret fingerprints and compiler planning
+are credited. The potential contribution must be the precise safe optimization
+domain, theorem and a useful joint algorithm, not these ingredients alone.
+
+Execute the following sequence, returning to this section after each item:
+
+1. **P07/P02, next proof task:** formalize a supported-coordinate relation.
+   For each approved public decoder D_t, certify the C0 columns with nonzero
+   influence, authenticate them and **all C1**, then center/reduce only those
+   phases before decoding. Prove the omission identity and first-failure
+   composition for fixed trusted representations. Include the mod-t carry
+   counterexample and all-secret C1 dependency witnesses. Restrict any
+   minimality theorem to coefficient deletion/unrestricted phase inputs;
+   do not claim a communication lower bound against reconstruction, extra
+   preprocessing, key switching or client-local known scores. E62 implements
+   only the one-full-leaf profile; E63 is the independent support oracle.
+2. **P10/P05, proposed E64:** implement a separately typed legacy/split-CRT
+   projected gate and dedicated decoder **after** the previous relation is
+   specified. Owner binding covers support, exact row/ID order, CRT contexts,
+   honest selected-phase bound and lifetime allowance. Rejected malformed,
+   missing or stale coordinates must use no SK and never revive pads. Test
+   sparse/dense support, mixed-degree leaves, ties, empty/current-private
+   overlays and every native/GMP coefficient in the prescribed relation.
+   Existing full gates remain the reference/fallback. No generic zero-padded
+   ciphertext is passed to ordinary decryption.
+3. **P02/P04, proposed E65:** extend the exact grammar's resource/cost objective
+   with per-reply decoder-support sets and authentic-relation dependencies.
+   Retain boundary alignment needed when supports merge; do not prune distinct
+   successors merely on rank or old full-body vectors. Also retain base
+   identity, phase ages, mask exposure/provenance, recipe seed visibility,
+   key/epoch binding and global remaining allowance. Begin with exhaustive
+   tiny grammar agreement and equal-form/global/simple-alignment controls.
+   Reject if known simple alignment explains all gains or if states cannot be
+   combined without extra unsafe assumptions. Search cost and state growth are
+   results, not hidden engineering overhead.
+4. **P01/P06:** evaluate a surviving supported decoder against the **same-
+   profile native full gate**, E48 public C1 reconstruction, original cached/
+   key-only EMVP, strongest compatible recursive/vLHE, and authenticated cache
+   modes. Measure full acquisition and prepaid-owner panels, one/two/repeated
+   queries, actual private provisioning and updates on distinct real corpora.
+   Use the current larger Connect-4 subset as an adverse control and keep
+   full-corpus cache receipts. Narrow useful resource ranges must be measured
+   on declared devices/links, not asserted from an ownership restriction.
+5. **P07/P12/P01:** audit closest work around sample extraction, post-evaluation
+   ciphertext compression, verifiable decryption, FHE layout/poly compilers
+   and recipe synthesis. The targeted supplement adds TFHE/Recifhe/basis
+   synthesis comparisons. A performance win alone does not establish originality.
+   Complete the formal direct-fresh game and independent review; E62/E64's
+   smaller relation needs its own matching theorem. Concrete seeded encryption,
+   parameter and private-side-channel obligations remain.
+6. **Gate review:** only a matched complete practical effect and defensible
+   contribution moves this into native/CUDA optimization or P08 deployment.
+   If support is dense or caching/simple extraction dominates, retain this as
+   a negative/engineering artifact and return to bounded E44–E47 alternate
+   functionalities. State a changed output/trust/approximation contract if
+   needed. Do not silently replace exact full-score access with only-top-k.
+
+Possible paper, still a hypothesis: an exact optimization problem with a
+restricted supported-decoder/correlation grammar; an independently checkable
+algorithm and formal pre-decryption/lifetime composition result; measured
+tradeoffs that survive cache/low-state/known compiler controls. Current E62/E63
+evidence supplies one worked tension, not an accepted original contribution or
+production protocol. All Gates A–D remain open under their stated conditions.

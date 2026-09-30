@@ -18,8 +18,11 @@ private implementation side channels are outside this first game.
 valid client query it privately computes the complete ordered score array and
 stable `(distance, ID)` top-k. The ideal adversary may deliver that result or
 cause an abort; it may not substitute a different array. Approved fixed-map
-edits replace the relevant owner rows. Arbitrary edits, insertions, deletions
-and plan migrations require a new version of this functionality/implementation.
+edits replace the relevant owner rows. E54/E59 now implement a separate
+trusted private-buffer extension for arbitrary edits/insertions/logical
+deletions over a frozen completely checked encrypted base. Its current output
+IDs/snapshot binding are explicit; no remote migration or erasure is claimed.
+Encrypted-base insert/delete and general plan migrations remain open.
 
 The simulator receives public geometry, fields/key context, the approved
 update/epoch schedule, pool sizes/token IDs, packet sizes, acceptance/abort
@@ -181,13 +184,22 @@ regressions does not complete this game or its independent review.
 | Obligation | Present evidence | Remaining work |
 |---|---|---|
 | Exact static representation | Exhaustive finite grammar, integer oracle, native/GMP encryption tests | General grammar / scale limits |
-| Frozen-map edit identity | Encrypted before/after tests and sparse/full control | Insert/delete/reserve and basis migration |
+| Frozen-map edit / private buffer identity | Encrypted sparse/full/tile and arbitrary private edit/insert/delete controls | Encrypted-base insertion/deletion, broader reserves and migration |
 | No exposure reuse locally | Lock, irreversible consume, stale/consumed tests | Durable journal, process/concurrent recovery, rollback trust |
-| Full response soundness | Existing secret-vector family and bounded-attempt argument | Formal game tying all epochs and visibility to code |
-| Adaptive privacy | Hybrid order above, seeded-XOF and one-use premises explicit | Complete reduction and independent review |
+| Full response soundness | Existing secret-vector family, ideal rejection-path oracle and volatile global attempt guard | Persisted receiver/game correspondence across crashes/processes and independent review |
+| Adaptive privacy | Scoped direct-fresh conditional draft, seeded-XOF and one-use premises explicit | Formal environment/reduction, premise discharge and independent review |
 | Authentic setup | Required trust boundary; existing company TEE baseline retained | Authenticated experimental producer/migration implementation |
 | Parameters / private timing | Research-only classification | Independent estimator/model review and private backend audit |
 
 The appropriate next security claim is a **conditional protocol theorem with
 explicit assumptions**, followed by independent review. Production assurance
 or a claimed new cryptographic primitive would be unsupported.
+
+The [direct-fresh draft](direct-fresh-conditional-security.md) now specifies
+the fixed-key/context game, exact private-buffer composition, multi-message
+encryption/pad/check expansion advantages and global first-failure bound. Its
+684 tiny ideal rejection paths show why epoch resets and naive conditional
+per-attempt arguments are unsafe. This remains conditional/unreviewed and
+excludes E49, arbitrary migration and E62's changed decoder relation.
+The [projection report](decryption-projection-results.md) separately records
+its restricted exactness/tamper evidence and unsafe carry/dependency controls.

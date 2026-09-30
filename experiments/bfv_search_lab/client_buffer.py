@@ -121,11 +121,11 @@ class Ledger:
                     if mask:
                         patches.append(delta.Patch(self._positions[identifier], mask & current, mask & original))
             appended = tuple(sorted((i, row) for i, row in rows.items() if i not in self._original))
+            ever_ids = self._ever_ids.union(inserts)
             snapshot = Snapshot(self.snapshot.base, self.base_epoch, secrets.token_bytes(32), deleted, tuple(patches), appended)
             snapshot.validate()
             # Commit only after every validation and immutable snapshot build.
-            self._rows, self.snapshot = rows, snapshot
-            self._ever_ids.update(inserts)
+            self._rows, self.snapshot, self._ever_ids = rows, snapshot, ever_ids
             width = (self.plan.dimension + 7) // 8
             return {"method": "private_mutable_buffer", "current_rows": len(rows),
                     "private_snapshot_body_bytes_model": snapshot.private_body_bytes_model,

@@ -111,3 +111,23 @@ registration/norm modes, approximate/proof baselines, actual separated-state
 memory, three instances, serial sessions, larger samples and GPU comparisons
 remain. The GPU is accessible with approved execution outside the sandbox
 (RTX 3080, driver 595.91.07); no new GPU timings are implied here.
+
+## Stronger original author and cache controls
+
+The original EMVP Go/C++ implementation is now separately reproduced at
+`856762f5925fe873bb5cbc0401ceb5a44568efa9`, via a retained exact-Hamming adapter:
+[original-author report](original-emvp-results.md). It is much faster than the
+unified Rust EMVP control here and has different code dimensions/response sizes.
+Private full-response gates and cached/key-only modes are charged separately.
+An OS-thread-affinity adapter failure is retained; pinned forced-GC tests and
+both exact datasets pass. Upstream's selected Slsn score assertion is commented
+out, so its three passing tests alone were not exact-score evidence. No author
+source is modified; entropy/concrete-parameter assurance remains unreviewed.
+
+The latest [authenticated cache acquisition](cache-acquisition-results.md),
+[dynamic private-buffer controls](client-buffer-results.md) and
+[larger real encrypted/cache comparison](connect4-encrypted-controls.md)
+supersede any implication that plaintext retention is prohibited or only tiny
+cache queries were tested. The user expressly permits retention. Recursive
+BNTM/strongest compatible vLHE and a publication-size controlled comparison
+remain open; partial reproduction is not complete P01 acceptance.

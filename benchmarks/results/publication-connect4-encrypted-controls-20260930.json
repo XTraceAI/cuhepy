@@ -1,0 +1,687 @@
+{
+  "utc": "2026-09-30T21:01:30.484110+00:00",
+  "command": [
+    "benchmarks/score_layout_lab.py",
+    "--dataset",
+    "connect4",
+    "--cache-dir",
+    "../research-data/uci-20260927",
+    "--connect4-file",
+    "../research-data/uci-connect4-20260930/connect-4.data",
+    "--max-index-rows",
+    "32768",
+    "--n",
+    "2048",
+    "--representations",
+    "global_raw",
+    "global_affine",
+    "--vectorized-owner",
+    "--cache-control",
+    "--repeats",
+    "3",
+    "--json-out",
+    "benchmarks/results/publication-connect4-encrypted-controls-20260930.json"
+  ],
+  "git_head": "1fa447645fdade57907bd7ee717c350d76ee476b",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/score_layout_lab.py": "54d441ec0f3b030a4e7a8fe0e4e701b92d053f02a5a536350a806c0a54ad2a81",
+    "experiments/bfv_search_lab/score_layout.py": "de8a6f1c6ae4aed50c7e8ec7174c2bd1b444183db85315402e88cf2b4d24d082",
+    "experiments/bfv_search_lab/dyadic_crt.py": "d55ad0683b765944a078b4012927206a5d48c05613278c204b2e819eaaebe5a2",
+    "experiments/bfv_search_lab/crt_query_space.py": "8fdde65ed6bc51b832cfd5c8e26c57ba7e959a2aab0312039178a3639b3b5bcb",
+    "experiments/bfv_search_lab/crt_masked_bgv.py": "ef2cece17e1b0a31a71e69ce01db380e3266293bca728dc923d1defb0e261152",
+    "experiments/bfv_search_lab/crt_native_bgv.py": "b9b8f816ae7360dec87c4fcbf170e2ab4e861908c133cb2c63cbd04d512c5c84",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/seeded_bgv.py": "7e8631304dde122c4755f5f7391ef8ba6b9be213fd2c667a473b388175890272",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/native_linear_check.py": "6bc6fb004019dca6c8e5c9f155bd3f45570f7e5daef3e9d0e7274d0399ad33cd",
+    "experiments/bfv_search_lab/crt_linear_check.py": "86081119ae715e17d92cd2132f57971f222cddcc04f2c0aad7adc115ebd1cee7",
+    "experiments/bfv_search_lab/integer_phase_audit.py": "787627023ff8a2d183b8c5cc95073d364780bb1339fd46cf468ccd39a9664a54",
+    "experiments/bfv_search_lab/coefficient_body.py": "cd00bfca329d08bacfc04481de58756d9673e1baf304c6afa4db9ee8a8d4ed10",
+    "experiments/bfv_search_lab/coordinate_factory.py": "23c18da0997de513ca84f8cad775d84214667bdf2810dc0e8ed28bc0f220605d",
+    "experiments/bfv_search_lab/representation_oracle.py": "562b1ca0a1f59767f425126a90cd13961d761b6fdf9985e2808b89b4cc3aec36",
+    "experiments/bfv_search_lab/representation_contract.py": "dfd3d5393f1ae50162203827eab65ad70db26b3cf788957ad8262e1462be4bff",
+    "experiments/bfv_search_lab/affine_dictionary.py": "0f811f9a5cd2628f1c6c2f048c1d32e65eaaf9aa5e3f942118342b3edf6daf05",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/connect4_fixture.py": "31532c87366481691afa41185c7ae93be8b839923720fec1d34412ae2b8b9563",
+    "experiments/bfv_search_lab/cache_snapshot.py": "ff5ccd7720485b3b17d787239dc7788550a7b5b090cfd5702d5b4a096c3d8903",
+    "experiments/bfv_search_lab/coordinate_cache.py": "b806b93da033224cd42ff94f219cbb614555ca36387999d910c76d07bdf31772",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "experiments/bfv_search_lab/_subring/_crt_subring.cpython-312-x86_64-linux-gnu.so": "ecd3611af5fd16077afcb050af555374b4d9659a50e397a72a0295c2a6abb07d",
+    "experiments/bfv_search_lab/_fingerprint/_fingerprint.cpython-312-x86_64-linux-gnu.so": "273413089b89db47eb76e083504d0f260a970b17ec310501f358038738466458"
+  },
+  "kind": "score_only_full_ring_frontier",
+  "dataset": "connect4",
+  "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+  "count": 32768,
+  "dimension": 126,
+  "t": 193,
+  "common_fixture_load_order_s": 0.7179424700007075,
+  "local_private_map_discovery_s": 0,
+  "global_private_map_discovery_s": {
+    "global_raw": 0.002496113011147827,
+    "global_affine": 1.8163601919950452
+  },
+  "vectorized_owner": true,
+  "split_seed": 3001,
+  "available_enrollment_count": 67429,
+  "declared_prefix_limit": 32768,
+  "query_source_ids": [
+    20365,
+    30946,
+    24772,
+    8322
+  ],
+  "distinct_enrolled_vector_count": 32768,
+  "connect4_source": {
+    "url": "https://archive.ics.uci.edu/static/public/26/connect%2B4.zip",
+    "landing": "https://archive.ics.uci.edu/dataset/26/connect%2B4",
+    "citation": "Tromp, J. (1995). Connect-4 [Dataset]. https://doi.org/10.24432/C59P43",
+    "license": "CC BY 4.0",
+    "archive_sha256": "81cc51ce1556f1f927bf0d6f3f16f61e277bb8647c5a49426d272b792a30a205",
+    "Z_sha256": "14c886b817783ac9b642f42ec78a2e67f727a3d41c94913af8954d454eee2367",
+    "file_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+    "count": 67557,
+    "dimension": 126
+  },
+  "cache_controls": [
+    {
+      "compression_level": null,
+      "retained": "raw",
+      "actual_download_packet_bytes": 786524,
+      "key_s": 3.850000211969018e-06,
+      "owner_serialize_compress_seal_s": 0.019626274006441236,
+      "client_authenticate_parse_s": 0.010994811993441544,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "local_exact_query_s": 0.0028007199871353805,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10"
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "local_exact_query_s": 0.002900351013522595,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746"
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "local_exact_query_s": 0.002710757005843334,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241"
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "local_exact_query_s": 0.0032155079970834777,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94"
+        }
+      ],
+      "cold_owner_client_compute_s": 0.03062493600009475,
+      "retained_body_bytes_model": 786432
+    },
+    {
+      "compression_level": 1,
+      "retained": "raw",
+      "actual_download_packet_bytes": 305261,
+      "key_s": 4.639994585886598e-06,
+      "owner_serialize_compress_seal_s": 0.016118569998070598,
+      "client_authenticate_parse_s": 0.011972331994911656,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "local_exact_query_s": 0.0030064430029597133,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10"
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "local_exact_query_s": 0.003048783997655846,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746"
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "local_exact_query_s": 0.0030461349961115047,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241"
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "local_exact_query_s": 0.003135857012239285,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94"
+        }
+      ],
+      "cold_owner_client_compute_s": 0.02809554198756814,
+      "retained_body_bytes_model": 786432
+    },
+    {
+      "compression_level": 9,
+      "retained": "raw",
+      "actual_download_packet_bytes": 247388,
+      "key_s": 3.84000304620713e-06,
+      "owner_serialize_compress_seal_s": 0.38867767198826186,
+      "client_authenticate_parse_s": 0.011797708997619338,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "local_exact_query_s": 0.002814669001963921,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10"
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "local_exact_query_s": 0.003062604009755887,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746"
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "local_exact_query_s": 0.002808220000588335,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241"
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "local_exact_query_s": 0.003193858006852679,
+          "all_scores_and_stable_top3_exact": true,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94"
+        }
+      ],
+      "cold_owner_client_compute_s": 0.4004792209889274,
+      "retained_body_bytes_model": 786432
+    }
+  ],
+  "cases": [
+    {
+      "kind": "global_raw",
+      "n": 2048,
+      "q": 4294955009,
+      "status": "measured_research_only",
+      "setup": {
+        "map_allocation_and_coordinate_certification_s": 5.225067712992313,
+        "key_gen_s": 0.011245836998568848,
+        "private_owner_backend_prepare_s": 0.0005223010084591806,
+        "private_vectorized_coordinate_factory_prepare_s": 0.2665746440034127,
+        "enroll_s": 7.150580300003639,
+        "native_index_prepare_s": 1.1883345079986611,
+        "full_checker_prepare_s": 3.669115764001617
+      },
+      "upload_bytes": 16724736,
+      "geometry": {
+        "n": 2048,
+        "t": 193,
+        "q_bits": 32,
+        "query_coordinates": 126,
+        "coordinate_columns": 126,
+        "subring_degree": 1,
+        "replies": 16,
+        "shared_query_coordinates": 0,
+        "correction_coefficients": 126,
+        "online_query_body_bytes": 126,
+        "online_response_body_bytes": 262144,
+        "expanded_index_body_bytes": 33030144,
+        "naive_scalar_basis_index_body_bytes": 33030144,
+        "offline_seeded_answer_body_bytes_per_token": 131584,
+        "stored_expanded_answer_bytes_per_token": 262144,
+        "owner_private_mask_seed_bytes_per_token": 32,
+        "online_ring_products": 0,
+        "online_scalar_products": 8257536,
+        "native_ntt_index_word_bytes": 66060288,
+        "native_online_pointwise_scalar_products": 8257536,
+        "online_ciphertext_products": 0,
+        "online_key_switches": 0,
+        "worst_case_phase_bound": 50190453,
+        "fresh_phase_bound": 4149,
+        "checker_rounds": 5,
+        "checker_prepare_ring_products": 0,
+        "checker_prepare_scalar_products": 41287680,
+        "checker_epoch_residue_body_bytes": 1313240,
+        "checker_epoch_seeded_body_bytes": 2680,
+        "checker_token_residue_body_bytes": 20,
+        "checker_online_scalar_products": 328310,
+        "full_degree_single_encryption_ciphertext_body_bytes": 16384
+      },
+      "private_map_body_bytes": 150,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "stages": {
+            "transform_and_one_use_s": 0.00024659499467816204,
+            "native_server_s": 0.04569500499928836,
+            "serialize_s": 0.01225977999274619,
+            "parse_s": 0.006830323996837251,
+            "full_gate_s": 0.013801861001411453,
+            "secret_decrypt_s": 0.030699578986968845,
+            "decode_and_stable_top3_s": 0.012851601000875235
+          },
+          "online_stage_sum_s": 0.12238474497280549,
+          "offline_produce_and_check_s": 0.07398022200504784,
+          "prepared_answer_packet_bytes": 132736,
+          "response_body_bytes": 262144,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1784529,
+            "maximum_deterministic_response_bound": 28043091,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0008309884486615352,
+            "private_phase_digest_diagnostic_only": "1474cf9857dd5d78dfb149a172cf84f394504592407b24337a03474864cae164"
+          },
+          "top3": [
+            [
+              4,
+              6711
+            ],
+            [
+              4,
+              20359
+            ],
+            [
+              4,
+              20369
+            ]
+          ]
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.0002278949978062883,
+            "native_server_s": 0.03523230299470015,
+            "serialize_s": 0.012189557994133793,
+            "parse_s": 0.005781232001027092,
+            "full_gate_s": 0.013393272995017469,
+            "secret_decrypt_s": 0.03108351600531023,
+            "decode_and_stable_top3_s": 0.012615067011211067
+          },
+          "online_stage_sum_s": 0.11052284399920609,
+          "offline_produce_and_check_s": 0.07445922300394159,
+          "prepared_answer_packet_bytes": 132736,
+          "response_body_bytes": 262144,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1688762,
+            "maximum_deterministic_response_bound": 25250814,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.000786393336582679,
+            "private_phase_digest_diagnostic_only": "49e461d76f2330e13d2c75a9479d88c46558a02dd7e52a1a24fa7bb1e59f6904"
+          },
+          "top3": [
+            [
+              4,
+              28867
+            ],
+            [
+              4,
+              30502
+            ],
+            [
+              4,
+              30815
+            ]
+          ]
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.000211844002478756,
+            "native_server_s": 0.03439094699569978,
+            "serialize_s": 0.012115516001358628,
+            "parse_s": 0.005444984999485314,
+            "full_gate_s": 0.014070088000153191,
+            "secret_decrypt_s": 0.031129606999456882,
+            "decode_and_stable_top3_s": 0.012741708997054957
+          },
+          "online_stage_sum_s": 0.11010469599568751,
+          "offline_produce_and_check_s": 0.07087909600522835,
+          "prepared_answer_packet_bytes": 132736,
+          "response_body_bytes": 262144,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1628617,
+            "maximum_deterministic_response_bound": 24586974,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0007583860583346101,
+            "private_phase_digest_diagnostic_only": "77c5670cb78977da2cbd0157c400dcd5e9dc4db440eaaadcde2eeee3784b5151"
+          },
+          "top3": [
+            [
+              4,
+              22974
+            ],
+            [
+              4,
+              24794
+            ],
+            [
+              4,
+              24822
+            ]
+          ]
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.0003952190018026158,
+            "native_server_s": 0.03545711799233686,
+            "serialize_s": 0.012043403999996372,
+            "parse_s": 0.005384574003983289,
+            "full_gate_s": 0.0141325680015143,
+            "secret_decrypt_s": 0.032107888007885776,
+            "decode_and_stable_top3_s": 0.012737119002849795
+          },
+          "online_stage_sum_s": 0.11225789001036901,
+          "offline_produce_and_check_s": 0.07199012000637595,
+          "prepared_answer_packet_bytes": 132736,
+          "response_body_bytes": 262144,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1606646,
+            "maximum_deterministic_response_bound": 24781977,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0007481549849222181,
+            "private_phase_digest_diagnostic_only": "052a23f8780e95ae0b15aa6499da9acddaeda85bb9b328019e22452c77027333"
+          },
+          "top3": [
+            [
+              4,
+              7529
+            ],
+            [
+              4,
+              8298
+            ],
+            [
+              4,
+              8304
+            ]
+          ]
+        }
+      ],
+      "summary": {
+        "online_stage_sum_s": {
+          "mean": 0.1109618100017542,
+          "median": 0.11052284399920609,
+          "min": 0.11010469599568751,
+          "max": 0.11225789001036901
+        },
+        "offline_produce_and_check_s": {
+          "mean": 0.07244281300518196,
+          "median": 0.07199012000637595,
+          "min": 0.07087909600522835,
+          "max": 0.07445922300394159
+        },
+        "response_body_bytes": {
+          "mean": 262144,
+          "median": 262144,
+          "min": 262144,
+          "max": 262144
+        }
+      }
+    },
+    {
+      "kind": "global_affine",
+      "n": 2048,
+      "q": 4294955009,
+      "status": "measured_research_only",
+      "setup": {
+        "map_allocation_and_coordinate_certification_s": 4.795354950998444,
+        "key_gen_s": 0.011219457010156475,
+        "private_owner_backend_prepare_s": 0.0005860620003659278,
+        "private_vectorized_coordinate_factory_prepare_s": 0.17896609600575175,
+        "enroll_s": 4.49548740600585,
+        "native_index_prepare_s": 0.748833685007412,
+        "full_checker_prepare_s": 2.4173283760028426
+      },
+      "upload_bytes": 10884352,
+      "geometry": {
+        "n": 2048,
+        "t": 193,
+        "q_bits": 32,
+        "query_coordinates": 82,
+        "coordinate_columns": 82,
+        "subring_degree": 1,
+        "replies": 16,
+        "shared_query_coordinates": 0,
+        "correction_coefficients": 82,
+        "online_query_body_bytes": 82,
+        "online_response_body_bytes": 262144,
+        "expanded_index_body_bytes": 21495808,
+        "naive_scalar_basis_index_body_bytes": 21495808,
+        "offline_seeded_answer_body_bytes_per_token": 131584,
+        "stored_expanded_answer_bytes_per_token": 262144,
+        "owner_private_mask_seed_bytes_per_token": 32,
+        "online_ring_products": 0,
+        "online_scalar_products": 5373952,
+        "native_ntt_index_word_bytes": 42991616,
+        "native_online_pointwise_scalar_products": 5373952,
+        "online_ciphertext_products": 0,
+        "online_key_switches": 0,
+        "worst_case_phase_bound": 32665077,
+        "fresh_phase_bound": 4149,
+        "checker_rounds": 5,
+        "checker_prepare_ring_products": 0,
+        "checker_prepare_scalar_products": 26869760,
+        "checker_epoch_residue_body_bytes": 1312360,
+        "checker_epoch_seeded_body_bytes": 1800,
+        "checker_token_residue_body_bytes": 20,
+        "checker_online_scalar_products": 328090,
+        "full_degree_single_encryption_ciphertext_body_bytes": 16384
+      },
+      "private_map_body_bytes": 686,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "stages": {
+            "transform_and_one_use_s": 0.00021727400599047542,
+            "native_server_s": 0.028891009002109058,
+            "serialize_s": 0.012022253999020904,
+            "parse_s": 0.00671025100746192,
+            "full_gate_s": 0.022816882003098726,
+            "secret_decrypt_s": 0.03150170399749186,
+            "decode_and_stable_top3_s": 0.012670106996665709
+          },
+          "online_stage_sum_s": 0.11482948101183865,
+          "offline_produce_and_check_s": 0.0718913269956829,
+          "prepared_answer_packet_bytes": 132736,
+          "response_body_bytes": 262144,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1386122,
+            "maximum_deterministic_response_bound": 16529616,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0006454652014260483,
+            "private_phase_digest_diagnostic_only": "8844055201574094428afc705ca98b0af78709a496384f3e8c1cc9409a07e22c"
+          },
+          "top3": [
+            [
+              4,
+              6711
+            ],
+            [
+              4,
+              20359
+            ],
+            [
+              4,
+              20369
+            ]
+          ]
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00019577400234993547,
+            "native_server_s": 0.028205284994328395,
+            "serialize_s": 0.012023023999063298,
+            "parse_s": 0.005750960990553722,
+            "full_gate_s": 0.012894102997961454,
+            "secret_decrypt_s": 0.030410080988076515,
+            "decode_and_stable_top3_s": 0.012654467005631886
+          },
+          "online_stage_sum_s": 0.1021336949779652,
+          "offline_produce_and_check_s": 0.07063865000964142,
+          "prepared_answer_packet_bytes": 132736,
+          "response_body_bytes": 262144,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1375444,
+            "maximum_deterministic_response_bound": 15811839,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0006404928559753395,
+            "private_phase_digest_diagnostic_only": "6924450efb2de8b88ff57dc180c8d40512593b346d9db924956e0d662687469d"
+          },
+          "top3": [
+            [
+              4,
+              28867
+            ],
+            [
+              4,
+              30502
+            ],
+            [
+              4,
+              30815
+            ]
+          ]
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00018574399291537702,
+            "native_server_s": 0.027627771996776573,
+            "serialize_s": 0.012140306003857404,
+            "parse_s": 0.005877263989532366,
+            "full_gate_s": 0.013275639998028055,
+            "secret_decrypt_s": 0.030624104998423718,
+            "decode_and_stable_top3_s": 0.012720707993139513
+          },
+          "online_stage_sum_s": 0.102451538972673,
+          "offline_produce_and_check_s": 0.07072794101259205,
+          "prepared_answer_packet_bytes": 132736,
+          "response_body_bytes": 262144,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1242727,
+            "maximum_deterministic_response_bound": 16625043,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0005786915101070387,
+            "private_phase_digest_diagnostic_only": "d7e884750fccd59efb31a811b1e7335fd1693df6a16f9f762bbca496d3a1f57a"
+          },
+          "top3": [
+            [
+              4,
+              22974
+            ],
+            [
+              4,
+              24794
+            ],
+            [
+              4,
+              24822
+            ]
+          ]
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "stages": {
+            "transform_and_one_use_s": 0.00020898399816360325,
+            "native_server_s": 0.027262345000053756,
+            "serialize_s": 0.012169346999144182,
+            "parse_s": 0.005391323997173458,
+            "full_gate_s": 0.013165027005015872,
+            "secret_decrypt_s": 0.03064406600606162,
+            "decode_and_stable_top3_s": 0.013967753999168053
+          },
+          "online_stage_sum_s": 0.10280884700478055,
+          "offline_produce_and_check_s": 0.0721056909969775,
+          "prepared_answer_packet_bytes": 132736,
+          "response_body_bytes": 262144,
+          "all_scores_top3_full_native_gmp_coefficients_exact": true,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "complete_gate_before_secret_decrypt": true,
+          "phase": {
+            "maximum_unreduced_integer_phase": 1250967,
+            "maximum_deterministic_response_bound": 15741306,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0005825285700914777,
+            "private_phase_digest_diagnostic_only": "5110d90e39b79f9d985354ed4803838f8ddd33d23d7eb00818e5c57d6e0caa12"
+          },
+          "top3": [
+            [
+              4,
+              7529
+            ],
+            [
+              4,
+              8298
+            ],
+            [
+              4,
+              8304
+            ]
+          ]
+        }
+      ],
+      "summary": {
+        "online_stage_sum_s": {
+          "mean": 0.10246469365180626,
+          "median": 0.102451538972673,
+          "min": 0.1021336949779652,
+          "max": 0.10280884700478055
+        },
+        "offline_produce_and_check_s": {
+          "mean": 0.071157427339737,
+          "median": 0.07072794101259205,
+          "min": 0.07063865000964142,
+          "max": 0.0721056909969775
+        },
+        "response_body_bytes": {
+          "mean": 262144,
+          "median": 262144,
+          "min": 262144,
+          "max": 262144
+        }
+      }
+    }
+  ],
+  "scope": "Same public fixture, IDs and held-out queries, exact complete scores/stable top3; local-layout cases share approved maps, global raw/affine controls use their own certified whole-index maps. Full-ring N changes, unlike a public correction subring change; estimates and seeded/protocol assumptions remain unreviewed. Complete check, serialization, parse, native server, secret decrypt and selection all timed. Setup and diagnostics reported separately; this is not a full lifetime, network, new GPU or production-parameter claim."
+}

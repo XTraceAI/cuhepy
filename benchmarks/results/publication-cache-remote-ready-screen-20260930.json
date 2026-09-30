@@ -1,0 +1,1815 @@
+{
+  "utc": "2026-09-30T20:43:15.932138+00:00",
+  "command": [
+    "benchmarks/cache_remote_cost_lab.py",
+    "--cache-run",
+    "benchmarks/results/publication-cache-compression-levels-20260930.json",
+    "--bgv",
+    "benchmarks/results/publication-global-control-mushroom-20260930.json",
+    "benchmarks/results/publication-global-control-semeion-20260930.json",
+    "--emvp",
+    "benchmarks/results/publication-original-emvp-mushroom-pinned-20260930.json",
+    "benchmarks/results/publication-original-emvp-semeion-pinned-20260930.json",
+    "--json-out",
+    "benchmarks/results/publication-cache-remote-ready-screen-20260930.json"
+  ],
+  "git_head": "1fa447645fdade57907bd7ee717c350d76ee476b",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/cache_remote_cost_lab.py": "0271891da4b95dce55760f351429b0e779dd41e69eba6cd425de9e1efadf31d1",
+    "benchmarks/results/publication-cache-compression-levels-20260930.json": "a6a1ad169bfac996e9be1f0f5a42b0a5de0ae7ad7c73302b7863c775680032a2",
+    "benchmarks/results/publication-global-control-mushroom-20260930.json": "1122f1119f228d98ff0f3b294cb924c5ad209bbb79a783d526aead214319ae26",
+    "benchmarks/results/publication-global-control-semeion-20260930.json": "3bdde98e2b4734bc2ecc449a70d77aa01ef962242a6b624a312e480fd8a79ab8",
+    "benchmarks/results/publication-original-emvp-mushroom-pinned-20260930.json": "8fa8c8ad7c8fb4dfe85097dab48d5b42809fb130b4579e3981c86f48207b1b29",
+    "benchmarks/results/publication-original-emvp-semeion-pinned-20260930.json": "54fe45102ab6825b90ea88cc56f50c6573f6e9c6142fcd5d37416839167defd7"
+  },
+  "kind": "cache_vs_ready_remote_empirical_cost_screen",
+  "inputs": [
+    {
+      "path": "benchmarks/results/publication-cache-compression-levels-20260930.json",
+      "sha256": "a6a1ad169bfac996e9be1f0f5a42b0a5de0ae7ad7c73302b7863c775680032a2"
+    },
+    {
+      "path": "benchmarks/results/publication-global-control-mushroom-20260930.json",
+      "sha256": "1122f1119f228d98ff0f3b294cb924c5ad209bbb79a783d526aead214319ae26"
+    },
+    {
+      "path": "benchmarks/results/publication-global-control-semeion-20260930.json",
+      "sha256": "3bdde98e2b4734bc2ecc449a70d77aa01ef962242a6b624a312e480fd8a79ab8"
+    },
+    {
+      "path": "benchmarks/results/publication-original-emvp-mushroom-pinned-20260930.json",
+      "sha256": "8fa8c8ad7c8fb4dfe85097dab48d5b42809fb130b4579e3981c86f48207b1b29"
+    },
+    {
+      "path": "benchmarks/results/publication-original-emvp-semeion-pinned-20260930.json",
+      "sha256": "54fe45102ab6825b90ea88cc56f50c6573f6e9c6142fcd5d37416839167defd7"
+    }
+  ],
+  "constants": {
+    "mushroom": {
+      "local_choices": [
+        {
+          "compressed": false,
+          "compression_level": null,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.004811503495147917,
+          "owner_ready_client_acquire_s": 0.0026952164989779703,
+          "online_local_query_s": 0.000723341562661517,
+          "actual_download_packet_bytes": 191996,
+          "retained_body_bytes_model": 191904
+        },
+        {
+          "compressed": true,
+          "compression_level": 1,
+          "retained": "compressed",
+          "cold_owner_client_compute_s": 0.006165752507513389,
+          "owner_ready_client_acquire_s": 0.002901706007833127,
+          "online_local_query_s": 0.0034863166247305344,
+          "actual_download_packet_bytes": 63064,
+          "retained_body_bytes_model": 62972
+        },
+        {
+          "compressed": true,
+          "compression_level": 1,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.0060849509900435805,
+          "owner_ready_client_acquire_s": 0.002836239495081827,
+          "online_local_query_s": 0.0007526580657213344,
+          "actual_download_packet_bytes": 63064,
+          "retained_body_bytes_model": 191904
+        },
+        {
+          "compressed": true,
+          "compression_level": 3,
+          "retained": "compressed",
+          "cold_owner_client_compute_s": 0.007335318012337666,
+          "owner_ready_client_acquire_s": 0.0028856350108981133,
+          "online_local_query_s": 0.0034482265618862584,
+          "actual_download_packet_bytes": 55849,
+          "retained_body_bytes_model": 55757
+        },
+        {
+          "compressed": true,
+          "compression_level": 3,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.007238621503347531,
+          "owner_ready_client_acquire_s": 0.002794184001686517,
+          "online_local_query_s": 0.0006911095633768127,
+          "actual_download_packet_bytes": 55849,
+          "retained_body_bytes_model": 191904
+        },
+        {
+          "compressed": true,
+          "compression_level": 6,
+          "retained": "compressed",
+          "cold_owner_client_compute_s": 0.013526145994546823,
+          "owner_ready_client_acquire_s": 0.0028469140015658922,
+          "online_local_query_s": 0.0034245575006934814,
+          "actual_download_packet_bytes": 50642,
+          "retained_body_bytes_model": 50550
+        },
+        {
+          "compressed": true,
+          "compression_level": 6,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.013462504990457091,
+          "owner_ready_client_acquire_s": 0.002806919001159258,
+          "online_local_query_s": 0.0007220475645226543,
+          "actual_download_packet_bytes": 50642,
+          "retained_body_bytes_model": 191904
+        },
+        {
+          "compressed": true,
+          "compression_level": 9,
+          "retained": "compressed",
+          "cold_owner_client_compute_s": 0.06248080099612707,
+          "owner_ready_client_acquire_s": 0.0028542649961309507,
+          "online_local_query_s": 0.0034663251253732597,
+          "actual_download_packet_bytes": 49901,
+          "retained_body_bytes_model": 49809
+        },
+        {
+          "compressed": true,
+          "compression_level": 9,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.06235900900355773,
+          "owner_ready_client_acquire_s": 0.002771953499177471,
+          "online_local_query_s": 0.000729602816136321,
+          "actual_download_packet_bytes": 49901,
+          "retained_body_bytes_model": 191904
+        }
+      ],
+      "optimistic_remote_choices": [
+        {
+          "backend": "own_BGV",
+          "kind": "global_raw",
+          "n": 16384,
+          "online_compute_s": 0.05205993200070225,
+          "query_and_reply_body_bytes_model": 131198
+        },
+        {
+          "backend": "own_BGV",
+          "kind": "global_affine",
+          "n": 16384,
+          "online_compute_s": 0.048505778999242466,
+          "query_and_reply_body_bytes_model": 131157
+        },
+        {
+          "backend": "own_BGV",
+          "kind": "global_raw",
+          "n": 2048,
+          "online_compute_s": 0.027977124002063647,
+          "query_and_reply_body_bytes_model": 65662
+        },
+        {
+          "backend": "own_BGV",
+          "kind": "global_affine",
+          "n": 2048,
+          "online_compute_s": 0.025849631005257834,
+          "query_and_reply_body_bytes_model": 65621
+        },
+        {
+          "backend": "original_EMVP_private_full_gate",
+          "key_only": false,
+          "online_compute_s": 0.005680403,
+          "query_and_reply_body_bytes_model": 1473288
+        },
+        {
+          "backend": "original_EMVP_private_full_gate",
+          "key_only": true,
+          "online_compute_s": 0.005975729,
+          "query_and_reply_body_bytes_model": 1473288
+        },
+        {
+          "backend": "original_EMVP_private_full_gate",
+          "key_only": true,
+          "online_compute_s": 0.005922468,
+          "query_and_reply_body_bytes_model": 1473288
+        },
+        {
+          "backend": "original_EMVP_private_full_gate",
+          "key_only": false,
+          "online_compute_s": 0.005657372,
+          "query_and_reply_body_bytes_model": 1473288
+        }
+      ]
+    },
+    "semeion": {
+      "local_choices": [
+        {
+          "compressed": false,
+          "compression_level": null,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.004792774001543876,
+          "owner_ready_client_acquire_s": 0.0006419665005523711,
+          "online_local_query_s": 0.0001505201244071941,
+          "actual_download_packet_bytes": 58692,
+          "retained_body_bytes_model": 58600
+        },
+        {
+          "compressed": true,
+          "compression_level": 1,
+          "retained": "compressed",
+          "cold_owner_client_compute_s": 0.0019764550088439137,
+          "owner_ready_client_acquire_s": 0.000767533500038553,
+          "online_local_query_s": 0.0008031320621739724,
+          "actual_download_packet_bytes": 32954,
+          "retained_body_bytes_model": 32862
+        },
+        {
+          "compressed": true,
+          "compression_level": 1,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.0019842500041704625,
+          "owner_ready_client_acquire_s": 0.0007620335018145852,
+          "online_local_query_s": 0.00015118956525839167,
+          "actual_download_packet_bytes": 32954,
+          "retained_body_bytes_model": 58600
+        },
+        {
+          "compressed": true,
+          "compression_level": 3,
+          "retained": "compressed",
+          "cold_owner_client_compute_s": 0.0024285425097332336,
+          "owner_ready_client_acquire_s": 0.0007620885080541484,
+          "online_local_query_s": 0.0007886800012784079,
+          "actual_download_packet_bytes": 31881,
+          "retained_body_bytes_model": 31789
+        },
+        {
+          "compressed": true,
+          "compression_level": 3,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.002405302511760965,
+          "owner_ready_client_acquire_s": 0.0007374030028586276,
+          "online_local_query_s": 0.00014590812679671217,
+          "actual_download_packet_bytes": 31881,
+          "retained_body_bytes_model": 58600
+        },
+        {
+          "compressed": true,
+          "compression_level": 6,
+          "retained": "compressed",
+          "cold_owner_client_compute_s": 0.004451732995221391,
+          "owner_ready_client_acquire_s": 0.0007613835041411221,
+          "online_local_query_s": 0.0007903800615167711,
+          "actual_download_packet_bytes": 30425,
+          "retained_body_bytes_model": 30333
+        },
+        {
+          "compressed": true,
+          "compression_level": 6,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.004446857994480524,
+          "owner_ready_client_acquire_s": 0.0007501829968532547,
+          "online_local_query_s": 0.000146785563629237,
+          "actual_download_packet_bytes": 30425,
+          "retained_body_bytes_model": 58600
+        },
+        {
+          "compressed": true,
+          "compression_level": 9,
+          "retained": "compressed",
+          "cold_owner_client_compute_s": 0.013597367498732638,
+          "owner_ready_client_acquire_s": 0.0007583034966955893,
+          "online_local_query_s": 0.0007853505621824297,
+          "actual_download_packet_bytes": 30268,
+          "retained_body_bytes_model": 30176
+        },
+        {
+          "compressed": true,
+          "compression_level": 9,
+          "retained": "raw",
+          "cold_owner_client_compute_s": 0.013535776000935584,
+          "owner_ready_client_acquire_s": 0.0007440730041707866,
+          "online_local_query_s": 0.00013739462792727863,
+          "actual_download_packet_bytes": 30268,
+          "retained_body_bytes_model": 58600
+        }
+      ],
+      "optimistic_remote_choices": [
+        {
+          "backend": "own_BGV",
+          "kind": "global_raw",
+          "n": 16384,
+          "online_compute_s": 0.06082332599180518,
+          "query_and_reply_body_bytes_model": 131584
+        },
+        {
+          "backend": "own_BGV",
+          "kind": "global_affine",
+          "n": 16384,
+          "online_compute_s": 0.061135691990784835,
+          "query_and_reply_body_bytes_model": 131584
+        },
+        {
+          "backend": "own_BGV",
+          "kind": "global_raw",
+          "n": 2048,
+          "online_compute_s": 0.009821248000662308,
+          "query_and_reply_body_bytes_model": 16896
+        },
+        {
+          "backend": "own_BGV",
+          "kind": "global_affine",
+          "n": 2048,
+          "online_compute_s": 0.009718205998069607,
+          "query_and_reply_body_bytes_model": 16896
+        },
+        {
+          "backend": "original_EMVP_private_full_gate",
+          "key_only": false,
+          "online_compute_s": 0.001330246,
+          "query_and_reply_body_bytes_model": 209300
+        },
+        {
+          "backend": "original_EMVP_private_full_gate",
+          "key_only": true,
+          "online_compute_s": 0.002373956,
+          "query_and_reply_body_bytes_model": 209300
+        },
+        {
+          "backend": "original_EMVP_private_full_gate",
+          "key_only": true,
+          "online_compute_s": 0.003070729,
+          "query_and_reply_body_bytes_model": 209300
+        },
+        {
+          "backend": "original_EMVP_private_full_gate",
+          "key_only": false,
+          "online_compute_s": 0.001335285,
+          "query_and_reply_body_bytes_model": 209300
+        }
+      ]
+    }
+  },
+  "screens": [
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 1,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.41932055255497974,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 6,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013462504990457091,
+        "owner_ready_client_acquire_s": 0.002806919001159258,
+        "online_local_query_s": 0.0007220475645226543,
+        "actual_download_packet_bytes": 50642,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.5508176310052578,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.4027095563153138,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 10,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.052608931066724346,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.07834643100525784,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.04342235631531379,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 100,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.011882729055764915,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0060849509900435805,
+        "owner_ready_client_acquire_s": 0.002836239495081827,
+        "online_local_query_s": 0.0007526580657213344,
+        "actual_download_packet_bytes": 63064,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.031099311005257833,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.007493636315313792,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 1000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.007070813057809435,
+      "chosen_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004811503495147917,
+        "owner_ready_client_acquire_s": 0.0026952164989779703,
+        "online_local_query_s": 0.000723341562661517,
+        "actual_download_packet_bytes": 191996,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.017443675999999998,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.005657372,
+        "query_and_reply_body_bytes_model": 1473288
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0039007643153137917,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 10000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.005688441857809434,
+      "chosen_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004811503495147917,
+        "owner_ready_client_acquire_s": 0.0026952164989779703,
+        "online_local_query_s": 0.000723341562661517,
+        "actual_download_packet_bytes": 191996,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.0068360024,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.005657372,
+        "query_and_reply_body_bytes_model": 1473288
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0035299727650633297,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 1,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.4200426001195024,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 6,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013462504990457091,
+        "owner_ready_client_acquire_s": 0.002806919001159258,
+        "online_local_query_s": 0.0007220475645226543,
+        "actual_download_packet_bytes": 50642,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 1.1016352620105156,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.4034391591314501,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 10,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.05330004063010116,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.1566928620105157,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.04415195913145011,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 100,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.01263538712148625,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0060849509900435805,
+        "owner_ready_client_acquire_s": 0.002836239495081827,
+        "online_local_query_s": 0.0007526580657213344,
+        "actual_download_packet_bytes": 63064,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.06219862201051567,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.008223239131450113,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 1000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.007794154620470952,
+      "chosen_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004811503495147917,
+        "owner_ready_client_acquire_s": 0.0026952164989779703,
+        "online_local_query_s": 0.000723341562661517,
+        "actual_download_packet_bytes": 191996,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.034887351999999996,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.005657372,
+        "query_and_reply_body_bytes_model": 1473288
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.004623195128440142,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 10000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.006411783420470951,
+      "chosen_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004811503495147917,
+        "owner_ready_client_acquire_s": 0.0026952164989779703,
+        "online_local_query_s": 0.000723341562661517,
+        "actual_download_packet_bytes": 191996,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.0136720048,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.005657372,
+        "query_and_reply_body_bytes_model": 1473288
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.004221082328440142,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 1,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.4214866952485477,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 6,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013462504990457091,
+        "owner_ready_client_acquire_s": 0.002806919001159258,
+        "online_local_query_s": 0.0007220475645226543,
+        "actual_download_packet_bytes": 50642,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 2.2032705240210313,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.40489836476372276,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 10,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.054682259756854784,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.3133857240210314,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.045611164763722754,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 100,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.014140703252928918,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0060849509900435805,
+        "owner_ready_client_acquire_s": 0.002836239495081827,
+        "online_local_query_s": 0.0007526580657213344,
+        "actual_download_packet_bytes": 63064,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.12439724402103133,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.009682444763722755,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 1000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.009240837745793986,
+      "chosen_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004811503495147917,
+        "owner_ready_client_acquire_s": 0.0026952164989779703,
+        "online_local_query_s": 0.000723341562661517,
+        "actual_download_packet_bytes": 191996,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.06977470399999999,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.005657372,
+        "query_and_reply_body_bytes_model": 1473288
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.006005414255193768,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 10000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.007858466545793984,
+      "chosen_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004811503495147917,
+        "owner_ready_client_acquire_s": 0.0026952164989779703,
+        "online_local_query_s": 0.000723341562661517,
+        "actual_download_packet_bytes": 191996,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.0273440096,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.005657372,
+        "query_and_reply_body_bytes_model": 1473288
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.005603301455193768,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 1,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.4243748855066383,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 6,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013462504990457091,
+        "owner_ready_client_acquire_s": 0.002806919001159258,
+        "online_local_query_s": 0.0007220475645226543,
+        "actual_download_packet_bytes": 50642,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 4.406541048042063,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.40781677602826805,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 10,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.057446698010362035,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.6267714480420628,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.04852957602826804,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 100,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.017151335515814256,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0060849509900435805,
+        "owner_ready_client_acquire_s": 0.002836239495081827,
+        "online_local_query_s": 0.0007526580657213344,
+        "actual_download_packet_bytes": 63064,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.24879448804206267,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.025849631005257834,
+        "query_and_reply_body_bytes_model": 65621
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.01260085602826804,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.06235900900355773,
+        "owner_ready_client_acquire_s": 0.002771953499177471,
+        "online_local_query_s": 0.000729602816136321,
+        "actual_download_packet_bytes": 49901,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 1000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.012134203996440053,
+      "chosen_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004811503495147917,
+        "owner_ready_client_acquire_s": 0.0026952164989779703,
+        "online_local_query_s": 0.000723341562661517,
+        "actual_download_packet_bytes": 191996,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.13954940799999999,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.005657372,
+        "query_and_reply_body_bytes_model": 1473288
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.008769852508701019,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "mushroom",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 10000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.010751832796440052,
+      "chosen_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004811503495147917,
+        "owner_ready_client_acquire_s": 0.0026952164989779703,
+        "online_local_query_s": 0.000723341562661517,
+        "actual_download_packet_bytes": 191996,
+        "retained_body_bytes_model": 191904
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.0546880192,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.005657372,
+        "query_and_reply_body_bytes_model": 1473288
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.008367739708701019,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.007238621503347531,
+        "owner_ready_client_acquire_s": 0.002794184001686517,
+        "online_local_query_s": 0.0006911095633768127,
+        "actual_download_packet_bytes": 55849,
+        "retained_body_bytes_model": 191904
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 1,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.24799364355810977,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 6,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004446857994480524,
+        "owner_ready_client_acquire_s": 0.0007501829968532547,
+        "online_local_query_s": 0.000146785563629237,
+        "actual_download_packet_bytes": 30425,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.14488620599806962,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": false,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.24302546763209806,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": false
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 10,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.028056010638557678,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.002405302511760965,
+        "owner_ready_client_acquire_s": 0.0007374030028586276,
+        "online_local_query_s": 0.00014590812679671217,
+        "actual_download_packet_bytes": 31881,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.02323500599806961,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": false,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.025095867632098066,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": false
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 100,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.004771759569428854,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.011069885998069608,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.003302907632098065,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 1000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.0023990715694288543,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.0030046459999999997,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.001330246,
+        "query_and_reply_body_bytes_model": 209300
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0011236116320980651,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 1,
+      "bandwidth_Mbps_model": 10000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.002161802769428854,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.001497686,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.001330246,
+        "query_and_reply_body_bytes_model": 209300
+      },
+      "cache_cheaper_in_model": false,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0008394402249595652,
+      "chosen_owner_ready_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004792774001543876,
+        "owner_ready_client_acquire_s": 0.0006419665005523711,
+        "online_local_query_s": 0.0001505201244071941,
+        "actual_download_packet_bytes": 58692,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 1,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.248140429121739,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 6,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004446857994480524,
+        "owner_ready_client_acquire_s": 0.0007501829968532547,
+        "online_local_query_s": 0.000146785563629237,
+        "actual_download_packet_bytes": 30425,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.28977241199613923,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.24316286226002534,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 10,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.02820191876535439,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.002405302511760965,
+        "owner_ready_client_acquire_s": 0.0007374030028586276,
+        "online_local_query_s": 0.00014590812679671217,
+        "actual_download_packet_bytes": 31881,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.04647001199613922,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.025233262260025344,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 100,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.004922949134687246,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.022139771996139215,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.003440302260025344,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 1000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.002550261134687246,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.006009291999999999,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.001330246,
+        "query_and_reply_body_bytes_model": 209300
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0012610062600253438,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 2,
+      "bandwidth_Mbps_model": 10000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.0023129923346872456,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.002995372,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.001330246,
+        "query_and_reply_body_bytes_model": 209300
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0009899603493667593,
+      "chosen_owner_ready_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004792774001543876,
+        "owner_ready_client_acquire_s": 0.0006419665005523711,
+        "online_local_query_s": 0.0001505201244071941,
+        "actual_download_packet_bytes": 58692,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 1,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.24843400024899748,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 6,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004446857994480524,
+        "owner_ready_client_acquire_s": 0.0007501829968532547,
+        "online_local_query_s": 0.000146785563629237,
+        "actual_download_packet_bytes": 30425,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.5795448239922785,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.2434376515158799,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 10,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.028493735018947815,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.002405302511760965,
+        "owner_ready_client_acquire_s": 0.0007374030028586276,
+        "online_local_query_s": 0.00014590812679671217,
+        "actual_download_packet_bytes": 31881,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.09294002399227844,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0255080515158799,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 100,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.005225328265204029,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.04427954399227843,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.003715091515879901,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 1000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.0028526402652040293,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.012018583999999999,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.001330246,
+        "query_and_reply_body_bytes_model": 209300
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.001535795515879901,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 4,
+      "bandwidth_Mbps_model": 10000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.002615371465204029,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.005990744,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.001330246,
+        "query_and_reply_body_bytes_model": 209300
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0012910005981811475,
+      "chosen_owner_ready_cache": {
+        "compressed": false,
+        "compression_level": null,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004792774001543876,
+        "owner_ready_client_acquire_s": 0.0006419665005523711,
+        "online_local_query_s": 0.0001505201244071941,
+        "actual_download_packet_bytes": 58692,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 1,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.24902114250351443,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 6,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.004446857994480524,
+        "owner_ready_client_acquire_s": 0.0007501829968532547,
+        "online_local_query_s": 0.000146785563629237,
+        "actual_download_packet_bytes": 30425,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 1.159089647984557,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.243987230027589,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 10,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.029077367526134663,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 3,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.002405302511760965,
+        "owner_ready_client_acquire_s": 0.0007374030028586276,
+        "online_local_query_s": 0.00014590812679671217,
+        "actual_download_packet_bytes": 31881,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.18588004798455687,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.026057630027589016,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 100,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.005830086526237596,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.08855908798455686,
+      "chosen_remote": {
+        "backend": "own_BGV",
+        "kind": "global_affine",
+        "n": 2048,
+        "online_compute_s": 0.009718205998069607,
+        "query_and_reply_body_bytes_model": 16896
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.004264670027589016,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 1000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.003457398526237596,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.024037167999999998,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.001330246,
+        "query_and_reply_body_bytes_model": 209300
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.002085374027589016,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    },
+    {
+      "dataset": "semeion",
+      "session_queries_model": 8,
+      "bandwidth_Mbps_model": 10000,
+      "cold_cache_compute_plus_nominal_transfer_s": 0.0032201297262375956,
+      "chosen_cache": {
+        "compressed": true,
+        "compression_level": 1,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.0019842500041704625,
+        "owner_ready_client_acquire_s": 0.0007620335018145852,
+        "online_local_query_s": 0.00015118956525839167,
+        "actual_download_packet_bytes": 32954,
+        "retained_body_bytes_model": 58600
+      },
+      "ready_remote_optimistic_compute_plus_nominal_transfer_s": 0.011981488,
+      "chosen_remote": {
+        "backend": "original_EMVP_private_full_gate",
+        "key_only": false,
+        "online_compute_s": 0.001330246,
+        "query_and_reply_body_bytes_model": 209300
+      },
+      "cache_cheaper_in_model": true,
+      "owner_ready_cache_compute_plus_nominal_transfer_s": 0.0018674444275890156,
+      "chosen_owner_ready_cache": {
+        "compressed": true,
+        "compression_level": 9,
+        "retained": "raw",
+        "cold_owner_client_compute_s": 0.013535776000935584,
+        "owner_ready_client_acquire_s": 0.0007440730041707866,
+        "online_local_query_s": 0.00013739462792727863,
+        "actual_download_packet_bytes": 30268,
+        "retained_body_bytes_model": 58600
+      },
+      "owner_ready_cache_cheaper_in_model": true
+    }
+  ],
+  "scope": "Count/time model with empirical constants; no measured bandwidth, RTT, mobile CPU, contention or assurance equivalence. Remote uses its fastest measured non-warmup gated sample and no setup/private-token/checker provisioning charges. Cache uses both repetition means and pays full AEAD preparation/acquisition and one actual snapshot packet. Separate owner-ready-cache panel charges client acquisition only; owner preparation/key provisioning prepaid like remote. BGV session repetition uses a stationary per-query constant from three timed samples; EMVP/cache each observed eight queries. Data/count/dimension hashes match; cache and EMVP all-score query hashes match. Different unreviewed protocol/parameter/entropy profiles cannot establish equal-assured-security dominance. Independent CPU runs, warm process and small repetitions; no population, novelty or production claim."
+}

@@ -1,0 +1,213 @@
+{
+  "utc": "2026-09-30T20:48:22.055926+00:00",
+  "command": [
+    "benchmarks/soundness_lifetime_lab.py",
+    "--json-out",
+    "benchmarks/results/publication-soundness-lifetime-oracle-20260930.json"
+  ],
+  "git_head": "1fa447645fdade57907bd7ee717c350d76ee476b",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/soundness_lifetime_lab.py": "2ea350d09138b10e329793237175df0978eb72080eb06490020a99df3df3b785",
+    "experiments/bfv_search_lab/soundness_lifetime_oracle.py": "8a0cf90375a41e3413ebab608300e28bb335cb5b75dec67217b31815457f5ef2"
+  },
+  "kind": "ideal_vector_check_lifetime_oracle",
+  "cases": [
+    {
+      "q": 3,
+      "rounds": 1,
+      "attempts": 1,
+      "policies_checked": 4,
+      "maximum_first_failure_probability": {
+        "numerator": 1,
+        "denominator": 3
+      },
+      "global_union_bound": {
+        "numerator": 1,
+        "denominator": 3
+      }
+    },
+    {
+      "q": 3,
+      "rounds": 1,
+      "attempts": 2,
+      "policies_checked": 16,
+      "maximum_first_failure_probability": {
+        "numerator": 5,
+        "denominator": 9
+      },
+      "global_union_bound": {
+        "numerator": 2,
+        "denominator": 3
+      }
+    },
+    {
+      "q": 3,
+      "rounds": 1,
+      "attempts": 3,
+      "policies_checked": 64,
+      "maximum_first_failure_probability": {
+        "numerator": 7,
+        "denominator": 9
+      },
+      "global_union_bound": {
+        "numerator": 1,
+        "denominator": 1
+      }
+    },
+    {
+      "q": 3,
+      "rounds": 2,
+      "attempts": 1,
+      "policies_checked": 4,
+      "maximum_first_failure_probability": {
+        "numerator": 1,
+        "denominator": 9
+      },
+      "global_union_bound": {
+        "numerator": 1,
+        "denominator": 9
+      }
+    },
+    {
+      "q": 3,
+      "rounds": 2,
+      "attempts": 2,
+      "policies_checked": 16,
+      "maximum_first_failure_probability": {
+        "numerator": 17,
+        "denominator": 81
+      },
+      "global_union_bound": {
+        "numerator": 2,
+        "denominator": 9
+      }
+    },
+    {
+      "q": 3,
+      "rounds": 2,
+      "attempts": 3,
+      "policies_checked": 64,
+      "maximum_first_failure_probability": {
+        "numerator": 25,
+        "denominator": 81
+      },
+      "global_union_bound": {
+        "numerator": 1,
+        "denominator": 3
+      }
+    },
+    {
+      "q": 5,
+      "rounds": 1,
+      "attempts": 1,
+      "policies_checked": 6,
+      "maximum_first_failure_probability": {
+        "numerator": 1,
+        "denominator": 5
+      },
+      "global_union_bound": {
+        "numerator": 1,
+        "denominator": 5
+      }
+    },
+    {
+      "q": 5,
+      "rounds": 1,
+      "attempts": 2,
+      "policies_checked": 36,
+      "maximum_first_failure_probability": {
+        "numerator": 9,
+        "denominator": 25
+      },
+      "global_union_bound": {
+        "numerator": 2,
+        "denominator": 5
+      }
+    },
+    {
+      "q": 5,
+      "rounds": 1,
+      "attempts": 3,
+      "policies_checked": 216,
+      "maximum_first_failure_probability": {
+        "numerator": 13,
+        "denominator": 25
+      },
+      "global_union_bound": {
+        "numerator": 3,
+        "denominator": 5
+      }
+    },
+    {
+      "q": 5,
+      "rounds": 2,
+      "attempts": 1,
+      "policies_checked": 6,
+      "maximum_first_failure_probability": {
+        "numerator": 1,
+        "denominator": 25
+      },
+      "global_union_bound": {
+        "numerator": 1,
+        "denominator": 25
+      }
+    },
+    {
+      "q": 5,
+      "rounds": 2,
+      "attempts": 2,
+      "policies_checked": 36,
+      "maximum_first_failure_probability": {
+        "numerator": 49,
+        "denominator": 625
+      },
+      "global_union_bound": {
+        "numerator": 2,
+        "denominator": 25
+      }
+    },
+    {
+      "q": 5,
+      "rounds": 2,
+      "attempts": 3,
+      "policies_checked": 216,
+      "maximum_first_failure_probability": {
+        "numerator": 73,
+        "denominator": 625
+      },
+      "global_union_bound": {
+        "numerator": 3,
+        "denominator": 25
+      }
+    }
+  ],
+  "counterexamples": {
+    "third_conditional_probability_after_two_rejections": {
+      "numerator": 1,
+      "denominator": 8
+    },
+    "fresh_unconditional_probability": {
+      "numerator": 1,
+      "denominator": 9
+    },
+    "one_epoch_three_attempt_first_failure": {
+      "numerator": 25,
+      "denominator": 81
+    },
+    "two_independent_epochs_with_three_attempts_each_first_failure": {
+      "numerator": 3425,
+      "denominator": 6561
+    },
+    "incorrect_epoch_reset_claimed_global_bound": {
+      "numerator": 1,
+      "denominator": 3
+    },
+    "correct_six_attempt_global_bound": {
+      "numerator": 2,
+      "denominator": 3
+    }
+  },
+  "scope": "Exact two-dimensional small-prime exhaustive all-reject paths with hidden uniform independent vector challenges. Models first false acceptance only; not concrete PRG/HE privacy, a service proof, timing assurance or new checker."
+}

@@ -1,0 +1,320 @@
+{
+  "utc": "2026-09-30T21:26:52.122399+00:00",
+  "command": [
+    "benchmarks/decryption_projection_lab.py",
+    "--dataset",
+    "semeion",
+    "--cache-dir",
+    "../research-data/uci-20260927",
+    "--json-out",
+    "benchmarks/results/publication-decryption-projection-semeion-20260930.json"
+  ],
+  "git_head": "1fa447645fdade57907bd7ee717c350d76ee476b",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/decryption_projection_lab.py": "52aea5a9ce67a055604732bac57c93b59b35b9da95f48a688de64bc68a9b7374",
+    "experiments/bfv_search_lab/decryption_projection.py": "3440a33978d8be0fe0517700125094ab3552ecd179bb9325605c1ba279273662",
+    "experiments/bfv_search_lab/affine_dictionary.py": "0f811f9a5cd2628f1c6c2f048c1d32e65eaaf9aa5e3f942118342b3edf6daf05",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/coefficient_body.py": "cd00bfca329d08bacfc04481de58756d9673e1baf304c6afa4db9ee8a8d4ed10",
+    "experiments/bfv_search_lab/coordinate_factory.py": "23c18da0997de513ca84f8cad775d84214667bdf2810dc0e8ed28bc0f220605d",
+    "experiments/bfv_search_lab/crt_masked_bgv.py": "ef2cece17e1b0a31a71e69ce01db380e3266293bca728dc923d1defb0e261152",
+    "experiments/bfv_search_lab/crt_native_bgv.py": "b9b8f816ae7360dec87c4fcbf170e2ab4e861908c133cb2c63cbd04d512c5c84",
+    "experiments/bfv_search_lab/crt_query_space.py": "8fdde65ed6bc51b832cfd5c8e26c57ba7e959a2aab0312039178a3639b3b5bcb",
+    "experiments/bfv_search_lab/crt_linear_check.py": "86081119ae715e17d92cd2132f57971f222cddcc04f2c0aad7adc115ebd1cee7",
+    "experiments/bfv_search_lab/native_linear_check.py": "6bc6fb004019dca6c8e5c9f155bd3f45570f7e5daef3e9d0e7274d0399ad33cd",
+    "experiments/bfv_search_lab/dyadic_crt.py": "d55ad0683b765944a078b4012927206a5d48c05613278c204b2e819eaaebe5a2",
+    "experiments/bfv_search_lab/score_layout.py": "de8a6f1c6ae4aed50c7e8ec7174c2bd1b444183db85315402e88cf2b4d24d082",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/integer_phase_audit.py": "787627023ff8a2d183b8c5cc95073d364780bb1339fd46cf468ccd39a9664a54",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/verification_lifetime.py": "196eddc2729dfbb57601ea83268bc9b65ddd066ff63438148af681d0ab466a28",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "experiments/bfv_search_lab/_subring/_crt_subring.cpython-312-x86_64-linux-gnu.so": "ecd3611af5fd16077afcb050af555374b4d9659a50e397a72a0295c2a6abb07d",
+    "experiments/bfv_search_lab/_fingerprint/_fingerprint.cpython-312-x86_64-linux-gnu.so": "273413089b89db47eb76e083504d0f260a970b17ec310501f358038738466458"
+  },
+  "kind": "dedicated_decryption_coefficient_projection",
+  "dataset": "semeion",
+  "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+  "split_seed": 3001,
+  "query_source_ids": [
+    1099,
+    154,
+    1463,
+    1175
+  ],
+  "map_discovery_s": 0.28237886299029924,
+  "cases": [
+    {
+      "n": 2048,
+      "q": 4294955009,
+      "count": 1465,
+      "dimension": 256,
+      "rank": 256,
+      "active_c0_counts": [
+        1465
+      ],
+      "global_attempts": 4,
+      "index_upload_packet_bytes": 2123776,
+      "key_s": 0.011738251996575855,
+      "enroll_s": 0.8847395060001872,
+      "coordinate_factory_s": 0.024687599987373687,
+      "native_server_prepare_s": 0.15438926900969818,
+      "projected_python_checker_prepare_s": 0.47552246299164835,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "prototype_stages_s": {
+            "server_s": 0.00683286099229008,
+            "project_s": 0.0009013179951580241,
+            "serialize_s": 0.0003966090007452294,
+            "projected_parse_python_gate_selected_decrypt_s": 0.009528305992716923,
+            "decode_stable_top3_s": 0.00031192701135296375
+          },
+          "offline_token_and_projected_hint_s": 0.011183571012225002,
+          "full_response_body_bytes": 16384,
+          "projected_response_body_bytes": 14052,
+          "body_reduction_fraction": 0.142333984375,
+          "all_scores_and_stable_top3_exact": true,
+          "all_native_GMP_full_coefficients_equal": true,
+          "full_reference_gate_passed_before_diagnostics": true,
+          "projected_gate_before_selected_SK": true,
+          "original_full_integer_phase": {
+            "maximum_unreduced_integer_phase": 3502135,
+            "maximum_deterministic_response_bound": 93018900,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0016308133578402289,
+            "private_phase_digest_diagnostic_only": "8018acda68b56afc3c190c3e21fc488df7c8899d319f92bc7485e84994626ccf"
+          },
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35"
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "prototype_stages_s": {
+            "server_s": 0.004032803000882268,
+            "project_s": 0.0008934689976740628,
+            "serialize_s": 0.00039072798972483724,
+            "projected_parse_python_gate_selected_decrypt_s": 0.009541997002088465,
+            "decode_stable_top3_s": 0.00030835700454190373
+          },
+          "offline_token_and_projected_hint_s": 0.009515027006273158,
+          "full_response_body_bytes": 16384,
+          "projected_response_body_bytes": 14052,
+          "body_reduction_fraction": 0.142333984375,
+          "all_scores_and_stable_top3_exact": true,
+          "all_native_GMP_full_coefficients_equal": true,
+          "full_reference_gate_passed_before_diagnostics": true,
+          "projected_gate_before_selected_SK": true,
+          "original_full_integer_phase": {
+            "maximum_unreduced_integer_phase": 3675875,
+            "maximum_deterministic_response_bound": 90179050,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0017117175813470785,
+            "private_phase_digest_diagnostic_only": "6090db19084a5815b903198a397a0ece22eac9f1d08e7c8269382d20f2d2c2e9"
+          },
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02"
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "prototype_stages_s": {
+            "server_s": 0.004036633006762713,
+            "project_s": 0.0009026180050568655,
+            "serialize_s": 0.0004032680008094758,
+            "projected_parse_python_gate_selected_decrypt_s": 0.009554517004289664,
+            "decode_stable_top3_s": 0.00032106701110024005
+          },
+          "offline_token_and_projected_hint_s": 0.009616809009457938,
+          "full_response_body_bytes": 16384,
+          "projected_response_body_bytes": 14052,
+          "body_reduction_fraction": 0.142333984375,
+          "all_scores_and_stable_top3_exact": true,
+          "all_native_GMP_full_coefficients_equal": true,
+          "full_reference_gate_passed_before_diagnostics": true,
+          "projected_gate_before_selected_SK": true,
+          "original_full_integer_phase": {
+            "maximum_unreduced_integer_phase": 3361046,
+            "maximum_deterministic_response_bound": 92295125,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0015651134845217187,
+            "private_phase_digest_diagnostic_only": "e6682afbadde46202b225234a29244116af5ddd9497cb5d8727171ca88bab653"
+          },
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81"
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "prototype_stages_s": {
+            "server_s": 0.004028392999316566,
+            "project_s": 0.0008963779982877895,
+            "serialize_s": 0.00039244799700099975,
+            "projected_parse_python_gate_selected_decrypt_s": 0.009580137993907556,
+            "decode_stable_top3_s": 0.0002591559896245599
+          },
+          "offline_token_and_projected_hint_s": 0.009709399993880652,
+          "full_response_body_bytes": 16384,
+          "projected_response_body_bytes": 14052,
+          "body_reduction_fraction": 0.142333984375,
+          "all_scores_and_stable_top3_exact": true,
+          "all_native_GMP_full_coefficients_equal": true,
+          "full_reference_gate_passed_before_diagnostics": true,
+          "projected_gate_before_selected_SK": true,
+          "original_full_integer_phase": {
+            "maximum_unreduced_integer_phase": 3673301,
+            "maximum_deterministic_response_bound": 93947100,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0017105189657645608,
+            "private_phase_digest_diagnostic_only": "268b4be1b09e7f8a68d768518f09488889197a2caf7ae98be5990aa69f6d8646"
+          },
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849"
+        }
+      ],
+      "mean_timed_prototype_stage_sum_s": 0.015180656667022655
+    },
+    {
+      "n": 16384,
+      "q": 4294475777,
+      "count": 1465,
+      "dimension": 256,
+      "rank": 256,
+      "active_c0_counts": [
+        1465
+      ],
+      "global_attempts": 4,
+      "index_upload_packet_bytes": 16804352,
+      "key_s": 0.09336059899942484,
+      "enroll_s": 6.8820199180045165,
+      "coordinate_factory_s": 0.024567156986449845,
+      "native_server_prepare_s": 1.2328223660006188,
+      "projected_python_checker_prepare_s": 3.4681623299984494,
+      "samples": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "prototype_stages_s": {
+            "server_s": 0.028479058004450053,
+            "project_s": 0.004641406005248427,
+            "serialize_s": 0.0018336580105824396,
+            "projected_parse_python_gate_selected_decrypt_s": 0.057814493993646465,
+            "decode_stable_top3_s": 0.00025640599778853357
+          },
+          "offline_token_and_projected_hint_s": 0.08005145400238689,
+          "full_response_body_bytes": 131072,
+          "projected_response_body_bytes": 71396,
+          "body_reduction_fraction": 0.455291748046875,
+          "all_scores_and_stable_top3_exact": true,
+          "all_native_GMP_full_coefficients_equal": true,
+          "full_reference_gate_passed_before_diagnostics": true,
+          "projected_gate_before_selected_SK": true,
+          "original_full_integer_phase": {
+            "maximum_unreduced_integer_phase": 3888924,
+            "maximum_deterministic_response_bound": 92052025,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0018111286228824385,
+            "private_phase_digest_diagnostic_only": "b414df4aa6bb5b480a1bab42da09ce1a5675a467c40ab1ee15ae0fbf04d1ee85"
+          },
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35"
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "prototype_stages_s": {
+            "server_s": 0.02743488700070884,
+            "project_s": 0.0048515899979975075,
+            "serialize_s": 0.001836858005844988,
+            "projected_parse_python_gate_selected_decrypt_s": 0.0577191119955387,
+            "decode_stable_top3_s": 0.0002540260029491037
+          },
+          "offline_token_and_projected_hint_s": 0.0649011710047489,
+          "full_response_body_bytes": 131072,
+          "projected_response_body_bytes": 71396,
+          "body_reduction_fraction": 0.455291748046875,
+          "all_scores_and_stable_top3_exact": true,
+          "all_native_GMP_full_coefficients_equal": true,
+          "full_reference_gate_passed_before_diagnostics": true,
+          "projected_gate_before_selected_SK": true,
+          "original_full_integer_phase": {
+            "maximum_unreduced_integer_phase": 3700544,
+            "maximum_deterministic_response_bound": 91184600,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0017233973095478006,
+            "private_phase_digest_diagnostic_only": "43cde9742ba30998e3afd32bd675bb8f97f308f3d3e1a989534e49a02fc9e47e"
+          },
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02"
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "prototype_stages_s": {
+            "server_s": 0.027511678999871947,
+            "project_s": 0.004817159002413973,
+            "serialize_s": 0.0018806080042850226,
+            "projected_parse_python_gate_selected_decrypt_s": 0.059659271995769814,
+            "decode_stable_top3_s": 0.0002782160008791834
+          },
+          "offline_token_and_projected_hint_s": 0.06426880801154766,
+          "full_response_body_bytes": 131072,
+          "projected_response_body_bytes": 71396,
+          "body_reduction_fraction": 0.455291748046875,
+          "all_scores_and_stable_top3_exact": true,
+          "all_native_GMP_full_coefficients_equal": true,
+          "full_reference_gate_passed_before_diagnostics": true,
+          "projected_gate_before_selected_SK": true,
+          "original_full_integer_phase": {
+            "maximum_unreduced_integer_phase": 3803343,
+            "maximum_deterministic_response_bound": 94367000,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0017712723030688083,
+            "private_phase_digest_diagnostic_only": "e6d49363f4bf60c23f2ee3472bb65a12d664f5e467538eb32e87440e919e6cd9"
+          },
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81"
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "prototype_stages_s": {
+            "server_s": 0.028492169003584422,
+            "project_s": 0.0049300409882562235,
+            "serialize_s": 0.0018830890039680526,
+            "projected_parse_python_gate_selected_decrypt_s": 0.06017551300465129,
+            "decode_stable_top3_s": 0.0002615650009829551
+          },
+          "offline_token_and_projected_hint_s": 0.06683304101170506,
+          "full_response_body_bytes": 131072,
+          "projected_response_body_bytes": 71396,
+          "body_reduction_fraction": 0.455291748046875,
+          "all_scores_and_stable_top3_exact": true,
+          "all_native_GMP_full_coefficients_equal": true,
+          "full_reference_gate_passed_before_diagnostics": true,
+          "projected_gate_before_selected_SK": true,
+          "original_full_integer_phase": {
+            "maximum_unreduced_integer_phase": 4433764,
+            "maximum_deterministic_response_bound": 93886325,
+            "all_integer_phase_coefficients_match_ciphertext": true,
+            "phase_fraction_of_half_q": 0.0020648685568310753,
+            "private_phase_digest_diagnostic_only": "67c8f0f0e61ab5bb9302fa945d93ae2868022d0dfd3a28505b3446c227f03440"
+          },
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849"
+        }
+      ],
+      "mean_timed_prototype_stage_sum_s": 0.09399526133590068
+    }
+  ],
+  "counterexamples": {
+    "mod_t_projection": {
+      "q": 257,
+      "t": 17,
+      "original_c0": 15,
+      "altered_c0": 134,
+      "fixed_c1_secret_product": 5,
+      "identical_c0_mod_t": 15,
+      "original_decoded": 3,
+      "altered_decoded": 1
+    },
+    "C1_deletion_structural_witnesses_checked": 64
+  },
+  "scope": "Separate research profile and changed checked relation. Authenticate every supplied C0 and ALL C1 before dedicated selected decryption. Only one full-ring score-only leaf accepted; legacy/split contexts rejected. No generic padded-cipher decrypt. Actual lossless coefficient bodies and exact native/GMP/full-reference gates/integer phases; no network/service timing. Python/GMP projection checker is not the stronger native full-vector backend; stage sums omit reference checks/diagnostics. No native/end-to-end speedup, novel primitive, reviewed projection protocol, seeded privacy, private timing or parameter assurance claim."
+}
