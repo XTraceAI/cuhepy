@@ -224,3 +224,18 @@ test recipe/decoder composition as a **known control**, complete cold/ready
 costs and strongest protocol competitors before another dynamic compiler.
 Paper/usefulness/security gates all remain open. No new GPU measurement,
 production change or full package completion is claimed.
+
+## Retention and verification after this execution cycle
+
+The current [identity manifest](publication-execution-manifest.json) verifies
+59 completed raw runs and181 exact source versions:118 historical Git blobs
+and63 separate workspace dependencies. Earlier failed/negative/pilot sources
+remain resolvable; no timings or old checkpoint tags are rewritten. The
+[validation receipt](publication-validation-20260930.json) records205 passing
+related CPU tests in30 files, explicit lint on46 changed Python paths, local
+document checks and no production-source diff from the protected checkpoint.
+These checks do not imply whole-repository CI, new GPU measurements or security
+assurance. A new `checkpoint/publication-controls-2026-09-30` and adjacent local
+bundle/runtime archive preserve this cycle separately from the earlier
+publication checkpoint; their exact hash/verification receipts live in the
+workspace checkpoint directory.
