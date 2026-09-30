@@ -230,7 +230,7 @@ def main():
         ROOT / "src/cuhepy/bfv/scheme.py"]
     paths.extend(p for folder in ("_subring", "_fingerprint") for p in (ROOT / "experiments/bfv_search_lab" / folder).glob("*.so"))
     if args.price_file is not None:
-        paths.append(args.price_file)
+        paths.append(args.price_file.resolve())
     result = metadata(paths)
     result.update(kind="private_client_delta_complete_lifecycle", profile=asdict(profile), workload={
         "count": args.count, "rank": plan.maps[0].rank, "dimension": args.dimension, "digest_owner_local": w.digest},
