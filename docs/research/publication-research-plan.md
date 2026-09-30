@@ -291,6 +291,17 @@ no-reserve/low-state controls plus dynamic-planning prior work. Hindsight count
 models do not pass Gate C; company improvements remain checkpointed if the
 paper pivots.
 
+**Execution amendment — stronger global controls and E53 semantics.**
+[Global raw/affine controls](global-representation-controls.md) improve both
+current public online profiles and now belong in every relevant ablation.
+[E53's conditional public-zero-seed obstruction](seed-composition-obstruction.md)
+shows that fresh versus homomorphically derived correlations have different
+safe seed-visibility rules. Future optimizer boundary states must preserve
+that protocol meaning as well as map/alignment/noise identity; equal byte
+counts are not proof of interchangeable representations. Current E52 entries
+use fresh plaintext correlations only, so no unimplemented mixed-protocol
+optimization is implied. Retain these constraints in the claim/proof ledger.
+
 **E47 — Verified private evaluation of a ciphertext-linear operator.**
 The server already sees the encrypted index columns. Regard their complete
 coefficient vectors and required negacyclic shifts as a public matrix
