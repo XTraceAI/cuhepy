@@ -32,6 +32,10 @@ def key(plan):
     return planner.signature(plan.choice), plan.allocation
 
 
+def refine_all(controls):
+    return tuple(supported.refine_balancing(view.compiled) for view in controls)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json-out", type=Path, required=True)
@@ -81,7 +85,7 @@ def main():
                         score_checks += 1
                 original = {key(v.compiled): v for v in result.original_controls}
                 balanced = {key(v.compiled): v for v in result.balanced_controls}
-                refinement_s, refinements = timed(lambda: tuple(supported.refine_balancing(v.compiled) for v in result.original_controls))
+                refinement_s, refinements = timed(refine_all, result.original_controls)
                 refined = {key(v.compiled): v for v, _, _ in refinements}
                 changes = [{"allocation": full.compiled.allocation,
                             "map_ranks": tuple(m.rank for m in full.compiled.maps),
@@ -128,7 +132,7 @@ def main():
         controls = supported.pareto(result.original_controls + result.balanced_controls)
         control_vectors = {v.static_vector for v in controls}
         missing = tuple(v for v in result.frontier if v.static_vector not in control_vectors)
-        refinement_s, refinements = timed(lambda: tuple(supported.refine_balancing(v.compiled) for v in result.original_controls))
+        refinement_s, refinements = timed(refine_all, result.original_controls)
         refined_controls = supported.pareto(tuple(v for v, _, _ in refinements) + result.original_controls + result.balanced_controls)
         refined_vectors = {v.static_vector for v in refined_controls}
         random_cases.append({"ordinal": ordinal, "dimension": d, "rows": rows, "n": n, "split": cut,

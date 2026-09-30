@@ -127,14 +127,17 @@ the different known hash family has a smaller additional benefit. Norm
 tightening does not cross a byte boundary. Small-ring models retain both
 unchanged-payload and spare-capacity cases; changed N needs new assurance.
 
-**Current next cycle:** follow section10 of the
-[publication plan](publication-research-plan.md) after the E54–E63 execution.
+**Current next cycle:** follow section11 of the
+[publication plan](publication-research-plan.md) after the E54–E65 execution.
 The first causal lifetime policy lost to ordinary deltas, and full authorized
 cache retention is expressly permitted. Prioritize supported-coordinate
-verification/decoder semantics and the exact support-aware grammar, with
-known extraction/compiler and cache controls. E62/E63 give a bounded positive
-dependency/cost tension, not novelty or production assurance. New CUDA/service
-work remains behind the practical-effect/protocol gates.
+verification/decoder semantics are specified and E64's separate prototype
+passes toy encrypted oracles. E65's static optimizer is matched by ordinary
+balancing plus single-row refinement; retain its exact oracle, but reject a
+novelty/effect headline. Next test recipe/decoder admissibility and complete
+cold/ready costs against known extraction/compiler and cache controls. The
+lifecycle extension remains unimplemented. New CUDA/service work remains
+behind the practical-effect/protocol gates.
 
 **Historical next cycle (before E41 execution):** execute P00–P04 of the [publication plan](publication-research-plan.md):
 freeze the functionality/leakage, reproduce closest compatible protocols,

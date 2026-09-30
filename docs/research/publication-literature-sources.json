@@ -21,11 +21,12 @@
       "passages": [
         "2.1: syntax/query privacy",
         "4.1: construction, response dimensions, additive-HE composition",
-        "7.4: constraints and concrete parameter table"
+        "7.4: constraints and concrete parameter table",
+        "Appendix F: original author Go/C++ implementation pointer"
       ],
       "artifact_executed": true,
       "performance_reproduced": true,
-      "execution_scope": "Partial exact full-score adapted CPU modes on Mushroom/Semeion; not reproduction of complete published evaluation or strongest recursive verifier.",
+      "execution_scope": "Partial unified Rust artifact plus original unchanged Go/C++ author artifact, distinct modes/profiles/integrity adaptations; not the full paper evaluation or parameter assurance.",
       "execution_evidence": {
         "date": "2026-09-30",
         "artifact_revision": "519148cf3fddc11277a111774ca8cb92d891e0e3",
@@ -34,7 +35,29 @@
           "benchmarks/results/publication-reference-mushroom-20260930.json",
           "benchmarks/results/publication-reference-semeion-20260930.json"
         ]
-      }
+      },
+      "execution_records": [
+        {
+          "date": "2026-09-30",
+          "artifact_revision": "519148cf3fddc11277a111774ca8cb92d891e0e3",
+          "report": "docs/research/baseline-reproduction.md",
+          "raw": [
+            "benchmarks/results/publication-reference-mushroom-20260930.json",
+            "benchmarks/results/publication-reference-semeion-20260930.json"
+          ]
+        },
+        {
+          "date": "2026-09-30",
+          "artifact_revision": "856762f5925fe873bb5cbc0401ceb5a44568efa9",
+          "report": "docs/research/original-emvp-results.md",
+          "raw": [
+            "benchmarks/results/publication-original-emvp-mushroom-pinned-20260930.json",
+            "benchmarks/results/publication-original-emvp-semeion-pinned-20260930.json",
+            "benchmarks/results/publication-original-emvp-semeion-unpinned-failure-20260930.json"
+          ],
+          "scope": "Original unchanged Go/C++ library, own OS-thread-pinned binary Hamming adapter, cached/key-only modes and added private full-reply gate. 128 exact queries per fixture; separate failed unpinned control. 64-bit implementation, heuristic/entropy and complete proof assurances unreviewed; published 32-bit plots not reproduced."
+        }
+      ]
     },
     {
       "file": "reinspire-2026-1934.pdf",
@@ -402,7 +425,7 @@
     {
       "id": "incremental_single_server_pir",
       "url": "https://eprint.iacr.org/2026/030.pdf",
-      "depth": "Sections 2.2 and 4.1 targeted browser reading, versioned/aggregated hint updates and deletion caveat; no full proof audit",
+      "depth": "Sections 2.2-2.3 leakage and4.1 versioned/aggregated hint updates targeted primary browser reading; server plaintext database; deletion caveat; no full proof audit",
       "sha256": null,
       "review_date": "2026-09-30"
     },
@@ -436,6 +459,54 @@
       "depth": "Metadata/abstract only; IND-CPA/circuit-privacy distinction, not a proof for E49",
       "sha256": null,
       "review_date": "2026-09-30"
+    },
+    {
+      "id": "tfhe_sample_extraction",
+      "url": "https://www.zama.org/post/tfhe-deep-dive-part-4",
+      "depth": "Author tutorial, Sample Extraction subsection and negacyclic toy example; known GLWE-to-LWE coefficient selection, no noise increase; not a new full proof audit",
+      "sha256": null,
+      "review_date": "2026-09-30",
+      "artifact_executed": false
+    },
+    {
+      "id": "tfhe_rs_compression",
+      "url": "https://docs.zama.org/tfhe-rs/fhe-computation/data-handling/compress",
+      "depth": "Official seeded and post-evaluation compressed-list interfaces; no artifact execution or complete assumption/cost reproduction",
+      "sha256": null,
+      "review_date": "2026-09-30",
+      "artifact_executed": false
+    },
+    {
+      "id": "recifhe",
+      "url": "https://arxiv.org/html/2607.15750v1",
+      "depth": "Targeted introduction and sections II-IV, polynomial-level RNS/CSE/profile-aware ModDown hoisting/fusion/liveness scheduling; no full proof audit or artifact execution",
+      "sha256": null,
+      "review_date": "2026-09-30",
+      "artifact_executed": false
+    },
+    {
+      "id": "basis_synthesis",
+      "url": "https://arxiv.org/html/2505.12582v1",
+      "depth": "Targeted3.3,4.3,6.1-6.3 encrypted bases/finite zero pool and stated adversary visibility; freshness/related-distribution comparison remains unreviewed; no imported assurance or vulnerability claim",
+      "sha256": null,
+      "review_date": "2026-09-30",
+      "artifact_executed": false
+    },
+    {
+      "id": "uci_connect4",
+      "url": "https://archive.ics.uci.edu/dataset/26/connect+4",
+      "depth": "Primary dataset provenance, legal8-ply board records and CC BY4.0 license; download/source/decoded hashes and split receipts in E58/E61 raws",
+      "sha256": null,
+      "review_date": "2026-09-30",
+      "artifact_executed": false
+    },
+    {
+      "id": "pycryptodome_gcm",
+      "url": "https://www.pycryptodome.org/src/cipher/modern",
+      "depth": "Official GCM API, per-key nonce uniqueness and decrypt_and_verify ordering; E58 authenticates before bounded decompression; no full implementation side-channel certification",
+      "sha256": null,
+      "review_date": "2026-09-30",
+      "artifact_executed": false
     }
   ],
   "artifact_heads": [
@@ -453,9 +524,11 @@
       "head_sha": "519148cf3fddc11277a111774ca8cb92d891e0e3",
       "commit_date": "2026-08-25T13:16:37Z",
       "source": "https://api.github.com/repos/sacs-epfl/secure-vector-search/commits?per_page=1",
-      "artifact_executed": false,
-      "performance_reproduced": false,
-      "pin_scope": "Repository default-branch HEAD at retrieval, not independently certified paper artifact revision"
+      "artifact_executed": true,
+      "performance_reproduced": true,
+      "pin_scope": "Repository default-branch HEAD at retrieval, not independently certified paper artifact revision",
+      "execution_scope": "78 CPU tests and two exact adapted full-score pilots; not full published evaluation.",
+      "execution_report": "docs/research/baseline-reproduction.md"
     },
     {
       "repository": "jachiang/mosaic",
@@ -474,6 +547,16 @@
       "artifact_executed": false,
       "performance_reproduced": false,
       "pin_scope": "Repository default-branch HEAD at retrieval, not independently certified paper artifact revision"
+    },
+    {
+      "repository": "SecretKeyCrypto/Encrypted-Matrix-Vector-Products",
+      "head_sha": "856762f5925fe873bb5cbc0401ceb5a44568efa9",
+      "commit_date": "2026-07-19T13:12:21+02:00",
+      "source": "https://github.com/SecretKeyCrypto/Encrypted-Matrix-Vector-Products",
+      "artifact_executed": true,
+      "performance_reproduced": true,
+      "pin_scope": "Original author repository pointer from pinned full paper Appendix F; default branch at clone, not independent certification of paper plot parameters.",
+      "execution_report": "docs/research/original-emvp-results.md"
     }
   ],
   "version_caveats": [
@@ -482,5 +565,5 @@
     "Author artifact modes may implement only subsets of paper functionality; inspect before performance comparison.",
     "Paper parameter labels are assumptions/claims to check, not parameter assurance for our implementation."
   ],
-  "execution_supplement": "Original review-only status superseded for the three partially executed author modes above. Browser-only PDF readings have no local hash; do not claim pinned full-proof review."
+  "execution_supplement": "Original review-only status is superseded for explicitly recorded partial unified and original EMVP executions. Fifteen cached primary PDFs remain pinned unchanged. Browser-only readings have no local PDF hash/full-proof claim. Deliverable arithmetic/protocols remain homemade; references are baselines, not imported BFV/BGV."
 }

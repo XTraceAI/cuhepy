@@ -39,7 +39,7 @@ neither all proofs nor all related literature have been audited. “Not
 established in the sections reviewed” is not evidence of absence elsewhere.
 
 The [source registry](publication-literature-sources.json) pins 15 downloaded
-primary PDFs by SHA-256, four artifact revisions, and additional web readings.
+primary PDFs by SHA-256, five artifact revisions, and additional web readings.
 The EMVP full version is dated August 24, 2026, although its conference paper
 is CCS 2025. Paper and artifact versions must be distinguished. No external
 artifact was executed or timed in the initial review snapshot; the supplement
@@ -174,3 +174,64 @@ it is not a novelty proof. Dynamic HE/compiler/update planning needs targeted
 forward/backward citation review before any original algorithm claim. Existing
 packing/rank/rerandomization improvements are retained for the company, with
 the paper claim explicitly gated.
+
+## Supplement after original artifacts and stronger controls
+
+The [original EMVP Go/C++ artifact](https://github.com/SecretKeyCrypto/Encrypted-Matrix-Vector-Products),
+pin `856762f5925fe873bb5cbc0401ceb5a44568efa9` from the full paper's Appendix F,
+is now built and measured. [Original-artifact results](original-emvp-results.md)
+retain cached-code and key-only modes, transient regenerated code state,
+128 exact queries per fixture and a separate private full encoded-response
+gate. Gated cached scans are5.942 ms for Mushroom and1.363 ms for Semeion,
+with1,471,264 and205,100 B reply bodies. They are substantially faster CPU
+controls with larger replies than our strongest global BGV profiles. Profiles,
+entropy, integer widths and added integrity are distinct/unreviewed; no equal-
+assurance ranking is implied. The paper's32-bit plots are not reproduced by
+this64-bit author-library run.
+
+OS-thread pinning in our adapter fixes an exact-result failure caused by
+thread-local C-library random state; forced-GC/regeneration tests and every
+output reference pass with pinning. The failed unpinned raw remains retained.
+The author source is unchanged. A separate reused-static-code edit exposes a
+binary toggle; it does not attack the published static protocol. Strong
+recursive BNTM and compatible vLHE remain unreproduced requirements.
+
+The user permits retaining **all** owned data. [Authenticated cache acquisition](cache-acquisition-results.md)
+and [mutable private buffers](client-buffer-results.md) now supplement earlier
+raw/zlib controls. [32,768 distinct Connect-4 rows](connect4-encrypted-controls.md)
+give111/102 ms raw/affine HE CPU stage sums versus about3 ms per local cache
+query. Cold/prepaid-owner bandwidth screens remain models with favorable
+ready-remote omissions, not a demonstrated remote-deployment advantage. No
+retention restriction or customer-device limit has been invented.
+
+Additional targeted primary readings change the originality discriminator:
+
+| Primary work / depth | Established ingredient or caution | Required distinction |
+|---|---|---|
+| [TFHE sample extraction](https://www.zama.org/post/tfhe-deep-dive-part-4), author tutorial, Sample Extraction subsection | A GLWE coefficient can be extracted as an LWE ciphertext using the full mask polynomial's permuted/signed coefficients; selecting the body coefficient is known | E62/E64's supported-C0/full-C1 selection is credited as a known ingredient. A new safe compiler/protocol consequence must be shown. |
+| [TFHE-rs compression](https://docs.zama.org/tfhe-rs/fhe-computation/data-handling/compress), official list-compression/seeded-compression documentation | Compression before and after homomorphic evaluation already has concrete interfaces and costs | Do not claim post-evaluation compression as new. Compare key switching/noise/setup and exact returned functionality. No TFHE library was imported into our deliverable. |
+| [Recifhe](https://arxiv.org/html/2607.15750v1), targeted introduction and §§II–IV | Multi-level CKKS/RNS compiler, common-subexpression elimination, offline-profile-guided ModDown hoisting/fusion and polynomial scheduling | Native polynomial/dataflow/profile optimization alone is established. Our proposed domain would need authentic decoder/lifetime/provenance constraints plus a useful algorithmic consequence. Artifact not executed. |
+| [Compile-Time FHE via Algebraic Basis Synthesis](https://arxiv.org/html/2505.12582v1), targeted §§3.3,4.3,6.1–6.3 | Encrypted standard bases and a finite fresh-zero pool synthesize ciphertexts; the stated game supplies basis/pool to the adversary | Compare actual public visibility, freshness and related-ciphertext distributions against E49/E53. Do not borrow its IND-CPA label or assert a paper vulnerability without a separate audit. Artifact not executed. |
+
+These web readings are not locally hash-pinned PDFs or full proof audits.
+2026/030 was additionally checked at §2.3 for update/type/position/structure
+leakage; it assumes a server-plaintext database. Authenticated incremental
+PIR2026/1077 still has only metadata access. Original EMVP and unified-artifact
+results are clearly distinguished in the source registry.
+
+The [supported-relation argument](supported-decoder-relation.md) and
+[E64 implementation](supported-decoder-results.md) give a concrete safe
+coordinate-deletion domain, under explicit assumptions. The
+[E65 static study](support-planner-results.md) supplies a stronger negative:
+ordinary balancing plus one-row refinement recovers every tested frontier in
+20 named and32 irregular catalogs. Its one initially missed point is an8 B
+wire improvement at a2 B owner-body tradeoff; global wire/client state is better.
+This does not survive as a useful originality claim.
+
+The [plan §11](publication-research-plan.md) now prioritizes recipe/decoder
+admissibility as a known control, complete cold/ready/private-provisioning
+costs and strongest unresolved competitors. Only a new useful protocol
+consequence justifies the proposed lifecycle compiler. Otherwise pivot to
+explicitly changed exact selection/certified approximation/mixed-context
+functionality, with its own contract and closest-work review. Current company
+engineering and negative findings are retained; all paper gates remain open.

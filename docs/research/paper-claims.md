@@ -22,6 +22,8 @@ claim**. Follow the [execution plan](publication-research-plan.md) and
 | Outsourcing wins over permitted local caching | **Not established:** authenticated caches dominate tested reuse and32,768-row real CPU controls; narrow single-query modeled frontier remains | E58/E60/E61 acquisition/effort/cold-link screens | User allows all retention; no invented cap. Model/ready-remote omission is not a measured deployment win |
 | Omitting provably unused C0 preserves selected exact decryption | Restricted positive/native/tamper and negative C1/carry oracles; separate changed checked relation | E62 actual bodies,14.23% Semeion2048 vs1.20% Mushroom2048 | Known sample extraction; native optimization, matching protocol review and complete-cost effect open |
 | Identical old resource vectors can have different projected wire cost | Exact support/matrix counterexample:192 vs224 B | E63 complete tiny decoder basis columns | Known decoder support/set unions; support-aware compiler/protocol consequence and originality remain hypotheses |
+| A supported split/legacy relation preserves complete exact base outputs | Specified conditional argument and executable toy profile;112 exhaustive encrypted queries, eleven tests | E64 separate gate/decoder and native/GMP/full-phase references | Known extraction/CRT/fingerprints; reviewed privacy/parameters/private timing and useful native effect remain |
+| Joint static support optimization beats simple alignment | **Rejected on screened catalogs:** balancing plus one-row refinement recovers every tested frontier | E65 independent allocations,20 named/32 irregular catalogs | Rare8 B point follows ordinary local refinement;2 B owner-body tradeoff is not a useful system contribution |
 | Complete verification closes the malicious-response decryption oracle | Scoped direct-fresh conditional argument, not a reviewed theorem | P07 draft, full-Q gates, global local budget and684 ideal policies | Authenticated setup, durable receiver, seeded privacy, private timing and independent review open; E62 not silently covered |
 | New profiles offer production/128-bit security | **Not established** | Pinned heuristic attacks, explicit timeouts and private-timing limitations | HE guidelines/estimator do not certify this protocol or implementation |
 
@@ -35,6 +37,10 @@ Known sample extraction, coefficient support, fingerprints and compiler
 dataflow need explicit comparison. Local caches and ready-remote cold sessions
 remain required alternatives. The [updated plan](publication-research-plan.md)
 gates this direction on formal/exhaustive semantics and measured useful effect.
+E64 now supplies a separate executable supported relation; E65's bounded
+static screen fails the first stronger-control discriminator. Continue only
+with a new protocol consequence or measured competing resource regime; recipe
+composition itself is a known control. See the plan's §11 execution revision.
 
 To promote a claim: freeze a justified workload/leakage/resource objective;
 reproduce strongest same-contract baselines; calibrate and test held-out traces;

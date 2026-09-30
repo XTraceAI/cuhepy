@@ -196,3 +196,31 @@ retention permission is settled; actual resource/cold-session usefulness and
 paper originality are not. P08/new GPU work remains gated. P01 strongest
 recursive/vLHE, P07 reviewed seeded privacy/parameters/timing and publication-
 size uncertainty remain open. No full P00–P12 package is falsely marked accepted.
+
+## 2026-09-30: supported relation and static-planner discriminator
+
+Returned to P07/P02 before implementing a broader decoder. The
+[supported-relation specification](supported-decoder-relation.md) defines
+exact owner-approved support/IDs/context, full-Q carries, all-C1 checking,
+selected-phase arithmetic, omission identity and a conditional first-failure
+bound. It deliberately excludes general compression lower bounds, private
+timing, unreviewed seeded privacy and durable state.
+
+| Completed subcomponent | Result class / evidence | Return-to-plan decision |
+|---|---|---|
+| E64 separate split/legacy decoder | **Implemented/exact:**112 exhaustive toy encrypted queries across seven sparse/dense/mixed/empty-leaf/multi-reply layouts; eleven tests including no-SK rejection, stale state/global budget, IDs/ties and empty current private overlays; [report](supported-decoder-results.md) | Original full gates stay intact. Complete selected relation is specified, but formal full protocol/parameter review remains. No native speed claim. |
+| E65 static support grammar | **Exact bounded count oracle:**792 candidates,9,024 full-score checks in20 named cases; independent Cartesian allocation/decoder matrices; [report](support-planner-results.md) | E65 lifecycle/provenance extension remains unimplemented; final static dominance never stands in for successor state. |
+| Stronger irregular control | **Negative discriminator:**32 additional irregular catalogs give1,115 candidates; balancing misses one frontier point, single-row refinement recovers every tested frontier | Reject current joint-optimizer novelty/effect claim. The rare8 B saving represents a2 B owner-body tradeoff with worse client state and wire than global controls. |
+
+The named16-case pilot, expanded20-case run, bounded irregular run and
+post-screen refinement are retained separately with exact historical source
+versions. Refinement was selected after inspecting the irregular result and
+is not a held-out speed evaluation. The last benchmark source subsequently
+moves an immediately called closure to a named helper for lint; historical
+timings remain unchanged and hash-resolvable.
+
+Returned to [plan §11](publication-research-plan.md): next E66/E67 proposals
+test recipe/decoder composition as a **known control**, complete cold/ready
+costs and strongest protocol competitors before another dynamic compiler.
+Paper/usefulness/security gates all remain open. No new GPU measurement,
+production change or full package completion is claimed.

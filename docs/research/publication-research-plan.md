@@ -673,7 +673,10 @@ Execute the following sequence, returning to this section after each item:
    do not claim a communication lower bound against reconstruction, extra
    preprocessing, key switching or client-local known scores. E62 implements
    only the one-full-leaf profile; E63 is the independent support oracle.
-2. **P10/P05, proposed E64:** implement a separately typed legacy/split-CRT
+   **Execution:** [the supported relation](supported-decoder-relation.md)
+   specifies the omission identity, restricted necessity and conditional
+   first-failure argument. It is not an independently reviewed full protocol.
+2. **P10/P05, E64 executed subcomponent:** implement a separately typed legacy/split-CRT
    projected gate and dedicated decoder **after** the previous relation is
    specified. Owner binding covers support, exact row/ID order, CRT contexts,
    honest selected-phase bound and lifetime allowance. Rejected malformed,
@@ -682,7 +685,11 @@ Execute the following sequence, returning to this section after each item:
    overlays and every native/GMP coefficient in the prescribed relation.
    Existing full gates remain the reference/fallback. No generic zero-padded
    ciphertext is passed to ordinary decryption.
-3. **P02/P04, proposed E65:** extend the exact grammar's resource/cost objective
+   **Execution:** [112 toy encrypted searches and eleven tests](supported-decoder-results.md)
+   pass. No publication-scale native speed, private timing or production
+   assurance follows. The complete encrypted base may be nonempty even when
+   the current private overlay has deleted every row.
+3. **P02/P04, E65 partially executed:** extend the exact grammar's resource/cost objective
    with per-reply decoder-support sets and authentic-relation dependencies.
    Retain boundary alignment needed when supports merge; do not prune distinct
    successors merely on rank or old full-body vectors. Also retain base
@@ -692,6 +699,12 @@ Execute the following sequence, returning to this section after each item:
    Reject if known simple alignment explains all gains or if states cannot be
    combined without extra unsafe assumptions. Search cost and state growth are
    results, not hidden engineering overhead.
+   **Execution:** [the bounded static supplement](support-planner-results.md)
+   adds support and all capacity-valid within-map row allocations. Twenty
+   named catalogs plus32 irregular catalogs are checked; ordinary balancing
+   plus one-row refinement recovers every tested static frontier. The proposed
+   lifecycle/provenance extension remains unimplemented, and there is no useful
+   joint-optimizer result to accelerate.
 4. **P01/P06:** evaluate a surviving supported decoder against the **same-
    profile native full gate**, E48 public C1 reconstruction, original cached/
    key-only EMVP, strongest compatible recursive/vLHE, and authenticated cache
@@ -720,3 +733,65 @@ algorithm and formal pre-decryption/lifetime composition result; measured
 tradeoffs that survive cache/low-state/known compiler controls. Current E62/E63
 evidence supplies one worked tension, not an accepted original contribution or
 production protocol. All Gates A–D remain open under their stated conditions.
+
+## 11. Return to plan after E64/E65: reject weak wins, keep a falsifiable agenda
+
+The fixed-relation decoder is implemented; its complete reviewed privacy/
+integrity proof is not. The static optimization experiment has **failed its
+current originality/usefulness discriminator**. The8 B irregular-case saving
+is explained by a single-row move and survives one static frontier only for a
+2 B owner-body tradeoff; global query+reply and total client state are better.
+Do not promote it, hide its stronger control or implement an expensive native
+solver. P08/P09 remain behind the practical-effect/security gates.
+
+Next execution should use the following bounded sequence. Proposed identifiers
+below are not implemented or measured; the machine-readable work packages and
+progress log carry completed scopes separately.
+
+1. **P03/P07/P10, proposed E66: recipe and decoder admissibility.** Combine the
+   *existing* E48 trusted public C1 reconstruction with the specified E64
+   supported-C0 relation as a first control. Include ordinary full responses,
+   direct fresh sample extraction and private known/constant rows. Specify the
+   exact projected relation and trusted public reconstruction before using SK;
+   retain full-Q carries, authentic index/answer identities, private factory
+   seed visibility and global lifetime allowance. Independent exhaustive toy
+   oracles must reject public-zero-seed shortcuts, stale recipes and omitted
+   influential coordinates. The combination of known methods is a comparator,
+   not automatically the contribution.
+2. **P01/P06, proposed E67: complete cold/ready comparison.** Price the surviving
+   E48/E64/control choices with actual owner-private provisioning, keys, IDs,
+   private maps, all consumed/prepared tokens, native verifier state and client
+   work. Both cold-owner and prepaid-owner panels are needed. Use distinct real
+   corpora, original cached/key-only EMVP and the strongest compatible recursive
+   vLHE artifact. Keep encrypted-cache acquisition/compression efforts and
+   locally known rows. Declared link/device experiments must distinguish real
+   transfers from modeled crossovers and omit no unavoidable private packet.
+   If permitted cache still dominates the relevant regime, do not invent a ban.
+3. **P04/P07, conditional compiler continuation.** Only a useful competing
+   action from the previous step justifies combining the static support oracle
+   with existing lifetime models. State includes exact decoder dependencies,
+   base identity, full-Q age bounds, pad exposure, recipe/seed provenance and
+   one shared remaining lifetime budget. Compare against global layouts,
+   balancing, one-row refinement, selective tiles, private deltas/buffers and
+   local caches. Require an independent exhaustive successor oracle and a
+   sufficient-state argument; charge exploration/calibration. E65's final
+   static Pareto frontier is not a safe substitute for lifecycle state.
+4. **P07/P12/P01, proof and closest-work gate.** Finish the formal direct-fresh
+   and supported-relation environments, discharge seeded-encryption/PRG and
+   authenticity assumptions, and obtain independent parameter/private-timing
+   review. Review sample extraction, output compression, vLHE/verifiable FHE,
+   dataflow compilers and precomputed basis synthesis at construction/proof
+   depth for the selected mechanism. A lemma/implementation alone does not
+   establish originality. ReinsPIRe's full malicious contract, recursive BNTM
+   and small-state vPIR remain required unresolved comparisons.
+5. **P10 alternate-functionality branch, if E66/E67 loses.** Return to bounded
+   E44 exact selection, E45 certified approximation or E46 mixed-context
+   experiments. Preregister changed output/metric/trust and exact baselines;
+   charge comparisons, selection/coverage/ties, bootstrapping/proof cost and
+   client release. Choose a research question on a demonstrated bottleneck,
+   rather than another parameter/kernel sweep of a dominated contract.
+
+The possible paper remains conditional: a demonstrably useful safe optimization
+domain and algorithm/protocol theorem, or a clearly separated new functionality.
+The reports/oracles already support reproducible company engineering and several
+negative findings. They do not support a completed original research claim.

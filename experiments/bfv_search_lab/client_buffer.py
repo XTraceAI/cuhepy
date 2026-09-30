@@ -64,7 +64,11 @@ class Snapshot:
                 + (8 + width) * len(self.inserted))
 
     def correct(self, base_scores, word, *, epoch, verified_base_epoch):
-        """Caller must verify the COMPLETE frozen-base ciphertext before SK use.
+        """Caller verifies its approved relation for EVERY base score before SK.
+
+        The original profile checks the entire frozen-base ciphertext. A
+        separate supported-decoder experiment checks its specified relation;
+        this private correction helper does not authorize changing any gate.
 
         Surviving base IDs retain enrollment order; live inserted IDs follow
         in ascending ID order. Returned IDs name every score explicitly.

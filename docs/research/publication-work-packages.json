@@ -38,8 +38,9 @@
         "Different metric/trust silently compared"
       ],
       "requires_new_gpu_code": false,
-      "execution_evidence": "Contract frozen; outsourcing/state-budget usefulness still open, so full package acceptance is not declared.",
-      "acceptance_met": false
+      "execution_evidence": "Contract and explicit all-data cache permission recorded; encrypted base/current overlays and supported-decoder changed relation separated. A justified outsourcing/usefulness regime remains unestablished.",
+      "acceptance_met": false,
+      "experiment_ids": []
     },
     {
       "id": "P01",
@@ -49,11 +50,16 @@
       "dependencies": [
         "P00"
       ],
-      "proposed_experiments": [],
+      "proposed_experiments": [
+        "E67"
+      ],
       "output_paths": [
         "docs/research/baseline-reproduction.md",
         "experiments/bfv_search_lab/references/",
-        "docs/research/coordinate-cache-results.md"
+        "docs/research/coordinate-cache-results.md",
+        "docs/research/original-emvp-results.md",
+        "docs/research/cache-acquisition-results.md",
+        "docs/research/connect4-encrypted-controls.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Pinned native author modes and exact adaptations distinguished; inputs, outputs, assumptions, bytes and state retained.",
@@ -62,8 +68,14 @@
         "Strongest competitor dropped without explanation"
       ],
       "requires_new_gpu_code": false,
-      "execution_evidence": "Pinned 78 external CPU tests and exact EMVP/BNTM adaptations on two public fixtures reproduced. E50 raw/zlib/one-bit-coordinate controls measured; full caches dominate the small fixtures. Native recursive/low-state variants and publication-size baselines remain.",
-      "acceptance_met": false
+      "execution_evidence": "Unified artifact78 tests/partial exact modes and original author EMVP cached/key-only controls reproduced with OS-thread-pinned adapter, exact outputs, failed raw retained. Cache and larger real Connect4 controls measured. Strongest recursive/vLHE/proof baselines unresolved.",
+      "acceptance_met": false,
+      "experiment_ids": [
+        "E42",
+        "E58",
+        "E61",
+        "E67"
+      ]
     },
     {
       "id": "P02",
@@ -73,13 +85,13 @@
       "dependencies": [
         "P00"
       ],
-      "proposed_experiments": [
-        "E41"
-      ],
+      "proposed_experiments": [],
       "output_paths": [
         "experiments/bfv_search_lab/representation_contract.py",
         "experiments/bfv_search_lab/representation_oracle.py",
-        "experiments/bfv_search_lab/test_representation_oracle.py"
+        "experiments/bfv_search_lab/test_representation_oracle.py",
+        "experiments/bfv_search_lab/decryption_support.py",
+        "docs/research/supported-decoder-relation.md"
       ],
       "paths_note": "Proposed unless already present; paths do not imply implementation.",
       "acceptance": "Every row/ID/capacity certified; exhaustive tiny cases; a joint-choice counterexample survives simple controls.",
@@ -87,8 +99,13 @@
         "Only rank reduction or ordinary merging explains benefit"
       ],
       "requires_new_gpu_code": false,
-      "execution_evidence": "Exact finite grammar, all-row/ID capacity and independent integer/encrypted oracles implemented. Rank-only tradeoff found; novelty Gate B remains open.",
-      "acceptance_met": false
+      "execution_evidence": "Exact static grammar/capacity/all-row arithmetic retained; E63 independent complete decoder matrix supports and E64 conditional omission relation added. E65 exact static supplement survives correctness but fails tested stronger-control originality discriminator.",
+      "acceptance_met": false,
+      "experiment_ids": [
+        "E41",
+        "E63",
+        "E65"
+      ]
     },
     {
       "id": "P03",
@@ -101,10 +118,8 @@
         "P02"
       ],
       "proposed_experiments": [
-        "E42",
         "E47",
-        "E49",
-        "E51"
+        "E66"
       ],
       "output_paths": [
         "experiments/bfv_search_lab/backend_frontier.py",
@@ -112,7 +127,9 @@
         "docs/research/backend-frontier-results.md",
         "docs/research/parameter-frontier-results.md",
         "docs/research/ciphertext-factory-results.md",
-        "docs/research/global-representation-controls.md"
+        "docs/research/global-representation-controls.md",
+        "docs/research/decryption-projection-results.md",
+        "docs/research/supported-decoder-results.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Raw/global/local choices priced with actual code dimensions, response shares, client work, setup and integrity; nested vLHE oracle includes full-Q output, centered lifts/carries, explicit matrix expansion and outer parameter costs.",
@@ -123,8 +140,17 @@
       ],
       "requires_new_gpu_code": false,
       "additional_gate": "P07 specifies composition assumptions before relying on outer verification or removing an existing inner check.",
-      "execution_evidence": "E42/E47 code-floor and full-Q/carry screening retained; E49 encrypted-only factory loses to a vectorized plaintext control. E51 smaller-full-ring/capacity tests and measured frontier added with pinned heuristic parameter screens; no reviewed composition/parameter assurance. Strong global raw/affine controls now outperform local online profiles; cached plaintext still dominates when allowed.",
-      "acceptance_met": false
+      "execution_evidence": "Code floors, full-Q carry and parameter screens retained; E48 recipes and E62/E64 supported relation expose different reconstruction domains. Global/cache/original EMVP controls stronger; reviewed composition/parameter assurance and E66 remain.",
+      "acceptance_met": false,
+      "experiment_ids": [
+        "E42",
+        "E47",
+        "E49",
+        "E51",
+        "E62",
+        "E64",
+        "E66"
+      ]
     },
     {
       "id": "P04",
@@ -135,16 +161,17 @@
         "P02",
         "P03"
       ],
-      "proposed_experiments": [
-        "E41",
-        "E52"
-      ],
+      "proposed_experiments": [],
       "output_paths": [
         "experiments/bfv_search_lab/representation_planner.py",
         "experiments/bfv_search_lab/test_representation_planner.py",
         "docs/research/representation-planner-analysis.md",
         "experiments/bfv_search_lab/lifetime_planner.py",
-        "docs/research/lifetime-planner-analysis.md"
+        "docs/research/lifetime-planner-analysis.md",
+        "experiments/bfv_search_lab/support_planner.py",
+        "docs/research/support-planner-results.md",
+        "docs/research/lifetime-price-policy-results.md",
+        "docs/research/overlay-lifetime-analysis.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Exact DP agrees with exhaustive grammar oracle; sufficient boundary state proof; bounded-search costs and gaps reported.",
@@ -153,8 +180,15 @@
         "Only a parameter sweep without mechanism"
       ],
       "requires_new_gpu_code": false,
-      "execution_evidence": "Static exact boundary-state DP retained. E52 finite lifetime catalog/noise/token DP matches exhaustive schedules, with equal-rank/equal-static-cost future-span counterexample. Hindsight count model only; calibrated online policy and novelty review remain.",
-      "acceptance_met": false
+      "execution_evidence": "Static boundary and lifetime/base-identity count oracles agree with exhaustive traversal. E57 causal rule adds cost and never leaves deltas. E65 support-aware static allocations agree with Cartesian oracle; known balancing/refinement recover all tested frontiers. Dynamic provenance/decoder/lifecycle compiler unimplemented.",
+      "acceptance_met": false,
+      "experiment_ids": [
+        "E41",
+        "E52",
+        "E55",
+        "E57",
+        "E65"
+      ]
     },
     {
       "id": "P05",
@@ -165,14 +199,16 @@
         "P02",
         "P04"
       ],
-      "proposed_experiments": [
-        "E43"
-      ],
+      "proposed_experiments": [],
       "output_paths": [
         "experiments/bfv_search_lab/representation_updates.py",
         "experiments/bfv_search_lab/test_representation_updates.py",
         "docs/research/representation-update-results.md",
-        "benchmarks/representation_lifecycle_lab.py"
+        "benchmarks/representation_lifecycle_lab.py",
+        "experiments/bfv_search_lab/client_buffer.py",
+        "docs/research/client-buffer-results.md",
+        "docs/research/tile-update-controls.md",
+        "docs/research/span-reserve-results.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Insert/edit/delete preserve scores and IDs; no exposed-mask reuse; complete lifetime cost beats appropriate static/delta control.",
@@ -182,8 +218,15 @@
       ],
       "requires_new_gpu_code": false,
       "additional_gate": "P07 review required before remote untrusted deployment; local research oracles may precede it.",
-      "execution_evidence": "Fixed-ID frozen-span encrypted repair retained. Eight edits/all 32 tokens measured, reserved initially-zero columns exercised in real encrypted repairs; consumed reuse/out-of-span/noise regressions pass. Insert/delete, learned reserves, delta baselines and durability remain.",
-      "acceptance_met": false
+      "execution_evidence": "Frozen repairs retain token/noise guards; selective tiles/local deltas tested and measured. E59 arbitrary private insert/delete/edit functionality implemented with explicit IDs/epochs, baseline complete-gate semantics and exact current outputs. Learned reserves weak/zero. No general encrypted-base migration, durable delivery or useful novel update policy.",
+      "acceptance_met": false,
+      "experiment_ids": [
+        "E43",
+        "E54",
+        "E56",
+        "E59",
+        "E64"
+      ]
     },
     {
       "id": "P06",
@@ -195,8 +238,7 @@
         "P04"
       ],
       "proposed_experiments": [
-        "E50",
-        "E51"
+        "E67"
       ],
       "output_paths": [
         "benchmarks/representation_lifetime_lab.py",
@@ -204,7 +246,10 @@
         "benchmarks/representation_lifecycle_lab.py",
         "benchmarks/coordinate_cache_lab.py",
         "benchmarks/score_layout_lab.py",
-        "docs/research/global-representation-controls.md"
+        "docs/research/global-representation-controls.md",
+        "docs/research/vectorized-update-controls.md",
+        "docs/research/cache-acquisition-results.md",
+        "docs/research/connect4-encrypted-controls.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Gate C assessed on held-out data with setup, search, all prepared tokens, state and cache controls; model vs measured separated.",
@@ -213,8 +258,20 @@
         "Result depends only on favorable small public data"
       ],
       "requires_new_gpu_code": false,
-      "execution_evidence": "Complete eight-edit lifecycle includes affine discovery and every token: 15.07% paired median saving; smaller case regresses. E49 stronger vectorized factory control wins. E50 full/coordinate caches and E51 ring/occupancy adverse case included. No held-out calibrated lifetime/Gate C pass. Strong global raw/affine controls now outperform local online profiles; cached plaintext still dominates when allowed.",
-      "acceptance_met": false
+      "execution_evidence": "Complete rank32/rank128 vectorized controls reverse earlier sparse win; known private deltas/tile rebuilding help some traces, but caches dominate reuse and larger real32768-row controls. E57 cold training charged and causal rule loses. E58 acquisition/compression and E60 cold/ready models separated. No held-out complete-cost contribution/Gate C pass.",
+      "acceptance_met": false,
+      "experiment_ids": [
+        "E50",
+        "E51",
+        "E54",
+        "E56",
+        "E57",
+        "E58",
+        "E59",
+        "E60",
+        "E61",
+        "E67"
+      ]
     },
     {
       "id": "P07",
@@ -225,12 +282,18 @@
         "P00",
         "P02"
       ],
-      "proposed_experiments": [],
+      "proposed_experiments": [
+        "E66"
+      ],
       "output_paths": [
         "docs/research/exact-search-security-game.md",
         "benchmarks/bgv_parameter_estimation.py",
         "docs/research/parameter-frontier-results.md",
-        "docs/research/seed-composition-obstruction.md"
+        "docs/research/seed-composition-obstruction.md",
+        "docs/research/direct-fresh-conditional-security.md",
+        "docs/research/supported-decoder-relation.md",
+        "experiments/bfv_search_lab/soundness_lifetime_oracle.py",
+        "experiments/bfv_search_lab/verification_lifetime.py"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "Real/ideal transcript, leakage, hybrid premises, authentication, adaptive failure budget and parameter assumptions match code.",
@@ -240,8 +303,13 @@
         "Masks or verifier keys exposed"
       ],
       "requires_new_gpu_code": false,
-      "execution_evidence": "Adaptive game and E48/E49 seed/noise premises recorded. Pinned Sage classical/quantum-sensitivity screening rejects N1024; N2048 remains research-only, with Arora-GB timeouts and protocol/private timing review open. No complete theorem or assurance. E53 proves/tests a conditional multi-coordinate public-zero-seed obstruction; genuine factory seed remains private.",
-      "acceptance_met": false
+      "execution_evidence": "Direct-fresh scoped conditional draft, supported-relation omission/first-failure argument,684 ideal soundness policies and shared volatile lifetime guard implemented. Owner authenticity/anti-rollback, seeded privacy, private timing, parameters, formal environment and independent review remain open.",
+      "acceptance_met": false,
+      "experiment_ids": [
+        "E53",
+        "E64",
+        "E66"
+      ]
     },
     {
       "id": "P08",
@@ -265,7 +333,9 @@
         "Rollback permits released-mask reuse"
       ],
       "requires_new_gpu_code": false,
-      "additional_gate": "Gate C practical-effect decision must pass before this task starts."
+      "additional_gate": "Gate C practical-effect decision must pass before this task starts.",
+      "experiment_ids": [],
+      "acceptance_met": false
     },
     {
       "id": "P09",
@@ -287,7 +357,9 @@
         "Secret challenge/HE key reaches untrusted GPU"
       ],
       "requires_new_gpu_code": true,
-      "additional_gate": "Gate C practical-effect decision must pass; P07 defines the complete verifier boundary before new GPU kernels."
+      "additional_gate": "Gate C practical-effect decision must pass; P07 defines the complete verifier boundary before new GPU kernels.",
+      "experiment_ids": [],
+      "acceptance_met": false
     },
     {
       "id": "P10",
@@ -302,14 +374,14 @@
         "E44",
         "E45",
         "E46",
-        "E48",
-        "E49",
-        "E53"
+        "E66"
       ],
       "output_paths": [
         "docs/research/representation-alternatives.md",
         "docs/research/component-recipe-results.md",
-        "docs/research/ciphertext-factory-results.md"
+        "docs/research/ciphertext-factory-results.md",
+        "docs/research/supported-decoder-results.md",
+        "docs/research/support-planner-results.md"
       ],
       "paths_note": "Implemented paths are recorded by progress/evidence; other listed paths remain proposed.",
       "acceptance": "One exact independent oracle, closest-work delta, complete cost bound and negative control per promoted alternative.",
@@ -320,7 +392,20 @@
       ],
       "requires_new_gpu_code": false,
       "acceptance_met": false,
-      "execution_evidence": "E48 full public-component recipe measured (half reply body, higher CPU/state); E49 encrypted-index factory screened and rejected as speed contribution after a stronger plaintext control. E44-46 exact comparison/approximation/mixed-context circuits remain proposals."
+      "execution_evidence": "E48/E49/E53 alternative controls retained. E62/E64 supported decryption exact relation and toy prototype implemented; E65 static-optimizer contribution rejected after simple refinements. E44-46 and next E66/E67 remain proposed.",
+      "experiment_ids": [
+        "E44",
+        "E45",
+        "E46",
+        "E48",
+        "E49",
+        "E53",
+        "E62",
+        "E63",
+        "E64",
+        "E65",
+        "E66"
+      ]
     },
     {
       "id": "P11",
@@ -350,7 +435,8 @@
       "requires_new_gpu_code": false,
       "dependency_note": "Record a scoped amendment if update, factory or GPU work is not part of the selected paper; never mark an omitted package complete.",
       "execution_evidence": "29 completed raw runs and 64 source versions hash-verified; 156 related tests and explicit lint pass. Checkpoint bundle/runtime cache retained separately. Publication-size evaluation/uncertainty/final artifact gate remains open.",
-      "acceptance_met": false
+      "acceptance_met": false,
+      "experiment_ids": []
     },
     {
       "id": "P12",
@@ -363,7 +449,9 @@
       ],
       "proposed_experiments": [],
       "output_paths": [
-        "docs/research/paper-claims.md"
+        "docs/research/paper-claims.md",
+        "docs/research/closest-work-comparison-20260930.md",
+        "docs/research/publication-literature-sources.json"
       ],
       "paths_note": "Proposed unless already present; paths do not imply implementation.",
       "acceptance": "Claim-to-theorem-to-experiment-to-prior-work ledger supports one coherent contribution; independent key proof/parameter review.",
@@ -373,7 +461,8 @@
       ],
       "requires_new_gpu_code": false,
       "acceptance_met": false,
-      "execution_evidence": "Claim-to-oracle/measurement/prior-work ledger created. No coherent novelty claim, complete reviewed theorem or paper draft is declared."
+      "execution_evidence": "Claims and closest-work comparison updated after original author reproduction, user caching clarification, known extraction/Recifhe/basis-synthesis reads and E57/E65 negatives. No coherent originality claim, reviewed full theorem, useful outsourcing result or paper draft declared.",
+      "experiment_ids": []
     }
   ],
   "handoff_fields": [
@@ -392,6 +481,19 @@
   ],
   "historical_artifacts_policy": "Do not rewrite prior measurements/manifests; validate their planning-document hashes at baseline_commit.",
   "proposed_experiment_ids": [
+    "E44",
+    "E45",
+    "E46",
+    "E47",
+    "E66",
+    "E67"
+  ],
+  "execution_log": "docs/research/publication-progress.md",
+  "execution_date": "2026-09-30",
+  "execution_note": "Every completed subcomponent returns to the plan. E65 static grammar is only partial execution of its lifecycle proposal. All Gates A-D/full package acceptances remain open; no novelty, useful-effect or production-assurance label inferred from a pilot.",
+  "client_retention": "User explicitly permits retaining all owned plaintext data; mandatory raw/compressed/mutable cache controls. No customer device/session limit inferred.",
+  "current_execution_priority": "publication-research-plan.md section11: recipe/decoder admissibility known controls and full cold/ready/private-provisioning comparison before conditional lifecycle compiler; static support optimizer failed stronger-control discriminator.",
+  "initial_proposed_experiment_ids": [
     "E41",
     "E42",
     "E43",
@@ -400,7 +502,53 @@
     "E46",
     "E47"
   ],
-  "execution_log": "docs/research/publication-progress.md",
-  "execution_date": "2026-09-30",
-  "execution_note": "Subcomponent completion returns to the plan; no full package acceptance, originality, practical-effect or production-assurance gate is inferred from a pilot."
+  "executed_experiment_scopes": {
+    "E41": "Exact bounded static representation oracle/DP, exhaustive and encrypted references; no novelty acceptance.",
+    "E42": "Partial unified author modes and original EMVP Go/C++ cached/key-only CPU adaptation, separate added full-reply gates; strongest recursive/vLHE unresolved.",
+    "E43": "Frozen-map sparse repair implemented; complete rank32/rank128 controls lose9.25%/7.88% to vectorized fresh.",
+    "E47": "Full-Q/carry/partial-subring matrix algebra oracle only; no deployed nested vLHE composition or reviewed proof.",
+    "E48": "Trusted public C1 reconstruction recipe measured, greater CPU/state; transfer crossover modeled.",
+    "E49": "Encrypted-index factory measured; speed claim rejected against vectorized plaintext control; seeded/noise privacy under review.",
+    "E50": "Raw/zlib/exact coordinate-cache controls measured.",
+    "E51": "Research-only full-ring/score-layout/global raw-affine controls and parameter screens; no parameter assurance.",
+    "E52": "Finite catalog lifetime hindsight count DP with exact successor oracle; not a measured online algorithm gain.",
+    "E53": "Conditional public-zero-seed obstruction with own exact toys; genuine API seed remains private.",
+    "E54": "Fixed-base private corrections, complete lifecycles and trusted partial/full rebase tests; no transport/durability.",
+    "E55": "Exact finite base-revision/exception frontier in count model; no online-policy result.",
+    "E56": "Selective public reply-tile rebuilding, complete localized/dispersed lifecycles; known control.",
+    "E57": "Measured prices and causal one-query rule on disjoint synthetic edits; all16 decisions use deltas, policy loses; shared volatile lifetime guard implemented.",
+    "E58": "AES-GCM cache acquisition/effort sweep and real67429-row Connect4 full-cache control; no network/RSS/device certification.",
+    "E59": "Private edits/inserts/deletes beside complete frozen encrypted base, exact/native lifecycle matched to mutable allowed cache; no encrypted-base migration or erasure.",
+    "E60": "Cold and prepaid-owner cost MODELS against favorable ready-remote baselines; no sockets/service performance.",
+    "E61": "32768 distinct Connect4-row encrypted/global-affine and authenticated-cache CPU controls, matched full-score hashes; not full67557-corpus HE.",
+    "E62": "One-full-leaf supported-C0/full-C1 dedicated projection, actual public fixture bodies, native/GMP/integer/tamper oracles; separate changed relation.",
+    "E63": "Exact tiny full decoder-matrix supports and equal-old-resource projected-body counterexample; algebra/count oracle.",
+    "E64": "Separate owner-pinned split/legacy supported gate/decoder, conditional relation specification,112 toy encrypted searches and eleven tests; no reviewed full protocol/native win.",
+    "E65": "Partially executed STATIC support/row-allocation grammar,20 named/32 irregular catalogs; single-row-refined controls recover every tested frontier; proposed lifecycle/provenance optimization not implemented."
+  },
+  "next_experiment_proposals": [
+    {
+      "id": "E66",
+      "work_packages": [
+        "P03",
+        "P07",
+        "P10"
+      ],
+      "status": "proposed",
+      "specification": "publication-research-plan.md section11 item1",
+      "hypothesis": "A safe recipe/decoder relation can yield a useful complete-cost resource tradeoff beyond fresh extraction/reconstruction and locally known rows.",
+      "falsifier": "Known controls explain the gain, private-state/CPU/provisioning overwhelms wire reduction, or transcript/carry/provenance assumptions fail."
+    },
+    {
+      "id": "E67",
+      "work_packages": [
+        "P01",
+        "P06"
+      ],
+      "status": "proposed",
+      "specification": "publication-research-plan.md section11 item2",
+      "hypothesis": "A justified cold/ready/device/link regime survives full private provisioning, cache and strongest protocol controls.",
+      "falsifier": "Allowed cache dominates the relevant regime, private/setup traffic was omitted, or parameter/output/trust mismatch explains comparison."
+    }
+  ]
 }
