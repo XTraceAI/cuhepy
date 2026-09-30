@@ -271,6 +271,26 @@ and native state exceeds a plaintext cache on both small fixtures. See
 Treat it as a priced optional dimension, not an originality claim. It does
 not authorize new CUDA work or remove any P07/P08 obligation.
 
+**Execution amendment — E49–E52.** An encrypted-index correlation factory
+was built and independently checked, but its 3.34x isolated preparation gain
+does not survive a vectorized plaintext control (38 vs 54 ms). Keep it as a
+conditional alternative, not the principal speed contribution. The
+[cache controls](coordinate-cache-results.md) show raw/compressed local search
+dominates current small fixtures when retention is allowed. The
+[parameter/output-layout frontier](parameter-frontier-results.md) gives large
+Semeion savings and smaller Mushroom gains; N1024 fails the preliminary target
+and N2048 remains unreviewed. Known parameter/layout tradeoffs do not establish
+a new construction.
+
+Return to the algorithmic hypothesis: [E52's finite lifetime DP](lifetime-planner-analysis.md)
+retains exact reserved spans, pending-token counts and accumulated phase age,
+matches exhaustive schedules, and demonstrates equal-rank/static-cost states
+with different future feasibility. Real encrypted reserved-zero-column repairs
+are exercised. Next calibrate/test a held-out policy and compare delta/static/
+no-reserve/low-state controls plus dynamic-planning prior work. Hindsight count
+models do not pass Gate C; company improvements remain checkpointed if the
+paper pivots.
+
 **E47 — Verified private evaluation of a ciphertext-linear operator.**
 The server already sees the encrypted index columns. Regard their complete
 coefficient vectors and required negacyclic shifts as a public matrix

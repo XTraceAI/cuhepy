@@ -147,11 +147,19 @@ def layout(ctx: Context, features: tuple[int, ...], counts: tuple[int, ...]) -> 
 
 
 def validate_layout(plan: Layout) -> None:
+    if not isinstance(plan, Layout):
+        # E51 is a separate output-only interface. Legacy input packing below
+        # must reject it; only CRT score embedding/unpacking can consume it.
+        from experiments.bfv_search_lab import score_layout
+        score_layout.validate(plan)
+        return
     if plan != layout(plan.context, plan.features, plan.counts):
         raise ValueError("Inconsistent dyadic padding")
 
 
 def query(plan: Layout, weights: list[list[int]]) -> list[int]:
+    if not isinstance(plan, Layout):
+        raise ValueError("Output-only CRT layout cannot pack a legacy input query")
     validate_layout(plan)
     if (len(weights) != len(plan.features)
             or any(len(w) != f or any(type(x) is not int for x in w)
@@ -164,6 +172,8 @@ def query(plan: Layout, weights: list[list[int]]) -> list[int]:
 
 
 def index(plan: Layout, groups: list[list[list[int]]]) -> list[list[int]]:
+    if not isinstance(plan, Layout):
+        raise ValueError("Output-only CRT layout cannot pack legacy input rows")
     validate_layout(plan)
     if (len(groups) != len(plan.counts)
             or any(len(g) != c for g, c in zip(groups, plan.counts, strict=True))

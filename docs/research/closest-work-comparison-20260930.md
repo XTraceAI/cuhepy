@@ -42,7 +42,8 @@ The [source registry](publication-literature-sources.json) pins 15 downloaded
 primary PDFs by SHA-256, four artifact revisions, and additional web readings.
 The EMVP full version is dated August 24, 2026, although its conference paper
 is CCS 2025. Paper and artifact versions must be distinguished. No external
-artifact was executed or timed for this review. Paper-reported speedups are
+artifact was executed or timed in the initial review snapshot; the supplement
+below supersedes that status. Paper-reported speedups are
 deliberately not placed alongside our local timings as matched results.
 
 ## Closest protocol competitors
@@ -144,3 +145,32 @@ contracts differ: its native intended setting, and the cost of a justified
 adaptation to ours. An unimplemented adaptation is a model or an open task,
 not an invented benchmark. A whole-database download plus local exact scan,
 and a compressed local cache, remain mandatory controls.
+
+## Execution supplement: evidence after the initial review
+
+The unified author artifact at `519148cf3fddc11277a111774ca8cb92d891e0e3`
+has now passed 78 CPU tests and two explicitly exact binary-Hamming/full-score
+adaptations. [The reproduction report](baseline-reproduction.md) retains native
+mode labels, all-score/top-three adaptation, query/reply models and compiler
+override. This is partial reproduction, not the complete paper evaluation.
+BNTM's client plaintext matrix is used online to compute `M*T`; its recursive
+low-state Protocol 3 is not implemented by that artifact. Full ciphertext
+matrix transposition for native verification is another recorded online cost.
+The stronger low-state competitor remains an open reproduction task.
+
+Targeted primary browser readings now cover incremental offline/online PIR
+(2021/1438, two non-colluding HBC servers), single-pass PIR's §5 updates
+(2024/303), and versioned/aggregated single-server hint updates (2026/030 §4.1).
+Authenticated incremental PIR (2026/1077) remains abstract/metadata only because
+full PDF access failed. These browser-only documents have no local pinned hash;
+none is represented as a complete proof audit. Incremental hints, affine
+reserves, rerandomization, CRT and HE-layout planning remain prior ingredients.
+
+The new [execution log](publication-progress.md) records E43 complete lifecycle,
+E48 response recipes, E49's failed speed hypothesis after a stronger control,
+E50 compact local caches, E51 full-ring/capacity effects and E52 exact finite
+lifetime DP. The counterexample requires retaining exact span and noise state;
+it is not a novelty proof. Dynamic HE/compiler/update planning needs targeted
+forward/backward citation review before any original algorithm claim. Existing
+packing/rank/rerandomization improvements are retained for the company, with
+the paper claim explicitly gated.

@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "utc": "2026-09-30T12:20:26.269097+00:00",
+  "command": [
+    "benchmarks/bgv_parameter_estimation.py",
+    "--estimator",
+    "/home/pete/yavor-projects/xtrace-work/research-data/reference-artifacts-20260930/lattice-estimator",
+    "--n",
+    "2048",
+    "--q-bits",
+    "32",
+    "40",
+    "--attacks",
+    "bkw,bdd_mitm_hybrid,arora-gb",
+    "--attack-timeout-s",
+    "60",
+    "--json-out",
+    "benchmarks/results/publication-bgv-estimator-retry-20260930.json"
+  ],
+  "sdk_revision": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+  "sage": "10.9",
+  "python": "3.14.6",
+  "estimator_revision": "53da5982597709ba0fdf94ea37a84d822310fd84",
+  "runner_sha256": "d0cd0b74d95eef65e2f5f7f19852cb15492b716583790eb4745c0c2588a60576",
+  "estimator_conf_sha256": "b8270fcc702ef72e00308fc691112f374da4d0d0395665b7c244c9b99b77f7dd",
+  "mode": "full",
+  "model": "MATZOV-classical",
+  "shape_model": "gsa",
+  "configured_max_beta": 1754,
+  "sample_count": "unbounded",
+  "secret_distribution": "uniform {-1,0,1}, full encryption ring",
+  "attack_selection": [
+    "bkw",
+    "bdd_mitm_hybrid",
+    "arora-gb"
+  ],
+  "per_attack_time_budget_s": 60,
+  "error_distribution": "centered binomial eta=21, variance=10.5",
+  "normalization": "Subtract a known message then multiply both ct components by inverse(t) mod Q; error is CBD_eta, not t*CBD_eta.",
+  "scope": "Generic independent-sample LWE heuristic screening only. Unlimited independent samples are a conservative model, not a proof for correlated RLWE rotations, published-seed SHAKE samples, adaptive protocol transcripts or implementation leakage. All returned finite attack costs, missing/failed attacks and beta-limit caveats must be read. Quantum ADPS16 is a sensitivity model, not complete quantum assurance. No research profile is production-approved.",
+  "profiles": [
+    {
+      "n": 2048,
+      "q_bits": 32,
+      "q": 4294955009,
+      "eta": 21,
+      "params": "LWEParameters(n=2048, q=4294955009, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+      "attacks": {
+        "bkw": {
+          "log2_rop": 404.1650548439394,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "4.632385645718531e+121",
+            "m": "1.004722938000476e+117",
+            "mem": "2009433331929117684864212295806145830522284086811620870952960991828216938547346074928667181872461112888624739284500531",
+            "b": "12",
+            "t1": "0",
+            "t2": "51",
+            "ell": "11",
+            "#cod": "1883",
+            "#top": "0",
+            "#test": "170",
+            "tag": "coded-bkw",
+            "problem": "LWEParameters(n=2048, q=4294955009, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 9.633666292997077
+        },
+        "bdd_mitm_hybrid": {
+          "log2_rop": 333.2030751341931,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "2.01428195852501e100",
+            "red": "2.69548368107573e97",
+            "svp": "2.01158647484394e100",
+            "beta": "689",
+            "eta": "2",
+            "zeta": "266",
+            "|S|": "8203086076088380645288672534069297602359473360677228982078498436941388874579510910665330871298663591883985802149847337641048745",
+            "d": "3709",
+            "prob": "9.02005692673171e-30",
+            "repetitions": "510547796249519782286824632927",
+            "tag": "hybrid",
+            "problem": "LWEParameters(n=2048, q=4294955009, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 45.21386068999709
+        },
+        "arora-gb": {
+          "status": "timeout_or_failed",
+          "error": "TimeoutError: Per-attack research time budget exceeded",
+          "elapsed_s": 60.16393554399838
+        }
+      },
+      "missing_or_failed_attacks": [
+        "arora-gb",
+        "bdd",
+        "bdd_hybrid",
+        "dual",
+        "dual_hybrid",
+        "usvp"
+      ],
+      "minimum_returned_log2_rop": 333.2030751341931,
+      "parameter_assurance": "unreviewed/research-only",
+      "elapsed_s": 115.01239182599966
+    },
+    {
+      "n": 2048,
+      "q_bits": 40,
+      "q": 1099511590913,
+      "eta": 21,
+      "params": "LWEParameters(n=2048, q=1099511590913, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+      "attacks": {
+        "bkw": {
+          "log2_rop": 380.8607384947615,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "4.472048013655726e+114",
+            "m": "7.632789129088197e+109",
+            "mem": "152655221818054625559747344468441183265551877786121148417405965921466167145392859640993032042151277994547015745",
+            "b": "9",
+            "t1": "0",
+            "t2": "65",
+            "ell": "8",
+            "#cod": "1902",
+            "#top": "0",
+            "#test": "151",
+            "tag": "coded-bkw",
+            "problem": "LWEParameters(n=2048, q=1099511590913, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 110.12940163800522
+        },
+        "bdd_mitm_hybrid": {
+          "log2_rop": 257.5988822291124,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "3.50744121116831e77",
+            "red": "2.19144562781200e76",
+            "svp": "3.28829664838711e77",
+            "beta": "513",
+            "eta": "2",
+            "zeta": "197",
+            "|S|": "9837179096143714545941849272027555818946255261627930421009411532766255336103503516065046541811",
+            "d": "3824",
+            "prob": "2.03116755591224e-23",
+            "repetitions": "226725272988117195041980",
+            "tag": "hybrid",
+            "problem": "LWEParameters(n=2048, q=1099511590913, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 34.97506198799965
+        },
+        "arora-gb": {
+          "status": "timeout_or_failed",
+          "error": "TimeoutError: Per-attack research time budget exceeded",
+          "elapsed_s": 60.404452627000865
+        }
+      },
+      "missing_or_failed_attacks": [
+        "arora-gb",
+        "bdd",
+        "bdd_hybrid",
+        "dual",
+        "dual_hybrid",
+        "usvp"
+      ],
+      "minimum_returned_log2_rop": 257.5988822291124,
+      "parameter_assurance": "unreviewed/research-only",
+      "elapsed_s": 205.50991026299744
+    }
+  ],
+  "complete": true
+}

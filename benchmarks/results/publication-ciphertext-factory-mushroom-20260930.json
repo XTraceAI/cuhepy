@@ -1,0 +1,469 @@
+{
+  "utc": "2026-09-30T10:56:16.148679+00:00",
+  "command": [
+    "benchmarks/ciphertext_factory_lab.py",
+    "--dataset",
+    "mushroom",
+    "--cache-dir",
+    "/home/pete/yavor-projects/xtrace-work/research-data/uci-20260927",
+    "--repeats",
+    "4",
+    "--json-out",
+    "benchmarks/results/publication-ciphertext-factory-mushroom-20260930.json"
+  ],
+  "git_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/ciphertext_factory_lab.py": "56d6eaeeb3834bfeae603ed3b813c02d66872307fd27e30556fb95512a97bc60",
+    "experiments/bfv_search_lab/ciphertext_factory.py": "a578d5d6a3368a952458c3c6ceb1abb842ddf425bf563c795327f1791aecded3",
+    "experiments/bfv_search_lab/crt_masked_bgv.py": "ef2cece17e1b0a31a71e69ce01db380e3266293bca728dc923d1defb0e261152",
+    "experiments/bfv_search_lab/crt_query_space.py": "2bc431424dc9679c62ef806f33b81e501f222f1837ebac8d515e22475e4fd8a3",
+    "experiments/bfv_search_lab/crt_native_bgv.py": "b9b8f816ae7360dec87c4fcbf170e2ab4e861908c133cb2c63cbd04d512c5c84",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/seeded_bgv.py": "7e8631304dde122c4755f5f7391ef8ba6b9be213fd2c667a473b388175890272",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "experiments/bfv_search_lab/integer_phase_audit.py": "787627023ff8a2d183b8c5cc95073d364780bb1339fd46cf468ccd39a9664a54",
+    "experiments/bfv_search_lab/native_linear_check.py": "6bc6fb004019dca6c8e5c9f155bd3f45570f7e5daef3e9d0e7274d0399ad33cd",
+    "experiments/bfv_search_lab/crt_linear_check.py": "86081119ae715e17d92cd2132f57971f222cddcc04f2c0aad7adc115ebd1cee7",
+    "experiments/bfv_search_lab/coefficient_body.py": "cd00bfca329d08bacfc04481de58756d9673e1baf304c6afa4db9ee8a8d4ed10",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "experiments/bfv_search_lab/_subring/_crt_subring.cpython-312-x86_64-linux-gnu.so": "ecd3611af5fd16077afcb050af555374b4d9659a50e397a72a0295c2a6abb07d",
+    "experiments/bfv_search_lab/_fingerprint/_fingerprint.cpython-312-x86_64-linux-gnu.so": "273413089b89db47eb76e083504d0f260a970b17ec310501f358038738466458"
+  },
+  "kind": "encrypted_index_trusted_factory",
+  "dataset": "mushroom",
+  "count": 7996,
+  "dimension": 126,
+  "n": 16384,
+  "t": 193,
+  "q": 4294475777,
+  "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+  "basis_source": "Existing E37 empirical public-fixture private affine plan",
+  "setup": {
+    "fixture_load_plan_and_full_certification_s": 1.8095942700019805,
+    "key_gen_s": 0.09166849000030197,
+    "enroll_s": 0.8807913499986171,
+    "server_native_prepare_s": 0.1776406710050651,
+    "extra_trusted_encrypted_factory_prepare_s": 0.2421959980056272
+  },
+  "seeded_index_upload_bytes": 2100544,
+  "observations": [
+    {
+      "variant": "plaintext",
+      "ordinal": 0,
+      "warmup": true,
+      "offline_correlation_production_and_serialization_s": 0.044742461999703664,
+      "complete_answer_check_prepare_s": 0.011389382001652848,
+      "offline_production_and_check_s": 0.05613184400135651,
+      "correlation_packet_body_bytes": 65642,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.052225574996555224,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          20
+        ],
+        [
+          2,
+          62
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 4624966,
+        "maximum_deterministic_response_bound": 202915143,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.002153914116721772,
+        "private_phase_digest_diagnostic_only": "01a1b6da34600b80969124e7b8fe6b858a945c611bc0f3b28f4f76f1c606a3e4"
+      }
+    },
+    {
+      "variant": "encrypted_index",
+      "ordinal": 0,
+      "warmup": true,
+      "offline_correlation_production_and_serialization_s": 0.04229369200038491,
+      "complete_answer_check_prepare_s": 0.0075522139959502965,
+      "offline_production_and_check_s": 0.049845905996335205,
+      "correlation_packet_body_bytes": 131072,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.05018318299698876,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          20
+        ],
+        [
+          2,
+          62
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 5845862,
+        "maximum_deterministic_response_bound": 613981467,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.002722503189473689,
+        "private_phase_digest_diagnostic_only": "413feba5e6812b07eb8a569fca86f8ec2abbce5c1889f89fb01e6c6560998404"
+      }
+    },
+    {
+      "variant": "encrypted_index",
+      "ordinal": 1,
+      "warmup": false,
+      "offline_correlation_production_and_serialization_s": 0.04230705199734075,
+      "complete_answer_check_prepare_s": 0.007531682997068856,
+      "offline_production_and_check_s": 0.049838734994409606,
+      "correlation_packet_body_bytes": 131072,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.050258944000233896,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          108
+        ],
+        [
+          2,
+          158
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 6563971,
+        "maximum_deterministic_response_bound": 615180528,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.0030569370236780825,
+        "private_phase_digest_diagnostic_only": "107682141d4860248d67c6cd376229d372b28b945c5f7ac611e56dcac4328a1a"
+      }
+    },
+    {
+      "variant": "plaintext",
+      "ordinal": 1,
+      "warmup": false,
+      "offline_correlation_production_and_serialization_s": 0.043513386000995524,
+      "complete_answer_check_prepare_s": 0.006901490000018384,
+      "offline_production_and_check_s": 0.05041487600101391,
+      "correlation_packet_body_bytes": 65642,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.0501665129995672,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          108
+        ],
+        [
+          2,
+          158
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 4510326,
+        "maximum_deterministic_response_bound": 202251303,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.002100524596811575,
+        "private_phase_digest_diagnostic_only": "65e4d83aaf41dbb6f5564a4344daab8a775d161d34743a5277ddb54937bd7e03"
+      }
+    },
+    {
+      "variant": "plaintext",
+      "ordinal": 2,
+      "warmup": false,
+      "offline_correlation_production_and_serialization_s": 0.0436780199961504,
+      "complete_answer_check_prepare_s": 0.006969602000026498,
+      "offline_production_and_check_s": 0.050647621996176895,
+      "correlation_packet_body_bytes": 65642,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.05033330599690089,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          2179
+        ],
+        [
+          2,
+          2760
+        ],
+        [
+          2,
+          3066
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 4868662,
+        "maximum_deterministic_response_bound": 201575016,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.0022674068979851645,
+        "private_phase_digest_diagnostic_only": "e2a8f5046fbb670b9004717ca5fb5ca1febe72d39add9bc5cfdbe4a91abe4cd6"
+      }
+    },
+    {
+      "variant": "encrypted_index",
+      "ordinal": 2,
+      "warmup": false,
+      "offline_correlation_production_and_serialization_s": 0.04258117800054606,
+      "complete_answer_check_prepare_s": 0.006890661003126297,
+      "offline_production_and_check_s": 0.04947183900367236,
+      "correlation_packet_body_bytes": 131072,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.05081892499583773,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          2179
+        ],
+        [
+          2,
+          2760
+        ],
+        [
+          2,
+          3066
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 6673719,
+        "maximum_deterministic_response_bound": 616147245,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.0031080482678433326,
+        "private_phase_digest_diagnostic_only": "e904bdecc12ecd7660873296cc6b698faf1db42ad04282e03a922c45bec21bac"
+      }
+    },
+    {
+      "variant": "encrypted_index",
+      "ordinal": 3,
+      "warmup": false,
+      "offline_correlation_production_and_serialization_s": 0.042277700995327905,
+      "complete_answer_check_prepare_s": 0.006905971000378486,
+      "offline_production_and_check_s": 0.04918367199570639,
+      "correlation_packet_body_bytes": 131072,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.050391887001751456,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          5517
+        ],
+        [
+          2,
+          6070
+        ],
+        [
+          2,
+          6264
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 5529642,
+        "maximum_deterministic_response_bound": 610122897,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.002575234923720004,
+        "private_phase_digest_diagnostic_only": "0ff984433f1e21dc99ff7c3d81d12555e3ba12de7a294005da9214c32b1e9deb"
+      }
+    },
+    {
+      "variant": "plaintext",
+      "ordinal": 3,
+      "warmup": false,
+      "offline_correlation_production_and_serialization_s": 0.04338412299694028,
+      "complete_answer_check_prepare_s": 0.006811589002609253,
+      "offline_production_and_check_s": 0.05019571199954953,
+      "correlation_packet_body_bytes": 65642,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.04978283400123473,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          5517
+        ],
+        [
+          2,
+          6070
+        ],
+        [
+          2,
+          6264
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 4790918,
+        "maximum_deterministic_response_bound": 207292338,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.0022312003833663725,
+        "private_phase_digest_diagnostic_only": "6e520b7418801a19e72ca92024acea30a73fda866d6a4ebfd226c5db7a6106ae"
+      }
+    },
+    {
+      "variant": "plaintext",
+      "ordinal": 4,
+      "warmup": false,
+      "offline_correlation_production_and_serialization_s": 0.04370809099782491,
+      "complete_answer_check_prepare_s": 0.006937322003068402,
+      "offline_production_and_check_s": 0.05064541300089331,
+      "correlation_packet_body_bytes": 65642,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.05034386500483379,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          4522
+        ],
+        [
+          2,
+          5132
+        ],
+        [
+          2,
+          5212
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 4292824,
+        "maximum_deterministic_response_bound": 204446124,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.001999230743361578,
+        "private_phase_digest_diagnostic_only": "862b7f78f146829c856ab0c60f3c954af01eae5d56d933e7551c30734f99ce91"
+      }
+    },
+    {
+      "variant": "encrypted_index",
+      "ordinal": 4,
+      "warmup": false,
+      "offline_correlation_production_and_serialization_s": 0.04240194400335895,
+      "complete_answer_check_prepare_s": 0.006921920998138376,
+      "offline_production_and_check_s": 0.049323865001497325,
+      "correlation_packet_body_bytes": 131072,
+      "response_body_bytes": 131072,
+      "complete_local_online_elapsed_s": 0.05047232799552148,
+      "private_pad_norm_not_published": true,
+      "all_scores_stable_top3_and_full_gmp_native_coefficients_exact": true,
+      "gate_pass_before_secret_decryption": true,
+      "top3": [
+        [
+          2,
+          4522
+        ],
+        [
+          2,
+          5132
+        ],
+        [
+          2,
+          5212
+        ]
+      ],
+      "phase": {
+        "maximum_unreduced_integer_phase": 6667585,
+        "maximum_deterministic_response_bound": 610122897,
+        "all_integer_phase_coefficients_match_ciphertext": true,
+        "phase_fraction_of_half_q": 0.0031051915745850533,
+        "private_phase_digest_diagnostic_only": "3d1cee231b72ca7bdb618d0eeefe6f20ca4b47e68b40df19b512ec0e2694c613"
+      }
+    }
+  ],
+  "checker_rounds": 5,
+  "summary": {
+    "plaintext": {
+      "offline_correlation_production_and_serialization_s": {
+        "mean": 0.04357090499797778,
+        "median": 0.04359570299857296,
+        "min": 0.04338412299694028,
+        "max": 0.04370809099782491
+      },
+      "offline_production_and_check_s": {
+        "mean": 0.05047590574940841,
+        "median": 0.05053014450095361,
+        "min": 0.05019571199954953,
+        "max": 0.050647621996176895
+      },
+      "correlation_packet_body_bytes": {
+        "mean": 65642,
+        "median": 65642.0,
+        "min": 65642,
+        "max": 65642
+      },
+      "complete_local_online_elapsed_s": {
+        "mean": 0.05015662950063415,
+        "median": 0.05024990949823405,
+        "min": 0.04978283400123473,
+        "max": 0.05034386500483379
+      }
+    },
+    "encrypted_index": {
+      "offline_correlation_production_and_serialization_s": {
+        "mean": 0.042391968749143416,
+        "median": 0.04235449800034985,
+        "min": 0.042277700995327905,
+        "max": 0.04258117800054606
+      },
+      "offline_production_and_check_s": {
+        "mean": 0.04945452774882142,
+        "median": 0.04939785200258484,
+        "min": 0.04918367199570639,
+        "max": 0.049838734994409606
+      },
+      "correlation_packet_body_bytes": {
+        "mean": 131072,
+        "median": 131072.0,
+        "min": 131072,
+        "max": 131072
+      },
+      "complete_local_online_elapsed_s": {
+        "mean": 0.05048552099833614,
+        "median": 0.05043210749863647,
+        "min": 0.050258944000233896,
+        "max": 0.05081892499583773
+      }
+    }
+  },
+  "original_owner_coordinate_ternary_body_bytes_model": 50456,
+  "encrypted_factory_expanded_index_body_bytes_model": 4194304,
+  "encrypted_factory_native_word_bytes_model": 8388608,
+  "fresh_plaintext_factory_answer_bound": 4149,
+  "encrypted_factory_answer_bounds": [
+    407867445
+  ],
+  "encrypted_factory_worst_response_bounds": [
+    815730741
+  ],
+  "scope": "Trusted LOCAL CPU factory, no new GPU/TEE/service deployment. Same complete check and exact full-score output. Only encrypted-index factory avoids the plaintext coordinate scan; it retains much larger encrypted/native state. Original correlations use seeded packets; alternative releases FULL coefficients, never the zero seed. Measured stages exclude the independent GMP/integer-phase diagnostics. Initial setup is recorded separately, not amortized away. Conditional extra RLWE pseudorandomness assumption has no independent review. Known rerandomization ingredients; no new cryptographic primitive, complete lifetime, production or Gate C claim."
+}

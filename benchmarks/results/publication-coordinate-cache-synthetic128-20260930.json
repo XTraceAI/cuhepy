@@ -1,0 +1,853 @@
+{
+  "utc": "2026-09-30T11:41:19.019417+00:00",
+  "command": [
+    "benchmarks/coordinate_cache_lab.py",
+    "--dataset",
+    "synthetic128",
+    "--json-out",
+    "benchmarks/results/publication-coordinate-cache-synthetic128-20260930.json"
+  ],
+  "git_head": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/coordinate_cache_lab.py": "9d4dfe620c0d2393b9a4e72377a19e1b49ec2b2b3967a3746521a44eff0a222b",
+    "experiments/bfv_search_lab/coordinate_cache.py": "b806b93da033224cd42ff94f219cbb614555ca36387999d910c76d07bdf31772",
+    "experiments/bfv_search_lab/affine_dictionary.py": "0f811f9a5cd2628f1c6c2f048c1d32e65eaaf9aa5e3f942118342b3edf6daf05",
+    "experiments/bfv_search_lab/field_frontier.py": "4a4f747fe272825b1689b064a21583773452eef69716f4aeb1bd438f58863db6"
+  },
+  "kind": "exact_private_coordinate_cache_control",
+  "dataset": "synthetic128",
+  "fixture_sha256": "115f9ef9d9dbf05f5eb2f5996613105aea3952ddf74615990b5f0c96bbadacd3",
+  "query_policy": "Same E49 exact public generator schema/seed; independent held-out binary queries",
+  "count": 16384,
+  "dimension": 512,
+  "prime": 1153,
+  "setup": {
+    "load_fit_coordinate_certification_s": 11.178527531999862,
+    "packed_cache_compile_s": 0.2863401479989989,
+    "expanded_cache_compile_s": 0.2987538230008795,
+    "raw_cache_compile_s": 0.0021323440014384687,
+    "zlib_cache_compile_s": 0.010226919999695383
+  },
+  "state": {
+    "packed": {
+      "coordinate_body_bytes": 262144,
+      "private_map_body_bytes": 2248,
+      "stable_ids_and_permutation_bytes_model": 196608,
+      "complete_retained_body_bytes_model": 461000,
+      "largest_block_int64_dot_conversion_scratch_bytes_upper_model": 16777216
+    },
+    "expanded": {
+      "coordinate_body_bytes": 2097152,
+      "private_map_body_bytes": 2248,
+      "stable_ids_and_permutation_bytes_model": 196608,
+      "complete_retained_body_bytes_model": 2296008,
+      "largest_block_int64_dot_conversion_scratch_bytes_upper_model": 16777216
+    },
+    "raw": {
+      "packed_rows_body_bytes_model": 1048576,
+      "stable_ids_body_bytes_model": 131072,
+      "complete_retained_body_bytes_model": 1179648
+    },
+    "zlib": {
+      "compressed_rows_body_bytes": 286738,
+      "stable_ids_body_bytes_model": 131072,
+      "complete_retained_body_bytes_model": 417810,
+      "raw_decompression_scratch_body_bytes_model": 1048576
+    }
+  },
+  "observations": [
+    {
+      "variant": "packed",
+      "ordinal": 0,
+      "warmup": true,
+      "complete_local_query_s": 0.005817518998810556,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          217,
+          1616
+        ],
+        [
+          217,
+          6584
+        ],
+        [
+          219,
+          8359
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 0,
+      "warmup": true,
+      "complete_local_query_s": 0.003920201001164969,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          217,
+          1616
+        ],
+        [
+          217,
+          6584
+        ],
+        [
+          219,
+          8359
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 0,
+      "warmup": true,
+      "complete_local_query_s": 0.0024517299971194007,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          217,
+          1616
+        ],
+        [
+          217,
+          6584
+        ],
+        [
+          219,
+          8359
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 0,
+      "warmup": true,
+      "complete_local_query_s": 0.006421731995942537,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          217,
+          1616
+        ],
+        [
+          217,
+          6584
+        ],
+        [
+          219,
+          8359
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 1,
+      "warmup": false,
+      "complete_local_query_s": 0.004215976005070843,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          213,
+          7690
+        ],
+        [
+          215,
+          5412
+        ],
+        [
+          215,
+          12637
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 1,
+      "warmup": false,
+      "complete_local_query_s": 0.0023163180012488738,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          213,
+          7690
+        ],
+        [
+          215,
+          5412
+        ],
+        [
+          215,
+          12637
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 1,
+      "warmup": false,
+      "complete_local_query_s": 0.0063336500024888664,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          213,
+          7690
+        ],
+        [
+          215,
+          5412
+        ],
+        [
+          215,
+          12637
+        ]
+      ]
+    },
+    {
+      "variant": "packed",
+      "ordinal": 1,
+      "warmup": false,
+      "complete_local_query_s": 0.004448220999620389,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          213,
+          7690
+        ],
+        [
+          215,
+          5412
+        ],
+        [
+          215,
+          12637
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 2,
+      "warmup": false,
+      "complete_local_query_s": 0.0023520880058640614,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          3648
+        ],
+        [
+          216,
+          3865
+        ],
+        [
+          218,
+          3607
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 2,
+      "warmup": false,
+      "complete_local_query_s": 0.006350100004056003,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          3648
+        ],
+        [
+          216,
+          3865
+        ],
+        [
+          218,
+          3607
+        ]
+      ]
+    },
+    {
+      "variant": "packed",
+      "ordinal": 2,
+      "warmup": false,
+      "complete_local_query_s": 0.004391480004414916,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          3648
+        ],
+        [
+          216,
+          3865
+        ],
+        [
+          218,
+          3607
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 2,
+      "warmup": false,
+      "complete_local_query_s": 0.00394388099812204,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          3648
+        ],
+        [
+          216,
+          3865
+        ],
+        [
+          218,
+          3607
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 3,
+      "warmup": false,
+      "complete_local_query_s": 0.0063611300065531395,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          206,
+          8044
+        ],
+        [
+          210,
+          12072
+        ],
+        [
+          214,
+          13770
+        ]
+      ]
+    },
+    {
+      "variant": "packed",
+      "ordinal": 3,
+      "warmup": false,
+      "complete_local_query_s": 0.004577264000545256,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          206,
+          8044
+        ],
+        [
+          210,
+          12072
+        ],
+        [
+          214,
+          13770
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 3,
+      "warmup": false,
+      "complete_local_query_s": 0.003953021005145274,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          206,
+          8044
+        ],
+        [
+          210,
+          12072
+        ],
+        [
+          214,
+          13770
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 3,
+      "warmup": false,
+      "complete_local_query_s": 0.0022631460014963523,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          206,
+          8044
+        ],
+        [
+          210,
+          12072
+        ],
+        [
+          214,
+          13770
+        ]
+      ]
+    },
+    {
+      "variant": "packed",
+      "ordinal": 4,
+      "warmup": false,
+      "complete_local_query_s": 0.0043117079985677265,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          210,
+          3279
+        ],
+        [
+          212,
+          8965
+        ],
+        [
+          214,
+          6
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 4,
+      "warmup": false,
+      "complete_local_query_s": 0.003853619004075881,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          210,
+          3279
+        ],
+        [
+          212,
+          8965
+        ],
+        [
+          214,
+          6
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 4,
+      "warmup": false,
+      "complete_local_query_s": 0.002231356003903784,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          210,
+          3279
+        ],
+        [
+          212,
+          8965
+        ],
+        [
+          214,
+          6
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 4,
+      "warmup": false,
+      "complete_local_query_s": 0.00637645000097109,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          210,
+          3279
+        ],
+        [
+          212,
+          8965
+        ],
+        [
+          214,
+          6
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 5,
+      "warmup": false,
+      "complete_local_query_s": 0.003867889005050529,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          206,
+          3362
+        ],
+        [
+          212,
+          16157
+        ],
+        [
+          214,
+          1017
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 5,
+      "warmup": false,
+      "complete_local_query_s": 0.0023369980044662952,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          206,
+          3362
+        ],
+        [
+          212,
+          16157
+        ],
+        [
+          214,
+          1017
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 5,
+      "warmup": false,
+      "complete_local_query_s": 0.006304608999926131,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          206,
+          3362
+        ],
+        [
+          212,
+          16157
+        ],
+        [
+          214,
+          1017
+        ]
+      ]
+    },
+    {
+      "variant": "packed",
+      "ordinal": 5,
+      "warmup": false,
+      "complete_local_query_s": 0.004266527001163922,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          206,
+          3362
+        ],
+        [
+          212,
+          16157
+        ],
+        [
+          214,
+          1017
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 6,
+      "warmup": false,
+      "complete_local_query_s": 0.0022447659939643927,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          13221
+        ],
+        [
+          212,
+          15508
+        ],
+        [
+          214,
+          3733
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 6,
+      "warmup": false,
+      "complete_local_query_s": 0.006338670005789027,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          13221
+        ],
+        [
+          212,
+          15508
+        ],
+        [
+          214,
+          3733
+        ]
+      ]
+    },
+    {
+      "variant": "packed",
+      "ordinal": 6,
+      "warmup": false,
+      "complete_local_query_s": 0.004576104001898784,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          13221
+        ],
+        [
+          212,
+          15508
+        ],
+        [
+          214,
+          3733
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 6,
+      "warmup": false,
+      "complete_local_query_s": 0.0038917700003366917,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          13221
+        ],
+        [
+          212,
+          15508
+        ],
+        [
+          214,
+          3733
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 7,
+      "warmup": false,
+      "complete_local_query_s": 0.006271259000641294,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          211,
+          6131
+        ],
+        [
+          215,
+          5457
+        ],
+        [
+          215,
+          12624
+        ]
+      ]
+    },
+    {
+      "variant": "packed",
+      "ordinal": 7,
+      "warmup": false,
+      "complete_local_query_s": 0.004714556998806074,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          211,
+          6131
+        ],
+        [
+          215,
+          5457
+        ],
+        [
+          215,
+          12624
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 7,
+      "warmup": false,
+      "complete_local_query_s": 0.004002301997388713,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          211,
+          6131
+        ],
+        [
+          215,
+          5457
+        ],
+        [
+          215,
+          12624
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 7,
+      "warmup": false,
+      "complete_local_query_s": 0.0022505460001411848,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          211,
+          6131
+        ],
+        [
+          215,
+          5457
+        ],
+        [
+          215,
+          12624
+        ]
+      ]
+    },
+    {
+      "variant": "packed",
+      "ordinal": 8,
+      "warmup": false,
+      "complete_local_query_s": 0.004511842998908833,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          4880
+        ],
+        [
+          218,
+          6731
+        ],
+        [
+          218,
+          13099
+        ]
+      ]
+    },
+    {
+      "variant": "expanded",
+      "ordinal": 8,
+      "warmup": false,
+      "complete_local_query_s": 0.003970531004597433,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          4880
+        ],
+        [
+          218,
+          6731
+        ],
+        [
+          218,
+          13099
+        ]
+      ]
+    },
+    {
+      "variant": "raw",
+      "ordinal": 8,
+      "warmup": false,
+      "complete_local_query_s": 0.0023083480045897886,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          4880
+        ],
+        [
+          218,
+          6731
+        ],
+        [
+          218,
+          13099
+        ]
+      ]
+    },
+    {
+      "variant": "zlib",
+      "ordinal": 8,
+      "warmup": false,
+      "complete_local_query_s": 0.006359601000440307,
+      "all_scores_and_stable_top3_exact": true,
+      "top3": [
+        [
+          212,
+          4880
+        ],
+        [
+          218,
+          6731
+        ],
+        [
+          218,
+          13099
+        ]
+      ]
+    }
+  ],
+  "summary": {
+    "packed": {
+      "complete_local_query_s": {
+        "mean": 0.004474713000490738,
+        "median": 0.004480031999264611,
+        "min": 0.004266527001163922,
+        "max": 0.004714556998806074
+      }
+    },
+    "expanded": {
+      "complete_local_query_s": {
+        "mean": 0.003962373627473426,
+        "median": 0.003948451001633657,
+        "min": 0.003853619004075881,
+        "max": 0.004215976005070843
+      }
+    },
+    "raw": {
+      "complete_local_query_s": {
+        "mean": 0.0022879457519593416,
+        "median": 0.0022857470030430704,
+        "min": 0.002231356003903784,
+        "max": 0.0023520880058640614
+      }
+    },
+    "zlib": {
+      "complete_local_query_s": {
+        "mean": 0.006336933627608232,
+        "median": 0.006344385004922515,
+        "min": 0.006271259000641294,
+        "max": 0.00637645000097109
+      }
+    }
+  },
+  "scope": "Owner-local exact all-score cache controls, no HE or changed privacy claim. Retains private pivot bits, maps and IDs. One bit per pivot and zero coordinates for constant blocks. Encoded-body counts do not measure Python/NumPy RSS and transient conversions must be charged. Initial geometry discovery is recorded, not hidden; raw/zlib avoid it. No arbitrary memory budget excludes these controls."
+}

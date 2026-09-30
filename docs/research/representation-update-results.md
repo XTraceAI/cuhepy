@@ -60,6 +60,46 @@ Raw results:
 
 ## Originality boundary and next discriminating experiments
 
+### Repeated-update execution, complete setup and utilization
+
+The follow-on [lifecycle harness](../../benchmarks/representation_lifecycle_lab.py)
+interleaves two adaptive queries with each approved edit and drains all
+remaining prepared tokens at the last revision. Every token is used exactly
+once. Both arms use the identical edit/query trace and stable IDs; previous
+authorized results drive later queries. Full checks precede secret decryption.
+Each revision also receives an untimed GMP/independent unreduced-phase audit.
+
+The complete larger run has eight edits, 32 prepared/consumed tokens per arm,
+two paired repetitions (128 accepted exact queries across four arms), N=16,384,
+rank=128, d=512, t=1153 and Q40. Affine discovery costs **29.868 s** and
+compilation/certification **11.118 s**; neither is amortized away.
+
+| Complete measured CPU stage sum | Sparse repair | Full reencryption |
+|---|---:|---:|
+| All setup + preparation + eight updates + all token uses | 115.478 s | 135.963 s |
+| Eight update stages | 62.348 s | 82.954 s |
+| All online stages | 2.211 s | 2.210 s |
+
+Complete paired savings are **15.22% and 14.92%**, median **15.07%**; update
+stages alone improve about **24.84%**. Thus the larger update gain survives
+full utilization but still misses the plan's initial 20% complete-cost target.
+Small-rank repeated repair remains a regression. Gate C stays open.
+
+Earlier four-edit lifecycle files have a misleading
+`full_lifetime_stage_sum_s` name: they include compilation but **exclude affine
+discovery**, so the larger 18.6% number is not a complete enrollment-lifetime
+claim. They remain immutable historical evidence, superseded for complete-cost
+claims by the eight-edit run. The harness was corrected before that run.
+
+Accumulated patches also require a larger independent integer audit modulus
+than fresh-only ciphertexts. `integer_phase_audit.Audit` now accepts a declared
+maximum answer bound and checks it before measurement; a three-edit regression
+tests the diagnostic itself. This corrects the audit, not the encryption ring.
+
+Raw: [complete eight-edit run](../../benchmarks/results/publication-pending-lifecycle-rank128-20260930-complete.json),
+[earlier four-edit larger run](../../benchmarks/results/publication-pending-lifecycle-rank128-20260930.json),
+[earlier four-edit smaller negative](../../benchmarks/results/publication-pending-lifecycle-rank8-20260930.json).
+
 Updating preprocessed private-retrieval state is established prior work.
 [Incremental Offline/Online PIR](https://eprint.iacr.org/2021/1438) preserves
 preprocessing across changes; [Single Pass Client-Preprocessing PIR](https://eprint.iacr.org/2024/303)

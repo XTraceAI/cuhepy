@@ -30,6 +30,7 @@ from experiments.bfv_search_lab import affine_dictionary as affine
 from experiments.bfv_search_lab import binary_fixtures as fixtures
 from experiments.bfv_search_lab import ciphertext_factory as alternative
 from experiments.bfv_search_lab import coefficient_body as codec
+from experiments.bfv_search_lab import coordinate_factory
 from experiments.bfv_search_lab import crt_masked_bgv as masked
 from experiments.bfv_search_lab import crt_native_bgv as native
 from experiments.bfv_search_lab import dyadic_crt as tree
@@ -48,6 +49,7 @@ def main():
     parser.add_argument("--dataset", choices=("mushroom", "semeion", "synthetic128"), required=True)
     parser.add_argument("--cache-dir", type=Path)
     parser.add_argument("--repeats", type=int, default=4)
+    parser.add_argument("--vectorized-control", action="store_true")
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
     if not 1 <= args.repeats <= 16 or (args.dataset != "synthetic128" and args.cache_dir is None):
@@ -92,17 +94,22 @@ def main():
         setup["enroll_s"], (index, index_upload) = timed(masked.enroll, s, groups, epoch, client)
         setup["server_native_prepare_s"], server = timed(native.NativeIndex, index, pk)
         setup["extra_trusted_encrypted_factory_prepare_s"], producer = timed(alternative.Factory, index, client)
-        gates = {name: checks.NativeVectorCheck(index, pk, rounds=fields.rounds(int(pk.q)), budget=1024)
-                 for name in ("plaintext", "encrypted_index")}
+        variants = ("plaintext", "numpy_plaintext", "encrypted_index") if args.vectorized_control else ("plaintext", "encrypted_index")
+        if args.vectorized_control:
+            setup["extra_vectorized_plaintext_factory_prepare_s"], plaintext_producer = timed(
+                coordinate_factory.Factory, s, groups, epoch, client)
+        gates = {name: checks.NativeVectorCheck(index, pk, rounds=fields.rounds(int(pk.q)), budget=1024) for name in variants}
         phase = audit.Audit(index, pk, sk, maximum_answer_bound=max(producer.answer_bounds))
         for ordinal, word in enumerate(words):
             # Matched public query/workload, fresh independent pads/encryption.
-            names = ("plaintext", "encrypted_index") if ordinal % 2 == 0 else ("encrypted_index", "plaintext")
+            names = variants if ordinal % 2 == 0 else tuple(reversed(variants))
             for name in names:
-                token_id = (2 * ordinal + int(name == "encrypted_index")).to_bytes(16, "little")
+                token_id = (len(variants) * ordinal + variants.index(name)).to_bytes(16, "little")
                 if name == "plaintext":
-                    prepare_s, (ticket, answer, packet_bytes) = timed(lambda: masked.prepare(
+                    prepare_s, (ticket, answer, packet_bytes) = timed(lambda token_id=token_id: masked.prepare(
                         s, groups, epoch, token_id, secrets.token_bytes(32), client))
+                elif name == "numpy_plaintext":
+                    prepare_s, (ticket, answer, packet_bytes) = timed(plaintext_producer.prepare, token_id)
                 else:
                     prepare_s, (ticket, answer, body) = timed(producer.prepare, token_id)
                     packet_bytes = len(body)
@@ -139,7 +146,7 @@ def main():
                     "gate_pass_before_secret_decryption": True, "top3": top, "phase": phase_report})
     paths = [Path(__file__), *(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
         "ciphertext_factory", "crt_masked_bgv", "crt_query_space", "crt_native_bgv", "owner_bgv", "seeded_bgv",
-        "shallow_bgv", "integer_phase_audit", "native_linear_check", "crt_linear_check", "coefficient_body")),
+        "shallow_bgv", "integer_phase_audit", "native_linear_check", "crt_linear_check", "coefficient_body", "coordinate_factory")),
         ROOT / "src/cuhepy/bfv/scheme.py"]
     paths.extend(p for folder in ("_subring", "_fingerprint")
                  for p in (ROOT / "experiments/bfv_search_lab" / folder).glob("*.so"))
@@ -152,7 +159,9 @@ def main():
                       "offline_correlation_production_and_serialization_s", "offline_production_and_check_s",
                       "correlation_packet_body_bytes", "complete_local_online_elapsed_s")}
                       for r in observations if r["variant"] == name and not r["warmup"]])
-                           for name in ("plaintext", "encrypted_index")},
+                           for name in variants},
+                  vectorized_plaintext_control=args.vectorized_control,
+                  vectorized_plaintext_private_coordinate_array_bytes=(plaintext_producer.coordinate_array_bytes if args.vectorized_control else None),
                   original_owner_coordinate_ternary_body_bytes_model=(2 * sum(len(group) * f for group, f in zip(groups, s.layout.features, strict=True)) + 7) // 8,
                   encrypted_factory_expanded_index_body_bytes_model=s.columns * s.layout.cost.response_ciphertexts * 2 * pk.n * ((pk.q.bit_length() + 7) // 8),
                   encrypted_factory_native_word_bytes_model=s.columns * s.layout.cost.response_ciphertexts * 2 * pk.n * 8,

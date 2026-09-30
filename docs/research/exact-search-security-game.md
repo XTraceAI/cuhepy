@@ -151,6 +151,33 @@ that observation alone proves no composition. The inner checker stays in place.
 
 ## Proof/code coverage and next review
 
+### E48/E49 execution supplement
+
+E48 reconstructs a fresh fixed-index response's prescribed C1 from **public**
+index/answer encryption seeds and public delta, then invokes the unchanged
+complete checker. It discloses neither a mask seed nor a checker challenge.
+Caching/streaming changes work/state, not the checked coefficient relation.
+Dynamic additive seed manifests and authenticated delivery remain unresolved.
+
+E49 instead uses `Y_r=C*alpha(r)+Enc(0)` in a trusted local factory. Its zero
+seed must remain private: the new negative regression recovers a private pad
+and query when that seed is exposed. Its simulation needs an explicit joint
+fresh-ciphertext pseudorandomness hybrid with honest index auxiliary data,
+before applying a uniform-pair shift. The fresh-plaintext IND-CPA outline above
+must not be silently reused for this different construction. All pad-dependent
+norms are hidden behind universal bounds, and complete response verification
+still precedes HE decryption. Private-zero ciphertext recipes, factory
+corruption, dynamic repaired-index composition and durable state are not proved.
+
+The stronger E49 control uses vectorized **plaintext** owner dot products with
+the original fresh seeded encryption. It does not inherit E49's additional
+homomorphic-noise or privacy-hybrid premise. It is currently faster and cheaper
+on the larger tested rank, so E49 is not promoted for performance.
+
+See [the complete construction/control report](ciphertext-factory-results.md)
+and [cache viability evidence](coordinate-cache-results.md). Passing those
+regressions does not complete this game or its independent review.
+
 | Obligation | Present evidence | Remaining work |
 |---|---|---|
 | Exact static representation | Exhaustive finite grammar, integer oracle, native/GMP encryption tests | General grammar / scale limits |

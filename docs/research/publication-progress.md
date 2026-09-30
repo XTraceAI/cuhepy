@@ -67,3 +67,51 @@ decision. Tests and count oracles are not security proofs or network timings.
 Failed candidates and changed contracts remain visible. A partial external
 reproduction does not complete P01. Follow-on tasks may make independent
 progress while another package still has unresolved subcomponents.
+
+## 2026-09-30: repeated lifecycle, stronger controls and return to the algorithm
+
+First execution checkpoint: `e52df4b`, tag
+`checkpoint/publication-execution-pilot-2026-09-30`. Later immutable checkpoints
+retain E48 at `d2c198d`/`7f2962b`, initial repeated lifecycle at `f8a8290`,
+the enrollment-cost correction at `cf88c1b`, and complete eight-edit work/E49 at
+`4cff0ed`. Source hashes in each raw run identify exact source content;
+recorded Git HEAD may precede uncommitted experiment files. Later reports
+correct scope without rewriting historical observations.
+
+| Completed subcomponent | Result class / evidence | Return-to-plan decision |
+|---|---|---|
+| E43 eight edits / all 32 tokens | **Measured:** 115.478 vs 135.963 s including discovery, 15.07% paired saving; [report](representation-update-results.md) | P05/P06 open. Earlier four-edit 18.6% excluded discovery. Test real-data failures/reserve/rebase and vectorized controls. |
+| E48 public component recipe | **Measured/model:** 128→64 KiB; more cached CPU/state, modeled crossover ~43–46 Mbps; [report](component-recipe-results.md) | Optional priced recomputation; fixed fresh index only, no new primitive/service/GPU promotion. |
+| E49 encrypted-index factory | **Measured/counterexample:** original 3.34x gain fails stronger control: plaintext 38.136 ms vs encrypted 53.900 ms; exposed zero seed recovers pad/query; [report](ciphertext-factory-results.md) | Retain conditional route; do not promote as speed contribution. Keep vectorized plaintext baseline. |
+| E50 cache controls | **Measured:** raw/zlib/one-bit-coordinate exact search on three workloads; Semeion maps exceed raw corpus; [report](coordinate-cache-results.md) | Gate A open; actual retention/resource limits need evidence. |
+| P07 parameter screening | **Heuristic:** N1024 rejected; N2048 returned classical/quantum-sensitivity costs above target, additional failures retained; [report](parameter-frontier-results.md) | No parameter assurance. Arora-GB, seeded/transcript premises, timing and review remain open. |
+| E51 ring/output capacity | **Measured/exact:** Semeion 128→16 KiB / ~57→19 ms; Mushroom seven replies, 128→112 KiB / ~10% work gain | Gain is full-N choice. Preserve adverse occupancy and correctness/phase checks. |
+| E52 lifetime DP | **Exact within model:** exhaustive schedule agreement; equal-rank/equal-static-cost maps have different future span feasibility; real encrypted reserved-zero-column repairs pass; [analysis](lifetime-planner-analysis.md) | Calibrate and assess a held-out policy. Hindsight counts are not runtime gains or an originality proof. |
+
+The company checkpoint and homemade arithmetic remain retained. External
+author code and the estimator are pinned baselines/tools. No new GPU
+measurement or hardware-attestation deployment was performed. P08/P09 remain
+behind Gate C; no full package is declared accepted from these pilots.
+
+### Next executable sequence
+
+1. **P01/P00:** Reproduce the strongest usable recursive/low-state code-based
+   verifier and a larger justified corpus/retention scenario. Native author
+   BNTM uses its plaintext matrix online for `M*T`; dropping an array is not
+   the stronger low-state protocol. Keep raw/zlib/coordinate cache controls.
+2. **P05:** Measure real/synthetic span failures, reserves, sparse/full/delta
+   crossovers and noise-forced refresh. Charge vectorized owner preparation,
+   every token, mapping/key/state change and compiler work. Define stable-ID
+   insertion/deletion semantics before implementing those transitions.
+3. **P04/P06:** Calibrate E52 prices from complete native traces, preregister an
+   objective, train a bounded reserve/rebase policy and evaluate held-out
+   traces against hindsight. Extend sharing/alignment/capacity boundaries only
+   with exact successor semantics.
+4. **P07/P12:** Complete the surviving mechanism's transcript argument and
+   forward/backward closest-work audit: dynamic HE/compiler planning,
+   incremental PIR, masking and code-based preprocessing. Keep proved,
+   conditional, modeled, measured and unresolved claims distinct.
+5. **Gate review:** A usefulness, B originality, C complete practical effect
+   and D defensible paper all remain open. Advance durable service/new GPU
+   kernels on the stated evidence. If a cache or existing protocol dominates,
+   retain company improvements and pivot the paper question.

@@ -1,0 +1,360 @@
+{
+  "schema": 1,
+  "utc": "2026-09-30T11:55:04.011451+00:00",
+  "command": [
+    "benchmarks/bgv_parameter_estimation.py",
+    "--estimator",
+    "/home/pete/yavor-projects/xtrace-work/research-data/reference-artifacts-20260930/lattice-estimator",
+    "--n",
+    "1024",
+    "2048",
+    "--q-bits",
+    "32",
+    "40",
+    "--attacks",
+    "usvp,bdd,dual,dual_hybrid",
+    "--json-out",
+    "benchmarks/results/publication-bgv-estimator-classical-20260930.json"
+  ],
+  "sdk_revision": "4cff0ed8077677b1f5501fda6c125c40fb20f09c",
+  "sage": "10.9",
+  "python": "3.14.6",
+  "estimator_revision": "53da5982597709ba0fdf94ea37a84d822310fd84",
+  "runner_sha256": "d0cd0b74d95eef65e2f5f7f19852cb15492b716583790eb4745c0c2588a60576",
+  "estimator_conf_sha256": "b8270fcc702ef72e00308fc691112f374da4d0d0395665b7c244c9b99b77f7dd",
+  "mode": "full",
+  "model": "MATZOV-classical",
+  "shape_model": "gsa",
+  "configured_max_beta": 1754,
+  "sample_count": "unbounded",
+  "secret_distribution": "uniform {-1,0,1}, full encryption ring",
+  "attack_selection": [
+    "usvp",
+    "bdd",
+    "dual",
+    "dual_hybrid"
+  ],
+  "per_attack_time_budget_s": 45,
+  "error_distribution": "centered binomial eta=21, variance=10.5",
+  "normalization": "Subtract a known message then multiply both ct components by inverse(t) mod Q; error is CBD_eta, not t*CBD_eta.",
+  "scope": "Generic independent-sample LWE heuristic screening only. Unlimited independent samples are a conservative model, not a proof for correlated RLWE rotations, published-seed SHAKE samples, adaptive protocol transcripts or implementation leakage. All returned finite attack costs, missing/failed attacks and beta-limit caveats must be read. Quantum ADPS16 is a sensitivity model, not complete quantum assurance. No research profile is production-approved.",
+  "profiles": [
+    {
+      "n": 1024,
+      "q_bits": 32,
+      "q": 4294957057,
+      "eta": 21,
+      "params": "LWEParameters(n=1024, q=4294957057, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+      "attacks": {
+        "usvp": {
+          "log2_rop": 107.88048698521023,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "2.98718781708081e32",
+            "red": "2.98718781708081e32",
+            "delta": "1.00517843210922",
+            "beta": "271",
+            "d": "1972",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=4294957057, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 0.06864319499436533
+        },
+        "bdd": {
+          "log2_rop": 106.48444720284574,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "1.13504395417331e32",
+            "red": "9.60098494084900e31",
+            "svp": "1.74945460088413e31",
+            "beta": "265",
+            "eta": "294",
+            "d": "1991",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=4294957057, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 0.5500888829992618
+        },
+        "dual": {
+          "log2_rop": 110.0170376121192,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "1.31349479257510e33",
+            "mem": "438109333881500790116",
+            "m": "1017",
+            "beta": "275",
+            "d": "2041",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "elapsed_s": 0.04036222799913958
+        },
+        "dual_hybrid": {
+          "log2_rop": 106.72472108743999,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "5.2675226e31*e^(-5) + 1.33718385521575e32",
+            "problem": "LWEParameters(n=1024, q=4294957057, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+            "red": "1.33718385521575e32",
+            "guess": "5.2675226e31*e^(-5)",
+            "beta": "263",
+            "p": "4",
+            "zeta": "10",
+            "t": "30",
+            "beta_": "280",
+            "N": "2.17051617128329e17",
+            "m": "1024"
+          },
+          "elapsed_s": 5.23510078000254
+        }
+      },
+      "missing_or_failed_attacks": [
+        "arora-gb",
+        "bdd_hybrid",
+        "bdd_mitm_hybrid",
+        "bkw"
+      ],
+      "minimum_returned_log2_rop": 106.48444720284574,
+      "parameter_assurance": "unreviewed/research-only",
+      "elapsed_s": 5.895150855998509
+    },
+    {
+      "n": 1024,
+      "q_bits": 40,
+      "q": 1099511592961,
+      "eta": 21,
+      "params": "LWEParameters(n=1024, q=1099511592961, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+      "attacks": {
+        "usvp": {
+          "log2_rop": 86.11460905887628,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "8.37684330263729e25",
+            "red": "8.37684330263729e25",
+            "delta": "1.00644203090418",
+            "beta": "192",
+            "d": "1937",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=1099511592961, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 0.04893718600214925
+        },
+        "bdd": {
+          "log2_rop": 84.97516843371335,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "3.80254695140164e25",
+            "red": "3.33192563467287e25",
+            "svp": "4.70621316728770e24",
+            "beta": "187",
+            "eta": "215",
+            "d": "1990",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=1099511592961, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 0.543867013999261
+        },
+        "dual": {
+          "log2_rop": 87.4849167216645,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "2.16562921409823e26",
+            "mem": "5797819876494587",
+            "m": "1030",
+            "beta": "193",
+            "d": "2054",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "elapsed_s": 0.03820299400103977
+        },
+        "dual_hybrid": {
+          "log2_rop": 85.76433017060805,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "3.4320180e25*e^(-5) + 6.54794291070693e25",
+            "problem": "LWEParameters(n=1024, q=1099511592961, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+            "red": "6.54794291070693e25",
+            "guess": "3.4320180e25*e^(-5)",
+            "beta": "187",
+            "p": "4",
+            "zeta": "10",
+            "t": "20",
+            "beta_": "209",
+            "N": "3.63011465889646e12",
+            "m": "1024"
+          },
+          "elapsed_s": 3.364433248003479
+        }
+      },
+      "missing_or_failed_attacks": [
+        "arora-gb",
+        "bdd_hybrid",
+        "bdd_mitm_hybrid",
+        "bkw"
+      ],
+      "minimum_returned_log2_rop": 84.97516843371335,
+      "parameter_assurance": "unreviewed/research-only",
+      "elapsed_s": 3.99638338299701
+    },
+    {
+      "n": 2048,
+      "q_bits": 32,
+      "q": 4294955009,
+      "eta": 21,
+      "params": "LWEParameters(n=2048, q=4294955009, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+      "attacks": {
+        "usvp": {
+          "log2_rop": 224.80414471793566,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "4.70750412978235e67",
+            "red": "4.70750412978235e67",
+            "delta": "1.00270165777141",
+            "beta": "688",
+            "d": "3956",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=4294955009, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 0.04919311200501397
+        },
+        "bdd": {
+          "log2_rop": 222.96975586495603,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "1.32003255257062e67",
+            "red": "9.93936517754920e66",
+            "svp": "3.26096034815699e66",
+            "beta": "680",
+            "eta": "715",
+            "d": "3927",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=4294955009, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 1.1366280379952514
+        },
+        "dual": {
+          "log2_rop": 229.681670226808,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "1.38379638737253e69",
+            "mem": "17969528986554340783317239668808923787394480750",
+            "m": "1956",
+            "beta": "702",
+            "d": "4004",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "elapsed_s": 0.04495049900287995
+        },
+        "dual_hybrid": {
+          "log2_rop": 219.08985707084852,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "3.8198978e66*e^(-5) + 8.70903000061336e65",
+            "problem": "LWEParameters(n=2048, q=4294955009, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+            "red": "8.70903000061336e65",
+            "guess": "3.8198978e66*e^(-5)",
+            "beta": "664",
+            "p": "3",
+            "zeta": "10",
+            "t": "110",
+            "beta_": "659",
+            "N": "6.63042530410446e40",
+            "m": "2048"
+          },
+          "elapsed_s": 9.201289059994451
+        }
+      },
+      "missing_or_failed_attacks": [
+        "arora-gb",
+        "bdd_hybrid",
+        "bdd_mitm_hybrid",
+        "bkw"
+      ],
+      "minimum_returned_log2_rop": 219.08985707084852,
+      "parameter_assurance": "unreviewed/research-only",
+      "elapsed_s": 10.436305442002777
+    },
+    {
+      "n": 2048,
+      "q_bits": 40,
+      "q": 1099511590913,
+      "eta": 21,
+      "params": "LWEParameters(n=2048, q=1099511590913, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+      "attacks": {
+        "usvp": {
+          "log2_rop": 176.0590120829956,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "9.97800331637367e52",
+            "red": "9.97800331637367e52",
+            "delta": "1.00334228640520",
+            "beta": "513",
+            "d": "3931",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=1099511590913, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 0.04730136500438675
+        },
+        "bdd": {
+          "log2_rop": 174.641499659888,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "3.73533782263394e52",
+            "red": "3.19937038039104e52",
+            "svp": "5.35967442242894e51",
+            "beta": "507",
+            "eta": "539",
+            "d": "3996",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=1099511590913, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)"
+          },
+          "elapsed_s": 1.1498527610019664
+        },
+        "dual": {
+          "log2_rop": 179.3097668537603,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "9.49769761445852e53",
+            "mem": "326350930047725506020008179620457828",
+            "m": "1996",
+            "beta": "521",
+            "d": "4044",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "elapsed_s": 0.04317271399486344
+        },
+        "dual_hybrid": {
+          "log2_rop": 173.0692535595764,
+          "status": "finite_heuristic",
+          "cost": {
+            "rop": "3.9187145e55*e^(-10) + 1.07822659722448e52",
+            "problem": "LWEParameters(n=2048, q=1099511590913, Xs=D(\u03c3=0.82), Xe=D(\u03c3=3.24), m=+Infinity, tag=None)",
+            "red": "1.07822659722448e52",
+            "guess": "3.9187145e55*e^(-10)",
+            "beta": "498",
+            "p": "3",
+            "zeta": "20",
+            "t": "70",
+            "beta_": "503",
+            "N": "8.82550264143925e30",
+            "m": "2048"
+          },
+          "elapsed_s": 6.718457408998802
+        }
+      },
+      "missing_or_failed_attacks": [
+        "arora-gb",
+        "bdd_hybrid",
+        "bdd_mitm_hybrid",
+        "bkw"
+      ],
+      "minimum_returned_log2_rop": 173.0692535595764,
+      "parameter_assurance": "unreviewed/research-only",
+      "elapsed_s": 7.9599377019985695
+    }
+  ],
+  "complete": true
+}
