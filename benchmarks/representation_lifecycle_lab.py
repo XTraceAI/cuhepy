@@ -15,6 +15,7 @@ import argparse
 from contextlib import closing
 from dataclasses import asdict
 import hashlib
+import heapq
 import json
 from pathlib import Path
 import random
@@ -65,7 +66,8 @@ def main():
     workload = Workload(rows, tuple(range(args.count)), args.dimension)
     profile = Profile(16384, args.prime, q_bits=args.q_bits, eta=21)
     profile.validate(args.dimension)
-    choice = oracle.choices(workload, oracle.median_tree(workload, 0), args.prime)[1]
+    discovery_s, choices = timed(oracle.choices, workload, oracle.median_tree(workload, 0), args.prime)
+    choice = choices[1]
     compile_s, plan = timed(oracle.compile_choice, workload, choice, profile, (1,))
     # Both arms see the exact same fixed row-edit trace. No future query or
     # private mask determines public update positions, counts or geometry.
@@ -107,12 +109,12 @@ def main():
                         if not gate.verify_once(request, parsed):
                             raise AssertionError("Honest lifecycle ciphertext failed its complete gate")
                         actual = oracle.decode(view, [bgv.decrypt(c, pk, sk) for c in parsed], offsets)
-                        ranked = tuple(sorted(zip(actual, view.ids, strict=True))[:3])
+                        ranked = tuple(heapq.nsmallest(3, zip(actual, view.ids, strict=True)))
                         elapsed = time.perf_counter() - start
                         # The current owner plaintext is an offline reference,
                         # never an input to online query/verification/decoding.
-                        cache_s, expected = timed(pool.plan.workload.expected, word)
-                        cache_select_s, expected_top = timed(pool.plan.workload.top_k, expected)
+                        cache_s, expected = timed(lambda: tuple((row ^ word).bit_count() for row in pool.plan.workload.rows))
+                        cache_select_s, expected_top = timed(lambda: tuple(heapq.nsmallest(3, zip(expected, view.ids, strict=True))))
                         assert actual == expected and ranked == expected_top
                         sample = {"revision": revision + 1, "token_ordinal": cursor + ordinal,
                                   "online_elapsed_s": elapsed, "response_body_bytes": len(body),
@@ -158,9 +160,10 @@ def main():
                 total_online = sum(sample["online_elapsed_s"] for sample in online)
                 cases.append({"method": method, "repetition": repetition, "key_gen_s": key_s,
                               "owner_compile_s_common": compile_s, "initial_enroll_s": enroll_s,
+                              "owner_discovery_s_common": discovery_s,
                               "initial_pool_s": pool_s, "epochs": epochs, "online": online,
                               "total_updates_stage_sum_s": total_update, "all_online_elapsed_s": total_online,
-                              "full_lifetime_stage_sum_s": compile_s + key_s + enroll_s + pool_s + total_update + total_online,
+                              "full_lifetime_stage_sum_s": discovery_s + compile_s + key_s + enroll_s + pool_s + total_update + total_online,
                               "all_prepared_tokens_consumed_once": True, "unused_final": 0,
                               "query_count": cursor,
                               "update_seeded_packet_bytes_total": sum(e["report"]["seeded_patch_packet_bytes"] for e in epochs),
@@ -189,7 +192,7 @@ def main():
                   summary={method: summary([{axis: c[axis] for axis in (
                       "full_lifetime_stage_sum_s", "total_updates_stage_sum_s", "all_online_elapsed_s")}
                       for c in cases if c["method"] == method]) for method in ("sparse_delta", "full_reencrypt")},
-                  scope="Bounded synthetic known-affine frozen-map CPU lifecycle, all unused-pool costs and queries included; "
+                  scope="Bounded synthetic known-affine frozen-map CPU lifecycle; owner affine discovery/compilation, all unused-pool costs and queries included; "
                         "same trace, IDs, parameters, packet counts and same-unused-pad strong full-reencryption control. "
                         "Each query passes the complete full-vector gate before secret decryption. Independent native/GMP and "
                         "unreduced phase diagnostics on the first query of every revision, outside measured stage sums. "
