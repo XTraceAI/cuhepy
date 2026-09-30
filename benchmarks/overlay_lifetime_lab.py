@@ -34,9 +34,11 @@ def main():
         start = time.perf_counter()
         p = overlay.Problem(trace, entries, Profile(32, 17, eta=1))
         compile_s = time.perf_counter() - start
-        start = time.perf_counter(); exact, counts = overlay.exhaustive(p)
+        start = time.perf_counter()
+        exact, counts = overlay.exhaustive(p)
         exhaustive_s = time.perf_counter() - start
-        start = time.perf_counter(); frontier, dp_counts = overlay.dynamic_program(p)
+        start = time.perf_counter()
+        frontier, dp_counts = overlay.dynamic_program(p)
         dp_s = time.perf_counter() - start
         assert {x.cost for x in exact} == {x.cost for x in frontier}
         cases.append({"name": name, "trace": asdict(trace), "compile_s": compile_s,

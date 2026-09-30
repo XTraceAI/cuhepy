@@ -1,0 +1,5569 @@
+{
+  "utc": "2026-09-30T19:04:40.393416+00:00",
+  "command": [
+    "benchmarks/span_reserve_lab.py",
+    "--cache",
+    "../research-data/uci-20260927",
+    "--json-out",
+    "benchmarks/results/publication-span-reserve-20260930.json"
+  ],
+  "git_head": "28791af386885e4edfb24c6503cf7cb4c83c8627",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/span_reserve_lab.py": "16722dabd7ad4cc3ec06065e4cafa3e728585d8fd26a7c51a3b724e3b153206f",
+    "experiments/bfv_search_lab/affine_dictionary.py": "0f811f9a5cd2628f1c6c2f048c1d32e65eaaf9aa5e3f942118342b3edf6daf05",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/representation_oracle.py": "562b1ca0a1f59767f425126a90cd13961d761b6fdf9985e2808b89b4cc3aec36"
+  },
+  "kind": "heldout_source_row_reserve_span_screen",
+  "prime": 1153,
+  "split_seed": 3001,
+  "cases": [
+    {
+      "dataset": "semeion",
+      "dataset_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "dimension": 256,
+      "block_size": 128,
+      "blocks": 12,
+      "index_count": 1465,
+      "training_source_ids": [
+        202,
+        217,
+        1549,
+        440,
+        650,
+        209,
+        852,
+        832,
+        1479,
+        672,
+        1296,
+        284,
+        483,
+        105,
+        61,
+        959,
+        118,
+        524,
+        1488,
+        695,
+        1195,
+        557,
+        1153,
+        893,
+        245,
+        1200,
+        292,
+        1058,
+        368,
+        597,
+        1347,
+        1534
+      ],
+      "evaluation_source_ids": [
+        1099,
+        154,
+        1463,
+        1175,
+        39,
+        826,
+        392,
+        1306,
+        501,
+        750,
+        1316,
+        1569,
+        1233,
+        922,
+        338,
+        1211,
+        868,
+        875,
+        1310,
+        89,
+        38,
+        238,
+        30,
+        152,
+        819,
+        1477,
+        1318,
+        348,
+        1266,
+        744,
+        1522,
+        14
+      ],
+      "charged_catalog_exploration_s": 2.932995362993097,
+      "modes": {
+        "fit": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49520,
+              "fit_and_complete_certification_s": 0.0373854100034805,
+              "heldout_span_check_s": 0.00772944898926653,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49523,
+              "fit_and_complete_certification_s": 0.03604205200099386,
+              "heldout_span_check_s": 0.007706207994488068,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49529,
+              "fit_and_complete_certification_s": 0.0363287579966709,
+              "heldout_span_check_s": 0.007794730001478456,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49535,
+              "fit_and_complete_certification_s": 0.0368765879975399,
+              "heldout_span_check_s": 0.007860131998313591,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49523,
+              "fit_and_complete_certification_s": 0.03662302400334738,
+              "heldout_span_check_s": 0.007793669996317476,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49532,
+              "fit_and_complete_certification_s": 0.0368226870050421,
+              "heldout_span_check_s": 0.007902323006419465,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49538,
+              "fit_and_complete_certification_s": 0.036771856000996195,
+              "heldout_span_check_s": 0.00779850099934265,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49550,
+              "fit_and_complete_certification_s": 0.036368608998600394,
+              "heldout_span_check_s": 0.007841510989237577,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49529,
+              "fit_and_complete_certification_s": 0.03655969200190157,
+              "heldout_span_check_s": 0.00785019199247472,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49502,
+              "fit_and_complete_certification_s": 0.037088572993525304,
+              "heldout_span_check_s": 0.00779725999746006,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 127,
+              "map_body_bytes": 49508,
+              "fit_and_complete_certification_s": 0.03669002499373164,
+              "heldout_span_check_s": 0.007715689003816806,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 57,
+              "rank": 56,
+              "map_body_bytes": 33085,
+              "fit_and_complete_certification_s": 0.011153499988722615,
+              "heldout_span_check_s": 0.0033128979994216934,
+              "accepted": 0,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 127,
+          "sum_separate_query_ranks_model": 1453,
+          "map_body_bytes_sum": 577874,
+          "fit_and_certification_s_sum": 0.41471077398455236,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.0
+        },
+        "reserve4": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49483,
+              "fit_and_complete_certification_s": 0.037262747006025165,
+              "heldout_span_check_s": 0.008014243998331949,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49519,
+              "fit_and_complete_certification_s": 0.03641648001212161,
+              "heldout_span_check_s": 0.00806640600785613,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49513,
+              "fit_and_complete_certification_s": 0.036670834000688046,
+              "heldout_span_check_s": 0.008184439007891342,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49525,
+              "fit_and_complete_certification_s": 0.036657264005043544,
+              "heldout_span_check_s": 0.008211898995796219,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49504,
+              "fit_and_complete_certification_s": 0.036804556992137805,
+              "heldout_span_check_s": 0.008271169994259253,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49498,
+              "fit_and_complete_certification_s": 0.03712185499898624,
+              "heldout_span_check_s": 0.008173107999027707,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49513,
+              "fit_and_complete_certification_s": 0.03707561299961526,
+              "heldout_span_check_s": 0.00827004000893794,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49489,
+              "fit_and_complete_certification_s": 0.03646441099408548,
+              "heldout_span_check_s": 0.008192477995180525,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49513,
+              "fit_and_complete_certification_s": 0.03674330598732922,
+              "heldout_span_check_s": 0.008253300009528175,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49501,
+              "fit_and_complete_certification_s": 0.037356139000621624,
+              "heldout_span_check_s": 0.008243538992246613,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 131,
+              "map_body_bytes": 49525,
+              "fit_and_complete_certification_s": 0.036995180998928845,
+              "heldout_span_check_s": 0.00823733999277465,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 57,
+              "rank": 60,
+              "map_body_bytes": 35112,
+              "fit_and_complete_certification_s": 0.011976267007412389,
+              "heldout_span_check_s": 0.0035364829964237288,
+              "accepted": 0,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 131,
+          "sum_separate_query_ranks_model": 1501,
+          "map_body_bytes_sum": 579695,
+          "fit_and_certification_s_sum": 0.41754465400299523,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.0
+        },
+        "reserve16": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48859,
+              "fit_and_complete_certification_s": 0.041446162009378895,
+              "heldout_span_check_s": 0.009033647002070211,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48853,
+              "fit_and_complete_certification_s": 0.04127652900933754,
+              "heldout_span_check_s": 0.009012176000396721,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48856,
+              "fit_and_complete_certification_s": 0.04193457300425507,
+              "heldout_span_check_s": 0.009040636010468006,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48853,
+              "fit_and_complete_certification_s": 0.04185240100196097,
+              "heldout_span_check_s": 0.009025795996421948,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48823,
+              "fit_and_complete_certification_s": 0.04172435900545679,
+              "heldout_span_check_s": 0.009093736996874213,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48829,
+              "fit_and_complete_certification_s": 0.04186333100369666,
+              "heldout_span_check_s": 0.009081566997338086,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48847,
+              "fit_and_complete_certification_s": 0.04207799599680584,
+              "heldout_span_check_s": 0.009131118000368588,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48853,
+              "fit_and_complete_certification_s": 0.041320989999803714,
+              "heldout_span_check_s": 0.009104697004659101,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48877,
+              "fit_and_complete_certification_s": 0.041271478999988176,
+              "heldout_span_check_s": 0.009142609007540159,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48841,
+              "fit_and_complete_certification_s": 0.041542874998413026,
+              "heldout_span_check_s": 0.008975194999948144,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 143,
+              "map_body_bytes": 48835,
+              "fit_and_complete_certification_s": 0.041746189002878964,
+              "heldout_span_check_s": 0.009037765994435176,
+              "accepted": 0,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 57,
+              "rank": 72,
+              "map_body_bytes": 39774,
+              "fit_and_complete_certification_s": 0.01466000200889539,
+              "heldout_span_check_s": 0.004246056996635161,
+              "accepted": 0,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 143,
+          "sum_separate_query_ranks_model": 1645,
+          "map_body_bytes_sum": 577100,
+          "fit_and_certification_s_sum": 0.47271688604087103,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.0
+        },
+        "public_schema": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023454082998796366,
+              "heldout_span_check_s": 0.018663013994228095,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023617215992999263,
+              "heldout_span_check_s": 0.019025262008653954,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023580344990477897,
+              "heldout_span_check_s": 0.019184445001883432,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023583534988574684,
+              "heldout_span_check_s": 0.0188535080087604,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023640566010726616,
+              "heldout_span_check_s": 0.01889417901111301,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023705277999397367,
+              "heldout_span_check_s": 0.018895217988756485,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023743019002722576,
+              "heldout_span_check_s": 0.01899264998792205,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.02357239500270225,
+              "heldout_span_check_s": 0.01875465600460302,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023868772012065165,
+              "heldout_span_check_s": 0.019138543008011766,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023580335997394286,
+              "heldout_span_check_s": 0.018692264013225213,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.02362803599680774,
+              "heldout_span_check_s": 0.018863018005504273,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 57,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.014629461002186872,
+              "heldout_span_check_s": 0.018980620996444486,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 3072,
+          "map_body_bytes_sum": 3552,
+          "fit_and_certification_s_sum": 0.2746030419948511,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "raw": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023319710002397187,
+              "heldout_span_check_s": 0.018643184012034908,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023482793010771275,
+              "heldout_span_check_s": 0.018940759997349232,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023641425999812782,
+              "heldout_span_check_s": 0.01922372600529343,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.02346537400444504,
+              "heldout_span_check_s": 0.018811496993293986,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023640497005544603,
+              "heldout_span_check_s": 0.018998359999386594,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023491544008720666,
+              "heldout_span_check_s": 0.018904309006757103,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023612885997863486,
+              "heldout_span_check_s": 0.018950989993754774,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023409571003867313,
+              "heldout_span_check_s": 0.018852328008506447,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.023655507000512443,
+              "heldout_span_check_s": 0.01916137400257867,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.02331741899251938,
+              "heldout_span_check_s": 0.018630524005857296,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.02347863299655728,
+              "heldout_span_check_s": 0.018868439001380466,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 57,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.01458003900188487,
+              "heldout_span_check_s": 0.01897849100350868,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 3072,
+          "map_body_bytes_sum": 3552,
+          "fit_and_certification_s_sum": 0.2730953990248963,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        }
+      }
+    },
+    {
+      "dataset": "semeion",
+      "dataset_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "dimension": 256,
+      "block_size": 512,
+      "blocks": 3,
+      "index_count": 1465,
+      "training_source_ids": [
+        202,
+        217,
+        1549,
+        440,
+        650,
+        209,
+        852,
+        832,
+        1479,
+        672,
+        1296,
+        284,
+        483,
+        105,
+        61,
+        959,
+        118,
+        524,
+        1488,
+        695,
+        1195,
+        557,
+        1153,
+        893,
+        245,
+        1200,
+        292,
+        1058,
+        368,
+        597,
+        1347,
+        1534
+      ],
+      "evaluation_source_ids": [
+        1099,
+        154,
+        1463,
+        1175,
+        39,
+        826,
+        392,
+        1306,
+        501,
+        750,
+        1316,
+        1569,
+        1233,
+        922,
+        338,
+        1211,
+        868,
+        875,
+        1310,
+        89,
+        38,
+        238,
+        30,
+        152,
+        819,
+        1477,
+        1318,
+        348,
+        1266,
+        744,
+        1522,
+        14
+      ],
+      "charged_catalog_exploration_s": 2.435651311010588,
+      "modes": {
+        "fit": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.21600387500075158,
+              "heldout_span_check_s": 0.018971840996528044,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.21445828300784342,
+              "heldout_span_check_s": 0.018932379010948353,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 441,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.16116019600303844,
+              "heldout_span_check_s": 0.01876515599724371,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 768,
+          "map_body_bytes_sum": 888,
+          "fit_and_certification_s_sum": 0.5916223540116334,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "reserve4": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.18422555099823512,
+              "heldout_span_check_s": 0.01902353100012988,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.18269845999020617,
+              "heldout_span_check_s": 0.01897914000437595,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 441,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.16195802298898343,
+              "heldout_span_check_s": 0.018840457996702753,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 768,
+          "map_body_bytes_sum": 888,
+          "fit_and_certification_s_sum": 0.5288820339774247,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "reserve16": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.18503087799763307,
+              "heldout_span_check_s": 0.019044842003495432,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.18668731099751312,
+              "heldout_span_check_s": 0.01891924999654293,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 441,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.16361691801284906,
+              "heldout_span_check_s": 0.018833537003956735,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 768,
+          "map_body_bytes_sum": 888,
+          "fit_and_certification_s_sum": 0.5353351070079952,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "public_schema": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.06900819001020864,
+              "heldout_span_check_s": 0.019044121989281848,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.06877864499983843,
+              "heldout_span_check_s": 0.018818507000105456,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 441,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.05851518399140332,
+              "heldout_span_check_s": 0.01883984800952021,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 768,
+          "map_body_bytes_sum": 888,
+          "fit_and_certification_s_sum": 0.1963020190014504,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "raw": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.06894077800097875,
+              "heldout_span_check_s": 0.018782267012284137,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.06879288599884603,
+              "heldout_span_check_s": 0.01893660900532268,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 441,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.058266688996809535,
+              "heldout_span_check_s": 0.018792116999975406,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 768,
+          "map_body_bytes_sum": 888,
+          "fit_and_certification_s_sum": 0.19600035299663432,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        }
+      }
+    },
+    {
+      "dataset": "semeion",
+      "dataset_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "dimension": 256,
+      "block_size": 1465,
+      "blocks": 1,
+      "index_count": 1465,
+      "training_source_ids": [
+        202,
+        217,
+        1549,
+        440,
+        650,
+        209,
+        852,
+        832,
+        1479,
+        672,
+        1296,
+        284,
+        483,
+        105,
+        61,
+        959,
+        118,
+        524,
+        1488,
+        695,
+        1195,
+        557,
+        1153,
+        893,
+        245,
+        1200,
+        292,
+        1058,
+        368,
+        597,
+        1347,
+        1534
+      ],
+      "evaluation_source_ids": [
+        1099,
+        154,
+        1463,
+        1175,
+        39,
+        826,
+        392,
+        1306,
+        501,
+        750,
+        1316,
+        1569,
+        1233,
+        922,
+        338,
+        1211,
+        868,
+        875,
+        1310,
+        89,
+        38,
+        238,
+        30,
+        152,
+        819,
+        1477,
+        1318,
+        348,
+        1266,
+        744,
+        1522,
+        14
+      ],
+      "charged_catalog_exploration_s": 1.9314141759969061,
+      "modes": {
+        "fit": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 1465,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.4735090939939255,
+              "heldout_span_check_s": 0.018968360993312672,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 256,
+          "map_body_bytes_sum": 296,
+          "fit_and_certification_s_sum": 0.4735090939939255,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "reserve4": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 1465,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.47489812299318146,
+              "heldout_span_check_s": 0.018820016994141042,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 256,
+          "map_body_bytes_sum": 296,
+          "fit_and_certification_s_sum": 0.47489812299318146,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "reserve16": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 1465,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.48253231999115087,
+              "heldout_span_check_s": 0.01884421800787095,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 256,
+          "map_body_bytes_sum": 296,
+          "fit_and_certification_s_sum": 0.48253231999115087,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "public_schema": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 1465,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.1854315160016995,
+              "heldout_span_check_s": 0.018849696993129328,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 256,
+          "map_body_bytes_sum": 296,
+          "fit_and_certification_s_sum": 0.1854315160016995,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "raw": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 1465,
+              "rank": 256,
+              "map_body_bytes": 296,
+              "fit_and_complete_certification_s": 0.18639718600024935,
+              "heldout_span_check_s": 0.018708914998569526,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 256,
+          "sum_separate_query_ranks_model": 256,
+          "map_body_bytes_sum": 296,
+          "fit_and_certification_s_sum": 0.18639718600024935,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        }
+      }
+    },
+    {
+      "dataset": "mushroom",
+      "dataset_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "dimension": 126,
+      "block_size": 128,
+      "blocks": 63,
+      "index_count": 7996,
+      "training_source_ids": [
+        6147,
+        1244,
+        1111,
+        5297,
+        166,
+        4139,
+        6603,
+        2228,
+        2177,
+        6975,
+        6816,
+        7837,
+        1008,
+        801,
+        1252,
+        2581,
+        6227,
+        7400,
+        5421,
+        3852,
+        376,
+        5786,
+        1862,
+        2936,
+        6967,
+        2580,
+        4268,
+        926,
+        5688,
+        571,
+        3013,
+        4617
+      ],
+      "evaluation_source_ids": [
+        893,
+        687,
+        3851,
+        6760,
+        5697,
+        1698,
+        5335,
+        2453,
+        5096,
+        517,
+        8074,
+        3876,
+        55,
+        3601,
+        56,
+        7265,
+        1926,
+        5271,
+        4079,
+        4325,
+        751,
+        1098,
+        4019,
+        5281,
+        1841,
+        7746,
+        6658,
+        4995,
+        5665,
+        7293,
+        2945,
+        7950
+      ],
+      "charged_catalog_exploration_s": 4.012240120995557,
+      "modes": {
+        "fit": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 906,
+              "fit_and_complete_certification_s": 0.00980941099987831,
+              "heldout_span_check_s": 0.002588593997643329,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 1064,
+              "fit_and_complete_certification_s": 0.009811992000322789,
+              "heldout_span_check_s": 0.002625564011395909,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 884,
+              "fit_and_complete_certification_s": 0.009861582992016338,
+              "heldout_span_check_s": 0.002666444008355029,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1028,
+              "fit_and_complete_certification_s": 0.010134888987522572,
+              "heldout_span_check_s": 0.002791067003272474,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 1210,
+              "fit_and_complete_certification_s": 0.00958675699075684,
+              "heldout_span_check_s": 0.0025753629888640717,
+              "accepted": 25,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 812,
+              "fit_and_complete_certification_s": 0.009747581003466621,
+              "heldout_span_check_s": 0.0026528150046942756,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 887,
+              "fit_and_complete_certification_s": 0.009850663001998328,
+              "heldout_span_check_s": 0.0026674349937820807,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 811,
+              "fit_and_complete_certification_s": 0.009620667988201603,
+              "heldout_span_check_s": 0.0025764530000742525,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 910,
+              "fit_and_complete_certification_s": 0.009631118009565398,
+              "heldout_span_check_s": 0.002553003010689281,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 1193,
+              "fit_and_complete_certification_s": 0.009850713002379052,
+              "heldout_span_check_s": 0.002678825010661967,
+              "accepted": 21,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 65,
+              "map_body_bytes": 907,
+              "fit_and_complete_certification_s": 0.010288211997249164,
+              "heldout_span_check_s": 0.0028764790040440857,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 920,
+              "fit_and_complete_certification_s": 0.009867432992905378,
+              "heldout_span_check_s": 0.002664615007233806,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 128,
+              "rank": 70,
+              "map_body_bytes": 803,
+              "fit_and_complete_certification_s": 0.010955304998788051,
+              "heldout_span_check_s": 0.0030961540032876655,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 991,
+              "fit_and_complete_certification_s": 0.009989466008846648,
+              "heldout_span_check_s": 0.0027264560048934072,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 806,
+              "fit_and_complete_certification_s": 0.010249680999550037,
+              "heldout_span_check_s": 0.0027962669992120937,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 815,
+              "fit_and_complete_certification_s": 0.009435033993213437,
+              "heldout_span_check_s": 0.002521311995224096,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 16,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 908,
+              "fit_and_complete_certification_s": 0.00992575399868656,
+              "heldout_span_check_s": 0.002647585002705455,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 17,
+              "rows": 128,
+              "rank": 57,
+              "map_body_bytes": 825,
+              "fit_and_complete_certification_s": 0.009284931002184749,
+              "heldout_span_check_s": 0.0024644010118208826,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 18,
+              "rows": 128,
+              "rank": 55,
+              "map_body_bytes": 737,
+              "fit_and_complete_certification_s": 0.009043226003996097,
+              "heldout_span_check_s": 0.0023428290005540475,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 19,
+              "rows": 128,
+              "rank": 69,
+              "map_body_bytes": 894,
+              "fit_and_complete_certification_s": 0.01088616400375031,
+              "heldout_span_check_s": 0.003088244004175067,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 20,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 830,
+              "fit_and_complete_certification_s": 0.010376714009908028,
+              "heldout_span_check_s": 0.002795616994262673,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 21,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 825,
+              "fit_and_complete_certification_s": 0.01020553900161758,
+              "heldout_span_check_s": 0.002768926991848275,
+              "accepted": 24,
+              "tested": 32
+            },
+            {
+              "block": 22,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1286,
+              "fit_and_complete_certification_s": 0.010317123000277206,
+              "heldout_span_check_s": 0.0028220480016898364,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 23,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 747,
+              "fit_and_complete_certification_s": 0.01021132999449037,
+              "heldout_span_check_s": 0.002751817009993829,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 24,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 854,
+              "fit_and_complete_certification_s": 0.00986705299874302,
+              "heldout_span_check_s": 0.0026614249945851043,
+              "accepted": 25,
+              "tested": 32
+            },
+            {
+              "block": 25,
+              "rows": 128,
+              "rank": 57,
+              "map_body_bytes": 1170,
+              "fit_and_complete_certification_s": 0.009375223002280109,
+              "heldout_span_check_s": 0.0024663109943503514,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 26,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 787,
+              "fit_and_complete_certification_s": 0.009716499989735894,
+              "heldout_span_check_s": 0.0025403330073459074,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 27,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 924,
+              "fit_and_complete_certification_s": 0.010602298003504984,
+              "heldout_span_check_s": 0.0028943189972778782,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 28,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 1103,
+              "fit_and_complete_certification_s": 0.009559316997183487,
+              "heldout_span_check_s": 0.002522062000934966,
+              "accepted": 22,
+              "tested": 32
+            },
+            {
+              "block": 29,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 1020,
+              "fit_and_complete_certification_s": 0.010224900994217023,
+              "heldout_span_check_s": 0.0027416259981691837,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 30,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 971,
+              "fit_and_complete_certification_s": 0.009939954994479194,
+              "heldout_span_check_s": 0.002670965011930093,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 31,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 1002,
+              "fit_and_complete_certification_s": 0.009822192005231045,
+              "heldout_span_check_s": 0.002610263996757567,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 32,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 975,
+              "fit_and_complete_certification_s": 0.010225570003967732,
+              "heldout_span_check_s": 0.0027931079966947436,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 33,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 865,
+              "fit_and_complete_certification_s": 0.009714450003230013,
+              "heldout_span_check_s": 0.002565472008427605,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 34,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 792,
+              "fit_and_complete_certification_s": 0.010199099997407757,
+              "heldout_span_check_s": 0.0027539170114323497,
+              "accepted": 26,
+              "tested": 32
+            },
+            {
+              "block": 35,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 896,
+              "fit_and_complete_certification_s": 0.009442673996090889,
+              "heldout_span_check_s": 0.0025014819984789938,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 36,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 957,
+              "fit_and_complete_certification_s": 0.010555647008004598,
+              "heldout_span_check_s": 0.002916249999543652,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 37,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 761,
+              "fit_and_complete_certification_s": 0.01018320000730455,
+              "heldout_span_check_s": 0.002794896994601004,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 38,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 907,
+              "fit_and_complete_certification_s": 0.00969546900887508,
+              "heldout_span_check_s": 0.0025530029961373657,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 39,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 867,
+              "fit_and_complete_certification_s": 0.009718590008560568,
+              "heldout_span_check_s": 0.002574432990513742,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 40,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 768,
+              "fit_and_complete_certification_s": 0.010101378007675521,
+              "heldout_span_check_s": 0.002749156003119424,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 41,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 985,
+              "fit_and_complete_certification_s": 0.009958814989659004,
+              "heldout_span_check_s": 0.00266639499750454,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 42,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 826,
+              "fit_and_complete_certification_s": 0.009945333993528038,
+              "heldout_span_check_s": 0.00270103600632865,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 43,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 829,
+              "fit_and_complete_certification_s": 0.010001735994592309,
+              "heldout_span_check_s": 0.002720604999922216,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 44,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1238,
+              "fit_and_complete_certification_s": 0.010291651997249573,
+              "heldout_span_check_s": 0.002801388007355854,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 45,
+              "rows": 128,
+              "rank": 65,
+              "map_body_bytes": 814,
+              "fit_and_complete_certification_s": 0.01037305399950128,
+              "heldout_span_check_s": 0.0028389680082909763,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 46,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 998,
+              "fit_and_complete_certification_s": 0.010285442011081614,
+              "heldout_span_check_s": 0.002793856998323463,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 47,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 780,
+              "fit_and_complete_certification_s": 0.010463255006470717,
+              "heldout_span_check_s": 0.0029048699943814427,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 48,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 774,
+              "fit_and_complete_certification_s": 0.009737750995554961,
+              "heldout_span_check_s": 0.002586873000836931,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 49,
+              "rows": 128,
+              "rank": 67,
+              "map_body_bytes": 878,
+              "fit_and_complete_certification_s": 0.010662519998732023,
+              "heldout_span_check_s": 0.003006941988132894,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 50,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1337,
+              "fit_and_complete_certification_s": 0.010386833993834443,
+              "heldout_span_check_s": 0.002841248002368957,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 51,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 847,
+              "fit_and_complete_certification_s": 0.009989935992052779,
+              "heldout_span_check_s": 0.002704965998418629,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 52,
+              "rows": 128,
+              "rank": 70,
+              "map_body_bytes": 797,
+              "fit_and_complete_certification_s": 0.010887704003835097,
+              "heldout_span_check_s": 0.0030977540009189397,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 53,
+              "rows": 128,
+              "rank": 65,
+              "map_body_bytes": 862,
+              "fit_and_complete_certification_s": 0.010298630993929692,
+              "heldout_span_check_s": 0.002846789007890038,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 54,
+              "rows": 128,
+              "rank": 57,
+              "map_body_bytes": 858,
+              "fit_and_complete_certification_s": 0.00935290299821645,
+              "heldout_span_check_s": 0.002460029994836077,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 55,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 967,
+              "fit_and_complete_certification_s": 0.009701150003820658,
+              "heldout_span_check_s": 0.002587023001979105,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 56,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 910,
+              "fit_and_complete_certification_s": 0.009588696993887424,
+              "heldout_span_check_s": 0.002576393002527766,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 57,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 717,
+              "fit_and_complete_certification_s": 0.010129319009138271,
+              "heldout_span_check_s": 0.002741125994361937,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 58,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 877,
+              "fit_and_complete_certification_s": 0.009899873999529518,
+              "heldout_span_check_s": 0.002692686000955291,
+              "accepted": 24,
+              "tested": 32
+            },
+            {
+              "block": 59,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 1461,
+              "fit_and_complete_certification_s": 0.01027629099553451,
+              "heldout_span_check_s": 0.0027601769979810342,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 60,
+              "rows": 128,
+              "rank": 67,
+              "map_body_bytes": 1442,
+              "fit_and_complete_certification_s": 0.01093162500183098,
+              "heldout_span_check_s": 0.0029319909954210743,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 61,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 766,
+              "fit_and_complete_certification_s": 0.009565587010001764,
+              "heldout_span_check_s": 0.0025112820003414527,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 62,
+              "rows": 60,
+              "rank": 49,
+              "map_body_bytes": 1193,
+              "fit_and_complete_certification_s": 0.005048633989645168,
+              "heldout_span_check_s": 0.002070592003292404,
+              "accepted": 16,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 70,
+          "sum_separate_query_ranks_model": 3893,
+          "map_body_bytes_sum": 58774,
+          "fit_and_certification_s_sum": 0.6256615479796892,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.8706853426713357
+        },
+        "reserve4": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 906,
+              "fit_and_complete_certification_s": 0.009398453999892808,
+              "heldout_span_check_s": 0.0025917530001606792,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 1064,
+              "fit_and_complete_certification_s": 0.009398402995429933,
+              "heldout_span_check_s": 0.0026380149938631803,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 884,
+              "fit_and_complete_certification_s": 0.009415003994945437,
+              "heldout_span_check_s": 0.002628593996632844,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1028,
+              "fit_and_complete_certification_s": 0.009720939997350797,
+              "heldout_span_check_s": 0.002797988010570407,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 1377,
+              "fit_and_complete_certification_s": 0.009347012994112447,
+              "heldout_span_check_s": 0.002665653999429196,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 812,
+              "fit_and_complete_certification_s": 0.009373662003781646,
+              "heldout_span_check_s": 0.0026725450006779283,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 887,
+              "fit_and_complete_certification_s": 0.009498214989434928,
+              "heldout_span_check_s": 0.0026835050084628165,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 811,
+              "fit_and_complete_certification_s": 0.009284870990086347,
+              "heldout_span_check_s": 0.0025526120007270947,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 910,
+              "fit_and_complete_certification_s": 0.00920654900255613,
+              "heldout_span_check_s": 0.0025712640053825453,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 1193,
+              "fit_and_complete_certification_s": 0.009450165001908317,
+              "heldout_span_check_s": 0.0026972750056302175,
+              "accepted": 21,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 65,
+              "map_body_bytes": 907,
+              "fit_and_complete_certification_s": 0.009873173010419123,
+              "heldout_span_check_s": 0.0028577390039572492,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 920,
+              "fit_and_complete_certification_s": 0.0094599849981023,
+              "heldout_span_check_s": 0.0026586239982862025,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 128,
+              "rank": 70,
+              "map_body_bytes": 803,
+              "fit_and_complete_certification_s": 0.010466505991644226,
+              "heldout_span_check_s": 0.003113772996584885,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 991,
+              "fit_and_complete_certification_s": 0.009596248011803254,
+              "heldout_span_check_s": 0.0027237059985054657,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 806,
+              "fit_and_complete_certification_s": 0.009870322988717817,
+              "heldout_span_check_s": 0.0028043780039297417,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 815,
+              "fit_and_complete_certification_s": 0.009100626994040795,
+              "heldout_span_check_s": 0.0024809710012050346,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 16,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 908,
+              "fit_and_complete_certification_s": 0.009433204002561979,
+              "heldout_span_check_s": 0.002654533993336372,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 17,
+              "rows": 128,
+              "rank": 57,
+              "map_body_bytes": 825,
+              "fit_and_complete_certification_s": 0.00893929399899207,
+              "heldout_span_check_s": 0.00246671999047976,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 18,
+              "rows": 128,
+              "rank": 55,
+              "map_body_bytes": 737,
+              "fit_and_complete_certification_s": 0.008796450012596324,
+              "heldout_span_check_s": 0.0023765600053593516,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 19,
+              "rows": 128,
+              "rank": 69,
+              "map_body_bytes": 894,
+              "fit_and_complete_certification_s": 0.01033106200338807,
+              "heldout_span_check_s": 0.003083174000494182,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 20,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 830,
+              "fit_and_complete_certification_s": 0.009909953994792886,
+              "heldout_span_check_s": 0.0028079280018573627,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 21,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 825,
+              "fit_and_complete_certification_s": 0.009675929002696648,
+              "heldout_span_check_s": 0.0027791269967565313,
+              "accepted": 24,
+              "tested": 32
+            },
+            {
+              "block": 22,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1286,
+              "fit_and_complete_certification_s": 0.009807561989873648,
+              "heldout_span_check_s": 0.0028379380091791973,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 23,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 747,
+              "fit_and_complete_certification_s": 0.00972884098882787,
+              "heldout_span_check_s": 0.002762986987363547,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 24,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 854,
+              "fit_and_complete_certification_s": 0.009402354000485502,
+              "heldout_span_check_s": 0.0026598039985401556,
+              "accepted": 25,
+              "tested": 32
+            },
+            {
+              "block": 25,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 1070,
+              "fit_and_complete_certification_s": 0.008991535010864027,
+              "heldout_span_check_s": 0.002501151990145445,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 26,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 787,
+              "fit_and_complete_certification_s": 0.00923324101313483,
+              "heldout_span_check_s": 0.0025335319951409474,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 27,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 924,
+              "fit_and_complete_certification_s": 0.010068846997455694,
+              "heldout_span_check_s": 0.0028932489949511364,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 28,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 1045,
+              "fit_and_complete_certification_s": 0.009261560000595637,
+              "heldout_span_check_s": 0.002575713995611295,
+              "accepted": 23,
+              "tested": 32
+            },
+            {
+              "block": 29,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 1020,
+              "fit_and_complete_certification_s": 0.009697959991171956,
+              "heldout_span_check_s": 0.0027277159970253706,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 30,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 971,
+              "fit_and_complete_certification_s": 0.009446814001421444,
+              "heldout_span_check_s": 0.0026729849923867732,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 31,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 1002,
+              "fit_and_complete_certification_s": 0.009304060993599705,
+              "heldout_span_check_s": 0.002608374008559622,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 32,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 975,
+              "fit_and_complete_certification_s": 0.009664618992246687,
+              "heldout_span_check_s": 0.002752047003014013,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 33,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 865,
+              "fit_and_complete_certification_s": 0.009274330994230695,
+              "heldout_span_check_s": 0.0025650030001997948,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 34,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 792,
+              "fit_and_complete_certification_s": 0.00971981100155972,
+              "heldout_span_check_s": 0.0027626559894997627,
+              "accepted": 26,
+              "tested": 32
+            },
+            {
+              "block": 35,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 896,
+              "fit_and_complete_certification_s": 0.009117966998019256,
+              "heldout_span_check_s": 0.0025154320028377697,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 36,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 957,
+              "fit_and_complete_certification_s": 0.010048356998595409,
+              "heldout_span_check_s": 0.0029096889920765534,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 37,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 761,
+              "fit_and_complete_certification_s": 0.009739740009536035,
+              "heldout_span_check_s": 0.002820048001012765,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 38,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 907,
+              "fit_and_complete_certification_s": 0.00922069999796804,
+              "heldout_span_check_s": 0.0025492419954389334,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 39,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 867,
+              "fit_and_complete_certification_s": 0.009293720999266952,
+              "heldout_span_check_s": 0.0025751830107765272,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 40,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 768,
+              "fit_and_complete_certification_s": 0.009688919002655894,
+              "heldout_span_check_s": 0.002770886989310384,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 41,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 985,
+              "fit_and_complete_certification_s": 0.009555876997183077,
+              "heldout_span_check_s": 0.0026844050007639453,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 42,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 826,
+              "fit_and_complete_certification_s": 0.009567236993461847,
+              "heldout_span_check_s": 0.0027051650104112923,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 43,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 829,
+              "fit_and_complete_certification_s": 0.009592996997525916,
+              "heldout_span_check_s": 0.002719826006796211,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 44,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1238,
+              "fit_and_complete_certification_s": 0.009818912003538571,
+              "heldout_span_check_s": 0.0027984680054942146,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 45,
+              "rows": 128,
+              "rank": 65,
+              "map_body_bytes": 814,
+              "fit_and_complete_certification_s": 0.00994202500442043,
+              "heldout_span_check_s": 0.002866509006707929,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 46,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 998,
+              "fit_and_complete_certification_s": 0.009795410995138809,
+              "heldout_span_check_s": 0.0028072380082448944,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 47,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 780,
+              "fit_and_complete_certification_s": 0.010018285989644937,
+              "heldout_span_check_s": 0.0029204309976194054,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 48,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 774,
+              "fit_and_complete_certification_s": 0.009377372989547439,
+              "heldout_span_check_s": 0.0025878529995679855,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 49,
+              "rows": 128,
+              "rank": 67,
+              "map_body_bytes": 878,
+              "fit_and_complete_certification_s": 0.010113897995324805,
+              "heldout_span_check_s": 0.0029598309920402244,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 50,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1337,
+              "fit_and_complete_certification_s": 0.009877543998300098,
+              "heldout_span_check_s": 0.002799487003358081,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 51,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 847,
+              "fit_and_complete_certification_s": 0.009553966010571457,
+              "heldout_span_check_s": 0.0027211660053581,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 52,
+              "rows": 128,
+              "rank": 70,
+              "map_body_bytes": 797,
+              "fit_and_complete_certification_s": 0.010530776999075897,
+              "heldout_span_check_s": 0.003125253992038779,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 53,
+              "rows": 128,
+              "rank": 65,
+              "map_body_bytes": 862,
+              "fit_and_complete_certification_s": 0.009890914006973617,
+              "heldout_span_check_s": 0.002838827989762649,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 54,
+              "rows": 128,
+              "rank": 57,
+              "map_body_bytes": 858,
+              "fit_and_complete_certification_s": 0.0089931050024461,
+              "heldout_span_check_s": 0.0024751910095801577,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 55,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 957,
+              "fit_and_complete_certification_s": 0.009356402006233111,
+              "heldout_span_check_s": 0.0026202540029771626,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 56,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 910,
+              "fit_and_complete_certification_s": 0.009312032008892857,
+              "heldout_span_check_s": 0.0025826729979598895,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 57,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 717,
+              "fit_and_complete_certification_s": 0.009681918993010186,
+              "heldout_span_check_s": 0.002744546000030823,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 58,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 877,
+              "fit_and_complete_certification_s": 0.009507394992397167,
+              "heldout_span_check_s": 0.0026816860045073554,
+              "accepted": 24,
+              "tested": 32
+            },
+            {
+              "block": 59,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 1461,
+              "fit_and_complete_certification_s": 0.00977772100304719,
+              "heldout_span_check_s": 0.0027456170064397156,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 60,
+              "rows": 128,
+              "rank": 67,
+              "map_body_bytes": 1442,
+              "fit_and_complete_certification_s": 0.010283511990564875,
+              "heldout_span_check_s": 0.002960800993605517,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 61,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 766,
+              "fit_and_complete_certification_s": 0.009196279002935626,
+              "heldout_span_check_s": 0.0025255720101995394,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 62,
+              "rows": 60,
+              "rank": 50,
+              "map_body_bytes": 1123,
+              "fit_and_complete_certification_s": 0.005156756000360474,
+              "heldout_span_check_s": 0.0021150139946257696,
+              "accepted": 16,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 70,
+          "sum_separate_query_ranks_model": 3898,
+          "map_body_bytes_sum": 58703,
+          "fit_and_certification_s_sum": 0.5991573089413578,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.8726863431715858
+        },
+        "reserve16": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 906,
+              "fit_and_complete_certification_s": 0.00955728700500913,
+              "heldout_span_check_s": 0.00259147300675977,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 1064,
+              "fit_and_complete_certification_s": 0.009619906995794736,
+              "heldout_span_check_s": 0.0026618349947966635,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 884,
+              "fit_and_complete_certification_s": 0.009630437998566777,
+              "heldout_span_check_s": 0.0026607949985191226,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1028,
+              "fit_and_complete_certification_s": 0.009963374002836645,
+              "heldout_span_check_s": 0.0028057080053258687,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 1377,
+              "fit_and_complete_certification_s": 0.009485634989687242,
+              "heldout_span_check_s": 0.002607593996799551,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 812,
+              "fit_and_complete_certification_s": 0.0097188599902438,
+              "heldout_span_check_s": 0.002684235994820483,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 887,
+              "fit_and_complete_certification_s": 0.009666158992331475,
+              "heldout_span_check_s": 0.0026776459999382496,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 811,
+              "fit_and_complete_certification_s": 0.009560546997818165,
+              "heldout_span_check_s": 0.0025527730031171814,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 910,
+              "fit_and_complete_certification_s": 0.009470695003983565,
+              "heldout_span_check_s": 0.0025516019959468395,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 1189,
+              "fit_and_complete_certification_s": 0.009863703002338298,
+              "heldout_span_check_s": 0.002730295993387699,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 65,
+              "map_body_bytes": 907,
+              "fit_and_complete_certification_s": 0.01013303900253959,
+              "heldout_span_check_s": 0.0028962799988221377,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 920,
+              "fit_and_complete_certification_s": 0.009702449999167584,
+              "heldout_span_check_s": 0.002661455000634305,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 128,
+              "rank": 70,
+              "map_body_bytes": 803,
+              "fit_and_complete_certification_s": 0.010723730985773727,
+              "heldout_span_check_s": 0.003134433995001018,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 991,
+              "fit_and_complete_certification_s": 0.009803102002479136,
+              "heldout_span_check_s": 0.0027240159979555756,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 806,
+              "fit_and_complete_certification_s": 0.010048466006992385,
+              "heldout_span_check_s": 0.0027986680070171133,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 815,
+              "fit_and_complete_certification_s": 0.009298721997765824,
+              "heldout_span_check_s": 0.0025181119999615476,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 16,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 908,
+              "fit_and_complete_certification_s": 0.009684179996838793,
+              "heldout_span_check_s": 0.0026568239991320297,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 17,
+              "rows": 128,
+              "rank": 57,
+              "map_body_bytes": 825,
+              "fit_and_complete_certification_s": 0.009135828004218638,
+              "heldout_span_check_s": 0.0024611109984107316,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 18,
+              "rows": 128,
+              "rank": 55,
+              "map_body_bytes": 737,
+              "fit_and_complete_certification_s": 0.008986564993392676,
+              "heldout_span_check_s": 0.0023795390006853268,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 19,
+              "rows": 128,
+              "rank": 69,
+              "map_body_bytes": 894,
+              "fit_and_complete_certification_s": 0.010737830991274677,
+              "heldout_span_check_s": 0.0030794530030107126,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 20,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 830,
+              "fit_and_complete_certification_s": 0.0101890999940224,
+              "heldout_span_check_s": 0.002827407995937392,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 21,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 825,
+              "fit_and_complete_certification_s": 0.010035886007244699,
+              "heldout_span_check_s": 0.0027826580044347793,
+              "accepted": 24,
+              "tested": 32
+            },
+            {
+              "block": 22,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1286,
+              "fit_and_complete_certification_s": 0.010160888996324502,
+              "heldout_span_check_s": 0.0028199179942021146,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 23,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 747,
+              "fit_and_complete_certification_s": 0.009997236003982835,
+              "heldout_span_check_s": 0.0027484259917400777,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 24,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 871,
+              "fit_and_complete_certification_s": 0.0098169120028615,
+              "heldout_span_check_s": 0.0027206060040043667,
+              "accepted": 26,
+              "tested": 32
+            },
+            {
+              "block": 25,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 1070,
+              "fit_and_complete_certification_s": 0.009283171006245539,
+              "heldout_span_check_s": 0.0025286519958171993,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 26,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 787,
+              "fit_and_complete_certification_s": 0.009529675997328013,
+              "heldout_span_check_s": 0.0025510030100122094,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 27,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 924,
+              "fit_and_complete_certification_s": 0.010464545004651882,
+              "heldout_span_check_s": 0.0028990099963266402,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 28,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 999,
+              "fit_and_complete_certification_s": 0.009637477996875532,
+              "heldout_span_check_s": 0.0026062139950226992,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 29,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 1020,
+              "fit_and_complete_certification_s": 0.01003953701001592,
+              "heldout_span_check_s": 0.002772356994682923,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 30,
+              "rows": 128,
+              "rank": 61,
+              "map_body_bytes": 971,
+              "fit_and_complete_certification_s": 0.009765750000951812,
+              "heldout_span_check_s": 0.0026739660097518936,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 31,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 1002,
+              "fit_and_complete_certification_s": 0.00965883900062181,
+              "heldout_span_check_s": 0.0026218939892714843,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 32,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 975,
+              "fit_and_complete_certification_s": 0.009958814000128768,
+              "heldout_span_check_s": 0.0027503369929036126,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 33,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 865,
+              "fit_and_complete_certification_s": 0.009547016001306474,
+              "heldout_span_check_s": 0.0025662430125521496,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 34,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 776,
+              "fit_and_complete_certification_s": 0.01005785699817352,
+              "heldout_span_check_s": 0.002809277008054778,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 35,
+              "rows": 128,
+              "rank": 58,
+              "map_body_bytes": 896,
+              "fit_and_complete_certification_s": 0.009392513005877845,
+              "heldout_span_check_s": 0.002521093003451824,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 36,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 957,
+              "fit_and_complete_certification_s": 0.010297642002115026,
+              "heldout_span_check_s": 0.0028892590053146705,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 37,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 761,
+              "fit_and_complete_certification_s": 0.009927384002367035,
+              "heldout_span_check_s": 0.0027915480022784323,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 38,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 907,
+              "fit_and_complete_certification_s": 0.009466574992984533,
+              "heldout_span_check_s": 0.002562202003900893,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 39,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 867,
+              "fit_and_complete_certification_s": 0.009524795998004265,
+              "heldout_span_check_s": 0.002613243996165693,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 40,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 768,
+              "fit_and_complete_certification_s": 0.009893783993902616,
+              "heldout_span_check_s": 0.0027376960060792044,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 41,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 985,
+              "fit_and_complete_certification_s": 0.009772972000064328,
+              "heldout_span_check_s": 0.0026928250008495525,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 42,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 826,
+              "fit_and_complete_certification_s": 0.009799630992347375,
+              "heldout_span_check_s": 0.002707406005356461,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 43,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 829,
+              "fit_and_complete_certification_s": 0.00980307201098185,
+              "heldout_span_check_s": 0.0026971249899361283,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 44,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1238,
+              "fit_and_complete_certification_s": 0.010127378001925536,
+              "heldout_span_check_s": 0.002781567003694363,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 45,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 813,
+              "fit_and_complete_certification_s": 0.01024990099540446,
+              "heldout_span_check_s": 0.002890358999138698,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 46,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 998,
+              "fit_and_complete_certification_s": 0.010127699002623558,
+              "heldout_span_check_s": 0.0028307379980105907,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 47,
+              "rows": 128,
+              "rank": 66,
+              "map_body_bytes": 780,
+              "fit_and_complete_certification_s": 0.010252081003272906,
+              "heldout_span_check_s": 0.0029055100021651015,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 48,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 774,
+              "fit_and_complete_certification_s": 0.009643977988162078,
+              "heldout_span_check_s": 0.002615604011225514,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 49,
+              "rows": 128,
+              "rank": 67,
+              "map_body_bytes": 878,
+              "fit_and_complete_certification_s": 0.010451014997670427,
+              "heldout_span_check_s": 0.002969271008623764,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 50,
+              "rows": 128,
+              "rank": 64,
+              "map_body_bytes": 1337,
+              "fit_and_complete_certification_s": 0.010125558997970074,
+              "heldout_span_check_s": 0.002829788005328737,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 51,
+              "rows": 128,
+              "rank": 62,
+              "map_body_bytes": 847,
+              "fit_and_complete_certification_s": 0.009843442006967962,
+              "heldout_span_check_s": 0.0026972760097123682,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 52,
+              "rows": 128,
+              "rank": 70,
+              "map_body_bytes": 797,
+              "fit_and_complete_certification_s": 0.010752831003628671,
+              "heldout_span_check_s": 0.0031498750031460077,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 53,
+              "rows": 128,
+              "rank": 65,
+              "map_body_bytes": 862,
+              "fit_and_complete_certification_s": 0.01011438800196629,
+              "heldout_span_check_s": 0.002871218996006064,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 54,
+              "rows": 128,
+              "rank": 57,
+              "map_body_bytes": 858,
+              "fit_and_complete_certification_s": 0.009186968993162736,
+              "heldout_span_check_s": 0.0024902609875425696,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 55,
+              "rows": 128,
+              "rank": 60,
+              "map_body_bytes": 957,
+              "fit_and_complete_certification_s": 0.009675798995885998,
+              "heldout_span_check_s": 0.002651733986567706,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 56,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 910,
+              "fit_and_complete_certification_s": 0.00943465399905108,
+              "heldout_span_check_s": 0.002577852996182628,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 57,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 717,
+              "fit_and_complete_certification_s": 0.009929414998623542,
+              "heldout_span_check_s": 0.0027566359931370243,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 58,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 783,
+              "fit_and_complete_certification_s": 0.009875313000520691,
+              "heldout_span_check_s": 0.002738506009336561,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 59,
+              "rows": 128,
+              "rank": 63,
+              "map_body_bytes": 1461,
+              "fit_and_complete_certification_s": 0.010001835995353758,
+              "heldout_span_check_s": 0.0027637460007099435,
+              "accepted": 27,
+              "tested": 32
+            },
+            {
+              "block": 60,
+              "rows": 128,
+              "rank": 67,
+              "map_body_bytes": 1442,
+              "fit_and_complete_certification_s": 0.010474095994140953,
+              "heldout_span_check_s": 0.0029983610002091154,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 61,
+              "rows": 128,
+              "rank": 59,
+              "map_body_bytes": 766,
+              "fit_and_complete_certification_s": 0.009404353986610658,
+              "heldout_span_check_s": 0.0025244209973607212,
+              "accepted": 28,
+              "tested": 32
+            },
+            {
+              "block": 62,
+              "rows": 60,
+              "rank": 54,
+              "map_body_bytes": 996,
+              "fit_and_complete_certification_s": 0.005707777992938645,
+              "heldout_span_check_s": 0.0023175569949671626,
+              "accepted": 23,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 70,
+          "sum_separate_query_ranks_model": 3908,
+          "map_body_bytes_sum": 58432,
+          "fit_and_certification_s_sum": 0.616190079934313,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.8838325412706353
+        },
+        "public_schema": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006270439000218175,
+              "heldout_span_check_s": 0.0035124029964208603,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006308668991550803,
+              "heldout_span_check_s": 0.0035638030094560236,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006303800008026883,
+              "heldout_span_check_s": 0.003531292997649871,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006325241003651172,
+              "heldout_span_check_s": 0.0035497720091370866,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006319719992461614,
+              "heldout_span_check_s": 0.0035522130056051537,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006369160997564904,
+              "heldout_span_check_s": 0.003581523007596843,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006343929999275133,
+              "heldout_span_check_s": 0.0035769340029219165,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006358390994137153,
+              "heldout_span_check_s": 0.0035575829970184714,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006344399997033179,
+              "heldout_span_check_s": 0.0035274030087748542,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063694309938000515,
+              "heldout_span_check_s": 0.003584393998607993,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006345410001813434,
+              "heldout_span_check_s": 0.003596833994379267,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006338820006931201,
+              "heldout_span_check_s": 0.0035680139990290627,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006374081000103615,
+              "heldout_span_check_s": 0.003585733997169882,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063470910099567845,
+              "heldout_span_check_s": 0.0035504529951140285,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006379400991136208,
+              "heldout_span_check_s": 0.003575292997993529,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006332479999400675,
+              "heldout_span_check_s": 0.00354681299359072,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 16,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.00632702000439167,
+              "heldout_span_check_s": 0.003551542991772294,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 17,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006346900001517497,
+              "heldout_span_check_s": 0.0035466839908622205,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 18,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006356060999678448,
+              "heldout_span_check_s": 0.0035639029956655577,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 19,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006336120000923984,
+              "heldout_span_check_s": 0.0035470529983285815,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 20,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006348631010041572,
+              "heldout_span_check_s": 0.0035858640039805323,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 21,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006290019009611569,
+              "heldout_span_check_s": 0.003524333005771041,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 22,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006321330001810566,
+              "heldout_span_check_s": 0.0035478729987517,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 23,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006304229988018051,
+              "heldout_span_check_s": 0.0035329530073795468,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 24,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006327230003080331,
+              "heldout_span_check_s": 0.003571003006072715,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 25,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.00636378099443391,
+              "heldout_span_check_s": 0.003574843009118922,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 26,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006321630004094914,
+              "heldout_span_check_s": 0.003533943003276363,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 27,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006305849994532764,
+              "heldout_span_check_s": 0.003524763000314124,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 28,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006348049995722249,
+              "heldout_span_check_s": 0.003545642990502529,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 29,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006345889996737242,
+              "heldout_span_check_s": 0.0035718439903575927,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 30,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063513999921269715,
+              "heldout_span_check_s": 0.0035838640033034608,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 31,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006334500998491421,
+              "heldout_span_check_s": 0.0036037039972143248,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 32,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006348340000840835,
+              "heldout_span_check_s": 0.0035676139959832653,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 33,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063119090045802295,
+              "heldout_span_check_s": 0.0035466129920678213,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 34,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006343891000142321,
+              "heldout_span_check_s": 0.0035260219883639365,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 35,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006357721009408124,
+              "heldout_span_check_s": 0.003555123010301031,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 36,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006330901000183076,
+              "heldout_span_check_s": 0.003536722986609675,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 37,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006376090997946449,
+              "heldout_span_check_s": 0.003542382997693494,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 38,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006322070999885909,
+              "heldout_span_check_s": 0.0035504529951140285,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 39,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006335819998639636,
+              "heldout_span_check_s": 0.0035377730091568083,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 40,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006327459996100515,
+              "heldout_span_check_s": 0.003509811998810619,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 41,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006331630007480271,
+              "heldout_span_check_s": 0.0035341430047992617,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 42,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006320870001218282,
+              "heldout_span_check_s": 0.003567114006727934,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 43,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006349331000819802,
+              "heldout_span_check_s": 0.0035292829998070374,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 44,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063240099989343435,
+              "heldout_span_check_s": 0.0035422829969320446,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 45,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006305749993771315,
+              "heldout_span_check_s": 0.0035187329922337085,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 46,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006311990000540391,
+              "heldout_span_check_s": 0.0035864340025000274,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 47,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006343250002828427,
+              "heldout_span_check_s": 0.0035406529932515696,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 48,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006342300010146573,
+              "heldout_span_check_s": 0.0035796239972114563,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 49,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006335800004308112,
+              "heldout_span_check_s": 0.003598173992941156,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 50,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063668610091554,
+              "heldout_span_check_s": 0.0035828640102408826,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 51,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006315339996945113,
+              "heldout_span_check_s": 0.0035368920071050525,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 52,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006366221001371741,
+              "heldout_span_check_s": 0.0035766240034718066,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 53,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063502400007564574,
+              "heldout_span_check_s": 0.0035776939912466332,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 54,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006383272004313767,
+              "heldout_span_check_s": 0.0035641829890664667,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 55,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063706410001032054,
+              "heldout_span_check_s": 0.00358471400977578,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 56,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006349539995426312,
+              "heldout_span_check_s": 0.003569324006093666,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 57,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006338020000839606,
+              "heldout_span_check_s": 0.003542373000527732,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 58,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006340250009088777,
+              "heldout_span_check_s": 0.0035345030046300963,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 59,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063455909985350445,
+              "heldout_span_check_s": 0.0035715839912882075,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 60,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.006337810002150945,
+              "heldout_span_check_s": 0.0035713040124392137,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 61,
+              "rows": 128,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0063105400040512905,
+              "heldout_span_check_s": 0.0035335330030648038,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 62,
+              "rows": 60,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.0037526579981204122,
+              "heldout_span_check_s": 0.0035349719983059913,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 104,
+          "sum_separate_query_ranks_model": 6552,
+          "map_body_bytes_sum": 30492,
+          "fit_and_certification_s_sum": 0.3967052270309068,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "raw": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006616726008360274,
+              "heldout_span_check_s": 0.004525693002506159,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066644870094023645,
+              "heldout_span_check_s": 0.004605423993780278,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006633865996263921,
+              "heldout_span_check_s": 0.004545653995592147,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006645746994763613,
+              "heldout_span_check_s": 0.004566004005027935,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066277370060561225,
+              "heldout_span_check_s": 0.004565984010696411,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006689506990369409,
+              "heldout_span_check_s": 0.00460302499413956,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006654207012616098,
+              "heldout_span_check_s": 0.004586153998388909,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.00666192700737156,
+              "heldout_span_check_s": 0.004568283999105915,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006657036996330135,
+              "heldout_span_check_s": 0.004539764006040059,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.00666702700254973,
+              "heldout_span_check_s": 0.004589534000842832,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006710688001476228,
+              "heldout_span_check_s": 0.004643544991267845,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006656608005869202,
+              "heldout_span_check_s": 0.004587763993185945,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006715238007018343,
+              "heldout_span_check_s": 0.004608914998243563,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006635917001403868,
+              "heldout_span_check_s": 0.004546813011984341,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006644916007644497,
+              "heldout_span_check_s": 0.00458685499324929,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006636765989242122,
+              "heldout_span_check_s": 0.004560664005111903,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 16,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006665927998255938,
+              "heldout_span_check_s": 0.004564863993437029,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 17,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006607265997445211,
+              "heldout_span_check_s": 0.004574484002660029,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 18,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006641086991294287,
+              "heldout_span_check_s": 0.004545243005850352,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 19,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006640487001277506,
+              "heldout_span_check_s": 0.0045875340001657605,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 20,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006652067007962614,
+              "heldout_span_check_s": 0.004600183994625695,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 21,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006628796996665187,
+              "heldout_span_check_s": 0.004551443998934701,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 22,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.00662291600019671,
+              "heldout_span_check_s": 0.004547844000626355,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 23,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066216859995620325,
+              "heldout_span_check_s": 0.0045534740056609735,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 24,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006646306996117346,
+              "heldout_span_check_s": 0.004581004002830014,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 25,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.00664772599702701,
+              "heldout_span_check_s": 0.0045967050100443885,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 26,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066300569887971506,
+              "heldout_span_check_s": 0.004534332998446189,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 27,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006603606001590379,
+              "heldout_span_check_s": 0.00453648398979567,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 28,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006625896014156751,
+              "heldout_span_check_s": 0.00456093400134705,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 29,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066496670042397454,
+              "heldout_span_check_s": 0.004594254001858644,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 30,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066429370053811,
+              "heldout_span_check_s": 0.004590923999785446,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 31,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006644425986451097,
+              "heldout_span_check_s": 0.004628494993085042,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 32,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066558770049596205,
+              "heldout_span_check_s": 0.0045859039964852855,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 33,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006640837003942579,
+              "heldout_span_check_s": 0.004569843993522227,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 34,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.00663931600865908,
+              "heldout_span_check_s": 0.004523964002146386,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 35,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066660970041994005,
+              "heldout_span_check_s": 0.0045786440023221076,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 36,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066344070073682815,
+              "heldout_span_check_s": 0.004522953007835895,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 37,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066178359993500635,
+              "heldout_span_check_s": 0.004555154009722173,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 38,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006635546000325121,
+              "heldout_span_check_s": 0.004602554996381514,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 39,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006625206005992368,
+              "heldout_span_check_s": 0.004562843998428434,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 40,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006614095997065306,
+              "heldout_span_check_s": 0.004501581992371939,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 41,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006689218003884889,
+              "heldout_span_check_s": 0.004538743000011891,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 42,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006665636989055201,
+              "heldout_span_check_s": 0.004592454002704471,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 43,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.00665178700000979,
+              "heldout_span_check_s": 0.00454197300132364,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 44,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006635216006543487,
+              "heldout_span_check_s": 0.004547703996649943,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 45,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006595036000362597,
+              "heldout_span_check_s": 0.004520532995229587,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 46,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006669937007245608,
+              "heldout_span_check_s": 0.004632294992916286,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 47,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066221159941051155,
+              "heldout_span_check_s": 0.004549873992800713,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 48,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006681416998617351,
+              "heldout_span_check_s": 0.004609775001881644,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 49,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006652466996456496,
+              "heldout_span_check_s": 0.004589175005094148,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 50,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066653469984885305,
+              "heldout_span_check_s": 0.0045985749893588945,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 51,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006641326996032149,
+              "heldout_span_check_s": 0.004552953003440052,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 52,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006641706990194507,
+              "heldout_span_check_s": 0.004604173998814076,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 53,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0066521770058898255,
+              "heldout_span_check_s": 0.0046057450090302154,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 54,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006655637000221759,
+              "heldout_span_check_s": 0.00456388400925789,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 55,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006655516990576871,
+              "heldout_span_check_s": 0.004578134001349099,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 56,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006657436999375932,
+              "heldout_span_check_s": 0.004584423993946984,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 57,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006646596011705697,
+              "heldout_span_check_s": 0.00454520400671754,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 58,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006606076000025496,
+              "heldout_span_check_s": 0.00452057299844455,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 59,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.00666389700199943,
+              "heldout_span_check_s": 0.004576093997457065,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 60,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006648736001807265,
+              "heldout_span_check_s": 0.0047747289936523885,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 61,
+              "rows": 128,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.006627486000070348,
+              "heldout_span_check_s": 0.004530203004833311,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 62,
+              "rows": 60,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.004152485009399243,
+              "heldout_span_check_s": 0.004543574003037065,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 126,
+          "sum_separate_query_ranks_model": 7938,
+          "map_body_bytes_sum": 9450,
+          "fit_and_certification_s_sum": 0.41619573105708696,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        }
+      }
+    },
+    {
+      "dataset": "mushroom",
+      "dataset_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "dimension": 126,
+      "block_size": 512,
+      "blocks": 16,
+      "index_count": 7996,
+      "training_source_ids": [
+        6147,
+        1244,
+        1111,
+        5297,
+        166,
+        4139,
+        6603,
+        2228,
+        2177,
+        6975,
+        6816,
+        7837,
+        1008,
+        801,
+        1252,
+        2581,
+        6227,
+        7400,
+        5421,
+        3852,
+        376,
+        5786,
+        1862,
+        2936,
+        6967,
+        2580,
+        4268,
+        926,
+        5688,
+        571,
+        3013,
+        4617
+      ],
+      "evaluation_source_ids": [
+        893,
+        687,
+        3851,
+        6760,
+        5697,
+        1698,
+        5335,
+        2453,
+        5096,
+        517,
+        8074,
+        3876,
+        55,
+        3601,
+        56,
+        7265,
+        1926,
+        5271,
+        4079,
+        4325,
+        751,
+        1098,
+        4019,
+        5281,
+        1841,
+        7746,
+        6658,
+        4995,
+        5665,
+        7293,
+        2945,
+        7950
+      ],
+      "charged_catalog_exploration_s": 2.7377558750013122,
+      "modes": {
+        "fit": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 723,
+              "fit_and_complete_certification_s": 0.04008570499718189,
+              "heldout_span_check_s": 0.003574513000785373,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 72,
+              "map_body_bytes": 954,
+              "fit_and_complete_certification_s": 0.037393689999589697,
+              "heldout_span_check_s": 0.003168815004755743,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 804,
+              "fit_and_complete_certification_s": 0.03959791500528809,
+              "heldout_span_check_s": 0.0034974719892488793,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 630,
+              "fit_and_complete_certification_s": 0.03903818299295381,
+              "heldout_span_check_s": 0.003478312006336637,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 512,
+              "rank": 76,
+              "map_body_bytes": 836,
+              "fit_and_complete_certification_s": 0.03864981498918496,
+              "heldout_span_check_s": 0.0034807519987225533,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 512,
+              "rank": 80,
+              "map_body_bytes": 829,
+              "fit_and_complete_certification_s": 0.04015696598798968,
+              "heldout_span_check_s": 0.0036683249927591532,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 960,
+              "fit_and_complete_certification_s": 0.039307929007918574,
+              "heldout_span_check_s": 0.003541502999723889,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 777,
+              "fit_and_complete_certification_s": 0.039739997999276966,
+              "heldout_span_check_s": 0.003524341998854652,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 512,
+              "rank": 76,
+              "map_body_bytes": 917,
+              "fit_and_complete_certification_s": 0.03841224100324325,
+              "heldout_span_check_s": 0.00338752000243403,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 777,
+              "fit_and_complete_certification_s": 0.039543413993669674,
+              "heldout_span_check_s": 0.0035068019933532923,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 842,
+              "fit_and_complete_certification_s": 0.039871059998404235,
+              "heldout_span_check_s": 0.0035761640028795227,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 971,
+              "fit_and_complete_certification_s": 0.039769898998201825,
+              "heldout_span_check_s": 0.003575263006496243,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 797,
+              "fit_and_complete_certification_s": 0.0402695390075678,
+              "heldout_span_check_s": 0.0035665539908222854,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 735,
+              "fit_and_complete_certification_s": 0.039362241004710086,
+              "heldout_span_check_s": 0.0035312320105731487,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 512,
+              "rank": 80,
+              "map_body_bytes": 820,
+              "fit_and_complete_certification_s": 0.0409927639993839,
+              "heldout_span_check_s": 0.0035830039996653795,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 316,
+              "rank": 74,
+              "map_body_bytes": 988,
+              "fit_and_complete_certification_s": 0.02170255700184498,
+              "heldout_span_check_s": 0.0033143280015792698,
+              "accepted": 31,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 80,
+          "sum_separate_query_ranks_model": 1241,
+          "map_body_bytes_sum": 13360,
+          "fit_and_certification_s_sum": 0.6138939159864094,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.9507409954977488
+        },
+        "reserve4": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 723,
+              "fit_and_complete_certification_s": 0.0348990380007308,
+              "heldout_span_check_s": 0.0035445229877950624,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 72,
+              "map_body_bytes": 954,
+              "fit_and_complete_certification_s": 0.032726913006627,
+              "heldout_span_check_s": 0.0032052659953478724,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 804,
+              "fit_and_complete_certification_s": 0.03504759199859109,
+              "heldout_span_check_s": 0.0035379420005483553,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 630,
+              "fit_and_complete_certification_s": 0.034252665005624294,
+              "heldout_span_check_s": 0.003535733005264774,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 512,
+              "rank": 76,
+              "map_body_bytes": 836,
+              "fit_and_complete_certification_s": 0.033960988992475905,
+              "heldout_span_check_s": 0.0034743709984468296,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 512,
+              "rank": 80,
+              "map_body_bytes": 829,
+              "fit_and_complete_certification_s": 0.03567688500334043,
+              "heldout_span_check_s": 0.003645074990345165,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 960,
+              "fit_and_complete_certification_s": 0.03462600300554186,
+              "heldout_span_check_s": 0.0034955219889525324,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 777,
+              "fit_and_complete_certification_s": 0.03496214900224004,
+              "heldout_span_check_s": 0.003528303001075983,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 512,
+              "rank": 76,
+              "map_body_bytes": 917,
+              "fit_and_complete_certification_s": 0.0336884429998463,
+              "heldout_span_check_s": 0.0034070399997290224,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 777,
+              "fit_and_complete_certification_s": 0.03489524801261723,
+              "heldout_span_check_s": 0.0035091919999103993,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 842,
+              "fit_and_complete_certification_s": 0.03546666000329424,
+              "heldout_span_check_s": 0.003573192996555008,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 971,
+              "fit_and_complete_certification_s": 0.03523226600373164,
+              "heldout_span_check_s": 0.0036218239984009415,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 797,
+              "fit_and_complete_certification_s": 0.035259964992292225,
+              "heldout_span_check_s": 0.0035896439949283376,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 735,
+              "fit_and_complete_certification_s": 0.035008599996217526,
+              "heldout_span_check_s": 0.003541673009749502,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 512,
+              "rank": 80,
+              "map_body_bytes": 820,
+              "fit_and_complete_certification_s": 0.035317086993018165,
+              "heldout_span_check_s": 0.0036137040005996823,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 316,
+              "rank": 74,
+              "map_body_bytes": 988,
+              "fit_and_complete_certification_s": 0.02182078899932094,
+              "heldout_span_check_s": 0.003269708002335392,
+              "accepted": 31,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 80,
+          "sum_separate_query_ranks_model": 1241,
+          "map_body_bytes_sum": 13360,
+          "fit_and_certification_s_sum": 0.5428412920155097,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.9507409954977488
+        },
+        "reserve16": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 723,
+              "fit_and_complete_certification_s": 0.034627913002623245,
+              "heldout_span_check_s": 0.0034499710018280894,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 72,
+              "map_body_bytes": 954,
+              "fit_and_complete_certification_s": 0.033166462992085144,
+              "heldout_span_check_s": 0.003247486994951032,
+              "accepted": 29,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 804,
+              "fit_and_complete_certification_s": 0.03477834598743357,
+              "heldout_span_check_s": 0.0035601030103862286,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 630,
+              "fit_and_complete_certification_s": 0.03477995599678252,
+              "heldout_span_check_s": 0.0035378430038690567,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 512,
+              "rank": 76,
+              "map_body_bytes": 836,
+              "fit_and_complete_certification_s": 0.03455659199971706,
+              "heldout_span_check_s": 0.0034036900033243,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 512,
+              "rank": 80,
+              "map_body_bytes": 829,
+              "fit_and_complete_certification_s": 0.03548503000638448,
+              "heldout_span_check_s": 0.003635225002653897,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 960,
+              "fit_and_complete_certification_s": 0.03461824299301952,
+              "heldout_span_check_s": 0.0035458719939924777,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 777,
+              "fit_and_complete_certification_s": 0.03513523300352972,
+              "heldout_span_check_s": 0.0035244030004832894,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 512,
+              "rank": 76,
+              "map_body_bytes": 917,
+              "fit_and_complete_certification_s": 0.03390662799938582,
+              "heldout_span_check_s": 0.0034671910107135773,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 777,
+              "fit_and_complete_certification_s": 0.034994809990166686,
+              "heldout_span_check_s": 0.0035632229992188513,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 842,
+              "fit_and_complete_certification_s": 0.03535060799913481,
+              "heldout_span_check_s": 0.003616553993197158,
+              "accepted": 31,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 971,
+              "fit_and_complete_certification_s": 0.035286896003526635,
+              "heldout_span_check_s": 0.003568442989489995,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 512,
+              "rank": 79,
+              "map_body_bytes": 797,
+              "fit_and_complete_certification_s": 0.035346817996469326,
+              "heldout_span_check_s": 0.0036199239984853193,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 512,
+              "rank": 78,
+              "map_body_bytes": 735,
+              "fit_and_complete_certification_s": 0.03483197701280005,
+              "heldout_span_check_s": 0.003525941996485926,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 512,
+              "rank": 80,
+              "map_body_bytes": 820,
+              "fit_and_complete_certification_s": 0.03530918699107133,
+              "heldout_span_check_s": 0.0036362139944685623,
+              "accepted": 30,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 316,
+              "rank": 74,
+              "map_body_bytes": 988,
+              "fit_and_complete_certification_s": 0.022253808012465015,
+              "heldout_span_check_s": 0.0033044179872376844,
+              "accepted": 31,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 80,
+          "sum_separate_query_ranks_model": 1241,
+          "map_body_bytes_sum": 13360,
+          "fit_and_certification_s_sum": 0.5444285079865949,
+          "uniform_source_ID_replacement_acceptance_fraction": 0.9507409954977488
+        },
+        "public_schema": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.02049920200079214,
+              "heldout_span_check_s": 0.0034511810081312433,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020718546002171934,
+              "heldout_span_check_s": 0.0035607829922810197,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020708715994260274,
+              "heldout_span_check_s": 0.0035307729995111004,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020606304009561427,
+              "heldout_span_check_s": 0.0035652529913932085,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020590633008396253,
+              "heldout_span_check_s": 0.003553023998392746,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020630543993320316,
+              "heldout_span_check_s": 0.003552613008650951,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020857850002357736,
+              "heldout_span_check_s": 0.0035559230018407106,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020746397000038996,
+              "heldout_span_check_s": 0.003530281988787465,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020542943006148562,
+              "heldout_span_check_s": 0.003484070999547839,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.02062239400402177,
+              "heldout_span_check_s": 0.00356986399856396,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020627883990528062,
+              "heldout_span_check_s": 0.0035990739997942,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.020623885007807985,
+              "heldout_span_check_s": 0.0035485029948176816,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.02064765499380883,
+              "heldout_span_check_s": 0.0035607939935289323,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.02064176500425674,
+              "heldout_span_check_s": 0.0035420130006968975,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 512,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.02058052299253177,
+              "heldout_span_check_s": 0.0035271929955342785,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 316,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.013307073997566476,
+              "heldout_span_check_s": 0.003516912998748012,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 104,
+          "sum_separate_query_ranks_model": 1664,
+          "map_body_bytes_sum": 7744,
+          "fit_and_certification_s_sum": 0.32295231500756927,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "raw": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020454080993658863,
+              "heldout_span_check_s": 0.0044566620053956285,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 1,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020631574996514246,
+              "heldout_span_check_s": 0.004547502991044894,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 2,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.0204945719888201,
+              "heldout_span_check_s": 0.004525312993791886,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 3,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.02052519300195854,
+              "heldout_span_check_s": 0.004585204005707055,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 4,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020545832012430765,
+              "heldout_span_check_s": 0.00458543500280939,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 5,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020560153003316373,
+              "heldout_span_check_s": 0.004545833988231607,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 6,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020556143004796468,
+              "heldout_span_check_s": 0.004562914007692598,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 7,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020477901998674497,
+              "heldout_span_check_s": 0.004469701001653448,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 8,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020452680997550488,
+              "heldout_span_check_s": 0.00449558200489264,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 9,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020534833005513065,
+              "heldout_span_check_s": 0.004566843999782577,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 10,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.02058575399860274,
+              "heldout_span_check_s": 0.0045637129951501265,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 11,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.02054997299273964,
+              "heldout_span_check_s": 0.0045148530043661594,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 12,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.02056513300340157,
+              "heldout_span_check_s": 0.004589214993757196,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 13,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.02049747100681998,
+              "heldout_span_check_s": 0.0045463540009222925,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 14,
+              "rows": 512,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.020483570988290012,
+              "heldout_span_check_s": 0.004532972991000861,
+              "accepted": 32,
+              "tested": 32
+            },
+            {
+              "block": 15,
+              "rows": 316,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.013367025007028133,
+              "heldout_span_check_s": 0.004497072994126938,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 126,
+          "sum_separate_query_ranks_model": 2016,
+          "map_body_bytes_sum": 2400,
+          "fit_and_certification_s_sum": 0.3212818920001155,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        }
+      }
+    },
+    {
+      "dataset": "mushroom",
+      "dataset_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "dimension": 126,
+      "block_size": 7996,
+      "blocks": 1,
+      "index_count": 7996,
+      "training_source_ids": [
+        6147,
+        1244,
+        1111,
+        5297,
+        166,
+        4139,
+        6603,
+        2228,
+        2177,
+        6975,
+        6816,
+        7837,
+        1008,
+        801,
+        1252,
+        2581,
+        6227,
+        7400,
+        5421,
+        3852,
+        376,
+        5786,
+        1862,
+        2936,
+        6967,
+        2580,
+        4268,
+        926,
+        5688,
+        571,
+        3013,
+        4617
+      ],
+      "evaluation_source_ids": [
+        893,
+        687,
+        3851,
+        6760,
+        5697,
+        1698,
+        5335,
+        2453,
+        5096,
+        517,
+        8074,
+        3876,
+        55,
+        3601,
+        56,
+        7265,
+        1926,
+        5271,
+        4079,
+        4325,
+        751,
+        1098,
+        4019,
+        5281,
+        1841,
+        7746,
+        6658,
+        4995,
+        5665,
+        7293,
+        2945,
+        7950
+      ],
+      "charged_catalog_exploration_s": 2.1988782359985635,
+      "modes": {
+        "fit": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 7996,
+              "rank": 85,
+              "map_body_bytes": 752,
+              "fit_and_complete_certification_s": 0.5098815639939858,
+              "heldout_span_check_s": 0.0028332579968264326,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 85,
+          "sum_separate_query_ranks_model": 85,
+          "map_body_bytes_sum": 752,
+          "fit_and_certification_s_sum": 0.5098815639939858,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "reserve4": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 7996,
+              "rank": 85,
+              "map_body_bytes": 752,
+              "fit_and_complete_certification_s": 0.5297582729981514,
+              "heldout_span_check_s": 0.0028160379879409447,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 85,
+          "sum_separate_query_ranks_model": 85,
+          "map_body_bytes_sum": 752,
+          "fit_and_certification_s_sum": 0.5297582729981514,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "reserve16": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 7996,
+              "rank": 85,
+              "map_body_bytes": 752,
+              "fit_and_complete_certification_s": 0.5261527289985679,
+              "heldout_span_check_s": 0.0028296689997659996,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 85,
+          "sum_separate_query_ranks_model": 85,
+          "map_body_bytes_sum": 752,
+          "fit_and_certification_s_sum": 0.5261527289985679,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "public_schema": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 7996,
+              "rank": 104,
+              "map_body_bytes": 484,
+              "fit_and_complete_certification_s": 0.30777125399617944,
+              "heldout_span_check_s": 0.003636234992882237,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 104,
+          "sum_separate_query_ranks_model": 104,
+          "map_body_bytes_sum": 484,
+          "fit_and_certification_s_sum": 0.30777125399617944,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        },
+        "raw": {
+          "blocks": [
+            {
+              "block": 0,
+              "rows": 7996,
+              "rank": 126,
+              "map_body_bytes": 150,
+              "fit_and_complete_certification_s": 0.3022683619929012,
+              "heldout_span_check_s": 0.004614044999470934,
+              "accepted": 32,
+              "tested": 32
+            }
+          ],
+          "maximum_rank": 126,
+          "sum_separate_query_ranks_model": 126,
+          "map_body_bytes_sum": 150,
+          "fit_and_certification_s_sum": 0.3022683619929012,
+          "uniform_source_ID_replacement_acceptance_fraction": 1.0
+        }
+      }
+    }
+  ],
+  "scope": "Exact finite-field certification and independent reconstruction. Hypothetical source-row replacements, disjoint training/evaluation slices but previously explored public datasets. No actual edit-frequency, HE latency/noise, layout optimization, online policy or novelty claim. A public schema may reserve more dimensions while avoiding data-derived basis discovery; its columns/state still cost work."
+}

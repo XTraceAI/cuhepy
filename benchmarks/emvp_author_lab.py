@@ -81,6 +81,7 @@ def main():
                   round(sum(s["online_s"] for s in case["samples"]) * 1000 / args.queries, 3), file=sys.stderr, flush=True)
     paths = [Path(__file__), ROOT / "experiments/bfv_search_lab/binary_fixtures.py",
              ROOT / "experiments/bfv_search_lab/references/emvp_author_adapter/main.go",
+             ROOT / "experiments/bfv_search_lab/references/emvp_author_adapter/main_test.go",
              ROOT / "experiments/bfv_search_lab/references/emvp_author_adapter/go.mod"]
     result = metadata(paths)
     external_files = [AUTHOR / name for name in subprocess.check_output(["git", "ls-files"], cwd=AUTHOR, text=True).splitlines()
@@ -92,7 +93,7 @@ def main():
                   author_repository="https://github.com/SecretKeyCrypto/Encrypted-Matrix-Vector-Products",
                   dataset=args.dataset, dataset_sha256=data.sha256, split_seed=3001, dimension=data.dimension,
                   index_count=len(rows), query_source_ids=query_ids, cases=cases,
-                  compiler="go1.23.12 linux/amd64; author run.sh C++ -O3 -march=native; adapter -buildvcs=false; GOMAXPROCS=1",
+                  compiler="go1.23.12 linux/amd64; author run.sh C++ -O3 -march=native; adapter -buildvcs=false; GOMAXPROCS=1 + runtime.LockOSThread",
                   gate_soundness_scope="Own conditional complete public encoded-response check before author private decoding; "
                       "1024/65537^9 plus hidden AES-CTR challenge hybrid, trusted epoch/index/pinned requests and no private side channels. "
                       "Not a proof of author transcript/privacy or reviewed composition.",

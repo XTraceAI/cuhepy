@@ -146,3 +146,18 @@ and its exact/encrypted base tests pass; complete-cost measurement is next.
 The EMVP authors' original Go/C++ artifact was found via the pinned paper and
 cloned at `856762f5925fe873bb5cbc0401ceb5a44568efa9`. It is not yet built or
 measured. Production/company source and earlier checkpoints remain intact.
+
+## 2026-09-30: private deltas, base identity and original author control
+
+| Completed subcomponent | Result class / evidence | Return-to-plan decision |
+|---|---|---|
+| E54 fixed-base private corrections | **Measured/exact:** 61.60% / 36.15% complete-cost savings on two synthetic sizes; all encrypted diagnostics pass; [report](client-delta-results.md) | Ordinary delta caching is the stronger control, not a novelty claim. Private authorized snapshot delivery, insert/delete and real workloads remain. |
+| E55 checkpoint/exception frontier | **Exact within count model:** exhaustive schedules agree; base identity affects future cancellation despite identical current counts/costs; [analysis](overlay-lifetime-analysis.md) | Calibrate prices and a causal policy; no measured algorithmic gain follows yet. |
+| Original EMVP Go/C++ artifact | **Measured:** complete gated cached scans 5.942 / 1.363 ms, substantially larger replies; [report](original-emvp-results.md) | Keep original low-persistent-state control and its transient regeneration cost. Parameter/entropy and recursive BNTM gaps remain. |
+| Original adapter affinity failure | **Counterexample/fix:** unpinned key-only Semeion failed exact scores; pinned OS-thread sequences pass both datasets and forced-GC regeneration tests | Preserve failed raw and source/binary versions; passing upstream tests alone was insufficient. Author source unchanged. |
+| Static-code edit with reused mask | **Exact negative:** a systematic encoded-column difference exposes a binary toggle | Do not count a reused-mask static code edit as a privacy-preserving cheap update. Track mask provenance in future planner states. |
+| Replacement span screen | **Exact algebra/measured fits:** learned reserves offer zero Semeion acceptance and small Mushroom gains; global/schema controls accept all tested rows; [report](span-reserve-results.md) | No learned-reserve promotion. Next price selective encrypted tile rebuilding and bounded causal delta/rebase controls. |
+
+These are completed subcomponents, not acceptance of their enclosing P00–P12
+packages. Actual cache-retention constraints, complete protocol/parameter
+assurance and all paper promotion gates remain open.

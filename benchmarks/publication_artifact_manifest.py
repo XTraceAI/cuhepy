@@ -43,6 +43,12 @@ def locate(name, expected):
                 return {"path": relative, "sha256": expected, "location": "git", "revision": revision}
     if path.is_file() and digest(path.read_bytes()) == expected:
         return {"path": str(path.relative_to(WORKSPACE)), "sha256": expected, "location": "workspace-cache"}
+    # External adapters can be rebuilt at the same requested cache path. Keep
+    # their old binary by content hash instead of rewriting a historical run.
+    history = WORKSPACE / "research-data/reference-artifacts-20260930/runtime-history" / expected / path.name
+    if history.is_file() and digest(history.read_bytes()) == expected:
+        return {"path": str(history.relative_to(WORKSPACE)), "requested_path": name,
+                "sha256": expected, "location": "workspace-cache"}
     return {"path": name, "sha256": expected, "location": "unresolved"}
 
 
@@ -67,6 +73,7 @@ def create():
             "baseline": "02e06c0f5636def284ed6864b3e208538fcb10a6", "raw_runs": runs,
             "source_versions": list(sources.values()),
             "external_pins": {"secure-vector-search": "519148cf3fddc11277a111774ca8cb92d891e0e3",
+                              "original-emvp-author": "856762f5925fe873bb5cbc0401ceb5a44568efa9",
                               "lattice-estimator": "53da5982597709ba0fdf94ea37a84d822310fd84"},
             "scope": "Identity/retention manifest of TRACKED completed publication pilots. "
                      "Ignored partial/preliminary duplicates are excluded. Exact historical Git blobs are located by SHA. "

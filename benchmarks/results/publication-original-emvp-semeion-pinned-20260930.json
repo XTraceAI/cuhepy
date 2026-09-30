@@ -1,0 +1,2100 @@
+{
+  "utc": "2026-09-30T18:45:51.032022+00:00",
+  "command": [
+    "benchmarks/emvp_author_lab.py",
+    "--dataset",
+    "semeion",
+    "--cache",
+    "../research-data/uci-20260927",
+    "--json-out",
+    "benchmarks/results/publication-original-emvp-semeion-pinned-20260930.json"
+  ],
+  "git_head": "28791af386885e4edfb24c6503cf7cb4c83c8627",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/emvp_author_lab.py": "d81102bb2d07de30664c8918787155eb03972e99dedabe8136ca0eab2aa03a5c",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/references/emvp_author_adapter/main.go": "1b6c1b33a25eb47383d2317a66eca076c9f5f70c94397247cf767801955974e9",
+    "experiments/bfv_search_lab/references/emvp_author_adapter/main_test.go": "6b0996037bdf142aaf5248232a121d40c71949ab5383f5de49a1ddfa21542abb",
+    "experiments/bfv_search_lab/references/emvp_author_adapter/go.mod": "04b26456aa79ed1b038180b10a82b412de9f5b151162e0593e55def37cb343cf",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/CppWrapper.go": "b98a79dea77cd55d41a2fa480f5d20da53c3b6aadc48f0a532e34df2a4438b4a",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/Fields.go": "11c1c4695874c3a08bddbf8d6b268f3a3252a7044a56c6f52eda971d72789cda",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/Matrix.go": "87af88a8abd048333914282a58e93de195658e33dd6a84934eabbac9683e4908",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/dataobj.go": "f21e6642f8dabff0ee36cfee143f12a21db5c4d61789d7c0a5ad9803ce94b3ea",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/dataobj.h": "2dd397db6c089a388689c39e8026013689895258c61890d112551e50118652cf",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/fields.cpp": "eeacec8a85df675339844bd17628cc00f06cfc022f29764edd09ce57a1087ab5",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/fields.h": "279886819a028b0ae6e9ff8b8963826768b2b54c3b20f776fb172f26169a0f16",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/mod_simd.h": "5d4f0fdc5437c5044087ef9ceea1960587d8910369df94dc753cfa534e21c567",
+    "../research-data/reference-artifacts-20260930/emvp-author/ecc/CppWrapper.go": "f79afbdeacf9df029d4a44be94d9814040fd03f0f051730ce81e1faff1c2faea",
+    "../research-data/reference-artifacts-20260930/emvp-author/ecc/ECC.go": "8a035901e624e7cf95dc5f0f5cf1574e3d9643215e79ccc14a259d074f5cc7a2",
+    "../research-data/reference-artifacts-20260930/emvp-author/ecc/ReedSolomon.cpp": "d56b87f819e408f5e5a2c696cc40796e3ede089621c3fb53dec4cec71fac5387",
+    "../research-data/reference-artifacts-20260930/emvp-author/ecc/ReedSolomon.go": "8d6f6124a14bdae8275b753c289b84179208f15b4f64d7e5d2eb404859199240",
+    "../research-data/reference-artifacts-20260930/emvp-author/ecc/ReedSolomon.h": "86cc3e0417b01e0428b29164146353d0377f50d4840fcd09ecf952e7f9d82135",
+    "../research-data/reference-artifacts-20260930/emvp-author/experiments-attacks/include/constants.h": "41bad738f4594eb7aa44b10e2121846784f0ed501b097512f7ef70804cfa73ed",
+    "../research-data/reference-artifacts-20260930/emvp-author/experiments-attacks/include/prvector.h": "09ec63a007efe6ce17a0a00796174445b761e3f688ce82878714793d84cc6156",
+    "../research-data/reference-artifacts-20260930/emvp-author/experiments-attacks/include/utils.h": "6a4259fa4a6b357103b18001071a11849148561985784bc4cea86aa707410ef3",
+    "../research-data/reference-artifacts-20260930/emvp-author/experiments-attacks/src/main-attacks.cpp": "8eec4d48676ae9d3ff7c53d12513021ac562cf48dba1a7c39a763f10e60d7976",
+    "../research-data/reference-artifacts-20260930/emvp-author/experiments-attacks/src/prvector.cpp": "61ffd9165d89cdc5a5d4d1d1ccebf88cd564cc403c8d56ec394dd530e538cbce",
+    "../research-data/reference-artifacts-20260930/emvp-author/experiments-attacks/src/small-field-attacks.cpp": "09b7e0f3ebc1aa8cb384ce02aaffbbc2dd689c788f02f349ac60fb4aa8be7793",
+    "../research-data/reference-artifacts-20260930/emvp-author/experiments-attacks/src/utils.cpp": "b8fbe55ff19794ea6d5ce7fc7db12d0656d4014ea2ba1e853eecb5baefb10669",
+    "../research-data/reference-artifacts-20260930/emvp-author/go.mod": "3209a3b0103366dbad4997d06bd52cc3de8cc98b28cacc6257611ee0c3fe9155",
+    "../research-data/reference-artifacts-20260930/emvp-author/linearcode/EvaluationCode.go": "61e173fc973044016ac087eb5b75d1c18bf1883fb1b3066d6ea6414dc0d00f67",
+    "../research-data/reference-artifacts-20260930/emvp-author/linearcode/LinearCode.go": "2820f04e83296787f035c38e1f25d61a8dc05bb20a6570e40d3f2b7b9a075730",
+    "../research-data/reference-artifacts-20260930/emvp-author/linearcode/RandomLinearCode.go": "80808d9bb999ced721672025c5f286dcd1a7d65043058533b9902387e14a197c",
+    "../research-data/reference-artifacts-20260930/emvp-author/main.go": "7531bb038e7638befa0dc8bdd22788bf076dbef70ab580b80adb3087074f96ba",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/CppWrapper.go": "88d129ad783688dfa4b73b0aeb86e2997c0e7d8e4a0befb79b9df24b07317a0f",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/lpnMVP.go": "c43aabc508fcd4e72283c90587427541e291ccab2b117e3c75f060bd6f919a89",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/matrixShapeTransform.cpp": "7f20541efd81d08bce9e6d5eb3cba4bba7ec69909a4d6c05aec4edc9c230ded5",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/matrixShapeTransform.h": "5ae53a4738cb741dc6e9975b62f3d1165d5f30e8ff4ada91a001bdcb9e2c3bd0",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/mvp.cpp": "f189506dfa535a2a92cad71ceab82f69793583a39cd594a8286b5c8c92238e90",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/mvp.h": "47aaee0d9df0b01a91393bc6aaf48fe3c8c899e3987963090bc0e586b3ee81ff",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/mvp_test.go": "a9cef35e07f5089bad0196d1457c513c9eaa642343f26371e8ca63494c7db209",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/ringSlsnMVP.go": "9bfdfe375d89925ad4659302f29e4448dad4ada8f1e15410ad30cf9beb0292fc",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/slsnMVP.go": "28a853bb71038109d0b70a815f872106f676d5ba9bc8c75317652c28c3241d96",
+    "../research-data/reference-artifacts-20260930/emvp-author/pir/BasePIR.go": "15f5affb9b2cb6966c68b5f565bf75af3af4bab0739a61c72b41bcb052e1a77d",
+    "../research-data/reference-artifacts-20260930/emvp-author/pir/BitMVP.h": "a29b43e8ce880f2e8effba1f7d9d22ba9bdb21652e448913bb47c8b31d127346",
+    "../research-data/reference-artifacts-20260930/emvp-author/pir/CppWrapper.go": "f9a5792e33736c783e200edc0644cf68456130467d25dc5dac52cf80e3a59676",
+    "../research-data/reference-artifacts-20260930/emvp-author/pir/MixedSLSNPIR.go": "3d093f16aeacdb37f1cfe3b5c391f083d4ae0975ea9f60cb311fa84acf96f749",
+    "../research-data/reference-artifacts-20260930/emvp-author/pir/RandomLinearCode.go": "bf838a8941505a191383183bd2b4f122539e731b312aec578d264988878006f2",
+    "../research-data/reference-artifacts-20260930/emvp-author/pir/matrix.go": "e952da9264d67fc52ae2f19040d5cbde677e94fa4230e4c49ec53eeee538d891",
+    "../research-data/reference-artifacts-20260930/emvp-author/pir/pir.go": "856a183654e23a282b72a051e55fb42897a1962445f393c2d518da2890f11422",
+    "../research-data/reference-artifacts-20260930/emvp-author/pir/pir_test.go": "0227f5993638452a8dd5147d81c791bf0ef47fc61097595436c3e9d788fd3a1b",
+    "../research-data/reference-artifacts-20260930/emvp-author/run.sh": "56fc57f636bc141b46d8e17fdf596afab94a9e0b232155ff3e3bb1107431f8d4",
+    "../research-data/reference-artifacts-20260930/emvp-author/tdm/CppWrapper.go": "873a7d3e8c53548753637d45ef28cc0f49ccd9db3268e521810f76e75b7caaf6",
+    "../research-data/reference-artifacts-20260930/emvp-author/tdm/NTT.cpp": "e95cf2ccf65f9eae008283450d26bf88fe0df478d60d378e1b84f6515d162827",
+    "../research-data/reference-artifacts-20260930/emvp-author/tdm/NTT.h": "2740348c4791cf8324ba9092c105bcaee4fe08d88e7d62bf6c88a45d5bbd3115",
+    "../research-data/reference-artifacts-20260930/emvp-author/tdm/TDM.go": "b4c17e2da8f94cb82bbda167a32dc5bb5f46426280ca3a97851ebf3ca7c5c458",
+    "../research-data/reference-artifacts-20260930/emvp-author/utils/CppWrapper.go": "637841ab92e1528cdadfc1a3c6fe92324c75f3aa23ee6dfe798409eae56f78f0",
+    "../research-data/reference-artifacts-20260930/emvp-author/utils/aes_rnd.h": "4b68d0795ad48798891492917d0f9570f231257f12a165d2dfd43082b4e25e12",
+    "../research-data/reference-artifacts-20260930/emvp-author/utils/getParams.go": "f8819966974610851f336138c380cbe81d3a403cef62b3afb533134bbc31feaa",
+    "../research-data/reference-artifacts-20260930/emvp-author/utils/rnd_api.cpp": "6d1baaa568f994c73850f49ee9c4d4cd8fe818a9846d8ecf03d22e7e46f67d57",
+    "../research-data/reference-artifacts-20260930/emvp-author/utils/rnd_api.h": "6ce541c63eb4006bf683327eb35224493737e60b25003fd058b10d142951836c",
+    "../research-data/reference-artifacts-20260930/emvp-author/utils/utils.go": "bd34aae0e2b35d03f977f5995c38f1fb0abe18b6cba84e7a4092d166b2f554db",
+    "../research-data/reference-artifacts-20260930/emvp-author-adapter": "373977311893f3fb1209f570a756d290e216b08fc98c632e35e61daf6843cbc5",
+    "../research-data/reference-artifacts-20260930/emvp-author/tdm/libNTT.a": "7cb53e12120aa7e9dc57e0c1a756d0afa3c88ca4fd29c80a7f62ff08957dd520",
+    "../research-data/reference-artifacts-20260930/emvp-author/dataobjects/libdataobjects.a": "a008c8ce10b8f577f4186da3d837768781dec22e7b1c88bec355eaaffbfc7bcb",
+    "../research-data/reference-artifacts-20260930/emvp-author/ecc/libReedSolomon.a": "52925306400f2f959d58b2e7b77755cb13b59b6079ee087347be2a2fa4217be4",
+    "../research-data/reference-artifacts-20260930/emvp-author/mvp/libMVP.a": "501d3a9489cd8bc23a2d4acbf5e68a1ce7baf0c041e89d8aaa7cfb65160fe5a5",
+    "../research-data/reference-artifacts-20260930/emvp-author/utils/libutils.a": "4f1281d31bd207cd95985f8817a6e6ae563ca1defaec2e962fad157b75c4ea0f"
+  },
+  "kind": "original_emvp_author_exact_binary_reference",
+  "author_revision": "856762f5925fe873bb5cbc0401ceb5a44568efa9",
+  "author_repository": "https://github.com/SecretKeyCrypto/Encrypted-Matrix-Vector-Products",
+  "dataset": "semeion",
+  "dataset_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+  "split_seed": 3001,
+  "dimension": 256,
+  "index_count": 1465,
+  "query_source_ids": [
+    202,
+    217,
+    1549,
+    440,
+    650,
+    209,
+    852,
+    832
+  ],
+  "cases": [
+    {
+      "key_only": false,
+      "native_thread_pinned": true,
+      "native_word_body_models": {
+        "additional_private_gate_bytes": 0,
+        "client_preloaded_code_bytes": 813056,
+        "encoded_index_bytes": 6153000,
+        "gate_challenge_scratch_bytes_model": 5860,
+        "key_only_code_regeneration_scratch_bytes_model": 0,
+        "key_seed_and_context_bytes_model": 96,
+        "private_query_mask_and_block_coeff_body_bytes_model": 6000,
+        "query_bytes": 4200,
+        "response_bytes": 205100
+      },
+      "profile": {
+        "b": 30,
+        "field_bits": 17,
+        "k": 794,
+        "l": 256,
+        "m": 1465,
+        "n": 1050,
+        "p": 65537,
+        "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance",
+        "s": 35
+      },
+      "samples": [
+        {
+          "binary_query_conversion_s": 9.05e-06,
+          "decode_s": 2.8981e-05,
+          "online_s": 0.00101488,
+          "ordinal": 0,
+          "query_s": 0.000515871,
+          "score_conversion_and_top3_s": 0.000120982,
+          "server_s": 0.000337966,
+          "top3": [
+            [
+              39,
+              1216
+            ],
+            [
+              41,
+              208
+            ],
+            [
+              41,
+              215
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "656838677522789744ece2fdd467e29fd7fb93966799896bfc7836747e3aea76"
+        },
+        {
+          "binary_query_conversion_s": 1.72e-06,
+          "decode_s": 1.104e-05,
+          "online_s": 0.000942318,
+          "ordinal": 1,
+          "query_s": 0.000475599,
+          "score_conversion_and_top3_s": 0.000115912,
+          "server_s": 0.000337287,
+          "top3": [
+            [
+              31,
+              1229
+            ],
+            [
+              42,
+              817
+            ],
+            [
+              43,
+              406
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "c23925236b9a3923b201b8c8a3571e74d31fa37097f3fc51e8fc47f99ed8befa"
+        },
+        {
+          "binary_query_conversion_s": 1.82e-06,
+          "decode_s": 1.361e-05,
+          "online_s": 0.000940278,
+          "ordinal": 2,
+          "query_s": 0.000473069,
+          "score_conversion_and_top3_s": 0.000112672,
+          "server_s": 0.000338397,
+          "top3": [
+            [
+              48,
+              575
+            ],
+            [
+              51,
+              771
+            ],
+            [
+              54,
+              1319
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ad6b713fe526f15f78e76c56d9689ea1e2705632492d877ae2f52dab1d76a6fa"
+        },
+        {
+          "binary_query_conversion_s": 1.57e-06,
+          "decode_s": 1.382e-05,
+          "online_s": 0.000940899,
+          "ordinal": 3,
+          "query_s": 0.000466519,
+          "score_conversion_and_top3_s": 0.000115813,
+          "server_s": 0.000342407,
+          "top3": [
+            [
+              55,
+              40
+            ],
+            [
+              58,
+              427
+            ],
+            [
+              62,
+              1262
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ec06860dd2d6689b084b13b4ce0e9bdd09a81125fb7820cc31d7fb2db79b3fee"
+        },
+        {
+          "binary_query_conversion_s": 2.64e-06,
+          "decode_s": 1.704e-05,
+          "online_s": 0.000976858,
+          "ordinal": 4,
+          "query_s": 0.000473369,
+          "score_conversion_and_top3_s": 0.000115242,
+          "server_s": 0.000367837,
+          "top3": [
+            [
+              34,
+              45
+            ],
+            [
+              34,
+              654
+            ],
+            [
+              35,
+              41
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "eb46d6cad62f9ca62ada5c07da2b1afd67f894eecac6ab215949baffe15ccb4a"
+        },
+        {
+          "binary_query_conversion_s": 1.73e-06,
+          "decode_s": 1.372e-05,
+          "online_s": 0.000951349,
+          "ordinal": 5,
+          "query_s": 0.0004747,
+          "score_conversion_and_top3_s": 0.000116763,
+          "server_s": 0.000343786,
+          "top3": [
+            [
+              29,
+              413
+            ],
+            [
+              29,
+              814
+            ],
+            [
+              31,
+              799
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "251d06a72c2303036942eedb1454da9c9e5ebd5407ff1cd8cc72fe5c652a9f34"
+        },
+        {
+          "binary_query_conversion_s": 1.5e-06,
+          "decode_s": 1.3801e-05,
+          "online_s": 0.000977479,
+          "ordinal": 6,
+          "query_s": 0.000465259,
+          "score_conversion_and_top3_s": 0.000149323,
+          "server_s": 0.000346796,
+          "top3": [
+            [
+              29,
+              1238
+            ],
+            [
+              32,
+              231
+            ],
+            [
+              32,
+              856
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "b24def2f604ad4d6cd54400ed77dd70e49a8c0e7087de3c68f87f948e078116c"
+        },
+        {
+          "binary_query_conversion_s": 1.72e-06,
+          "decode_s": 1.243e-05,
+          "online_s": 0.000957778,
+          "ordinal": 7,
+          "query_s": 0.000476809,
+          "score_conversion_and_top3_s": 0.000116262,
+          "server_s": 0.000349887,
+          "top3": [
+            [
+              30,
+              811
+            ],
+            [
+              35,
+              412
+            ],
+            [
+              36,
+              18
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "0be7d6c42ac957d041a14aee6ac6dd9ef27f526561c9c5eaaaf022e29d3094f3"
+        }
+      ],
+      "scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance.",
+      "setup": {
+        "TDM_mask_s": 0.555251975,
+        "binary_input_matrix_s": 0.00257797,
+        "complete_gate_s": 0,
+        "encode_s": 0.0439522,
+        "key_s": 0.001887907
+      },
+      "verified": false,
+      "repetition": 0,
+      "degree": 28,
+      "two_author_algebraic_screen_inequalities_met": true,
+      "complete_setup_plus_all_queries_s": 0.611371891
+    },
+    {
+      "key_only": false,
+      "native_thread_pinned": true,
+      "native_word_body_models": {
+        "additional_private_gate_bytes": 38088,
+        "client_preloaded_code_bytes": 813056,
+        "encoded_index_bytes": 6153000,
+        "gate_challenge_scratch_bytes_model": 5860,
+        "key_only_code_regeneration_scratch_bytes_model": 0,
+        "key_seed_and_context_bytes_model": 96,
+        "private_query_mask_and_block_coeff_body_bytes_model": 6000,
+        "query_bytes": 4200,
+        "response_bytes": 205100
+      },
+      "profile": {
+        "b": 30,
+        "field_bits": 17,
+        "k": 794,
+        "l": 256,
+        "m": 1465,
+        "n": 1050,
+        "p": 65537,
+        "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance",
+        "s": 35
+      },
+      "samples": [
+        {
+          "binary_query_conversion_s": 9.53e-06,
+          "decode_s": 2.9391e-05,
+          "online_s": 0.001423717,
+          "ordinal": 0,
+          "query_s": 0.00052498,
+          "score_conversion_and_top3_s": 0.000126622,
+          "server_s": 0.000356837,
+          "tampered_and_truncated_rejected_before_private_decode": true,
+          "top3": [
+            [
+              39,
+              1216
+            ],
+            [
+              41,
+              208
+            ],
+            [
+              41,
+              215
+            ]
+          ],
+          "verify_s": 0.000372747,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "656838677522789744ece2fdd467e29fd7fb93966799896bfc7836747e3aea76"
+        },
+        {
+          "binary_query_conversion_s": 2.17e-06,
+          "decode_s": 1.238e-05,
+          "online_s": 0.001348946,
+          "ordinal": 1,
+          "query_s": 0.0004905,
+          "score_conversion_and_top3_s": 0.000115202,
+          "server_s": 0.000354327,
+          "top3": [
+            [
+              31,
+              1229
+            ],
+            [
+              42,
+              817
+            ],
+            [
+              43,
+              406
+            ]
+          ],
+          "verify_s": 0.000373587,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "c23925236b9a3923b201b8c8a3571e74d31fa37097f3fc51e8fc47f99ed8befa"
+        },
+        {
+          "binary_query_conversion_s": 1.85e-06,
+          "decode_s": 1.3801e-05,
+          "online_s": 0.001355297,
+          "ordinal": 2,
+          "query_s": 0.00047878,
+          "score_conversion_and_top3_s": 0.000113912,
+          "server_s": 0.000356397,
+          "top3": [
+            [
+              48,
+              575
+            ],
+            [
+              51,
+              771
+            ],
+            [
+              54,
+              1319
+            ]
+          ],
+          "verify_s": 0.000389867,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ad6b713fe526f15f78e76c56d9689ea1e2705632492d877ae2f52dab1d76a6fa"
+        },
+        {
+          "binary_query_conversion_s": 1.53e-06,
+          "decode_s": 1.216e-05,
+          "online_s": 0.001330246,
+          "ordinal": 3,
+          "query_s": 0.000483429,
+          "score_conversion_and_top3_s": 0.000115753,
+          "server_s": 0.000348927,
+          "top3": [
+            [
+              55,
+              40
+            ],
+            [
+              58,
+              427
+            ],
+            [
+              62,
+              1262
+            ]
+          ],
+          "verify_s": 0.000367757,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ec06860dd2d6689b084b13b4ce0e9bdd09a81125fb7820cc31d7fb2db79b3fee"
+        },
+        {
+          "binary_query_conversion_s": 3.62e-06,
+          "decode_s": 1.355e-05,
+          "online_s": 0.001352656,
+          "ordinal": 4,
+          "query_s": 0.000490079,
+          "score_conversion_and_top3_s": 0.000112933,
+          "server_s": 0.000351597,
+          "top3": [
+            [
+              34,
+              45
+            ],
+            [
+              34,
+              654
+            ],
+            [
+              35,
+              41
+            ]
+          ],
+          "verify_s": 0.000380147,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "eb46d6cad62f9ca62ada5c07da2b1afd67f894eecac6ab215949baffe15ccb4a"
+        },
+        {
+          "binary_query_conversion_s": 1.75e-06,
+          "decode_s": 1.218e-05,
+          "online_s": 0.001348746,
+          "ordinal": 5,
+          "query_s": 0.000476089,
+          "score_conversion_and_top3_s": 0.000114163,
+          "server_s": 0.000357267,
+          "top3": [
+            [
+              29,
+              413
+            ],
+            [
+              29,
+              814
+            ],
+            [
+              31,
+              799
+            ]
+          ],
+          "verify_s": 0.000386597,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "251d06a72c2303036942eedb1454da9c9e5ebd5407ff1cd8cc72fe5c652a9f34"
+        },
+        {
+          "binary_query_conversion_s": 1.55e-06,
+          "decode_s": 1.413e-05,
+          "online_s": 0.001475398,
+          "ordinal": 6,
+          "query_s": 0.000576781,
+          "score_conversion_and_top3_s": 0.000117522,
+          "server_s": 0.000353607,
+          "top3": [
+            [
+              29,
+              1238
+            ],
+            [
+              32,
+              231
+            ],
+            [
+              32,
+              856
+            ]
+          ],
+          "verify_s": 0.000411058,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "b24def2f604ad4d6cd54400ed77dd70e49a8c0e7087de3c68f87f948e078116c"
+        },
+        {
+          "binary_query_conversion_s": 3.21e-06,
+          "decode_s": 1.212e-05,
+          "online_s": 0.001345886,
+          "ordinal": 7,
+          "query_s": 0.00048353,
+          "score_conversion_and_top3_s": 0.000115272,
+          "server_s": 0.000348986,
+          "top3": [
+            [
+              30,
+              811
+            ],
+            [
+              35,
+              412
+            ],
+            [
+              36,
+              18
+            ]
+          ],
+          "verify_s": 0.000380558,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "0be7d6c42ac957d041a14aee6ac6dd9ef27f526561c9c5eaaaf022e29d3094f3"
+        }
+      ],
+      "scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance.",
+      "setup": {
+        "TDM_mask_s": 0.55494123,
+        "binary_input_matrix_s": 0.002179912,
+        "complete_gate_s": 0.011437211,
+        "encode_s": 0.04547081,
+        "key_s": 0.001893547
+      },
+      "verified": true,
+      "repetition": 0,
+      "degree": 28,
+      "two_author_algebraic_screen_inequalities_met": true,
+      "complete_setup_plus_all_queries_s": 0.626903602
+    },
+    {
+      "key_only": true,
+      "native_thread_pinned": true,
+      "native_word_body_models": {
+        "additional_private_gate_bytes": 0,
+        "client_preloaded_code_bytes": 0,
+        "encoded_index_bytes": 6153000,
+        "gate_challenge_scratch_bytes_model": 5860,
+        "key_only_code_regeneration_scratch_bytes_model": 813056,
+        "key_seed_and_context_bytes_model": 96,
+        "private_query_mask_and_block_coeff_body_bytes_model": 6000,
+        "query_bytes": 4200,
+        "response_bytes": 205100
+      },
+      "profile": {
+        "b": 30,
+        "field_bits": 17,
+        "k": 794,
+        "l": 256,
+        "m": 1465,
+        "n": 1050,
+        "p": 65537,
+        "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance",
+        "s": 35
+      },
+      "samples": [
+        {
+          "binary_query_conversion_s": 9.35e-06,
+          "decode_s": 3.064e-05,
+          "online_s": 0.002645401,
+          "ordinal": 0,
+          "query_s": 0.002140591,
+          "score_conversion_and_top3_s": 0.000121463,
+          "server_s": 0.000341357,
+          "top3": [
+            [
+              39,
+              1216
+            ],
+            [
+              41,
+              208
+            ],
+            [
+              41,
+              215
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "656838677522789744ece2fdd467e29fd7fb93966799896bfc7836747e3aea76"
+        },
+        {
+          "binary_query_conversion_s": 1.71e-06,
+          "decode_s": 1.143e-05,
+          "online_s": 0.002633061,
+          "ordinal": 1,
+          "query_s": 0.002167612,
+          "score_conversion_and_top3_s": 0.000117093,
+          "server_s": 0.000334386,
+          "top3": [
+            [
+              31,
+              1229
+            ],
+            [
+              42,
+              817
+            ],
+            [
+              43,
+              406
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "c23925236b9a3923b201b8c8a3571e74d31fa37097f3fc51e8fc47f99ed8befa"
+        },
+        {
+          "binary_query_conversion_s": 1.83e-06,
+          "decode_s": 1.384e-05,
+          "online_s": 0.002442417,
+          "ordinal": 2,
+          "query_s": 0.002028359,
+          "score_conversion_and_top3_s": 0.000107902,
+          "server_s": 0.000289766,
+          "top3": [
+            [
+              48,
+              575
+            ],
+            [
+              51,
+              771
+            ],
+            [
+              54,
+              1319
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ad6b713fe526f15f78e76c56d9689ea1e2705632492d877ae2f52dab1d76a6fa"
+        },
+        {
+          "binary_query_conversion_s": 1.55e-06,
+          "decode_s": 1.371e-05,
+          "online_s": 0.00206588,
+          "ordinal": 3,
+          "query_s": 0.001651592,
+          "score_conversion_and_top3_s": 0.000109402,
+          "server_s": 0.000288876,
+          "top3": [
+            [
+              55,
+              40
+            ],
+            [
+              58,
+              427
+            ],
+            [
+              62,
+              1262
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ec06860dd2d6689b084b13b4ce0e9bdd09a81125fb7820cc31d7fb2db79b3fee"
+        },
+        {
+          "binary_query_conversion_s": 2.2e-06,
+          "decode_s": 1.705e-05,
+          "online_s": 0.00206917,
+          "ordinal": 4,
+          "query_s": 0.001652712,
+          "score_conversion_and_top3_s": 0.000106762,
+          "server_s": 0.000289756,
+          "top3": [
+            [
+              34,
+              45
+            ],
+            [
+              34,
+              654
+            ],
+            [
+              35,
+              41
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "eb46d6cad62f9ca62ada5c07da2b1afd67f894eecac6ab215949baffe15ccb4a"
+        },
+        {
+          "binary_query_conversion_s": 1.68e-06,
+          "decode_s": 1.0921e-05,
+          "online_s": 0.00206045,
+          "ordinal": 5,
+          "query_s": 0.001653082,
+          "score_conversion_and_top3_s": 0.000108282,
+          "server_s": 0.000285815,
+          "top3": [
+            [
+              29,
+              413
+            ],
+            [
+              29,
+              814
+            ],
+            [
+              31,
+              799
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "251d06a72c2303036942eedb1454da9c9e5ebd5407ff1cd8cc72fe5c652a9f34"
+        },
+        {
+          "binary_query_conversion_s": 1.91e-06,
+          "decode_s": 1.1131e-05,
+          "online_s": 0.00206047,
+          "ordinal": 6,
+          "query_s": 0.001653092,
+          "score_conversion_and_top3_s": 0.000108312,
+          "server_s": 0.000285335,
+          "top3": [
+            [
+              29,
+              1238
+            ],
+            [
+              32,
+              231
+            ],
+            [
+              32,
+              856
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "b24def2f604ad4d6cd54400ed77dd70e49a8c0e7087de3c68f87f948e078116c"
+        },
+        {
+          "binary_query_conversion_s": 1.72e-06,
+          "decode_s": 1.1151e-05,
+          "online_s": 0.00206096,
+          "ordinal": 7,
+          "query_s": 0.001654552,
+          "score_conversion_and_top3_s": 0.000106852,
+          "server_s": 0.000285955,
+          "top3": [
+            [
+              30,
+              811
+            ],
+            [
+              35,
+              412
+            ],
+            [
+              36,
+              18
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "0be7d6c42ac957d041a14aee6ac6dd9ef27f526561c9c5eaaaf022e29d3094f3"
+        }
+      ],
+      "scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance.",
+      "setup": {
+        "TDM_mask_s": 0.561415207,
+        "binary_input_matrix_s": 0.002484139,
+        "complete_gate_s": 0,
+        "encode_s": 0.044139994,
+        "key_s": 0.001950387
+      },
+      "verified": false,
+      "repetition": 0,
+      "degree": 28,
+      "two_author_algebraic_screen_inequalities_met": true,
+      "complete_setup_plus_all_queries_s": 0.6280275359999999
+    },
+    {
+      "key_only": true,
+      "native_thread_pinned": true,
+      "native_word_body_models": {
+        "additional_private_gate_bytes": 38088,
+        "client_preloaded_code_bytes": 0,
+        "encoded_index_bytes": 6153000,
+        "gate_challenge_scratch_bytes_model": 5860,
+        "key_only_code_regeneration_scratch_bytes_model": 813056,
+        "key_seed_and_context_bytes_model": 96,
+        "private_query_mask_and_block_coeff_body_bytes_model": 6000,
+        "query_bytes": 4200,
+        "response_bytes": 205100
+      },
+      "profile": {
+        "b": 30,
+        "field_bits": 17,
+        "k": 794,
+        "l": 256,
+        "m": 1465,
+        "n": 1050,
+        "p": 65537,
+        "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance",
+        "s": 35
+      },
+      "samples": [
+        {
+          "binary_query_conversion_s": 7.72e-06,
+          "decode_s": 5.4921e-05,
+          "online_s": 0.003045539,
+          "ordinal": 0,
+          "query_s": 0.002157272,
+          "score_conversion_and_top3_s": 0.000133433,
+          "server_s": 0.000333396,
+          "tampered_and_truncated_rejected_before_private_decode": true,
+          "top3": [
+            [
+              39,
+              1216
+            ],
+            [
+              41,
+              208
+            ],
+            [
+              41,
+              215
+            ]
+          ],
+          "verify_s": 0.000356727,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "656838677522789744ece2fdd467e29fd7fb93966799896bfc7836747e3aea76"
+        },
+        {
+          "binary_query_conversion_s": 1.97e-06,
+          "decode_s": 1.33e-05,
+          "online_s": 0.003003568,
+          "ordinal": 1,
+          "query_s": 0.002166602,
+          "score_conversion_and_top3_s": 0.000118233,
+          "server_s": 0.000344146,
+          "top3": [
+            [
+              31,
+              1229
+            ],
+            [
+              42,
+              817
+            ],
+            [
+              43,
+              406
+            ]
+          ],
+          "verify_s": 0.000358447,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "c23925236b9a3923b201b8c8a3571e74d31fa37097f3fc51e8fc47f99ed8befa"
+        },
+        {
+          "binary_query_conversion_s": 1.78e-06,
+          "decode_s": 1.134e-05,
+          "online_s": 0.002666941,
+          "ordinal": 2,
+          "query_s": 0.001929487,
+          "score_conversion_and_top3_s": 0.000111922,
+          "server_s": 0.000287106,
+          "top3": [
+            [
+              48,
+              575
+            ],
+            [
+              51,
+              771
+            ],
+            [
+              54,
+              1319
+            ]
+          ],
+          "verify_s": 0.000324606,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ad6b713fe526f15f78e76c56d9689ea1e2705632492d877ae2f52dab1d76a6fa"
+        },
+        {
+          "binary_query_conversion_s": 1.61e-06,
+          "decode_s": 1.113e-05,
+          "online_s": 0.002392416,
+          "ordinal": 3,
+          "query_s": 0.001657112,
+          "score_conversion_and_top3_s": 0.000109702,
+          "server_s": 0.000288576,
+          "top3": [
+            [
+              55,
+              40
+            ],
+            [
+              58,
+              427
+            ],
+            [
+              62,
+              1262
+            ]
+          ],
+          "verify_s": 0.000323456,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ec06860dd2d6689b084b13b4ce0e9bdd09a81125fb7820cc31d7fb2db79b3fee"
+        },
+        {
+          "binary_query_conversion_s": 2.13e-06,
+          "decode_s": 1.103e-05,
+          "online_s": 0.002401487,
+          "ordinal": 4,
+          "query_s": 0.001656173,
+          "score_conversion_and_top3_s": 0.000106482,
+          "server_s": 0.000287295,
+          "top3": [
+            [
+              34,
+              45
+            ],
+            [
+              34,
+              654
+            ],
+            [
+              35,
+              41
+            ]
+          ],
+          "verify_s": 0.000337567,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "eb46d6cad62f9ca62ada5c07da2b1afd67f894eecac6ab215949baffe15ccb4a"
+        },
+        {
+          "binary_query_conversion_s": 1.73e-06,
+          "decode_s": 1.058e-05,
+          "online_s": 0.002384156,
+          "ordinal": 5,
+          "query_s": 0.001653112,
+          "score_conversion_and_top3_s": 0.000108272,
+          "server_s": 0.000287986,
+          "top3": [
+            [
+              29,
+              413
+            ],
+            [
+              29,
+              814
+            ],
+            [
+              31,
+              799
+            ]
+          ],
+          "verify_s": 0.000321706,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "251d06a72c2303036942eedb1454da9c9e5ebd5407ff1cd8cc72fe5c652a9f34"
+        },
+        {
+          "binary_query_conversion_s": 1.45e-06,
+          "decode_s": 1.124e-05,
+          "online_s": 0.002388196,
+          "ordinal": 6,
+          "query_s": 0.001646732,
+          "score_conversion_and_top3_s": 0.000106382,
+          "server_s": 0.000291996,
+          "top3": [
+            [
+              29,
+              1238
+            ],
+            [
+              32,
+              231
+            ],
+            [
+              32,
+              856
+            ]
+          ],
+          "verify_s": 0.000329706,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "b24def2f604ad4d6cd54400ed77dd70e49a8c0e7087de3c68f87f948e078116c"
+        },
+        {
+          "binary_query_conversion_s": 1.78e-06,
+          "decode_s": 1.069e-05,
+          "online_s": 0.002373956,
+          "ordinal": 7,
+          "query_s": 0.001649172,
+          "score_conversion_and_top3_s": 0.000106602,
+          "server_s": 0.000286956,
+          "top3": [
+            [
+              30,
+              811
+            ],
+            [
+              35,
+              412
+            ],
+            [
+              36,
+              18
+            ]
+          ],
+          "verify_s": 0.000318076,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "0be7d6c42ac957d041a14aee6ac6dd9ef27f526561c9c5eaaaf022e29d3094f3"
+        }
+      ],
+      "scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance.",
+      "setup": {
+        "TDM_mask_s": 0.555536435,
+        "binary_input_matrix_s": 0.00257381,
+        "complete_gate_s": 0.01135181,
+        "encode_s": 0.04399067,
+        "key_s": 0.00209742
+      },
+      "verified": true,
+      "repetition": 0,
+      "degree": 28,
+      "two_author_algebraic_screen_inequalities_met": true,
+      "complete_setup_plus_all_queries_s": 0.6362064040000001
+    },
+    {
+      "key_only": true,
+      "native_thread_pinned": true,
+      "native_word_body_models": {
+        "additional_private_gate_bytes": 38088,
+        "client_preloaded_code_bytes": 0,
+        "encoded_index_bytes": 6153000,
+        "gate_challenge_scratch_bytes_model": 5860,
+        "key_only_code_regeneration_scratch_bytes_model": 813056,
+        "key_seed_and_context_bytes_model": 96,
+        "private_query_mask_and_block_coeff_body_bytes_model": 6000,
+        "query_bytes": 4200,
+        "response_bytes": 205100
+      },
+      "profile": {
+        "b": 30,
+        "field_bits": 17,
+        "k": 794,
+        "l": 256,
+        "m": 1465,
+        "n": 1050,
+        "p": 65537,
+        "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance",
+        "s": 35
+      },
+      "samples": [
+        {
+          "binary_query_conversion_s": 6.91e-06,
+          "decode_s": 2.8881e-05,
+          "online_s": 0.00311765,
+          "ordinal": 0,
+          "query_s": 0.002231153,
+          "score_conversion_and_top3_s": 0.000122682,
+          "server_s": 0.000351447,
+          "tampered_and_truncated_rejected_before_private_decode": true,
+          "top3": [
+            [
+              39,
+              1216
+            ],
+            [
+              41,
+              208
+            ],
+            [
+              41,
+              215
+            ]
+          ],
+          "verify_s": 0.000370637,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "656838677522789744ece2fdd467e29fd7fb93966799896bfc7836747e3aea76"
+        },
+        {
+          "binary_query_conversion_s": 1.83e-06,
+          "decode_s": 1.2451e-05,
+          "online_s": 0.003136161,
+          "ordinal": 1,
+          "query_s": 0.002295005,
+          "score_conversion_and_top3_s": 0.000118222,
+          "server_s": 0.000348276,
+          "top3": [
+            [
+              31,
+              1229
+            ],
+            [
+              42,
+              817
+            ],
+            [
+              43,
+              406
+            ]
+          ],
+          "verify_s": 0.000359547,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "c23925236b9a3923b201b8c8a3571e74d31fa37097f3fc51e8fc47f99ed8befa"
+        },
+        {
+          "binary_query_conversion_s": 1.84e-06,
+          "decode_s": 1.4081e-05,
+          "online_s": 0.00308435,
+          "ordinal": 2,
+          "query_s": 0.002228153,
+          "score_conversion_and_top3_s": 0.000113032,
+          "server_s": 0.000348817,
+          "top3": [
+            [
+              48,
+              575
+            ],
+            [
+              51,
+              771
+            ],
+            [
+              54,
+              1319
+            ]
+          ],
+          "verify_s": 0.000377677,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ad6b713fe526f15f78e76c56d9689ea1e2705632492d877ae2f52dab1d76a6fa"
+        },
+        {
+          "binary_query_conversion_s": 1.78e-06,
+          "decode_s": 1.219e-05,
+          "online_s": 0.003082959,
+          "ordinal": 3,
+          "query_s": 0.002210073,
+          "score_conversion_and_top3_s": 0.000117082,
+          "server_s": 0.000351306,
+          "top3": [
+            [
+              55,
+              40
+            ],
+            [
+              58,
+              427
+            ],
+            [
+              62,
+              1262
+            ]
+          ],
+          "verify_s": 0.000389818,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ec06860dd2d6689b084b13b4ce0e9bdd09a81125fb7820cc31d7fb2db79b3fee"
+        },
+        {
+          "binary_query_conversion_s": 3.45e-06,
+          "decode_s": 1.3551e-05,
+          "online_s": 0.003182032,
+          "ordinal": 4,
+          "query_s": 0.002333775,
+          "score_conversion_and_top3_s": 0.000113692,
+          "server_s": 0.000355357,
+          "top3": [
+            [
+              34,
+              45
+            ],
+            [
+              34,
+              654
+            ],
+            [
+              35,
+              41
+            ]
+          ],
+          "verify_s": 0.000361387,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "eb46d6cad62f9ca62ada5c07da2b1afd67f894eecac6ab215949baffe15ccb4a"
+        },
+        {
+          "binary_query_conversion_s": 1.75e-06,
+          "decode_s": 1.269e-05,
+          "online_s": 0.00307593,
+          "ordinal": 5,
+          "query_s": 0.002205613,
+          "score_conversion_and_top3_s": 0.000113863,
+          "server_s": 0.000365307,
+          "top3": [
+            [
+              29,
+              413
+            ],
+            [
+              29,
+              814
+            ],
+            [
+              31,
+              799
+            ]
+          ],
+          "verify_s": 0.000375967,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "251d06a72c2303036942eedb1454da9c9e5ebd5407ff1cd8cc72fe5c652a9f34"
+        },
+        {
+          "binary_query_conversion_s": 1.61e-06,
+          "decode_s": 1.3811e-05,
+          "online_s": 0.003070729,
+          "ordinal": 6,
+          "query_s": 0.002209232,
+          "score_conversion_and_top3_s": 0.000112142,
+          "server_s": 0.000355367,
+          "top3": [
+            [
+              29,
+              1238
+            ],
+            [
+              32,
+              231
+            ],
+            [
+              32,
+              856
+            ]
+          ],
+          "verify_s": 0.000377827,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "b24def2f604ad4d6cd54400ed77dd70e49a8c0e7087de3c68f87f948e078116c"
+        },
+        {
+          "binary_query_conversion_s": 3.31e-06,
+          "decode_s": 1.246e-05,
+          "online_s": 0.00311203,
+          "ordinal": 7,
+          "query_s": 0.002260423,
+          "score_conversion_and_top3_s": 0.000115962,
+          "server_s": 0.000356577,
+          "top3": [
+            [
+              30,
+              811
+            ],
+            [
+              35,
+              412
+            ],
+            [
+              36,
+              18
+            ]
+          ],
+          "verify_s": 0.000359748,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "0be7d6c42ac957d041a14aee6ac6dd9ef27f526561c9c5eaaaf022e29d3094f3"
+        }
+      ],
+      "scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance.",
+      "setup": {
+        "TDM_mask_s": 0.551463136,
+        "binary_input_matrix_s": 0.002331285,
+        "complete_gate_s": 0.01137626,
+        "encode_s": 0.045582162,
+        "key_s": 0.001873976
+      },
+      "verified": true,
+      "repetition": 1,
+      "degree": 28,
+      "two_author_algebraic_screen_inequalities_met": true,
+      "complete_setup_plus_all_queries_s": 0.6374886599999999
+    },
+    {
+      "key_only": true,
+      "native_thread_pinned": true,
+      "native_word_body_models": {
+        "additional_private_gate_bytes": 0,
+        "client_preloaded_code_bytes": 0,
+        "encoded_index_bytes": 6153000,
+        "gate_challenge_scratch_bytes_model": 5860,
+        "key_only_code_regeneration_scratch_bytes_model": 813056,
+        "key_seed_and_context_bytes_model": 96,
+        "private_query_mask_and_block_coeff_body_bytes_model": 6000,
+        "query_bytes": 4200,
+        "response_bytes": 205100
+      },
+      "profile": {
+        "b": 30,
+        "field_bits": 17,
+        "k": 794,
+        "l": 256,
+        "m": 1465,
+        "n": 1050,
+        "p": 65537,
+        "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance",
+        "s": 35
+      },
+      "samples": [
+        {
+          "binary_query_conversion_s": 8.23e-06,
+          "decode_s": 2.7241e-05,
+          "online_s": 0.002683801,
+          "ordinal": 0,
+          "query_s": 0.002183672,
+          "score_conversion_and_top3_s": 0.000124012,
+          "server_s": 0.000338776,
+          "top3": [
+            [
+              39,
+              1216
+            ],
+            [
+              41,
+              208
+            ],
+            [
+              41,
+              215
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "656838677522789744ece2fdd467e29fd7fb93966799896bfc7836747e3aea76"
+        },
+        {
+          "binary_query_conversion_s": 1.82e-06,
+          "decode_s": 1.0911e-05,
+          "online_s": 0.002615841,
+          "ordinal": 1,
+          "query_s": 0.002149622,
+          "score_conversion_and_top3_s": 0.000119752,
+          "server_s": 0.000332916,
+          "top3": [
+            [
+              31,
+              1229
+            ],
+            [
+              42,
+              817
+            ],
+            [
+              43,
+              406
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "c23925236b9a3923b201b8c8a3571e74d31fa37097f3fc51e8fc47f99ed8befa"
+        },
+        {
+          "binary_query_conversion_s": 2.82e-06,
+          "decode_s": 1.5801e-05,
+          "online_s": 0.002451938,
+          "ordinal": 2,
+          "query_s": 0.00203887,
+          "score_conversion_and_top3_s": 0.000107392,
+          "server_s": 0.000286275,
+          "top3": [
+            [
+              48,
+              575
+            ],
+            [
+              51,
+              771
+            ],
+            [
+              54,
+              1319
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ad6b713fe526f15f78e76c56d9689ea1e2705632492d877ae2f52dab1d76a6fa"
+        },
+        {
+          "binary_query_conversion_s": 1.67e-06,
+          "decode_s": 1.0761e-05,
+          "online_s": 0.00208768,
+          "ordinal": 3,
+          "query_s": 0.001660712,
+          "score_conversion_and_top3_s": 0.000114342,
+          "server_s": 0.000299365,
+          "top3": [
+            [
+              55,
+              40
+            ],
+            [
+              58,
+              427
+            ],
+            [
+              62,
+              1262
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ec06860dd2d6689b084b13b4ce0e9bdd09a81125fb7820cc31d7fb2db79b3fee"
+        },
+        {
+          "binary_query_conversion_s": 1.64e-06,
+          "decode_s": 1.676e-05,
+          "online_s": 0.00207617,
+          "ordinal": 4,
+          "query_s": 0.001659692,
+          "score_conversion_and_top3_s": 0.000106432,
+          "server_s": 0.000290896,
+          "top3": [
+            [
+              34,
+              45
+            ],
+            [
+              34,
+              654
+            ],
+            [
+              35,
+              41
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "eb46d6cad62f9ca62ada5c07da2b1afd67f894eecac6ab215949baffe15ccb4a"
+        },
+        {
+          "binary_query_conversion_s": 1.76e-06,
+          "decode_s": 1.0631e-05,
+          "online_s": 0.00205934,
+          "ordinal": 5,
+          "query_s": 0.001648912,
+          "score_conversion_and_top3_s": 0.000107802,
+          "server_s": 0.000289585,
+          "top3": [
+            [
+              29,
+              413
+            ],
+            [
+              29,
+              814
+            ],
+            [
+              31,
+              799
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "251d06a72c2303036942eedb1454da9c9e5ebd5407ff1cd8cc72fe5c652a9f34"
+        },
+        {
+          "binary_query_conversion_s": 1.59e-06,
+          "decode_s": 1.068e-05,
+          "online_s": 0.0020588,
+          "ordinal": 6,
+          "query_s": 0.001649582,
+          "score_conversion_and_top3_s": 0.000106382,
+          "server_s": 0.000289786,
+          "top3": [
+            [
+              29,
+              1238
+            ],
+            [
+              32,
+              231
+            ],
+            [
+              32,
+              856
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "b24def2f604ad4d6cd54400ed77dd70e49a8c0e7087de3c68f87f948e078116c"
+        },
+        {
+          "binary_query_conversion_s": 1.79e-06,
+          "decode_s": 1.0751e-05,
+          "online_s": 0.00206672,
+          "ordinal": 7,
+          "query_s": 0.001653692,
+          "score_conversion_and_top3_s": 0.000109072,
+          "server_s": 0.000290715,
+          "top3": [
+            [
+              30,
+              811
+            ],
+            [
+              35,
+              412
+            ],
+            [
+              36,
+              18
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "0be7d6c42ac957d041a14aee6ac6dd9ef27f526561c9c5eaaaf022e29d3094f3"
+        }
+      ],
+      "scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance.",
+      "setup": {
+        "TDM_mask_s": 0.557224838,
+        "binary_input_matrix_s": 0.002414146,
+        "complete_gate_s": 0,
+        "encode_s": 0.043684866,
+        "key_s": 0.001885107
+      },
+      "verified": false,
+      "repetition": 1,
+      "degree": 28,
+      "two_author_algebraic_screen_inequalities_met": true,
+      "complete_setup_plus_all_queries_s": 0.623309247
+    },
+    {
+      "key_only": false,
+      "native_thread_pinned": true,
+      "native_word_body_models": {
+        "additional_private_gate_bytes": 38088,
+        "client_preloaded_code_bytes": 813056,
+        "encoded_index_bytes": 6153000,
+        "gate_challenge_scratch_bytes_model": 5860,
+        "key_only_code_regeneration_scratch_bytes_model": 0,
+        "key_seed_and_context_bytes_model": 96,
+        "private_query_mask_and_block_coeff_body_bytes_model": 6000,
+        "query_bytes": 4200,
+        "response_bytes": 205100
+      },
+      "profile": {
+        "b": 30,
+        "field_bits": 17,
+        "k": 794,
+        "l": 256,
+        "m": 1465,
+        "n": 1050,
+        "p": 65537,
+        "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance",
+        "s": 35
+      },
+      "samples": [
+        {
+          "binary_query_conversion_s": 7.11e-06,
+          "decode_s": 2.9141e-05,
+          "online_s": 0.001415607,
+          "ordinal": 0,
+          "query_s": 0.00052138,
+          "score_conversion_and_top3_s": 0.000127162,
+          "server_s": 0.000355917,
+          "tampered_and_truncated_rejected_before_private_decode": true,
+          "top3": [
+            [
+              39,
+              1216
+            ],
+            [
+              41,
+              208
+            ],
+            [
+              41,
+              215
+            ]
+          ],
+          "verify_s": 0.000371347,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "656838677522789744ece2fdd467e29fd7fb93966799896bfc7836747e3aea76"
+        },
+        {
+          "binary_query_conversion_s": 1.65e-06,
+          "decode_s": 1.246e-05,
+          "online_s": 0.001348537,
+          "ordinal": 1,
+          "query_s": 0.00048952,
+          "score_conversion_and_top3_s": 0.000119973,
+          "server_s": 0.000355067,
+          "top3": [
+            [
+              31,
+              1229
+            ],
+            [
+              42,
+              817
+            ],
+            [
+              43,
+              406
+            ]
+          ],
+          "verify_s": 0.000369047,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "c23925236b9a3923b201b8c8a3571e74d31fa37097f3fc51e8fc47f99ed8befa"
+        },
+        {
+          "binary_query_conversion_s": 1.71e-06,
+          "decode_s": 1.369e-05,
+          "online_s": 0.001343526,
+          "ordinal": 2,
+          "query_s": 0.000477409,
+          "score_conversion_and_top3_s": 0.000113713,
+          "server_s": 0.000356337,
+          "top3": [
+            [
+              48,
+              575
+            ],
+            [
+              51,
+              771
+            ],
+            [
+              54,
+              1319
+            ]
+          ],
+          "verify_s": 0.000379967,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ad6b713fe526f15f78e76c56d9689ea1e2705632492d877ae2f52dab1d76a6fa"
+        },
+        {
+          "binary_query_conversion_s": 1.56e-06,
+          "decode_s": 1.199e-05,
+          "online_s": 0.001341946,
+          "ordinal": 3,
+          "query_s": 0.000480029,
+          "score_conversion_and_top3_s": 0.000116602,
+          "server_s": 0.000352677,
+          "top3": [
+            [
+              55,
+              40
+            ],
+            [
+              58,
+              427
+            ],
+            [
+              62,
+              1262
+            ]
+          ],
+          "verify_s": 0.000378397,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ec06860dd2d6689b084b13b4ce0e9bdd09a81125fb7820cc31d7fb2db79b3fee"
+        },
+        {
+          "binary_query_conversion_s": 4.03e-06,
+          "decode_s": 1.33e-05,
+          "online_s": 0.001352046,
+          "ordinal": 4,
+          "query_s": 0.000489429,
+          "score_conversion_and_top3_s": 0.000117513,
+          "server_s": 0.000352197,
+          "top3": [
+            [
+              34,
+              45
+            ],
+            [
+              34,
+              654
+            ],
+            [
+              35,
+              41
+            ]
+          ],
+          "verify_s": 0.000374807,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "eb46d6cad62f9ca62ada5c07da2b1afd67f894eecac6ab215949baffe15ccb4a"
+        },
+        {
+          "binary_query_conversion_s": 1.71e-06,
+          "decode_s": 1.206e-05,
+          "online_s": 0.001335285,
+          "ordinal": 5,
+          "query_s": 0.000475809,
+          "score_conversion_and_top3_s": 0.000114072,
+          "server_s": 0.000352337,
+          "top3": [
+            [
+              29,
+              413
+            ],
+            [
+              29,
+              814
+            ],
+            [
+              31,
+              799
+            ]
+          ],
+          "verify_s": 0.000378587,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "251d06a72c2303036942eedb1454da9c9e5ebd5407ff1cd8cc72fe5c652a9f34"
+        },
+        {
+          "binary_query_conversion_s": 1.57e-06,
+          "decode_s": 1.401e-05,
+          "online_s": 0.001339686,
+          "ordinal": 6,
+          "query_s": 0.00047679,
+          "score_conversion_and_top3_s": 0.000111832,
+          "server_s": 0.000356966,
+          "top3": [
+            [
+              29,
+              1238
+            ],
+            [
+              32,
+              231
+            ],
+            [
+              32,
+              856
+            ]
+          ],
+          "verify_s": 0.000377798,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "b24def2f604ad4d6cd54400ed77dd70e49a8c0e7087de3c68f87f948e078116c"
+        },
+        {
+          "binary_query_conversion_s": 3.26e-06,
+          "decode_s": 1.243e-05,
+          "online_s": 0.001350827,
+          "ordinal": 7,
+          "query_s": 0.00048747,
+          "score_conversion_and_top3_s": 0.000120073,
+          "server_s": 0.000350177,
+          "top3": [
+            [
+              30,
+              811
+            ],
+            [
+              35,
+              412
+            ],
+            [
+              36,
+              18
+            ]
+          ],
+          "verify_s": 0.000375277,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "0be7d6c42ac957d041a14aee6ac6dd9ef27f526561c9c5eaaaf022e29d3094f3"
+        }
+      ],
+      "scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance.",
+      "setup": {
+        "TDM_mask_s": 0.54998766,
+        "binary_input_matrix_s": 0.002303364,
+        "complete_gate_s": 0.01136267,
+        "encode_s": 0.04549665,
+        "key_s": 0.001886777
+      },
+      "verified": true,
+      "repetition": 1,
+      "degree": 28,
+      "two_author_algebraic_screen_inequalities_met": true,
+      "complete_setup_plus_all_queries_s": 0.621864581
+    },
+    {
+      "key_only": false,
+      "native_thread_pinned": true,
+      "native_word_body_models": {
+        "additional_private_gate_bytes": 0,
+        "client_preloaded_code_bytes": 813056,
+        "encoded_index_bytes": 6153000,
+        "gate_challenge_scratch_bytes_model": 5860,
+        "key_only_code_regeneration_scratch_bytes_model": 0,
+        "key_seed_and_context_bytes_model": 96,
+        "private_query_mask_and_block_coeff_body_bytes_model": 6000,
+        "query_bytes": 4200,
+        "response_bytes": 205100
+      },
+      "profile": {
+        "b": 30,
+        "field_bits": 17,
+        "k": 794,
+        "l": 256,
+        "m": 1465,
+        "n": 1050,
+        "p": 65537,
+        "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance",
+        "s": 35
+      },
+      "samples": [
+        {
+          "binary_query_conversion_s": 8.1e-06,
+          "decode_s": 3.056e-05,
+          "online_s": 0.001079261,
+          "ordinal": 0,
+          "query_s": 0.00053683,
+          "score_conversion_and_top3_s": 0.000123283,
+          "server_s": 0.000378378,
+          "top3": [
+            [
+              39,
+              1216
+            ],
+            [
+              41,
+              208
+            ],
+            [
+              41,
+              215
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "656838677522789744ece2fdd467e29fd7fb93966799896bfc7836747e3aea76"
+        },
+        {
+          "binary_query_conversion_s": 1.78e-06,
+          "decode_s": 1.279e-05,
+          "online_s": 0.000992499,
+          "ordinal": 1,
+          "query_s": 0.000492469,
+          "score_conversion_and_top3_s": 0.000120113,
+          "server_s": 0.000364577,
+          "top3": [
+            [
+              31,
+              1229
+            ],
+            [
+              42,
+              817
+            ],
+            [
+              43,
+              406
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "c23925236b9a3923b201b8c8a3571e74d31fa37097f3fc51e8fc47f99ed8befa"
+        },
+        {
+          "binary_query_conversion_s": 1.82e-06,
+          "decode_s": 1.405e-05,
+          "online_s": 0.000974338,
+          "ordinal": 2,
+          "query_s": 0.000484529,
+          "score_conversion_and_top3_s": 0.000114422,
+          "server_s": 0.000358787,
+          "top3": [
+            [
+              48,
+              575
+            ],
+            [
+              51,
+              771
+            ],
+            [
+              54,
+              1319
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ad6b713fe526f15f78e76c56d9689ea1e2705632492d877ae2f52dab1d76a6fa"
+        },
+        {
+          "binary_query_conversion_s": 1.56e-06,
+          "decode_s": 1.256e-05,
+          "online_s": 0.000980969,
+          "ordinal": 3,
+          "query_s": 0.000491879,
+          "score_conversion_and_top3_s": 0.000118762,
+          "server_s": 0.000355277,
+          "top3": [
+            [
+              55,
+              40
+            ],
+            [
+              58,
+              427
+            ],
+            [
+              62,
+              1262
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "ec06860dd2d6689b084b13b4ce0e9bdd09a81125fb7820cc31d7fb2db79b3fee"
+        },
+        {
+          "binary_query_conversion_s": 2.12e-06,
+          "decode_s": 1.608e-05,
+          "online_s": 0.000979509,
+          "ordinal": 4,
+          "query_s": 0.00048873,
+          "score_conversion_and_top3_s": 0.000113682,
+          "server_s": 0.000358167,
+          "top3": [
+            [
+              34,
+              45
+            ],
+            [
+              34,
+              654
+            ],
+            [
+              35,
+              41
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "eb46d6cad62f9ca62ada5c07da2b1afd67f894eecac6ab215949baffe15ccb4a"
+        },
+        {
+          "binary_query_conversion_s": 2.04e-06,
+          "decode_s": 1.62e-05,
+          "online_s": 0.00100417,
+          "ordinal": 5,
+          "query_s": 0.00049666,
+          "score_conversion_and_top3_s": 0.000130793,
+          "server_s": 0.000357647,
+          "top3": [
+            [
+              29,
+              413
+            ],
+            [
+              29,
+              814
+            ],
+            [
+              31,
+              799
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "251d06a72c2303036942eedb1454da9c9e5ebd5407ff1cd8cc72fe5c652a9f34"
+        },
+        {
+          "binary_query_conversion_s": 1.6e-06,
+          "decode_s": 1.4e-05,
+          "online_s": 0.000975018,
+          "ordinal": 6,
+          "query_s": 0.000487479,
+          "score_conversion_and_top3_s": 0.000114862,
+          "server_s": 0.000356367,
+          "top3": [
+            [
+              29,
+              1238
+            ],
+            [
+              32,
+              231
+            ],
+            [
+              32,
+              856
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "b24def2f604ad4d6cd54400ed77dd70e49a8c0e7087de3c68f87f948e078116c"
+        },
+        {
+          "binary_query_conversion_s": 1.83e-06,
+          "decode_s": 1.264e-05,
+          "online_s": 0.000974619,
+          "ordinal": 7,
+          "query_s": 0.000487739,
+          "score_conversion_and_top3_s": 0.000113433,
+          "server_s": 0.000358267,
+          "top3": [
+            [
+              30,
+              811
+            ],
+            [
+              35,
+              412
+            ],
+            [
+              36,
+              18
+            ]
+          ],
+          "verify_s": 0,
+          "all_exact_scores_and_stable_top3": true,
+          "scores_sha256": "0be7d6c42ac957d041a14aee6ac6dd9ef27f526561c9c5eaaaf022e29d3094f3"
+        }
+      ],
+      "scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance.",
+      "setup": {
+        "TDM_mask_s": 0.555519038,
+        "binary_input_matrix_s": 0.002760203,
+        "complete_gate_s": 0,
+        "encode_s": 0.045618753,
+        "key_s": 0.002380796
+      },
+      "verified": false,
+      "repetition": 1,
+      "degree": 28,
+      "two_author_algebraic_screen_inequalities_met": true,
+      "complete_setup_plus_all_queries_s": 0.6142391730000001
+    }
+  ],
+  "compiler": "go1.23.12 linux/amd64; author run.sh C++ -O3 -march=native; adapter -buildvcs=false; GOMAXPROCS=1 + runtime.LockOSThread",
+  "gate_soundness_scope": "Own conditional complete public encoded-response check before author private decoding; 1024/65537^9 plus hidden AES-CTR challenge hybrid, trusted epoch/index/pinned requests and no private side channels. Not a proof of author transcript/privacy or reviewed composition.",
+  "scope": "Partial original artifact adaptation, not complete published reproduction or security/parameter assurance. Exact binary signed queries, stable full-score output checked independently outside timing. Artifact uses seeded/64-bit math/rand sampling; measurements do not certify cryptographic key entropy. Key-only clears the cached code matrix and charges regeneration to each query. Word body models and private hints exclude RSS, framing and network transport. Owner encoding/setup is charged and never required by the online decode API. Nine-round gate and its setup/state/time are additions by this adapter, not the authors' malicious-integrity claim."
+}

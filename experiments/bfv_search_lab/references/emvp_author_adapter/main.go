@@ -17,6 +17,7 @@ import (
 	"math/big"
 	"math/bits"
 	"os"
+	"runtime"
 	"sort"
 	"time"
 )
@@ -137,6 +138,11 @@ func word(text string, dimension int) *big.Int {
 }
 
 func main() {
+	// GenerateP seeds a native thread-local AES generator, then draws rows in
+	// separate cgo calls. GOMAXPROCS=1 alone does not pin a Go goroutine to that
+	// OS thread. Keep the complete author call sequence on one native thread.
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
 	var in input
 	if err := json.NewDecoder(os.Stdin).Decode(&in); err != nil {
 		panic(err)
@@ -187,6 +193,8 @@ func main() {
 	}
 	samples := make([]map[string]any, 0, len(in.Queries))
 	for ordinal, text := range in.Queries {
+		begin := time.Now()
+		start = time.Now()
 		q := word(text, in.Dimension)
 		vec := dataobjects.AlignedMake[uint32](uint64(l))
 		offset := 0
@@ -198,7 +206,7 @@ func main() {
 				offset++
 			}
 		}
-		begin := time.Now()
+		vectorS := time.Since(start).Seconds()
 		start = time.Now()
 		query, aux := pi.Query(sk, vec)
 		queryS := time.Since(start).Seconds()
@@ -238,7 +246,7 @@ func main() {
 			top = append(top, [2]uint64{uint64(scores[i]), in.IDs[i]})
 		}
 		selectS := time.Since(start).Seconds()
-		sample := map[string]any{"ordinal": ordinal, "query_s": queryS, "server_s": answerS, "verify_s": verifyS, "decode_s": decodeS, "score_conversion_and_top3_s": selectS, "online_s": time.Since(begin).Seconds(), "scores": scores, "top3": top}
+		sample := map[string]any{"ordinal": ordinal, "binary_query_conversion_s": vectorS, "query_s": queryS, "server_s": answerS, "verify_s": verifyS, "decode_s": decodeS, "score_conversion_and_top3_s": selectS, "online_s": time.Since(begin).Seconds(), "scores": scores, "top3": top}
 		if ordinal == 0 && checker != nil {
 			forged := append([]uint32(nil), response...)
 			forged[0] = (forged[0] + 1) % prime
@@ -253,12 +261,19 @@ func main() {
 	if checker != nil {
 		hintsBytes = 9 * (32 + int(n)*4)
 	}
+	regenerationBytes := 0
+	if in.KeyOnly {
+		regenerationBytes = int(l) * int(k) * 4
+	}
 	// bits.Len32 is recorded for body accounting; the native API uses 4-byte
 	// words. No sockets, packed serialization, RSS or security certification.
 	result := map[string]any{"profile": map[string]any{"p": prime, "field_bits": bits.Len32(prime), "m": len(in.Rows), "l": l, "k": k, "n": n, "s": s, "b": b, "parameter_rule": "author utils.Prms(128,4.0,d); research heuristic, not assurance"},
-		"setup":                   map[string]float64{"binary_input_matrix_s": inputS, "key_s": keyS, "TDM_mask_s": maskS, "encode_s": encodeS, "complete_gate_s": gateS},
-		"native_word_body_models": map[string]any{"query_bytes": int(n) * 4, "response_bytes": int(s) * len(in.Rows) * 4, "encoded_index_bytes": len(encoded.Data) * 4, "client_preloaded_code_bytes": len(sk.PreLoadedMatrix) * 4, "additional_private_gate_bytes": hintsBytes, "key_seed_and_context_bytes_model": 96},
-		"key_only":                in.KeyOnly, "verified": in.Verified, "samples": samples,
+		"setup": map[string]float64{"binary_input_matrix_s": inputS, "key_s": keyS, "TDM_mask_s": maskS, "encode_s": encodeS, "complete_gate_s": gateS},
+		"native_word_body_models": map[string]any{"query_bytes": int(n) * 4, "response_bytes": int(s) * len(in.Rows) * 4, "encoded_index_bytes": len(encoded.Data) * 4, "client_preloaded_code_bytes": len(sk.PreLoadedMatrix) * 4, "additional_private_gate_bytes": hintsBytes, "key_seed_and_context_bytes_model": 96,
+			"key_only_code_regeneration_scratch_bytes_model": regenerationBytes, "gate_challenge_scratch_bytes_model": len(in.Rows) * 4,
+			"private_query_mask_and_block_coeff_body_bytes_model": (len(in.Rows) + int(s)) * 4},
+		"native_thread_pinned": true,
+		"key_only":             in.KeyOnly, "verified": in.Verified, "samples": samples,
 		"scope": "Pinned author HBC primitive; optional own pre-decode full encoded-response conditional gate. No author source edits. Author math/rand/64-bit seed sampling is an experimental artifact, not production cryptographic assurance."}
 	if err := json.NewEncoder(os.Stdout).Encode(result); err != nil {
 		fmt.Fprintln(os.Stderr, err)
