@@ -1,5 +1,28 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-29 tenth creative follow-up:**
+[fixed-batch CBD correctness and smaller moduli](fixed-batch-noise-results.md)
+implement the previous noise projection with a separate statistical type,
+integer union-bound rounding and unreduced phase audits. Response/index bodies
+shrink by 20%; checked native local time increases because the verification
+field requires another round. Queries are fixed before enrollment. Exact
+dependent/correlated-error controls rule out broader uses of the argument.
+
+New primary reading includes
+[Gao and Zheng's WAHC 2025 noise critique](https://people.iiis.tsinghua.edu.cn/~gaomy/pubs/he_noise.wahc25.pdf),
+abstract and Sections 1–3.2: dependencies and Gaussian heuristics can defeat
+noise estimates, and polynomial tails must account for all coefficients.
+Our exact-MGF linear CBD setting is narrower; that paper does not certify our
+derivation. The [HE standardization guidance](https://homomorphicencryption.org/security-guidelines/)
+provides a separate parameter-review lead, not a completed security estimate.
+Concentration and modulus tuning are known ingredients.
+
+The next probes are E34's exact adaptive/fresh-mask transcript and E35's joint
+plaintext/ciphertext/verification-field frontier. E33's complete authenticated
+field conversion remains a competing hypothesis. A possible contribution is a
+useful joint representation/verification/lifetime tradeoff; no novelty or
+production approval is established by these measurements.
+
 **2026-09-29 ninth creative follow-up:**
 [hierarchical query intersections](hierarchical-query-basis-results.md) test
 exact partial sharing and CRT regrouping. The targeted new primary reading is

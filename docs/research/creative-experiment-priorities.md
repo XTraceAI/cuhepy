@@ -86,14 +86,28 @@ counterexample retain failures. All 48 encrypted comparisons are exact. Two
 additional pool tests show why public linear expansion cannot turn a small
 one-use mask bank into arbitrarily many independent private requests.
 
-**Next cycle:** test hierarchical sharing across CRT subtrees and exact small
-subspace-intersection optima. Optimize column count, mask dimension and the sum
-of correction degrees together, retaining global affine, raw and full-cache
-controls. A separate protocol track should specify the exact
-authenticated-correlation functionality and lifetime cost before
-adapting a PCG or verified preprocessing scheme. Retain the deterministic-cache
-and public-linear-pool privacy failures. A matching GPU experiment follows a
-precise state/trust comparison.
+**Ninth cycle implemented:** [hierarchical sharing and geometry](hierarchical-query-basis-results.md)
+(E31) reduce query bodies by 69–71% with unchanged local encrypted index size,
+but only 0.4–0.5% of total online traffic. Full hierarchy increases private
+state and native latency. Exact small optima and Semeion's lack of sharing are
+retained. The [authenticated-correlation contract](authenticated-correlation-contract.md)
+specifies setup, field conversion, collusion and lifetime obligations.
+
+**Tenth cycle implemented:** [fixed-batch CBD correctness](fixed-batch-noise-results.md)
+(E32) enables same-capacity q32 execution from the previous q40 local circuit.
+Response/index coefficient bodies shrink by 20%, but another verification
+round raises checked native local time by 4.4–7.9 ms. All 72 full encrypted
+searches and 387 regressions pass, with unreduced integer-phase auditing.
+The separate probabilistic type leaves old deterministic APIs intact. Queries
+must be fixed before enrollment; there is no adaptive or production assurance.
+
+**Next cycle:** prioritize E34's adaptive-query/fresh-mask transcript and E35's
+joint plaintext/ciphertext/verification-field frontier. Begin with exact tiny
+oracles and known counterexamples. The measured verification-round jump and
+the inherited plaintext prime expose mathematical/protocol questions beyond
+kernel tuning. E33's authenticated two-field conversion remains a competing
+track; retain the deterministic-cache and public-linear-pool privacy failures.
+A matching GPU experiment follows a precise state/trust comparison.
 Keep the independent-key matrix orientation as another candidate; its literal
 key growth still does not justify a general matrix CUDA implementation.
 Previous checkpoints include `checkpoint/dyadic-rank-capacity-2026-09-27`
@@ -119,7 +133,7 @@ be known. Check the closest work before presenting a contribution claim.
 For the next research cycle:
 
 1. Investigate several competing hypotheses with small independent algebraic
-   models. Use the completed E19–E30 results above to choose the next competing
+   models. Use the completed E19–E32 results above to choose the next competing
    questions. A plausible but uncertain idea deserves
    a cheap test.
 2. For each, write the claimed difference from its closest known construction,
@@ -618,28 +632,22 @@ consumption. No PCG or new production protocol has been implemented.
 
 ## E32 — Can a lifetime noise bound change the IO frontier?
 
-**Next priority:** test a different mathematical bottleneck. E29–E31's full
-deterministic `L1` phase bound charges maximal symmetric error with aligned
-signs everywhere. A self-contained CBD tail calculation, including deterministic
-message/carry terms and a finite query/reply union bound, suggests the original
-Mushroom and Semeion local circuits might fit a 32-bit modulus. That would
-reduce full coefficient bodies by 20% without increasing encrypted columns.
-The [prospective calculation](hierarchical-query-basis-results.md#more-promising-next-experiment-the-phase-bound-itself)
-is a model only; current key gates and phase semantics remain deterministic.
+**Implemented:** [a separate fixed-batch profile](fixed-batch-noise-results.md)
+uses the exact CBD MGF, an integer-rounded union bound over every coefficient
+and the full declared lifetime, and separately bounded message/carry terms.
+Mushroom and Semeion both execute at q32 without extra encrypted columns.
+The same full-degree GMP/C++ ciphertexts agree, every score is exact, and the
+independent audit reconstructs integer phases before Q reduction. Response,
+index and seeded-answer bodies shrink; checked native time increases because
+q32 uses a fifth checking round. Fresh OS errors and explicit fixed-before-index
+corrections enforce the narrow assumptions. Exact dependent/correlated-error
+counterexamples are retained.
 
-First independently check the MGF derivation and integer rounding, enumerate
-small exact error distributions, and measure full secret phases in homemade
-toy/full-size references. Include error-dependent coefficients as a failed
-control. Fix the index/key/token lifetime and distinguish fixed queries from
-adaptive queries, seeded masks and reused ciphertext errors. Statistical tests
-cannot establish the claimed negligible tail probability. Charge every reply
-coefficient and lifetime query, not just one output score.
-
-Only then prototype a separate explicit probabilistic-correctness profile with
-its own context binding and budget. Do not relabel a probabilistic bound as the
-existing deterministic `phase_bound`, bypass validation, or generalize the
-symmetric linear-circuit calculation to public-key encryption, multiplication,
-rounding or a different sampler. RLWE security estimation is a separate task.
+The prototype has its own context/certificate/output type. Existing deterministic
+`phase_bound` semantics and rejecting key gates are unchanged. This is not a
+public-key, product, rounded-response or adaptive-circuit bound. Tests do not
+establish 128 correctness bits empirically; RLWE assurance and an independent
+proof review remain separate. The scheduling limitation motivates E34.
 
 **Possible contribution:** a useful search/verification/parameter schedule with
 a rigorously scoped lifetime guarantee; noise concentration itself is known.
@@ -667,6 +675,48 @@ the experiment, not in a later footnote.
 party, discarded correlations dominate, or restoring authentication/field
 conversion costs erases the gain. A new assumption must appear beside the
 performance comparison.
+
+## E34 — Can fresh masks support adaptive correctness without a fixed epoch batch?
+
+**Next priority:** determine exactly which transcript permits a concentration
+argument when queries follow earlier answers. In an ideal model, fix w before
+sampling a fresh independent uniform r; `delta=w-r mod t` is uniform even if
+w depends on the past. Enumerate this identity and its failures under reuse,
+mask-dependent selection and early disclosure. Then model the encrypted
+offline answer and SHAKE mask expansion instead of treating them as an ideal
+mask oracle. Include trusted-owner/caller boundaries and first-failure events.
+
+The target is a reviewed adaptive correctness statement for a useful scheduling
+contract, not simply changing E32's immutable-batch API. A caller or server that
+selects corrections from enrollment errors violates the current proof. E29's
+one-use masking, a hidden HE key and exact verification alone are not a proof
+of error independence under every adaptive transcript.
+
+**Falsification:** exposure of r-related ciphertexts, caller access to owner
+state, conditional failure history or discarded correlations prevents the
+ideal argument or makes the needed scheduling too expensive. Keep E32 and its
+counterexamples as the fixed-query control.
+
+## E35 — Can search geometry and both fields be selected jointly?
+
+The previous profile inherited t=1,153. Search admissible plaintext primes
+subject to exact score ranges and every CRT factor/root requirement; rebuild
+finite-field maps and recertify all rows for each candidate. Vary capacity,
+rank repair, correction norms, deterministic/statistical Q and verification
+rounds jointly. Count actual byte boundaries, owner state, unused preprocessing
+and equality leakage. Compare one global affine map, local maps and raw search.
+
+**First experiment:** a tiny exhaustive field/score/CRT oracle and index-only
+public-data frontier. A lower t can alter rank, interpolation and padding;
+maps over another field cannot be silently reused. Before full-size encryption,
+reject every wrapped distance, invalid root and false linear-check shortcut.
+
+**Possible contribution:** a useful jointly optimized representation and
+verification/correctness frontier. Modulus tuning, CRT and concentration are
+known; their combination is not automatically novel. A larger independent
+verification field requires complete integer Q-reduction carry relations.
+**Falsification:** map rank, score capacity, extra rounds/carry checks or setup
+costs cancel the apparent bit reduction.
 
 ## Evidence and deferred work
 

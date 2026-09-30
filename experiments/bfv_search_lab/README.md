@@ -68,10 +68,19 @@ adds exact subtree intersections, per-column correction degrees, exhaustive
 small fixed-tree optima and equal-capacity CRT regrouping. Query bodies shrink
 at the same index size, but response size, total owner state and native latency
 do not improve. Complete encrypted comparisons retain the simple equal-row
-control and the negative dataset. The next probe is a separately scoped
-probabilistic phase bound; its size projections have not changed any encryption
-profile. An [offline-correlation contract](../../docs/research/authenticated-correlation-contract.md)
+control and the negative dataset. Its prospective probabilistic phase bound
+is now tested in the tenth cycle below. An
+[offline-correlation contract](../../docs/research/authenticated-correlation-contract.md)
 records the remaining protocol obligations.
+
+The [tenth creative cycle](../../docs/research/fixed-batch-noise-results.md)
+adds a separate fixed-before-enrollment query batch, exact CBD tail certificate
+and complete-response owner receipt gate. Same-capacity q32 ciphertext bodies
+are 20% smaller than the paired deterministic q40 control. Five verification
+rounds increase checked local native time; 72 full encrypted searches, exact
+distribution counterexamples and unreduced phase audits document the tradeoff.
+Old deterministic types/key gates and production code are unchanged. Adaptive
+correctness, RLWE parameters and the complete protocol require separate review.
 
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
@@ -150,6 +159,8 @@ assurance. The raw CUDA path does not provide attestation.
 | `crt_native_bgv.py`, `_subring/bindings.cpp` | Separate homemade public C++ scalar/short-NTT evaluator over full-ring ciphertexts; no production or GPU integration |
 | `shared_query_basis.py` | E30 exact common/residual affine bases, private query transforms and index-only overlap/raw-coordinate trajectories |
 | `hierarchical_query_basis.py` | E31 exact subspace intersections, private tree bases, equal-form schedules and balanced greedy overlap grouping |
+| `crt_noise_budget.py` | E32 exact CBD MGF/tail certificate, integer finite-batch union bound and small distribution oracle; correctness only |
+| `fixed_batch_bgv.py` | E32 immutable pre-enrollment query schedule, separate statistical ciphertext type, GMP/C++ evaluation and guarded owner receipts |
 | `test_correlation_pool_limits.py` | Exhaustive controls showing why public linear expansion of a fixed mask bank leaks joint query relations |
 | `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |
