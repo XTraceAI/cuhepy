@@ -18,7 +18,10 @@ from dataclasses import dataclass, field, replace
 import secrets
 import threading
 
+import numpy as np
+
 from experiments.bfv_search_lab import affine_dictionary as affine
+from experiments.bfv_search_lab import coordinate_factory
 from experiments.bfv_search_lab import crt_masked_bgv as masked
 from experiments.bfv_search_lab import crt_query_space as space
 from experiments.bfv_search_lab import owner_bgv as owner
@@ -57,32 +60,47 @@ class Pending:
 
 
 class RepairPool:
-    def __init__(self, plan: oracle.Compiled, client: owner.OwnerClient):
+    def __init__(self, plan: oracle.Compiled, client: owner.OwnerClient, *, arithmetic="python"):
         if (client.pk.n, client.pk.t, client.pk.eta, int(client.pk.q)) != (
             plan.profile.n, plan.profile.prime, plan.profile.eta, plan.profile.q
         ):
             raise ValueError("Wrong pinned repair owner key/profile")
+        if arithmetic not in ("python", "numpy"):
+            raise ValueError("Unknown owner repair arithmetic")
         self.plan, self.client = plan, client
+        self.arithmetic = arithmetic
         self._lock = threading.RLock()
         self._tokens: dict[bytes, Pending] = {}
+        self._issued: set[bytes] = set()
         self._locations = {position: (block, row) for block, b in enumerate(plan.candidate.blocks)
                            for row, position in enumerate(b.positions)}
         self._id_positions = {identifier: i for i, identifier in enumerate(plan.ids)}
+        self._coordinates = (coordinate_factory.Coordinates(plan.query_space, self._groups())
+                             if arithmetic == "numpy" else None)
         self.index, self.index_upload_bytes = masked.enroll(plan.query_space, self._groups(), secrets.token_bytes(32), client)
 
     def _groups(self):
         return [[list(row) for row in g] for g in self.plan.groups]
 
+    @property
+    def coordinate_array_bytes(self):
+        return self._coordinates.coordinate_array_bytes if self._coordinates is not None else 0
+
     def prepare(self, token_id: bytes) -> Pending:
         with self._lock:
             masked.binding(self.index.epoch, token_id)
-            if token_id in self._tokens:
+            if token_id in self._issued:
                 raise ValueError("Duplicate lifetime token identifier")
-            if len(self._tokens) >= self.plan.profile.attempt_budget:
+            if len(self._issued) >= self.plan.profile.attempt_budget:
                 raise ValueError("Declared lifetime token budget exhausted")
+            # Reserve before any fallible encryption. Failed local attempts
+            # cannot silently reopen an identifier or its declared budget.
+            self._issued.add(token_id)
             s = self.plan.query_space
             pad = masked.mask(s, secrets.token_bytes(32), self.index.epoch, token_id)
-            packets = [self.client.encrypt(p) for p in space.outputs(s.layout, space.scores(s, self._groups(), pad))]
+            scores = (self._coordinates.scores(pad) if self._coordinates is not None
+                      else space.scores(s, self._groups(), pad))
+            packets = [self.client.encrypt(p) for p in space.outputs(s.layout, scores)]
             answer = masked.Answer(s, self.index.epoch, token_id, tuple(owner.expand(p, self.client.pk) for p in packets))
             token = Pending(self, token_id, answer, pad)
             self._tokens[token_id] = token
@@ -118,6 +136,7 @@ class RepairPool:
                 groups[block][row] = new
                 rows[position] = value
                 changes.append((block, row, difference))
+            coordinates = (coordinate_factory.Coordinates(s, groups) if self.arithmetic == "numpy" else None)
             # Sparse owner arithmetic, followed by the SAME padded encryption
             # schedule on every update. No plaintext-sized ciphertext shortcut.
             if method == "full_reencrypt":
@@ -137,8 +156,17 @@ class RepairPool:
                 updated_columns.append(tuple(add(old, owner.expand(packet, pk), pk) if method == "sparse_delta" else owner.expand(packet, pk)
                                              for old, packet in zip(original, packets, strict=True)))
             updated_answers = []
-            for token in pending:
-                if method == "full_reencrypt":
+            pads = tuple(token._pad for token in pending)
+            if coordinates is not None and method == "full_reencrypt":
+                all_scores = coordinates.scores_many(pads)
+            elif coordinates is not None:
+                all_scores = self._sparse_scores(changes, pads)
+            else:
+                all_scores = None
+            for ordinal, token in enumerate(pending):
+                if all_scores is not None:
+                    values = all_scores[ordinal]
+                elif method == "full_reencrypt":
                     values = space.scores(s, groups, token._pad)
                 else:
                     weights = space.split(s, token._pad)
@@ -157,9 +185,12 @@ class RepairPool:
             self.plan = replace(self.plan, workload=workload, candidate=candidate,
                                 groups=tuple(tuple(tuple(row) for row in g) for g in groups))
             self.index = masked.Index(s, epoch, tuple(updated_columns))
+            self._coordinates = coordinates
             for token, answer in zip(pending, updated_answers, strict=True):
                 token.answer = answer
-            return {"method": method, "edited_rows": len(edits), "repaired_unused_tokens": len(pending),
+            return {"method": method, "owner_arithmetic": self.arithmetic,
+                    "coordinate_array_bytes": self.coordinate_array_bytes,
+                    "edited_rows": len(edits), "repaired_unused_tokens": len(pending),
                     "consumed_tokens_untouched": len(self._tokens) - len(pending),
                     "ciphertexts_freshly_encrypted": (s.columns + len(pending)) * s.layout.cost.response_ciphertexts,
                     "seeded_patch_packet_bytes": upload,
@@ -167,3 +198,24 @@ class RepairPool:
                     "sparse_dot_products_per_token": sum(len(delta) for _, _, delta in changes),
                     "full_dot_products_per_token_control": sum(count * f for count, f in zip(s.layout.counts, s.layout.features, strict=True)),
                     "scope": "Local volatile owner prototype; checker re-preparation and durability charged separately."}
+
+    def _sparse_scores(self, changes, pads):
+        """Exact batched delta products; private pads never leave the owner."""
+        s = self.plan.query_space
+        result = [[[0] * count for count in s.layout.counts] for _ in pads]
+        if not pads:
+            return result
+        weights = [space.split(s, pad) for pad in pads]
+        for block, count in enumerate(s.layout.counts):
+            edited = [(row, difference) for group, row, difference in changes if group == block]
+            if not edited:
+                continue
+            differences = np.asarray([difference for _, difference in edited], dtype=np.int8)
+            vectors = np.asarray([w[s.map_ids[block]] for w in weights], dtype=np.int64).T
+            dots = (differences @ vectors % s.layout.context.prime).T.tolist()
+            for ordinal, scores in enumerate(dots):
+                for (row, _), value in zip(edited, scores, strict=True):
+                    if not 0 <= row < count:
+                        raise AssertionError("Invalid certified edit location")
+                    result[ordinal][block][row] = value
+        return result

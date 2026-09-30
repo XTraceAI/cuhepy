@@ -19,30 +19,56 @@ from experiments.bfv_search_lab import crt_query_space as space
 from experiments.bfv_search_lab import owner_bgv as owner
 
 
-class Factory:
-    def __init__(self, s, groups, epoch, client, *, budget=1024):
-        masked._context(s, client.pk)
-        masked.binding(epoch, bytes(16))
+class Coordinates:
+    """Owner-private exact int8 matrices; int64 products cannot overflow here.
+
+    The space has at most 512 certified binary/affine coordinates per row and
+    t <= 65537. Even uncentered weights give |dot| <= 512 * 65536. Arrays are
+    immutable, so callers can prepare a replacement before committing an edit.
+    This is variable-time owner arithmetic, not private side-channel assurance.
+    """
+
+    def __init__(self, s, groups):
         space.validate_rows(s, groups)
-        if type(budget) is not int or not 1 <= budget <= 65536:
-            raise ValueError("Invalid plaintext factory lifetime budget")
-        if any(x not in (-1, 0, 1) for g in groups for row in g for x in row):
+        if (s.layout.context.prime > 65537 or max(s.dimensions) > 512
+                or any(x not in (-1, 0, 1) for g in groups for row in g for x in row)):
             raise ValueError("Vectorized factory requires certified ternary affine coordinates")
         arrays = tuple(np.asarray(g, dtype=np.int8).reshape(count, f)
                        for g, count, f in zip(groups, s.layout.counts, s.layout.features, strict=True))
         for array in arrays:
             array.setflags(write=False)
-        self.space, self.epoch, self.client, self.budget = s, epoch, client, budget
-        self._arrays, self._issued, self._lock = arrays, set(), threading.Lock()
+        self.space, self._arrays = s, arrays
         self.coordinate_array_bytes = sum(a.nbytes for a in arrays)
 
     def scores(self, values):
-        weights = space.split(self.space, values)
+        return self.scores_many((values,))[0]
+
+    def scores_many(self, values):
+        """Batch unused pads without changing their field or encryption law."""
+        weights = [space.split(self.space, row) for row in values]
         t = self.space.layout.context.prime
-        if any(not -(t // 2) <= x < t for x in values):
+        if any(not -(t // 2) <= x < t for row in values for x in row):
             raise ValueError("Private plaintext factory weight outside bounded field")
-        return [(array @ np.asarray(weights[i], dtype=np.int64) % t).tolist()
-                for array, i in zip(self._arrays, self.space.map_ids, strict=True)]
+        if not values:
+            return []
+        blocks = [(array @ np.asarray([w[i] for w in weights], dtype=np.int64).T % t).T.tolist()
+                  for array, i in zip(self._arrays, self.space.map_ids, strict=True)]
+        return [[block[j] for block in blocks] for j in range(len(values))]
+
+
+class Factory:
+    def __init__(self, s, groups, epoch, client, *, budget=1024):
+        masked._context(s, client.pk)
+        masked.binding(epoch, bytes(16))
+        if type(budget) is not int or not 1 <= budget <= 65536:
+            raise ValueError("Invalid plaintext factory lifetime budget")
+        self._coordinates = Coordinates(s, groups)
+        self.space, self.epoch, self.client, self.budget = s, epoch, client, budget
+        self._issued, self._lock = set(), threading.Lock()
+        self.coordinate_array_bytes = self._coordinates.coordinate_array_bytes
+
+    def scores(self, values):
+        return self._coordinates.scores(values)
 
     def prepare(self, token_id):
         s, pk = self.space, self.client.pk

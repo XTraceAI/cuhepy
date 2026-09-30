@@ -129,3 +129,20 @@ unaffected. The [claims ledger](paper-claims.md) records all promotion limits.
    and D defensible paper all remain open. Advance durable service/new GPU
    kernels on the stated evidence. If a cache or existing protocol dominates,
    retain company improvements and pivot the paper question.
+
+## 2026-09-30: stronger update control and next baseline
+
+Returned to P05/P06. Recorded the
+[experiment specification](lifetime-policy-preregistration.md) before new
+measurements. Owner-private batch products are implemented, with atomic-edit,
+negative-delta, failed-token-budget and encrypted lifecycle regressions.
+Matched rank32 and the prior rank128 lifecycles both finish and pass every
+encrypted diagnostic. [Latest results](vectorized-update-controls.md) reverse
+the earlier win: sparse repair costs 9.25% and 7.88% more than vectorized fresh
+reencryption. This is a measured negative, not a reason to delete E43.
+
+Returned to the plan: E54's ordinary private client delta ledger is implemented
+and its exact/encrypted base tests pass; complete-cost measurement is next.
+The EMVP authors' original Go/C++ artifact was found via the pinned paper and
+cloned at `856762f5925fe873bb5cbc0401ceb5a44568efa9`. It is not yet built or
+measured. Production/company source and earlier checkpoints remain intact.

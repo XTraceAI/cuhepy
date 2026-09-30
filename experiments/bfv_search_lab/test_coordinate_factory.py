@@ -68,3 +68,15 @@ def test_failure_burns_identifier_and_invalid_coordinates_reject(monkeypatch):
         groups[0][0][0] = 256
         with pytest.raises(ValueError, match="ternary"):
             coordinate_factory.Factory(p.query_space, groups, epoch, client)
+
+
+def test_batch_products_match_python_with_scheduled_maps_and_field_extremes():
+    p = fixture()
+    groups = [[list(row) for row in group] for group in p.groups]
+    coordinates = coordinate_factory.Coordinates(p.query_space, groups)
+    values = tuple(tuple((j + 3 * i) % 17 for j in range(p.query_space.dimension)) for i in range(7))
+    assert coordinates.scores_many(values) == [space.scores(p.query_space, groups, v) for v in values]
+    assert coordinates.scores_many(()) == []
+    assert all(not array.flags.writeable for array in coordinates._arrays)
+    with pytest.raises(ValueError, match="bounded field"):
+        coordinates.scores(tuple(17 for _ in range(p.query_space.dimension)))

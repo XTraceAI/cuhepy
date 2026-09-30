@@ -24,12 +24,14 @@ def plan():
 
 
 @pytest.mark.parametrize("method", ("sparse_delta", "full_reencrypt"))
-def test_pending_repairs_preserve_all_scores_and_consumed_pads_never_return(method):
+@pytest.mark.parametrize("arithmetic", ("python", "numpy"))
+def test_pending_repairs_preserve_all_scores_and_consumed_pads_never_return(method, arithmetic):
     pytest.importorskip("experiments.bfv_search_lab._subring._crt_subring")
     p = plan()
     pk, sk = masked.key_gen(p.query_space, q_bits=32, eta=1)
     with closing(owner.OwnerClient(pk, sk)) as client:
-        pool = updates.RepairPool(p, client)
+        pool = updates.RepairPool(p, client, arithmetic=arithmetic)
+        assert pool.coordinate_array_bytes == (24 if arithmetic == "numpy" else 0)
         tokens = [pool.prepare(i.to_bytes(16, "little")) for i in range(20)]
         word = 0
         for revision, edits in enumerate(({0: 3}, {7: 2}, {3: 0})):
@@ -43,6 +45,7 @@ def test_pending_repairs_preserve_all_scores_and_consumed_pads_never_return(meth
             report = pool.edit(edits, method=method)
             assert pool.index.epoch != old_epoch
             assert report["repaired_unused_tokens"] == 19 - 2 * revision
+            assert report["owner_arithmetic"] == arithmetic
             assert consumed.answer is consumed_answer and consumed._pad is None
             with pytest.raises(RuntimeError, match="consumed"):
                 consumed.consume(values, pool.index.epoch)
@@ -115,3 +118,38 @@ def test_repair_phase_oracle_covers_accumulated_input_and_answer_bounds():
         measured = current_oracle.measure(request, token.answer, output)
         assert measured["all_integer_phase_coefficients_match_ciphertext"]
         assert measured["maximum_unreduced_integer_phase"] <= measured["maximum_deterministic_response_bound"]
+
+
+def test_vectorized_failed_update_is_atomic_and_failed_preparation_burns_id(monkeypatch):
+    p = plan()
+    pk, sk = masked.key_gen(p.query_space, q_bits=32, eta=1)
+    with closing(owner.OwnerClient(pk, sk)) as client:
+        pool = updates.RepairPool(p, client, arithmetic="numpy")
+        token = pool.prepare(bytes(16))
+        before = pool.index, pool.plan, pool._coordinates, token.answer, token._pad
+        def fail(*args):
+            raise ValueError("injected encryption failure")
+        monkeypatch.setattr(client, "encrypt", fail)
+        with pytest.raises(ValueError, match="injected"):
+            pool.edit({0: 3, 7: 2})
+        assert (pool.index, pool.plan, pool._coordinates, token.answer, token._pad) == before
+        identifier = (1).to_bytes(16, "little")
+        with pytest.raises(ValueError, match="injected"):
+            pool.prepare(identifier)
+        with pytest.raises(ValueError, match="Duplicate"):
+            pool.prepare(identifier)
+        assert identifier in pool._issued and identifier not in pool._tokens
+
+
+def test_batched_sparse_products_include_negative_and_zero_deltas():
+    p = plan()
+    pk, sk = masked.key_gen(p.query_space, q_bits=32, eta=1)
+    with closing(owner.OwnerClient(pk, sk)) as client:
+        pool = updates.RepairPool(p, client, arithmetic="numpy")
+        changes = ((0, 0, (1, -1, 0)), (0, 7, (-2, 0, 2)), (0, 1, (0, 0, 0)))
+        pads = ((16, 16, 16), (0, 1, 16), (8, 9, 10))
+        actual = pool._sparse_scores(changes, pads)
+        for ordinal, pad in enumerate(pads):
+            for _, row, difference in changes:
+                assert actual[ordinal][0][row] == sum(a * b for a, b in zip(difference, pad, strict=True)) % 17
+        assert pool._sparse_scores(changes, ()) == []

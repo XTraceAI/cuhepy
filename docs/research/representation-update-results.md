@@ -5,6 +5,12 @@
 This is an owner-local research experiment, not durable or remotely authenticated
 token migration. The company's BFV/BGV/TEE baseline remains unchanged.
 
+**Latest control:** [vectorized matched lifecycles](vectorized-update-controls.md)
+reverse the earlier positive result. Sparse repair costs ~9.25% more at rank32
+and ~7.88% more on the old eight-edit rank128 workload. The tables below retain
+the original Python-control measurements; they are not the current strongest
+full-reencryption comparison.
+
 ## Hypothesis, mechanism and strong control
 
 For fixed approved maps/geometry/IDs, an edit within each map's old affine space

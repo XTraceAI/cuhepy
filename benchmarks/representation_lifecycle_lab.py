@@ -52,6 +52,9 @@ def main():
     parser.add_argument("--dimension", type=int, default=512)
     parser.add_argument("--prime", type=int, default=1153)
     parser.add_argument("--q-bits", type=int, default=40)
+    parser.add_argument("--n", type=int, default=16384)
+    parser.add_argument("--arithmetic", choices=("python", "numpy"), default="python")
+    parser.add_argument("--edit-rows", type=int, default=1)
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
     if (not 64 <= args.count <= 16384 or not 2 <= args.pool <= 64 or not 1 <= args.updates <= 8
@@ -59,12 +62,14 @@ def main():
             or args.updates * args.queries_per_update > args.pool
             or not 1 <= args.rank <= 128 or not args.rank <= args.dimension <= 512 or args.dimension % args.rank):
         parser.error("Invalid bounded lifecycle workload")
+    if not 1 <= args.edit_rows <= args.count:
+        parser.error("Require a nonempty bounded row-edit batch")
     rng = random.Random(4301)
     def lift(x):
         return sum(x << j for j in range(0, args.dimension, args.rank))
     rows = tuple(lift(rng.randrange(1 << args.rank)) for _ in range(args.count))
     workload = Workload(rows, tuple(range(args.count)), args.dimension)
-    profile = Profile(16384, args.prime, q_bits=args.q_bits, eta=21)
+    profile = Profile(args.n, args.prime, q_bits=args.q_bits, eta=21)
     profile.validate(args.dimension)
     discovery_s, choices = timed(oracle.choices, workload, oracle.median_tree(workload, 0), args.prime)
     choice = choices[1]
@@ -74,17 +79,20 @@ def main():
     current = list(rows)
     edits = []
     for revision in range(args.updates):
-        identifier = revision % args.count
-        current[identifier] = lift((current[identifier] & ((1 << args.rank) - 1)) ^ ((1 << min(3, args.rank)) - 1))
-        edits.append({identifier: current[identifier]})
+        changes = {}
+        for offset in range(args.edit_rows):
+            identifier = (revision * args.edit_rows + offset) % args.count
+            current[identifier] = lift((current[identifier] & ((1 << args.rank) - 1)) ^ ((1 << min(3, args.rank)) - 1))
+            changes[identifier] = current[identifier]
+        edits.append(changes)
     cases = []
     for repetition in range(args.repeats):
         methods = ("sparse_delta", "full_reencrypt") if repetition % 2 == 0 else ("full_reencrypt", "sparse_delta")
         for method in methods:
             key_s, (pk, sk) = timed(masked.key_gen, plan.query_space, q_bits=args.q_bits, eta=21)
             with closing(owner.OwnerClient(pk, sk)) as client:
-                enroll_s, pool = timed(updates.RepairPool, plan, client)
-                pool_s, tokens = timed(lambda: [pool.prepare(i.to_bytes(16, "little")) for i in range(args.pool)])
+                enroll_s, pool = timed(updates.RepairPool, plan, client, arithmetic=args.arithmetic)
+                pool_s, tokens = timed(lambda pool=pool: [pool.prepare(i.to_bytes(16, "little")) for i in range(args.pool)])
                 epochs, online, cursor = [], [], 0
                 word = random.Random(43010 + repetition).randrange(1 << args.dimension)
                 for revision, changes in enumerate(edits):
@@ -92,7 +100,7 @@ def main():
                     gate_s, gate = timed(checks.NativeVectorCheck, pool.index, pk,
                                          rounds=fields.rounds(int(pk.q)), budget=profile.attempt_budget)
                     pending = tokens[cursor:]
-                    answer_check_s, _ = timed(lambda: [gate.prepare_answer(t.answer) for t in pending])
+                    answer_check_s, _ = timed(lambda gate=gate, pending=pending: [gate.prepare_answer(t.answer) for t in pending])
                     native_s, evaluator = timed(native.NativeIndex, pool.index, pk)
                     view = pool.plan.client_view()
                     diagnostic_setup_s, phase_oracle = timed(audit.Audit, pool.index, pk, sk,
@@ -113,8 +121,8 @@ def main():
                         elapsed = time.perf_counter() - start
                         # The current owner plaintext is an offline reference,
                         # never an input to online query/verification/decoding.
-                        cache_s, expected = timed(lambda: tuple((row ^ word).bit_count() for row in pool.plan.workload.rows))
-                        cache_select_s, expected_top = timed(lambda: tuple(heapq.nsmallest(3, zip(expected, view.ids, strict=True))))
+                        cache_s, expected = timed(lambda word=word, pool=pool: tuple((row ^ word).bit_count() for row in pool.plan.workload.rows))
+                        cache_select_s, expected_top = timed(lambda expected=expected, view=view: tuple(heapq.nsmallest(3, zip(expected, view.ids, strict=True))))
                         assert actual == expected and ranked == expected_top
                         sample = {"revision": revision + 1, "token_ordinal": cursor + ordinal,
                                   "online_elapsed_s": elapsed, "response_body_bytes": len(body),
@@ -162,6 +170,7 @@ def main():
                               "owner_compile_s_common": compile_s, "initial_enroll_s": enroll_s,
                               "owner_discovery_s_common": discovery_s,
                               "initial_pool_s": pool_s, "epochs": epochs, "online": online,
+                              "coordinate_array_bytes": pool.coordinate_array_bytes,
                               "total_updates_stage_sum_s": total_update, "all_online_elapsed_s": total_online,
                               "full_lifetime_stage_sum_s": discovery_s + compile_s + key_s + enroll_s + pool_s + total_update + total_online,
                               "all_prepared_tokens_consumed_once": True, "unused_final": 0,
@@ -174,7 +183,7 @@ def main():
     paths = [Path(__file__), *(ROOT / f"experiments/bfv_search_lab/{name}.py" for name in (
         "representation_updates", "representation_oracle", "representation_contract", "crt_query_space",
         "crt_masked_bgv", "crt_native_bgv", "crt_linear_check", "native_linear_check", "owner_bgv",
-        "integer_phase_audit", "shallow_bgv", "coefficient_body")), ROOT / "src/cuhepy/bfv/scheme.py"]
+        "integer_phase_audit", "shallow_bgv", "coefficient_body", "coordinate_factory")), ROOT / "src/cuhepy/bfv/scheme.py"]
     paths.extend(p for folder in ("_subring", "_fingerprint")
                  for p in (ROOT / "experiments/bfv_search_lab" / folder).glob("*.so"))
     result = metadata(paths)
@@ -186,6 +195,7 @@ def main():
     result.update(kind="pending_mask_complete_lifecycle", count=args.count, dimension=args.dimension,
                   rank=plan.maps[0].rank, profile=asdict(profile), pool_size=args.pool, update_count=args.updates,
                   queries_per_nonfinal_update=args.queries_per_update, cases=cases, paired=paired,
+                  owner_arithmetic=args.arithmetic, edited_rows_per_revision=args.edit_rows,
                   workload_digest_owner_local=workload.digest, resources_model=asdict(plan.resources),
                   synthetic_lifetime_reduction_fraction_paired_median=median(p["reduction_fraction"] for p in paired),
                   publication_gate_C_passed=False,
