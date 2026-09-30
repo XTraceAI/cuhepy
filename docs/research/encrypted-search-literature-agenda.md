@@ -1,5 +1,34 @@
 # Literature review and next experiments for encrypted search
 
+**2026-09-29 eleventh creative follow-up:**
+[adaptive transcripts and joint field/geometry selection](adaptive-field-frontier-results.md)
+implement E34 ideal-mask/failure oracles and E35 independently fitted fields.
+Private grouping cuts are separated from the final CRT cover. The existing
+absolute phase gate then permits q32 at unchanged full N and reply capacity,
+with queries chosen after index/offline-answer creation. Response/index bodies
+shrink by the same 20% as E32; checked native local time rises 4.3–6.0 ms.
+Full setup, unused tokens, same-membership refits and plaintext-cache controls
+remain in the comparison. The real encrypted-transcript proof is still open.
+
+Targeted primary reading adds
+[Application-Aware Approximate Homomorphic Encryption](https://eprint.iacr.org/2024/203.pdf),
+abstract/introduction and Sections 2.1–2.2 including the adaptive correctness
+game, as a precedent for specifying allowed applications precisely. Revisited
+[Slalom](https://arxiv.org/html/1806.03287v2), Sections 3.2–3.3 and Appendix B,
+supplies ideal-pad/PRG and secret-preprocessing context, not a proof for our
+error-conditioned HE transcript. [Halevi and Shoup's HElib design](https://people.csail.mit.edu/shaih/pubs/he-library.pdf),
+Section 1.1 and the start of Section 1.2, establishes the plaintext factor/slot
+background. These are known ingredients, not reproduced baselines or novelty
+evidence. The prototype is not proved to meet the application-aware model.
+
+The next mathematical probe is E36: exact correction-image norm oracles and
+uniform upper/lower bounds, with an expectation obstruction for nonzero linear
+forms. A bound for every centered correction could retain adaptive correctness
+while changing a capacity/byte frontier. E33's complete two-field carry checks
+and E34's real transcript remain alternative protocol tracks. The scalar
+false-accept/false-reject control rules out simply checking Q residues in a
+larger unrelated field. None of this changes production authorization.
+
 **2026-09-29 tenth creative follow-up:**
 [fixed-batch CBD correctness and smaller moduli](fixed-batch-noise-results.md)
 implement the previous noise projection with a separate statistical type,

@@ -82,6 +82,16 @@ distribution counterexamples and unreduced phase audits document the tradeoff.
 Old deterministic types/key gates and production code are unchanged. Adaptive
 correctness, RLWE parameters and the complete protocol require separate review.
 
+The [eleventh creative cycle](../../docs/research/adaptive-field-frontier-results.md)
+adds ideal adaptive-mask transcript oracles and a joint field/geometry frontier.
+Private discovery trees need not be final CRT factors. Refitting smaller fields
+lets the existing deterministic API achieve the same 20% body reduction with
+adaptive queries selected after preprocessing; Mushroom query bodies also
+halve. The extra checking round still raises native local time. All 72 full
+encrypted searches and 405 regressions pass, with setup/cache/failure controls.
+The ideal argument is not a proof for encrypted preprocessing. No production
+protocol or GPU implementation changes in this cycle.
+
 The [experiment plan](../../docs/research/bfv-search-experiment-plan.md) proposes
 12 directions from the accepted BFV CUDA baseline. The first implemented batch
 now includes encrypted CPU/CUDA partial sums, owner query preprocessing,
@@ -161,6 +171,9 @@ assurance. The raw CUDA path does not provide attestation.
 | `hierarchical_query_basis.py` | E31 exact subspace intersections, private tree bases, equal-form schedules and balanced greedy overlap grouping |
 | `crt_noise_budget.py` | E32 exact CBD MGF/tail certificate, integer finite-batch union bound and small distribution oracle; correctness only |
 | `fixed_batch_bgv.py` | E32 immutable pre-enrollment query schedule, separate statistical ciphertext type, GMP/C++ evaluation and guarded owner receipts |
+| `adaptive_masking_oracles.py` | E34 exact ideal error/correction transcripts, uniform fresh-mask identity and reuse/disclosure/selection failures; no HE proof |
+| `field_frontier.py` | E35 private rank discovery independent of final CRT roots, fresh per-field map certification and deterministic/statistical cost frontiers |
+| `integer_phase_audit.py` | Owner-only deterministic-circuit unreduced phase diagnostic; excluded from online timing and protocol APIs |
 | `test_correlation_pool_limits.py` | Exhaustive controls showing why public linear expansion of a fixed mask bank leaks joint query relations |
 | `binary_fixtures.py` | Pinned CC BY 4.0 UCI data, fixed binary encodings, label removal and disjoint source-ID splits |
 | `linear_packing.py` | Generic integer dot-product packing, field decoding and exact butterfly operation counts |

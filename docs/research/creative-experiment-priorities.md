@@ -101,12 +101,24 @@ searches and 387 regressions pass, with unreduced integer-phase auditing.
 The separate probabilistic type leaves old deterministic APIs intact. Queries
 must be fixed before enrollment; there is no adaptive or production assurance.
 
-**Next cycle:** prioritize E34's adaptive-query/fresh-mask transcript and E35's
-joint plaintext/ciphertext/verification-field frontier. Begin with exact tiny
-oracles and known counterexamples. The measured verification-round jump and
-the inherited plaintext prime expose mathematical/protocol questions beyond
-kernel tuning. E33's authenticated two-field conversion remains a competing
-track; retain the deterministic-cache and public-linear-pool privacy failures.
+**Eleventh cycle implemented:** [adaptive transcripts and field/geometry selection](adaptive-field-frontier-results.md)
+(E34/E35) retain exact ideal fresh-mask independence and three failure models;
+the real encrypted-transcript argument remains open. Separating private rank
+discovery from final CRT factors enables a smaller plaintext field. The old
+deterministic API then achieves the same 20% response/index reduction as E32,
+with adaptive queries chosen after preprocessing. Mushroom query bodies also
+halve. All 72 full encrypted searches and 405 regressions pass. Refitting the
+original memberships reproduces the selected layouts, and another checking
+round leaves native local time 4.3–6.0 ms higher. Full frontier setup, unused
+tokens and plaintext-cache alternatives are charged.
+
+**Next cycle:** prioritize E36's uniform correction-image norm bounds. Start
+with exact tiny linear-code/centered-lift oracles, including an expectation
+lower bound on the maximum norm. Can image constraints justify smaller Q or
+more capacity for arbitrary adaptive corrections, without importing E32's
+fixed-query concentration assumptions? E33's authenticated two-field conversion
+and E34's real-transcript argument remain competing protocol questions; retain
+the explicit carry, deterministic-cache and public-linear-pool failures.
 A matching GPU experiment follows a precise state/trust comparison.
 Keep the independent-key matrix orientation as another candidate; its literal
 key growth still does not justify a general matrix CUDA implementation.
@@ -133,7 +145,7 @@ be known. Check the closest work before presenting a contribution claim.
 For the next research cycle:
 
 1. Investigate several competing hypotheses with small independent algebraic
-   models. Use the completed E19–E32 results above to choose the next competing
+   models. Use the completed E19–E35 results above to choose the next competing
    questions. A plausible but uncertain idea deserves
    a cheap test.
 2. For each, write the claimed difference from its closest known construction,
@@ -678,13 +690,17 @@ performance comparison.
 
 ## E34 — Can fresh masks support adaptive correctness without a fixed epoch batch?
 
-**Next priority:** determine exactly which transcript permits a concentration
-argument when queries follow earlier answers. In an ideal model, fix w before
-sampling a fresh independent uniform r; `delta=w-r mod t` is uniform even if
-w depends on the past. Enumerate this identity and its failures under reuse,
-mask-dependent selection and early disclosure. Then model the encrypted
-offline answer and SHAKE mask expansion instead of treating them as an ideal
-mask oracle. Include trusted-owner/caller boundaries and first-failure events.
+**Ideal model implemented:** [exact transcript oracles](adaptive-field-frontier-results.md#e34-which-adaptive-transcript-admits-the-ideal-argument)
+enumerate the joint error/correction distribution. A policy may see reused
+errors and earlier toy phases, but commits w before the current independent
+uniform r. The correction transcript is then independent of errors; reuse,
+early disclosure of just one linear form, and error-dependent token selection
+are exact failure controls. Their TV distances are model dependence measures,
+not HE attack advantages. The production-view replacement is not proved.
+
+**Next protocol gate:** model encrypted offline answers and SHAKE expansion,
+including trusted-owner/caller boundaries, first-failure histories and token
+selection. Do not promote the ideal lemma to a real-transcript noise theorem.
 
 The target is a reviewed adaptive correctness statement for a useful scheduling
 contract, not simply changing E32's immutable-batch API. A caller or server that
@@ -699,17 +715,21 @@ counterexamples as the fixed-query control.
 
 ## E35 — Can search geometry and both fields be selected jointly?
 
-The previous profile inherited t=1,153. Search admissible plaintext primes
-subject to exact score ranges and every CRT factor/root requirement; rebuild
-finite-field maps and recertify all rows for each candidate. Vary capacity,
-rank repair, correction norms, deterministic/statistical Q and verification
-rounds jointly. Count actual byte boundaries, owner state, unused preprocessing
-and equality leakage. Compare one global affine map, local maps and raw search.
+**Implemented:** [joint field/geometry frontier](adaptive-field-frontier-results.md#e35-private-discovery-cuts-are-not-polynomial-factors)
+refits and certifies maps independently per field, then separates private
+discovery cuts from the final allocated CRT cover. At unchanged full N and
+column/reply capacity, t=193 on Mushroom and t=257 on Semeion let the old
+absolute phase bound fit q32. Queries are chosen after the index and entire
+answer pool exist. Fixed-membership controls match, while global affine maps
+exceed the local index cap. Native server time changes little; the fifth
+checking round raises total time. The full selection search, state and unused
+tokens are retained costs. Below-32-bit moduli and fixed-CBD frontier entries
+are models, not implemented adaptive profiles.
 
-**First experiment:** a tiny exhaustive field/score/CRT oracle and index-only
-public-data frontier. A lower t can alter rank, interpolation and padding;
-maps over another field cannot be silently reused. Before full-size encryption,
-reject every wrapped distance, invalid root and false linear-check shortcut.
+Tiny controls include exhaustive field/score/CRT identities, characteristic-
+dependent rank and invalid cross-field map reuse, followed by 72 full-size
+encrypted searches. A scalar independent-checking-field shortcut has both
+false acceptance and false rejection without integer Q-carry relations.
 
 **Possible contribution:** a useful jointly optimized representation and
 verification/correctness frontier. Modulus tuning, CRT and concentration are
@@ -717,6 +737,32 @@ known; their combination is not automatically novel. A larger independent
 verification field requires complete integer Q-reduction carry relations.
 **Falsification:** map rank, score capacity, extra rounds/carry checks or setup
 costs cancel the apparent bit reduction.
+
+## E36 — Can the correction image give a uniform adaptive norm bound?
+
+**Next mathematical priority; not implemented.** The universal phase gate uses
+`sum |alpha_j| <= W*floor(t/2)` even though alpha is a linear image of only h
+masked coordinates over F_t. Can duplicated forms, zero coordinates or code
+constraints lower the maximum centered-lift L1 norm enough to change a byte
+boundary, verifier rounds or response capacity? This would preserve absolute
+correctness for arbitrary correction choices, avoiding a concentration claim.
+
+Begin with exact tiny generator matrices and enumerate every delta. Check
+independent upper bounds and adversarial maximizers before trying branch bounds
+or finite-field support arguments on a real CRT/map image. Charge certification
+work, private state, message/error terms, carries and full lifetime costs.
+
+**Obstruction control:** if Z coefficient forms are nonzero, a uniform delta
+makes each individually uniform. With b=floor(t/2), expectation implies
+`max_delta sum |center(alpha_j(delta))| >= Z*b*(b+1)/t`, without coefficient
+independence. Establish Z rather than assuming Z=W. Do not mistake typical
+norms for a universal upper bound or relabel a probabilistic estimate adaptive.
+
+**Possible contribution:** a useful representation-specific bound or a sharp
+obstruction that changes the search/verification tradeoff. Linear codes, CRT
+and worst-case norm analysis are known ingredients. **Falsification:** the
+maximum stays near the full coefficient cube, checking/certification costs
+erase the savings, or the bound fails on characteristic/carry counterexamples.
 
 ## Evidence and deferred work
 
