@@ -2,6 +2,14 @@
 
 ## 2026-10-01: R3 encrypted-query gate discriminator
 
+Returned to R2 and executed E76's [strongest retained global TCP geometry](enrolled-global-service-control.md).
+Another56 exact mode queries and eight current wire/coverage/release tests pass.
+Complete returning HE medians46.79/15.78 ms improve the measured finite
+Mushroom/Semeion panel, but permitted raw/compressed caches still win.
+**Return decision:** keep the engineering controls; return to R3/R6's actual
+construction costs. Independent resources/private bootstrap and full R2 stay
+open. No universal impossibility, new mechanism or parameter approval follows.
+
 Returned to R2-C0 and completed E75's [matched enrolled TCP control](enrolled-service-control.md):
 56 exact mode queries across two real datasets, actual HE index/fresh-answer
 upload and received-query evaluation, full check before secret decryption,

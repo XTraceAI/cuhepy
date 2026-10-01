@@ -6,7 +6,9 @@ import struct
 
 import pytest
 
-from benchmarks.enrolled_service_lab import open_response
+from benchmarks.enrolled_service_lab import compile_geometry, finish, open_response
+from benchmarks.field_frontier_lab import public_space
+from experiments.bfv_search_lab import affine_dictionary as affine
 from experiments.bfv_search_lab import coefficient_body as codec
 from experiments.bfv_search_lab import crt_masked_bgv as masked
 from experiments.bfv_search_lab import crt_query_space as space
@@ -64,6 +66,22 @@ def test_actual_received_index_answer_delta_and_full_coefficients_equal():
         assert output == codec.pack(tuple(x for c in expected for p in c.components for x in p), int(pk.q))
         with pytest.raises(RuntimeError, match="consumed"):
             server(b"Q" + request.token_id + request.body())
+
+
+def test_global_geometry_restores_all_original_ids_and_scores():
+    rows, ids = (0, 1, 3, 5, 7, 5, 1, 4), (80, 23, 94, 12, 5, 18, 20, 8)
+    candidate, kind, _setup = compile_geometry(rows, ids, 3, "global2048", 193, 32)
+    assert kind == "global_affine" and candidate.layout.context.n == 2048
+    maps, s = public_space(candidate)
+    compiled = tuple(affine.compile_bits(p) for p in maps)
+    for word in range(8):
+        transformed = [affine.bit_query_features(p, word) for p in compiled]
+        values = tuple(x for weights, _ in transformed for x in weights)
+        groups = [affine.index_features(b.mapping, [rows[i] for i in b.positions]) for b in candidate.blocks]
+        plaintexts = [[x % 193 for x in poly] for poly in space.outputs(s.layout, space.scores(s, groups, values))]
+        actual = finish(candidate, s, compiled, tuple(off for _, off in transformed), ids, plaintexts)
+        scores = tuple((word ^ row).bit_count() for row in rows)
+        assert actual.scores == scores and actual.top3 == tuple(sorted(zip(scores, ids, strict=True))[:3])
 
 
 @pytest.mark.parametrize("malformed", [False, True])

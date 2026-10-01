@@ -35,6 +35,8 @@ from experiments.bfv_search_lab import folded_dictionary as dictionary
 from experiments.bfv_search_lab import loopback_exchange as transport
 from experiments.bfv_search_lab import native_linear_check as checks
 from experiments.bfv_search_lab import owner_bgv as owner
+from experiments.bfv_search_lab import representation_oracle as oracle
+from experiments.bfv_search_lab.representation_contract import Profile, Workload
 from experiments.bfv_search_lab import shallow_bgv as bgv
 from experiments.bfv_search_lab import verification_lifetime as lifetime
 
@@ -75,12 +77,33 @@ def checked_result(result, rows, ids, word):
             "every_score_id_and_stable_top3_exact": True}
 
 
-def he_control(rows, ids, words, dimension, query_budget):
+def compile_geometry(rows, ids, dimension, profile, t, slots):
     setup = {}
-    setup["metric_order_s"], order = timed(dictionary.metric_order, rows, dimension, 32)
+    if profile == "legacy16384":
+        setup["metric_order_s"], order = timed(dictionary.metric_order, rows, dimension, 32)
+        setup["field_fit_s"], discovery = timed(fields.fit, rows, dimension, order, prime=t, target=32)
+        setup["layout_allocate_s"], candidate = timed(fields.allocate, discovery, rows, slots)
+        kind = "legacy_partitioned"
+    elif profile == "global2048":
+        # Full-rank Semeion needs no affine discovery/compression. Use the
+        # retained strong raw comparator, not redundant affine fitting.
+        constructor = oracle.raw_map if dimension == 256 else affine.prepare
+        arguments = (dimension, t) if dimension == 256 else (rows, dimension, t)
+        setup["whole_index_map_discover_s"], mapping = timed(constructor, *arguments)
+        kind = "global_raw" if dimension == 256 else "global_affine"
+        choice = oracle.Choice((oracle.Piece("", tuple(range(len(rows))), mapping,
+                                            "raw" if dimension == 256 else "affine"),))
+        setup["whole_index_layout_compile_s"], compiled = timed(
+            oracle.compile_choice, Workload(tuple(rows), ids, dimension), choice, Profile(2048, t, q_bits=32), (1,))
+        candidate = compiled.candidate
+    else:
+        raise ValueError("Unregistered service geometry")
+    return candidate, kind, setup
+
+
+def he_control(rows, ids, words, dimension, query_budget, profile):
     t, slots = (193, 32) if dimension == 126 else (257, 64)
-    setup["field_fit_s"], discovery = timed(fields.fit, rows, dimension, order, prime=t, target=32)
-    setup["layout_allocate_s"], candidate = timed(fields.allocate, discovery, rows, slots)
+    candidate, geometry_kind, setup = compile_geometry(rows, ids, dimension, profile, t, slots)
     def compile_owner():
         maps, s = public_space(candidate)
         groups = [affine.index_features(b.mapping, [rows[i] for i in b.positions]) for b in candidate.blocks]
@@ -149,7 +172,8 @@ def he_control(rows, ids, words, dimension, query_budget):
                 samples.append(sample)
                 print("HE", dimension, ordinal, round(1000 * wall_s, 2), "ms", file=sys.stderr, flush=True)
         assert attempt_budget.used == len(words) and not server._answers
-    return {"mode": "masked_bgv_native_fullq_check", "n": pk.n, "t": pk.t, "q": str(pk.q),
+    return {"mode": "masked_bgv_native_fullq_check", "geometry_kind": geometry_kind,
+            "n": pk.n, "t": pk.t, "q": str(pk.q),
             "q_bits": pk.q.bit_length(), "eta": pk.eta, "rounds": rounds, "query_budget": query_budget,
             "setup": setup, "enrollment": enrollment, "seeded_index_ciphertext_packet_bytes": uploaded_bytes,
             "server_context_bootstrap": "already pinned; not transferred",
@@ -212,7 +236,7 @@ def run(args):
         for word in words:
             seconds, result = timed(raw_cache.query, word)
             raw_samples.append({"local_query_wall_s": seconds, **checked_result(result, rows, ids, word)})
-        he = he_control(rows, ids, words, data.dimension, args.query_budget)
+        he = he_control(rows, ids, words, data.dimension, args.query_budget, args.profile)
         snapshots = [cache_control(rows, ids, words, data.dimension, level, retained)
                      for level, retained in ((None, "raw"), (1, "raw"), (9, "raw"), (1, "compressed"), (9, "compressed"))]
         expected = [p["scores_sha256"] for p in he["samples"]]
@@ -236,6 +260,7 @@ def main():
     parser.add_argument("--datasets", nargs="+", choices=tuple(fixtures.SOURCES), default=list(fixtures.SOURCES))
     parser.add_argument("--repeats", type=int, default=3)
     parser.add_argument("--query-budget", type=int, default=1024)
+    parser.add_argument("--profile", choices=("legacy16384", "global2048"), default="legacy16384")
     parser.add_argument("--json-out", type=Path, required=True)
     args = parser.parse_args()
     if not 1 <= args.repeats <= 15 or not args.repeats + 1 <= args.query_budget <= 65536 or args.json_out.exists():
@@ -247,7 +272,8 @@ def main():
         "enrolled_rpc", "loopback_exchange", "loopback_transfer", "coefficient_body", "cache_snapshot", "coordinate_cache",
         "coordinate_factory", "verification_lifetime", "native_linear_check", "crt_linear_check", "crt_native_bgv",
         "crt_masked_bgv", "crt_query_space", "dyadic_crt", "field_frontier", "affine_dictionary", "folded_dictionary",
-        "binary_fixtures", "owner_bgv", "seeded_bgv", "shallow_bgv"))
+        "binary_fixtures", "owner_bgv", "seeded_bgv", "shallow_bgv", "representation_oracle", "representation_contract",
+        "rank_partition", "linear_packing", "reduction_oracles", "crt_noise_budget", "polynomial_fingerprint", "folded_filter"))
     for folder in ("_subring", "_fingerprint"):
         paths.extend((ROOT / "experiments/bfv_search_lab" / folder).glob("*.so"))
         paths.extend(ROOT / "experiments/bfv_search_lab" / folder / name for name in ("bindings.cpp", "Makefile"))
