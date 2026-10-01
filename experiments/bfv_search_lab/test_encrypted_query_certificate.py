@@ -119,6 +119,21 @@ def test_output_cannot_be_replaced_after_weights_and_budget_spans_receivers():
     assert attempts.used == 2
 
 
+@pytest.mark.parametrize("mutation", ("truncate", "extend"))
+def test_malformed_quotient_burns_second_stage_before_private_decryption(monkeypatch, mutation):
+    index, pk, sk, request, body = _fixture()
+    receiver = protocol.Receiver(index, pk, bytes(16), lifetime.AttemptBudget(1))
+    challenge = receiver.freeze_once(request, body)
+    proof = protocol.prove(index, request, pk, challenge)
+    private_calls = []
+    monkeypatch.setattr(bgv, "decrypt", lambda *args: private_calls.append(True))
+    malformed = proof[:-1] if mutation == "truncate" else proof+b"\0"
+    assert receiver.open_once(malformed, sk) is None
+    with pytest.raises(RuntimeError, match="consumed"):
+        receiver.open_once(proof, sk)
+    assert not private_calls
+
+
 def test_true_output_one_bad_quotient_exposes_only_one_rounds_predicate():
     q, n = 97, 8
     groups = ((tuple(((1,)*n, (2,)*n) for _ in range(2))),)
