@@ -1,5 +1,40 @@
 # Publication research execution log
 
+## 2026-10-01: E79 completion and R6 construction/pivot decision
+
+[E79 report](isolated-enrolled-service-control.md) retains smoke/pilot/final/
+direct-first-release runs:182 three-process trials/1,518 repeated exact mode
+queries. All private setup actually transfers in owner-authenticated bounded
+envelopes; public server context/index uses received bytes. Separate CPU/current/
+peak RSS, root IPC, padding, every fresh-answer/query RPC and direct cold/new-
+client first result are measured. Eight new +eight existing socket/release tests
+pass. Strong HE returning means47.580/17.205ms still lose to permitted caches.
+No p95/production/parameter/WAN/update/scale assurance is inferred.
+
+**Return decision:** finite E79 core complete, full R2/P packages remain open.
+[R6 selection](construction-selection-20261001.md) reconciles E80/E78/E81/E79:
+no original useful complete winner; keep the exact semantic-trace control and
+company baseline. Next proposed E82 prices the actual authenticated fixed-M
+correlation interface, with secret-code span/reuse negatives and full t/Q/fresh-
+encryption/provenance costs. It is not implemented. R5 remains a changed-output
+alternative. No generic proof port or GPU kernel is promoted as novel work.
+
+## 2026-10-01: H3/E81 exact admissible-trace mathematical control
+
+[E81 report](admissible-trace-screen.md):62,208 scalar algebra cases (38,637
+aliases),112 canonical +336 alternative encrypted searches; every exact score/
+ID/top-3 matches although all336 alternative full ciphertext outputs differ.
+Fourteen scoped tests/three Ruff paths pass. A global unsigned digit box and
+mod-Q recomposition retain the same canonical worst-case bound at equal base;
+public full no-wrap checking remains essential. Unbounded integer carries and
+independently chosen RNS-limb digits give explicit wrong decodes.
+
+**Return decision:** retain a conditional exactness lemma/proof-frontend control;
+do not claim originality or proof speed. Existing relaxed ring/range proofs are
+direct controls. Dominant digit-box work remains; no backend bottleneck was
+measured. Source `e1883a2`. E79's final independent panel and direct
+first-release follow-up subsequently completed; the R6 return is recorded above.
+
 ## 2026-10-01: H2/E78 composed relation and return to the plan
 
 [E78 report](seed-composition-screen.md):112 exact encrypted searches,336 switch

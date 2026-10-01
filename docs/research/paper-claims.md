@@ -37,9 +37,13 @@ claim**. Follow the [execution plan](publication-research-plan.md) and
 | Packing shrinks encrypted CRT query packets | **Measured tiny control:**924→231 B on112 packed/112 unpacked same-key queries | E73 [report](packed-query-expansion-control.md) | SealPIR/MulPIR packing known; keys, conservative Q and duplicate canonical expansion paid; no overall speed/wire claim |
 | Multiplication verification automatically binds server-provided query expansion | **Rejected:**deliberately unsafe adapter accepts a substituted expansion; canonical original pinning rejects it | E73 negative | A canonical digit/branch certificate or trusted expansion is required |
 | A public-code programmed mask cheaply removes actual row-factory work | **Rejected literal recipe:**incomplete128-bit trial/entropy filters cost1.645x/1.727x row products | E74 [report](programmed-mask-block-results.md) | Fixed-weight recipe is not reviewed finite-field Bernoulli LPN/secret recursion; no security or universal impossibility follows |
-| Outsourcing wins in actual returning-client service on the two small fixtures | **Not established:**strong global same-harness HE46.79/15.78 ms loses to permitted raw/compressed caches | E75/E76 [strong panel](enrolled-global-service-control.md),112 exact mode queries | Actual index/answer/query RPC measured; private bootstrap, independent resources and other regimes remain open |
+| Outsourcing wins in actual returning-client service on the two small fixtures | **Not established:**strong global same-harness HE46.79/15.78 ms loses to permitted raw/compressed caches | E75/E76 [strong panel](enrolled-global-service-control.md),112 exact mode queries | E75/E76 measure returning RPC; E79 subsequently adds private bootstrap/independent resources. Other regimes and assurance remain open |
 | Fixed C1 makes packed expansion affine in original C0 and shrinks online vectors | **Exact/control:**112 searches;toy vectors4,096→512 B with exact selector/adjoint and complete original-query gate | E77 [report](seed-affine-gate-control.md) | Conditional affine hoisting/linear fingerprints known. Factory still keeps old state/full fresh seed expansion;client+factory4.7–7.8% slower |
 | The literal seed-affine gate reduces total trusted work/state | **Rejected as full-system claim** | E77 complete paid factory/receiver count and toy stages | A certified public-seed offset generator or different carry-aware construction is still needed |
+| Module closure reduces complete paid verification cost on every profile | **Rejected literal fallback:** registration shrinks on legacy profiles but every reply grows2.41–2.57x; strongest scalar layouts have no module gain | E80 [module/LHE screen](structured-module-screen.md),54 configurations/112 searches/ten ledgers | Exact closure and rounding are known controls; no universal protocol, speed or security claim |
+| Composing expansion with answer arithmetic supplies a cheaper new proof | **Not established:** same canonical gadgets and generic folding remain; transposed fingerprints grow8.73–13.95x | E78 [typed relation](seed-composition-screen.md),112 traces/three paid interface inventories | Full public recomputation, no PCS/proof backend; private-beta interface unresolved |
+| Bounded noncanonical switching traces retain exact scores | **Conditional scoped correctness:**336 distinct alternative encrypted outputs decode exactly; universal same-base bound and global digit linkage essential | E81 [exactness screen](admissible-trace-screen.md),62,208 scalar cases/112 canonical searches/336 alternatives and explicit failures | Known relaxed-maintenance adapter; no reviewed theorem, proof-cost saving or originality claim |
+| Actual private provisioning closes the measured cold/new-client gap | **Finite local measurement complete:**182 three-process trials/1,518 repeated exact mode queries, real private/public acquisition, CPU/RSS and first release | E79 [isolated control](isolated-enrolled-service-control.md) | Caches still win both small fixtures. WAN/scale/updates/concurrency, durable trust root, private timing and approved parameters remain open |
 
 The current [plan](publication-research-plan.md) prioritizes reducing per-query
 trusted preparation with safe exact release. The calibrated lifetime rule and
@@ -50,9 +54,10 @@ correlations and SIMD sparse-result compression.
 
 | Proposed statement | Current status | Evidence required before promotion |
 |---|---|---|
-| H1/E80 preserves subring structure throughout verified linear evaluation and reduces total registration/trusted cost | **New unimplemented hypothesis**, not a result; scalar m=1 and projection/packing failures are explicit controls | Complete module query/packing/release construction, adapted extraction/norm/feedback argument, exact oracle and strongest-profile resource comparison |
-| H2/E78 proves the composed original-query-to-answer relation with less complete cost | **Unimplemented hypothesis**; known maintenance/batched ring proofs are direct controls | New elimination beyond generic composition; explicit private-beta/opening interface, bindings and all setup/prover/verifier/traffic costs |
-| H3/E81 admits cheaper noncanonical traces without changing exact BGV scores | **Conditional unimplemented screen**, motivated by existing relaxed CKKS proofs | Universal exact-decoding bound under adversarial witnesses; global RNS/carry relation, feedback privacy and complete increased-Q/proof costs; adaptation alone is not originality |
+| H1/E80 preserves structure with lower complete cost | **Executed known control; literal retained-H stopped as universal winner** | A different complete construction consequence beyond module rewrite and isolated H savings; extraction/norm/privacy and full cost review |
+| H2/E78 supplies a cheaper new composed proof | **Executed relation control; generic fusion stopped as originality** | New elimination beyond strongest specialized folding, concrete private-beta/opening interface and all proof/backend costs |
+| H3/E81 gives cheaper proof work while preserving exact outputs | **Exact bounded-trace control executed; proof saving unmeasured** | Conditional correctness review, actual proof frontend/range costs and a new consequence beyond published relaxed-maintenance adaptation |
+| Proposed E82 supplies fresh authenticated fixed-private-M tokens more cheaply | **Not implemented**, next bounded R4 screen | Exact roles/distribution/t-Q lift, secret-code/recipient-programmed/sparse correction controls, complete setup/refresh/authentication counts and scoped negatives |
 | E68 structured verified evaluation reduces owner preparation without outer expansion | **Hypothesis only** after executed linear H/Z and negative digit/gadget controls | Carry-aware structured protocol step, admissible norms/owner binding, reduction and complete same-contract measurements |
 | E69 compact correlation generation supplies our exact token functionality | **Hypothesis only**; ideal generic-triple shortcut rejected, programmed PCGs still open | Fixed-private-M conversion, recipient/field/encryption distribution proof, complete generation/provisioning benefit |
 | E46 returns exact sparse winners more cheaply than full scores | **Hypothesis only**; known compression starts after winner discovery | Complete selection/tie/coverage mechanism, all conversion/proof/round costs and adverse controls |
@@ -63,8 +68,10 @@ bounded screens. The [new construction packets](construction-hypotheses-20261001
 specialize the next attempts after the
 [updated closest-work review](contribution-reassessment-20261001.md).
 The initial planning revision remains historical; bounded
-R0–R4/E70–E77 execution is now recorded separately. No new theorem, originality
-or security certification follows. All-data caching and original protocol
+execution through E81 is recorded separately in the
+[current return](construction-selection-20261001.md). A scoped conditional
+exactness argument is not an independently reviewed theorem, originality
+or security certification. All-data caching and original protocol
 controls remain mandatory comparisons.
 
 To promote a claim: freeze a justified workload/leakage/resource objective;

@@ -11,6 +11,8 @@ Source checkpoint `71d276e`; homemade
 tradeoff; stop this literal retained-H fallback as a universal paper candidate.
 Return to H2/E78. A different complete release representation may still be
 interesting, but no new primitive, parameter approval or speedup is shown.
+Subsequent E78/E81/E79 returns are now complete; the
+[current selection](construction-selection-20261001.md) proposes E82.
 
 ## Exact implementation and evidence
 

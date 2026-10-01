@@ -1,12 +1,13 @@
 # Construction hypotheses and finite execution packets
 
 2026-10-01. Companion to the [contribution review](contribution-reassessment-20261001.md)
-and [canonical plan](publication-research-plan.md). Every experiment below is
-initially proposed. E80's [first finite screen](structured-module-screen.md)
-is executed, as is E78's [relation screen](seed-composition-screen.md).
-E79/E81 remain unimplemented at this return. E78/E79 retain
-their earlier meanings; E80/E81
-are new IDs. Ordinary algebra in a construction sketch is not an established
+and [canonical plan](publication-research-plan.md). The initial cards below are
+retained, followed by their execution returns. E80's [module screen](structured-module-screen.md),
+E78's [relation screen](seed-composition-screen.md), E81's
+[exactness screen](admissible-trace-screen.md) and E79's
+[isolated service control](isolated-enrolled-service-control.md) have executed.
+The [current R6 return](construction-selection-20261001.md) proposes E82; that
+next card is not implemented. Ordinary algebra in a sketch is not an established
 cryptographic construction or a novelty claim.
 
 ## Shared contract and acceptance rules
@@ -253,9 +254,10 @@ pinned external PCS/prover control be implemented.
 
 ## H3 / E81: bounded trace freedom with exact BGV decoding
 
-**Priority: conditional mathematical alternative**, R3-B4, P03/P07/P10.
-Activate only if canonical digit/range enforcement is a demonstrated bottleneck
-in E78 or H1. This is not a plan to switch the application to approximate scores.
+**Executed bounded mathematical control**, R3-B4, P03/P07/P10.
+The initial card below tests a possible canonical digit/range saving; it does
+not establish that proof work is the measured system bottleneck.
+This is not a switch to approximate scores.
 
 Question: can a larger *publicly checkable* family of evaluation traces be
 proved cheaper while every admitted trace still decrypts to the exact same
@@ -284,8 +286,19 @@ decompositions, independent phase arithmetic, and a symbolic worst-case bound.
 Attack controls include recomposition to x+Q, per-RNS-limb valid but globally
 unbounded witnesses, negative/boundary digits, maximum-depth paths, partial
 outputs and repeated rejected traces. Price increased Q, keys, HE work, ranges
-and proof work at the new bound. Proposed paths: `admissible_trace_oracle.py`,
-its test, and `docs/research/admissible-trace-screen.md`; not implemented.
+and proof work at the new bound. Implemented reference/test paths are
+`experiments/bfv_search_lab/admissible_trace_oracle.py`,
+`experiments/bfv_search_lab/test_admissible_trace_oracle.py` and
+`benchmarks/admissible_trace_lab.py`; [report](admissible-trace-screen.md).
+
+**Return:**62,208 scalar cases and336 alternative encrypted searches preserve
+exactness; every alternative changes the ciphertext. Global digit boxes and a
+public full-phase no-wrap bound are essential; independent RNS boxes and
+unbounded recomposition have concrete failures. At the same base the universal
+noise bound is unchanged and only canonical-interval comparisons can disappear.
+No proof backend, proof latency/size saving, or originality gate is established.
+Keep the conditional adapter, credit published relaxed-maintenance proofs and
+return to [R6's pivot](construction-selection-20261001.md).
 
 Stop after one mathematical screen if universality fails or increased modulus
 and proof work erase the benefit. Simply porting the published relaxation to
@@ -294,7 +307,7 @@ would need a new exact bound/representation consequence and complete improvement
 
 ## Independent work and alternatives
 
-**E79 / R2-C1:** finish real cold/new-client private provisioning and isolated
+**E79 / R2-C1 (finite core executed):** real cold/new-client private provisioning and isolated
 endpoint resources using the existing service harness. All keys/maps/IDs/checker
 material must actually be delivered through the appropriate trusted channel.
 Compare retained-owner data, authenticated snapshot acquisition, raw/compressed
@@ -303,12 +316,19 @@ full application bytes, wall latency and amortized enrollment. Run independent
 process repetitions; size the final sample from a pilot instead of manufacturing
 p95 from three observations. Keep starting states identical. This is a necessary
 evaluation task, not a claimed new protocol.
+The [completed control](isolated-enrolled-service-control.md) retains182
+three-process trials/1,518 repeated exact mode queries, authenticated bounded
+private acquisition, endpoint CPU/RSS and directly observed first release.
+Both measured fixtures still favor caches. Loopback CPU fixtures, local trust
+root and toy security parameters do not close WAN/scale/update/assurance tasks.
 
-**R4:** secret/recursive/block-preserving correlations remain possible outside
+**R4 / next proposed E82:** secret/recursive/block-preserving correlations remain possible outside
 BFV/BGV. Revisit only with a concrete conversion for the actual F32/F23 matrices,
 fresh independent ciphertexts and the full-Q gate. Original EMVP compressed
 corrections and recursive BNTM are strong controls. A new public low-entropy mask
-recipe is not justified by a generic LPN citation.
+recipe is not justified by a generic LPN citation. Use the
+[current paid-interface packet](construction-selection-20261001.md) before code;
+E82 is unimplemented.
 
 **R5 / E46:** exact top-3 is a separate output contract. A construction must
 locate the threshold, resolve stable-ID ties, cover every omitted row, and price

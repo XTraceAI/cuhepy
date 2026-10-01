@@ -218,3 +218,47 @@ adjacent verified Git bundle/dependency/PDF/text/log archive. Prior company and
 research tags/bundles remain intact. Next [construction cards and resource
 tasks](mechanism-execution-handoff-20261001.md) are explicitly proposals;
 no originality/production or security gate is accepted from this tranche.
+
+## Construction and isolated resource tranche, E78–E81
+
+This supplement preserves the previous manifests, raws and validation receipts.
+Read [the current R6 return](construction-selection-20261001.md) and
+[progress](publication-progress.md). The completed reference arithmetic is
+homemade; public trace recomputation is explicitly not a succinct proof.
+
+| Runner / report | Retained finite scope | Interpretation |
+|---|---|---|
+| `benchmarks/structured_module_lab.py`,[E80](structured-module-screen.md) |54 configurations,768 matrix basis columns,112 encrypted searches, ten full ledgers | Known module/LHE closure; literal retained-H reply expansion prevents a universal winner |
+| `benchmarks/seed_composition_lab.py`,[E78](seed-composition-screen.md) |112 traces,336 switches,86,016 digits, three complete interface inventories | Same gadgets/folding survive the strongest control; private-beta and proof backend unresolved |
+| `benchmarks/admissible_trace_lab.py`,[E81](admissible-trace-screen.md) |62,208 scalar cases,112 canonical/336 alternative exact encrypted searches | Conditional exact bounded-trace adapter; known relaxed-maintenance control, no measured proof gain |
+| `benchmarks/isolated_enrolled_lab.py`,[E79](isolated-enrolled-service-control.md) |Smoke/pilot/final/direct-first-release:182 three-process trials,1,518 repeated exact mode queries | Actual public/private bootstrap, endpoint CPU/RSS and first release; permitted caches still win both small CPU fixtures |
+
+All runners require fresh `--json-out`; E79 also needs
+`--cache-dir ../research-data/uci-20260927` and authorized loopback sockets.
+Exact original commands, source revisions, pilot-derived sample choice and
+retained input hashes are in the raws. A reproduction uses the raw's historical
+source blob, rather than assuming current HEAD reruns the identical sampler.
+E79's main panel covers the whole client session in its legacy controller field;
+only the retained follow-up directly measures first release.
+
+One consolidated scoped check passes **175 tests in nine files**, with no
+failures/skips, and Ruff passes **13 explicitly selected new Python paths**.
+These totals overlap earlier scoped checks and are not whole-repository CI.
+The [new validation](construction-execution-validation-20261001.json) records
+logs, source/report identities, unchanged production refs, literature/link/task
+checks and exactly what was tested.
+
+The [new construction manifest](publication-construction-execution-manifest-20261001.json)
+retains all **82 tracked publication raws**, their exact historical source
+versions and explicit cache dependencies. Preserve and verify every previous
+manifest as well:
+
+```sh
+.venv/bin/python benchmarks/publication_artifact_manifest.py --verify docs/research/publication-construction-execution-manifest-20261001.json
+```
+
+Target `checkpoint/construction-screens-2026-10-01`, adjacent verified Git bundle
+and dependency/paper/log archive. Production `src/`, main/staging and earlier
+tags remain unchanged. Next E82 is a bounded **proposal**, not an implemented
+primitive; no originality, reviewed theorem or production/security acceptance
+follows from these controls.

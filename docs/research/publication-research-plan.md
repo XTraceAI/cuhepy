@@ -1,12 +1,12 @@
 # Research plan: structured verified encrypted search
 
-Revision: 2026-10-01, construction execution after E80/E78. Read the new
+Revision: 2026-10-01, return after E80/E78/E81 and isolated E79. Read the
+[current construction selection](construction-selection-20261001.md),
 [closest-construction comparison](contribution-reassessment-20261001.md) and
-[finite construction packets](construction-hypotheses-20261001.md) first.
-E80's [module/LHE screen](structured-module-screen.md) and E78's
-[composed relation](seed-composition-screen.md) have executed. E79/E81 remain
-unimplemented at this return. No protocol is selected as a paper winner,
-and no security gate has passed.
+[finite construction packets](construction-hypotheses-20261001.md).
+The four bounded screens have executed. Next proposed E82 prices authenticated
+fixed-private-matrix correlations; it is not implemented. No protocol is
+selected as a paper winner, and no security gate has passed.
 The protected E01–E65 evidence remains frozen at `6207455`, tag
 `checkpoint/publication-controls-2026-09-30`; the initial planning revision is
 retained at `b60a715`. New bounded R0–R4/E70–E77 controls are recorded in the
@@ -21,7 +21,11 @@ retains the original hypotheses, gates and execution amendments unchanged.
 ## 1. Decision and intended contribution
 
 Prioritize **exact, owner-private linear search whose structure survives the
-complete verification protocol**. The first construction screen,
+complete verification protocol**. After the finite screens, pivot to the
+fixed-matrix authenticated token interface in [E82's packet](construction-selection-20261001.md).
+Require fresh private masks, correctly distributed encrypted score answers and
+approved provenance before decryption; price setup, refresh, fields and every
+owner/helper operation before implementing an HE adapter. The completed first screen,
 **H1 / E80: subring-preserving outer verification**, now has an exact reference
 and full count ledger. It makes the E47/E68 idea
 specific: choose a common query subring, express the operator and outer CRS as
@@ -36,13 +40,14 @@ verification before both decryption layers and explicit rounding-remainder
 costs. Outsourcing this registration to an untrusted server is a separate mode;
 its extraction/binding assumptions are not imposed on every owner-built setup.
 
-The competing **H2 / E78** screen proves the composed original-query-to-answer
-relation using E77's affine decomposition. Prior work already proves key
-switching, uses ring proofs and batches their arithmetic; the new experiment
-must eliminate work beyond those controls. **H3 / E81**, conditional on a range
-proof bottleneck, asks whether bounded noncanonical traces can retain exact BGV
-decoding. Existing relaxed CKKS proofs are its direct originality control.
-These are hypotheses, not established constructions or announced contributions.
+The competing **H2 / E78** screen checks the composed original-query-to-answer
+relation using E77's affine decomposition, by full public recomputation. It does
+not implement a succinct proof. Prior work already proves key switching, uses
+ring proofs and batches their arithmetic; generic fusion supplied no new step.
+**H3 / E81** establishes a scoped conditional exactness argument and executable
+control for globally bounded noncanonical traces. Existing relaxed CKKS proofs
+are its direct originality control. Keep this building block; no measured proof
+cost reduction or new complete cryptographic construction follows.
 
 Do not build a bigger representation/lifetime optimizer as the next project.
 Its current static and causal variants failed strong simple controls. Existing
@@ -69,10 +74,10 @@ the broader tracks in the [original agenda](publication-mechanism-agenda.md):
 
 | Priority | Track | Cost it attempts to remove | Research discriminator |
 |---|---|---|---|
-| 1 | **H1: subring/module verified evaluation**, E47 → E68 → proposed E80 | Literal registration material and per-query trusted preparation | Closure through query, digest, admissibility and finalization; a new complete construction consequence beyond the module rewrite |
-| 2, competing construction | **H2: composed expansion/answer certificate**, proposed E78 | Duplicate canonical expansion and private seed-factory work | An actual elimination of complete proof/state cost versus specialized ring/maintenance/batch proofs |
-| Conditional mathematical screen | **H3: exact bounded trace freedom**, proposed E81 | Canonicalization/range proof overhead | Exact outputs for every admitted trace, with a new bound/representation consequence beyond published relaxed-maintenance proofs |
-| Alternative | **B: authenticated correlation generation**, E69 | Per-query owner computation/provisioning for the existing fast online circuit | A complete fixed-private-matrix conversion with fresh ciphertexts and full-field authentication, beyond invoking a generic PCG |
+| Completed, literal fallback stopped | **H1: subring/module verified evaluation**, E47 → E68 → E80 | Literal registration material and per-query trusted preparation | Exact closure/control works; every retained-H reply grows2.41–2.57x and strongest scalar layouts have no module gain |
+| Completed, generic fusion stopped | **H2: composed expansion/answer certificate**, E78 | Duplicate canonical expansion and private seed-factory work | Strong generic folding keeps the same seed gadgets; private beta/proof backend remain unpaid or unresolved |
+| Completed mathematical control | **H3: exact bounded trace freedom**, E81 | Canonicalization/range proof overhead |336 distinct alternative ciphertext results retain exact scores under the same-base universal bound; proof-cost/novelty gain unestablished |
+| **Next finite mechanism screen** | **B: authenticated correlation generation**, E69 → proposed E82 | Per-query owner computation/provisioning for the existing fast online circuit | A complete fixed-private-matrix conversion with fresh ciphertexts and full-field authentication, beyond invoking a generic PCG |
 | Alternative, explicit output change | **C: exact top-k with complete coverage**, E46 continuation | Sending every score | A cheaper way to produce and certify sparse winners, beyond known sparse-result compression or a standard selection network |
 
 Safe response compaction, E66, is a required control and a shared protocol
@@ -87,9 +92,10 @@ The [bounded construction cards](protocol-baseline-cards.md) close R0's premise
 mapping; the selected author client/server targets pass 59 unit cases and a
 bounded native PIR control runs. That is not a matched malicious Hamming
 reproduction. R1's recipe/decoder control and R2's real cache transfer pilot
-have executed. E75/E76 now measure same-harness enrolled HE/cache RPC;
-full private bootstrap, independent resources and optimized terminal compression
-remain open.
+have executed. E75/E76 measure same-harness enrolled HE/cache RPC.
+E79 now also measures actual private bootstrap, isolated endpoint CPU/RSS and
+cold/new-client first release. WAN, scale, updates, concurrency, assurance and
+optimized terminal compression remain open; full R2 acceptance is unmet.
 
 R3's [operator](structured-operator-results.md) and
 [registration](structured-registration-results.md) oracles preserve exact
@@ -120,24 +126,21 @@ The next bounded tranche has executed and changed the discriminator:
 | [E75/E76 actual enrolled service](enrolled-global-service-control.md) |112 mode queries across legacy/strong global panels; best HE returning medians46.79/15.78 ms still lose to permitted caches | Finite returning-client negative. Cold/new-client provisioning, separate endpoint resources and other regimes remain open |
 | [E77 seed-conditioned affine gate](seed-affine-gate-control.md) |112 exact searches; online vectors4,096→512 B in toys, but factory retains old vectors/full fresh expansion; client+factory4.7–7.8% slower | Keep factoring identity/control; stop literal trusted-helper version as a whole-system winner |
 
-E80 completed54 algebra configurations/112 encrypted searches and a ten-profile
-ledger. Module closure and rounding survive, but its retained-H fallback grows
-every response2.41–2.57x; scalar best layouts get no gain. Retain the known
-control and stop that literal recipe as a universal winner. Next R3 work is
-**E78's composed-relation card**, with a return to R6 afterward. E77 makes the
-interface concrete: a public proof of an offset does not automatically supply
-the receiver's private beta. A new construction must solve that interface or
-retain/pay the factory. Both cards have an initial two-session allocation;
-do not port a proof system before identifying the new step. E81 is conditional.
-R4 correlations and R5 selection remain bounded alternatives.
+The subsequent cards also returned to the plan:
 
-E78 has now returned:112 exact traces; canonical gadgets remain on the seed
-path and the strongest generic proof control shares the same linear folding.
-Literal transposed-seed fingerprints grow8.73–13.95x. A private-beta opening
-and complete proof/backend cost remain unresolved. Retain the control; stop
-generic composition as an original mechanism. Next E79 private provisioning
-and isolated resources. E81 remains a bounded mathematical alternative, not a
-claim of measured proof speed. Then return to R6 for a precise next pivot.
+| Completed finite task | Result | Return decision |
+|---|---|---|
+| [E80 module/LHE](structured-module-screen.md) |54 algebra configurations,768 basis columns,112 exact searches, ten-profile ledger; legacy registration31x/58x smaller but every reply2.41–2.57x larger | Retain known closure/rounding control; stop literal retained-H as universal winner. Strongest scalar layouts gain no module factor. |
+| [E78 composed relation](seed-composition-screen.md) |112 exact traces,336 switches,86,016 digits; strong folding shares the same gadgets; literal transposed seed state8.73–13.95x larger | Retain typed relation/affine identity; stop generic fusion as original mechanism. Private-beta and proof-backend costs unresolved. |
+| [E81 admissible traces](admissible-trace-screen.md) |62,208 exhaustive scalar cases;112 canonical/336 alternative exact searches; explicit unbounded-digit and unlinked-RNS failures | Keep conditional same-base universal-bound adapter. No succinct proof or measured proof saving; known relaxed-maintenance work is the novelty control. |
+| [E79 isolated service](isolated-enrolled-service-control.md) |182 three-process trials,1,518 repeated exact mode queries; public/private acquisition, endpoint CPU/RSS and directly observed first release | Finite evaluation scope complete. Returning HE means47.580/17.205 ms versus about0.7/0.14 ms for raw-retained caches; no broader deployment conclusion. |
+
+[R6's current return](construction-selection-20261001.md) proposes E82's paid
+fixed-M authenticated correlation screen. First specify roles, distribution,
+t/Q lifts and negative/count controls. Test secret code/refresh, concrete
+recipient-programmed correlations and sparse private correction against the
+actual small row matrices. Implement an encrypted adapter only if one survives.
+R5 exact-top-3 remains a separate-contract alternative after that return.
 
 R6 has no selected paper winner. The [current handoff](mechanism-execution-handoff-20261001.md)
 defines finite next subcomponents, strongest controls and falsifiers; the
@@ -261,7 +264,7 @@ When exhausted, record the unresolved issue and revisit this plan.
 | **R0: baseline contract closure** (P00/P01/P07) | Construction-level cards for strongest vLHE, recursive BNTM and relevant compression modes: owners, feedback, norm/field/key assumptions and all paid state. Pin/reproduce the selected baseline or document exactly what cannot run | 2–3 focused sessions | No matched malicious-security comparison until premises align; an unavailable baseline remains a gap, not a zero-cost or slow comparator |
 | **R1: close compaction controls**, E66 (P03/P07/P10) | Recipe + supported-decoder reference; priced extraction/repacking and independent-key terminal compression controls; carry/verification dependencies | 2–3 sessions | Known combinations are controls. Stop expansion if saved bytes are repaid in private state, client reconstruction or verification |
 | **R2: useful full-cost frontier**, E67/E75/E76 (P01/P06) | Enrolled returning socket control complete in two geometries; finish cold/new-client private provisioning and independent CPU/peak resources; retain CPU/cache and relevant GPU controls | 2–3 sessions for next finite screen | Measured nondominated operating point or documented negative. A model only screens; do not build a large optimizer on a dominated profile |
-| **R3: constructive screens**, proposed E80, then E78; conditional E81 (P02/P03/P07) | Module closure/norm/query/packing ledger; composed seed/answer proof card; optional exact admissible-trace bound | 2 sessions per initial card; 1 conditional mathematical screen | New protocol consequence + plausible full-cost margin against the new comparison; stop if only one object shrinks or missing material recreates the old cost |
+| **R3: completed bounded screens**, E80/E78/E81 (P02/P03/P07) | Exact module/typed-trace controls and scoped admissible-trace bound; current R6 return records limitations | Initial allocations consumed; no automatic backend port | Literal losing recipes stop. New complete protocol/originality/security acceptance remains unmet |
 | **R4: correlation alternative**, E69/E74 (P03/P07/P10) | Generic triples/public-code recipe stopped; price secret/recursive/block-preserving programmed conversion before a new generator | 2 sessions before a PCG implementation | All outputs/fields under declared trust; no public mask bank, dropped carry or undeclared helper; actual small block F is the comparator |
 | **R5: exact selection alternative**, E46 (P02/P10) | Full stable-ID/coverage circuit or certificate; conversion, predicate, compression, proofs and rounds | 2 sessions before native code | Useful complete bound against all-score download and strongest selection controls; dense ties/adverse inputs included |
 | **R6: selection review** (P04/P06/P07/P12) | One selected mechanism, discarded alternatives, theorem statements, held-out preregistration and integration design | 1 session | Gates A/B pass with credible path to C/D; otherwise narrow the question or preserve a negative report |

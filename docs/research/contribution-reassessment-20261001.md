@@ -1,5 +1,10 @@
 # Contribution reassessment and closest-work comparison
 
+Execution update: the finite E80/E78/E81/E79 returns and next proposed E82
+are in [the current selection review](construction-selection-20261001.md).
+The recommendation below remains the initial planning record and closest-work
+comparison, not the current next-task selection.
+
 2026-10-01. Planning revision based on the protected E01–E77 evidence at
 `0d12afd5e0cdb7171a282fdfccc53087caff816b`. This review runs no new performance
 experiment and establishes no new security theorem. It supersedes the
