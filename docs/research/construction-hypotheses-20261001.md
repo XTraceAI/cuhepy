@@ -3,7 +3,8 @@
 2026-10-01. Companion to the [contribution review](contribution-reassessment-20261001.md)
 and [canonical plan](publication-research-plan.md). Every experiment below is
 initially proposed. E80's [first finite screen](structured-module-screen.md)
-is executed; E78/E79/E81 remain unimplemented at this return. E78/E79 retain
+is executed, as is E78's [relation screen](seed-composition-screen.md).
+E79/E81 remain unimplemented at this return. E78/E79 retain
 their earlier meanings; E80/E81
 are new IDs. Ordinary algebra in a construction sketch is not an established
 cryptographic construction or a novelty claim.
@@ -239,7 +240,8 @@ E71's true-output/bad-proof feedback regression remains mandatory.
 First deliverable: a typed relation DAG, counted witnesses/commitments/ranges/
 openings for the three designs, and an independent small trace oracle. Proposed
 paths are `seed_composition_relation.py`, its test, and
-`docs/research/seed-composition-screen.md`; none is implemented. The DAG must
+`docs/research/seed-composition-screen.md`; these are now implemented as a
+bounded relation/count control, not a proof backend. The DAG must
 carry original request, index/ID/epoch, keys, RNS moduli, canonical digits,
 all branches, projection and accepted output. No long-lived secret use precedes
 its matching check. At most two focused sessions before the R6 return.

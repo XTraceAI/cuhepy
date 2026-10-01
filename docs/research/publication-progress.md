@@ -1,5 +1,22 @@
 # Publication research execution log
 
+## 2026-10-01: H2/E78 composed relation and return to the plan
+
+[E78 report](seed-composition-screen.md):112 exact encrypted searches,336 switch
+witnesses,86,016 checked digit coefficients,54 scoped tests and three Ruff paths.
+Independent homemade trace and typed DAG bind original request/index/keys/epoch,
+every canonical branch and full/projected output. True-output/bad-witness and
+x+Q canonical-recomposition shortcuts fail. This is expensive public
+recomputation, **not** a proof system or approved release protocol.
+
+**Return decision:** keep exact factoring/control; stop generic fusion as a
+new contribution. Strong controls can share the same linear folding; the private
+beta interface remains paid. Fingerprinting all independent gadgets grows
+retained-profile seed state8.73–13.95x. Proof costs/parameters remain unresolved.
+Source `5998e85`. Return to E79 isolated provisioning/resources, with E81 limited
+to a mathematical control until an actual proof bottleneck is measured. No
+package/security/originality/usefulness gate is accepted.
+
 ## 2026-10-01: H1/E80 construction screen and return to the plan
 
 [E80 report](structured-module-screen.md) completes module closure and a paid

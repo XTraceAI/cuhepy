@@ -1,10 +1,11 @@
 # Research plan: structured verified encrypted search
 
-Revision: 2026-10-01, construction execution after E80. Read the new
+Revision: 2026-10-01, construction execution after E80/E78. Read the new
 [closest-construction comparison](contribution-reassessment-20261001.md) and
 [finite construction packets](construction-hypotheses-20261001.md) first.
-E80's [module/LHE screen](structured-module-screen.md) has executed. E78/E79/E81
-remain unimplemented at this return. No protocol is selected as a paper winner,
+E80's [module/LHE screen](structured-module-screen.md) and E78's
+[composed relation](seed-composition-screen.md) have executed. E79/E81 remain
+unimplemented at this return. No protocol is selected as a paper winner,
 and no security gate has passed.
 The protected E01–E65 evidence remains frozen at `6207455`, tag
 `checkpoint/publication-controls-2026-09-30`; the initial planning revision is
@@ -129,6 +130,14 @@ the receiver's private beta. A new construction must solve that interface or
 retain/pay the factory. Both cards have an initial two-session allocation;
 do not port a proof system before identifying the new step. E81 is conditional.
 R4 correlations and R5 selection remain bounded alternatives.
+
+E78 has now returned:112 exact traces; canonical gadgets remain on the seed
+path and the strongest generic proof control shares the same linear folding.
+Literal transposed-seed fingerprints grow8.73–13.95x. A private-beta opening
+and complete proof/backend cost remain unresolved. Retain the control; stop
+generic composition as an original mechanism. Next E79 private provisioning
+and isolated resources. E81 remains a bounded mathematical alternative, not a
+claim of measured proof speed. Then return to R6 for a precise next pivot.
 
 R6 has no selected paper winner. The [current handoff](mechanism-execution-handoff-20261001.md)
 defines finite next subcomponents, strongest controls and falsifiers; the
