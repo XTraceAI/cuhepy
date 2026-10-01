@@ -11,6 +11,7 @@ import hashlib
 import heapq
 import multiprocessing as mp
 import os
+from pathlib import Path
 import resource
 import secrets
 import socket
@@ -119,7 +120,7 @@ def _server(control):
 
 def _owner(control, server_address, job):
     initial, start, cpu = resources(), time.perf_counter(), time.process_time()
-    data = fixtures.load(job["dataset"], job["fixture_path"])
+    data = fixtures.load(job["dataset"], Path(job["fixture_path"]))
     ids, heldout = fixtures.split(data, 3001)
     ids, rows = tuple(ids), tuple(data.rows[i] for i in ids)
     query_ids = tuple(heldout[64:64 + job["queries"]])
