@@ -2,7 +2,9 @@
 
 2026-10-01. Companion to the [contribution review](contribution-reassessment-20261001.md)
 and [canonical plan](publication-research-plan.md). Every experiment below is
-**proposed, not implemented**. E78/E79 retain their earlier meanings; E80/E81
+initially proposed. E80's [first finite screen](structured-module-screen.md)
+is executed; E78/E79/E81 remain unimplemented at this return. E78/E79 retain
+their earlier meanings; E80/E81
 are new IDs. Ordinary algebra in a construction sketch is not an established
 cryptographic construction or a novelty claim.
 
@@ -166,7 +168,8 @@ Use the best coefficient-packing bounds, not a full-width strawman.
 
 Proposed paths: `structured_module_oracle.py`, `test_structured_module_oracle.py`
 under the experiment package; `benchmarks/structured_module_lab.py`; report
-`docs/research/structured-module-screen.md`. These files do not exist yet.
+`docs/research/structured-module-screen.md`. These files now exist; see the
+[execution report](structured-module-screen.md).
 
 - Independent signed-integer matrix versus module oracle for N=8/16/32,
   m=1/2/4/8 where admissible, mixed degrees and multiple output blocks. Verify

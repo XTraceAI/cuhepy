@@ -1,10 +1,11 @@
 # Research plan: structured verified encrypted search
 
-Revision: 2026-10-01, contribution reassessment after E77. Read the new
+Revision: 2026-10-01, construction execution after E80. Read the new
 [closest-construction comparison](contribution-reassessment-20261001.md) and
 [finite construction packets](construction-hypotheses-20261001.md) first.
-This revision is planning only: no E78–E81 experiment has run, no protocol is
-selected as a paper winner, and no security gate has passed.
+E80's [module/LHE screen](structured-module-screen.md) has executed. E78/E79/E81
+remain unimplemented at this return. No protocol is selected as a paper winner,
+and no security gate has passed.
 The protected E01–E65 evidence remains frozen at `6207455`, tag
 `checkpoint/publication-controls-2026-09-30`; the initial planning revision is
 retained at `b60a715`. New bounded R0–R4/E70–E77 controls are recorded in the
@@ -19,8 +20,9 @@ retains the original hypotheses, gates and execution amendments unchanged.
 ## 1. Decision and intended contribution
 
 Prioritize **exact, owner-private linear search whose structure survives the
-complete verification protocol**. The first construction screen is now
-**H1 / E80: subring-preserving outer verification**. It makes the E47/E68 idea
+complete verification protocol**. The first construction screen,
+**H1 / E80: subring-preserving outer verification**, now has an exact reference
+and full count ledger. It makes the E47/E68 idea
 specific: choose a common query subring, express the operator and outer CRS as
 module matrices, and investigate whether registration, admissible bounds and
 finalization can retain that representation. The query width and complete
@@ -117,8 +119,11 @@ The next bounded tranche has executed and changed the discriminator:
 | [E75/E76 actual enrolled service](enrolled-global-service-control.md) |112 mode queries across legacy/strong global panels; best HE returning medians46.79/15.78 ms still lose to permitted caches | Finite returning-client negative. Cold/new-client provisioning, separate endpoint resources and other regimes remain open |
 | [E77 seed-conditioned affine gate](seed-affine-gate-control.md) |112 exact searches; online vectors4,096→512 B in toys, but factory retains old vectors/full fresh expansion; client+factory4.7–7.8% slower | Keep factoring identity/control; stop literal trusted-helper version as a whole-system winner |
 
-Next R3 work is **E80's module closure/norm/full-cost card**, then **E78's
-composed-relation card**, with a return to R6 after each. E77 makes the second
+E80 completed54 algebra configurations/112 encrypted searches and a ten-profile
+ledger. Module closure and rounding survive, but its retained-H fallback grows
+every response2.41–2.57x; scalar best layouts get no gain. Retain the known
+control and stop that literal recipe as a universal winner. Next R3 work is
+**E78's composed-relation card**, with a return to R6 afterward. E77 makes the
 interface concrete: a public proof of an offset does not automatically supply
 the receiver's private beta. A new construction must solve that interface or
 retain/pay the factory. Both cards have an initial two-session allocation;

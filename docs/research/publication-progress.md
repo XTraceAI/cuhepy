@@ -1,5 +1,22 @@
 # Publication research execution log
 
+## 2026-10-01: H1/E80 construction screen and return to the plan
+
+[E80 report](structured-module-screen.md) completes module closure and a paid
+owner-built retained-H outer-LHE fixture:54 signed-matrix configurations,
+768 basis columns,112 exact encrypted searches,91 scoped tests and three
+explicit Ruff paths. Recovery includes q mod Q; rejection retires C/Z before
+outer/inner secret use. Ten actual geometries include both moduli, A/H/C/Z,
+full upload/reply, setup/check/release work and refresh.
+
+**Return decision:** retain the exact known composition/state tradeoff; stop
+the literal fallback as a universal paper winner. Legacy module registration
+shrinks about31x/58x against scalar outer counts, but every outer reply grows
+2.41–2.57x and strong scalar profiles get no gain. No timing, parameter approval,
+feedback theorem, original mechanism or package gate follows. Source checkpoint
+`71d276e`; new raw preserves E68. Next E78 composed relation/private-beta card;
+E79 remains independent. Canonical plan and machine routing are reconciled.
+
 ## 2026-10-01: contribution reassessment and executable construction plan
 
 Reviewed the accumulated E01–E77 reports, checked the current service/geometry
