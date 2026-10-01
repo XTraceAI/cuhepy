@@ -2,6 +2,17 @@
 
 ## 2026-10-01: R3 encrypted-query gate discriminator
 
+R4's E74 [programmed-mask/block-factory screen](programmed-mask-block-results.md)
+then checked 81 finite-field products and 42 CRT recombinations, 20 scoped
+tests, exact clean-set/entropy count frontiers and tiny leakage controls.
+**Return decision:** stop this one-level public-code recipe before enabling it
+in HE; large ambient query dimension does not make the actual small row blocks
+dense. Passing the two incomplete 128-bit filters costs 1.645x/1.727x more row
+products on Mushroom/Semeion. Neither filters nor toy attacks establish
+parameter security/impossibility. Next R2 matched enrolled socket panel; R3-A0
+and succinct-public-certificate mechanisms remain open. No P-package or
+originality/security/usefulness gate is completed.
+
 E73 then completed the [packed-query discriminator](packed-query-expansion-control.md):
 112 packed + 112 same-key unpacked queries, extra mixed-degree controls,
 actual query packets 924 -> 231 B, full setup/noise/client-work counts. The
