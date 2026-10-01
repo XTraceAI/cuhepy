@@ -2,6 +2,15 @@
 
 ## 2026-10-01: R3 encrypted-query gate discriminator
 
+Returned to R3-B1/B2 and preregistered E77's [seed-affine gate](seed-affine-gate-control.md).
+112 encrypted searches and16 scoped tests establish the fixed-C1 affine
+selector/adjoint identity and matching full projected gate. Online compiled
+vectors shrink8x in toys, but expanded fingerprints remain at a trusted factory;
+client + factory stages are4.7–7.8% slower. **Return decision:** retain the
+factoring control, stop the literal helper version as a whole-system winner.
+Next a certified public-seed offset generator or carry-aware registration must
+remove the paid work/state; fresh seed/feedback/parameter obligations stay.
+
 Returned to R2 and executed E76's [strongest retained global TCP geometry](enrolled-global-service-control.md).
 Another56 exact mode queries and eight current wire/coverage/release tests pass.
 Complete returning HE medians46.79/15.78 ms improve the measured finite
