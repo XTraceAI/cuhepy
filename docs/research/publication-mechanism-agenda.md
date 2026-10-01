@@ -1,10 +1,14 @@
-# Executable mechanism hypotheses after E65
+# Executable mechanism hypotheses and screens after E65
 
 2026-09-30. Companion to the [canonical plan](publication-research-plan.md).
-Everything labeled E66–E69 below is **proposed**, not a new measurement or
-implemented protocol. E47 has only its recorded algebra oracle; E46 has earlier
-selection-related ingredients, not the complete construction specified here.
-Paths listed as deliverables do not imply those files exist.
+The initial E66–E69 hypotheses below retain their full acceptance conditions.
+Bounded subcomponents have now executed; see the
+[interim review](publication-mechanism-review-20260930.md),
+[progress](publication-progress.md) and per-task evidence. Completed oracles
+and controls do not mean an outer protocol, PCG, service or security proof is
+implemented. E70 adds a screened public-arithmetic certificate alternative.
+E46 still lacks the complete selection construction. Proposed paths alone do
+not imply implementation.
 
 ## Entry task R0: construction cards before implementation
 
@@ -30,6 +34,10 @@ states which construction components remain unimplemented; unavailable code
 does not justify treating that competitor as slow. R0 is complete when these
 premises are clear enough to instantiate or rule out the selected comparator,
 with the outstanding reproduction work explicitly assigned.
+
+Executed bounded R0: [construction cards](protocol-baseline-cards.md), pinned
+author client/server tests and a scoped native vPIR control. Full arbitrary-form
+and malicious Hamming adaptation remain P01/P07 work.
 
 ## A. E68: preserve operator structure through verified private evaluation
 
@@ -289,3 +297,32 @@ The first review selects one main mechanism. Alternatives may remain open;
 neither exhaustive experimentation nor guaranteed publication is a finite
 acceptance condition. Strong negative findings prevent spending the next
 cycle accelerating an explanation we already know is insufficient.
+
+## Executed return decisions through E71
+
+R0's [contract cards](protocol-baseline-cards.md) and scoped upstream pilot are
+complete; P01 strongest matched reproductions remain open. Track A now has
+exact [implicit operator](structured-operator-results.md) and
+[distinct-field registration](structured-registration-results.md) controls;
+basic digit output and universal per-limb factorization are stopped. Track B's
+[ideal triple conversion](fixed-matrix-correlation-reduction.md) executes but
+does not save the dense fixed-M correction. Track D's
+[recipe/support and integer-phase controls](terminal-release-controls.md)
+and track E's [actual loopback acquisition](cache-transfer-controls.md) have
+bounded evidence; their optimized/matched full scopes remain unfinished.
+
+The new R3 alternative [E70](convolution-certificate-results.md) checks
+ordinary-field quotients and post-output batching. Many-output payload saving
+is a model with an added RTT, and the small-output case loses. Its follow-up
+[E71](encrypted-query-certificate-control.md) implements encrypted query
+products and a two-stage one-use receiver. It removes encrypted owner answers,
+but literal query/proof/hint costs lose the intended screen. Reused-point
+feedback, NTT-only checks, ring bit constraints and early batching challenges
+receive explicit counterexamples. These are known-control/unsafe-shortcut
+findings, not reviewed protocol attacks or positive novelty claims.
+
+Continue from the [execution handoff](mechanism-execution-handoff-20260930.md)
+and R3/R2, with an interim R6 review after each subcomponent. R5 remains a
+bounded changed-output alternative; R7 and new acceleration are inactive
+until a useful original mechanism survives. Full P-package acceptance is
+unchanged.

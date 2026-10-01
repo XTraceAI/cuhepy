@@ -277,3 +277,44 @@ The separate [planning validation receipt](publication-plan-review-validation-20
 records document/task consistency, all 24 cached PDF hashes, selected raw-result
 spot checks and the retained 59-run/181-source manifest check. This revision
 does not rerun the historical 205-test suite or any performance experiment.
+
+## 2026-09-30: execute bounded mechanism controls and return after each step
+
+The initial planning-only checkpoint remains `b60a715`; protected E01–E65
+results remain `6207455`. This tranche adds execution, with new immutable raw
+IDs and separate source/runtime receipts. It does not overwrite that evidence.
+
+| Completed subcomponent | Evidence / result class | Return-to-plan decision |
+|---|---|---|
+| R0 contract cards | **Targeted primary reading/source inspection:** outer norm/extraction/field, honest-hint versus theorem and feedback boundaries; [cards](protocol-baseline-cards.md) | R0 bounded premise mapping complete; P01 strongest full/matched reproductions not complete. |
+| Pinned vReinsPIRe reference | **Executed:**59 upstream unit cases, unchanged source; one4 MiB/kappa40/3-iteration random-byte PIR pilot | Native timings/formula bytes and first-record check only, no exact-Hamming comparison or imported crypto. |
+| E66 recipe + supported decoder | **Exact:**224 encrypted toy searches; combined body12.5–50% of full reply | Keep known compact control. Fresh owner answer generation and seeded/privacy review remain. |
+| E66 exact integer phase packing | **Exact/count negative:**729 tiny phase cases; unrescaled packed response1.38–1.46× original | Stop raw packing variant. Optimized rescaling/rate-1 controls remain distinct open tasks. |
+| E67 actual cache acquisition | **Measured:**45 real loopback acquisitions/180 exact queries; owner upload and96 B private endpoint material charged | Keep allowed cache; matched HE RPC, WAN/RSS and useful frontier remain unresolved. |
+| E68 implicit operator/digits | **Exact/count:**40 toy queries; forward/adjoint/full-Q projection/digits match; optimistic digit wire1.81–2.74× old body | Stop simple integer digit output. Structure alone is not a verified outer protocol. |
+| E68 H/Z + gadget obstruction | **Exact/count:**six registrations/48 identities, distinct fields, bounded norms; per-limb universal factorization fails | Keep structured registration oracle; packed H-prime/extracted class/owner binding still costly/open. |
+| E69 fixed-M ideal triples | **Exact negative:**243 field conversions/16 encrypted queries; same dense correction products | Stop generic random triples as automatic preparation saving. Programmed generator/MAC/share conversion not implemented. |
+| E70 quotient/point controls | **Exact:**all-point identities plus NTT-only, revealed-point and split-ring bit shortcuts | Known identity primitive, not a proof system; full quotient almost doubles unbatched reply. |
+| E70 post-output batching | **Exact/count model:**cancellation and challenge-order controls; many-output net saving203,804 B with one extra RTT, small-output loss | Preserve conditional payload niche; no measured service/system win or owner factory removal. |
+| E71 encrypted-query release | **Exact/measured toy/count negative:**112 searches; actual three-component query-product/quotient gate before decryption; public-body model5.68–28.37× old traffic | Stop literal full-query/full-quotient system. New one-use private hints are real per-request setup, not free factory removal. |
+| E71 reaction control | **Exact:**true output + one bad quotient accepts8/97 points despite four rounds | Wrong-output bounds do not justify arbitrary reused-point feedback. E71 uses one-use points; full proof/timing/durable state remain open. |
+
+Returned to R6 after each bounded screen. No new candidate passes originality
+and useful-effect Gates B/C. The [mechanism review](publication-mechanism-review-20260930.md)
+and [execution handoff](mechanism-execution-handoff-20260930.md) now narrow R3 to
+carry-aware structured registration, or succinct arithmetic certificates with
+packed-query/decoder controls. R2 matched HE/cache acquisition is still required.
+R4 programmed correlations and R5 complete selection are bounded alternatives;
+no rejected literal variant is silently called a new contribution.
+
+New validation: **90 scoped CPU tests in12 files**, zero failures/skips;
+explicit Ruff checks on28 Python paths, including normally excluded research
+paths;25 cached primary PDF hashes verified. These are scoped checks, not
+whole-repository CI, new GPU performance or cryptographic assurance. Receipts
+and exact commands: [validation](publication-mechanism-validation-20260930.json),
+[evaluation](publication-evaluation.md). New checkpoint/tag/bundle/runtime
+archive: `checkpoint/mechanism-screens-2026-09-30`. The
+[new identity manifest](publication-mechanism-execution-manifest.json) retains
+ten additional raw result receipts alongside the historical59, with separate
+author source/executable/log dependencies. Both manifests are verified.
+No production-source difference from `02e06c0`; main/staging untouched.

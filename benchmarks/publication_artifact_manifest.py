@@ -52,7 +52,7 @@ def locate(name, expected):
     return {"path": name, "sha256": expected, "location": "unresolved"}
 
 
-def create():
+def create(dependency_receipts=()):
     raw_paths = git("ls-files", "benchmarks/results/publication-*.json").decode().splitlines()
     runs, sources = [], {}
     for name in raw_paths:
@@ -68,10 +68,23 @@ def create():
                      "kind": data.get("kind", "parameter-estimate" if "estimator_revision" in data else "reference"),
                      "recorded_head": data.get("git_head", data.get("sdk_revision")),
                      "command": data.get("command"), "source_versions": len(pairs)})
+    receipts = []
+    for receipt in dependency_receipts:
+        path = receipt.resolve()
+        if not path.is_relative_to(ROOT):
+            raise ValueError("Dependency receipt must be retained in the repository")
+        body = path.read_bytes()
+        data = json.loads(body)
+        pairs = dict(data.get("source_hashes", {}))
+        pairs.update(data.get("source_sha256", {}))
+        for name, sha in pairs.items():
+            sources[(name, sha)] = locate(name, sha)
+        receipts.append({"path": str(path.relative_to(ROOT)), "sha256": digest(body),
+                         "bytes": len(body), "source_versions": len(pairs)})
     return {"schema": 1, "generated_utc": datetime.now(UTC).isoformat(),
             "retention_head": git("rev-parse", "HEAD").decode().strip(),
             "baseline": "02e06c0f5636def284ed6864b3e208538fcb10a6", "raw_runs": runs,
-            "source_versions": list(sources.values()),
+            "source_versions": list(sources.values()), "dependency_receipts": receipts,
             "external_pins": {"secure-vector-search": "519148cf3fddc11277a111774ca8cb92d891e0e3",
                               "original-emvp-author": "856762f5925fe873bb5cbc0401ceb5a44568efa9",
                               "lattice-estimator": "53da5982597709ba0fdf94ea37a84d822310fd84"},
@@ -84,7 +97,7 @@ def create():
 
 def verify(data):
     errors = []
-    for run in data["raw_runs"]:
+    for run in [*data["raw_runs"], *data.get("dependency_receipts", ())]:
         path = ROOT / run["path"]
         if not path.is_file() or digest(path.read_bytes()) != run["sha256"]:
             errors.append("raw run mismatch: " + run["path"])
@@ -106,10 +119,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument("--verify", type=Path)
+    parser.add_argument("--dependency-receipt", type=Path, action="append", default=[],
+                        help="Additional immutable source/runtime identities; not benchmark runs")
     args = parser.parse_args()
     if (args.json_out is None) == (args.verify is None):
         parser.error("Choose --json-out or --verify")
-    data = json.loads(args.verify.read_text()) if args.verify else create()
+    if args.verify and args.dependency_receipt:
+        parser.error("Dependency receipts are selected only when creating a manifest")
+    data = json.loads(args.verify.read_text()) if args.verify else create(args.dependency_receipt)
     errors = verify(data)
     if args.json_out:
         args.json_out.parent.mkdir(parents=True, exist_ok=True)

@@ -119,3 +119,56 @@ and larger real data. The new supported decoder is exact in its stated scope;
 E65's stronger simple controls reject a new static-optimizer contribution.
 See [the results ledger](paper-claims.md) and [current plan](publication-research-plan.md)
 before scheduling additional implementation.
+
+## Mechanism execution supplement through E71
+
+The E01–E65 inventory/59-run manifest and205-test receipt above are historical,
+unchanged. The new [mechanism manifest](publication-mechanism-execution-manifest.json)
+adds ten raw result receipts and a separate author dependency receipt; no
+measured row, failed run or old source hash is replaced.
+
+| New runner / reference | Executed scope | Limitation |
+|---|---|---|
+| `benchmarks/structured_operator_lab.py` | Forty exact tiny forward/adjoint/digit/projection queries; eight retained-geometry screens | Integer digit bounds/body models; no outer vLHE/encryption/proof |
+| `benchmarks/structured_registration_lab.py` | Six distinct-field H/Z registrations/48 identities, gadget-factorization and field/norm negatives | No packed registration/extraction protocol; norm-aware H-prime packing modeled |
+| `benchmarks/terminal_release_lab.py` |224 encrypted queries, native/GMP/full supported-phase exact control | Known recipe/support composition; fresh owner answers remain |
+| `benchmarks/terminal_phase_packing_lab.py` |729 exact integer-phase cases and retained body counts | No additive-HE crypto implementation, rescaling/rate-1 or security approval |
+| `benchmarks/correlation_conversion_lab.py` |243 ideal matrix-triple conversions/16 encrypted queries | Existing full-Q gate required; no PCG or new authenticated share setup |
+| `benchmarks/cache_transfer_lab.py` |45 actual loopback acquisitions/180 exact returning queries, upload/private endpoint material | No HE RPC/WAN/RSS/TLS/device assessment; parsed-row starting state explicit |
+| `benchmarks/convolution_certificate_lab.py` | Ordinary/cyclic/negacyclic/all-point certificate identities and unsafe domain controls | Known primitive, full quotient/count models; masked owner factory retained |
+| `benchmarks/convolution_batch_certificate_lab.py` | Post-output weights/cancellation/challenge-order controls and RTT/body screen | Additional RTT modeled only; no new complete protocol or parameter assurance |
+| `benchmarks/encrypted_query_certificate_lab.py` |112 actual encrypted CRT query/product/two-stage release cases; stage timings and actual query packets | Tiny N32/t17/eta1, variable-time/GMP reference, new one-use private hints; retained large layouts are count models only |
+| Pinned `google/InsPIRe` client/server tests and metrics tool |59 upstream cases, one4 MiB/kappa40/3-iteration random-byte PIR pilot | Formula bytes/storage, first-record check; no same-contract Hamming/full-paper reproduction |
+
+All nine homemade runners accept `--json-out`; use a fresh path and the project
+`.venv/bin/python`. The reports retain exact commands/input dependencies and
+raw names. No new scheme uses imported SEAL or author arithmetic. The external
+artifact is compiled unchanged with separately downloaded/hash-verified
+Bazel9; source revision, generated lock, logs and stable executable copy are
+in `../research-data/mechanism-references-20260930`. The dependency receipt
+distinguishes this runtime cache from Git-tracked code.
+
+New scoped validation: **90 CPU tests in12 files** pass with zero skips;
+explicit Ruff checks pass on28 Python paths using `--no-force-exclude`.
+Commands/log hashes, selected source/native binary identities,25 cached PDF
+hashes, task/link consistency and production-source comparison are in
+[the new receipt](publication-mechanism-validation-20260930.json). Do not add
+these90 to the old205 as if disjoint whole-repository tests; several existing
+control files are intentionally reused. The upstream59 are separate C++ cases.
+
+Verify the retained identities with:
+
+```sh
+.venv/bin/python benchmarks/publication_artifact_manifest.py --verify docs/research/publication-execution-manifest.json
+.venv/bin/python benchmarks/publication_artifact_manifest.py --verify docs/research/publication-mechanism-execution-manifest.json
+```
+
+The new manifest was created after tracking the new raw results and exact
+source commits, with `--dependency-receipt
+docs/research/publication-author-vpir-dependencies-20260930.json`. That receipt
+is additional source/runtime retention, **not another measured run**.
+`checkpoint/mechanism-screens-2026-09-30` and the adjacent workspace bundle/
+dependency archive retain this execution independently of prior checkpoints.
+Repeated-process confidence, matched HE transfer, strongest unresolved
+controls, private timing, parameter review and a selected contribution remain
+open. The [handoff](mechanism-execution-handoff-20260930.md) drives the next work.

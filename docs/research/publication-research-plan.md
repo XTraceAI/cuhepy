@@ -1,9 +1,13 @@
-# Research plan: verified encrypted search after E01–E65
+# Research plan: verified encrypted search and mechanism screens through E71
 
-Revision: 2026-09-30, following the closest-work and negative-result review.
-Evidence is frozen at `6207455db8d86fbe1394d3ef2294fe8e0c877163`, tag
-`checkpoint/publication-controls-2026-09-30`. This is a **planning revision**:
-it adds no benchmark, implemented cryptographic mechanism or security approval.
+Revision: 2026-09-30, following the closest-work and execution review.
+The protected E01–E65 evidence remains frozen at `6207455`, tag
+`checkpoint/publication-controls-2026-09-30`; the initial planning revision is
+retained at `b60a715`. New bounded R0–R4/E70–E71 controls are recorded in the
+[progress log](publication-progress.md) and
+[interim mechanism review](publication-mechanism-review-20260930.md).
+These are executed oracles/pilots, not a new complete cryptographic protocol
+or security approval.
 The [preceding plan, through E65](publication-research-plan-through-e65.md)
 retains the original hypotheses, gates and execution amendments unchanged.
 
@@ -42,8 +46,8 @@ Three competing mechanism tracks are defined in the
 
 | Priority | Track | Cost it attempts to remove | Research discriminator |
 |---|---|---|---|
-| 1 | **A: structured verified evaluation**, E47 → proposed E68 | Owner-generated one-use encrypted answers and literal outer-matrix expansion | A structured protocol/algorithm with compatible norms, binding and proof, beyond applying existing vLHE to a dense matrix |
-| 2, bounded alternative | **B: authenticated correlation generation**, proposed E69 | Per-query owner computation/provisioning for the existing fast online circuit | A complete fixed-private-matrix conversion with fresh ciphertexts and full-field authentication, beyond invoking a generic PCG |
+| 1 | **A: structured verified evaluation**, E47 → E68; E70/E71 certificate alternative | Owner-generated one-use encrypted answers and literal outer-matrix expansion | A structured protocol/algorithm with compatible norms, binding and proof, beyond applying existing vLHE or generic proof machinery |
+| 2, bounded alternative | **B: authenticated correlation generation**, E69 | Per-query owner computation/provisioning for the existing fast online circuit | A complete fixed-private-matrix conversion with fresh ciphertexts and full-field authentication, beyond invoking a generic PCG |
 | 3, explicit output change | **C: exact top-k with complete coverage**, E46 continuation | Sending every score | A cheaper way to produce and certify sparse winners, beyond known sparse-result compression or a standard selection network |
 
 Safe response compaction, E66, is a required control and a shared protocol
@@ -51,6 +55,41 @@ obligation. It becomes a standalone research track only if it yields a new
 constructive result beyond existing verifiable/compressed HE. E44 heterogeneous
 contexts and E45 certified approximation remain bounded fallbacks. These
 original experiment IDs retain their meanings.
+
+## Current execution decision
+
+The [bounded construction cards](protocol-baseline-cards.md) close R0's premise
+mapping; the selected author client/server targets pass 59 unit cases and a
+bounded native PIR control runs. That is not a matched malicious Hamming
+reproduction. R1's recipe/decoder control and R2's real cache transfer pilot
+have executed. Optimized terminal compression and matched HE RPC remain open.
+
+R3's [operator](structured-operator-results.md) and
+[registration](structured-registration-results.md) oracles preserve exact
+structure, but elementary digit bodies lose and a universal gadget-limb
+factorization fails. R4's [ideal random-triple control](fixed-matrix-correlation-reduction.md)
+still needs the dense owner correction. Stop those specific shortcuts.
+
+The bounded R3 alternative [E70](convolution-certificate-results.md) screens
+public ciphertext-arithmetic certificates. Its known quotient/batching primitives expose
+state/wire/RTT tradeoffs and unsafe NTT/point/domain/challenge-order shortcuts;
+they do **not** remove the masked scheme's factory or pass Gates B/C.
+
+[E71](encrypted-query-certificate-control.md) now instantiates actual encrypted
+CRT queries, three-component evaluation and one-use private-point release.
+All112 toy searches are exact, but the literal full-query/full-quotient variant
+fails its wire screen:5.68–28.37× the old linear public body, before separate
+private hint/ticket provision. A true output with one corrupted quotient also
+exposes a single point's predicate; a wrong-output repetition bound does not
+justify arbitrary verifier-point reuse under reactions.
+
+Next R3 work is a **carry-aware structured registration** construction, or
+**succinct quotient openings plus packed-query controls**. Each needs a precise
+new step beyond existing vLHE/ring proofs, full query/proof/private-state costs,
+and safe feedback semantics. R2's matched HE/cache acquisition remains open.
+R6 still has no selected paper winner. The [execution handoff](mechanism-execution-handoff-20260930.md)
+defines next subcomponents, falsifiers and evidence; no acceleration follows
+from these controls.
 
 ## 2. Fixed contract and deployment questions
 
@@ -146,7 +185,9 @@ The essential comparisons are:
 Do not claim a missing feature from an unread proof. In particular, HELIOPOLIS
 is a strong compression/verifier comparator with a different reaction-oracle
 contract; its stated limitation is not a newly discovered vulnerability here.
-No new external timing has been reproduced in this planning revision.
+The bounded unchanged vReinsPIRe author pilot now has local timings and59 unit
+cases in the [baseline cards](protocol-baseline-cards.md). It uses random-byte
+PIR, kappa40 and formula bytes; it is not a matched Hamming/full-paper result.
 
 ## 5. Execution sequence and bounded decision gates
 
@@ -193,9 +234,12 @@ same-contract evidence. Correctness tests cannot substitute for this gate.
 
 ## 6. Evaluation that can support a paper
 
-Retain the frozen 59-run/181-source artifact. New files use new run IDs and
-hashes. The [evaluation inventory](publication-evaluation.md) lists runners;
-the current 205-test receipt is historical scoped validation, not new testing.
+Retain the frozen59-run/181-source artifact. New files use new run IDs and
+hashes and the [separate mechanism manifest](publication-mechanism-execution-manifest.json).
+The [evaluation inventory](publication-evaluation.md) lists runners; the
+205-test receipt is historical. New scoped validation records90 CPU tests in
+12 files, explicit lint on28 Python paths and25 cached primary PDF hashes.
+Neither receipt claims whole-repository CI or security assurance.
 
 Evaluate along independent axes: rows, bit dimension, exact rank/structure,
 reply occupancy, number of queries, token utilization, update locality, client
@@ -246,7 +290,7 @@ receive separate panels. An author-reported number is never a local point.
 Use [the security game](exact-search-security-game.md),
 [direct-fresh draft](direct-fresh-conditional-security.md) and
 [supported relation](supported-decoder-relation.md) as scoped starting points.
-These are not independent reviews or ready-made reductions for E68/E69.
+These are not independent reviews or ready-made reductions for E68–E71.
 
 1. Define owner enrollment, approved operator/release relation, adaptive query,
    update and corruption interfaces, public plan leakage and observable abort.

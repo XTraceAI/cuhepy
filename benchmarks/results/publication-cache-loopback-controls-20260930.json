@@ -1,0 +1,3049 @@
+{
+  "utc": "2026-10-01T00:37:01.098858+00:00",
+  "command": [
+    "benchmarks/cache_transfer_lab.py",
+    "--cache",
+    "../research-data/uci-20260927",
+    "--connect4",
+    "../research-data/uci-connect4-20260930/connect-4.data",
+    "--repeats",
+    "3",
+    "--queries",
+    "4",
+    "--json-out",
+    "benchmarks/results/publication-cache-loopback-controls-20260930.json"
+  ],
+  "git_head": "e9c91f800416b8c61798f89c11b72ddf135bb818",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/cache_transfer_lab.py": "a08f38d1a7b9bb13c8a547721919f7013bb29dca8c42f53c4b1866ac88806cc2",
+    "experiments/bfv_search_lab/loopback_transfer.py": "6b7dc1111b78fdf21dc874140973d3b1fbb9e60688b2b9bf45e3db4f951afa3f",
+    "experiments/bfv_search_lab/cache_snapshot.py": "ff5ccd7720485b3b17d787239dc7788550a7b5b090cfd5702d5b4a096c3d8903",
+    "experiments/bfv_search_lab/coordinate_cache.py": "b806b93da033224cd42ff94f219cbb614555ca36387999d910c76d07bdf31772",
+    "experiments/bfv_search_lab/binary_fixtures.py": "b824e57796bd49702e559507282213fe5acd81314634a6dbcfd581f9daf93b6a",
+    "experiments/bfv_search_lab/connect4_fixture.py": "31532c87366481691afa41185c7ae93be8b839923720fec1d34412ae2b8b9563",
+    "benchmarks/dictionary_layout_lab.py": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31",
+    "benchmarks/certified_filter_lab.py": "4faa08db3d109cc5c4e90573a7fc0999effb62e9a78679189059e9df13d7ea89"
+  },
+  "kind": "actual_loopback_cache_acquisition_control",
+  "split_seed": 3001,
+  "cases": [
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 0,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 5.900001269765198e-06,
+      "owner_serialize_compress_authenticate_s": 0.0077844920015195385,
+      "client_authenticate_parse_s": 0.000739964991225861,
+      "trusted_channel": {
+        "transfer_wall_s": 8.646199421491474e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00014260200259741396,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 58692
+      },
+      "enrollment_tcp_connect_s": 0.0007117829954950139,
+      "storage_channel": {
+        "transfer_wall_s": 0.0001111919991672039,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 58692
+      },
+      "tcp_connection_establish_s": 0.00011460199311841279,
+      "new_client_acquire_wall_stage_sum_s": 0.0010522209777263924,
+      "cold_owner_client_wall_stage_sum_s": 0.009696997978608124,
+      "total_acquisition_application_bytes": 58820,
+      "total_cold_application_bytes": 117536,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00014950300101190805,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013779298751614988,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013955299800727516,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013578200014308095,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 0,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 2.219996531493962e-06,
+      "owner_serialize_compress_authenticate_s": 0.0014763490034965798,
+      "client_authenticate_parse_s": 0.0009146179945673794,
+      "trusted_channel": {
+        "transfer_wall_s": 8.65420006448403e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00010992200986947864,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "enrollment_tcp_connect_s": 6.075100100133568e-05,
+      "storage_channel": {
+        "transfer_wall_s": 7.124101102817804e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "tcp_connection_establish_s": 0.00010645200381986797,
+      "new_client_acquire_wall_stage_sum_s": 0.0011788530100602657,
+      "cold_owner_client_wall_stage_sum_s": 0.0028280950209591538,
+      "total_acquisition_application_bytes": 33082,
+      "total_cold_application_bytes": 66060,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00016290300118271261,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.000154413006384857,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00015088300278875977,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0001474029995733872,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 0,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 1.8300052033737302e-06,
+      "owner_serialize_compress_authenticate_s": 0.013337819997104816,
+      "client_authenticate_parse_s": 0.0008552069921279326,
+      "trusted_channel": {
+        "transfer_wall_s": 7.857099990360439e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 8.052198973018676e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "enrollment_tcp_connect_s": 5.910100298933685e-05,
+      "storage_channel": {
+        "transfer_wall_s": 6.375199882313609e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "tcp_connection_establish_s": 0.00010493199806660414,
+      "new_client_acquire_wall_stage_sum_s": 0.0011024619889212772,
+      "cold_owner_client_wall_stage_sum_s": 0.01458173498394899,
+      "total_acquisition_application_bytes": 30396,
+      "total_cold_application_bytes": 60688,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00016287300968542695,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00014364300295710564,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00014518300304189324,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013516200124286115,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 0,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 1.6900012269616127e-06,
+      "owner_serialize_compress_authenticate_s": 0.0011766029929276556,
+      "client_authenticate_parse_s": 0.0007904259982751682,
+      "trusted_channel": {
+        "transfer_wall_s": 8.583100861869752e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 7.517199264839292e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "enrollment_tcp_connect_s": 5.0431001000106335e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.005099228583276e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "tcp_connection_establish_s": 0.0001105130068026483,
+      "new_client_acquire_wall_stage_sum_s": 0.0010368210059823468,
+      "cold_owner_client_wall_stage_sum_s": 0.0023407169937854633,
+      "total_acquisition_application_bytes": 33082,
+      "total_cold_application_bytes": 66060,
+      "retained_body_bytes_model": 32862,
+      "samples": [
+        {
+          "query_s": 0.0007986050040926784,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007872760033933446,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0008052259945543483,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.000789004989201203,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 0,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 1.7199927242472768e-06,
+      "owner_serialize_compress_authenticate_s": 0.012758019001921639,
+      "client_authenticate_parse_s": 0.0007723049930064008,
+      "trusted_channel": {
+        "transfer_wall_s": 5.76210004510358e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 6.742100231349468e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "enrollment_tcp_connect_s": 4.989099397789687e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.329099076334387e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "tcp_connection_establish_s": 9.90619882941246e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.000982278972514905,
+      "cold_owner_client_wall_stage_sum_s": 0.013859329963452183,
+      "total_acquisition_application_bytes": 30396,
+      "total_cold_application_bytes": 60688,
+      "retained_body_bytes_model": 30176,
+      "samples": [
+        {
+          "query_s": 0.0007808750087860972,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007800750026945025,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007899359916336834,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007874459988670424,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 1,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 1.7099955584853888e-06,
+      "owner_serialize_compress_authenticate_s": 0.012766938991262577,
+      "client_authenticate_parse_s": 0.0007718950073467568,
+      "trusted_channel": {
+        "transfer_wall_s": 6.789200415369123e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 6.61509984638542e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "enrollment_tcp_connect_s": 4.988099681213498e-05,
+      "storage_channel": {
+        "transfer_wall_s": 4.6411005314439535e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "tcp_connection_establish_s": 0.000114281996502541,
+      "new_client_acquire_wall_stage_sum_s": 0.0010004800133174285,
+      "cold_owner_client_wall_stage_sum_s": 0.01388516099541448,
+      "total_acquisition_application_bytes": 30396,
+      "total_cold_application_bytes": 60688,
+      "retained_body_bytes_model": 30176,
+      "samples": [
+        {
+          "query_s": 0.0007806450012139976,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007791759999236092,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007787350041326135,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007787349895806983,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 1,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 1.5900004655122757e-06,
+      "owner_serialize_compress_authenticate_s": 0.0011769229895435274,
+      "client_authenticate_parse_s": 0.0007967749988893047,
+      "trusted_channel": {
+        "transfer_wall_s": 7.337098941206932e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 9.872201189864427e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "enrollment_tcp_connect_s": 5.029099702369422e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.752200377173722e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "tcp_connection_establish_s": 9.67419910011813e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0010244099830742925,
+      "cold_owner_client_wall_stage_sum_s": 0.0023519359820056707,
+      "total_acquisition_application_bytes": 33082,
+      "total_cold_application_bytes": 66060,
+      "retained_body_bytes_model": 32862,
+      "samples": [
+        {
+          "query_s": 0.0007997560023795813,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007957760099088773,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007975460030138493,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007877650059526786,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 1,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 1.6699923435226083e-06,
+      "owner_serialize_compress_authenticate_s": 0.012785900005837902,
+      "client_authenticate_parse_s": 0.0007726249896222726,
+      "trusted_channel": {
+        "transfer_wall_s": 6.776099326089025e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 7.350099622271955e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "enrollment_tcp_connect_s": 5.166100163478404e-05,
+      "storage_channel": {
+        "transfer_wall_s": 4.78899892186746e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "tcp_connection_establish_s": 9.008200140669942e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0009783579735085368,
+      "cold_owner_client_wall_stage_sum_s": 0.013891089969547465,
+      "total_acquisition_application_bytes": 30396,
+      "total_cold_application_bytes": 60688,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00014427299902308732,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0001379430032102391,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0001403929927619174,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013747200137004256,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 1,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 1.7799902707338333e-06,
+      "owner_serialize_compress_authenticate_s": 0.0011743840004783124,
+      "client_authenticate_parse_s": 0.0007889550033723935,
+      "trusted_channel": {
+        "transfer_wall_s": 7.07809958839789e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 7.549099973402917e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "enrollment_tcp_connect_s": 4.97110013384372e-05,
+      "storage_channel": {
+        "transfer_wall_s": 4.836099105887115e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "tcp_connection_establish_s": 0.00011674301640596241,
+      "new_client_acquire_wall_stage_sum_s": 0.001024840006721206,
+      "cold_owner_client_wall_stage_sum_s": 0.0023262059985427186,
+      "total_acquisition_application_bytes": 33082,
+      "total_cold_application_bytes": 66060,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00014153298980090767,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013958300405647606,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013759300054516643,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013987300917506218,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 1,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 1.5800032997503877e-06,
+      "owner_serialize_compress_authenticate_s": 0.00048028900346253067,
+      "client_authenticate_parse_s": 0.0007418640016112477,
+      "trusted_channel": {
+        "transfer_wall_s": 6.857099651824683e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00010307200136594474,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 58692
+      },
+      "enrollment_tcp_connect_s": 5.007100116927177e-05,
+      "storage_channel": {
+        "transfer_wall_s": 7.746199844405055e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 58692
+      },
+      "tcp_connection_establish_s": 8.975199307315052e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0009776489896466956,
+      "cold_owner_client_wall_stage_sum_s": 0.0016126609989441931,
+      "total_acquisition_application_bytes": 58820,
+      "total_cold_application_bytes": 117536,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00018016400281339884,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00015834299847483635,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0001558030053274706,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0001523229875601828,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 2,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 2.0500010577961802e-06,
+      "owner_serialize_compress_authenticate_s": 0.000547480012755841,
+      "client_authenticate_parse_s": 0.0006663129897788167,
+      "trusted_channel": {
+        "transfer_wall_s": 8.56120022945106e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00012586200318764895,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 58692
+      },
+      "enrollment_tcp_connect_s": 5.886101280339062e-05,
+      "storage_channel": {
+        "transfer_wall_s": 6.979099998716265e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 58692
+      },
+      "tcp_connection_establish_s": 0.00010414198914077133,
+      "new_client_acquire_wall_stage_sum_s": 0.0009258579812012613,
+      "cold_owner_client_wall_stage_sum_s": 0.001660111011005938,
+      "total_acquisition_application_bytes": 58820,
+      "total_cold_application_bytes": 117536,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00015258300118148327,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00014157200348563492,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0001382729969918728,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013665300502907485,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 2,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 1.7900019884109497e-06,
+      "owner_serialize_compress_authenticate_s": 0.0011888940061908215,
+      "client_authenticate_parse_s": 0.0008827269921312109,
+      "trusted_channel": {
+        "transfer_wall_s": 7.162099063862115e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 7.521100633312017e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "enrollment_tcp_connect_s": 5.061100819148123e-05,
+      "storage_channel": {
+        "transfer_wall_s": 4.7770998207852244e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "tcp_connection_establish_s": 9.008101187646389e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0010921999928541481,
+      "cold_owner_client_wall_stage_sum_s": 0.002408706015557982,
+      "total_acquisition_application_bytes": 33082,
+      "total_cold_application_bytes": 66060,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00017786299576982856,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00016572399181313813,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0001612430060049519,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00015391300257761031,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 2,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 2.129992935806513e-06,
+      "owner_serialize_compress_authenticate_s": 0.013113455002894625,
+      "client_authenticate_parse_s": 0.0007591850007884204,
+      "trusted_channel": {
+        "transfer_wall_s": 7.72219937061891e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 7.275100506376475e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "enrollment_tcp_connect_s": 5.162099841982126e-05,
+      "storage_channel": {
+        "transfer_wall_s": 4.825100768357515e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "tcp_connection_establish_s": 0.0001080819929484278,
+      "new_client_acquire_wall_stage_sum_s": 0.0009927399951266125,
+      "cold_owner_client_wall_stage_sum_s": 0.01423269699444063,
+      "total_acquisition_application_bytes": 30396,
+      "total_cold_application_bytes": 60688,
+      "retained_body_bytes_model": 58600,
+      "samples": [
+        {
+          "query_s": 0.00014110299525782466,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013861300249118358,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013789300282951444,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00013905299420002848,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 2,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 1.6499980119988322e-06,
+      "owner_serialize_compress_authenticate_s": 0.0011773430014727637,
+      "client_authenticate_parse_s": 0.0007987059943843633,
+      "trusted_channel": {
+        "transfer_wall_s": 7.440100307576358e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 7.752199599053711e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "enrollment_tcp_connect_s": 4.9991009291261435e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.7060999097302556e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 32954
+      },
+      "tcp_connection_establish_s": 8.972200157586485e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0010198899981332943,
+      "cold_owner_client_wall_stage_sum_s": 0.0023263960028998554,
+      "total_acquisition_application_bytes": 33082,
+      "total_cold_application_bytes": 66060,
+      "retained_body_bytes_model": 32862,
+      "samples": [
+        {
+          "query_s": 0.0007952360028866678,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.000790145990322344,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007926059915916994,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007849149988032877,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "semeion",
+      "fixture_sha256": "f43228ae3da5ea6a3c95069d53450b86166770e3b719dcc333182128fe08d4b1",
+      "count": 1465,
+      "distinct_rows": 1465,
+      "dimension": 256,
+      "common_load_parse_s": 0.10667015799845103,
+      "repetition": 2,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 1.7099955584853888e-06,
+      "owner_serialize_compress_authenticate_s": 0.012779099008184858,
+      "client_authenticate_parse_s": 0.0007747060008114204,
+      "trusted_channel": {
+        "transfer_wall_s": 7.206099689938128e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 6.857099651824683e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "enrollment_tcp_connect_s": 5.006100400350988e-05,
+      "storage_channel": {
+        "transfer_wall_s": 4.9081005272455513e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 30268
+      },
+      "tcp_connection_establish_s": 8.843099931254983e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.000984279002295807,
+      "cold_owner_client_wall_stage_sum_s": 0.013883720006560907,
+      "total_acquisition_application_bytes": 30396,
+      "total_cold_application_bytes": 60688,
+      "retained_body_bytes_model": 30176,
+      "samples": [
+        {
+          "query_s": 0.0007861049962230027,
+          "scores_sha256": "708027c90e1eb7ea81c818f47fa8b26fce17fbcbabade89719195b9921f23c35",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007871960115153342,
+          "scores_sha256": "3e42973a255a21574bd31f3977c778ab4e37ae3ac44e69cc06e3d0b586c7de02",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007870550034567714,
+          "scores_sha256": "b7fcc2030b5d858688db25d98b6a821115f311aa304984af1d254ca4a690dd81",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007790450035827234,
+          "scores_sha256": "ae945e39dc43cb1c32376a68f71c9e1d1d63d9f271822b6c09d9449dc17e6849",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        1099,
+        154,
+        1463,
+        1175
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 0,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 2.0000006770715117e-06,
+      "owner_serialize_compress_authenticate_s": 0.0021683829982066527,
+      "client_authenticate_parse_s": 0.002632040996104479,
+      "trusted_channel": {
+        "transfer_wall_s": 7.516199548263103e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00024336499336641282,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 191996
+      },
+      "enrollment_tcp_connect_s": 5.0170987378805876e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00018369399185758084,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 191996
+      },
+      "tcp_connection_establish_s": 9.952200343832374e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0029904189868830144,
+      "cold_owner_client_wall_stage_sum_s": 0.005454337966511957,
+      "total_acquisition_application_bytes": 192124,
+      "total_cold_application_bytes": 384144,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.0006993439892539755,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0006920229934621602,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.00072619499405846,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007126640120986849,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 0,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 1.8700084183365107e-06,
+      "owner_serialize_compress_authenticate_s": 0.003200772000127472,
+      "client_authenticate_parse_s": 0.0029695780103793368,
+      "trusted_channel": {
+        "transfer_wall_s": 7.756199920549989e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 8.089200127869844e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "enrollment_tcp_connect_s": 5.045099533163011e-05,
+      "storage_channel": {
+        "transfer_wall_s": 6.757100345566869e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "tcp_connection_establish_s": 9.007200424093753e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.003204783017281443,
+      "cold_owner_client_wall_stage_sum_s": 0.00653876802243758,
+      "total_acquisition_application_bytes": 63192,
+      "total_cold_application_bytes": 126280,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.0006923339969944209,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0008022960100788623,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007244240114232525,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007076839974615723,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 0,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 1.7599959392100573e-06,
+      "owner_serialize_compress_authenticate_s": 0.05946956899424549,
+      "client_authenticate_parse_s": 0.002866844995878637,
+      "trusted_channel": {
+        "transfer_wall_s": 6.950199895072728e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 8.53910023579374e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "enrollment_tcp_connect_s": 5.697099550161511e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.815099575556815e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "tcp_connection_establish_s": 0.00010753200331237167,
+      "new_client_acquire_wall_stage_sum_s": 0.003102029993897304,
+      "cold_owner_client_wall_stage_sum_s": 0.06271572098194156,
+      "total_acquisition_application_bytes": 50029,
+      "total_cold_application_bytes": 99954,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.0006767230079276487,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0006750230095349252,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007189540046965703,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0006981729966355488,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 0,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 1.8199934856966138e-06,
+      "owner_serialize_compress_authenticate_s": 0.003256393989431672,
+      "client_authenticate_parse_s": 0.002906645997427404,
+      "trusted_channel": {
+        "transfer_wall_s": 7.478200132027268e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 8.387101115658879e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "enrollment_tcp_connect_s": 5.041100666858256e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.5661002988927066e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "tcp_connection_establish_s": 0.00010351200762670487,
+      "new_client_acquire_wall_stage_sum_s": 0.0031406010093633085,
+      "cold_owner_client_wall_stage_sum_s": 0.006533097010105848,
+      "total_acquisition_application_bytes": 63192,
+      "total_cold_application_bytes": 126280,
+      "retained_body_bytes_model": 62972,
+      "samples": [
+        {
+          "query_s": 0.0035021980002056807,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003383016010047868,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003472247000900097,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0034703270066529512,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 0,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 1.7900019884109497e-06,
+      "owner_serialize_compress_authenticate_s": 0.05963696099934168,
+      "client_authenticate_parse_s": 0.0028724459989462048,
+      "trusted_channel": {
+        "transfer_wall_s": 5.952100036665797e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 8.431100286543369e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "enrollment_tcp_connect_s": 5.133099330123514e-05,
+      "storage_channel": {
+        "transfer_wall_s": 6.631200085394084e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "tcp_connection_establish_s": 0.00010565199772827327,
+      "new_client_acquire_wall_stage_sum_s": 0.003103930997895077,
+      "cold_owner_client_wall_stage_sum_s": 0.06287832399539184,
+      "total_acquisition_application_bytes": 50029,
+      "total_cold_application_bytes": 99954,
+      "retained_body_bytes_model": 49809,
+      "samples": [
+        {
+          "query_s": 0.0034227559954160824,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0034236369974678382,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0034981280041392893,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003974648003350012,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 1,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 3.300010575912893e-06,
+      "owner_serialize_compress_authenticate_s": 0.05949031899217516,
+      "client_authenticate_parse_s": 0.0028841559978900477,
+      "trusted_channel": {
+        "transfer_wall_s": 7.303099846467376e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00010003200441133231,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "enrollment_tcp_connect_s": 6.764101271983236e-05,
+      "storage_channel": {
+        "transfer_wall_s": 6.433199450839311e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "tcp_connection_establish_s": 0.00010567200661171228,
+      "new_client_acquire_wall_stage_sum_s": 0.003127190997474827,
+      "cold_owner_client_wall_stage_sum_s": 0.06278848301735707,
+      "total_acquisition_application_bytes": 50029,
+      "total_cold_application_bytes": 99954,
+      "retained_body_bytes_model": 49809,
+      "samples": [
+        {
+          "query_s": 0.003435717007960193,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003452687000390142,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0035812889982480556,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003544028993928805,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 1,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 1.929991412907839e-06,
+      "owner_serialize_compress_authenticate_s": 0.003204433000064455,
+      "client_authenticate_parse_s": 0.0029343670030357316,
+      "trusted_channel": {
+        "transfer_wall_s": 7.070200808811933e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 9.3601003754884e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "enrollment_tcp_connect_s": 5.529100599233061e-05,
+      "storage_channel": {
+        "transfer_wall_s": 6.08910049777478e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "tcp_connection_establish_s": 9.827199392020702e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0031642320100218058,
+      "cold_owner_client_wall_stage_sum_s": 0.006519487011246383,
+      "total_acquisition_application_bytes": 63192,
+      "total_cold_application_bytes": 126280,
+      "retained_body_bytes_model": 62972,
+      "samples": [
+        {
+          "query_s": 0.0034554870071588084,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003670111997053027,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0034733580105239525,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0034718679962679744,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 1,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 1.8099963199347258e-06,
+      "owner_serialize_compress_authenticate_s": 0.05949167899962049,
+      "client_authenticate_parse_s": 0.0032799329928820953,
+      "trusted_channel": {
+        "transfer_wall_s": 6.825099990237504e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 8.724199142307043e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "enrollment_tcp_connect_s": 5.1210998208262026e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.830101144965738e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "tcp_connection_establish_s": 0.0001440129999537021,
+      "new_client_acquire_wall_stage_sum_s": 0.00355049800418783,
+      "cold_owner_client_wall_stage_sum_s": 0.06318243998975959,
+      "total_acquisition_application_bytes": 50029,
+      "total_cold_application_bytes": 99954,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.0007838960009394214,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0008021050016395748,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0008098059915937483,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007912559958640486,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 1,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 2.1500018192455173e-06,
+      "owner_serialize_compress_authenticate_s": 0.0033401850087102503,
+      "client_authenticate_parse_s": 0.0028503149951575324,
+      "trusted_channel": {
+        "transfer_wall_s": 7.33519991626963e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00012151199916843325,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "enrollment_tcp_connect_s": 5.119098932482302e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.897099617868662e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "tcp_connection_establish_s": 9.84920043265447e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.00308112999482546,
+      "cold_owner_client_wall_stage_sum_s": 0.006596167993848212,
+      "total_acquisition_application_bytes": 63192,
+      "total_cold_application_bytes": 126280,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.0006933529948582873,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0006839730049250647,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007404850039165467,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007104539981810376,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 1,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 1.7900019884109497e-06,
+      "owner_serialize_compress_authenticate_s": 0.00208798999665305,
+      "client_authenticate_parse_s": 0.0026991229970008135,
+      "trusted_channel": {
+        "transfer_wall_s": 7.436200394295156e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00019479398906696588,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 191996
+      },
+      "enrollment_tcp_connect_s": 5.059099930804223e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00011762201029341668,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 191996
+      },
+      "tcp_connection_establish_s": 0.00010034200386144221,
+      "new_client_acquire_wall_stage_sum_s": 0.002991449015098624,
+      "cold_owner_client_wall_stage_sum_s": 0.005326614002115093,
+      "total_acquisition_application_bytes": 192124,
+      "total_cold_application_bytes": 384144,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.0006817129906266928,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.000692362998961471,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007315639959415421,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007111140002962202,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 2,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 1.7499987734481692e-06,
+      "owner_serialize_compress_authenticate_s": 0.0020825899991905317,
+      "client_authenticate_parse_s": 0.002572040000814013,
+      "trusted_channel": {
+        "transfer_wall_s": 7.533100142609328e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00021816400112584233,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 191996
+      },
+      "enrollment_tcp_connect_s": 5.045099533163011e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00012187199899926782,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 191996
+      },
+      "tcp_connection_establish_s": 9.057100396603346e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0028598140052054077,
+      "cold_owner_client_wall_stage_sum_s": 0.00521276899962686,
+      "total_acquisition_application_bytes": 192124,
+      "total_cold_application_bytes": 384144,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.0006854039966128767,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0006842629954917356,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007237639947561547,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007125529955374077,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 2,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 1.7900019884109497e-06,
+      "owner_serialize_compress_authenticate_s": 0.0032029620051616803,
+      "client_authenticate_parse_s": 0.002863795991288498,
+      "trusted_channel": {
+        "transfer_wall_s": 7.15019996277988e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 7.571099558845162e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "enrollment_tcp_connect_s": 5.637200956698507e-05,
+      "storage_channel": {
+        "transfer_wall_s": 6.172098801471293e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "tcp_connection_establish_s": 9.0892004664056e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.0030879109835950658,
+      "cold_owner_client_wall_stage_sum_s": 0.006424745995900594,
+      "total_acquisition_application_bytes": 63192,
+      "total_cold_application_bytes": 126280,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.000691312990966253,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0006791929918108508,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007243639993248507,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007058740011416376,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 2,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 1.7900019884109497e-06,
+      "owner_serialize_compress_authenticate_s": 0.05951810999249574,
+      "client_authenticate_parse_s": 0.002773964006337337,
+      "trusted_channel": {
+        "transfer_wall_s": 8.069199975579977e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00012191300629638135,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "enrollment_tcp_connect_s": 5.14109997311607e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.7201003073714674e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "tcp_connection_establish_s": 9.709200821816921e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.003008949017385021,
+      "cold_owner_client_wall_stage_sum_s": 0.06270217301789671,
+      "total_acquisition_application_bytes": 50029,
+      "total_cold_application_bytes": 99954,
+      "retained_body_bytes_model": 191904,
+      "samples": [
+        {
+          "query_s": 0.0006908540090080351,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0006734229973517358,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007162239926401526,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0007847250089980662,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 2,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 1.6600097296759486e-06,
+      "owner_serialize_compress_authenticate_s": 0.0032025020045693964,
+      "client_authenticate_parse_s": 0.0034314369986532256,
+      "trusted_channel": {
+        "transfer_wall_s": 6.7891989601776e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 8.374200842808932e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "enrollment_tcp_connect_s": 5.1210998208262026e-05,
+      "storage_channel": {
+        "transfer_wall_s": 7.414100400637835e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 63064
+      },
+      "tcp_connection_establish_s": 0.00012508200597949326,
+      "new_client_acquire_wall_stage_sum_s": 0.0036985519982408732,
+      "cold_owner_client_wall_stage_sum_s": 0.007037667019176297,
+      "total_acquisition_application_bytes": 63192,
+      "total_cold_application_bytes": 126280,
+      "retained_body_bytes_model": 62972,
+      "samples": [
+        {
+          "query_s": 0.0036909920017933473,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003933447005692869,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.004011418001027778,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0034966079983860254,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "mushroom",
+      "fixture_sha256": "e65d082030501a3ebcbcd7c9f7c71aa9d28fdfff463bf4cf4716a3fe13ac360e",
+      "count": 7996,
+      "distinct_rows": 7996,
+      "dimension": 126,
+      "common_load_parse_s": 0.03264967600989621,
+      "repetition": 2,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 1.8009886844083667e-06,
+      "owner_serialize_compress_authenticate_s": 0.059456068003783,
+      "client_authenticate_parse_s": 0.0028498559986473992,
+      "trusted_channel": {
+        "transfer_wall_s": 6.64510007482022e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 8.581200381740928e-05,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "enrollment_tcp_connect_s": 5.133100785315037e-05,
+      "storage_channel": {
+        "transfer_wall_s": 5.899100506212562e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 49901
+      },
+      "tcp_connection_establish_s": 0.0001066919940058142,
+      "new_client_acquire_wall_stage_sum_s": 0.0030819899984635413,
+      "cold_owner_client_wall_stage_sum_s": 0.06267700200260151,
+      "total_acquisition_application_bytes": 50029,
+      "total_cold_application_bytes": 99954,
+      "retained_body_bytes_model": 49809,
+      "samples": [
+        {
+          "query_s": 0.0034168459969805554,
+          "scores_sha256": "18a0f77154bf86d1f2a52a6fc56172218a91e7a50b7cfbdeb46f870ba58d5a48",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0034521280031185597,
+          "scores_sha256": "964cbc512a9206dd45f24748473739fa50fd9a0681b4ccb51b016f7a8d4f3790",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0034392770030535758,
+          "scores_sha256": "c45221a7fd127df7d1546a0fe0e38979b642abb7ac0b5919c68471d9907cddc4",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003436966988374479,
+          "scores_sha256": "58803751140711b812023ccd7fdf98f279d8535b84695d56749de160aee6a209",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        893,
+        687,
+        3851,
+        6760
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 0,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 2.1000014385208488e-06,
+      "owner_serialize_compress_authenticate_s": 0.011175277002621442,
+      "client_authenticate_parse_s": 0.013220067994552664,
+      "trusted_channel": {
+        "transfer_wall_s": 7.113200263120234e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.0007891760033089668,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 786524
+      },
+      "enrollment_tcp_connect_s": 5.775100726168603e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.0006330320029519498,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 786524
+      },
+      "tcp_connection_establish_s": 0.00012221198994666338,
+      "new_client_acquire_wall_stage_sum_s": 0.01404644399008248,
+      "cold_owner_client_wall_stage_sum_s": 0.026070748004713096,
+      "total_acquisition_application_bytes": 786652,
+      "total_cold_application_bytes": 1573200,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.0030322490056278184,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002713273002882488,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0027003520081052557,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0028231750038685277,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 0,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 3.3999967854470015e-06,
+      "owner_serialize_compress_authenticate_s": 0.016142474007210694,
+      "client_authenticate_parse_s": 0.012391251992085017,
+      "trusted_channel": {
+        "transfer_wall_s": 7.300199649762362e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00024151400430127978,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "enrollment_tcp_connect_s": 6.88419968355447e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.0002022539993049577,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "tcp_connection_establish_s": 0.00010115199256688356,
+      "new_client_acquire_wall_stage_sum_s": 0.012767659980454482,
+      "cold_owner_client_wall_stage_sum_s": 0.029223889985587448,
+      "total_acquisition_application_bytes": 305389,
+      "total_cold_application_bytes": 610674,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.002695803006645292,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0030435789958573878,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0030293989984784275,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0031727019959362224,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 0,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 2.6600027922540903e-06,
+      "owner_serialize_compress_authenticate_s": 0.3939973450032994,
+      "client_authenticate_parse_s": 0.012087355004041456,
+      "trusted_channel": {
+        "transfer_wall_s": 7.175200153142214e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.0001795839925762266,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "enrollment_tcp_connect_s": 6.722100079059601e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.0001528630091343075,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "tcp_connection_establish_s": 0.00010679199476726353,
+      "new_client_acquire_wall_stage_sum_s": 0.012418762009474449,
+      "cold_owner_client_wall_stage_sum_s": 0.40666557200893294,
+      "total_acquisition_application_bytes": 247516,
+      "total_cold_application_bytes": 494928,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.002690822002477944,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002711503009777516,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002673891998711042,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003077879999182187,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 0,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 2.9700022423639894e-06,
+      "owner_serialize_compress_authenticate_s": 0.015156395005760714,
+      "client_authenticate_parse_s": 0.01273737799783703,
+      "trusted_channel": {
+        "transfer_wall_s": 9.057199349626899e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.0001976040075533092,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "enrollment_tcp_connect_s": 6.744101119693369e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00019058400357607752,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "tcp_connection_establish_s": 0.00011929198808502406,
+      "new_client_acquire_wall_stage_sum_s": 0.0131378259829944,
+      "cold_owner_client_wall_stage_sum_s": 0.02856223600974772,
+      "total_acquisition_application_bytes": 305389,
+      "total_cold_application_bytes": 610674,
+      "retained_body_bytes_model": 305169,
+      "samples": [
+        {
+          "query_s": 0.0149592019879492,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014397039994946681,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014379610001924448,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014304269003332593,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 0,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 2.8700014809146523e-06,
+      "owner_serialize_compress_authenticate_s": 0.38751253800000995,
+      "client_authenticate_parse_s": 0.012076084996806458,
+      "trusted_channel": {
+        "transfer_wall_s": 7.295199611689895e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00017784300143830478,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "enrollment_tcp_connect_s": 7.657099922653288e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.0001502230006735772,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "tcp_connection_establish_s": 9.882199810817838e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.012398081991705112,
+      "cold_owner_client_wall_stage_sum_s": 0.4001679039938608,
+      "total_acquisition_application_bytes": 247516,
+      "total_cold_application_bytes": 494928,
+      "retained_body_bytes_model": 247296,
+      "samples": [
+        {
+          "query_s": 0.014201967002009042,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014009542996063828,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014095235004788265,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014149754992104135,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 1,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 2.4699984351173043e-06,
+      "owner_serialize_compress_authenticate_s": 0.3870913599967025,
+      "client_authenticate_parse_s": 0.01263280599960126,
+      "trusted_channel": {
+        "transfer_wall_s": 6.837199907749891e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00020685400522779673,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "enrollment_tcp_connect_s": 6.3521001720801e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.0001562529942020774,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "tcp_connection_establish_s": 0.00013706200115848333,
+      "new_client_acquire_wall_stage_sum_s": 0.01299449299403932,
+      "cold_owner_client_wall_stage_sum_s": 0.40035869799612556,
+      "total_acquisition_application_bytes": 247516,
+      "total_cold_application_bytes": 494928,
+      "retained_body_bytes_model": 247296,
+      "samples": [
+        {
+          "query_s": 0.014707687005284242,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014150426010019146,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0139047200063942,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.01401164299750235,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 1,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 2.3899920051917434e-06,
+      "owner_serialize_compress_authenticate_s": 0.014912239988916554,
+      "client_authenticate_parse_s": 0.011986293000518344,
+      "trusted_channel": {
+        "transfer_wall_s": 8.341099601238966e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00019112399604637176,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "enrollment_tcp_connect_s": 5.8330988395027816e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00017413400928489864,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "tcp_connection_establish_s": 0.00011611300578806549,
+      "new_client_acquire_wall_stage_sum_s": 0.012359951011603698,
+      "cold_owner_client_wall_stage_sum_s": 0.027524035976966843,
+      "total_acquisition_application_bytes": 305389,
+      "total_cold_application_bytes": 610674,
+      "retained_body_bytes_model": 305169,
+      "samples": [
+        {
+          "query_s": 0.014566584010026418,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014677015991765074,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014763918006792665,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014744318003067747,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 1,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 2.3900065571069717e-06,
+      "owner_serialize_compress_authenticate_s": 0.3873234649945516,
+      "client_authenticate_parse_s": 0.01204580400371924,
+      "trusted_channel": {
+        "transfer_wall_s": 7.201200060080737e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00018771400209516287,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "enrollment_tcp_connect_s": 7.98419932834804e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00014827201084699482,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "tcp_connection_establish_s": 0.00012203199730720371,
+      "new_client_acquire_wall_stage_sum_s": 0.012388120012474246,
+      "cold_owner_client_wall_stage_sum_s": 0.3999815310089616,
+      "total_acquisition_application_bytes": 247516,
+      "total_cold_application_bytes": 494928,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.00268469299771823,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002690951994736679,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0026591420028125867,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002696612005820498,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 1,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 2.510001650080085e-06,
+      "owner_serialize_compress_authenticate_s": 0.014893100000335835,
+      "client_authenticate_parse_s": 0.012267698999494314,
+      "trusted_channel": {
+        "transfer_wall_s": 7.565200212411582e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00019404399790801108,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "enrollment_tcp_connect_s": 5.969199992250651e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00019871399854309857,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "tcp_connection_establish_s": 9.789199975784868e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.012639956999919377,
+      "cold_owner_client_wall_stage_sum_s": 0.02778930299973581,
+      "total_acquisition_application_bytes": 305389,
+      "total_cold_application_bytes": 610674,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.0026415019965497777,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002690462992177345,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002665312000317499,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0027163620106875896,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 1,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 2.829998265951872e-06,
+      "owner_serialize_compress_authenticate_s": 0.008956064004451036,
+      "client_authenticate_parse_s": 0.011034975002985448,
+      "trusted_channel": {
+        "transfer_wall_s": 7.570099842268974e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.0005347210098989308,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 786524
+      },
+      "enrollment_tcp_connect_s": 5.8500998420640826e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00034705699363257736,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 786524
+      },
+      "tcp_connection_establish_s": 9.248100104741752e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.011550213996088132,
+      "cold_owner_client_wall_stage_sum_s": 0.021102330007124692,
+      "total_acquisition_application_bytes": 786652,
+      "total_cold_application_bytes": 1573200,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.002649271991685964,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0026774120051413774,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003020289004780352,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0030905199964763597,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 2,
+      "compression_level": null,
+      "retained": "raw",
+      "key_generation_s": 2.8899958124384284e-06,
+      "owner_serialize_compress_authenticate_s": 0.0090132059995085,
+      "client_authenticate_parse_s": 0.011557995007024147,
+      "trusted_channel": {
+        "transfer_wall_s": 8.35519895190373e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.0007448349933838472,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 786524
+      },
+      "enrollment_tcp_connect_s": 6.176099122967571e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.0003878370043821633,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 786524
+      },
+      "tcp_connection_establish_s": 0.00011801200162153691,
+      "new_client_acquire_wall_stage_sum_s": 0.012147396002546884,
+      "cold_owner_client_wall_stage_sum_s": 0.021970087982481346,
+      "total_acquisition_application_bytes": 786652,
+      "total_cold_application_bytes": 1573200,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.0026746020012069494,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0026560820115264505,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002590289994259365,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0026317910087527707,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 2,
+      "compression_level": 1,
+      "retained": "raw",
+      "key_generation_s": 2.910004695877433e-06,
+      "owner_serialize_compress_authenticate_s": 0.015150976003496908,
+      "client_authenticate_parse_s": 0.012576134991832078,
+      "trusted_channel": {
+        "transfer_wall_s": 7.017199823167175e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00020244398911017925,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "enrollment_tcp_connect_s": 8.36320105008781e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00019395399431232363,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "tcp_connection_establish_s": 0.0001344319898635149,
+      "new_client_acquire_wall_stage_sum_s": 0.012974692974239588,
+      "cold_owner_client_wall_stage_sum_s": 0.02841465498204343,
+      "total_acquisition_application_bytes": 305389,
+      "total_cold_application_bytes": 610674,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.002706163009861484,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0026883519894909114,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.0026614609960233793,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002710272994590923,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 2,
+      "compression_level": 9,
+      "retained": "raw",
+      "key_generation_s": 2.9500079108402133e-06,
+      "owner_serialize_compress_authenticate_s": 0.3877359530015383,
+      "client_authenticate_parse_s": 0.011484882998047397,
+      "trusted_channel": {
+        "transfer_wall_s": 7.319101132452488e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.0002268050011480227,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "enrollment_tcp_connect_s": 8.231200627051294e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00014507300511468202,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "tcp_connection_establish_s": 0.0001185120054287836,
+      "new_client_acquire_wall_stage_sum_s": 0.011821659019915387,
+      "cold_owner_client_wall_stage_sum_s": 0.39986967903678305,
+      "total_acquisition_application_bytes": 247516,
+      "total_cold_application_bytes": 494928,
+      "retained_body_bytes_model": 786432,
+      "samples": [
+        {
+          "query_s": 0.002644191001309082,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.002654591007740237,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003073159998166375,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.003055848996154964,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 2,
+      "compression_level": 1,
+      "retained": "compressed",
+      "key_generation_s": 3.1899980967864394e-06,
+      "owner_serialize_compress_authenticate_s": 0.0156779950048076,
+      "client_authenticate_parse_s": 0.012228979001520202,
+      "trusted_channel": {
+        "transfer_wall_s": 6.940100865904242e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.0002367550041526556,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "enrollment_tcp_connect_s": 6.244100222829729e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00019483399228192866,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 305261
+      },
+      "tcp_connection_establish_s": 9.774099453352392e-05,
+      "new_client_acquire_wall_stage_sum_s": 0.012590954996994697,
+      "cold_owner_client_wall_stage_sum_s": 0.028571336006280035,
+      "total_acquisition_application_bytes": 305389,
+      "total_cold_application_bytes": 610674,
+      "retained_body_bytes_model": 305169,
+      "samples": [
+        {
+          "query_s": 0.014446130997384898,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014438630998483859,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014256957001634873,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.014264978002756834,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    },
+    {
+      "dataset": "connect4",
+      "fixture_sha256": "063152e6eadbb424c7ef4645df76e493a43812edd9c992400983da4fa54f8cba",
+      "count": 32768,
+      "distinct_rows": 32768,
+      "dimension": 126,
+      "common_load_parse_s": 0.48228222399484366,
+      "repetition": 2,
+      "compression_level": 9,
+      "retained": "compressed",
+      "key_generation_s": 2.849992597475648e-06,
+      "owner_serialize_compress_authenticate_s": 0.3869957380084088,
+      "client_authenticate_parse_s": 0.01237531000515446,
+      "trusted_channel": {
+        "transfer_wall_s": 7.18910014256835e-05,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 96
+      },
+      "enrollment_upload": {
+        "transfer_wall_s": 0.00017630400543566793,
+        "client_request_frame_bytes": 16,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "enrollment_tcp_connect_s": 6.6791006247513e-05,
+      "storage_channel": {
+        "transfer_wall_s": 0.00014716300938744098,
+        "client_request_frame_bytes": 8,
+        "server_reply_frame_bytes": 8,
+        "payload_bytes": 247388
+      },
+      "tcp_connection_establish_s": 0.00010143198596779257,
+      "new_client_acquire_wall_stage_sum_s": 0.012695796001935378,
+      "cold_owner_client_wall_stage_sum_s": 0.39993747901462484,
+      "total_acquisition_application_bytes": 247516,
+      "total_cold_application_bytes": 494928,
+      "retained_body_bytes_model": 247296,
+      "samples": [
+        {
+          "query_s": 0.014347980002639815,
+          "scores_sha256": "2742dfc33b749fb0f3fbb88cf73931f5448aa22a2688c685cee0a4a0a80c9b10",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.013829848991008475,
+          "scores_sha256": "ce9ab1c9d12f1613a8c73231828e4537c84f5a48d2944e3bedceb491e472b746",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.013911201007431373,
+          "scores_sha256": "078e017eaf37eb5294abdcd7ba63b956e8db04098b19907ea7773ea901252241",
+          "every_score_id_and_stable_top3_exact": true
+        },
+        {
+          "query_s": 0.013965852005640045,
+          "scores_sha256": "8e3bd96f090dff2510462ea3248f2d217a246b1c1fc14185a36634206834cd94",
+          "every_score_id_and_stable_top3_exact": true
+        }
+      ],
+      "query_source_ids": [
+        20365,
+        30946,
+        24772,
+        8322
+      ]
+    }
+  ],
+  "scope": "Actual persistent TCP framed payloads and trusted-key/header byte control, loopback only. Cold, enrolled-storage/new-client and returning-query costs include serialized provisioning for this cache. Actual enrollment upload populates the bytes served to the client; TLS, WAN, TCP/IP headers/retransmissions, durable epoch and RSS excluded. AES-GCM authenticates cache before parsing; transport harness does not implement confidential private provisioning. No new HE RPC comparison, GPU data, confidence/p95 claim, production assurance or novel mechanism."
+}

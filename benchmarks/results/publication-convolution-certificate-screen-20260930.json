@@ -1,0 +1,263 @@
+{
+  "utc": "2026-10-01T01:30:22.200887+00:00",
+  "command": [
+    "benchmarks/convolution_certificate_lab.py",
+    "--json-out",
+    "benchmarks/results/publication-convolution-certificate-screen-20260930.json"
+  ],
+  "git_head": "9886e3aa0b07deafb3c7fd91b645d3e7bc2fe049",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/convolution_certificate_lab.py": "02c9a32d94055a070e446b0ef3b6008221716902d932aee1e92aa583fc2968a8",
+    "experiments/bfv_search_lab/convolution_certificate_oracle.py": "849eec46b860c16983e49c5699129158a3220e1e7009d47f1f96c1b096d9fa21",
+    "experiments/bfv_search_lab/reduction_oracles.py": "d81a6366c26053ac3925082b90bd6c264c12b12aa9262c39dcbe6d4e815a287a",
+    "benchmarks/dictionary_layout_lab.py": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31",
+    "benchmarks/results/publication-structured-operator-screen-20260930.json": "64c32914a2382b0277aed6c0024b3d114758aa864a80d043f0ef8ce4be8c47fa"
+  },
+  "kind": "negacyclic_polynomial_quotient_certificate_primitive_screen",
+  "exhaustive_tiny_products": 81,
+  "exhaustive_tiny_point_checks": 1377,
+  "cases": [
+    {
+      "n": 8,
+      "q": 97,
+      "factor_pairs": 3,
+      "all_field_points_honest": 97,
+      "cyclic_negacyclic_quotient_exact": true
+    },
+    {
+      "n": 16,
+      "q": 193,
+      "factor_pairs": 3,
+      "all_field_points_honest": 193,
+      "cyclic_negacyclic_quotient_exact": true
+    },
+    {
+      "n": 32,
+      "q": 257,
+      "factor_pairs": 3,
+      "all_field_points_honest": 257,
+      "cyclic_negacyclic_quotient_exact": true
+    }
+  ],
+  "NTT_frequency_error": {
+    "n": 8,
+    "q": 97,
+    "NTT_domain_accepts": 7,
+    "NTT_domain_size": 8,
+    "whole_field_accepts": 7,
+    "whole_field_size": 97
+  },
+  "split_ring_bit_constraint_control": {
+    "n": 8,
+    "q": 97,
+    "nonconstant_idempotent": [
+      85,
+      1,
+      8,
+      64,
+      27,
+      22,
+      79,
+      50
+    ],
+    "x_squared_equals_x_but_not_a_constant_bit": true,
+    "not_an_attack_on_a_different_ring_instantiation": true
+  },
+  "geometry_count_screens": [
+    {
+      "dataset": "mushroom",
+      "profile": "baseline_t1153_q40",
+      "n": 16384,
+      "inner_q": 1099510054913,
+      "replies": 1,
+      "cost": {
+        "known_identity_degree_bound": 32766,
+        "attempt_budget_count_only": 1024,
+        "algebraic_target_bits_not_parameter_assurance": 128,
+        "point_rounds": 6,
+        "matched_dense_field_rounds": 4,
+        "secret_points_body_bytes": 30,
+        "point_index_hint_body_bytes": 1920,
+        "dense_subring_fingerprint_body_bytes": 20480,
+        "per_answer_point_hint_body_bytes": 60,
+        "per_answer_dense_hint_body_bytes": 20,
+        "full_reply_body_bytes": 163840,
+        "quotient_body_bytes": 163830,
+        "owner_fresh_answer_factory_removed": false,
+        "query_encryption_or_complete_release_protocol_implemented": false,
+        "scope": "Direct masked public-polynomial arithmetic primitive control. Known private-point identity test with full quotient bodies; no compact commitment, batching, proof generation timing or security review."
+      }
+    },
+    {
+      "dataset": "mushroom",
+      "profile": "same_field_narrow_lossless",
+      "n": 16384,
+      "inner_q": 34359410689,
+      "replies": 1,
+      "cost": {
+        "known_identity_degree_bound": 32766,
+        "attempt_budget_count_only": 1024,
+        "algebraic_target_bits_not_parameter_assurance": 128,
+        "point_rounds": 7,
+        "matched_dense_field_rounds": 4,
+        "secret_points_body_bytes": 31,
+        "point_index_hint_body_bytes": 1960,
+        "dense_subring_fingerprint_body_bytes": 17920,
+        "per_answer_point_hint_body_bytes": 62,
+        "per_answer_dense_hint_body_bytes": 18,
+        "full_reply_body_bytes": 143360,
+        "quotient_body_bytes": 143352,
+        "owner_fresh_answer_factory_removed": false,
+        "query_encryption_or_complete_release_protocol_implemented": false,
+        "scope": "Direct masked public-polynomial arithmetic primitive control. Known private-point identity test with full quotient bodies; no compact commitment, batching, proof generation timing or security review."
+      }
+    },
+    {
+      "dataset": "mushroom",
+      "profile": "selected_field_q32",
+      "n": 16384,
+      "inner_q": 4294475777,
+      "replies": 1,
+      "cost": {
+        "known_identity_degree_bound": 32766,
+        "attempt_budget_count_only": 1024,
+        "algebraic_target_bits_not_parameter_assurance": 128,
+        "point_rounds": 9,
+        "matched_dense_field_rounds": 5,
+        "secret_points_body_bytes": 36,
+        "point_index_hint_body_bytes": 2304,
+        "dense_subring_fingerprint_body_bytes": 20480,
+        "per_answer_point_hint_body_bytes": 72,
+        "per_answer_dense_hint_body_bytes": 20,
+        "full_reply_body_bytes": 131072,
+        "quotient_body_bytes": 131064,
+        "owner_fresh_answer_factory_removed": false,
+        "query_encryption_or_complete_release_protocol_implemented": false,
+        "scope": "Direct masked public-polynomial arithmetic primitive control. Known private-point identity test with full quotient bodies; no compact commitment, batching, proof generation timing or security review."
+      }
+    },
+    {
+      "dataset": "semeion",
+      "profile": "baseline_t1153_q40",
+      "n": 16384,
+      "inner_q": 1099510054913,
+      "replies": 1,
+      "cost": {
+        "known_identity_degree_bound": 32766,
+        "attempt_budget_count_only": 1024,
+        "algebraic_target_bits_not_parameter_assurance": 128,
+        "point_rounds": 6,
+        "matched_dense_field_rounds": 4,
+        "secret_points_body_bytes": 30,
+        "point_index_hint_body_bytes": 1380,
+        "dense_subring_fingerprint_body_bytes": 29440,
+        "per_answer_point_hint_body_bytes": 60,
+        "per_answer_dense_hint_body_bytes": 20,
+        "full_reply_body_bytes": 163840,
+        "quotient_body_bytes": 163830,
+        "owner_fresh_answer_factory_removed": false,
+        "query_encryption_or_complete_release_protocol_implemented": false,
+        "scope": "Direct masked public-polynomial arithmetic primitive control. Known private-point identity test with full quotient bodies; no compact commitment, batching, proof generation timing or security review."
+      }
+    },
+    {
+      "dataset": "semeion",
+      "profile": "same_field_narrow_lossless",
+      "n": 16384,
+      "inner_q": 68718428161,
+      "replies": 1,
+      "cost": {
+        "known_identity_degree_bound": 32766,
+        "attempt_budget_count_only": 1024,
+        "algebraic_target_bits_not_parameter_assurance": 128,
+        "point_rounds": 7,
+        "matched_dense_field_rounds": 4,
+        "secret_points_body_bytes": 32,
+        "point_index_hint_body_bytes": 1449,
+        "dense_subring_fingerprint_body_bytes": 26496,
+        "per_answer_point_hint_body_bytes": 63,
+        "per_answer_dense_hint_body_bytes": 18,
+        "full_reply_body_bytes": 147456,
+        "quotient_body_bytes": 147447,
+        "owner_fresh_answer_factory_removed": false,
+        "query_encryption_or_complete_release_protocol_implemented": false,
+        "scope": "Direct masked public-polynomial arithmetic primitive control. Known private-point identity test with full quotient bodies; no compact commitment, batching, proof generation timing or security review."
+      }
+    },
+    {
+      "dataset": "semeion",
+      "profile": "selected_field_q32",
+      "n": 16384,
+      "inner_q": 4294475777,
+      "replies": 1,
+      "cost": {
+        "known_identity_degree_bound": 32766,
+        "attempt_budget_count_only": 1024,
+        "algebraic_target_bits_not_parameter_assurance": 128,
+        "point_rounds": 9,
+        "matched_dense_field_rounds": 5,
+        "secret_points_body_bytes": 36,
+        "point_index_hint_body_bytes": 1656,
+        "dense_subring_fingerprint_body_bytes": 29440,
+        "per_answer_point_hint_body_bytes": 72,
+        "per_answer_dense_hint_body_bytes": 20,
+        "full_reply_body_bytes": 131072,
+        "quotient_body_bytes": 131064,
+        "owner_fresh_answer_factory_removed": false,
+        "query_encryption_or_complete_release_protocol_implemented": false,
+        "scope": "Direct masked public-polynomial arithmetic primitive control. Known private-point identity test with full quotient bodies; no compact commitment, batching, proof generation timing or security review."
+      }
+    },
+    {
+      "dataset": "connect4",
+      "profile": "global_raw",
+      "n": 2048,
+      "inner_q": 4294955009,
+      "replies": 16,
+      "cost": {
+        "known_identity_degree_bound": 4094,
+        "attempt_budget_count_only": 1024,
+        "algebraic_target_bits_not_parameter_assurance": 128,
+        "point_rounds": 7,
+        "matched_dense_field_rounds": 5,
+        "secret_points_body_bytes": 28,
+        "point_index_hint_body_bytes": 112896,
+        "dense_subring_fingerprint_body_bytes": 2520,
+        "per_answer_point_hint_body_bytes": 896,
+        "per_answer_dense_hint_body_bytes": 20,
+        "full_reply_body_bytes": 262144,
+        "quotient_body_bytes": 262016,
+        "owner_fresh_answer_factory_removed": false,
+        "query_encryption_or_complete_release_protocol_implemented": false,
+        "scope": "Direct masked public-polynomial arithmetic primitive control. Known private-point identity test with full quotient bodies; no compact commitment, batching, proof generation timing or security review."
+      }
+    },
+    {
+      "dataset": "connect4",
+      "profile": "global_affine",
+      "n": 2048,
+      "inner_q": 4294955009,
+      "replies": 16,
+      "cost": {
+        "known_identity_degree_bound": 4094,
+        "attempt_budget_count_only": 1024,
+        "algebraic_target_bits_not_parameter_assurance": 128,
+        "point_rounds": 7,
+        "matched_dense_field_rounds": 5,
+        "secret_points_body_bytes": 28,
+        "point_index_hint_body_bytes": 73472,
+        "dense_subring_fingerprint_body_bytes": 1640,
+        "per_answer_point_hint_body_bytes": 896,
+        "per_answer_dense_hint_body_bytes": 20,
+        "full_reply_body_bytes": 262144,
+        "quotient_body_bytes": 262016,
+        "owner_fresh_answer_factory_removed": false,
+        "query_encryption_or_complete_release_protocol_implemented": false,
+        "scope": "Direct masked public-polynomial arithmetic primitive control. Known private-point identity test with full quotient bodies; no compact commitment, batching, proof generation timing or security review."
+      }
+    }
+  ],
+  "scope": "Known quotient identity and cyclic-negacyclic decomposition, not a new proof or complete HE protocol. No encrypted queries, privacy composition, hidden-state receiver, commitments, batching, native/GPU timings or parameter assurance. Count panel is direct masked-polynomial control; it does NOT remove fresh owner answer generation. Exact NTT-point and disclosed/reused-point forgeries are shortcut controls, not attacks on reviewed proof systems."
+}

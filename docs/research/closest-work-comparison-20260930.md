@@ -254,7 +254,7 @@ based on compression plus verification.
 | **HE is all you need / ZipPIR**, Akhavan Mahdavi–Diaa–Kerschbaum, [2303.09043v2](https://arxiv.org/html/2303.09043v2), §§3–4, 6.1 | Encrypts an LWE/RLWE key under a separate additive scheme; the server evaluates linear decryption, with packing, key-size and rescaling tradeoffs. Its compression propositions concern semantic security/correctness; the PIR database is server-held. | **Required terminal baseline**, including an honest independent-key Paillier implementation/control. Charge compression key, exponentiations, output decryptions and matching malicious integrity. Replacing one key by another does not automatically protect observable rejection. |
 | **Downlink (T)FHE ciphertexts compression**, Bondarchuk et al., [SAC 2025 preproceedings](https://sacworkshop.org/SAC25/preproceedings/sac2025-2-paper3.pdf), §§1–2, 4–6 | Studies terminal coefficient truncation, compact LHE conversion and combinations; explicitly prices decryption-error probability and output count. Includes compressed Paillier-ElGamal. | Our precision/packing sweep must beat applicable combined controls. A small observed error or tiny output context does not justify deterministic exactness or a new security parameter. Paper timings are not local baselines. |
 | **Efficient PCGs from Ring-LPN**, Boyle et al., [2022/1035](https://eprint.iacr.org/2022/1035.pdf), overview and §7.4–7.5 | Programmable correlations support matrix products and circuit-dependent preprocessing; matrix-triple generation is already studied. Its discussion distinguishes correlation size and practical expansion cost. | E69 needs a fixed-private-M, fresh-encryption, recipient-specific, full-Q authentication conversion. Generic matrix triples and short seeds alone cannot be its contribution. Read the exact setup/security theorem before selecting parameters. |
-| **Efficient PCGs for Any Finite Field**, Li et al., [2025/169](https://eprint.iacr.org/2025/169.pdf), introduction, techniques overview and contents | Provides any-field programmable OLE and authenticated-triple/matrix applications, with separate setup and parameter analyses. | Small field support is not an unoccupied gap. Construction/proof-level §5–9 review remains a prerequisite to using it; we have not verified a conversion or inherited its assurance. |
+| **Efficient PCGs for Any Finite Field**, Li et al., [2025/169](https://eprint.iacr.org/2025/169.pdf), introduction and targeted §7.2 matrix/triple reading | Provides any-field programmable OLE and authenticated-triple/matrix applications, with separate setup and parameter analyses. | Small field support is not an unoccupied gap. Full construction/proof-level §5–9 review remains required; E69 is an ideal arithmetic conversion control, not its PCG instantiation or inherited assurance. |
 | **SIMD-Aware Homomorphic Compression**, Cheon et al., [2408.17063v1](https://arxiv.org/html/2408.17063v1), §§I-B, III and V | Sparse index and payload compression uses power sums, a matching index indicator and SIMD matrix multiplication; terminal ring switching is explicit. | E46 must produce and certify sparse winners first. Encoding IDs, using moments, applying SIMD or switching rings afterward cannot be claimed as new. Compare threshold ties and payload recovery, not only digest size. |
 | **SophOMR**, Lee–Yeo, [USENIX Security 2026 prepublication](https://www.usenix.org/system/files/conference/usenixsecurity26/sec26_prepub_lee.pdf), §§1.3, 2.4, 4.1–4.2 | Extends SIMD sparse compression to multi-slot payloads using precomputation/stacking and terminal ring switching. It requires a sparsity bound; detection precedes compression. | Stronger E46 compression control than a naive per-slot scheme. Any new claim must address winner discovery/coverage, not reinvent efficient packing of an already sparse vector. We pin this prepublication version, not an assumed final artifact match. |
 
@@ -275,7 +275,7 @@ it does not mean every row is an interchangeable production protocol.
 | General homemade BFV/BGV / Paillier | Owner-encrypted index | Exact scores; scheme-specific keys and encoding | Company baselines; compare each actual verifier/TEE mode separately |
 | Original EMVP | Encoded hidden matrix | Exact product via response shares; cached/key-only client modes | Original CPU reproduction plus separately added private gate; strongest paper/parameter assurance not reproduced |
 | BNTM | Masked/encoded matrix | Delegated linear algebra; recursive mode changes client costs | Unified simple mode only; per-answer integrity must be distinguished from its detection policy |
-| vReinsPIRe | Server-plaintext matrix; may be our ciphertext operator in a proposed composition | Private linear result; server preprocessing | Full theorem and experimental admissibility differ; no local reproduction yet |
+| vReinsPIRe | Server-plaintext matrix; may be our ciphertext operator in a proposed composition | Private linear result; server preprocessing | Full theorem/experimental admissibility differ;59 upstream cases and one native PIR pilot now run, no matched Hamming composition |
 | Small-state vPIR/vLHE | Server-plaintext matrix with extractable binding | Private linear result; reusable proof plus query material | Protocol explicitly handles selective failure in its own auxiliary-key setting; no local reproduction yet |
 | HELIOPOLIS | Encrypted inputs / HE proof computation | Private verification uses decrypted proof material; compact terminal ciphertexts | Different oracle definition above; no local run |
 | ZipPIR / terminal LHE conversion | Plaintext PIR database, or generic input ciphertexts to compress | Compact linear-decryption output under another key | Compression semantic security is not our complete malicious service guarantee; no local run |
@@ -312,3 +312,37 @@ These questions are prioritized and falsified in the
 baseline reproductions remain part of the next tasks. We have enough evidence
 to reject several weak claims, but not to certify that the remaining ideas
 are original or that any will produce a publishable positive result.
+
+## Execution supplement: ring verification and known-control discriminators
+
+[Huang et al., *Fully Homomorphic Encryption with Efficient Public Verification*,
+2024/1764](https://eprint.iacr.org/2024/1764.pdf), targeted §§1.1–1.3/2.1 reading,
+is a strong additional comparator for E70/E71. It expresses FHEW computation,
+including gadget/modulus operations, in ring R1CS and uses sum-check with ring
+polynomial commitments; its stated proof/preprocessing efficiency question
+includes improving the quadratic bound. Thus “verify ciphertext arithmetic
+before decryption” and a ring-native proof are already established directions.
+A specialized linear/CRT construction needs a new complete cost or theorem.
+The full reduction and an artifact have not been reviewed/executed. Our
+split-field nonconstant-idempotent example is not an attack on its different
+ring/domain instantiation. The25th cached primary PDF is hash-pinned separately
+in the [source registry](publication-literature-sources.json).
+
+The [baseline cards](protocol-baseline-cards.md) now give fields, owner binding,
+admissible extraction, setup and reaction boundaries. Unchanged pinned author
+vReinsPIRe passes59 unit cases and a4 MiB/kappa40 native PIR pilot. Its
+formula byte/state values, three means and first-record correctness are not
+same-contract Hamming measurements. Small-state vLHE was inspected only.
+Original recursive BNTM and optimized terminal compression remain explicit
+reproduction gaps.
+
+New E66–E71 controls are documented in the [execution review](publication-mechanism-review-20260930.md).
+They reject elementary digit wire, universal per-limb factoring, raw integer
+phase packing, generic triples as free fixed-M preprocessing and the literal
+encrypted-query/full-quotient system. Known recipe/support composition works;
+quotient batching has only a conditional many-output payload niche. The
+true-output/bad-quotient feedback example changes the **required protocol
+argument**, not the list of claimed prior-art vulnerabilities. No current
+survivor has established originality or useful outsourcing. The
+[handoff](mechanism-execution-handoff-20260930.md) gives precise next mechanisms
+and stronger controls rather than treating these ingredients as a contribution.

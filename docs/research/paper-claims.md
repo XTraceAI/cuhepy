@@ -26,6 +26,13 @@ claim**. Follow the [execution plan](publication-research-plan.md) and
 | Joint static support optimization beats simple alignment | **Rejected on screened catalogs:** balancing plus one-row refinement recovers every tested frontier | E65 independent allocations,20 named/32 irregular catalogs | Rare8 B point follows ordinary local refinement;2 B owner-body tradeoff is not a useful system contribution |
 | Complete verification closes the malicious-response decryption oracle | Scoped direct-fresh conditional argument, not a reviewed theorem | P07 draft, full-Q gates, global local budget and684 ideal policies | Authenticated setup, durable receiver, seeded privacy, private timing and independent review open; E62 not silently covered |
 | New profiles offer production/128-bit security | **Not established** | Pinned heuristic attacks, explicit timeouts and private-timing limitations | HE guidelines/estimator do not certify this protocol or implementation |
+| Recipe + support compaction works across the retained tiny layouts | **Exact known control:**224 encrypted queries; combined body12.5–50% of full reply | E66 [release controls](terminal-release-controls.md) | Public recomputation/extraction/adjoints known; fresh owner preparation remains |
+| Elementary digit outputs reduce the structured outer wire | **Rejected count variant:**1.81–2.74× original even before outer keys/proofs | E68 [operator screen](structured-operator-results.md) | Does not rule out compressed/carry-aware outer constructions |
+| H/Z registration preserves implicit convolution structure | **Exact linear oracle:**six registrations/48 identities; distinct-field/norm and gadget-factorization negatives | E68 [registration screen](structured-registration-results.md) | Known structured products and coefficient packing; complete extracted-class proof and H-prime costs unresolved |
+| Generic random matrix triples save fixed-M preparation | **Rejected shortcut:**same dense correction products,243 ideal/16 encrypted cases | E69 [conversion control](fixed-matrix-correlation-reduction.md) | Programmed/recipient-specific PCGs remain different, unimplemented constructions |
+| Quotient batching reduces a many-output certificate's body | **Conditional count model:**203,804 B saved on16 replies, added RTT; few-output loss | E70 [quotient/batching controls](convolution-certificate-results.md) | Known identity/random batching, not a new proof or measured service improvement |
+| Encrypted queries eliminate independent encrypted mask answers | **Exact toy functionality:**112 searches with three-component products and one-use certificate receiver | E71 [control](encrypted-query-certificate-control.md) | Ordinary depth-one HE plus polynomial testing; new per-request hints required, public-body model5.68–28.37× old body. No useful/novel system claim |
+| A repeated wrong-output bound automatically assures reused verifier points | **Rejected inference:**true output/one bad quotient exposes one-round8/97 predicate despite four rounds | E71 exact negative | Feedback proof must cover every accepted/rejected certificate; one-use E71 points are a control, not reviewed privacy/durability |
 
 The current [plan](publication-research-plan.md) prioritizes reducing per-query
 trusted preparation with safe exact release. The calibrated lifetime rule and
@@ -36,15 +43,16 @@ correlations and SIMD sparse-result compression.
 
 | Proposed statement | Current status | Evidence required before promotion |
 |---|---|---|
-| E68 structured verified evaluation reduces owner preparation without outer expansion | **Hypothesis only**; E47 supplies an algebra oracle and a negative literal expansion bound | New structured protocol step, admissible norms/owner binding, reduction and complete same-contract measurements |
-| E69 compact correlation generation supplies our exact token functionality | **Hypothesis only**; generic PCGs are known ingredients | Fixed-private-M conversion, recipient/field/encryption distribution proof, complete generation/provisioning benefit |
+| E68 structured verified evaluation reduces owner preparation without outer expansion | **Hypothesis only** after executed linear H/Z and negative digit/gadget controls | Carry-aware structured protocol step, admissible norms/owner binding, reduction and complete same-contract measurements |
+| E69 compact correlation generation supplies our exact token functionality | **Hypothesis only**; ideal generic-triple shortcut rejected, programmed PCGs still open | Fixed-private-M conversion, recipient/field/encryption distribution proof, complete generation/provisioning benefit |
 | E46 returns exact sparse winners more cheaply than full scores | **Hypothesis only**; known compression starts after winner discovery | Complete selection/tie/coverage mechanism, all conversion/proof/round costs and adverse controls |
 | Safe compact release itself is an original result | **Not established**; vFHE/HELIOPOLIS and terminal compression narrow the claim | A specific new constructive transformation and theorem beyond generic verification or extraction |
 
 The [mechanism agenda](publication-mechanism-agenda.md) defines falsifiers and
-bounded screens. No new benchmark, theorem or security certification is claimed
-by the planning revision. All-data caching and original protocol controls
-remain mandatory comparisons.
+bounded screens. The initial planning revision remains historical; bounded
+R0–R4/E70–E71 execution is now recorded separately. No new theorem, originality
+or security certification follows. All-data caching and original protocol
+controls remain mandatory comparisons.
 
 To promote a claim: freeze a justified workload/leakage/resource objective;
 reproduce strongest same-contract baselines; calibrate and test held-out traces;

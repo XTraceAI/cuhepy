@@ -1,0 +1,51 @@
+{
+  "utc": "2026-10-01T00:36:41.121169+00:00",
+  "command": [
+    "benchmarks/correlation_conversion_lab.py",
+    "--json-out",
+    "benchmarks/results/publication-correlation-conversion-controls-20260930.json"
+  ],
+  "git_head": "e9c91f800416b8c61798f89c11b72ddf135bb818",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/correlation_conversion_lab.py": "6b3e0b798c9624b979f11601a5f5ad4b4ba2747626d444a1c520317487554642",
+    "experiments/bfv_search_lab/correlation_conversion_oracle.py": "2b2cec9f47ebcfa18704fe074083f717a9fc25f98184fe1d0b16c36008d4f0f8",
+    "experiments/bfv_search_lab/crt_linear_check.py": "86081119ae715e17d92cd2132f57971f222cddcc04f2c0aad7adc115ebd1cee7",
+    "experiments/bfv_search_lab/crt_masked_bgv.py": "ef2cece17e1b0a31a71e69ce01db380e3266293bca728dc923d1defb0e261152",
+    "experiments/bfv_search_lab/crt_native_bgv.py": "b9b8f816ae7360dec87c4fcbf170e2ab4e861908c133cb2c63cbd04d512c5c84",
+    "experiments/bfv_search_lab/crt_query_space.py": "8fdde65ed6bc51b832cfd5c8e26c57ba7e959a2aab0312039178a3639b3b5bcb",
+    "experiments/bfv_search_lab/dyadic_crt.py": "d55ad0683b765944a078b4012927206a5d48c05613278c204b2e819eaaebe5a2",
+    "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "benchmarks/dictionary_layout_lab.py": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31"
+  },
+  "kind": "ideal_random_triple_fixed_private_matrix_conversion_control",
+  "tiny_fixed_matrices": 81,
+  "tiny_exact_conversions": 243,
+  "encrypted_exact_queries": 16,
+  "unique_fresh_C1_packets": 16,
+  "encrypted_profile": {
+    "n": 32,
+    "t": 17,
+    "q": 4294966657,
+    "eta": 1,
+    "leaf_degrees": [
+      16,
+      16
+    ],
+    "rows": 7,
+    "query_coordinates": 4
+  },
+  "per_token_cost": {
+    "owner_correction_field_products": 28,
+    "direct_fresh_plaintext_field_products": 28,
+    "owner_correction_matrix_subtractions": 28,
+    "ideal_random_matrix_body_bytes": 18,
+    "ideal_mask_and_product_body_bytes": 7,
+    "fresh_ciphertext_and_full_Q_check_cost_removed": false,
+    "real_generator_setup_expansion_authentication_cost_included": false,
+    "scope": "Naive dense correction control; structure/batching may alter runtime, not counted as a new protocol here."
+  },
+  "scope": "Ideal private random triples only, not a PCG/MAC or distributed protocol. Dense (M-B)r costs the same field product count as Mr, plus correction and triple handling. Fresh answer encryption and full-Q gate preparation remain on every query. Native/GMP evaluation, exact score/ID order and one-use replay control checked on toys. No parameter assurance, side-channel assurance, durable state, latency or novel mechanism claim."
+}

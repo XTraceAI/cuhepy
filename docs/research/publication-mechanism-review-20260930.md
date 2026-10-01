@@ -13,6 +13,7 @@ publishable mechanism**. No whole P-package or security gate is complete.
 | E68 implicit H/Z | Six registrations / 48 exact identities; distinct outer field and projection | Structure survives these linear operations; packing/extraction/privacy still unresolved |
 | Factor packing through D using a universal public map | One gadget limb is nonlinear in D, with an exact scalar counterexample | Stop this universal per-limb factorization; full recomposition is not contradicted |
 | E69 ordinary random triples | 243 ideal conversions / 16 encrypted queries; same dense correction products | Stop generic random triples as an automatic fixed-M preparation win |
+| E71 literal encrypted query + one-use certificate | 112 exact encrypted toy queries; modeled public traffic5.68–28.37× old public query/reply | Stop this full-query/full-quotient variant; answer factory removed but fresh private ticket work remains |
 
 ## What remains creative and falsifiable
 
@@ -76,3 +77,34 @@ This adds a bounded R3 alternative; it does not remove R1/R2 obligations, replac
 the main exact-score contract, silently implement encrypted queries, or declare
 R6 acceptance. The eventual point of invention must be a new safe composition
 or proof algorithm with a real full-cost margin beyond these known identities.
+
+## Return after executing the E70 subcomponents
+
+The [primitive and post-output batching report](convolution-certificate-results.md)
+now records exact identities and the NTT/revealed-point/ring-bit/challenge-order
+counterexamples. Small-layout index hints shrink but unbatched replies nearly
+double; batching saves 203,804 modeled body bytes on the 16-reply case while
+adding an RTT, and loses on two-output cases. Existing masked owner preparation
+is **not removed**. Treat these as completed primitive screens, not a selected
+system or proof.
+
+[E71](encrypted-query-certificate-control.md) completes a bounded encrypted-query
+instance with frozen output and one-use points; it does not supply durable
+commitments, a reviewed privacy argument or an efficient protocol. Its exact
+true-output/bad-quotient regression exposes a point predicate in8/97 cases with
+four rounds, so wrong-output repetition bounds do not cover arbitrary reuse.
+The next R3 discriminator must price a carry-aware outer construction, or
+succinct quotient openings and packed query generation, against strongest known
+versions. Compare full costs and reaction semantics before native/CUDA work.
+R2's matched acquisition and R1's
+optimized terminal controls remain concurrent obligations. R4 generic triples
+are stopped; programmed correlations and R5 exact selection remain explicitly
+bounded alternatives, not mandatory tasks already completed.
+
+R6 selection stays open: no current candidate passes originality/usefulness
+Gates B/C. This is a concrete narrowed research question, not evidence that a
+conference result has already been obtained.
+
+The [handoff](mechanism-execution-handoff-20260930.md) separates the completed
+screens from those next tasks. Historical source/result manifests are immutable;
+new evidence gets its own checkpoint and validation receipt.

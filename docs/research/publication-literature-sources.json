@@ -77,8 +77,21 @@
         "4: vLHE, Algorithm 4, Theorem 9 and honest-digest experimental assumption",
         "5: experimental scope"
       ],
-      "artifact_executed": false,
-      "performance_reproduced": false
+      "artifact_executed": true,
+      "performance_reproduced": true,
+      "execution_scope": "Pinned unchanged upstream vPIR: 59 client/server unit cases and one 4 MiB random-byte PIR pilot, 3 online iterations, kappa40. Byte figures are upstream formulas; first-record correctness only. Not an exact-Hamming adaptation or complete paper evaluation/security assurance.",
+      "execution_records": [
+        {
+          "date": "2026-09-30",
+          "artifact_revision": "acab7853e8fe11a70b5fa40e17487f7429e82810",
+          "report": "docs/research/protocol-baseline-cards.md",
+          "raw": [
+            "benchmarks/results/publication-author-vpir-control-20260930.json"
+          ],
+          "retention_receipt": "docs/research/publication-author-vpir-dependencies-20260930.json",
+          "scope": "Pinned unchanged upstream vPIR: 59 client/server unit cases and one 4 MiB random-byte PIR pilot, 3 online iterations, kappa40. Byte figures are upstream formulas; first-record correctness only. Not an exact-Hamming adaptation or complete paper evaluation/security assurance."
+        }
+      ]
     },
     {
       "file": "verifiable-hintless-2025-1714.pdf",
@@ -97,7 +110,9 @@
         "3.1-3.4: selected definition, reusable proof, soundness/prime-field/state-compression passages"
       ],
       "artifact_executed": false,
-      "performance_reproduced": false
+      "performance_reproduced": false,
+      "artifact_inspected": true,
+      "artifact_inspection_scope": "Pinned Verifiable-Hintless-PIR README/setup/code; default 512 MiB, eight-bit plaintext, FAKE_RUN bypasses setup and honest-hint experimental premise separated. No build/benchmark."
     },
     {
       "file": "fhelipe-pldi2024.pdf",
@@ -456,7 +471,7 @@
       "reading_depth": "targeted construction/definition passages, not a full proof audit",
       "passages": [
         "Introduction: programmable bilinear correlations and practical size limitation",
-        "7.4-7.5: matrix multiplication and circuit-dependent preprocessing; no full setup/security proof audit"
+        "7.4-7.5: matrix multiplication/triples and circuit-dependent preprocessing targeted reading; no full setup/security proof audit"
       ],
       "artifact_executed": false,
       "performance_reproduced": false
@@ -534,10 +549,31 @@
       "title": "Efficient Pseudorandom Correlation Generators for Any Finite Field",
       "version_note": "Downloaded ePrint pinned; not a concrete parameter endorsement",
       "retrieved_utc": "2026-09-30T23:36:34.633566+00:00",
-      "reading_depth": "overview only; construction/proofs unreviewed",
+      "reading_depth": "targeted introduction and matrix/triple passages, not full construction/proof audit",
       "passages": [
-        "Introduction/techniques overview and table of contents: any-field programmable OLE, authenticated triples and matrix applications",
-        "Construction/proof/attack review of sections 5-9 remains required before instantiation"
+        "Introduction/techniques: any-field programmable OLE, authenticated triples and matrix applications",
+        "7.2: matrix-product/triple conversion targeted reading; ideal fixed-M conversion separately implemented as E69 control",
+        "Full construction/proof/attack review of sections 5-9 remains required before a concrete PCG instantiation"
+      ],
+      "artifact_executed": false,
+      "performance_reproduced": false
+    },
+    {
+      "id": "ring-pvfhe-2024-1764",
+      "url": "https://eprint.iacr.org/2024/1764.pdf",
+      "final_url": "https://eprint.iacr.org/2024/1764.pdf",
+      "file": "ring-pvfhe-2024-1764.pdf",
+      "bytes": 306249,
+      "sha256": "7f42f4e9cf8218894226903a0c5ab3434e35812276b641acd01f8280ab183089",
+      "status": "downloaded",
+      "cache_directory": "../research-data/literature-mechanism-screen-20260930",
+      "title": "Fully Homomorphic Encryption with Efficient Public Verification",
+      "version_note": "ePrint dated 2024-10-29, approved 2024-10-30; downloaded PDF hash pinned",
+      "retrieved_utc": "2026-10-01T01:30:49.788818+00:00",
+      "reading_depth": "targeted introduction and ring-background passages, not full proof audit",
+      "passages": [
+        "1.1-1.3: ring R1CS, non-ring gadget/modulus operations, sum-check/CMNW ring polynomial commitments and IND-SA; quadratic proving/preprocessing bound and stated linear-time efficiency question",
+        "2.1: ring background and exceptional-set/ring-domain premises; our split-field idempotent control is not an attack on this different instantiation"
       ],
       "artifact_executed": false,
       "performance_reproduced": false
@@ -699,9 +735,11 @@
       "head_sha": "acab7853e8fe11a70b5fa40e17487f7429e82810",
       "commit_date": "2026-09-08T17:15:22Z",
       "source": "https://api.github.com/repos/google/InsPIRe/commits?per_page=1",
-      "artifact_executed": false,
-      "performance_reproduced": false,
-      "pin_scope": "Repository default-branch HEAD at retrieval, not independently certified paper artifact revision"
+      "artifact_executed": true,
+      "performance_reproduced": true,
+      "pin_scope": "Repository default-branch HEAD at retrieval, not independently certified paper artifact revision",
+      "execution_scope": "59 upstream CPU unit cases and one kappa40/4 MiB/3-iteration native PIR pilot only; no same-contract Hamming comparison.",
+      "execution_report": "docs/research/protocol-baseline-cards.md"
     },
     {
       "repository": "sacs-epfl/secure-vector-search",
@@ -730,7 +768,9 @@
       "source": "https://api.github.com/repos/mayank0403/Verifiable-Hintless-PIR/commits?per_page=1",
       "artifact_executed": false,
       "performance_reproduced": false,
-      "pin_scope": "Repository default-branch HEAD at retrieval, not independently certified paper artifact revision"
+      "pin_scope": "Repository default-branch HEAD at retrieval, not independently certified paper artifact revision",
+      "artifact_inspected": true,
+      "execution_scope": "Source/README inspection only; not built or run."
     },
     {
       "repository": "SecretKeyCrypto/Encrypted-Matrix-Vector-Products",
@@ -750,7 +790,7 @@
     "Paper parameter labels are assumptions/claims to check, not parameter assurance for our implementation."
   ],
   "execution_supplement": "Original review-only status is superseded for explicitly recorded partial unified and original EMVP executions. The original fifteen cached primary PDFs remain pinned unchanged. Browser-only readings have no local PDF hash/full-proof claim. Deliverable arithmetic/protocols remain homemade; references are baselines, not imported BFV/BGV.",
-  "review_revision": "post-E65 mechanism review",
-  "latest_evidence_commit": "6207455db8d86fbe1394d3ef2294fe8e0c877163",
-  "revision_note": "Nine new pinned PDFs and updated contract/novelty comparison only. Prior 15 PDF hashes and recorded artifact revisions unchanged. No additional artifact execution or benchmark reproduction."
+  "review_revision": "bounded R0-R4 mechanism execution through E71",
+  "latest_evidence_commit": "539e59d",
+  "revision_note": "Initial planning review remains historical. New execution pins one additional primary PDF, deeper targeted matrix-PCG passages and a scoped upstream vPIR reproduction. Original 24 PDF hashes and artifact revisions unchanged. No full proof review or paper/matched-Hamming benchmark reproduction."
 }
