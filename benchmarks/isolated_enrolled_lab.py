@@ -108,7 +108,7 @@ def main():
         "coefficient_body", "owner_bgv", "seeded_bgv", "shallow_bgv", "crt_masked_bgv", "crt_query_space", "dyadic_crt", "score_layout", "verification_lifetime"))
     paths.extend((ROOT / "src/cuhepy/bfv/scheme.py", ROOT / "src/cuhepy/types.py"))
     if args.pilot_json:
-        paths.append(args.pilot_json)
+        paths.append(args.pilot_json.resolve())
     result = metadata(paths)
     trials = []
     for repetition in range(selected):
