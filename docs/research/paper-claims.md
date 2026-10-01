@@ -1,6 +1,6 @@
 # P12 claim-to-evidence ledger
 
-2026-09-30. Supporting ledger, **not a paper draft or accepted originality
+2026-10-01. Supporting ledger, **not a paper draft or accepted originality
 claim**. Follow the [execution plan](publication-research-plan.md) and
 [progress](publication-progress.md). No theorem here has independent review.
 
@@ -33,6 +33,13 @@ claim**. Follow the [execution plan](publication-research-plan.md) and
 | Quotient batching reduces a many-output certificate's body | **Conditional count model:**203,804 B saved on16 replies, added RTT; few-output loss | E70 [quotient/batching controls](convolution-certificate-results.md) | Known identity/random batching, not a new proof or measured service improvement |
 | Encrypted queries eliminate independent encrypted mask answers | **Exact toy functionality:**112 searches with three-component products and one-use certificate receiver | E71 [control](encrypted-query-certificate-control.md) | Ordinary depth-one HE plus polynomial testing; new per-request hints required, public-body model5.68–28.37× old body. No useful/novel system claim |
 | A repeated wrong-output bound automatically assures reused verifier points | **Rejected inference:**true output/one bad quotient exposes one-round8/97 predicate despite four rounds | E71 exact negative | Feedback proof must cover every accepted/rejected certificate; one-use E71 points are a control, not reviewed privacy/durability |
+| One registration can gate actual encrypted-query projected outputs without fresh point/answer hints | **Exact known control:**112 toy searches;large private dense state and depth-one wire paid | E72 [report](encrypted-query-gate-control.md) | Known fingerprints/adjoints, not new protocol, timing, parameter or useful-system assurance |
+| Packing shrinks encrypted CRT query packets | **Measured tiny control:**924→231 B on112 packed/112 unpacked same-key queries | E73 [report](packed-query-expansion-control.md) | SealPIR/MulPIR packing known; keys, conservative Q and duplicate canonical expansion paid; no overall speed/wire claim |
+| Multiplication verification automatically binds server-provided query expansion | **Rejected:**deliberately unsafe adapter accepts a substituted expansion; canonical original pinning rejects it | E73 negative | A canonical digit/branch certificate or trusted expansion is required |
+| A public-code programmed mask cheaply removes actual row-factory work | **Rejected literal recipe:**incomplete128-bit trial/entropy filters cost1.645x/1.727x row products | E74 [report](programmed-mask-block-results.md) | Fixed-weight recipe is not reviewed finite-field Bernoulli LPN/secret recursion; no security or universal impossibility follows |
+| Outsourcing wins in actual returning-client service on the two small fixtures | **Not established:**strong global same-harness HE46.79/15.78 ms loses to permitted raw/compressed caches | E75/E76 [strong panel](enrolled-global-service-control.md),112 exact mode queries | Actual index/answer/query RPC measured; private bootstrap, independent resources and other regimes remain open |
+| Fixed C1 makes packed expansion affine in original C0 and shrinks online vectors | **Exact/control:**112 searches;toy vectors4,096→512 B with exact selector/adjoint and complete original-query gate | E77 [report](seed-affine-gate-control.md) | Conditional affine hoisting/linear fingerprints known. Factory still keeps old state/full fresh seed expansion;client+factory4.7–7.8% slower |
+| The literal seed-affine gate reduces total trusted work/state | **Rejected as full-system claim** | E77 complete paid factory/receiver count and toy stages | A certified public-seed offset generator or different carry-aware construction is still needed |
 
 The current [plan](publication-research-plan.md) prioritizes reducing per-query
 trusted preparation with safe exact release. The calibrated lifetime rule and
@@ -50,7 +57,7 @@ correlations and SIMD sparse-result compression.
 
 The [mechanism agenda](publication-mechanism-agenda.md) defines falsifiers and
 bounded screens. The initial planning revision remains historical; bounded
-R0–R4/E70–E71 execution is now recorded separately. No new theorem, originality
+R0–R4/E70–E77 execution is now recorded separately. No new theorem, originality
 or security certification follows. All-data caching and original protocol
 controls remain mandatory comparisons.
 

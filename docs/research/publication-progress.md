@@ -1,5 +1,24 @@
 # Publication research execution log
 
+## 2026-10-01: tranche selection and retention
+
+Returned to R6 after E72–E77; [current selection review](publication-mechanism-review-20261001.md)
+and [handoff](mechanism-execution-handoff-20261001.md) update the canonical plan,
+machine task routing, claim ledger and closest-work supplement. No original
+useful mechanism is selected. Proposed E78 certified seed offsets and E79
+isolated bootstrap/resources are explicitly unimplemented; carry-aware outer
+registration remains a competing R3 construction. No new native/CUDA work
+follows the negative screens.
+
+Final scoped checks:129 CPU tests/8 files,16 explicit Ruff paths,28 cached
+primary PDFs/text, old source/hash/checkpoint preservation and updated local
+links/task gates. [New manifest](publication-query-execution-manifest-20261001.json)
+retains75 raws/248 source versions (164 Git,84 workspace dependencies).
+[Validation receipt](publication-query-validation-20261001.json) is separate
+from the old205-test and90-test receipts; counts overlap. Target checkpoint:
+`checkpoint/query-mechanism-screens-2026-10-01` plus verified Git/dependency/
+paper/text/log backups. Production source/main/staging remain protected.
+
 ## 2026-10-01: R3 encrypted-query gate discriminator
 
 Returned to R3-B1/B2 and preregistered E77's [seed-affine gate](seed-affine-gate-control.md).

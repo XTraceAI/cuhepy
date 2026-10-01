@@ -1,0 +1,399 @@
+{
+  "schema_version": 1,
+  "utc": "2026-10-01T06:55:55.068421+00:00",
+  "validated_source_head": "3083d539b22d9e3e1f0cdc3ff78829725e7bd66f",
+  "branch": "experiment/creative-search-algebra",
+  "pytest": {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "experiments/bfv_search_lab/test_encrypted_query_gate.py",
+      "experiments/bfv_search_lab/test_packed_query_expansion.py",
+      "experiments/bfv_search_lab/test_programmed_mask_oracle.py",
+      "experiments/bfv_search_lab/test_enrolled_rpc.py",
+      "experiments/bfv_search_lab/test_seed_affine_gate.py",
+      "experiments/bfv_search_lab/test_encrypted_query_certificate.py",
+      "experiments/bfv_search_lab/test_supported_decoder.py",
+      "experiments/bfv_search_lab/test_polynomial_fingerprint.py"
+    ],
+    "passed": 129,
+    "failed": 0,
+    "skipped": 0,
+    "files": 8,
+    "new_files": 5,
+    "tests_in_new_files": 74,
+    "log": "../research-data/query-mechanism-logs-20261001/scoped-cpu-tests.txt",
+    "log_sha256": "9373e3d5b509b394a9d20c459ac7af4fa89883c3eeaf97a05de3be153234c46b",
+    "source_sha256": {
+      "experiments/bfv_search_lab/test_encrypted_query_gate.py": "7507bd461f9070865b7c6f5de890c66da35ba052862a389e81d65eea1a0bf695",
+      "experiments/bfv_search_lab/test_packed_query_expansion.py": "5bc25b598486ae1ca1ccaa7f84905686472a7ef479e1480494750f7b2fea5515",
+      "experiments/bfv_search_lab/test_programmed_mask_oracle.py": "af8c13a822c5c66b89b4c92f582ef8a55eef6b8b0ae8d8e655088ee4028547db",
+      "experiments/bfv_search_lab/test_enrolled_rpc.py": "005aacdc9ec3f8d46624b6dabb4488c65e2ee4d18b3044222cf10cd0969db502",
+      "experiments/bfv_search_lab/test_seed_affine_gate.py": "302a0f5a28b976c3d02edd18df20e40b79ab8b3b577e9b6c0b956d0e5dbe81d2",
+      "experiments/bfv_search_lab/test_encrypted_query_certificate.py": "85f0bb3dbeeaf55a32d075982fd26c19927938f5086c9f21c4ca4e9776638b05",
+      "experiments/bfv_search_lab/test_supported_decoder.py": "fbe729e4f068a1cee07a22e76ca347bd4364fa613c9cbe7e973c001a44ad9fe9",
+      "experiments/bfv_search_lab/test_polynomial_fingerprint.py": "922f247e4be14bc263a91e718065566e2cd2057ebe2a89e9babe19f1f7997352"
+    },
+    "scope": "Scoped new components plus original release/supported/native checker controls. Counts overlap historical tests, not whole-repository CI."
+  },
+  "initial_collection_failure": {
+    "log": "../research-data/query-mechanism-logs-20261001/scoped-cpu-tests-missing-file.txt",
+    "sha256": "bccc5df125dbe4e0844e3d86217989afb9c1e1f84c6c10e741760aef94bf81b4",
+    "reason": "Nonexistent test_native_linear_check.py path; zero tests executed. Corrected explicit native-checker test path passed."
+  },
+  "ruff": {
+    "command": [
+      ".venv/bin/ruff",
+      "check",
+      "--no-force-exclude",
+      "experiments/bfv_search_lab/encrypted_query_gate.py",
+      "experiments/bfv_search_lab/test_encrypted_query_gate.py",
+      "experiments/bfv_search_lab/packed_query_expansion.py",
+      "experiments/bfv_search_lab/test_packed_query_expansion.py",
+      "experiments/bfv_search_lab/programmed_mask_oracle.py",
+      "experiments/bfv_search_lab/test_programmed_mask_oracle.py",
+      "experiments/bfv_search_lab/loopback_exchange.py",
+      "experiments/bfv_search_lab/enrolled_rpc.py",
+      "experiments/bfv_search_lab/test_enrolled_rpc.py",
+      "experiments/bfv_search_lab/seed_affine_gate.py",
+      "experiments/bfv_search_lab/test_seed_affine_gate.py",
+      "benchmarks/encrypted_query_gate_lab.py",
+      "benchmarks/packed_query_expansion_lab.py",
+      "benchmarks/programmed_mask_lab.py",
+      "benchmarks/enrolled_service_lab.py",
+      "benchmarks/seed_affine_gate_lab.py"
+    ],
+    "paths": 16,
+    "log": "../research-data/query-mechanism-logs-20261001/scoped-ruff.txt",
+    "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "source_sha256": {
+      "experiments/bfv_search_lab/encrypted_query_gate.py": "db67bff1cff3ecfe840e5a525d84b02f20b2a9273016add5cdc4108831bf1657",
+      "experiments/bfv_search_lab/test_encrypted_query_gate.py": "7507bd461f9070865b7c6f5de890c66da35ba052862a389e81d65eea1a0bf695",
+      "experiments/bfv_search_lab/packed_query_expansion.py": "1224c371fc1a6153eaeccd588aab7bc7354fbd08d0ef5fde66e26f02a89a19eb",
+      "experiments/bfv_search_lab/test_packed_query_expansion.py": "5bc25b598486ae1ca1ccaa7f84905686472a7ef479e1480494750f7b2fea5515",
+      "experiments/bfv_search_lab/programmed_mask_oracle.py": "292c69dda786a4445df905870442fef9cf144179bdf7f8df8ad2f2a12672d7c0",
+      "experiments/bfv_search_lab/test_programmed_mask_oracle.py": "af8c13a822c5c66b89b4c92f582ef8a55eef6b8b0ae8d8e655088ee4028547db",
+      "experiments/bfv_search_lab/loopback_exchange.py": "12d9db1993ad67152bae2e1a345d51efdedcad3641a9bcaf08af1228e2a09ee3",
+      "experiments/bfv_search_lab/enrolled_rpc.py": "736c1dc75a7407b7142b994beab259bf2540a23c9b86c9db40911fd1cf863470",
+      "experiments/bfv_search_lab/test_enrolled_rpc.py": "005aacdc9ec3f8d46624b6dabb4488c65e2ee4d18b3044222cf10cd0969db502",
+      "experiments/bfv_search_lab/seed_affine_gate.py": "bea5b652ae727b9f3b57c536a2eda6ca124980e7935290c88712ac5de14e670f",
+      "experiments/bfv_search_lab/test_seed_affine_gate.py": "302a0f5a28b976c3d02edd18df20e40b79ab8b3b577e9b6c0b956d0e5dbe81d2",
+      "benchmarks/encrypted_query_gate_lab.py": "9d9663e96bf31c2cedf06068ec44fa5681ec9c7eeb246a0766aa886da692cdb5",
+      "benchmarks/packed_query_expansion_lab.py": "c3a191a2c8155e075b3d31ce4ad3ff512aaa00285796ed001c9963bf19d3f14f",
+      "benchmarks/programmed_mask_lab.py": "c3e4d3933e6eafc449cb5f5a37d8773fdf8bda966e18e5da4e53e01f52555018",
+      "benchmarks/enrolled_service_lab.py": "c41d541243408035a7d85c67475628cb493dd705213e87aaf38accd810d878c0",
+      "benchmarks/seed_affine_gate_lab.py": "f4b79bca2b7947db897ca25e1c6b43fae0c24a4ae15522de546677dc76c58869"
+    }
+  },
+  "manifests": [
+    {
+      "path": "docs/research/publication-execution-manifest.json",
+      "sha256": "45d9578f53d98ad830d36ec4966b92d258d743e0dba47a11000547162edef4d3",
+      "raw_runs": 59,
+      "source_versions": 181,
+      "locations": {
+        "git": 118,
+        "workspace-cache": 63
+      },
+      "errors": []
+    },
+    {
+      "path": "docs/research/publication-mechanism-execution-manifest.json",
+      "sha256": "8897b703d07d3163c284c138783f3bc46f1ec48c124a4778fb79b35cc497aa14",
+      "raw_runs": 69,
+      "source_versions": 227,
+      "locations": {
+        "git": 145,
+        "workspace-cache": 82
+      },
+      "errors": []
+    },
+    {
+      "path": "docs/research/publication-query-execution-manifest-20261001.json",
+      "sha256": "bbe1a092ab60bfed160ea2fbb46ae889863ebab8329efc1fcce02327dc95d2eb",
+      "raw_runs": 75,
+      "source_versions": 248,
+      "locations": {
+        "git": 164,
+        "workspace-cache": 84
+      },
+      "errors": []
+    }
+  ],
+  "literature": {
+    "pdf_and_text_pairs": 28,
+    "prior_pdf_hashes_unchanged": 25,
+    "entries": [
+      {
+        "id": "emvp",
+        "pdf_path": "../research-data/literature-20260930/emvp-2025-858.pdf",
+        "pdf_sha256": "5a5d16af06b3ef62535217d12d1a88d2fcc5ab06a22c61efe6d91634d1f3f44d",
+        "text_path": "../research-data/literature-20260930/emvp-2025-858.txt",
+        "text_sha256": "c2e5c397de552fc76890a529556c7071fe5c344e308c3e38108ddb5e8b7bd622"
+      },
+      {
+        "id": "reinspire",
+        "pdf_path": "../research-data/literature-20260930/reinspire-2026-1934.pdf",
+        "pdf_sha256": "7b5d6b0d331176a0bceb9cc563582caa7627ace2c1604cd933d61a2c0fcd9d2f",
+        "text_path": "../research-data/literature-20260930/reinspire-2026-1934.txt",
+        "text_sha256": "f232a2149a06aa36c7df5cc1bfa719f4dd7f6d7299931058e0ad0c98acb26cf4"
+      },
+      {
+        "id": "small_state_vpir",
+        "pdf_path": "../research-data/literature-20260930/verifiable-hintless-2025-1714.pdf",
+        "pdf_sha256": "3d521ba8db24f79f0b48395623507f4e91d4e6790851e04c63b33749dec93304",
+        "text_path": "../research-data/literature-20260930/verifiable-hintless-2025-1714.txt",
+        "text_sha256": "c08846b03c4f85de924d29b86d4d8452b8ce073d063b1301301e0368984cbd3c"
+      },
+      {
+        "id": "fhelipe",
+        "pdf_path": "../research-data/literature-20260930/fhelipe-pldi2024.pdf",
+        "pdf_sha256": "079c62259794695ac676c2a9fa415f59ed6ffeefc167470613427785268d3ac8",
+        "text_path": "../research-data/literature-20260930/fhelipe-pldi2024.txt",
+        "text_sha256": "1d78467dd44e3b4dca6628442db5f0a9047283397260635cd801487fa52136f7"
+      },
+      {
+        "id": "porcupine",
+        "pdf_path": "../research-data/literature-20260930/porcupine-pldi2021.pdf",
+        "pdf_sha256": "a8d9d7cda62a8a3b480b463d1098693b4814ec1aec371cf086036539f78fa7a2",
+        "text_path": "../research-data/literature-20260930/porcupine-pldi2021.txt",
+        "text_sha256": "0a7eb05c7658653ee10db2afb50a1cc6177d4a4cf487959b5829c0ea6766bca5"
+      },
+      {
+        "id": "unified_search",
+        "pdf_path": "../research-data/literature-20260930/unified-search-2608.01192v1.pdf",
+        "pdf_sha256": "6619697f1daeca288086df704d7e90f8f91cc58b3657189042cb231950ddf447",
+        "text_path": "../research-data/literature-20260930/unified-search-2608.01192v1.txt",
+        "text_sha256": "741e47f60ee37b6fcc2d29ca1ef0008a029d7eed6504e555a7446c8d1f8363c5"
+      },
+      {
+        "id": "mosaic",
+        "pdf_path": "../research-data/literature-20260930/mosaic-2607.29221v2.pdf",
+        "pdf_sha256": "415e544427a1c023207e1e2996ea91639d244d2c1604add0efbf00dd4ffa31a8",
+        "text_path": "../research-data/literature-20260930/mosaic-2607.29221v2.txt",
+        "text_sha256": "5cb79010600dd6dabf0e5a56c7c036619edf1c70eae9bf3a92262125a9684685"
+      },
+      {
+        "id": "inspire",
+        "pdf_path": "../research-data/literature-20260930/inspire-2025-1352.pdf",
+        "pdf_sha256": "a10fbb996f2abda0b18853c2e484bb8171846011bfd56719c9f1aaacfd3918ef",
+        "text_path": "../research-data/literature-20260930/inspire-2025-1352.txt",
+        "text_sha256": "947c50bba09c03c1b871e618152c984b1e52dae442b1facb70d0e143462cf5ce"
+      },
+      {
+        "id": "bntm",
+        "pdf_path": "../research-data/literature-20260930/bntm-2502.13060v3.pdf",
+        "pdf_sha256": "98a81b3337d78c7d3dcaadd2b4893f3e42efc9e30e8b3cc168c4d72e0afe4f8f",
+        "text_path": "../research-data/literature-20260930/bntm-2502.13060v3.txt",
+        "text_sha256": "5187a9417ba9093598df4815d6842c8e8ad78e12451da81378c48db49c2731ec"
+      },
+      {
+        "id": "cfhe",
+        "pdf_path": "../research-data/literature-20260930/cfhe-2026-845.pdf",
+        "pdf_sha256": "76cd69f0e634a32ef7cbf04f6d54e6d5ef8d0bdbc8a3555a0e36967fbf2c1124",
+        "text_path": "../research-data/literature-20260930/cfhe-2026-845.txt",
+        "text_sha256": "dc7e41cff4283c9b124ddf7ab4d6fb0e752927688aa4320d166d002dd0ad630c"
+      },
+      {
+        "id": "hers",
+        "pdf_path": "../research-data/literature-20260930/hers-2003.12197v3.pdf",
+        "pdf_sha256": "5d6e64612c86c34acd36bb810df4c92cf5b34b1fa772e7376c74e1b876d6a03f",
+        "text_path": "../research-data/literature-20260930/hers-2003.12197v3.txt",
+        "text_sha256": "526eca72258815041d827db93d5cab3e512c9a3726aa680b48b325b0da5c416c"
+      },
+      {
+        "id": "tiptoe",
+        "pdf_path": "../research-data/literature-20260930/tiptoe-2023-1438.pdf",
+        "pdf_sha256": "9a04938b1e3e6eda278b644b6ced920c73de02edf2238f8e26f888dfea0e6199",
+        "text_path": "../research-data/literature-20260930/tiptoe-2023-1438.txt",
+        "text_sha256": "d73ab52fecfc6ea9a2978591cd65e1e7b97e33a0d2f59abbeb2f969dc4ce0a69"
+      },
+      {
+        "id": "biozkfhe",
+        "pdf_path": "../research-data/literature-20260930/biozkfhe-2607.22065v1.pdf",
+        "pdf_sha256": "a021997c11a6b28294120747cdc50fab2d93ede3d55fd184868523bb43c2c287",
+        "text_path": "../research-data/literature-20260930/biozkfhe-2607.22065v1.txt",
+        "text_sha256": "c6d29d5652425a1b3b6186630c97cdaa9c94bf1442fee8d1c4d33f76f742db08"
+      },
+      {
+        "id": "sanns",
+        "pdf_path": "../research-data/literature-20260930/sanns.pdf",
+        "pdf_sha256": "3de18e2108bf51dce8ac01910bd0af22ab99631e6e8f5ec58a350b984c3d568d",
+        "text_path": "../research-data/literature-20260930/sanns.txt",
+        "text_sha256": "983d44eb624488fccaa87c0a41420c821b102571b1ece624970d3a1700fb3a8e"
+      },
+      {
+        "id": "bassit",
+        "pdf_path": "../research-data/literature-20260930/bassit-practical-biometric-search.pdf",
+        "pdf_sha256": "73ea24db9b7c52776fa9343da4d4beb52d377e4c9936ba5ac99531893d912273",
+        "text_path": "../research-data/literature-20260930/bassit-practical-biometric-search.txt",
+        "text_sha256": "56d4625b478680b6fc412ef2687e0048e2dbb34edae6ecf37a1004383e55dcdc"
+      },
+      {
+        "id": "vfhe-2301.07041v2",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/vfhe-2301.07041v2.pdf",
+        "pdf_sha256": "005a87f4c7e7f7e462f72746879db910d4026f2bd2ce8097d74b9653c44aa454",
+        "text_path": "../research-data/literature-plan-revision-20260930/vfhe-2301.07041v2.txt",
+        "text_sha256": "1beed06470afcef01fcd8c1ebe86cde5d1483e4e63dfe4b9bcb2dc24584040f8"
+      },
+      {
+        "id": "zip-pir-2303.09043v2",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/zip-pir-2303.09043v2.pdf",
+        "pdf_sha256": "330d936f36c868bcdcd0984f587e018bdb5e208838237a0bb0d978b8cf3a0cba",
+        "text_path": "../research-data/literature-plan-revision-20260930/zip-pir-2303.09043v2.txt",
+        "text_sha256": "5ea17f18f803470a9f881edf91104c676539235bdd1445ca8758a807fb93e954"
+      },
+      {
+        "id": "downlink-sac2025",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/downlink-sac2025.pdf",
+        "pdf_sha256": "dbe3479ee59baf88d54407b87cca2e961ffb3f2bc2f1023cd06a0760dcdf4511",
+        "text_path": "../research-data/literature-plan-revision-20260930/downlink-sac2025.txt",
+        "text_sha256": "b350f83d7926b8b8a8ce63b33246f83b74d12320a26883d41556763770d89529"
+      },
+      {
+        "id": "heliopolis-2023-1949",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/heliopolis-2023-1949.pdf",
+        "pdf_sha256": "61e7231dec2899e417ee6739123362baad6ddf7ec67d2182f20c10490dd53521",
+        "text_path": "../research-data/literature-plan-revision-20260930/heliopolis-2023-1949.txt",
+        "text_sha256": "d48dd66b28e86141cd8b577429806a48fb98ddd687fcc6e7f5b40dd020802b16"
+      },
+      {
+        "id": "pcg-2022-1035",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/pcg-2022-1035.pdf",
+        "pdf_sha256": "a3d0ed7d8669bcf62d867dcfb606f3a2bcb6bd25107aaa011a6189ed6d1821f9",
+        "text_path": "../research-data/literature-plan-revision-20260930/pcg-2022-1035.txt",
+        "text_sha256": "c537f6165b1b8d295775cc3c855059cca5b7c6318ca99bedd21e55dc88c9e25c"
+      },
+      {
+        "id": "linear-decryption-2019-720",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/linear-decryption-2019-720.pdf",
+        "pdf_sha256": "cb6b84563d364fad1674843911ca7e9566c90c4da081e9d754aaaf10d2896706",
+        "text_path": "../research-data/literature-plan-revision-20260930/linear-decryption-2019-720.txt",
+        "text_sha256": "061e0df559bb74d9f56fe4edd4f486a81c0a0a0aed6f7a69088266e1768e6b2b"
+      },
+      {
+        "id": "simd-compression-2408.17063v1",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/simd-compression-2408.17063v1.pdf",
+        "pdf_sha256": "61b032e7cc4a45310a56f83bfe2b12869bb1efa11c8869fe940f0c81202d8259",
+        "text_path": "../research-data/literature-plan-revision-20260930/simd-compression-2408.17063v1.txt",
+        "text_sha256": "dcda92ec4b06cc645d4ec43f02ca492403a4da057af72a653fb3972bbfc1d7a8"
+      },
+      {
+        "id": "sophomr-sec26-prepub",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/sophomr-sec26-prepub.pdf",
+        "pdf_sha256": "78b19bd593e2000b2e73237deccaeecb3311d9d830295d671772f6f1a4c9c58b",
+        "text_path": "../research-data/literature-plan-revision-20260930/sophomr-sec26-prepub.txt",
+        "text_sha256": "745789cf44b97ed4a2d3cbf9925f6e920024ace388e63b98052277c757e77406"
+      },
+      {
+        "id": "pcg-any-field-2025-169",
+        "pdf_path": "../research-data/literature-plan-revision-20260930/pcg-any-field-2025-169.pdf",
+        "pdf_sha256": "6572f6185e440dd0be4fa86cc8734b4709b73a42d1340f64f2762ca9a0860e05",
+        "text_path": "../research-data/literature-plan-revision-20260930/pcg-any-field-2025-169.txt",
+        "text_sha256": "b6995d14ace6649fbbb59a3037b29ad1c7257a377b1ae4fecbac775ceb092161"
+      },
+      {
+        "id": "ring-pvfhe-2024-1764",
+        "pdf_path": "../research-data/literature-mechanism-screen-20260930/ring-pvfhe-2024-1764.pdf",
+        "pdf_sha256": "7f42f4e9cf8218894226903a0c5ab3434e35812276b641acd01f8280ab183089",
+        "text_path": "../research-data/literature-mechanism-screen-20260930/ring-pvfhe-2024-1764.txt",
+        "text_sha256": "70018748e9b9e1b24a8fcc779020217f19151ff375cd44fc643f48e60d0147fb"
+      },
+      {
+        "id": "sealpir",
+        "pdf_path": "../research-data/literature-query-packing-20261001/sealpir-2017-1142.pdf",
+        "pdf_sha256": "13e54fa3643ae78d1a85e116595f735b383a7a80d7d1bb40b0b02b89cd0029b2",
+        "text_path": "../research-data/literature-query-packing-20261001/sealpir-2017-1142.txt",
+        "text_sha256": "c89d029399a0977b287e38813e895d28f0545f318e57d13f16bf54a5e7edf0fc"
+      },
+      {
+        "id": "mulpir",
+        "pdf_path": "../research-data/literature-query-packing-20261001/mulpir-sec21-ali.pdf",
+        "pdf_sha256": "08b227c9a99743a13444420c1cfa2cbe62ef1d7dd9a660de0c5ecaecb3945e0d",
+        "text_path": "../research-data/literature-query-packing-20261001/mulpir-sec21-ali.txt",
+        "text_sha256": "c35ad98f572e20fe30c0f32f7218578a5920f89047b3ad76a9b17287f252801d"
+      },
+      {
+        "id": "trapdoored_matrices",
+        "pdf_path": "../research-data/literature-query-packing-20261001/trapdoored-matrices-2502.13065v2.pdf",
+        "pdf_sha256": "2e96f0f1fe97f2353b66d21a99104913a3321af79633cd16fefe5d2b40b6f01a",
+        "text_path": "../research-data/literature-query-packing-20261001/trapdoored-matrices-2502.13065v2.txt",
+        "text_sha256": "c96456405efa54d1c3e73578ab89719db5121f1fe3081fc6bd71c7e93634a40c"
+      }
+    ]
+  },
+  "prior_checkpoint": {
+    "tag": "checkpoint/mechanism-screens-2026-09-30",
+    "head": "5a646a899400101f767c2c3f6acff0a66513649c",
+    "bundle_and_archive_hashes_match": true,
+    "current_dependency_paper_log_members_unchanged": 134
+  },
+  "task_checks": {
+    "P_packages": 13,
+    "decision_tasks": 8,
+    "accepted_P_packages": [],
+    "accepted_decision_scope": [
+      "R0 bounded contract cards only"
+    ],
+    "dependencies_valid": true,
+    "proposed_E78_E79_not_executed": true,
+    "work_packages_sha256": "074fd2d0579ecf75afee62adfb947f38c676840e4dd29ac5ae4cc1c24c0ac89a"
+  },
+  "native_dependency_identities": [
+    {
+      "module": "_fingerprint._fingerprint",
+      "path": "experiments/bfv_search_lab/_fingerprint/_fingerprint.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "273413089b89db47eb76e083504d0f260a970b17ec310501f358038738466458"
+    },
+    {
+      "module": "_subring._crt_subring",
+      "path": "experiments/bfv_search_lab/_subring/_crt_subring.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "ecd3611af5fd16077afcb050af555374b4d9659a50e397a72a0295c2a6abb07d"
+    },
+    {
+      "module": "_owner._bgv_owner",
+      "path": "experiments/bfv_search_lab/_owner/_bgv_owner.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "91e97d7c12ad28e60e141ccc205526db5bc7d8fbcfa411697059b7612fcbdc51"
+    }
+  ],
+  "protected_production_source": {
+    "baseline": "02e06c0f5636def284ed6864b3e208538fcb10a6",
+    "src_diff_empty": true,
+    "main_staging_refs": {
+      "main": "0f8522e449d00622e10f4111ac8eb89d52ca577b",
+      "staging": "eb96aa1f79a92d6b6f0c1f6389d3daadff5546be"
+    }
+  },
+  "environment": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39"
+  },
+  "scope": "E72-E77 finite homemade query/gate/mask/actual enrolled TCP controls. No positive originality/usefulness/protocol proof, approved parameters, private timing/durable freshness, independent endpoint resource or GPU assurance. Historical raw/manifest/receipts preserved.",
+  "document_checks": {
+    "documents": 18,
+    "local_links": 210,
+    "broken_links": [],
+    "source_sha256": {
+      "docs/research/closest-work-comparison-20260930.md": "304d85758787e75de895d3908ecaae91c3633b6ebd79fd35a60885d3631479d0",
+      "docs/research/encrypted-query-gate-control.md": "1bd8bef364e55ed10a023c39da5c3985e69f4fb68317d859c23a0006fe03659a",
+      "docs/research/enrolled-global-preregistration-20261001.md": "3590153b10413e8257eb5adfaff799906314d40624f8000c894e9d8013aa374a",
+      "docs/research/enrolled-global-service-control.md": "5cb45e2a9545f1c5a719438642cde38c250d44e2bf0b04cbf044af476dc7babb",
+      "docs/research/enrolled-service-control.md": "fbb5165607a952ddcf6f10315583586ba733cf86167b4d7e62b6d4c77722112f",
+      "docs/research/enrolled-service-preregistration-20261001.md": "c91eb082a0bfcab448e1eb6b6d489d7a6a3cf7c44a38aba81168262f2667437a",
+      "docs/research/mechanism-execution-handoff-20261001.md": "03287b2b2a7bdf19ed2fce74650542ef40856d537f46384058d3bea4d4733569",
+      "docs/research/packed-query-expansion-control.md": "77ef1cfb20f20ea449c8433318cf7fe351d4bbd76e6019efaa75719a2ad0c6cb",
+      "docs/research/paper-claims.md": "3d3ae89b83b42d75f1384b04faeebfaf467e5edb5edda3c82e9effe1556cb7fb",
+      "docs/research/programmed-mask-block-results.md": "9db1133501a770aa259995b96ead84bbab94d8b84e7eeb8c0dc699a7518a435b",
+      "docs/research/programmed-mask-preregistration-20261001.md": "f06b140dd4b167f975129ac05f17111bb89ff1d0642b99f5d951875aae56a74f",
+      "docs/research/publication-evaluation.md": "7189a2705eb2e33eb83aa2cafcfa3af343876d62a0ec4f845d17bd109912c7ac",
+      "docs/research/publication-mechanism-review-20261001.md": "4ecbf3f9169cde5bb7674fb95507db79b8d8a6b7ad79727774293e78c2fd3772",
+      "docs/research/publication-progress.md": "a4e1999ce422463a4c443e67f68e81ebe4774edfe6c574dcae56d2d150a33d43",
+      "docs/research/publication-research-plan.md": "6fe6fc29e56402b47dc87ca8451697496ae04f9210a3ee02ce0838d10bcd4667",
+      "docs/research/query-verification-preregistration-20261001.md": "1c1c2e2fc08e5406bec3ea296408c4b7bd19c1066e6a7cdbcc6e0763b1d30e0f",
+      "docs/research/seed-affine-gate-control.md": "ceca388bf29c2c0384f5a2598af39c8e3ecb1f17c79716bb1b2bbb6544ef03bc",
+      "docs/research/seed-affine-gate-preregistration-20261001.md": "e40fa9e50b0428d41de10da12562c130fe817f5765757fe38a9252cdd17c4479"
+    }
+  }
+}

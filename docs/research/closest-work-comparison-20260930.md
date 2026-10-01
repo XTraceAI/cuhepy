@@ -346,3 +346,32 @@ argument**, not the list of claimed prior-art vulnerabilities. No current
 survivor has established originality or useful outsourcing. The
 [handoff](mechanism-execution-handoff-20260930.md) gives precise next mechanisms
 and stronger controls rather than treating these ingredients as a contribution.
+
+## 2026-10-01 supplement: packed input and programmed masks
+
+Three additional primary PDFs/text are version/hash pinned in the registry;
+28 sources now have targeted reading/cache identity. Old25 hashes stay intact.
+This is not an exhaustive novelty search, proof audit or a new external artifact
+reproduction. Source attribution separates known primitives from our controls.
+
+| Closest primary work / targeted reading | Known ingredient relevant here | Executed consequence / still missing discriminator |
+|---|---|---|
+| Angel–Chen–Laine–Setty, [SealPIR](https://eprint.iacr.org/2017/1142.pdf),§3.3/Appendix A | Automorphism/key-switch based coefficient query expansion | E73 is a homemade partial CRT control, not invented packing. Full key/noise/expansion work and original-query binding must be priced |
+| Ali–Lepoint–Patel–Raykova, [MulPIR](https://www.usenix.org/system/files/sec21-ali.pdf),§3.1–3.2 | Packed query expansion, preprocessing normalization and optimized HE PIR arithmetic | E73 predivides by H in the score field; a smaller query alone is not a smaller complete service. Publisher PDF is the cached version; do not equate its bytes to ePrint2019/1483 |
+| Vaikuntanathan–Zamir, [Improving Algorithmic Efficiency using Cryptography,v2](https://arxiv.org/abs/2502.13065v2),§3.1–3.2 | Finite-field Bernoulli LPN and structured/recursive trapdoored matrix algorithms | E74's fixed-weight public-code mask is a different unreviewed recipe. Actual row-local F32/F23 beats that literal screen; no refutation of the cited secret/recursive construction or all PCGs follows |
+
+E72 uses known complete projected linear fingerprints. E77 conditions the
+E73 circuit on public C1 and hoists its affine C0 selector into those
+fingerprints. That exact control shrinks the online vector; it **does not**
+remove the trusted seed factory. Affine hoisting, adjoints and Freivalds are
+known ingredients. A contribution must give a new certified/generation step,
+not relabel the state moved to a helper as system compression.
+
+E75/E76 supply actual same-harness returning-client HE/cache requests, distinct
+from author PIR formulas. Their complete strong HE profiles still lose to
+permitted caching on two finite fixtures. Private bootstrap, independent
+resources and a useful different regime remain gaps. Prior-art differences
+and experimental negatives do not themselves establish a publishable thesis.
+The [current review](publication-mechanism-review-20261001.md) and
+[handoff](mechanism-execution-handoff-20261001.md) record the next construction
+cards before new proof-system or native work.

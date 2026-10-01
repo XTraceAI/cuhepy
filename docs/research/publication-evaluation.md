@@ -1,6 +1,6 @@
 # P11 execution artifact: scoped pilots, not the final paper evaluation
 
-2026-09-30. The [progress log](publication-progress.md),
+2026-10-01. The [progress log](publication-progress.md),
 [work packages](publication-work-packages.json),
 [claims ledger](paper-claims.md) and [plan](publication-research-plan.md)
 govern interpretation and next execution. All company/deliverable code remains
@@ -172,3 +172,49 @@ dependency archive retain this execution independently of prior checkpoints.
 Repeated-process confidence, matched HE transfer, strongest unresolved
 controls, private timing, parameter review and a selected contribution remain
 open. The [handoff](mechanism-execution-handoff-20260930.md) drives the next work.
+
+## Query/verification and actual enrolled service tranche, E72–E77
+
+New immutable raws and source checkpoints extend the previous artifacts;
+historical manifests/validation are unchanged. Reports distinguish exact
+oracles, real socket measurements, count models and unresolved security work.
+
+| Runner / report | Completed finite scope | Interpretation |
+|---|---|---|
+| `benchmarks/encrypted_query_gate_lab.py`,[E72](encrypted-query-gate-control.md) |112 toy searches, signed-matrix adjoint and aggregate-feedback control | Known once-registration gate; large private vectors and actual depth-one input packets |
+| `benchmarks/packed_query_expansion_lab.py`,[E73](packed-query-expansion-control.md) |112 packed +112 unpacked searches; full original-query expansion and unsafe substitute control | Homemade known packing, key/noise/work priced; big profiles count only |
+| `benchmarks/programmed_mask_lab.py`,[E74](programmed-mask-block-results.md) |81 products/42 CRT recombinations; exact clean-set/entropy screens and tiny leakage controls | Specific public-code recipe loses actual small block factory; no assurance/impossibility |
+| `benchmarks/enrolled_service_lab.py --profile legacy16384`,[E75](enrolled-service-control.md) |56 exact mode queries;actual index/answer/query/response TCP,full pre-key check, five snapshot modes + retained owner raw | Returning enrolled endpoints only; private/context bootstrap already pinned |
+| Same runner `--profile global2048`,[E76](enrolled-global-service-control.md) |56 more exact mode queries with stronger whole-index geometry and rerun caches | Complete returning HE46.79/15.78 ms; caches still faster here. No WAN/independent-resource claim |
+| `benchmarks/seed_affine_gate_lab.py`,[E77](seed-affine-gate-control.md) |112 exact searches, original/expanded fingerprint identities and paid seed factory | Online vectors8x smaller; trusted factory remains large and complete client+factory slower |
+
+All five runners accept fresh `--json-out` paths. The first, second, third and
+fifth need no network; actual localhost socket runs/tests need the appropriate
+sandbox permission. Commands/input hashes are in each raw/report. No deliverable
+arithmetic imports Microsoft SEAL or external author implementations.
+
+Current validation covers **129 CPU tests in8 files**, zero failures/skips,
+with **16 explicit Ruff paths**. These include74 tests in the five new files
+plus relevant original release/supported-decoder/native checker controls;
+do not add them to historical test totals as disjoint whole-repository CI.
+The [new validation receipt](publication-query-validation-20261001.json)
+records logs, source identities, literature/task/local-link checks and unchanged
+production refs. One initial collection command named a nonexistent checker
+test file; that zero-test failure log is retained separately and the explicit
+corrected run passed.
+
+[New identity manifest](publication-query-execution-manifest-20261001.json):
+tracked completed raws plus the retained author dependency receipt. Verify all
+three manifests rather than recreating old ones:
+
+```sh
+.venv/bin/python benchmarks/publication_artifact_manifest.py --verify docs/research/publication-execution-manifest.json
+.venv/bin/python benchmarks/publication_artifact_manifest.py --verify docs/research/publication-mechanism-execution-manifest.json
+.venv/bin/python benchmarks/publication_artifact_manifest.py --verify docs/research/publication-query-execution-manifest-20261001.json
+```
+
+The new checkpoint is `checkpoint/query-mechanism-screens-2026-10-01` with an
+adjacent verified Git bundle/dependency/PDF/text/log archive. Prior company and
+research tags/bundles remain intact. Next [construction cards and resource
+tasks](mechanism-execution-handoff-20261001.md) are explicitly proposals;
+no originality/production or security gate is accepted from this tranche.

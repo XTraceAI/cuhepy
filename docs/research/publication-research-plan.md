@@ -1,11 +1,12 @@
-# Research plan: verified encrypted search and mechanism screens through E71
+# Research plan: verified encrypted search and mechanism screens through E77
 
-Revision: 2026-09-30, following the closest-work and execution review.
+Revision: 2026-10-01, following the query/verification and enrolled service screens.
 The protected E01–E65 evidence remains frozen at `6207455`, tag
 `checkpoint/publication-controls-2026-09-30`; the initial planning revision is
-retained at `b60a715`. New bounded R0–R4/E70–E71 controls are recorded in the
+retained at `b60a715`. New bounded R0–R4/E70–E77 controls are recorded in the
 [progress log](publication-progress.md) and
-[interim mechanism review](publication-mechanism-review-20260930.md).
+[preceding review](publication-mechanism-review-20260930.md) and
+[current selection review](publication-mechanism-review-20261001.md).
 These are executed oracles/pilots, not a new complete cryptographic protocol
 or security approval.
 The [preceding plan, through E65](publication-research-plan-through-e65.md)
@@ -62,7 +63,9 @@ The [bounded construction cards](protocol-baseline-cards.md) close R0's premise
 mapping; the selected author client/server targets pass 59 unit cases and a
 bounded native PIR control runs. That is not a matched malicious Hamming
 reproduction. R1's recipe/decoder control and R2's real cache transfer pilot
-have executed. Optimized terminal compression and matched HE RPC remain open.
+have executed. E75/E76 now measure same-harness enrolled HE/cache RPC;
+full private bootstrap, independent resources and optimized terminal compression
+remain open.
 
 R3's [operator](structured-operator-results.md) and
 [registration](structured-registration-results.md) oracles preserve exact
@@ -83,13 +86,28 @@ private hint/ticket provision. A true output with one corrupted quotient also
 exposes a single point's predicate; a wrong-output repetition bound does not
 justify arbitrary verifier-point reuse under reactions.
 
-Next R3 work is a **carry-aware structured registration** construction, or
-**succinct quotient openings plus packed-query controls**. Each needs a precise
-new step beyond existing vLHE/ring proofs, full query/proof/private-state costs,
-and safe feedback semantics. R2's matched HE/cache acquisition remains open.
-R6 still has no selected paper winner. The [execution handoff](mechanism-execution-handoff-20260930.md)
-defines next subcomponents, falsifiers and evidence; no acceleration follows
-from these controls.
+The next bounded tranche has executed and changed the discriminator:
+
+| Completed finite task | Result | Return decision |
+|---|---|---|
+| [E72 dense projected encrypted-query gate](encrypted-query-gate-control.md) |112 exact searches, no per-query owner answers/point hints, but large once-per-index private vectors | Strong known control; literal version stopped as a paper candidate |
+| [E73 packed query expansion](packed-query-expansion-control.md) |112 packed +112 unpacked exact searches; actual query packets924→231 B; untrusted expansion does not bind original query | Keep canonical client-expansion control; keys/noise/duplicate work paid. Literal combined variant stopped |
+| [E74 public-code programmed masks](programmed-mask-block-results.md) |81 products/42 CRT checks; surviving incomplete trial/entropy filters cost1.645x/1.727x actual block products | Stop this one-level public-code recipe before enabling it in HE; no security/impossibility claim |
+| [E75/E76 actual enrolled service](enrolled-global-service-control.md) |112 mode queries across legacy/strong global panels; best HE returning medians46.79/15.78 ms still lose to permitted caches | Finite returning-client negative. Cold/new-client provisioning, separate endpoint resources and other regimes remain open |
+| [E77 seed-conditioned affine gate](seed-affine-gate-control.md) |112 exact searches; online vectors4,096→512 B in toys, but factory retains old vectors/full fresh expansion; client+factory4.7–7.8% slower | Keep factoring identity/control; stop literal trusted-helper version as a whole-system winner |
+
+Next R3 work is **certified public-seed offset generation**, or the competing
+**carry-aware structured outer registration** construction. E77 makes the
+former interface concrete: a small online vector is possible only after the
+seed-specific constant is paid. A new construction must remove that total cost,
+not just move it. Succinct quotient/digit certificates need degree/range
+binding and complete feedback semantics. R4's secret/recursive/block-preserving
+correlations and R5's complete selection remain bounded alternatives.
+
+R6 has no selected paper winner. The [current handoff](mechanism-execution-handoff-20261001.md)
+defines finite next subcomponents, strongest controls and falsifiers; the
+[previous handoff](mechanism-execution-handoff-20260930.md) remains historical.
+No acceleration or production promotion follows from these controls.
 
 ## 2. Fixed contract and deployment questions
 
@@ -159,8 +177,9 @@ parameters. It is not a service p95, a GPU comparison or parameter assurance.
 
 ## 4. Closest work determines the novelty boundary
 
-The [comparison](closest-work-comparison-20260930.md) now includes a focused
-compression/verification/correlation supplement and a contract matrix.
+The [comparison](closest-work-comparison-20260930.md) now includes focused
+compression/verification/correlation, query-expansion and public-code supplements
+and a contract matrix.
 The [source registry](publication-literature-sources.json) records versions,
 targeted reading depth, hashes and actual reproduction status.
 
@@ -201,9 +220,9 @@ When exhausted, record the unresolved issue and revisit this plan.
 |---|---|---|---|
 | **R0: baseline contract closure** (P00/P01/P07) | Construction-level cards for strongest vLHE, recursive BNTM and relevant compression modes: owners, feedback, norm/field/key assumptions and all paid state. Pin/reproduce the selected baseline or document exactly what cannot run | 2–3 focused sessions | No matched malicious-security comparison until premises align; an unavailable baseline remains a gap, not a zero-cost or slow comparator |
 | **R1: close compaction controls**, E66 (P03/P07/P10) | Recipe + supported-decoder reference; priced extraction/repacking and independent-key terminal compression controls; carry/verification dependencies | 2–3 sessions | Known combinations are controls. Stop expansion if saved bytes are repaid in private state, client reconstruction or verification |
-| **R2: useful full-cost frontier**, E67 (P01/P06) | Cold/enrolled/returning comparisons with actual provisioning/socket measurements; CPU/cache and relevant GPU controls; same score/ID hashes | 2–3 sessions for initial screen | Measured nondominated operating point or documented negative. A model only screens; do not build a large optimizer on a dominated profile |
-| **R3: structured protocol screen**, E68 (P02/P03/P07) | Implicit operator, norm-aware/digit alternatives, exact oracle and complete costs; literal outer vLHE and direct BGV/EMVP controls | 3 sessions before expansion | New protocol consequence + plausible full-cost margin; stop if norm inflation or hidden material recreates the old cost |
-| **R4: correlation alternative**, E69 (P03/P07/P10) | Complete small share-to-token conversion, leakage argument and cost bound, or explicit obstruction | 2 sessions before a PCG implementation | All outputs/fields under declared trust; no public mask bank, dropped carry or undeclared helper |
+| **R2: useful full-cost frontier**, E67/E75/E76 (P01/P06) | Enrolled returning socket control complete in two geometries; finish cold/new-client private provisioning and independent CPU/peak resources; retain CPU/cache and relevant GPU controls | 2–3 sessions for next finite screen | Measured nondominated operating point or documented negative. A model only screens; do not build a large optimizer on a dominated profile |
+| **R3: structured protocol screen**, E68/E70–E73/E77 (P02/P03/P07) | Carry-aware admissible outer registration or certified seed-offset generation; exact original-query/full-Q release relation and all costs; strongest vLHE/ring-proof/direct-HE controls | 3 sessions before expansion | New protocol consequence + plausible full-cost margin; stop if norm inflation or hidden material recreates the old cost |
+| **R4: correlation alternative**, E69/E74 (P03/P07/P10) | Generic triples/public-code recipe stopped; price secret/recursive/block-preserving programmed conversion before a new generator | 2 sessions before a PCG implementation | All outputs/fields under declared trust; no public mask bank, dropped carry or undeclared helper; actual small block F is the comparator |
 | **R5: exact selection alternative**, E46 (P02/P10) | Full stable-ID/coverage circuit or certificate; conversion, predicate, compression, proofs and rounds | 2 sessions before native code | Useful complete bound against all-score download and strongest selection controls; dense ties/adverse inputs included |
 | **R6: selection review** (P04/P06/P07/P12) | One selected mechanism, discarded alternatives, theorem statements, held-out preregistration and integration design | 1 session | Gates A/B pass with credible path to C/D; otherwise narrow the question or preserve a negative report |
 | **R7: develop and evaluate survivor** (P05–P12, scope-dependent) | Homemade reference → native implementation → optional CUDA; proof, parameter/implementation review and artifact | Scope after R6 | Gates C/D and claim-to-source evidence, not number of experiments completed |
@@ -240,6 +259,14 @@ The [evaluation inventory](publication-evaluation.md) lists runners; the
 205-test receipt is historical. New scoped validation records90 CPU tests in
 12 files, explicit lint on28 Python paths and25 cached primary PDF hashes.
 Neither receipt claims whole-repository CI or security assurance.
+
+The E72–E77 [separate query manifest](publication-query-execution-manifest-20261001.json)
+retains75 tracked raws and248 source versions (164 historical Git/84 workspace
+dependencies). [Current scoped validation](publication-query-validation-20261001.json)
+passes129 CPU tests in8 files and16 explicit Ruff paths;28 source PDFs/text and
+updated task/document identities are checked. Counts overlap historical control
+sets; do not add them as whole-repository totals. The [current handoff](mechanism-execution-handoff-20261001.md)
+and verified adjacent checkpoint archive retain this tranche separately.
 
 Evaluate along independent axes: rows, bit dimension, exact rank/structure,
 reply occupancy, number of queries, token utilization, update locality, client
