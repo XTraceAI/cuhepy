@@ -1,5 +1,19 @@
 # Publication research execution log
 
+## 2026-10-01: R3 encrypted-query gate discriminator
+
+Returned to the handoff and preregistered E72/E73 before coding. E72's
+[one-registration projected gate](encrypted-query-gate-control.md) completes a
+bounded R3-B1/B2 control: 112 exact queries, 18 scoped tests, no fresh owner
+answer/private-point preparation. Compiled fingerprints are independently
+checked against literal signed matrices. The aggregate-feedback toy exhausts
+81 private checkers; this is not HE security or implementation assurance.
+
+**Return decision:** keep E72 as a strong known control, stop its literal
+variant as a paper candidate because private state/upload are large. Continue
+to R3-B0's packed-query and verification-boundary discriminator. No package,
+originality, usefulness or security gate is accepted by this control.
+
 The [publication plan](publication-research-plan.md) governs task order. This
 log records evidence and decisions; [work-package statuses](publication-work-packages.json)
 are updated only when their acceptance conditions are met. The protected
