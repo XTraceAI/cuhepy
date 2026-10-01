@@ -35,8 +35,9 @@ There are no remotely supplied pickle objects or dynamic class imports.
 Public bootstrap refuses private record types/extra fields.
 
 The trusted local controller relays a64-byte owner key/context root plus its
-public padding bound through actual framed IPC: **204 bytes across two hops**
-in these runs. This is an explicitly paid local trust root, not an implemented
+public padding bound through actual framed IPC: **204 HE /200 cache bytes across
+two hops** in these runs. The different encoded bounds account for the difference.
+This is an explicitly paid local trust root, not an implemented
 AWS identity/remote enrollment service. Private HE envelopes are padded to a
 fixed public-geometry function; their whole padding cost is measured. Cache
 bootstrap is a fixed1,121-byte envelope containing its separate key/manifest.
