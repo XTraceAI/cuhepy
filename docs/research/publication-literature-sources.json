@@ -4,7 +4,7 @@
   "baseline_commit": "02e06c0f5636def284ed6864b3e208538fcb10a6",
   "scope": "Targeted primary-source comparison for planning; not exhaustive novelty search, proof audit or benchmark reproduction.",
   "full_documents_in_git": false,
-  "cache_note": "Original 15 PDFs/text: ../research-data/literature-20260930. Nine revision PDFs/text: ../research-data/literature-plan-revision-20260930. Both are outside Git; new entries carry cache_directory. Preserve mutable ePrint hashes and distinguish prepublication versions. Three query-packing/correlation PDFs and text at ../research-data/literature-query-packing-20261001. Initial urllib requests for ePrint returned 403; explicit User-Agent/publisher fallback succeeded. Preserve all prior hashes.",
+  "cache_note": "Original 15 PDFs/text: ../research-data/literature-20260930. Nine revision PDFs/text: ../research-data/literature-plan-revision-20260930. Both are outside Git; new entries carry cache_directory. Preserve mutable ePrint hashes and distinguish prepublication versions. Three query-packing/correlation PDFs and text at ../research-data/literature-query-packing-20261001. Initial urllib requests for ePrint returned 403; explicit User-Agent/publisher fallback succeeded. Preserve all prior hashes. Four contribution-review PDFs/text plus retrieval records: ../research-data/literature-contribution-review-20261001. Existing 28 source entries and hashes preserved.",
   "sources": [
     {
       "file": "emvp-2025-858.pdf",
@@ -614,7 +614,7 @@
       "text_sha256": "c35ad98f572e20fe30c0f32f7218578a5920f89047b3ad76a9b17287f252801d",
       "status": "downloaded",
       "id": "mulpir",
-      "title": "Communication\u2013Computation Trade-offs in PIR",
+      "title": "Communication–Computation Trade-offs in PIR",
       "version_note": "USENIX Security 2021 publisher copy; does not identify the browsed ePrint bytes",
       "reading_depth": "targeted passages only; not a proof, parameter or artifact review",
       "passages": [
@@ -653,6 +653,96 @@
         "docs/research/programmed-mask-block-results.md"
       ],
       "project_control_note": "One-level fixed-weight public-code screen is a different unreviewed assumption/recipe, not reproduction or refutation of Bernoulli finite-field LPN/secret recursive matrix theorem."
+    },
+    {
+      "id": "lattice-vfhe-2024-032",
+      "file": "lattice-vfhe-2024-032.pdf",
+      "url": "https://eprint.iacr.org/2024/032.pdf",
+      "final_url": "https://eprint.iacr.org/2024/032.pdf",
+      "bytes": 684593,
+      "sha256": "1c46c45f48e0949acaace2e44da57adc8aad53cb56e3916d9392ee3e12245e34",
+      "retrieved_utc": "2026-10-01T07:11:11.876101+00:00",
+      "title": "Verifiable FHE via Lattice-based SNARKs",
+      "version_note": "ePrint 2024/032 retrieved 2026-10-01; metadata describes a minor CIC 2024 revision",
+      "status": "downloaded",
+      "cache_directory": "../research-data/literature-contribution-review-20261001",
+      "reading_depth": "targeted construction/optimization passages, not a full proof audit",
+      "passages": [
+        "1.2: double-CRT decomposition",
+        "3.2-3.3: blueprinting and security interfaces",
+        "Appendix A.1-A.2: rotations and delayed key-switch slot addition"
+      ],
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "text_sha256": "29d73acba92516b2cfb60ea2756e7e7690700f50406ecf0121cbde47f014714d"
+    },
+    {
+      "id": "ring-approx-vc-2025-286",
+      "file": "ring-approx-vc-2025-286.pdf",
+      "url": "https://eprint.iacr.org/2025/286.pdf",
+      "final_url": "https://eprint.iacr.org/2025/286.pdf",
+      "bytes": 836746,
+      "sha256": "29b6b2e99308fff0e06ca1950764653faa660a9d40e08a394404947a9e3b1f19",
+      "retrieved_utc": "2026-10-01T07:11:12.352609+00:00",
+      "title": "Verifiable Computation for Approximate Homomorphic Encryption Schemes",
+      "version_note": "ePrint 2025/286 retrieved 2026-10-01; author page identifies CRYPTO 2025",
+      "status": "downloaded",
+      "cache_directory": "../research-data/literature-contribution-review-20261001",
+      "reading_depth": "targeted construction/optimization passages, not a full proof audit",
+      "passages": [
+        "1: proof-friendly rings and arithmetic/range proof design",
+        "3.4: bounded relaxed maintenance and added noise",
+        "4: relation/range-check interfaces",
+        "6.2-6.3: primitive measurements versus application estimates and missing integration"
+      ],
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "text_sha256": "61d1aef6019f1e823e50b961d01d12f5acf40166cc71169f6b1c261961be6165"
+    },
+    {
+      "id": "hasteboots-sec26",
+      "file": "hasteboots-sec26.pdf",
+      "url": "https://www.usenix.org/system/files/usenixsecurity26-liu-fengrun.pdf",
+      "final_url": "https://www.usenix.org/system/files/usenixsecurity26-liu-fengrun.pdf",
+      "bytes": 813935,
+      "sha256": "deacdfad5e2c3ef01a0c00f0093aa9de72faaf468f8071a3e092e6a7c5759e64",
+      "retrieved_utc": "2026-10-01T07:11:13.329177+00:00",
+      "title": "HasteBoots: Proving TFHE Programmable Bootstrapping in Seconds",
+      "version_note": "USENIX Security 2026 publisher paper",
+      "status": "downloaded",
+      "cache_directory": "../research-data/literature-contribution-review-20261001",
+      "reading_depth": "targeted construction/optimization passages, not a full proof audit",
+      "passages": [
+        "3.3-3.4: coefficient-domain batched polynomial and monomial relations",
+        "4.3-4.4: key switching and sample extraction",
+        "5.1: integer decomposition/range relation",
+        "6: prover-verifier-proof-size tradeoffs and batching scope"
+      ],
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "text_sha256": "0cb8ff63ec5335b4957cf03b63f8c89eb5d9cdb3f47c8b4b0f37b9bcaba0b94d"
+    },
+    {
+      "id": "verisimplepir-sec24-prepub",
+      "file": "verisimplepir-sec24-prepub.pdf",
+      "url": "https://www.usenix.org/system/files/sec24summer-prepub-480-de-castro.pdf",
+      "final_url": "https://www.usenix.org/system/files/sec24summer-prepub-480-de-castro.pdf",
+      "bytes": 480763,
+      "sha256": "5c954d2db3358c36af7ce8ed578b4c21e880ca75979867d65e06e1fa29f0b42a",
+      "retrieved_utc": "2026-10-01T07:15:57.025641+00:00",
+      "title": "VeriSimplePIR: Verifiability in SimplePIR at No Online Cost for Honest Servers",
+      "version_note": "USENIX Security 2024 publisher prepublication PDF; not assumed byte-identical to final proceedings",
+      "status": "downloaded",
+      "cache_directory": "../research-data/literature-contribution-review-20261001",
+      "reading_depth": "targeted construction/optimization passages, not a full proof audit",
+      "passages": [
+        "2.2: extractable commitments, norms and fixed-error binary challenge argument",
+        "4: linear HE and reusable proof interface",
+        "4.2: private proof preparation and refresh after rejection; Appendix B identified for full adaptation audit"
+      ],
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "text_sha256": "53374260dd09c3fae9f4447799181f990777e182f790cd87cb3674bcf165c093"
     }
   ],
   "additional_readings": [
@@ -868,5 +958,18 @@
   "execution_supplement": "Original review-only status is superseded for explicitly recorded partial unified and original EMVP executions. The original fifteen cached primary PDFs remain pinned unchanged. Browser-only readings have no local PDF hash/full-proof claim. Deliverable arithmetic/protocols remain homemade; references are baselines, not imported BFV/BGV.",
   "review_revision": "bounded R0-R4 mechanism execution through E71",
   "latest_evidence_commit": "539e59d",
-  "revision_note": "Initial planning review remains historical. New execution pins one additional primary PDF, deeper targeted matrix-PCG passages and a scoped upstream vPIR reproduction. Original 24 PDF hashes and artifact revisions unchanged. No full proof review or paper/matched-Hamming benchmark reproduction."
+  "revision_note": "Initial planning review remains historical. New execution pins one additional primary PDF, deeper targeted matrix-PCG passages and a scoped upstream vPIR reproduction. Original 24 PDF hashes and artifact revisions unchanged. No full proof review or paper/matched-Hamming benchmark reproduction.",
+  "review_records": [
+    {
+      "date": "2026-10-01",
+      "report": "docs/research/contribution-reassessment-20261001.md",
+      "new_source_ids": [
+        "lattice-vfhe-2024-032",
+        "ring-approx-vc-2025-286",
+        "hasteboots-sec26",
+        "verisimplepir-sec24-prepub"
+      ],
+      "scope": "Targeted construction review; no new external artifact execution, performance reproduction or completed security reduction. Broad search is not an exhaustive novelty guarantee."
+    }
+  ]
 }

@@ -1,12 +1,16 @@
-# Research plan: verified encrypted search and mechanism screens through E77
+# Research plan: structured verified encrypted search
 
-Revision: 2026-10-01, following the query/verification and enrolled service screens.
+Revision: 2026-10-01, contribution reassessment after E77. Read the new
+[closest-construction comparison](contribution-reassessment-20261001.md) and
+[finite construction packets](construction-hypotheses-20261001.md) first.
+This revision is planning only: no E78–E81 experiment has run, no protocol is
+selected as a paper winner, and no security gate has passed.
 The protected E01–E65 evidence remains frozen at `6207455`, tag
 `checkpoint/publication-controls-2026-09-30`; the initial planning revision is
 retained at `b60a715`. New bounded R0–R4/E70–E77 controls are recorded in the
 [progress log](publication-progress.md) and
 [preceding review](publication-mechanism-review-20260930.md) and
-[current selection review](publication-mechanism-review-20261001.md).
+[E77 selection review](publication-mechanism-review-20261001.md).
 These are executed oracles/pilots, not a new complete cryptographic protocol
 or security approval.
 The [preceding plan, through E65](publication-research-plan-through-e65.md)
@@ -14,13 +18,28 @@ retains the original hypotheses, gates and execution amendments unchanged.
 
 ## 1. Decision and intended contribution
 
-Prioritize **exact, owner-private linear search with substantially less
-per-query trusted preparation, followed by safe release of a compact answer**.
-The leading experiment is a structured version of the E47 outer-verification
-idea. Its research question is whether one can preserve the compact structure
-of the encrypted operator through private evaluation and verification, instead
-of expanding it into a large matrix or preparing a fresh encrypted answer for
-every request. This is a hypothesis, not an established construction.
+Prioritize **exact, owner-private linear search whose structure survives the
+complete verification protocol**. The first construction screen is now
+**H1 / E80: subring-preserving outer verification**. It makes the E47/E68 idea
+specific: choose a common query subring, express the operator and outer CRS as
+module matrices, and investigate whether registration, admissible bounds and
+finalization can retain that representation. The query width and complete
+packing cost must remain paid. Scalar-coordinate layouts receive no such gain.
+
+Use owner-generated registration as the first deployment mode: the owner
+authenticates the index/digest and provisions private checking material once.
+The construction packet includes a retained-digest outer-LHE control, with
+verification before both decryption layers and explicit rounding-remainder
+costs. Outsourcing this registration to an untrusted server is a separate mode;
+its extraction/binding assumptions are not imposed on every owner-built setup.
+
+The competing **H2 / E78** screen proves the composed original-query-to-answer
+relation using E77's affine decomposition. Prior work already proves key
+switching, uses ring proofs and batches their arithmetic; the new experiment
+must eliminate work beyond those controls. **H3 / E81**, conditional on a range
+proof bottleneck, asks whether bounded noncanonical traces can retain exact BGV
+decoding. Existing relaxed CKKS proofs are its direct originality control.
+These are hypotheses, not established constructions or announced contributions.
 
 Do not build a bigger representation/lifetime optimizer as the next project.
 Its current static and causal variants failed strong simple controls. Existing
@@ -42,14 +61,16 @@ name or an isolated speedup. The system should select local caching when it
 wins; a useful remote mode needs its own evidence. No current result establishes
 a publishable novelty claim or an outsourced deployment advantage.
 
-Three competing mechanism tracks are defined in the
-[executable hypothesis specifications](publication-mechanism-agenda.md):
+The [new construction packets](construction-hypotheses-20261001.md) specialize
+the broader tracks in the [original agenda](publication-mechanism-agenda.md):
 
 | Priority | Track | Cost it attempts to remove | Research discriminator |
 |---|---|---|---|
-| 1 | **A: structured verified evaluation**, E47 → E68; E70/E71 certificate alternative | Owner-generated one-use encrypted answers and literal outer-matrix expansion | A structured protocol/algorithm with compatible norms, binding and proof, beyond applying existing vLHE or generic proof machinery |
-| 2, bounded alternative | **B: authenticated correlation generation**, E69 | Per-query owner computation/provisioning for the existing fast online circuit | A complete fixed-private-matrix conversion with fresh ciphertexts and full-field authentication, beyond invoking a generic PCG |
-| 3, explicit output change | **C: exact top-k with complete coverage**, E46 continuation | Sending every score | A cheaper way to produce and certify sparse winners, beyond known sparse-result compression or a standard selection network |
+| 1 | **H1: subring/module verified evaluation**, E47 → E68 → proposed E80 | Literal registration material and per-query trusted preparation | Closure through query, digest, admissibility and finalization; a new complete construction consequence beyond the module rewrite |
+| 2, competing construction | **H2: composed expansion/answer certificate**, proposed E78 | Duplicate canonical expansion and private seed-factory work | An actual elimination of complete proof/state cost versus specialized ring/maintenance/batch proofs |
+| Conditional mathematical screen | **H3: exact bounded trace freedom**, proposed E81 | Canonicalization/range proof overhead | Exact outputs for every admitted trace, with a new bound/representation consequence beyond published relaxed-maintenance proofs |
+| Alternative | **B: authenticated correlation generation**, E69 | Per-query owner computation/provisioning for the existing fast online circuit | A complete fixed-private-matrix conversion with fresh ciphertexts and full-field authentication, beyond invoking a generic PCG |
+| Alternative, explicit output change | **C: exact top-k with complete coverage**, E46 continuation | Sending every score | A cheaper way to produce and certify sparse winners, beyond known sparse-result compression or a standard selection network |
 
 Safe response compaction, E66, is a required control and a shared protocol
 obligation. It becomes a standalone research track only if it yields a new
@@ -96,13 +117,13 @@ The next bounded tranche has executed and changed the discriminator:
 | [E75/E76 actual enrolled service](enrolled-global-service-control.md) |112 mode queries across legacy/strong global panels; best HE returning medians46.79/15.78 ms still lose to permitted caches | Finite returning-client negative. Cold/new-client provisioning, separate endpoint resources and other regimes remain open |
 | [E77 seed-conditioned affine gate](seed-affine-gate-control.md) |112 exact searches; online vectors4,096→512 B in toys, but factory retains old vectors/full fresh expansion; client+factory4.7–7.8% slower | Keep factoring identity/control; stop literal trusted-helper version as a whole-system winner |
 
-Next R3 work is **certified public-seed offset generation**, or the competing
-**carry-aware structured outer registration** construction. E77 makes the
-former interface concrete: a small online vector is possible only after the
-seed-specific constant is paid. A new construction must remove that total cost,
-not just move it. Succinct quotient/digit certificates need degree/range
-binding and complete feedback semantics. R4's secret/recursive/block-preserving
-correlations and R5's complete selection remain bounded alternatives.
+Next R3 work is **E80's module closure/norm/full-cost card**, then **E78's
+composed-relation card**, with a return to R6 after each. E77 makes the second
+interface concrete: a public proof of an offset does not automatically supply
+the receiver's private beta. A new construction must solve that interface or
+retain/pay the factory. Both cards have an initial two-session allocation;
+do not port a proof system before identifying the new step. E81 is conditional.
+R4 correlations and R5 selection remain bounded alternatives.
 
 R6 has no selected paper winner. The [current handoff](mechanism-execution-handoff-20261001.md)
 defines finite next subcomponents, strongest controls and falsifiers; the
@@ -177,9 +198,10 @@ parameters. It is not a service p95, a GPU comparison or parameter assurance.
 
 ## 4. Closest work determines the novelty boundary
 
-The [comparison](closest-work-comparison-20260930.md) now includes focused
-compression/verification/correlation, query-expansion and public-code supplements
-and a contract matrix.
+The [current comparison](contribution-reassessment-20261001.md) adds construction
+and proof-optimization controls to the [earlier comparison](closest-work-comparison-20260930.md).
+It includes 18 comparison rows and separates executed author artifacts from
+targeted reading, source-reported performance and missing adaptations.
 The [source registry](publication-literature-sources.json) records versions,
 targeted reading depth, hashes and actual reproduction status.
 
@@ -200,6 +222,10 @@ The essential comparisons are:
 - **Selection and packing:** SIMD-aware compression/SophOMR, SANNS, BioZKFHE,
   biometric lookup search, Fhelipe/Porcupine and recent polynomial compilers.
   Sparse compression begins after the hard predicate/coverage problem.
+- **Proof construction and scheduling:** VeriSimplePIR's extraction/reuse,
+  lattice-SNARK vFHE's delayed-switch schedule, approximate-HE ring/range proofs,
+  and HasteBoots' batched arithmetic. These newly pinned controls narrow H1–H3;
+  ordinary proof decomposition, batching and relaxed maintenance are already known.
 
 Do not claim a missing feature from an unread proof. In particular, HELIOPOLIS
 is a strong compression/verifier comparator with a different reaction-oracle
@@ -221,13 +247,17 @@ When exhausted, record the unresolved issue and revisit this plan.
 | **R0: baseline contract closure** (P00/P01/P07) | Construction-level cards for strongest vLHE, recursive BNTM and relevant compression modes: owners, feedback, norm/field/key assumptions and all paid state. Pin/reproduce the selected baseline or document exactly what cannot run | 2–3 focused sessions | No matched malicious-security comparison until premises align; an unavailable baseline remains a gap, not a zero-cost or slow comparator |
 | **R1: close compaction controls**, E66 (P03/P07/P10) | Recipe + supported-decoder reference; priced extraction/repacking and independent-key terminal compression controls; carry/verification dependencies | 2–3 sessions | Known combinations are controls. Stop expansion if saved bytes are repaid in private state, client reconstruction or verification |
 | **R2: useful full-cost frontier**, E67/E75/E76 (P01/P06) | Enrolled returning socket control complete in two geometries; finish cold/new-client private provisioning and independent CPU/peak resources; retain CPU/cache and relevant GPU controls | 2–3 sessions for next finite screen | Measured nondominated operating point or documented negative. A model only screens; do not build a large optimizer on a dominated profile |
-| **R3: structured protocol screen**, E68/E70–E73/E77 (P02/P03/P07) | Carry-aware admissible outer registration or certified seed-offset generation; exact original-query/full-Q release relation and all costs; strongest vLHE/ring-proof/direct-HE controls | 3 sessions before expansion | New protocol consequence + plausible full-cost margin; stop if norm inflation or hidden material recreates the old cost |
+| **R3: constructive screens**, proposed E80, then E78; conditional E81 (P02/P03/P07) | Module closure/norm/query/packing ledger; composed seed/answer proof card; optional exact admissible-trace bound | 2 sessions per initial card; 1 conditional mathematical screen | New protocol consequence + plausible full-cost margin against the new comparison; stop if only one object shrinks or missing material recreates the old cost |
 | **R4: correlation alternative**, E69/E74 (P03/P07/P10) | Generic triples/public-code recipe stopped; price secret/recursive/block-preserving programmed conversion before a new generator | 2 sessions before a PCG implementation | All outputs/fields under declared trust; no public mask bank, dropped carry or undeclared helper; actual small block F is the comparator |
 | **R5: exact selection alternative**, E46 (P02/P10) | Full stable-ID/coverage circuit or certificate; conversion, predicate, compression, proofs and rounds | 2 sessions before native code | Useful complete bound against all-score download and strongest selection controls; dense ties/adverse inputs included |
 | **R6: selection review** (P04/P06/P07/P12) | One selected mechanism, discarded alternatives, theorem statements, held-out preregistration and integration design | 1 session | Gates A/B pass with credible path to C/D; otherwise narrow the question or preserve a negative report |
 | **R7: develop and evaluate survivor** (P05–P12, scope-dependent) | Homemade reference → native implementation → optional CUDA; proof, parameter/implementation review and artifact | Scope after R6 | Gates C/D and claim-to-source evidence, not number of experiments completed |
 
 R0–R2 close controls; R3 is the first substantial new-mechanism priority.
+The bounded R0 card remains complete; stronger matching proofs/artifacts remain
+open in P01/P07. An R6 construction decision may occur while R2's independent
+resource work is open; a deployment or final Gate C claim may not. Do not let
+an unfinished broad control package block a useful finite algebra screen.
 R4/R5 are alternatives, not mandatory prerequisites for every paper. Run their
 bounded screens if R3 fails or they target an independently demonstrated cost.
 Mathematical screening can precede complete service measurements; expensive
@@ -267,6 +297,9 @@ passes129 CPU tests in8 files and16 explicit Ruff paths;28 source PDFs/text and
 updated task/document identities are checked. Counts overlap historical control
 sets; do not add them as whole-repository totals. The [current handoff](mechanism-execution-handoff-20261001.md)
 and verified adjacent checkpoint archive retain this tranche separately.
+Those are historical execution receipts. This planning revision adds four
+primary PDFs (32 total) and separate documentation/source validation; it does
+not rerun or enlarge the historical test totals.
 
 Evaluate along independent axes: rows, bit dimension, exact rank/structure,
 reply occupancy, number of queries, token utilization, update locality, client

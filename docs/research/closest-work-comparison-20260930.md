@@ -1,5 +1,12 @@
 # Closest work and the remaining research opportunity
 
+For the current recommendation, use the
+[2026-10-01 contribution reassessment](contribution-reassessment-20261001.md)
+and [construction packets](construction-hypotheses-20261001.md). The material
+below retains earlier comparisons and experiment-by-experiment supplements.
+The new review adds four pinned proof/verification sources; no historical
+measurement or source version is replaced.
+
 Review date: 2026-09-30. Current evidence: `6207455`,
 tag `checkpoint/publication-controls-2026-09-30`; original E01–E40 baseline:
 `02e06c0`. This review informs the

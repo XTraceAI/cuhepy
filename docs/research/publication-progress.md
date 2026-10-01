@@ -1,5 +1,34 @@
 # Publication research execution log
 
+## 2026-10-01: contribution reassessment and executable construction plan
+
+Reviewed the accumulated E01–E77 reports, checked the current service/geometry
+raws, and added four pinned primary sources: VeriSimplePIR, lattice-SNARK vFHE,
+ring/range proofs for approximate HE, and HasteBoots. The registry now contains
+32 PDFs with targeted reading records; no new author artifact was executed.
+The [new comparison](contribution-reassessment-20261001.md) has 18 construction
+rows, preserves assumption/measurement mismatches, and separates known company
+improvements from unestablished paper claims.
+
+**Decision:** first screen H1/E80, a common-subring module representation through
+outer query/registration/verification/finalization. Then screen H2/E78's composed
+seed-to-answer proof, explicitly paying the private-beta interface. H3/E81 is a
+conditional exact-BGV admissible-trace screen. E79 remains the independent
+private-bootstrap/endpoint-resource task. The
+[construction packets](construction-hypotheses-20261001.md) specify algebra,
+proposed code paths, independent oracles, strongest controls, costs, falsifiers
+and return-to-plan rules. Canonical plan, handoff, claims and machine routing
+are reconciled. This planning revision executes **zero new experiments**, selects
+no paper winner, and accepts no additional P/R package or security gate.
+
+Evidence base remains `0d12afd`, checkpoint
+`checkpoint/query-mechanism-screens-2026-10-01`. Production and prior execution
+receipts are unchanged. New validation is documentation/source validation only;
+historical CPU test counts are not rerun or enlarged by this work.
+The [planning validation receipt](contribution-plan-validation-20261001.json)
+records the exact document/source hashes, link/task checks and rechecked raw
+anchors. Planning checkpoint: `checkpoint/contribution-plan-2026-10-01`.
+
 ## 2026-10-01: tranche selection and retention
 
 Returned to R6 after E72–E77; [current selection review](publication-mechanism-review-20261001.md)

@@ -50,13 +50,19 @@ correlations and SIMD sparse-result compression.
 
 | Proposed statement | Current status | Evidence required before promotion |
 |---|---|---|
+| H1/E80 preserves subring structure throughout verified linear evaluation and reduces total registration/trusted cost | **New unimplemented hypothesis**, not a result; scalar m=1 and projection/packing failures are explicit controls | Complete module query/packing/release construction, adapted extraction/norm/feedback argument, exact oracle and strongest-profile resource comparison |
+| H2/E78 proves the composed original-query-to-answer relation with less complete cost | **Unimplemented hypothesis**; known maintenance/batched ring proofs are direct controls | New elimination beyond generic composition; explicit private-beta/opening interface, bindings and all setup/prover/verifier/traffic costs |
+| H3/E81 admits cheaper noncanonical traces without changing exact BGV scores | **Conditional unimplemented screen**, motivated by existing relaxed CKKS proofs | Universal exact-decoding bound under adversarial witnesses; global RNS/carry relation, feedback privacy and complete increased-Q/proof costs; adaptation alone is not originality |
 | E68 structured verified evaluation reduces owner preparation without outer expansion | **Hypothesis only** after executed linear H/Z and negative digit/gadget controls | Carry-aware structured protocol step, admissible norms/owner binding, reduction and complete same-contract measurements |
 | E69 compact correlation generation supplies our exact token functionality | **Hypothesis only**; ideal generic-triple shortcut rejected, programmed PCGs still open | Fixed-private-M conversion, recipient/field/encryption distribution proof, complete generation/provisioning benefit |
 | E46 returns exact sparse winners more cheaply than full scores | **Hypothesis only**; known compression starts after winner discovery | Complete selection/tie/coverage mechanism, all conversion/proof/round costs and adverse controls |
 | Safe compact release itself is an original result | **Not established**; vFHE/HELIOPOLIS and terminal compression narrow the claim | A specific new constructive transformation and theorem beyond generic verification or extraction |
 
 The [mechanism agenda](publication-mechanism-agenda.md) defines falsifiers and
-bounded screens. The initial planning revision remains historical; bounded
+bounded screens. The [new construction packets](construction-hypotheses-20261001.md)
+specialize the next attempts after the
+[updated closest-work review](contribution-reassessment-20261001.md).
+The initial planning revision remains historical; bounded
 R0–R4/E70–E77 execution is now recorded separately. No new theorem, originality
 or security certification follows. All-data caching and original protocol
 controls remain mandatory comparisons.

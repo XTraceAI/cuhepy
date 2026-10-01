@@ -1,5 +1,11 @@
 # R6 review after E72–E77: the construction cost is still the discriminator
 
+**Planning update later on 2026-10-01:** the
+[contribution reassessment](contribution-reassessment-20261001.md) and
+[H1–H3 construction packets](construction-hypotheses-20261001.md) supersede
+this review's next-task priority. Its E72–E77 findings and negative decisions
+remain unchanged. No new experiment or accepted mechanism follows from the update.
+
 2026-10-01. Finite return-to-plan review, not a selected positive paper thesis.
 Use the [canonical plan](publication-research-plan.md),
 [progress log](publication-progress.md),
