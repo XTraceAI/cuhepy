@@ -268,6 +268,8 @@ def _client(control, owner_address, server_address, words, padded_size):
                                 "answer_upload": upload, "query_reply": exchange,
                                 "application_bytes": upload["application_bytes"] + exchange["application_bytes"],
                                 "full_response_body_bytes": len(body), **stages, **_result(result)})
+                if ordinal == 0:
+                    control.send(("first_done", _result(result)))
             assert attempts.used == len(words)
     elif private["mode"] == "cache":
         with closing(peer):
@@ -282,6 +284,8 @@ def _client(control, owner_address, server_address, words, padded_size):
                 result = cache.query(word)
                 samples.append({"ordinal": ordinal, "warmup": ordinal == 0, "query_wall_s": time.perf_counter() - query_start,
                                 "client_query_cpu_s": time.process_time() - query_cpu, "application_bytes": 0, **_result(result)})
+                if ordinal == 0:
+                    control.send(("first_done", _result(result)))
     else:
         peer.close()
         raise ValueError("Unknown authenticated private mode")
@@ -336,8 +340,13 @@ def run_trial(job):
         client_launch_start = time.perf_counter()
         client_control = launch(_client, owner_address, server_address, words, padded_size)
         client_control.send_bytes(root_body)
+        first = _message(client_control, "first_done")[1]
+        assert first == expected[0]
+        cold_first_observed_s = time.perf_counter() - start
+        new_client_first_observed_s = time.perf_counter() - client_launch_start
         client = _message(client_control, "done")[1]
-        client["controller_new_client_wall_including_process_startup_s"] = time.perf_counter() - client_launch_start
+        client["controller_full_client_session_wall_including_process_startup_s"] = time.perf_counter() - client_launch_start
+        client["controller_first_result_wall_including_process_startup_s"] = new_client_first_observed_s
         owner_result = _message(owner_control, "done")[1]
         server = _message(server_control, "done")[1]
         for sample, truth in zip(client["samples"], expected, strict=True):
@@ -349,6 +358,7 @@ def run_trial(job):
         assert len({v["initial"]["pid"] for v in (client, owner_result, server)}) == 3
         application = sum(c["application_bytes"] for c in server["calls"]) + client["bootstrap"]["application_bytes"]
         return {"job": job, "controller_wall_including_process_startup_s": time.perf_counter() - start,
+                "controller_cold_first_result_wall_including_process_startup_s": cold_first_observed_s,
                 "owner": owner_result, "client": client, "server": server,
                 "network_application_bytes_all_roles": application,
                 "trusted_owner_root_IPC_bytes_two_hops": 2 * (len(root_body) + 4),

@@ -46,7 +46,9 @@ def summarize(trials):
                   "owner_setup_cpu_s": [], "cold_controller_wall_including_startup_s": [],
                   "owner_peak_RSS_bytes": [], "client_peak_RSS_bytes": [], "server_peak_RSS_bytes": [],
                   "private_envelope_bytes": [], "returning_query_application_bytes": [],
-                  "retained_owner_raw_query_wall_s": [], "server_query_CPU_s": []}
+                  "retained_owner_raw_query_wall_s": [], "server_query_CPU_s": [],
+                  "observed_cold_first_result_including_process_startup_s": [],
+                  "observed_new_client_first_result_including_process_startup_s": []}
         for trial in rows:
             owner, client, server = trial["owner"], trial["client"], trial["server"]
             values["returning_query_wall_s"].append(statistics.mean(s["query_wall_s"] for s in client["samples"][1:]))
@@ -55,6 +57,8 @@ def summarize(trials):
             values["owner_setup_wall_s"].append(owner["owner_setup_wall_s"])
             values["owner_setup_cpu_s"].append(owner["owner_setup_cpu_s"])
             values["cold_controller_wall_including_startup_s"].append(trial["controller_wall_including_process_startup_s"])
+            values["observed_cold_first_result_including_process_startup_s"].append(trial["controller_cold_first_result_wall_including_process_startup_s"])
+            values["observed_new_client_first_result_including_process_startup_s"].append(client["controller_first_result_wall_including_process_startup_s"])
             for role, object_ in (("owner", owner), ("client", client), ("server", server)):
                 values[role + "_peak_RSS_bytes"].append(object_["final"]["process_peak_RSS_bytes"])
             values["private_envelope_bytes"].append(owner["private_envelope_bytes"])
