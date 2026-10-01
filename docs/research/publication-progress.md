@@ -2,6 +2,16 @@
 
 ## 2026-10-01: R3 encrypted-query gate discriminator
 
+Returned to R2-C0 and completed E75's [matched enrolled TCP control](enrolled-service-control.md):
+56 exact mode queries across two real datasets, actual HE index/fresh-answer
+upload and received-query evaluation, full check before secret decryption,
+five actual AES-GCM cache-transfer controls and retained owner raw data. Seven
+scoped tests pass, including malformed/tampered release ordering. **Return
+decision:** literal legacy N16384 loses here; run the stronger existing
+global-affine N2048 geometry through the same harness before any frontier
+claim. Private bootstrap, independent endpoint resources and full R2 remain
+open. No novelty/production/security gate is accepted.
+
 R4's E74 [programmed-mask/block-factory screen](programmed-mask-block-results.md)
 then checked 81 finite-field products and 42 CRT recombinations, 20 scoped
 tests, exact clean-set/entropy count frontiers and tiny leakage controls.
