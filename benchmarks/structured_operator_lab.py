@@ -85,11 +85,11 @@ def geometry_screens():
         data = json.loads(path.read_text())
         for profile in data["result"]["cases"]:
             cost = profile["cost_model"]
-            cases.append((fixture, profile["layout"], profile["q"], cost))
+            cases.append((fixture, profile["layout"], int(profile["q"]), cost))
     path = ROOT / "benchmarks/results/publication-connect4-encrypted-controls-20260930.json"
     paths.append(path)
     for profile in json.loads(path.read_text())["cases"]:
-        cases.append(("connect4", profile["kind"], profile["q"], profile["geometry"]))
+        cases.append(("connect4", profile["kind"], int(profile["q"]), profile["geometry"]))
     results = []
     for fixture, label, q, c in cases:
         rows = 2 * c["n"] * c["replies"]
