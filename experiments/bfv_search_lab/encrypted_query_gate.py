@@ -17,9 +17,11 @@ from gmpy2 import mpz
 
 from cuhepy.bfv.scheme import _ring_product
 from experiments.bfv_search_lab import coefficient_body as codec
+from experiments.bfv_search_lab import crt_masked_bgv as masked
 from experiments.bfv_search_lab import decryption_support as support
 from experiments.bfv_search_lab import dyadic_crt as tree
 from experiments.bfv_search_lab import encrypted_query_certificate as encrypted
+from experiments.bfv_search_lab import shallow_bgv as bgv
 from experiments.bfv_search_lab import verification_lifetime as lifetime
 
 
@@ -57,9 +59,15 @@ def _dot(a, b, q):
     return sum(x*y for x, y in zip(a, b, strict=True)) % q
 
 
-def project(output, index, pk):
+def project(output, index, pk, *, expected_bound=None):
     """Public-only packaging, including all full-Q C1 and quadratic terms."""
-    encrypted.pack_output(output, index, pk)  # Validate exact shape/context/bound.
+    bound = encrypted._context(index, pk) if expected_bound is None else expected_bound
+    if (type(bound) is not int or not 0 <= bound < pk.q//2
+            or type(output) is not tuple or len(output) != index.space.layout.cost.response_ciphertexts
+            or any(type(c) is not bgv.Ciphertext or len(c.components) != 3 or c.phase_bound != bound for c in output)):
+        raise ValueError("Wrong owner-pinned projected output bound/shape")
+    for c in output:
+        bgv._validate(c, pk)
     certificate = support.certify(index.space.layout)
     return Reply(tuple(tuple(int(c.components[0][i]) for i in kept)
                        for c, kept in zip(output, certificate.kept_c0, strict=True)),
@@ -116,8 +124,14 @@ class Gate:
     Python code is not a production receiver or a private-timing assurance.
     """
 
-    def __init__(self, index, pk, ids, binding, attempts, *, rounds=4):
+    def __init__(self, index, pk, ids, binding, attempts, *, rounds=4, query_phase_bound=None):
         self.bound = encrypted._context(index, pk)
+        fresh = pk.t//2+pk.t*pk.eta
+        self.query_phase_bound = fresh if query_phase_bound is None else query_phase_bound
+        if (type(self.query_phase_bound) is not int or self.query_phase_bound < fresh
+                or 2*pk.n*index.space.columns*fresh*self.query_phase_bound >= pk.q):
+            raise ValueError("Owner-pinned encrypted query bound exceeds Q")
+        self.bound = pk.n*index.space.columns*fresh*self.query_phase_bound
         flat = tuple(i for group in ids for i in group) if type(ids) is tuple else ()
         if (type(ids) is not tuple or len(ids) != len(index.space.layout.counts)
                 or any(type(g) is not tuple or len(g) != count for g, count in
@@ -144,7 +158,13 @@ class Gate:
 
     def pin_query(self, request):
         """Trusted client enrollment of its ORIGINAL immutable ciphertexts."""
-        encrypted._query(request, self.space.binding, self.epoch, self.space.columns, self.pk)
+        if type(request) is not encrypted.Query:
+            raise ValueError("Expected original owner-pinned encrypted query")
+        masked.binding(request.epoch, request.token_id)
+        masked.validate_ciphertexts(request.ciphertexts, self.space.columns, self.pk)
+        if (request.space_binding != self.space.binding or request.epoch != self.epoch
+                or any(c.phase_bound != self.query_phase_bound for c in request.ciphertexts)):
+            raise ValueError("Wrong owner-pinned encrypted query context/bound")
         with self._lock:
             if request.token_id in self._issued or len(self._issued) >= self._attempts.limit:
                 raise RuntimeError("Original query ID/lifetime already consumed")

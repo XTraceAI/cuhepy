@@ -2,6 +2,16 @@
 
 ## 2026-10-01: R3 encrypted-query gate discriminator
 
+E73 then completed the [packed-query discriminator](packed-query-expansion-control.md):
+112 packed + 112 same-key unpacked queries, extra mixed-degree controls,
+actual query packets 924 -> 231 B, full setup/noise/client-work counts. The
+untrusted-expansion substitution is accepted by a deliberately unsafe adapter
+and rejected when the client pins its own canonical expansion. Thirty E72/E73
+tests pass. **Return decision:** retain known controls; stop unchecked expansion
+and literal combined variant as a paper candidate. Next bound R4 with the
+actual block coordinate factory and closest code/correlation constructions;
+keep R2's same-harness acquisition comparison on the execution list.
+
 Returned to the handoff and preregistered E72/E73 before coding. E72's
 [one-registration projected gate](encrypted-query-gate-control.md) completes a
 bounded R3-B1/B2 control: 112 exact queries, 18 scoped tests, no fresh owner

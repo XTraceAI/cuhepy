@@ -108,7 +108,8 @@ def main():
                 dots, release_ms = measure(receiver.open_body_once, rid, body, sk)
                 assert dots == tuple(tuple(row) for row in crt.scores(s, groups, values))
                 # Independent full decryption is diagnostic, not receiver work.
-                full, diagnostic_ms = measure(lambda: tree.unpack(s.layout, [bgv.decrypt(c, pk, sk) for c in output]))
+                full, diagnostic_ms = measure(lambda s=s, pk=pk, sk=sk, output=output:
+                                              tree.unpack(s.layout, [bgv.decrypt(c, pk, sk) for c in output]))
                 assert dots == tuple(tuple(row) for row in full)
                 scores = tuple((x+word.bit_count()) % 17 for row in dots for x in row)
                 expected = tuple((word ^ old).bit_count() for row in words for old in row)
