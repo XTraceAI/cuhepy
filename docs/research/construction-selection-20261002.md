@@ -6,7 +6,7 @@ E82/E83/E84 returns. It preserves the earlier experiments and company code.
 No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
-and later finite returns are appended below. The active next packet is Q25; E97/E98 and sample-budget qualification are appended below.
+and later finite returns are appended below. The active next packet is Q26;E99 dependency/hidden-support return is appended below.
 
 | Packet | Executed result | Decision |
 |---|---|---|
@@ -273,3 +273,22 @@ gadget transcript and coupled precision,including overlapping error atoms,
 modular source-null relations and hidden-support sparse-key controls. Generic
 linear algebra/normal forms are known;new useful joint consequence must be
 specified and survive equally strong controls before any main implementation.
+
+## Q25/E99 return; next Q26 original-binding discriminator
+
+[The exact return](gadget-dependency-screen.md) separates primitive uniform
+mask maps,shared CBD atom laws and hidden support cardinality from locations.
+16 complete scalar laws,1417176 factor-cover equations,42 whole-key contexts,
+a fresh homemade BGV328 equations and32076 hidden-cap moments pass. All720
+paid cards/8640 points keep their prior cap precision and full-N costs. Public
+basis LLL reduces one row variance but does not erase old independent samples
+or produce an IID correlated-noise model. Prefix estimates are inapplicable
+to hidden full-N positions;no sparse/auxiliary-key parameter approval follows.
+
+The strongest generic compiler/gadget/sparse control contains this mechanism.
+Stop generic originality,retain useful assurance tooling and68 pinned papers.
+448 scoped tests across20 CPU files pass. Next [Q26/E100](remainder-first-binding-plan-20261002.md)
+proposes a concrete remainder-first complete original-score proof relation.
+Compare equally optimized modular-proof/compiler controls before new oracles;
+no unit-identity novelty,free phase witness or missing range/carry cost. All
+previous broad tasks,gates,company controls and frozen timing claims remain.

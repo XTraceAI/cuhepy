@@ -1,29 +1,28 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-02, after Q0–Q5/Q11–Q24 bounded execution**. Start with the
+Revision: **2026-10-02, after Q0–Q5/Q11–Q25 bounded execution**. Start with the
 [latest return decision](construction-selection-20261002.md) and
-[next bounded discriminator](key-transcript-precision-plan-20261002.md). The
+[next original-binding discriminator](remainder-first-binding-plan-20261002.md). The
 [original detailed plan](contribution-plan-20261002.md) and
 [closest-work comparison](closest-work-comparison-20261002.md) retain the
 pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** E82–E98 bounded arithmetic/count and limited estimator
-screens are implemented; **422 scoped tests** pass across19 CPU files. E97's
-standard fixed-input stochastic control removes an owner auxiliary secret
-product/CBD draws at the same unseeded packet size and modeled first passing
-degrees; no elapsed win or originality is claimed. E98 proves setup-only
-source-annihilator samples and catches an estimator original-sample-budget
-mismatch. After the qualified finite-sample follow-up,8 large-ring/prefix512
-profiles are sub128 in named classical heuristics; others remain unapproved.
-E96's different4096-zero transcript is preserved. No original complete main
-protocol or broad production/security gate is selected. **Next Q25/E99** is a
-dependency-aware gadget transcript/precision discriminator, with hidden sparse
-support as a strong control and R6 after each component. Company homemade
-BFV/BGV/Paillier, SEAL references, production sources, frozen measurements and
-main/staging remain preserved. Complete score/PBS binding and private assurance
-remain open.
+**Current status:** E82–E99 bounded components are implemented; **448 scoped
+tests** pass across20 CPU files. E99 proves uniform adjacent masks with shared
+CBD errors, keeps standard modular basis/noise controls, and checks hidden
+full-ring support. All720 paid cards retain the prior numerical-cap precision
+and full-N resources. Old prefix-security estimates do not apply to hidden
+positions; sparse/derived-key assurance is open. Standard complete controls
+contain the generic compiler/gadget/sparse mechanism, so no original complete
+main or broad gate is selected. E98's estimator sample-budget qualification
+and earlier negative/raw timing evidence remain intact. **Next Q26/E100**
+compares a concrete remainder-first original-score proof relation against an
+equally optimized compiler, before registration/implementation. Company
+homemade BFV/BGV/Paillier,SEAL references,production sources,main/staging and
+frozen measurements remain preserved. Complete binding/PBS/private assurance
+and useful-effect/mechanism gates remain open.
 
 ## 1. Decision
 
@@ -57,7 +56,8 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q22/E96 | [Known-prefix security and coupled precision](late-owner-precision-screen.md) | Exact independent public LWE rows; all p512/p1024 profiles sub128 in named model; larger supports repriced, unapproved |
 | Q23/E97 | [Owner-bound stochastic control](owner-bound-rounding-screen.md) | Fixed-input law/receiver works;720 equal-degree cards,owner product/CBD eliminated;standard equally shared control contains generic mechanism |
 | Q24/E98 | [Setup-row law and sample-budget audit](owner-bound-rounding-screen.md) | Exact disjoint scaled-CBD rows;default tool sample shortage qualified;8 applicable sub128 profiles,all others unapproved |
-| **Next: Q25** | [**E99 dependency-aware gadget frontier**](key-transcript-precision-plan-20261002.md) | Proposed compiler/joint resource discriminator;actual correlated noise and hidden-support controls before costs; unimplemented |
+| Q25/E99 | [Gadget dependencies/hidden support](gadget-dependency-screen.md) | Exact mask/noise laws and standard LLL controls;720 equal-cost precision cards;hidden support changes security applicability;generic mechanism contained |
+| **Next: Q26** | [**E100 remainder-first original-score binding**](remainder-first-binding-plan-20261002.md) | Proposed complete proof relation;equally optimized compiler/original binding/range/carry comparison first;unimplemented |
 
 The [detailed plan](contribution-plan-20261002.md) specifies algebra, candidate
 representations, proposed paths, controls, stop conditions, phase budgets and
@@ -135,16 +135,13 @@ state. Measure full elapsed, endpoint work and memory separately.
 
 ## 4. Execution queue and gates
 
-**Next:** Q25/E99 begins with targeted primary comparison and a fresh
-preregistration of dependency-aware source-annihilator/noise/precision laws.
-Return to Q4/R6 after each component. Q0–Q5/Q11–Q24 completed bounded scopes;
-no original main mechanism is selected. Q6 reference, Q7 native/CUDA, Q8 full
-security, Q9 matched evaluation and Q10 paper/artifact remain conditional on
-unmet selection/assurance gates. The detailed queue is in
-`current_packet_queue` and [the next plan](key-transcript-precision-plan-20261002.md).
-Distinguish support cardinality from public unknown-prefix dimension; preserve
-joint noise laws and sample budgets. Do not substitute IID/Gaussian costs for
-an unmodeled correlated transcript or treat missing attacks as approval.
+**Next:** Q26/E100 starts with closest modular/range/cross-field proof and
+compiler controls,then a fresh preregistration. Test the proposed dyadic
+remainder-first relation with source-field scaling and canonical bit reuse,
+pay the inverse multiply/carries and bind original query/index/key/coins.
+The basic identity is not novelty;the strongest generic compiler gets the
+same rewrites/intermediates. Only a distinct useful complete mechanism
+advances. No source-phase witness or unchecked expanded query is free.
 
 After **each** packet: log hypothesis, result classification, source/evidence,
 closest-work difference, pass/stop and next action; update the queue; return to
@@ -166,12 +163,14 @@ P package. Keep prior E IDs and stopped recipes unchanged.
 The primary research question can survive a failed recipe. A generic composition
 or a faster known implementation remains useful engineering, without passing B.
 
-The [latest execution receipt](owner-rounding-execution-validation-20261002.json)
-and [identity manifest](publication-owner-rounding-execution-manifest-20261002.json)
-record eight E97/E98 raw results,exact sources and the tool-budget qualification.
+The [latest execution receipt](gadget-execution-validation-20261002.json)
+and [identity manifest](publication-gadget-execution-manifest-20261002.json)
+record four E99 raw results,exact sources and hidden-support qualifications.
+The [earlier E97/E98 receipt](owner-rounding-execution-validation-20261002.json)
+retains its eight raw results and estimator sample-budget qualification.
 Earlier source-lifetime,late-owner,partial-switch,orbit-precision,fixed-function
 and batched-score receipts retain their historical scopes. The
-[paper archive](prior-work-archive.md) links **64 hash-pinned PDF/text pairs**.
+[paper archive](prior-work-archive.md) links **68 hash-pinned PDF/text pairs**.
 The external estimator source is archived separately; its execution is not
 an HE protocol/performance reproduction. Targeted reading is not a full proof audit.
 
@@ -224,7 +223,7 @@ unchanged.
 
 ## 7. Latest execution return and paper controls
 
-Q13–Q15 completed their finite sessions with [validation](batched-score-execution-validation-20261002.json) and [source/result manifest](publication-batched-score-execution-manifest-20261002.json), which pin the then-53 PDF/text pairs. Q16/Q17's [checkpoint receipt](orbit-precision-execution-validation-20261002.json) pins 56 pairs. The [primary archive](prior-work-archive.md) now retains **64 pairs**, including source/dependency and HE security controls; each earlier receipt retains its own archive count. Targeted reading, complete proof audits and reproduced author artifacts are separate statuses.
+Q13–Q15 completed their finite sessions with [validation](batched-score-execution-validation-20261002.json) and [source/result manifest](publication-batched-score-execution-manifest-20261002.json), which pin the then-53 PDF/text pairs. Q16/Q17's [checkpoint receipt](orbit-precision-execution-validation-20261002.json) pins 56 pairs. The [primary archive](prior-work-archive.md) now retains **68 pairs**, including source/dependency and HE security controls; each earlier receipt retains its own archive count. Targeted reading, complete proof audits and reproduced author artifacts are separate statuses.
 
 E88's exact signed orbit view is a useful interface: block masks reuse canonical slot-key rows and a public partial-key support union. It does not turn slot-diagonal/nonlinear operators into ring multipliers. E89 supplies a full odd-domain test vector, with a stricter margin. Increasing Q does not remove the final componentwise rounding floor. Reviewed probabilistic/high-precision methods can beat the worst-case control; the next candidate must include their actual key, noise, packing and proof premises.
 
@@ -291,10 +290,29 @@ are inapplicable. No other parameter becomes approved. See the
 [combined return](owner-bound-rounding-screen.md) and
 [closest-work boundary](owner-bound-rounding-closest-work-20261002.md).
 
-The active next packet is Q25/E99. Its proposed new dependency-aware compiler/
+At the E98 return,the next packet was Q25/E99 (now completed in bounded scope below). Its proposed new dependency-aware compiler/
 joint frontier must beat strong general matrix and sparse-secret controls;
 generic cancellation/covariance/normal forms alone are not originality.
 Hidden-support policies,correlated key errors and complete proof/query costs
 remain explicit. No broad P package or production gate is completed by the
 finite screens. The three possible outcomes—new assurance/resource theorem,
 complete compact binding mechanism,or useful engineering/negatives—stay distinct.
+
+## 2026-10-02 — E99 return to original-binding construction selection
+
+[E99](gadget-dependency-screen.md) completes16 exact scalar laws,1417176
+ring identities,32076 hidden-cap moments and8640 paid point checks. Standard
+public bases cover all12 retained shapes. Uniform masks/shared errors and
+hidden cardinality/public location are separate facts;no correlated IID cost
+or hidden-dimension-h security inference is made. All720 precision/resource
+cards match the equally shared known control. The generic compiler/gadget/
+sparse recipe is contained,not an original main mechanism.448 scoped tests
+and68 pinned paper/text pairs support this return;older scopes/gates remain.
+
+Q26/E100's [separate plan](remainder-first-binding-plan-20261002.md) describes
+a concrete original-source-field-to-dyadic proof relation and strongest
+compiler control. It is proposed/unimplemented. Return after each component;
+select only after distinct mechanism and complete useful-effect evidence.
+The [receipt](gadget-execution-validation-20261002.json) and
+[manifest](publication-gadget-execution-manifest-20261002.json) pin four
+immutable raw runs,two repeat pairs and the bounded source/cache evidence.

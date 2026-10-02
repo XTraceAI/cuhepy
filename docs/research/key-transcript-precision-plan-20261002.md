@@ -1,6 +1,7 @@
 # Q25/E99: dependency-aware gadget transcript and precision frontier
 
-2026-10-02. **Proposed, unimplemented, no original main selected.** R6 returns
+2026-10-02. **Historical proposal; E99 bounded components now complete.**
+See [the executed return](gadget-dependency-screen.md);no original main selected. R6 returns
 after [E97/E98](owner-bound-rounding-screen.md), including the newly detected
 estimator sample-budget qualification. This packet is an assurance/algorithm
 discriminator, not another generic randomized-rounding claim or a GPU port.
@@ -95,7 +96,8 @@ not venue requirements. Only then implement the full homemade protocol,
 profile/native/CUDA, complete reduction/private lifecycle review, matched
 larger BGV/Paillier/cache/network evidence and paper/artifact.
 
-The active work queue marks Q25 ready and unimplemented. A future executor
-starts at component1 and writes a fresh preregistration before new oracles;
-these sketches do not authorize unreviewed production cryptography. All company
+At registration,the work queue marked Q25 ready and unimplemented. The
+historical instruction required component1 and a fresh preregistration before
+new oracles. See the executed return for current scope;these sketches do not
+authorize unreviewed production cryptography. All company
 controls, prior raw findings, checkpoints and frozen measurements remain intact.

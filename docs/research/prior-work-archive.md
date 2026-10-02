@@ -1,8 +1,8 @@
 # Primary-paper archive
 
-2026-10-02. **64 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
+2026-10-02. **68 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
 
-Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No HE author protocol/performance artifact was executed during E82–E98. E96 does execute the separately pinned external lattice-estimator cost tool; its tracked source is archived and its limited scope disclosed.
+Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No HE author protocol/performance artifact was executed during E82–E99. E96 does execute the separately pinned external lattice-estimator cost tool; its tracked source is archived and its limited scope disclosed.
 
 | Source | Versioned/local PDF | Reading scope |
 |---|---|---|
@@ -72,7 +72,7 @@ Earlier caches/checkpoint archives remain intact. Each new download has PDF/text
 | FHEW: Bootstrapping Homomorphic Encryption in less than a second | [fhew-2014-816](../../../research-data/literature-owner-bound-rounding-20261002/fhew-2014-816.pdf) |Targeted §3 Equation3/Lemma5 full relevant proof pages rendered/inspected;not full parameter/artifact audit |
 | FINALLY: A Multi-Key FHE Scheme Based on NTRU and LWE | [finally-2024-1505](../../../research-data/literature-owner-bound-rounding-20261002/finally-2024-1505.pdf) |Targeted §3.5 Definition3.9/Lemma3.5 full relevant proof pages rendered/inspected;not full whole-noise/proof/parameter/author-artifact audit |
 
-Archive groups: `literature-owner-bound-rounding-20261002` (2), `literature-target-precision-20261002` (1), `literature-committed-precision-20261002` (3), `literature-partial-switch-20261002` (2), `literature-orbit-precision-20261002` (3), `literature-odd-domain-20261002` (4), `literature-batched-score-bridge-20261002` (3), `literature-20260930` (15), `literature-contribution-review-20261001` (4), `literature-fixed-function-screens-20261002` (6), `literature-mechanism-screen-20260930` (1), `literature-plan-revision-20260930` (9), `literature-post-revalidation-20261002` (8), `literature-query-packing-20261001` (3).
+Archive groups: `literature-gadget-dependency-20261002` (4), `literature-owner-bound-rounding-20261002` (2), `literature-target-precision-20261002` (1), `literature-committed-precision-20261002` (3), `literature-partial-switch-20261002` (2), `literature-orbit-precision-20261002` (3), `literature-odd-domain-20261002` (4), `literature-batched-score-bridge-20261002` (3), `literature-20260930` (15), `literature-contribution-review-20261001` (4), `literature-fixed-function-screens-20261002` (6), `literature-mechanism-screen-20260930` (1), `literature-plan-revision-20260930` (9), `literature-post-revalidation-20261002` (8), `literature-query-packing-20261001` (3).
 
 Mutable ePrint revisions retain their recorded date/hash. A later version is a new source identity; keep older papers and measurements. Additional uncached leads are labeled in the registry; The earlier Faster Secret Keys for (T)FHE/HERMES leads now resolve to current cached revisions. Q13 also records the common-mask TFHE control; no author runtime is reproduced.
 
@@ -105,3 +105,19 @@ cohorts and qualified by a newly preregistered finite-sample DH control. Source
 audit and limited heuristic computations are not author HE reproduction,
 executed key recovery or full security/parameter assurance. See the
 [targeted review](owner-bound-rounding-closest-work-20261002.md).
+
+E99 adds four hash-pinned primary sources and their acquisition/render records:
+
+| Primary work | Local PDF | Targeted reading scope |
+| --- | --- | --- |
+| Building an Efficient Lattice Gadget Toolkit: Subgaussian Sampling and More | [gadget-toolkit-2018-946](../../../research-data/literature-gadget-dependency-20261002/gadget-toolkit-2018-946.pdf) | §2.1/2.2,§3 and complete relevant §4.2 basis/proof;pages11–13 inspected |
+| Trapdoors for Lattices: Simpler,Tighter,Faster,Smaller | [lattice-trapdoors-2011-501](../../../research-data/literature-gadget-dependency-20261002/lattice-trapdoors-2011-501.pdf) | Primitive-map/determinant argument,Thm4.1 and §4.1 basis;pages16–18 inspected |
+| A Practical Post-Quantum Public-Key Cryptosystem Based on spLWE | [sparse-LWE-2016-1055](../../../research-data/literature-gadget-dependency-20261002/sparse-LWE-2016-1055.pdf) | §2.5 distribution;§4.1 complete relevant Thm4 hybrid proof and §4.2 warning;pages11–12 inspected |
+| The cool and the cruel: separating hard parts of LWE secrets | [cool-cruel-2403.10328v2](../../../research-data/literature-gadget-dependency-20261002/cool-cruel-2403.10328v2.pdf) | Abstract/introduction/related-work scope and §8;pages1/20 inspected |
+
+The registry's earlier64 entries/additional-reading history remain exact.
+New review records deepen existing sparse-security and compiler/dependency
+passages. These are targeted readings,not full proof/attack/parameter audits.
+Sage10.9 reduces small public gadget bases as an external linear-algebra
+control;no new HE author artifact,actual attack or estimator cost is run.
+See [the comparison](gadget-dependency-closest-work-20261002.md).

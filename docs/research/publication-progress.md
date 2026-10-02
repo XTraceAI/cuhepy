@@ -881,3 +881,60 @@ No original complete main mechanism or Q6–Q10/broad gate is accepted.
 new Python paths. Eight raw results/four repeat pairs,64 PDF/text pairs and
 unchanged external63-file estimator source are pinned in the new manifest.
 Production sources,main/staging,prior scopes and frozen timing panels remain.
+
+## 2026-10-02 — Q25/E99A closest-work return and new registration
+
+Parent ca2a8cf; branch experiment/gadget-dependency-frontier-20261002. Four
+primary PDF/text pairs are newly cached: gadget toolkit, primitive trapdoors,
+spLWE and cool/cruel sparse-secret analysis. Targeted complete basis/reduction
+passages are read and selected full pages inspected; prior dependency/security
+warnings remain strong controls. No author HE artifact or attack is executed.
+
+The toolkit's arbitrary-modulus gadget basis already contains adjacent rows
+plus Q digits. A generic atom/Gram compiler and standard hidden sparse secret
+receive identical information/resources. R6 stops those generic novelty claims
+before new runs. [E99 registration](gadget-dependency-preregistration-20261002.md)
+fixes exact uniform-mask/shared-noise laws, composite-modulus falsifiers, public
+basis comparisons, hidden-position correctness and720 paid cards. Next execute
+one bounded component, then return to the plan; no parameter or main selection.
+
+## 2026-10-02 — E99B/D first exact cohort; return to public-basis control
+
+The registered first cohort verifies16 complete scalar mask/CBD laws and
+118098 formal factor-cover branches/1417176 actual S/S-squared ring identities.
+The mask/error Cartesian product is not claimed exhaustive.42 actual small
+key contexts and a fresh homemade BGV source with a full-N hidden target pass.
+All33 N4 targets of weight<=2,243 remainder tuples and4 outputs yield32076
+exact moment checks over702756 literal uniform-coin outcomes.
+
+All8640 E97 degree points independently reprice under the hidden support cap;
+all720 first passing degrees and full-N key/ciphertext/coin resources match.
+Earlier prefix security estimates are inapplicable to hidden support. No
+sparse/auxiliary-key or correlated-noise security approval follows. R6 returns
+to Q25 step3: public standard gadget/LLL comparison, then immutable repeats
+and coupled final selection.26 new regressions currently pass.
+
+## 2026-10-02 — E99C/repeats and coupled R6 return; checkpoint scope
+
+Both exact/count cohorts and both Sage public-basis cohorts match all result,
+context and source fields except UTC/command.12 setup inventories and12
+retained shapes produce36 standard public LLL reductions. Complete gadget
+smallest-row variance improves2.49–4.93x,but displayed noises remain shared;
+original public disjoint pairs remain reconstructible. No IID cost,HE speed
+or security claim is substituted for the exact laws. Standard canonical/
+unsigned/balanced controls have the same best norms and contain the adapter.
+
+R6 retains the homemade dependency and hidden-support controls,stops generic
+originality,and records [Q26/E100](remainder-first-binding-plan-20261002.md)
+as proposed/unimplemented:complete original-score remainder-first proof
+relation against an equally optimized compiler,primary comparison first.
+All720 paid cards retain earlier numerical-cap precision/full-N resources;
+prefix security costs cannot approve hidden sparse targets. No original main,
+parameter/PBS/private assurance or Q6–Q10/broad gate passes.
+
+448 scoped CPU tests across20 files (26 new) and explicit four-path Ruff pass.
+Four immutable raw runs/two repeat pairs and68 paper/text pairs in15 groups
+are pinned by the new receipt/manifest. Earlier source/scopes/receipts,company
+code,main/staging and frozen timing panels remain exact. Intended checkpoint:
+checkpoint/gadget-dependency-controls-2026-10-02,with Git bundle/source/cache
+and unchanged external estimator snapshot retained as historical dependency.
