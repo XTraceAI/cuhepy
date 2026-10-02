@@ -1,0 +1,3040 @@
+{
+  "utc": "2026-10-02T20:43:55.726009+00:00",
+  "command": [
+    "benchmarks/switch_key_prefix_lab.py",
+    "--json-out",
+    "benchmarks/results/publication-switch-key-prefix-screen-20261002.json"
+  ],
+  "git_head": "ae7934709fd1b286cc5cd6bf6daa3c2d2e46f047",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/switch_key_prefix_lab.py": "308ebcd0bbe0b375137618390a4d4f1734ce975d46e8a47797365ce19265fbcf",
+    "benchmarks/dictionary_layout_lab.py": "e0734c4513c2d4cab205dd05a1d7520519cb3877e23c384005f7463c4bf8ff31",
+    "benchmarks/results/publication-adaptive-query-phase-screen-20261002.json": "ac9320c8236ed45885249ff95306639e5a0c893121505c41b4aa41f9d955f978",
+    "experiments/bfv_search_lab/switch_key_prefix_samples.py": "5444b4ad6ef71a74556ca81a7295fd919edcf5747ee8ff87ec95adc974248b64",
+    "experiments/bfv_search_lab/test_switch_key_prefix_samples.py": "4c67a4befb4f3a7799e43e67c1328984d8c17ff1e7ff487fa837b56164b70144",
+    "experiments/bfv_search_lab/target_prefix_samples.py": "8dcfbb5cce872317dd417d3233caf84694107b2f876f3aae9f5c12cacf5488fe",
+    "experiments/bfv_search_lab/test_committed_precision_epoch.py": "d16e188f03840277ea8ad394c743da1175476247f75c4a3105d67db5534d44d1",
+    "experiments/bfv_search_lab/committed_precision_epoch.py": "ab9ec7f4c24168a32e73a32bdd99a140c6af34475f988c58c11e5588d7e8e9bb",
+    "experiments/bfv_search_lab/test_partial_packed_switch.py": "ce0b27a46c035acc0e952807f2c6336830c1887cf3d75b819ba68c6cc59cac63",
+    "experiments/bfv_search_lab/partial_packed_switch.py": "d690b67a616716653f0382b2beed0e71f771020853f5bb9149bc4d66a3f8f59a",
+    "experiments/bfv_search_lab/batched_score_bridge.py": "1fbc7a55fcc2e605d01a0badc387c133c0b8222785a964340992ea8a8af0fb1a",
+    "experiments/bfv_search_lab/quadratic_drift.py": "3048f89ca6a8b37d67cc639d5ab2b104031e3ddd6a0a457eb7d068662b20c79f",
+    "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+    "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+    "docs/research/switch-key-prefix-preregistration-20261002.md": "0436ff2bf528c7cb5139c18098c95ff47ec24929a92320a71d45507942508858"
+  },
+  "kind": "E98_exact_setup_switch_row_known_prefix_sample_control",
+  "exact": {
+    "formal_N2_Q3_radix3_secret_source_mask_error_cases": 177147,
+    "independent_row_equations": 354294,
+    "exact_CBD1_coin_weighted_cases": 559872,
+    "formal_pair_not_a_full_Q3_gadget_context": true,
+    "actual_secret_recovery_or_lattice_reduction_executed": false
+  },
+  "uniform_mask_controls": [
+    {
+      "N": 4,
+      "Q": 3,
+      "radix": 3,
+      "prefix": 2,
+      "mask_pair_outcomes": 6561,
+      "joint_independent_row_values": 81,
+      "equal_coin_mass_per_joint_value": 81
+    },
+    {
+      "N": 4,
+      "Q": 3,
+      "radix": 5,
+      "prefix": 2,
+      "mask_pair_outcomes": 6561,
+      "joint_independent_row_values": 81,
+      "equal_coin_mass_per_joint_value": 81
+    }
+  ],
+  "actual_full_key_contexts_checked": 42,
+  "error_distribution": {
+    "eta": 21,
+    "radix": 257,
+    "error_law": "E2-257*E1, independent CBD21",
+    "coin_mass_denominator": 19342813113834066795298816,
+    "support_values": 1849,
+    "mean": "0",
+    "variance": "693525",
+    "bounds": [
+      -5418,
+      5418
+    ],
+    "zero_mass": "4526899053072918833025/302231454903657293676544",
+    "nonzero_density": "297704555850584374843519/302231454903657293676544",
+    "support_has_gaps_22_absent": true,
+    "ordered_integer_mass_sha256": "b1b98e1da0b63cd5a994c7c18b31e2c14fe04efeaedfae77162debfd819b1453",
+    "estimator_summary_not_claimed_identical_Gaussian": true,
+    "CBD1_radix3_literal_Bernoulli_outcomes": 16
+  },
+  "fresh_BGV": {
+    "homemade_public_key_BGV_source_N": 8,
+    "Q": 4294967291,
+    "t": 17,
+    "target_prefix": 3,
+    "setup_source_generations": 1,
+    "fresh_target_switch_key_generations": 1,
+    "disjoint_pair_polynomials": 20,
+    "public_independent_sample_equations": 40,
+    "private_source_derived_square_target_error_witness_not_returned": true,
+    "SEAL_used": false,
+    "actual_attack_or_parameter_approval": false
+  },
+  "profiles": [
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 160,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 80,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 40,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 20,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 160,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 80,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 40,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 20,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 2,
+      "available_independent_samples": 12,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 1,
+      "available_independent_samples": 6,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 4,
+      "available_independent_samples": 20,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 2,
+      "available_independent_samples": 10,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 1,
+      "available_independent_samples": 5,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 2,
+      "available_independent_samples": 12,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 1,
+      "available_independent_samples": 6,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 4,
+      "available_independent_samples": 20,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 2,
+      "available_independent_samples": 10,
+      "setup_only_not_multiplied_by_lifetime": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 1,
+      "available_independent_samples": 5,
+      "setup_only_not_multiplied_by_lifetime": true
+    }
+  ],
+  "full_ring_inventory": [
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 5,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 5,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "available_independent_samples": 5,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "available_independent_samples": 5,
+      "full_ring_inventory_only_no_cost_approval": true
+    }
+  ],
+  "decision": "Exact setup sample subset exists without fresh encrypted zeros. Cost screen required separately; no parameter or original contribution approved."
+}

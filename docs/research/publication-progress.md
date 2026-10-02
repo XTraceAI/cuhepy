@@ -833,3 +833,51 @@ a later new proof/binding/correlated-query consequence must beat this control.
 current evidence. Intended checkpoint:
 checkpoint/reused-target-precision-controls-2026-10-02, with Git bundle,
 source, all62 paper/text pairs, estimator snapshot and execution/cache dependencies.
+
+## 2026-10-02 — Q23/E97A primary review and preregistered control
+
+Parent ae79347; branch experiment/owner-bound-rounding-20261002. FHEW Equation3/Lemma5 and FINALLY Definition3.9/Lemma3.5, including their relevant proofs and FHEW deterministic/CLT caveat, are read in hash-pinned PDFs; full pages5/6 and16/17 inspected. Two new cache pairs will bring the archive to64 at the final validated return. No author implementation/performance is reproduced.
+
+R6 keeps this as the missing strong randomized-rounding baseline, not an original scheme. [Preregistration](owner-bound-rounding-preregistration-20261002.md) fixes full input/key-before-coins order, fixed-target/whole-family conditional laws, exact sign-complement mapping, independent finite/tail/reuse controls, homemade receiver/differential and matched E96-grid counts. Source/proof/PBS/private assurance remains open. Next execute those registered components, returning after each.
+
+## 2026-10-02 — E97B/C/D exact law, receiver, paid counts; R6 to Q24
+
+Both E97 receipts match excluding UTC/command.225 scalar contexts/2045 coin outcomes,59049 complete fixed-family coin branches,944784 integer identities and11664 exact conditional means/variances pass. The genuine fixed-input tail is1.91418e-5;post-coin input choice/reused coins give0.999894 at the invalid threshold. Sign-complement coupling is exact; unchanged coins and shared coefficients fail the corresponding shortcuts.77 corruptions and same-ID packet replacement reject before callback;two adaptive fresh homemade BGV families reuse one target/switch-key generation with new owner coins.37 new tests pass.
+
+All8640 E96 points independently reproduce before720 matched stochastic-control tuples. First passing degree equals late-zero in all720, including matching no-pass cases. Upload remains identical; auxiliary owner secret products/CBD draws disappear, but uniform draws double. Generic randomized rounding is the known strong control and supplies identical arithmetic/proof subrelation/resources: stop generic originality. No timing, new parameter approval, complete verification/PBS/private gate or original main follows.
+
+Return to Q23 plan step5 identifies an assurance prerequisite: eliminating owner zeros changes the transcript, but adjacent gadget key rows can cancel the original S/S-squared terms. [Q24/E98 preregistration](switch-key-prefix-preregistration-20261002.md) now tests exact disjoint setup-only samples and their actual scaled-CBD noise before a limited pinned estimator screen. Earlier E96 zero-row estimates stay historical; no security approval from dropping them.
+
+## 2026-10-02 — Q24/E98 exact setup law; sample-budget return and qualification
+
+E98A/B enumerates177147 full formal source/target/mask/error cases and354294
+equations,with559872 CBD1 coin-weighted cases.42 actual small whole-key
+contexts and a fresh homemade BGV source verify actual S/S-squared cancellation;
+40 fresh public sample equations,no private witnesses returned. The exact
+CBD21/r257 law has variance693525,bounds+/-5418 and1849 gapped support values.
+Setup-only44 profile/12 full-ring inventories do not multiply by4096 queries.
+
+E98C preserves two matching initial cost cohorts,each60 finite/116 nonfinite
+and12 raw sub128 flags. R6 source audit then discovers that the default
+LWE.dual_hybrid alias MATZOV uses original m=n instead of the given setup
+sample count. Twelve finite outputs require unprovided samples;four small-
+ring512 negatives depend on that inapplicable routine. Preserve those raws,
+preregister [the applicability/DH follow-up](switch-key-sample-budget-preregistration-20261002.md)
+and add four regressions against the actual raw outputs.
+
+E98D's separately named finite-sample DH runs have44 finite costs each,all
+actual m<=available;all normalized fields repeat. Qualified combined minima
+stop8 N16384/p512 profiles at53.560–65.109 modeled log2 operations. Other
+profiles remain unapproved;small-ring raw117–124 is not an applicable estimate.
+This changes no E96 sample-rich4096-zero transcript conclusion,and proves no
+production-key compromise or full structured/quantum/noise/protocol assurance.
+
+R6 keeps these homemade known controls,stops generic stochastic originality
+and records [next Q25/E99](key-transcript-precision-plan-20261002.md),proposed
+and unimplemented. It targets a dependency-aware gadget/noise/precision joint
+frontier with hidden-support and strongest general matrix/sparse-key controls.
+No original complete main mechanism or Q6–Q10/broad gate is accepted.
+422 tests pass across19 specified CPU files,57 added;explicit Ruff includes10
+new Python paths. Eight raw results/four repeat pairs,64 PDF/text pairs and
+unchanged external63-file estimator source are pinned in the new manifest.
+Production sources,main/staging,prior scopes and frozen timing panels remain.

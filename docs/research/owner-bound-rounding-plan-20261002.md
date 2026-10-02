@@ -1,6 +1,11 @@
 # Q23/E97: owner-bound stochastic rounding as a complete strong control
 
-2026-10-02. **Proposed, unimplemented and unselected.** R6 returns after
+2026-10-02. **Historical proposal; bounded E97 scope now executed, generic
+stochastic mechanism stopped as original.** See [the E97/E98 return](owner-bound-rounding-screen.md)
+and [active Q25 proposal](key-transcript-precision-plan-20261002.md). The text
+below preserves proposed tasks and still-unfulfilled complete protocol gates.
+FINALLY/FHEW leads are now cached and reviewed in the new source records.
+R6 returned after
 [E95/E96](late-owner-precision-screen.md). The immediate missing competitor
 is a fixed-input precision method that needs neither a new target secret nor
 an owner encrypted zero. Do not inherit p512's unapproved security assumptions.

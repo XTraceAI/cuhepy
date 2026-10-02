@@ -1,4 +1,4 @@
-# R6 returns through Q22: keep exact controls, justify source and noise budgets
+# R6 returns through Q24: keep exact controls, justify source and noise budgets
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
@@ -6,7 +6,7 @@ E82/E83/E84 returns. It preserves the earlier experiments and company code.
 No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
-and later finite returns are appended below. The active next packet is Q23; E95/E96 returns are appended below.
+and later finite returns are appended below. The active next packet is Q25; E97/E98 and sample-budget qualification are appended below.
 
 | Packet | Executed result | Decision |
 |---|---|---|
@@ -248,3 +248,28 @@ owner-bound stochastic-rounding control, proposed/unimplemented. Its potential
 owner-product saving precedes a truly new score/proof or correlated-query step.
 Use larger/full-ring supports and pay seeds/provenance/lifecycle/PBS/proof;
 do not repeat a stopped generic composition or claim originality from an MGF.
+
+## Q23/E97 and Q24/E98 returns; next Q25
+
+[E97/E98](owner-bound-rounding-screen.md) completes the missing standard
+owner-bound stochastic control:944784 exact phase equalities,77 corruptions
+rejected and720 paid equal-degree cards. Owner auxiliary secret/CBD work is
+removed at the same unseeded packet size,but the equally shared known control
+is identical. Stop generic stochastic originality;keep the homemade adapter.
+
+E98 proves354294 exact source-annihilator sample equations and the actual
+gapped scaled-CBD law. Source audit finds the default estimator MATZOV routine
+uses unprovided original m in12 finite costs. Both original cohorts remain
+immutable. Newly preregistered sample-aware DH cohorts match all44 finite
+calls and enforce actual m;qualified combined minima stop8 large-ring512
+profiles,not4 small-ring raw negatives. All other contexts remain unapproved;
+this is not executed recovery,parameter assurance or a production-key finding.
+
+422 tests across19 specified CPU files and explicit10-path Ruff pass.64
+primary PDF/text pairs and unchanged63-file estimator source are retained.
+No original complete main protocol or broad gate is accepted. Next is
+[Q25/E99](key-transcript-precision-plan-20261002.md):dependency-aware
+gadget transcript and coupled precision,including overlapping error atoms,
+modular source-null relations and hidden-support sparse-key controls. Generic
+linear algebra/normal forms are known;new useful joint consequence must be
+specified and survive equally strong controls before any main implementation.

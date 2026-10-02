@@ -1420,6 +1420,50 @@
         "Section2.2 CBD/error",
         "Section2.3 secrets/sparsity"
       ]
+    },
+    {
+      "id": "fhew-2014-816",
+      "url": "https://eprint.iacr.org/2014/816.pdf",
+      "final_url": "https://eprint.iacr.org/2014/816.pdf",
+      "retrieved_utc": "2026-10-02T20:10:52.098434+00:00",
+      "file": "fhew-2014-816.pdf",
+      "text_file": "fhew-2014-816.txt",
+      "bytes": 461284,
+      "status": "downloaded",
+      "sha256": "517f7cce620e3cb621db510adb1668ce4af8202a0fbc1a1203dd15e6bb1e3ee2",
+      "text_sha256": "142570cc81245b5a827ab159516fb85ccc892669245e39a88a34a4d7659b9620",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "FHEW: Bootstrapping Homomorphic Encryption in less than a second",
+      "version_note": "Latest primary revision2015-03-02;PDF/text hashes retrieved2026-10-02 pinned",
+      "cache_directory": "../research-data/literature-owner-bound-rounding-20261002",
+      "passages": [
+        "Section3 Equation3 randomized modulus switching",
+        "Lemma5 full relevant proof, deterministic/CLT caveat"
+      ],
+      "reading_depth": "Targeted complete randomized-switching definition/lemma proof pages rendered and inspected;not full proof/parameter/author-artifact audit"
+    },
+    {
+      "id": "finally-2024-1505",
+      "url": "https://eprint.iacr.org/2024/1505.pdf",
+      "final_url": "https://eprint.iacr.org/2024/1505.pdf",
+      "retrieved_utc": "2026-10-02T20:10:52.448025+00:00",
+      "file": "finally-2024-1505.pdf",
+      "text_file": "finally-2024-1505.txt",
+      "bytes": 702773,
+      "status": "downloaded",
+      "sha256": "97d2375e041c2c554f25b78cac86165928aa89ff9c3d1f045df6335bf72b5a72",
+      "text_sha256": "a5f732a9e9870686db4c5731b84f58db147749f55c649321b59e34b31e311961",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "FINALLY: A Multi-Key FHE Scheme Based on NTRU and LWE",
+      "version_note": "Latest primary revision2025-05-26;PDF/text hashes retrieved2026-10-02 pinned",
+      "cache_directory": "../research-data/literature-owner-bound-rounding-20261002",
+      "passages": [
+        "Section3.5 Definition3.9 randomized rounding",
+        "Lemma3.5 full relevant proof and secret/noise premises"
+      ],
+      "reading_depth": "Targeted complete randomized-switching definition/lemma proof pages rendered and inspected;not full proof/parameter/author-artifact audit"
     }
   ],
   "additional_readings": [
@@ -1649,9 +1693,9 @@
     "Paper parameter labels are assumptions/claims to check, not parameter assurance for our implementation."
   ],
   "execution_supplement": "Original review-only status is superseded for explicitly recorded partial unified and original EMVP executions. The original fifteen cached primary PDFs remain pinned unchanged. Browser-only readings have no local PDF hash/full-proof claim. Deliverable arithmetic/protocols remain homemade; references are baselines, not imported BFV/BGV.",
-  "review_revision": "2026-10-02 E95/E96 fixed-target and known-prefix security prerequisite",
-  "latest_evidence_commit": "2290f4b35e3e99ce5fbdd9f1553c6d50c789b925",
-  "revision_note": "Earlier61 source records and additional readings retained exactly;one guidelines PDF/text appended;deeper drift reading and pinned external estimator execution separately recorded.",
+  "review_revision": "2026-10-02 E97/E98 fixed-input rounding/setup transcript and cost-budget qualification",
+  "latest_evidence_commit": "ae7934709fd1b286cc5cd6bf6daa3c2d2e46f047",
+  "revision_note": "Earlier62 source records/additional readings unchanged;two randomized-switching PDFs/text appended;FINALLY historical lead resolved;deeper existing-source and external tool-model audit separately recorded.",
   "review_records": [
     {
       "date": "2026-10-01",
@@ -1833,6 +1877,40 @@
       ],
       "key_change": "Keep fixed-target arithmetic control, stop generic shared-zero originality;known-prefix samples stop p512/p1024 security claims in named model;couple larger support and precision. Next strong stochastic-rounding control before original selection.",
       "search_scope": "Bounded primary searches/targeted passages;not exhaustive priority or complete security proof audit"
+    },
+    {
+      "date": "2026-10-02",
+      "report": "docs/research/owner-bound-rounding-screen.md",
+      "plan": "docs/research/key-transcript-precision-plan-20261002.md",
+      "baseline_commit": "ae7934709fd1b286cc5cd6bf6daa3c2d2e46f047",
+      "new_primary_pdfs_pinned": 2,
+      "total_primary_pdfs_pinned": 64,
+      "new_bounded_experiments": [
+        "E97",
+        "E98"
+      ],
+      "source_ids": [
+        "fhew-2014-816",
+        "finally-2024-1505"
+      ],
+      "new_HE_author_protocol_artifacts_executed": 0,
+      "deeper_existing_reading": [
+        {
+          "id": "ciphertext-drift-2024-1718",
+          "scope": "Section4.1 and5.1-5.3 transformation/quality premises;shared law not full ACER"
+        },
+        {
+          "id": "mean-compensation-2025-809",
+          "scope": "Section3 Equation4 and binary-secret mean caveat;not an all-fixed-target law"
+        }
+      ],
+      "external_reference_tool_executed": {
+        "tool": "lattice-estimator",
+        "revision": "53da5982597709ba0fdf94ea37a84d822310fd84",
+        "scope": "Two original44-profile cost cohorts,source m-budget audit,two44-call finite-sample DH follow-ups;exact noise summary/not theorem,not HE timings or attacks",
+        "new_qualification": "LWE.dual_hybrid alias MATZOV defaults m=n;12 finite original setup costs inapplicable;qualified minima stop8profiles"
+      },
+      "accepted_new_mechanisms": 0
     }
   ],
   "execution_reading_note": "Targeted readings, full relevant proof passages and complete document audits remain distinct. E96 executes a pinned external estimator reference, not an HE author protocol/performance artifact."

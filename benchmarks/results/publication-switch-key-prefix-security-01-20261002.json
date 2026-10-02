@@ -1,0 +1,5923 @@
+{
+  "utc": "2026-10-02T20:44:38.991849+00:00",
+  "command": [
+    "benchmarks/switch_key_prefix_security_lab.py",
+    "--estimator",
+    "/home/pete/yavor-projects/xtrace-work/research-data/reference-artifacts-20260930/lattice-estimator",
+    "--json-out",
+    "benchmarks/results/publication-switch-key-prefix-security-01-20261002.json"
+  ],
+  "kind": "E98_isolated_known_prefix_setup_row_cost_screen",
+  "git_head": "ae7934709fd1b286cc5cd6bf6daa3c2d2e46f047",
+  "python": "3.14.6",
+  "sage": "10.9",
+  "source_sha256": {
+    "benchmarks/switch_key_prefix_security_lab.py": "406af7b8848678292f425afd28f446ebfda9af06e00e67291b598f3b0c1a03f3",
+    "benchmarks/target_prefix_security_isolated_lab.py": "d3777e761ca15018f9ac03e4a209af40bd35029f871ea7fc8f3fc60bb837cc52",
+    "benchmarks/switch_key_prefix_lab.py": "308ebcd0bbe0b375137618390a4d4f1734ce975d46e8a47797365ce19265fbcf",
+    "benchmarks/results/publication-switch-key-prefix-screen-20261002.json": "c28fcaebbafc20e4f16770f9432d8cb901dfdd628907dc809613d72fdcb2b54e",
+    "benchmarks/results/publication-adaptive-query-phase-screen-20261002.json": "ac9320c8236ed45885249ff95306639e5a0c893121505c41b4aa41f9d955f978",
+    "experiments/bfv_search_lab/switch_key_prefix_samples.py": "5444b4ad6ef71a74556ca81a7295fd919edcf5747ee8ff87ec95adc974248b64",
+    "experiments/bfv_search_lab/test_switch_key_prefix_samples.py": "4c67a4befb4f3a7799e43e67c1328984d8c17ff1e7ff487fa837b56164b70144",
+    "experiments/bfv_search_lab/target_prefix_samples.py": "8dcfbb5cce872317dd417d3233caf84694107b2f876f3aae9f5c12cacf5488fe",
+    "experiments/bfv_search_lab/batched_score_bridge.py": "1fbc7a55fcc2e605d01a0badc387c133c0b8222785a964340992ea8a8af0fb1a",
+    "docs/research/switch-key-prefix-preregistration-20261002.md": "0436ff2bf528c7cb5139c18098c95ff47ec24929a92320a71d45507942508858"
+  },
+  "estimator_revision": "53da5982597709ba0fdf94ea37a84d822310fd84",
+  "estimator_tracked_sha256": {
+    ".flake8": "863a7e55be3e36f1036e78824046fd1bff95119a19e94bec4fb1e5e8450a77b5",
+    ".github/ISSUE_TEMPLATE/bug_report.md": "58632f6f25c89e1e0603378744489171308d698cead098663f4eff437787a863",
+    ".github/ISSUE_TEMPLATE/feature-request-to-add-a-new-attack-from-the-literature.md": "c52f4cb0d0aba925bd68ce0ce208779c7fe90d2f81febb3bde2ed7291df15a9a",
+    ".github/workflows/jupyter.yml": "89cabc8465d0ec7f1beeba6dc9bba2e61a5685a10d596b157076eeb0689c4e38",
+    ".github/workflows/pep8.yml": "39b2686b854873fe3885b6e44ce237f6711b55ed261f752d18a62ea69eef0705",
+    ".github/workflows/tests.yml": "49cb845b7386bab8588aedd769b7b5853247740e7b85292434ef850274227f63",
+    ".gitignore": "183daab5d889ab12781584ecee87fa6f9faf90945e3960ef979d9a30994fdd32",
+    "Makefile": "5c72767f4dc0c8707c69f712e2daf1b9133bbcc5c3c270aec34749c6e9bbaaa2",
+    "README.rst": "a91ed8597f90f0baab66f27dcdf5c897e2473571676ce9ca522f736f2d6e9b00",
+    "docker/Dockerfile": "e851d3d1e8ceaf711fd2c9ad3cdf5a947b992bf9bf2ab4ee96db28b3b328ca0c",
+    "docker/Dockerfile.dev": "ec69ff92a80fc35f7cb51b96c2a369c84b11ef88f0a8cad62f4185f1afe2d0f7",
+    "docker/README.md": "13c34c4a66c1bb471c46210232a17667115bfbf205756c3d7425734a8a5debb6",
+    "docs/Makefile": "66a54f1da663cdd56bbc65dc331b9185283c724b4b7075ea18f912e3d1641e0d",
+    "docs/_templates/autosummary/base.rst": "cad67b3b644eb7ab6f5b09330980248d5f65dc714c10516590be741e99ed20a9",
+    "docs/_templates/autosummary/class.rst": "d1e5c7a1958ec38a8ab60a0b89e4d3b9061b0204d211adf26569fac84b148e7a",
+    "docs/_templates/autosummary/module.rst": "4c4344e30999a809b7741a5dc00cde90886200a1442a9fec932507dc1d9974ec",
+    "docs/algorithms/gb.rst": "079092d759aab59ffa9037278ca942b23c29db2d91fc9e25ed292c410051b690",
+    "docs/algorithms/lwe-bkw.rst": "163fe025cdce7a6103292323b9237a9b44c835652621135b8c06911e6acb2125",
+    "docs/algorithms/lwe-dual.rst": "3375058ace3d1d1202e6f705debb19799385593b429f06cba8146a953b063a87",
+    "docs/algorithms/lwe-primal.rst": "f9764915b7a7125f9724f88fe9048359900727955e226b1b57c07e840bab9bbd",
+    "docs/algorithms/ntru.rst": "ee799135df0471a12d56136393f918afdcad520cadad0e4667b98484f8427a5d",
+    "docs/algorithms/sis-lattice.rst": "b424e6b013133d7d44069831b560eba02e90dfd51c141b025911191e81b2a7d4",
+    "docs/api_doc.rst": "02ead5f850913ddc305fe50110d8f766581b67beb229fb258327b962363a452a",
+    "docs/conf.py": "b87491c1cecc59998a26dd16ae98a3cd61772349ce8167f9201bb1564478b8ab",
+    "docs/contributing.rst": "76324f792b0f63962d5fd8460100f1b3be7a8c1f6bbfab3ff184d8d4e3211be3",
+    "docs/genindex.rst": "b474c9755108d0ec634da4454d33b2a60893ea0edebab80080b88d38c292bb4e",
+    "docs/index.rst": "d67d147946aff19e3149eff9e5d0658a661281a60716523d12b629ec77e2a988",
+    "docs/prompt.rst": "b82dee7d35b6a2fb7ff9d6ac9ea03b82bbba0e805b7f08886e36a1fe1f16589c",
+    "docs/readme_link.rst": "63d46b446cc7316da233e597bc55b4df17de7de282c2758c6ef34ddeb00e5584",
+    "docs/references.rst": "7f3b5e1cd3f71da5224029f60cca2fd6bd8f601142c01e2a4392aac42b4cebc9",
+    "docs/schemes/hes.rst": "400afaf97d11ebb496efe71809b9fed436367cd59c04dcda59b061dd0cd841e3",
+    "docs/schemes/nist-pqc-round-3.rst": "2fd6bad1363e77bb0e1f6bc57e71be25a2291e5d40c63c4f756427275aa8904b",
+    "doctest.sh": "af23ae031509418694fdcd22d225f12db8635d26f7a1594dba343b287f1bf0f1",
+    "estimator/__init__.py": "e002e825d7245ce39c9a388456b9ffb2a3ec326d39c14c4efb8f964843907cdd",
+    "estimator/conf.py": "b8270fcc702ef72e00308fc691112f374da4d0d0395665b7c244c9b99b77f7dd",
+    "estimator/cost.py": "f1424722796fcdda2dd65957e317ae610af9c04cc2473c29b35ffc7ae0939f60",
+    "estimator/errors.py": "6ffd53eb82f27233c0dd3612b3b6139da28b48e5c128885cf1211e16154086f5",
+    "estimator/gb.py": "d785ee73ad40a470422d1ddc21d76e9f32b8ab1d85d88ae2539590b32bbd7edc",
+    "estimator/io.py": "316d7ec3c0371ebf4f83d301030a935e7b89774cf7366bc7d5237348124a057e",
+    "estimator/lwe.py": "9ff2ac14f6480863d741eac1c2a9c935adf87a8954d2344024a22b581133e230",
+    "estimator/lwe_bkw.py": "6caf4a9a1301a173a3c28863c39535d13c4927d7e870f37d68ad4b09e894a9f2",
+    "estimator/lwe_dual.py": "8f6a077589393f907fbcc87b9ef812beafc73bf5cc78abc4f857924b80a21a8b",
+    "estimator/lwe_guess.py": "33020dcf5a4783a6d90f489a44314ed2bc3b594862262c99f19bf7c2493ee8fb",
+    "estimator/lwe_parameters.py": "72bde0ae3bdd89a4de02b249a1da144256b8d84d009b28b59bde6364b0bc8ecc",
+    "estimator/lwe_primal.py": "f46e682a3eb0b7e3b175c326f96244caee5df6f07df78974cdb834e1d6f006d1",
+    "estimator/nd.py": "d87fca7bb191a0fb29b24507897e00c8beba784da552b6b90a982c718fc1c459",
+    "estimator/ntru.py": "f0cfb95048f2ecac32922e61f05ae3c9c7bbbbff4d7acbd8572b318168405769",
+    "estimator/ntru_parameters.py": "4d4964ccaad895e5387606f8e7d6d069347736a39b432ffd88bdbee503764011",
+    "estimator/ntru_primal.py": "fdceaf65d4e4717ac15af6628a84659c9c760f7cede5a4ba1f405b733c641eaa",
+    "estimator/prob.py": "264693353e4ee439f43775351ffd94697468eeda84392d1b4226ec9adf5e7693",
+    "estimator/reduction.py": "b1354702c88a8309f78d373ae7f4b0b4347799abfd1a13c07e0fa75bf87bd59a",
+    "estimator/schemes.py": "1381414eb6c3fb8d13e90f655a6db4c4a0e70293c89d297b90d8fb99a8b7d673",
+    "estimator/simulator.py": "5fc05d91665b4bf149aa27d87191c69ac617296b04b6f682a3a0ab3f0547633a",
+    "estimator/sis.py": "3e32a433f88f4df2203384d74ff04556da700f1317b88c6e2ed9a56d4d4834ba",
+    "estimator/sis_large_norm.py": "3f8ac06c7965d745f8991e8294f0c1eedda723af496c6c73cef4add9f79554cf",
+    "estimator/sis_lattice.py": "243dc77e57b160925876f526beef9dd4d19157ece215bf5fe5cda9c2799498a9",
+    "estimator/sis_parameters.py": "726ae10ed711cf8f9a42efa07b6d7ed00c67dbb28f0f4f97bbac3bb7c8d59b4c",
+    "estimator/util.py": "0da1e981bc56db2a008e46709d50b9b326673e04aecf406cb180fe18b437af01",
+    "fix-doctest.sh": "001933ce33eae420375fa90c3f38d94f051b96400c7e0b8f7a9838b05d0631d3",
+    "param_sweep.py": "9d083300e18820ad274b87b7733bfe4b22c43243b3fb9d44f796da7f7cbaa9bf",
+    "pyproject.toml": "f8547ef88975269c1888d9a52871eb80a565a222d7dd4c1ac7d72cad8ef112ec",
+    "readthedocs.yml": "27ded57dc09a095f43e94d6f1e2c3c6989890876d2641d33a57df06a31582a44",
+    "requirements.txt": "451f79772de6e219c198ae79c8123ab4931cbc416e0145b9b5a310e454bfd444"
+  },
+  "model": "MATZOV-classical",
+  "shape": "gsa",
+  "configured_max_beta": 1754,
+  "per_call_timeout_s": 10,
+  "source_error_distribution": {
+    "eta": 21,
+    "radix": 257,
+    "error_law": "E2-257*E1, independent CBD21",
+    "coin_mass_denominator": 19342813113834066795298816,
+    "support_values": 1849,
+    "mean": "0",
+    "variance": "693525",
+    "bounds": [
+      -5418,
+      5418
+    ],
+    "zero_mass": "4526899053072918833025/302231454903657293676544",
+    "nonzero_density": "297704555850584374843519/302231454903657293676544",
+    "support_has_gaps_22_absent": true,
+    "ordered_integer_mass_sha256": "b1b98e1da0b63cd5a994c7c18b31e2c14fe04efeaedfae77162debfd819b1453",
+    "estimator_summary_not_claimed_identical_Gaussian": true,
+    "CBD1_radix3_literal_Bernoulli_outcomes": 16
+  },
+  "Xe_descriptor": {
+    "class": "ND.NoiseDistribution",
+    "stddev": "832.781483944018",
+    "mean": "0",
+    "variance_exact": "693525",
+    "bounds": [
+      -5418,
+      5418
+    ],
+    "is_Gaussian_like": false,
+    "nonzero_density_exact": "297704555850584374843519/302231454903657293676544"
+  },
+  "noise_model_limit": "Summary-statistic attack-cost heuristics, not an exact-noise security theorem. Gapped mass/digit structure not proved modeled; tool internal normalization/simulation assumptions unchanged.",
+  "secret": "IID uniform ternary in p unknown prefix positions, suffix publicly zero",
+  "sample_relation": "Disjoint adjacent honest uniform diagnostic setup rows, then disjoint no-wrap mask windows; not overlapping pairs/all rotations/repeated query samples",
+  "scope": "Estimator computations only. No lattice reduction, recovery, quantum/all-attack, seeded-mask, key-graph, protocol/proof or private assurance and no parameter approval.",
+  "execution_isolation": "parent hard deadline for serial owned estimator workers",
+  "complete": true,
+  "profiles": [
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 55.178374985740234,
+          "cost": {
+            "rop": "4.07704948490172e16",
+            "red": "4.07704948490172e16",
+            "delta": "1.00999310137812",
+            "beta": "85",
+            "d": "703",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.09223836098681204
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 53.56002013973611,
+          "cost": {
+            "rop": "1.32792219692782e16",
+            "red": "1.07955808799831e16",
+            "svp": "2.48364108929508e15",
+            "beta": "78",
+            "eta": "103",
+            "d": "704",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.21345393999945372
+        },
+        "dual": {
+          "status": "finite_heuristic",
+          "log2_rop": 56.13925515560212,
+          "cost": {
+            "rop": "7.93596485910221e16",
+            "mem": "707200842",
+            "m": "192",
+            "beta": "85",
+            "d": "704",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0512588880083058
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 44.289860117450786,
+          "cost": {
+            "rop": "2.15068298445582e13",
+            "problem": "LWEParameters(n=512, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+            "red": "2.15033877146175e13",
+            "guess": "3.44212994068270e9",
+            "beta": "41",
+            "p": "3",
+            "zeta": "0",
+            "t": "10",
+            "beta_": "69",
+            "N": "3433.76018090262",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.827952665014891
+        }
+      },
+      "minimum_returned_log2_rop": 44.289860117450786,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 227.12779638977665,
+          "cost": {
+            "rop": "2.35656575525653e68",
+            "red": "2.35656575525653e68",
+            "delta": "1.00264801315010",
+            "beta": "707",
+            "d": "1120",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08289309800602496
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 221.53024697425906,
+          "cost": {
+            "rop": "4.86686484770882e66",
+            "red": "6.30698297552892e64",
+            "svp": "4.80379501795353e66",
+            "beta": "664",
+            "eta": "717",
+            "d": "1120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.23785033999592997
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02953905100002885
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+            "red": "+Infinity",
+            "guess": "2.94715929437637e1421347",
+            "beta": "95",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "125",
+            "N": "2.42971846580182e1421344",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07967860301141627
+        }
+      },
+      "minimum_returned_log2_rop": 221.53024697425906,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0672095860063564
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2203254729975015
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02670821500942111
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "47",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "82",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08057616397854872
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=4096, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=4096, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06440862899762578
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 1123.0532617176536,
+          "cost": {
+            "rop": "1.18227499741856e338",
+            "red": "1.89688681053872e336",
+            "svp": "1.16330612931318e338",
+            "beta": "1695",
+            "eta": "1755",
+            "d": "4120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=4096, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.655205292016035
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02781028999015689
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=4096, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "79",
+            "N": "+infinity",
+            "m": "4096"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07897971599595621
+        }
+      },
+      "minimum_returned_log2_rop": 1123.0532617176536,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 55.178374985740234,
+          "cost": {
+            "rop": "4.07704948490172e16",
+            "red": "4.07704948490172e16",
+            "delta": "1.00999310137812",
+            "beta": "85",
+            "d": "703",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08667944799526595
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 53.56002013973611,
+          "cost": {
+            "rop": "1.32792219692782e16",
+            "red": "1.07955808799831e16",
+            "svp": "2.48364108929508e15",
+            "beta": "78",
+            "eta": "103",
+            "d": "704",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2153274049924221
+        },
+        "dual": {
+          "status": "finite_heuristic",
+          "log2_rop": 56.13925515560212,
+          "cost": {
+            "rop": "7.93596485910221e16",
+            "mem": "707200842",
+            "m": "192",
+            "beta": "85",
+            "d": "704",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.05075131601188332
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 44.289860117450786,
+          "cost": {
+            "rop": "2.15068298445582e13",
+            "problem": "LWEParameters(n=512, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+            "red": "2.15033877146175e13",
+            "guess": "3.44212994068270e9",
+            "beta": "41",
+            "p": "3",
+            "zeta": "0",
+            "t": "10",
+            "beta_": "69",
+            "N": "3433.76018090262",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.8242412369872909
+        }
+      },
+      "minimum_returned_log2_rop": 44.289860117450786,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 227.12779638977665,
+          "cost": {
+            "rop": "2.35656575525653e68",
+            "red": "2.35656575525653e68",
+            "delta": "1.00264801315010",
+            "beta": "707",
+            "d": "1120",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08495051800855435
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 221.53024697425906,
+          "cost": {
+            "rop": "4.86686484770882e66",
+            "red": "6.30698297552892e64",
+            "svp": "4.80379501795353e66",
+            "beta": "664",
+            "eta": "717",
+            "d": "1120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.24051266300375573
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.034512119978899136
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+            "red": "+Infinity",
+            "guess": "2.94715929437637e1421347",
+            "beta": "95",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "125",
+            "N": "2.42971846580182e1421344",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08172362198820338
+        }
+      },
+      "minimum_returned_log2_rop": 221.53024697425906,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06821723098983057
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.22020598998642527
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02548575500259176
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "47",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "82",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07903722699848004
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=4096, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=4096, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06566324998857453
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 1123.0532617176536,
+          "cost": {
+            "rop": "1.18227499741856e338",
+            "red": "1.89688681053872e336",
+            "svp": "1.16330612931318e338",
+            "beta": "1695",
+            "eta": "1755",
+            "d": "4120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=4096, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.6520591480075382
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02699908200884238
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=4096, q=644344206950401, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "79",
+            "N": "+infinity",
+            "m": "4096"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08033848798368126
+        }
+      },
+      "minimum_returned_log2_rop": 1123.0532617176536,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 62.27584658238079,
+          "cost": {
+            "rop": "5.58338822930036e18",
+            "red": "5.58338822930036e18",
+            "delta": "1.00878561539263",
+            "beta": "111",
+            "d": "703",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08196974699967541
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 60.41431676896392,
+          "cost": {
+            "rop": "1.53646090791404e18",
+            "red": "1.02106398469832e18",
+            "svp": "5.15396923215726e17",
+            "beta": "102",
+            "eta": "131",
+            "d": "704",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.20385972200892866
+        },
+        "dual": {
+          "status": "finite_heuristic",
+          "log2_rop": 63.52558767544804,
+          "cost": {
+            "rop": "1.32772270631221e19",
+            "mem": "31563473021",
+            "m": "192",
+            "beta": "112",
+            "d": "704",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.04736881499411538
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 51.18693296761449,
+          "cost": {
+            "rop": "4.2883491e16*e^(-5) + 2.27436966696068e15",
+            "problem": "LWEParameters(n=512, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+            "red": "2.27436966696068e15",
+            "guess": "4.2883491e16*e^(-5)",
+            "beta": "64",
+            "p": "3",
+            "zeta": "10",
+            "t": "0",
+            "beta_": "92",
+            "N": "180389.115837270",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.694125937006902
+        }
+      },
+      "minimum_returned_log2_rop": 51.18693296761449,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 251.38403757582356,
+          "cost": {
+            "rop": "4.72210610566873e75",
+            "red": "4.72210610566873e75",
+            "delta": "1.00242756734234",
+            "beta": "795",
+            "d": "1120",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08428825199371204
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 249.47440010318996,
+          "cost": {
+            "rop": "1.25683301769725e75",
+            "red": "4.21428650910307e67",
+            "svp": "1.25683297555438e75",
+            "beta": "698",
+            "eta": "817",
+            "d": "1120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.21322888499707915
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.03144002699991688
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+            "red": "+Infinity",
+            "guess": "2.26704147784163e50737671",
+            "beta": "95",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "125",
+            "N": "1.86901079692607e50737668",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08351253400905989
+        }
+      },
+      "minimum_returned_log2_rop": 249.47440010318996,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06872612200095318
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.21714842799701728
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.027453692018752918
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "47",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "82",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0792038310028147
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=4096, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=4096, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06267561798449606
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 1138.6739538082436,
+          "cost": {
+            "rop": "5.95683235224049e342",
+            "red": "3.64496395579841e340",
+            "svp": "5.92038271268250e342",
+            "beta": "1690",
+            "eta": "1755",
+            "d": "4120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=4096, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.6668671579973307
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0277578090026509
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=4096, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "79",
+            "N": "+infinity",
+            "m": "4096"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0800420620071236
+        }
+      },
+      "minimum_returned_log2_rop": 1138.6739538082436,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 160,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=160, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 67.09874151424103,
+          "cost": {
+            "rop": "1.58027935731262e20",
+            "red": "1.58027935731262e20",
+            "delta": "1.00811273987142",
+            "beta": "129",
+            "d": "672",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=160, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0846104100055527
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 65.10911337826606,
+          "cost": {
+            "rop": "3.97920320703381e19",
+            "red": "2.89238855395959e19",
+            "svp": "1.08681465307422e19",
+            "beta": "120",
+            "eta": "147",
+            "d": "672",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=160, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2120588670077268
+        },
+        "dual": {
+          "status": "finite_heuristic",
+          "log2_rop": 68.58970009464309,
+          "cost": {
+            "rop": "4.44178079582235e20",
+            "mem": "410748593085",
+            "m": "160",
+            "beta": "131",
+            "d": "672",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.04966042999876663
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 51.18693296761449,
+          "cost": {
+            "rop": "4.2883491e16*e^(-5) + 2.27436966696068e15",
+            "problem": "LWEParameters(n=512, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=160, tag=None)",
+            "red": "2.27436966696068e15",
+            "guess": "4.2883491e16*e^(-5)",
+            "beta": "64",
+            "p": "3",
+            "zeta": "10",
+            "t": "0",
+            "beta_": "92",
+            "N": "180389.115837270",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.6214376410061959
+        }
+      },
+      "minimum_returned_log2_rop": 51.18693296761449,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 80,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=80, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 277.64365074476717,
+          "cost": {
+            "rop": "3.79373490004793e83",
+            "red": "3.79373490004793e83",
+            "delta": "1.00222909614954",
+            "beta": "891",
+            "d": "1104",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=80, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08201667800312862
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 273.2696309907991,
+          "cost": {
+            "rop": "1.82959865467893e82",
+            "red": "3.10932653677851e74",
+            "svp": "1.82959862358567e82",
+            "beta": "781",
+            "eta": "902",
+            "d": "1104",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=80, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.19502110200119205
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "55",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.03351462600403465
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=80, tag=None)",
+            "red": "+Infinity",
+            "guess": "4.94802810391811e1433184098",
+            "beta": "79",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "110",
+            "N": "4.07928925875727e1433184095",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07870377899962477
+        }
+      },
+      "minimum_returned_log2_rop": 273.2696309907991,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 40,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=40, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=40, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06671910500153899
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=40, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.21648329199524596
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.025121736980509013
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=40, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "75",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07891584502067417
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 20,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=4096, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=4096, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06374131399206817
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 1151.7871692949975,
+          "cost": {
+            "rop": "5.27820894921446e346",
+            "red": "1.97956079642699e341",
+            "svp": "5.27818915360649e346",
+            "beta": "1652",
+            "eta": "1755",
+            "d": "4116",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=4096, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.5057669829984661
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.027569983998546377
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=4096, q=18050398289921, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "79",
+            "N": "+infinity",
+            "m": "4096"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07938065598136745
+        }
+      },
+      "minimum_returned_log2_rop": 1151.7871692949975,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 55.7257719635702,
+          "cost": {
+            "rop": "5.95838954009665e16",
+            "red": "5.95838954009665e16",
+            "delta": "1.00988881356163",
+            "beta": "87",
+            "d": "703",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08769529199344106
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 54.1092643057788,
+          "cost": {
+            "rop": "1.94317359036767e16",
+            "red": "1.57951923725174e16",
+            "svp": "3.63654353115930e15",
+            "beta": "80",
+            "eta": "105",
+            "d": "704",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2131712639820762
+        },
+        "dual": {
+          "status": "finite_heuristic",
+          "log2_rop": 56.99335449323305,
+          "cost": {
+            "rop": "1.43452874809829e17",
+            "mem": "1112673370",
+            "m": "192",
+            "beta": "88",
+            "d": "704",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.05360201300936751
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 44.28986084813865,
+          "cost": {
+            "rop": "2.15068407372162e13",
+            "problem": "LWEParameters(n=512, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+            "red": "2.15033877146175e13",
+            "guess": "3.45302259868510e9",
+            "beta": "41",
+            "p": "3",
+            "zeta": "0",
+            "t": "10",
+            "beta_": "69",
+            "N": "12413.9643865645",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.8275223539967556
+        }
+      },
+      "minimum_returned_log2_rop": 44.28986084813865,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 229.33489635122774,
+          "cost": {
+            "rop": "1.08813518678159e69",
+            "red": "1.08813518678159e69",
+            "delta": "1.00262613028057",
+            "beta": "715",
+            "d": "1120",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07506158301839605
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 228.49871546628097,
+          "cost": {
+            "rop": "6.09491040716623e68",
+            "red": "9.41912418898141e61",
+            "svp": "6.09490946525382e68",
+            "beta": "630",
+            "eta": "742",
+            "d": "1120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.18377958599012345
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02977803800604306
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+            "red": "+Infinity",
+            "guess": "5.86513664770661e1977525",
+            "beta": "95",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "125",
+            "N": "4.83537854386632e1977522",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08020335400942713
+        }
+      },
+      "minimum_returned_log2_rop": 228.49871546628097,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0674422419979237
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2214030780014582
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.026544480002485216
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "47",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "82",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07821585700730793
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=4096, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=4096, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06241039198357612
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 1124.4875035137757,
+          "cost": {
+            "rop": "3.19498119955141e338",
+            "red": "5.12614891677579e336",
+            "svp": "3.14371971038366e338",
+            "beta": "1695",
+            "eta": "1755",
+            "d": "4120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=4096, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.6495182170183398
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.027668956987326965
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=4096, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "79",
+            "N": "+infinity",
+            "m": "4096"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08116642801905982
+        }
+      },
+      "minimum_returned_log2_rop": 1124.4875035137757,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 55.7257719635702,
+          "cost": {
+            "rop": "5.95838954009665e16",
+            "red": "5.95838954009665e16",
+            "delta": "1.00988881356163",
+            "beta": "87",
+            "d": "703",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08744484701310284
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 54.1092643057788,
+          "cost": {
+            "rop": "1.94317359036767e16",
+            "red": "1.57951923725174e16",
+            "svp": "3.63654353115930e15",
+            "beta": "80",
+            "eta": "105",
+            "d": "704",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.21482937299879268
+        },
+        "dual": {
+          "status": "finite_heuristic",
+          "log2_rop": 56.99335449323305,
+          "cost": {
+            "rop": "1.43452874809829e17",
+            "mem": "1112673370",
+            "m": "192",
+            "beta": "88",
+            "d": "704",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.05056754098040983
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 44.28986084813865,
+          "cost": {
+            "rop": "2.15068407372162e13",
+            "problem": "LWEParameters(n=512, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+            "red": "2.15033877146175e13",
+            "guess": "3.45302259868510e9",
+            "beta": "41",
+            "p": "3",
+            "zeta": "0",
+            "t": "10",
+            "beta_": "69",
+            "N": "12413.9643865645",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.820168709004065
+        }
+      },
+      "minimum_returned_log2_rop": 44.28986084813865,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 229.33489635122774,
+          "cost": {
+            "rop": "1.08813518678159e69",
+            "red": "1.08813518678159e69",
+            "delta": "1.00262613028057",
+            "beta": "715",
+            "d": "1120",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0742523540102411
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 228.49871546628097,
+          "cost": {
+            "rop": "6.09491040716623e68",
+            "red": "9.41912418898141e61",
+            "svp": "6.09490946525382e68",
+            "beta": "630",
+            "eta": "742",
+            "d": "1120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.1839314689859748
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.029505409998819232
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+            "red": "+Infinity",
+            "guess": "5.86513664770661e1977525",
+            "beta": "95",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "125",
+            "N": "4.83537854386632e1977522",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07940032600890845
+        }
+      },
+      "minimum_returned_log2_rop": 228.49871546628097,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06801684500533156
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.22104925999883562
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.026642673008609563
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "47",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "82",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07798384199850261
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=4096, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=4096, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06265725797857158
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 1124.4875035137757,
+          "cost": {
+            "rop": "3.19498119955141e338",
+            "red": "5.12614891677579e336",
+            "svp": "3.14371971038366e338",
+            "beta": "1695",
+            "eta": "1755",
+            "d": "4120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=4096, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.6483303779968992
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02677196601871401
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=4096, q=463122399035393, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "79",
+            "N": "+infinity",
+            "m": "4096"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07912019902141765
+        }
+      },
+      "minimum_returned_log2_rop": 1124.4875035137757,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 192,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 61.73080641908299,
+          "cost": {
+            "rop": "3.82669975585485e18",
+            "red": "3.82669975585485e18",
+            "delta": "1.00886785150426",
+            "beta": "109",
+            "d": "703",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08412816800409928
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 59.91335282959878,
+          "cost": {
+            "rop": "1.08571626128160e18",
+            "red": "8.45169568556829e17",
+            "svp": "2.40546692724771e17",
+            "beta": "101",
+            "eta": "127",
+            "d": "704",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.20986968398210593
+        },
+        "dual": {
+          "status": "finite_heuristic",
+          "log2_rop": 63.10818782092666,
+          "cost": {
+            "rop": "9.94162794508475e18",
+            "mem": "27097571896",
+            "m": "192",
+            "beta": "110",
+            "d": "704",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.04749568802071735
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 50.6920866153448,
+          "cost": {
+            "rop": "4.3528081e16*e^(-5) + 1.52573487136367e15",
+            "problem": "LWEParameters(n=512, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=192, tag=None)",
+            "red": "1.52573487136367e15",
+            "guess": "4.3528081e16*e^(-5)",
+            "beta": "62",
+            "p": "3",
+            "zeta": "10",
+            "t": "0",
+            "beta_": "90",
+            "N": "183100.577491115",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.6753497309982777
+        }
+      },
+      "minimum_returned_log2_rop": 50.6920866153448,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 96,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 249.45676942011804,
+          "cost": {
+            "rop": "1.24156716029677e75",
+            "red": "1.24156716029677e75",
+            "delta": "1.00244360180512",
+            "beta": "788",
+            "d": "1120",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08493706799345091
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 242.5009743162796,
+          "cost": {
+            "rop": "1.00015485379221e73",
+            "red": "1.88002735534901e72",
+            "svp": "8.12152118257304e72",
+            "beta": "754",
+            "eta": "791",
+            "d": "1120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.23661044001346454
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.029540040995925665
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=96, tag=None)",
+            "red": "+Infinity",
+            "guess": "3.41669152012478e39808421",
+            "beta": "95",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "125",
+            "N": "2.81681363278747e39808418",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07919590099481866
+        }
+      },
+      "minimum_returned_log2_rop": 242.5009743162796,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 48,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0680478060094174
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2196695769962389
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02692429898888804
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=48, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "47",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "82",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07888586400076747
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=4096, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=4096, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06556921699666418
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 1137.6075379931158,
+          "cost": {
+            "rop": "2.84441021334337e342",
+            "red": "1.74048421880497e340",
+            "svp": "2.82700537115532e342",
+            "beta": "1690",
+            "eta": "1755",
+            "d": "4120",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=4096, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.668926578015089
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.027732098998967558
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=4096, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "79",
+            "N": "+infinity",
+            "m": "4096"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0789869760046713
+        }
+      },
+      "minimum_returned_log2_rop": 1137.6075379931158,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 32,
+      "available_independent_samples": 160,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=160, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 66.55436959769493,
+          "cost": {
+            "rop": "1.08358152421086e20",
+            "red": "1.08358152421086e20",
+            "delta": "1.00818196880299",
+            "beta": "127",
+            "d": "672",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=160, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08639760300866328
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 64.563147316693,
+          "cost": {
+            "rop": "2.72548600795419e19",
+            "red": "1.98311192817405e19",
+            "svp": "7.42374079780145e18",
+            "beta": "118",
+            "eta": "145",
+            "d": "672",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=160, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.21551473898580298
+        },
+        "dual": {
+          "status": "finite_heuristic",
+          "log2_rop": 68.02248725374187,
+          "cost": {
+            "rop": "2.99784409319794e20",
+            "mem": "303679897644",
+            "m": "160",
+            "beta": "129",
+            "d": "672",
+            "repetitions": "1",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.05006106899236329
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 50.6920866153448,
+          "cost": {
+            "rop": "4.3528081e16*e^(-5) + 1.52573487136367e15",
+            "problem": "LWEParameters(n=512, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=160, tag=None)",
+            "red": "1.52573487136367e15",
+            "guess": "4.3528081e16*e^(-5)",
+            "beta": "62",
+            "p": "3",
+            "zeta": "10",
+            "t": "0",
+            "beta_": "90",
+            "N": "183100.577491115",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.615015907009365
+        }
+      },
+      "minimum_returned_log2_rop": 50.6920866153448,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 16,
+      "available_independent_samples": 80,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=80, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "finite_heuristic",
+          "log2_rop": 275.7300989284758,
+          "cost": {
+            "rop": "1.00700235189716e83",
+            "red": "1.00700235189716e83",
+            "delta": "1.00224234590286",
+            "beta": "884",
+            "d": "1104",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=80, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0858412180095911
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 271.30917616904674,
+          "cost": {
+            "rop": "4.70110688811804e81",
+            "red": "2.56931657691677e74",
+            "svp": "4.70110663118638e81",
+            "beta": "780",
+            "eta": "895",
+            "d": "1104",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=80, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.175147059984738
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "55",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.034328654990531504
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=80, tag=None)",
+            "red": "+Infinity",
+            "guess": "2.34938947805023e1124466187",
+            "beta": "79",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "110",
+            "N": "1.93690073321505e1124466184",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08062112500192598
+        }
+      },
+      "minimum_returned_log2_rop": 271.30917616904674,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 8,
+      "available_independent_samples": 40,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=40, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=40, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.069234634982422
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=40, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2179591559979599
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02694323001196608
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=40, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "75",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07974917397950776
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 4096,
+      "rows_per_pair": 4,
+      "available_independent_samples": 20,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=4096, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=4096, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06620755299809389
+        },
+        "bdd": {
+          "status": "finite_heuristic",
+          "log2_rop": 1150.8938643069955,
+          "cost": {
+            "rop": "2.84167876563668e346",
+            "red": "1.91169164040309e341",
+            "svp": "2.84165964872027e346",
+            "beta": "1655",
+            "eta": "1755",
+            "d": "4116",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=4096, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.5285867239872459
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02651332999812439
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=4096, q=23006066442241, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "79",
+            "N": "+infinity",
+            "m": "4096"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08006949198897928
+        }
+      },
+      "minimum_returned_log2_rop": 1150.8938643069955,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06573396199382842
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.10490007197950035
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.026189741998678073
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 117.49770231793514,
+          "cost": {
+            "rop": "2.1885030e37*e^(-5) + 8.71424275711240e34",
+            "problem": "LWEParameters(n=512, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+            "red": "8.71424275711240e34",
+            "guess": "2.1885030e37*e^(-5)",
+            "beta": "40",
+            "p": "2",
+            "zeta": "10",
+            "t": "70",
+            "beta_": "68",
+            "N": "9.17947772586048e25",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.3144519180059433
+        }
+      },
+      "minimum_returned_log2_rop": 117.49770231793514,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 2,
+      "available_independent_samples": 12,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=12, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=12, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06496387301012874
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=12, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.14284083200618625
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.027518532995600253
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=12, tag=None)",
+            "red": "+Infinity",
+            "guess": "6.47039255450791e113234752817477",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "72",
+            "N": "5.33436801352169e113234752817474",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08131815097294748
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 1,
+      "available_independent_samples": 6,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=6, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=6, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0682707620144356
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=6, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.21540603498579003
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02558005799073726
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=6, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "75",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07821342800161801
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 4,
+      "available_independent_samples": 20,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06683372700354084
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.10577416198793799
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02620790299260989
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 117.49770231793514,
+          "cost": {
+            "rop": "2.1885030e37*e^(-5) + 8.71424275711240e34",
+            "problem": "LWEParameters(n=512, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)",
+            "red": "8.71424275711240e34",
+            "guess": "2.1885030e37*e^(-5)",
+            "beta": "40",
+            "p": "2",
+            "zeta": "10",
+            "t": "70",
+            "beta_": "68",
+            "N": "9.17947772586048e25",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.3148283979971893
+        }
+      },
+      "minimum_returned_log2_rop": 117.49770231793514,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 2,
+      "available_independent_samples": 10,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=10, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=10, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06421567499637604
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=10, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.1424038720142562
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.026607081992551684
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=10, tag=None)",
+            "red": "+Infinity",
+            "guess": "6.47039255450791e113234752817477",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "72",
+            "N": "5.33436801352169e113234752817474",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07932216298650019
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 1,
+      "available_independent_samples": 5,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=5, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=5, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0685667090001516
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=5, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2152132420160342
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.026813697011675686
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=8884180307969, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=5, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "75",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07869831900461577
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 4,
+      "available_independent_samples": 24,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.0639393980090972
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.10641782800666988
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.026325245009502396
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 124.31052039985926,
+          "cost": {
+            "rop": "2.4900662e39*e^(-5) + 9.59724518735607e36",
+            "problem": "LWEParameters(n=512, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=24, tag=None)",
+            "red": "9.59724518735607e36",
+            "guess": "2.4900662e39*e^(-5)",
+            "beta": "40",
+            "p": "2",
+            "zeta": "10",
+            "t": "80",
+            "beta_": "68",
+            "N": "1.01649614405895e28",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2551977410039399
+        }
+      },
+      "minimum_returned_log2_rop": 124.31052039985926,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 2,
+      "available_independent_samples": 12,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=12, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=12, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06576567201409489
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=12, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.1448818909993861
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02617584099061787
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=12, tag=None)",
+            "red": "+Infinity",
+            "guess": "9.10599562807427e173994860949000",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "72",
+            "N": "7.50723103744699e173994860948997",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07826011898578145
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 1,
+      "available_independent_samples": 6,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=6, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=6, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06755268498091027
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=6, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2162266359955538
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02867502102162689
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=6, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "75",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07911315897945315
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 512,
+      "rows_per_pair": 4,
+      "available_independent_samples": 20,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=512, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=512, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06439518902334385
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=512, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.10517955801333301
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.02639845697558485
+        },
+        "dual_hybrid": {
+          "status": "finite_heuristic",
+          "log2_rop": 124.31052039985926,
+          "cost": {
+            "rop": "2.4900662e39*e^(-5) + 9.59724518735607e36",
+            "problem": "LWEParameters(n=512, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=20, tag=None)",
+            "red": "9.59724518735607e36",
+            "guess": "2.4900662e39*e^(-5)",
+            "beta": "40",
+            "p": "2",
+            "zeta": "10",
+            "t": "80",
+            "beta_": "68",
+            "N": "1.01649614405895e28",
+            "m": "512"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.2533751679875422
+        }
+      },
+      "minimum_returned_log2_rop": 124.31052039985926,
+      "below_128_in_named_heuristic_screen": true,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 1024,
+      "rows_per_pair": 2,
+      "available_independent_samples": 10,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=1024, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=10, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=1024, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=10, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.06408813199959695
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=1024, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=10, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.14186405000509694
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.026992740982677788
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=1024, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=10, tag=None)",
+            "red": "+Infinity",
+            "guess": "9.10599562807427e173994860949000",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "72",
+            "N": "7.50723103744699e173994860948997",
+            "m": "1024"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08460172999184579
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "rows_per_pair": 1,
+      "available_independent_samples": 5,
+      "setup_only_not_multiplied_by_lifetime": true,
+      "params": "LWEParameters(n=2048, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=5, tag=None)",
+      "attacks": {
+        "usvp": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "usvp",
+            "problem": "LWEParameters(n=2048, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=5, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.07024565798928961
+        },
+        "bdd": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "tag": "bdd",
+            "problem": "LWEParameters(n=2048, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=5, tag=None)"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.21708834602031857
+        },
+        "dual": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "mem": "+Infinity",
+            "m": "+Infinity",
+            "beta": "47",
+            "tag": "dual"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.026751514989882708
+        },
+        "dual_hybrid": {
+          "status": "not_finite_or_not_applicable",
+          "log2_rop": null,
+          "cost": {
+            "rop": "+Infinity",
+            "problem": "LWEParameters(n=2048, q=5781768241153, Xs=D(\u03c3=0.82), Xe=D(\u03c3=832.78), m=5, tag=None)",
+            "red": "+Infinity",
+            "guess": "+infinity",
+            "beta": "40",
+            "p": "2",
+            "zeta": "0",
+            "t": "0",
+            "beta_": "75",
+            "N": "+infinity",
+            "m": "2048"
+          },
+          "worker_exit_code": 0,
+          "estimator_execution_seconds_NOT_crypto_runtime": 0.08026036599767394
+        }
+      },
+      "minimum_returned_log2_rop": null,
+      "below_128_in_named_heuristic_screen": false,
+      "parameter_approved": false
+    }
+  ],
+  "full_ring_inventory": [
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 644344206950401,
+      "Q_bits": 50,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "mushroom",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 18050398289921,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "mushroom",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 5,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 14,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 463122399035393,
+      "Q_bits": 49,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "baseline_t1153_q40"
+        },
+        {
+          "dataset": "semeion",
+          "profile": "same_field_narrow_lossless"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 13,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 16384,
+      "exact_Q": 23006066442241,
+      "Q_bits": 45,
+      "labels": [
+        {
+          "dataset": "semeion",
+          "profile": "selected_field_q32"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 16384,
+      "available_independent_samples": 5,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 8884180307969,
+      "Q_bits": 44,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_raw"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "available_independent_samples": 5,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 0,
+      "original_key_rows": 12,
+      "disjoint_paired_polynomials": 6,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "available_independent_samples": 6,
+      "full_ring_inventory_only_no_cost_approval": true
+    },
+    {
+      "source_N": 2048,
+      "exact_Q": 5781768241153,
+      "Q_bits": 43,
+      "labels": [
+        {
+          "dataset": "connect4",
+          "profile": "global_affine"
+        }
+      ],
+      "radix": 257,
+      "eta": 21,
+      "skipped_C2_levels": 1,
+      "original_key_rows": 11,
+      "disjoint_paired_polynomials": 5,
+      "paired_original_level_inventory": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "queries_reusing_keys_not_new_samples": 4096,
+      "target_prefix": 2048,
+      "available_independent_samples": 5,
+      "full_ring_inventory_only_no_cost_approval": true
+    }
+  ]
+}

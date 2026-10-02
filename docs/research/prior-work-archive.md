@@ -1,8 +1,8 @@
 # Primary-paper archive
 
-2026-10-02. **62 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
+2026-10-02. **64 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
 
-Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No HE author protocol/performance artifact was executed during E82–E96. E96 does execute the separately pinned external lattice-estimator cost tool; its tracked source is archived and its limited scope disclosed.
+Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No HE author protocol/performance artifact was executed during E82–E98. E96 does execute the separately pinned external lattice-estimator cost tool; its tracked source is archived and its limited scope disclosed.
 
 | Source | Versioned/local PDF | Reading scope |
 |---|---|---|
@@ -69,7 +69,10 @@ Earlier caches/checkpoint archives remain intact. Each new download has PDF/text
 | Accurate BGV Parameters Selection: Accounting for Secret and Public Key Dependencies in Average-Case Analysis | [bgv-dependencies-2504.18597v3](../../../research-data/literature-committed-precision-20261002/bgv-dependencies-2504.18597v3.pdf) | Targeted section4 dependence setup and section5/5.1/5.2 Gaussian/rescaling premises; full pages16/18 inspected; no full proof/finite-tail/parameter/artifact audit |
 | Security Guidelines for Implementing Homomorphic Encryption | [security-guidelines-2024-463](../../../research-data/literature-target-precision-20261002/security-guidelines-2024-463.pdf) | Targeted sections2.1/2.2/2.3 LWE/RLWE, CBD/error and secret/sparsity warnings; full pages6/7 inspected; no full tables/proof/artifact audit |
 
-Archive groups: `literature-target-precision-20261002` (1), `literature-committed-precision-20261002` (3), `literature-partial-switch-20261002` (2), `literature-orbit-precision-20261002` (3), `literature-odd-domain-20261002` (4), `literature-batched-score-bridge-20261002` (3), `literature-20260930` (15), `literature-contribution-review-20261001` (4), `literature-fixed-function-screens-20261002` (6), `literature-mechanism-screen-20260930` (1), `literature-plan-revision-20260930` (9), `literature-post-revalidation-20261002` (8), `literature-query-packing-20261001` (3).
+| FHEW: Bootstrapping Homomorphic Encryption in less than a second | [fhew-2014-816](../../../research-data/literature-owner-bound-rounding-20261002/fhew-2014-816.pdf) |Targeted §3 Equation3/Lemma5 full relevant proof pages rendered/inspected;not full parameter/artifact audit |
+| FINALLY: A Multi-Key FHE Scheme Based on NTRU and LWE | [finally-2024-1505](../../../research-data/literature-owner-bound-rounding-20261002/finally-2024-1505.pdf) |Targeted §3.5 Definition3.9/Lemma3.5 full relevant proof pages rendered/inspected;not full whole-noise/proof/parameter/author-artifact audit |
+
+Archive groups: `literature-owner-bound-rounding-20261002` (2), `literature-target-precision-20261002` (1), `literature-committed-precision-20261002` (3), `literature-partial-switch-20261002` (2), `literature-orbit-precision-20261002` (3), `literature-odd-domain-20261002` (4), `literature-batched-score-bridge-20261002` (3), `literature-20260930` (15), `literature-contribution-review-20261001` (4), `literature-fixed-function-screens-20261002` (6), `literature-mechanism-screen-20260930` (1), `literature-plan-revision-20260930` (9), `literature-post-revalidation-20261002` (8), `literature-query-packing-20261001` (3).
 
 Mutable ePrint revisions retain their recorded date/hash. A later version is a new source identity; keep older papers and measurements. Additional uncached leads are labeled in the registry; The earlier Faster Secret Keys for (T)FHE/HERMES leads now resolve to current cached revisions. Q13 also records the common-mask TFHE control; no author runtime is reproduced.
 
@@ -89,3 +92,16 @@ is a new **uncached primary lead** for Q23; latest web text/metadata were read,
 not hash-pinned or fully audited. It attributes randomized rounding to FHEW.
 Cache and review those exact revisions before the next oracle. Keep leads
 distinct from the62 verified local PDF/text pairs and reproduced artifacts.
+
+The FINALLY paragraph above records the **historical** uncached Q23 lead. E97
+now resolves it with a newly hash-pinned latest2025-05-26 revision;FHEW's
+latest2015-03-02 revision is retained alongside it. Targeted randomized-switching
+proof pages and existing drift/mean-compensation premises were reviewed. Earlier
+62 registry source records and additional-reading history remain unchanged.
+
+E98 executes the unchanged pinned lattice-estimator tool with an exact gapped
+noise summary. Its default MATZOV original-m shortage is preserved in raw
+cohorts and qualified by a newly preregistered finite-sample DH control. Source
+audit and limited heuristic computations are not author HE reproduction,
+executed key recovery or full security/parameter assurance. See the
+[targeted review](owner-bound-rounding-closest-work-20261002.md).
