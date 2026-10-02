@@ -1,0 +1,108 @@
+{
+  "utc": "2026-10-02T06:07:36.402500+00:00",
+  "kind": "bounded_E82_E86_identity_scope_and_preservation_validation",
+  "evidence_base_commit": "7a9a13dfb1e7f4f8c1ef112a8c2437b4aa55b9ce",
+  "scope": "Exact arithmetic/counts and scoped tests, not timing/cryptographic parameter/novelty/production assurance",
+  "validator_workspace_copy": "cuhepy-bfv-research/../research-data/fixed-function-screens-20261002/validate_execution.py",
+  "validator_sha256": "e5ad9758fb67bdfc7f6cea330f54fb6fe4392e5d375d0a6cbcdb84c0513685c6",
+  "manifest": {
+    "path": "docs/research/publication-fixed-function-execution-manifest-20261002.json",
+    "sha256": "f6f5fe60d3bba3564504fb17acebe8a86fa8ea012d324537d70e29dfb426df81"
+  },
+  "documents": {
+    "publication-research-plan.md": "76ab00078839e92639bf8e31f0478cef9b7cb71b0ae5d05eb823f9a90e151827",
+    "publication-progress.md": "5bef8f35b48467bc64c56bfde7a9799ae7396f7ffe07c55316b29907dd0feaf2",
+    "publication-work-packages.json": "ff82cff9b69c242614f030132c686ac07b57781416469bde24bb8c7cb37a44bc",
+    "publication-literature-sources.json": "ee842bab6f50d7d64929eb080fc2594f7344561cc790145a5dba3565e7c9d08c",
+    "closest-control-cost-cards-20261002.md": "a2aa848879647174c34d79799fafdcd69d9718165f6cbf39446d048a8e771b47",
+    "fixed-function-correlation-screen.md": "922f571a5d1f142d8e0a9a3e12651c35e323a7a896d3fa770b3cf04299cf1f51",
+    "coded-operator-screen.md": "2b5d36fc409c3b4ce7e6c7e1eb96f87f05b1828ed87c39432363722eec3e018b",
+    "exact-bucket-release-screen.md": "d23ae98be0229294c2833535e82a5feba140d007e4270c0f4f27a95a34337755",
+    "score-phase-bridge-screen.md": "2307d464f0d72fb7503b9bd3d5bf34f22a0f0c633a3c610e6bfa8cef66df2094",
+    "bgv-unit-bridge-screen.md": "e39d34837d4997fd2ca1654db654b77902e607aba70dacf5713ca5dbb68bb48b",
+    "construction-selection-20261002.md": "11464e0679c015dae7dfcaa134dc5ac135a07f409f1cf7bfb7618dbdfcca19d4",
+    "exact-bucket-release-preregistration-20261002.md": "397c3e3e06c7c6434db43497737f4a1287f3c7af2cb973cd9c6b3b56b1bc5530",
+    "score-phase-bridge-preregistration-20261002.md": "779ebb8ad8b81645c0cf846eb3ded9b55f0906014c0c80cb3d900f74df9aaf34",
+    "bgv-unit-bridge-preregistration-20261002.md": "698dad28cc08fd9685a2d33f619fe6c3b5534afcf6269048a41bd1c4280ab351",
+    "batched-score-bridge-plan-20261002.md": "e3e7d4d48ab80e8469c82a43b4fc668388d60de8fdec3fee45e1c053429ba758",
+    "prior-work-archive.md": "a43ea3159dafac7dc80ed756324d3c15f44f311bbbc1911ff0a31228341aa7b9"
+  },
+  "checks": {
+    "pytest": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "experiments/bfv_search_lab/test_secret_code_mask_oracle.py",
+        "experiments/bfv_search_lab/test_coded_operator_oracle.py",
+        "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/test_score_phase_bridge_oracle.py",
+        "experiments/bfv_search_lab/test_bgv_unit_bridge.py"
+      ],
+      "exit_code": 0,
+      "passed": 77,
+      "retained_tool_output_summary": "77 passed in 1.02s",
+      "capture_note": "Combined command executed before validation; validator does not rerun tests"
+    },
+    "ruff": {
+      "command": [
+        ".venv/bin/ruff",
+        "check",
+        "--config",
+        "force-exclude = false",
+        "benchmarks/fixed_function_control_cards.py",
+        "benchmarks/secret_code_mask_lab.py",
+        "benchmarks/coded_operator_lab.py",
+        "benchmarks/exact_bucket_release_lab.py",
+        "benchmarks/score_phase_bridge_lab.py",
+        "benchmarks/bgv_unit_bridge_lab.py",
+        "experiments/bfv_search_lab/secret_code_mask_oracle.py",
+        "experiments/bfv_search_lab/test_secret_code_mask_oracle.py",
+        "experiments/bfv_search_lab/coded_operator_oracle.py",
+        "experiments/bfv_search_lab/test_coded_operator_oracle.py",
+        "experiments/bfv_search_lab/exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/score_phase_bridge_oracle.py",
+        "experiments/bfv_search_lab/test_score_phase_bridge_oracle.py",
+        "experiments/bfv_search_lab/bgv_unit_bridge.py",
+        "experiments/bfv_search_lab/test_bgv_unit_bridge.py"
+      ],
+      "exit_code": 0,
+      "retained_tool_output_summary": "All checks passed!",
+      "explicit_files_confirmed_by_show_files": 16,
+      "capture_note": "Force-exclusion override avoids the repository's benchmarks/experiments exclusion"
+    }
+  },
+  "raw_runs_verified": 12,
+  "source_versions_verified": 34,
+  "all_initial_and_final_exact_fields_equal": true,
+  "Q0_archive_only_expected_cohort_change": [
+    40,
+    46
+  ],
+  "primary_pdf_text_pairs_verified": 46,
+  "local_links_checked": 211,
+  "prior_40_source_records_identical": true,
+  "prior_experiment_scopes_identical": true,
+  "broad_package_and_decision_acceptance_unchanged": true,
+  "measurement_revalidation_metadata_unchanged": true,
+  "prior_progress_log_preserved": true,
+  "Q6_Q10_conditional_unchanged": true,
+  "queue_dependency_graph_acyclic": true,
+  "protected_refs": {
+    "main": "0f8522e449d00622e10f4111ac8eb89d52ca577b",
+    "staging": "eb96aa1f79a92d6b6f0c1f6389d3daadff5546be",
+    "checkpoint/contribution-plan-2026-10-02": "7a9a13dfb1e7f4f8c1ef112a8c2437b4aa55b9ce",
+    "checkpoint/measurement-revalidation-2026-10-01": "f1b755254cfe148868f43ce9df0113650500c528"
+  },
+  "frozen_revalidation_sha256": {
+    "analysis-final-followups-04.json": "5a2036be9b8988da2544b14a6211992ec93fb566f5383d719157ca27f7e370cd",
+    "analysis-final-followups-04.md": "1cac6c0326c6f5f8c46e432c126e694984715527505e3ac768255381f11aeae3",
+    "analysis-main209.json": "5b4b71a4ae85b158f3d441183d522b9a697f2a96e001f0bce02547e849b6c310"
+  },
+  "production_source_changes": [],
+  "accepted_original_main_mechanisms": 0,
+  "known_control_advanced": "E86 modular-unit BGV conversion",
+  "next_packet": "Q13/E87"
+}

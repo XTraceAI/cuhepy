@@ -577,3 +577,46 @@ packets follow a survivor. Every packet must append evidence and return here.
 Broad P-package acceptance remains unmet. Planning validation is recorded in
 [the dated receipt](contribution-plan-validation-20261002.json); earlier
 execution/test receipts and production crypto are unchanged.
+
+
+## 2026-10-02 — Q0/Q1/Q2 execution, E82 finite return
+
+Q0 paid [closest-control cards](closest-control-cost-cards-20261002.md) record ten public-operator and two actual private-matrix profiles; forty prior PDFs rehash correctly. Concrete full recursive/AHE/integrity adapters remain uninstantiated. Q1 specified joint latent masks and the common-slope bit-line projection. Q2 [finite screen](fixed-function-correlation-screen.md) checks eight exact transcript pairs, 6,693 codewords and 3,206 independently simulated view samples; thirteen scoped tests pass.
+
+Result: uniform fixed offsets hide repeated constants but leak differing-query worlds in the toy law. The multi-coordinate projection is correct and simulates, but needs b+2^b minimal-support keys, exceeding the ordinary scalar-line control. Stop those specific recipes; no family-wide impossibility, PCF implementation, accepted novelty or security gate. Return to Q3/E83, then Q4/R6. Prior experiment scopes and measurements are retained.
+
+[Paper archive index](prior-work-archive.md) now links all 42 primary PDFs; two new versioned code papers are downloaded with PDF/text hashes and targeted reading notes. No new external artifact was executed.
+
+
+## 2026-10-02 — Q3 E83 and Q4/R6 finite decision
+
+[Structured-code screen](coded-operator-screen.md): signed-shift generators remain compact under known negacirculant/tensor coding. Five exhaustive cards check 84,534 nonzero errors; pure NTT distance is one despite dense basis images. Owner-registered Merkle/equation checks accept 25 correct queries and reject all 600 wrong answers under all-row checking. Twelve scoped tests pass; no private-key receiver or large-code distance claim.
+
+The complete direct-query relation has W=2NF rather than token W. Twenty-four optimistic code-expansion cards show row values costing 54.15–233.99x the existing whole public body, excluding authentication/RTT. Stop literal row-fetch mechanism; succinct evaluation remains unimplemented. Q4/R6 selects no main survivor from these bounded E82/E83 candidates and activates conditional Q5/E84. This does not close all PCF or proof families, or change P/gate acceptance.
+
+
+## 2026-10-02 — Q5 E84 and second Q4/R6 return
+
+[Exact-selection screen](exact-bucket-release-screen.md): 1,024 exact stable-ID searches and 122 whole-domain prefix checks pass. Histograms `(q,1)` and `(1,q)` collide at all 1,506 base-field points across six fields despite different top-3 distances. The F25 control detects the F5 collision outside its base subfield, with original-score/proof binding still absent. Actual ring-factor counts distinguish coefficients from scalar slots: N16384/t1031 has four degree-4096 extension-field slots. Twenty scoped tests pass.
+
+Stop small-field multiplicity certificate and any unpriced scalar-slot interpretation of coefficient packing. [Second R6 return](construction-selection-20261002.md): no selected complete mechanism; next finite Q11/E85 is the paid extraction/conversion/coverage interface, against HElib/TFHE/RevoLUT/full-split controls. Q6 reference/native/security/evaluation remain conditional. These are new exact/count results, not timing reruns or parameter/novelty assurance.
+
+The [archive](prior-work-archive.md) now links 43 PDFs; HElib is the third newly downloaded primary paper. Prior forty source entries are identical. All earlier experiment scopes and the measurement audit remain preserved.
+
+
+## 2026-10-02 — Q11 E85 phase/selection interface and third R6 return
+
+[Phase bridge screen](score-phase-bridge-screen.md) completes 14,580 exact extracted phases and 2,160 bounded BFV switches; fifteen scoped tests pass. Both proposed cheap BGV rescalings fail, including different Q-carry representations of the same original phase. Paid C2/CRT/LUT/full-split and optional materialization ledgers remain explicit; these are not runtime/wire lower bounds or an encrypted selection proof. Return to closest-control review before requiring an expensive private carry witness.
+
+The archive adds CHIMERA, a known BFV/TFHE switching control. No full backend, production interface or broad P acceptance is changed. E85's scoped negatives do not rule out all cheap converters.
+
+
+## 2026-10-02 — Q12 E86 correct unit control and fourth R6 return
+
+The next primary-paper review supplies the missing strong control: [public modular-unit BGV conversion](bgv-unit-bridge-screen.md). It handles Q carries without a secret witness, with a known plaintext permutation, unchanged component sizes and no new secret key material. This is known conversion arithmetic, not a new cryptographic contribution. It supersedes the generic expensive-carry priority after E85 without overwriting either negative raw result.
+
+Seventeen additional tests pass: 1,602 full scalar phases/both-sign cases, 867 mask/key/phase decompositions, 14,580 ring phases, 3,024 safe torus round-trips, 323 canonical RNS unit maps, and one actual homemade BGV product checked against independent schoolbook decryption. The deliberately inadequate torus control fails 2,207/10,201 cases. Thirty-two paid margin cards retain relin/derived-secret/PBS/key/noise conditions; no speedup, secure parameters or authenticated top-3 is inferred.
+
+All **77** tests pass together. Ruff explicitly checks all sixteen added Python files with repository force-exclusion overridden. The [archive](prior-work-archive.md) retains **46 primary PDFs**, six new this tranche, plus text hashes/retrieval receipts; original forty registry entries are unchanged. Threshold-FHE's Figure 11/Lemma 7 and scheme-switching hardness are targeted controls, not fully audited author artifacts. Two additional FFT/packing leads are recorded for the next packet.
+
+**Return / next:** [Q13/E87](batched-score-bridge-plan-20261002.md), a specified signed-digit/convolution batch interface whose candidate new step is shared authentication and coverage beyond known FFT switching. First read closest algorithms, then independently check the identity and price the complete valid path. E86 advances a company/reference control; no original full main mechanism is selected. Q6–Q10 and broad acceptance remain conditional. [Canonical plan](publication-research-plan.md), queue and latest R6 decision updated. New exact/count results preserve the frozen measurement audit; no idle-window timing repeat was needed.

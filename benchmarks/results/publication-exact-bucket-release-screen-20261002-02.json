@@ -1,0 +1,295 @@
+{
+  "utc": "2026-10-02T06:02:11.261121+00:00",
+  "command": [
+    "benchmarks/exact_bucket_release_lab.py",
+    "--json-out",
+    "benchmarks/results/publication-exact-bucket-release-screen-20261002-02.json"
+  ],
+  "git_head": "7a9a13dfb1e7f4f8c1ef112a8c2437b4aa55b9ce",
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "benchmarks/exact_bucket_release_lab.py": "0da3c6759640d24320771cd6d202004ccafa2802a091aeef41685264e5b62a54",
+    "experiments/bfv_search_lab/exact_bucket_release_oracle.py": "614ea5b2a1a8bed0db6af9628684996908f7e6478f0df7030b89538f674affd2",
+    "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py": "ca6deb299bc1e466f038792c885e06c022955515f8419413062fce69ab10a46a",
+    "docs/research/exact-bucket-release-preregistration-20261002.md": "397c3e3e06c7c6434db43497737f4a1287f3c7af2cb973cd9c6b3b56b1bc5530"
+  },
+  "kind": "E84_exact_bucket_and_complete_conversion_boundary_screen",
+  "exact_integer_score_ID_top3_searches": 1024,
+  "small_field_grand_product_counterexamples": [
+    {
+      "field": 3,
+      "left_counts": [
+        3,
+        1
+      ],
+      "right_counts": [
+        1,
+        3
+      ],
+      "rows": 4,
+      "equal_at_all_challenge_points": 3,
+      "exact_top3_distances_differ": true
+    },
+    {
+      "field": 5,
+      "left_counts": [
+        5,
+        1
+      ],
+      "right_counts": [
+        1,
+        5
+      ],
+      "rows": 6,
+      "equal_at_all_challenge_points": 5,
+      "exact_top3_distances_differ": true
+    },
+    {
+      "field": 17,
+      "left_counts": [
+        17,
+        1
+      ],
+      "right_counts": [
+        1,
+        17
+      ],
+      "rows": 18,
+      "equal_at_all_challenge_points": 17,
+      "exact_top3_distances_differ": true
+    },
+    {
+      "field": 193,
+      "left_counts": [
+        193,
+        1
+      ],
+      "right_counts": [
+        1,
+        193
+      ],
+      "rows": 194,
+      "equal_at_all_challenge_points": 193,
+      "exact_top3_distances_differ": true
+    },
+    {
+      "field": 257,
+      "left_counts": [
+        257,
+        1
+      ],
+      "right_counts": [
+        1,
+        257
+      ],
+      "rows": 258,
+      "equal_at_all_challenge_points": 257,
+      "exact_top3_distances_differ": true
+    },
+    {
+      "field": 1031,
+      "left_counts": [
+        1031,
+        1
+      ],
+      "right_counts": [
+        1,
+        1031
+      ],
+      "rows": 1032,
+      "equal_at_all_challenge_points": 1031,
+      "exact_top3_distances_differ": true
+    }
+  ],
+  "extension_repair_control": {
+    "field_order": 25,
+    "base_subfield_order": 5,
+    "equal_points": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "binding_or_HE_protocol_implemented": false
+  },
+  "prefix_interpolation_cards": [
+    {
+      "dimension": 3,
+      "field": 5,
+      "degrees_by_threshold": [
+        0,
+        3,
+        3,
+        3,
+        0
+      ]
+    },
+    {
+      "dimension": 4,
+      "field": 5,
+      "degrees_by_threshold": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        0
+      ]
+    },
+    {
+      "dimension": 7,
+      "field": 17,
+      "degrees_by_threshold": [
+        0,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        0
+      ]
+    }
+  ],
+  "exact_prefix_domain_cases": 122,
+  "plaintext_ring_slot_cards": [
+    {
+      "n": 2048,
+      "prime": 193,
+      "irreducible_factor_degree": 64,
+      "extension_field_slots": 32,
+      "full_base_field_scalar_SIMD": false,
+      "scope": "Ring algebra only; no HE transform, parameter or security assurance"
+    },
+    {
+      "n": 2048,
+      "prime": 257,
+      "irreducible_factor_degree": 16,
+      "extension_field_slots": 128,
+      "full_base_field_scalar_SIMD": false,
+      "scope": "Ring algebra only; no HE transform, parameter or security assurance"
+    },
+    {
+      "n": 16384,
+      "prime": 1031,
+      "irreducible_factor_degree": 4096,
+      "extension_field_slots": 4,
+      "full_base_field_scalar_SIMD": false,
+      "scope": "Ring algebra only; no HE transform, parameter or security assurance"
+    },
+    {
+      "n": 16384,
+      "prime": 65537,
+      "irreducible_factor_degree": 1,
+      "extension_field_slots": 16384,
+      "full_base_field_scalar_SIMD": true,
+      "scope": "Ring algebra only; no HE transform, parameter or security assurance"
+    }
+  ],
+  "fixed_polynomial_challenge_cards": [
+    {
+      "prime": 193,
+      "polynomial_degree_bound": 8191,
+      "attempts": 1,
+      "statistical_bits_target": 128,
+      "extension_degree": 19,
+      "field_order": "26643352529144910303162669621849182530453057",
+      "premises": "Nonzero polynomial fixed before uniform independent challenge; complete input/commitment binding additional"
+    },
+    {
+      "prime": 193,
+      "polynomial_degree_bound": 8191,
+      "attempts": 1024,
+      "statistical_bits_target": 128,
+      "extension_degree": 20,
+      "field_order": "5142167038124967688510395237016892228377440001",
+      "premises": "Nonzero polynomial fixed before uniform independent challenge; complete input/commitment binding additional"
+    },
+    {
+      "prime": 257,
+      "polynomial_degree_bound": 8191,
+      "attempts": 1,
+      "statistical_bits_target": 128,
+      "extension_degree": 18,
+      "field_order": "23921930261174538048551511546295524724904449",
+      "premises": "Nonzero polynomial fixed before uniform independent challenge; complete input/commitment binding additional"
+    },
+    {
+      "prime": 257,
+      "polynomial_degree_bound": 8191,
+      "attempts": 1024,
+      "statistical_bits_target": 128,
+      "extension_degree": 19,
+      "field_order": "6147936077121856278477738467397949854300443393",
+      "premises": "Nonzero polynomial fixed before uniform independent challenge; complete input/commitment binding additional"
+    },
+    {
+      "prime": 1031,
+      "polynomial_degree_bound": 8191,
+      "attempts": 1,
+      "statistical_bits_target": 128,
+      "extension_degree": 15,
+      "field_order": "1580811109128228731410546902309489516545744951",
+      "premises": "Nonzero polynomial fixed before uniform independent challenge; complete input/commitment binding additional"
+    },
+    {
+      "prime": 1031,
+      "polynomial_degree_bound": 8191,
+      "attempts": 1024,
+      "statistical_bits_target": 128,
+      "extension_degree": 16,
+      "field_order": "1629816253511203822084273856281083691558663044481",
+      "premises": "Nonzero polynomial fixed before uniform independent challenge; complete input/commitment binding additional"
+    },
+    {
+      "prime": 65537,
+      "polynomial_degree_bound": 8191,
+      "attempts": 1,
+      "statistical_bits_target": 128,
+      "extension_degree": 9,
+      "field_order": "22303807926762253812938859060411589043224577",
+      "premises": "Nonzero polynomial fixed before uniform independent challenge; complete input/commitment binding additional"
+    },
+    {
+      "prime": 65537,
+      "polynomial_degree_bound": 8191,
+      "attempts": 1024,
+      "statistical_bits_target": 128,
+      "extension_degree": 10,
+      "field_order": "1461724660096217828138574006242194311125809102849",
+      "premises": "Nonzero polynomial fixed before uniform independent challenge; complete input/commitment binding additional"
+    }
+  ],
+  "missing_paid_interfaces": [
+    "original encrypted-score binding and complete coverage proof",
+    "private threshold/counts and exact integer count lifts",
+    "coefficient-to-scalar conversion or complete TFHE comparator",
+    "noise/parameters, setup, ciphertext maintenance and malformed feedback"
+  ],
+  "mandatory_primitive_controls": [
+    "RevoLUT key-value counting",
+    "strong tournament/network",
+    "full-score release/local top3",
+    "SophOMR after paid predicate"
+  ],
+  "decision": "Stop small-base-field grand-product certificate; known interpolation alone gives no new complete winner. Revisit Q4/R6 with coefficient/slot conversion as the next precise missing interface.",
+  "scope": "Homemade public integer/field oracle and algebra/count inventories only. No encrypted selection, proof backend, performance benchmark or security/novelty assurance."
+}

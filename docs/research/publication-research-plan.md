@@ -1,14 +1,19 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-02, after measurement revalidation and a refreshed closest-work
-review**. Start with the [detailed execution plan](contribution-plan-20261002.md)
-and [closest-work comparison](closest-work-comparison-20261002.md). The
+Revision: **2026-10-02, after Q0–Q5/Q11/Q12 bounded execution**. Start with the
+[latest return decision](construction-selection-20261002.md) and
+[next bounded candidate](batched-score-bridge-plan-20261002.md). The
+[original detailed plan](contribution-plan-20261002.md) and
+[closest-work comparison](closest-work-comparison-20261002.md) retain the
+pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** planning complete for the next finite tranche. E82, E83 and
-E84 are proposals; none is implemented. No original complete protocol has been
-selected and no production/security gate has passed. The useful company
+**Current status:** E82–E86 bounded arithmetic/count screens are implemented;
+**77 scoped tests pass**. E82–E85 stop specified recipes, while E86 advances a
+correct known public BGV unit-conversion control. E87 is proposed and not
+implemented. No original complete protocol has been selected and no new
+production/security gate has passed. The useful company
 BFV/BGV/Paillier implementations and SEAL reference remain preserved.
 
 ## 1. Decision
@@ -24,16 +29,25 @@ and authenticated updates. These raise the novelty bar. A generic private,
 verified matvec, PCF-plus-EMVP composition or histogram selector is a control.
 The new step must have a precise algorithm/distribution/bound consequence.
 
-| Priority | Proposed experiment | Concrete question |
+| Packet | Executed/proposed experiment | Current return |
 |---|---|---|
-| First | **E82: fixed-function correlations**, token route and direct field-output route | Can programming/projection and authentication share work for the actual thin/block M, beyond strong secret-code/recursive/private-M controls? A non-HE survivor need not manufacture a BGV token |
-| Competing bounded screen | **E83: code and operator structure through verification** | Can the complete authenticated check retain compact signed-shift/subring generators, with a full-error bound, instead of large dense hints or paid per-query row downloads? |
-| Conditional fallback | **E84: exact bucket-to-top-3 release** | Can packed carry/conversion/coverage work be shared enough to beat complete known key-value selection? Exact IDs, ties and omitted rows must be covered |
+| Q1/Q2 | [E82 fixed-function correlations](fixed-function-correlation-screen.md) | Stop shared/noiseless masks and common-slope bit-line recipe; exact projection simulates, minimal-support key work loses |
+| Q3 | [E83 code/operator structure](coded-operator-screen.md) | Known structure survives; literal row fetch costs 54.15–233.99× entire baseline public body even under optimistic bounds |
+| Q5 | [E84 bucket/coverage](exact-bucket-release-screen.md) | Small-field multiplicity collision and coefficient/slot mismatch reject shortcuts; extension challenge is not original-score/ID binding |
+| Q11 | [E85 phase interface](score-phase-bridge-screen.md) | Known BFV extraction works; two naive BGV maps fail; C2, rounding, LUT and coverage costs remain explicit |
+| Q12 | [E86 modular-unit BGV bridge](bgv-unit-bridge-screen.md) | Correct cheap known conversion advances; private carry witnesses are unnecessary for this map alone |
+| **Next: Q13** | [**E87 authenticated batch extraction/switching**](batched-score-bridge-plan-20261002.md) | Test exact signed-digit/convolution sharing and its full proof/selection interface against strong FFT controls; unimplemented |
 
 The [detailed plan](contribution-plan-20261002.md) specifies algebra, candidate
 representations, proposed paths, controls, stop conditions, phase budgets and
 security obligations. Do not infer a new protocol from these sketches.
-No larger representation optimizer or new GPU kernel is the immediate task.
+No larger representation optimizer or new GPU kernel is the immediate research task.
+
+The new BGV control multiplies all components by `t^{-1} mod Q`, then accounts
+for a known plaintext permutation. It adds no secret material or body bytes
+for that map alone. It does **not** supply TFHE keys/PBS, sufficient rounding
+noise, arbitrary LUT support or an authenticated exact stable-ID winner.
+Do not weaken the closest baseline by repeating E85's failed maps.
 
 ## 2. Evidence governing the decision
 
@@ -59,6 +73,10 @@ Two dirty historical source closures remain unavailable.
   consumer or measured WAN/security winner exists.
 - The 1,965 unique passing tests and scoped tool checks are correctness evidence,
   not security or parameter assurance.
+- This tranche adds exhaustive finite arithmetic and deterministic counts,
+  not new timing panels. E86 also checks one local actual homemade BGV product.
+  Frozen revalidation is unchanged; background load cannot contaminate exact
+  finite distributions/counts, while those counts imply no speedup.
 
 Do not multiply ratios across studies or treat stage sums as observed elapsed.
 Keep failed/qualified attempts, negative results and source/runtime distinctions.
@@ -96,10 +114,12 @@ state. Measure full elapsed, endpoint work and memory separately.
 
 ## 4. Execution queue and gates
 
-**Next:** Q0, refresh the two closest construction cards at actual matrix shapes;
-then Q1/Q2, E82 contract/count and independent oracle. Q3 screens E83 before Q4
-selects one main mechanism. Q5/E84 is conditional. Q6 reference, Q7 native/CUDA,
-Q8 security, Q9 matched evaluation and Q10 paper/artifact follow only a survivor.
+**Next:** Q13/E87, targeted FFT/partial-key/packing comparison, then one bounded
+literal-versus-convolution oracle and complete cost/authentication ledger,
+returning to Q4/R6 after each component. Q0–Q5, Q11 and Q12 have completed their
+bounded scopes; no original main mechanism is selected. Q6 reference,
+Q7 native/CUDA, Q8 security, Q9 matched evaluation and Q10 paper/artifact
+remain conditional on actual unmet selection/assurance gates.
 The detailed queue and per-packet acceptance tests are in
 [plan §7](contribution-plan-20261002.md#7-execution-order-and-the-return-to-plan-rule)
 and `current_packet_queue` in the machine tasks.
@@ -123,6 +143,13 @@ P package. Keep prior E IDs and stopped recipes unchanged.
 
 The primary research question can survive a failed recipe. A generic composition
 or a faster known implementation remains useful engineering, without passing B.
+
+The [execution receipt](fixed-function-execution-validation-20261002.json) and
+[identity manifest](publication-fixed-function-execution-manifest-20261002.json)
+record this tranche; original planning-only validation is historical.
+The [paper archive](prior-work-archive.md) links **46 hash-pinned PDFs** with
+extracted text, reading scopes and artifact status. Preserve prior measurements
+and source versions; a download or targeted reading is not a complete proof audit.
 
 ## 5. Development, evaluation and proof
 
