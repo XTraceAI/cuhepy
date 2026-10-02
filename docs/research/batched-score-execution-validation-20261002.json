@@ -1,0 +1,134 @@
+{
+  "utc": "2026-10-02T08:01:07.044946+00:00",
+  "kind": "bounded_E87_E89_identity_scope_and_preservation_validation",
+  "evidence_base_commit": "d03292541b8796bbc259b033ce6581137f996f0f",
+  "scope": "Exact arithmetic/counts and scoped tests; not timing/cryptographic parameter/novelty/production assurance",
+  "validator_workspace_copy": "research-data/batched-score-interfaces-20261002/validate_execution.py",
+  "validator_sha256": "6bc38709add2610d235c3a406e0844ba21d94e957178de167ef9cffd81bdfbc2",
+  "environment": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]\npytest=9.0.2\ngmpy2=2.3.0\n",
+  "ruff_version": "ruff 0.15.6",
+  "manifest": {
+    "path": "docs/research/publication-batched-score-execution-manifest-20261002.json",
+    "sha256": "54926a68d8550e037dc092b65c47908df0b9edb66ca4c4c8899c4a6392f3fb04"
+  },
+  "documents": {
+    "publication-research-plan.md": "3c6d4959d529e0a7f040e778515f6c6bb4deac08ba7d5a961eae21c431722e54",
+    "publication-progress.md": "3fa13d6d9a00c9a0d304a81b2e732222590341c17a25f9381647e9ffa85c6caf",
+    "publication-work-packages.json": "9dab50cff0a0ef0796e61e6478d161128c1fa7d7e048468ef72adace22f8422c",
+    "publication-literature-sources.json": "82814724733891170255844e1682f09a1e3ffdcd0e8630570ffd83f3f309fda7",
+    "construction-selection-20261002.md": "38d185ea6da50643839b0bc54b088164b86dbdacf56d1d8361aa6e1987cbd080",
+    "prior-work-archive.md": "dfe9ca52cf63b483d355dec7e06d4e8dbbe6349ff6438f6b85c5f0ba885ce77a",
+    "batched-score-bridge-closest-work-20261002.md": "d9f78e97f5bfb73715e326e4d70f31d7d9739a8d97502a787864dcb5f7ea3b46",
+    "batched-score-bridge-preregistration-20261002.md": "6a5471e2def0cb80cd66e35be5dd7592fa0ebba806a1eebf41e183e4a65e5ea3",
+    "batched-score-bridge-screen.md": "a181a15a37b15ba6f61d99def09085bee8355be52d15fe6931e17219df801fa0",
+    "orbit-common-mask-preregistration-20261002.md": "1e2c0c153ee427cc5ceaa1af7cb751082d37f8d547ba1bb37fe6eb8698888cef",
+    "orbit-common-mask-screen.md": "4703dd57dd2786446c3aeef089eea4d655fd14c537d0a449c79edc484571ea5b",
+    "odd-domain-lut-preregistration-20261002.md": "28ea10d0fe304627a3d1b480c1c682d8d8012ca860948cbe3853563a10af05b5",
+    "odd-domain-lut-screen.md": "29e128756237c431a9684dccde23950a6cdb8caed64f31b41d6f8e3977e3f329",
+    "orbit-remainder-trace-plan-20261002.md": "d23d13f47bbf2e4293f5c11eb1940806a593e480f69f563c2375467bfb03534a"
+  },
+  "checks": {
+    "pytest": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "experiments/bfv_search_lab/test_secret_code_mask_oracle.py",
+        "experiments/bfv_search_lab/test_coded_operator_oracle.py",
+        "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/test_score_phase_bridge_oracle.py",
+        "experiments/bfv_search_lab/test_bgv_unit_bridge.py",
+        "experiments/bfv_search_lab/test_batched_score_bridge.py",
+        "experiments/bfv_search_lab/test_orbit_common_mask.py",
+        "experiments/bfv_search_lab/test_odd_domain_lut.py"
+      ],
+      "exit_code": 0,
+      "passed": 139,
+      "new_tests": 62,
+      "prior_tests": 77,
+      "scope": "Eight specified CPU arithmetic/interface files; not whole repository CI",
+      "log": {
+        "path": "research-data/batched-score-interfaces-20261002/pytest-scoped-139.txt",
+        "sha256": "c85f391f04fdd50076f8b94140b20a3532e0f76d44c7b0538e46f7e4e61cdeba"
+      },
+      "validator_reruns_tests": false
+    },
+    "ruff": {
+      "command": [
+        ".venv/bin/ruff",
+        "check",
+        "--config",
+        "force-exclude = false",
+        "benchmarks/batched_score_bridge_lab.py",
+        "benchmarks/orbit_common_mask_lab.py",
+        "benchmarks/odd_domain_lut_lab.py",
+        "experiments/bfv_search_lab/batched_score_bridge.py",
+        "experiments/bfv_search_lab/test_batched_score_bridge.py",
+        "experiments/bfv_search_lab/orbit_common_mask.py",
+        "experiments/bfv_search_lab/test_orbit_common_mask.py",
+        "experiments/bfv_search_lab/odd_domain_lut.py",
+        "experiments/bfv_search_lab/test_odd_domain_lut.py"
+      ],
+      "exit_code": 0,
+      "files": [
+        "benchmarks/batched_score_bridge_lab.py",
+        "benchmarks/orbit_common_mask_lab.py",
+        "benchmarks/odd_domain_lut_lab.py",
+        "experiments/bfv_search_lab/batched_score_bridge.py",
+        "experiments/bfv_search_lab/test_batched_score_bridge.py",
+        "experiments/bfv_search_lab/orbit_common_mask.py",
+        "experiments/bfv_search_lab/test_orbit_common_mask.py",
+        "experiments/bfv_search_lab/odd_domain_lut.py",
+        "experiments/bfv_search_lab/test_odd_domain_lut.py"
+      ],
+      "log": {
+        "path": "research-data/batched-score-interfaces-20261002/ruff-new-9.txt",
+        "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+      },
+      "exclusion_override": "force-exclude = false; nine research Python paths explicitly checked"
+    }
+  },
+  "raw_runs_verified": 6,
+  "source_versions_verified": 19,
+  "all_initial_and_final_results_and_sources_equal": true,
+  "primary_pdf_text_pairs_verified": 53,
+  "local_links_checked": 192,
+  "prior_46_source_records_identical": true,
+  "historical_additional_readings_retained_except_two_resolved_leads": true,
+  "prior_experiment_scopes_identical": true,
+  "retained_queue_fields": [
+    "tasks",
+    "decision_tasks",
+    "measurement_revalidation",
+    "gate_C_initial_targets",
+    "client_retention"
+  ],
+  "prior_progress_log_preserved": true,
+  "Q6_Q10_conditional_unchanged": true,
+  "queue_dependency_graph_acyclic": true,
+  "protected_refs": {
+    "main": "0f8522e449d00622e10f4111ac8eb89d52ca577b",
+    "staging": "eb96aa1f79a92d6b6f0c1f6389d3daadff5546be",
+    "checkpoint/fixed-function-screens-2026-10-02": "d03292541b8796bbc259b033ce6581137f996f0f",
+    "checkpoint/contribution-plan-2026-10-02": "7a9a13dfb1e7f4f8c1ef112a8c2437b4aa55b9ce",
+    "checkpoint/measurement-revalidation-2026-10-01": "f1b755254cfe148868f43ce9df0113650500c528",
+    "checkpoint/verification-frontier-2026-09-30": "02e06c0f5636def284ed6864b3e208538fcb10a6",
+    "checkpoint/publication-controls-2026-09-30": "6207455db8d86fbe1394d3ef2294fe8e0c877163",
+    "checkpoint/construction-screens-2026-10-01": "66c04dc69423438220ed4eb87a09a7831bac80ab"
+  },
+  "frozen_revalidation_sha256": {
+    "analysis-final-followups-04.json": "5a2036be9b8988da2544b14a6211992ec93fb566f5383d719157ca27f7e370cd",
+    "analysis-final-followups-04.md": "1cac6c0326c6f5f8c46e432c126e694984715527505e3ac768255381f11aeae3",
+    "analysis-main209.json": "5b4b71a4ae85b158f3d441183d522b9a697f2a96e001f0bce02547e849b6c310"
+  },
+  "production_source_changes": [],
+  "accepted_original_main_mechanisms": 0,
+  "known_controls_advanced": [
+    "balanced scalar/packed switching",
+    "signed orbit/block/support interface",
+    "odd-domain LUT/precision controls"
+  ],
+  "next_packet": "Q16/E90",
+  "next_packet_implemented": false
+}

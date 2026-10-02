@@ -1,20 +1,21 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-02, after Q0–Q5/Q11/Q12 bounded execution**. Start with the
+Revision: **2026-10-02, after Q0–Q5/Q11–Q15 bounded execution**. Start with the
 [latest return decision](construction-selection-20261002.md) and
-[next bounded candidate](batched-score-bridge-plan-20261002.md). The
+[next bounded candidate](orbit-remainder-trace-plan-20261002.md). The
 [original detailed plan](contribution-plan-20261002.md) and
 [closest-work comparison](closest-work-comparison-20261002.md) retain the
 pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** E82–E86 bounded arithmetic/count screens are implemented;
-**77 scoped tests pass**. E82–E85 stop specified recipes, while E86 advances a
-correct known public BGV unit-conversion control. E87 is proposed and not
-implemented. No original complete protocol has been selected and no new
-production/security gate has passed. The useful company
-BFV/BGV/Paillier implementations and SEAL reference remain preserved.
+**Current status:** E82–E89 bounded arithmetic/count screens are implemented;
+**139 scoped tests pass** across eight files. Correct known BGV unit, shared/
+packed switching, orbit/block/support and full odd-domain LUT controls advance.
+Specified fingerprint/carry/ring-diagonal/small-ring precision shortcuts stop.
+E90 is proposed, not implemented. No original complete protocol has been
+selected or new production/security gate passed. Company BFV/BGV/Paillier and
+SEAL references remain preserved; no production source changed this tranche.
 
 ## 1. Decision
 
@@ -36,7 +37,10 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q5 | [E84 bucket/coverage](exact-bucket-release-screen.md) | Small-field multiplicity collision and coefficient/slot mismatch reject shortcuts; extension challenge is not original-score/ID binding |
 | Q11 | [E85 phase interface](score-phase-bridge-screen.md) | Known BFV extraction works; two naive BGV maps fail; C2, rounding, LUT and coverage costs remain explicit |
 | Q12 | [E86 modular-unit BGV bridge](bgv-unit-bridge-screen.md) | Correct cheap known conversion advances; private carry witnesses are unnecessary for this map alone |
-| **Next: Q13** | [**E87 authenticated batch extraction/switching**](batched-score-bridge-plan-20261002.md) | Test exact signed-digit/convolution sharing and its full proof/selection interface against strong FFT controls; unimplemented |
+| Q13 | [E87 batch switching](batched-score-bridge-screen.md) | Exact scalar/convolution and once-packed controls; compact digit/input/PBS/coverage proof does not follow |
+| Q14 | [E88 orbit common masks](orbit-common-mask-screen.md) | Block/key reuse and public support trimming work; independent-key and one-ring diagonal shortcuts stop |
+| Q15 | [E89 odd-domain LUT/precision](odd-domain-lut-screen.md) | Full odd-domain signed LUT works; final MS margin is paid, standard small-degree worst-case bound fails |
+| **Next: Q16** | [**E90 shared orbit remainder/precision authentication**](orbit-remainder-trace-plan-20261002.md) | Compare tie-aware shared traces against Meta-PBS, hoisted switching and complete proof controls; proposed, unimplemented |
 
 The [detailed plan](contribution-plan-20261002.md) specifies algebra, candidate
 representations, proposed paths, controls, stop conditions, phase budgets and
@@ -74,7 +78,7 @@ Two dirty historical source closures remain unavailable.
 - The 1,965 unique passing tests and scoped tool checks are correctness evidence,
   not security or parameter assurance.
 - This tranche adds exhaustive finite arithmetic and deterministic counts,
-  not new timing panels. E86 also checks one local actual homemade BGV product.
+  not new timing panels. E86 and E87 also check actual local homemade BGV products. E89 corrects the scope of the earlier even-domain LUT negative; its odd-domain control is known prior work.
   Frozen revalidation is unchanged; background load cannot contaminate exact
   finite distributions/counts, while those counts imply no speedup.
 
@@ -114,12 +118,12 @@ state. Measure full elapsed, endpoint work and memory separately.
 
 ## 4. Execution queue and gates
 
-**Next:** Q13/E87, targeted FFT/partial-key/packing comparison, then one bounded
-literal-versus-convolution oracle and complete cost/authentication ledger,
-returning to Q4/R6 after each component. Q0–Q5, Q11 and Q12 have completed their
-bounded scopes; no original main mechanism is selected. Q6 reference,
-Q7 native/CUDA, Q8 security, Q9 matched evaluation and Q10 paper/artifact
-remain conditional on actual unmet selection/assurance gates.
+**Next:** Q16/E90, targeted Meta-PBS/hoisted/proof control review, then one
+bounded tie-aware quotient/remainder/block oracle and a complete authentication/
+precision cost ledger. Return to Q4/R6 after each component. Q0–Q5 and Q11–Q15
+have completed bounded scopes; no original main mechanism is selected. Q6
+reference, Q7 native/CUDA, Q8 security, Q9 matched evaluation and Q10 paper/
+artifact remain conditional on actual unmet selection/assurance gates.
 The detailed queue and per-packet acceptance tests are in
 [plan §7](contribution-plan-20261002.md#7-execution-order-and-the-return-to-plan-rule)
 and `current_packet_queue` in the machine tasks.
@@ -197,3 +201,11 @@ The full measurement archive and all-ref bundle are retained outside Git under
 `../checkpoints/measurement-revalidation-2026-10-01/`. The planning revision
 changes documentation/task routing only; production crypto and measurements stay
 unchanged.
+
+## 5. Latest execution return and paper controls
+
+Q13–Q15 completed their finite sessions with [validation](batched-score-execution-validation-20261002.json) and [source/result manifest](publication-batched-score-execution-manifest-20261002.json). The [primary archive](prior-work-archive.md) now retains **53 PDF/text pairs**, including FFT/partial keys, HERMES, common-mask TFHE, odd-domain p-encoding, Meta-PBS and large-precision/full-domain controls. Targeted reading, complete proof audits and reproduced author artifacts are separate statuses.
+
+E88's exact signed orbit view is a useful interface: block masks reuse canonical slot-key rows and a public partial-key support union. It does not turn slot-diagonal/nonlinear operators into ring multipliers. E89 supplies a full odd-domain test vector, with a stricter margin. Increasing Q does not remove the final componentwise rounding floor. Reviewed probabilistic/high-precision methods can beat the worst-case control; the next candidate must include their actual key, noise, packing and proof premises.
+
+The paper candidate in Q16 is a cheaper complete **shared authenticated trace**, including half-tie correction after a power-of-two torus transition. Generic ring arithmetic, the known odd-domain trick, parameter grids or shared CUDA kernels alone do not pass the mechanism gate. Keep useful components available to the company while evaluating a genuinely different complete relation.

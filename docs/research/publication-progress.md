@@ -620,3 +620,34 @@ Seventeen additional tests pass: 1,602 full scalar phases/both-sign cases, 867 m
 All **77** tests pass together. Ruff explicitly checks all sixteen added Python files with repository force-exclusion overridden. The [archive](prior-work-archive.md) retains **46 primary PDFs**, six new this tranche, plus text hashes/retrieval receipts; original forty registry entries are unchanged. Threshold-FHE's Figure 11/Lemma 7 and scheme-switching hardness are targeted controls, not fully audited author artifacts. Two additional FFT/packing leads are recorded for the next packet.
 
 **Return / next:** [Q13/E87](batched-score-bridge-plan-20261002.md), a specified signed-digit/convolution batch interface whose candidate new step is shared authentication and coverage beyond known FFT switching. First read closest algorithms, then independently check the identity and price the complete valid path. E86 advances a company/reference control; no original full main mechanism is selected. Q6–Q10 and broad acceptance remain conditional. [Canonical plan](publication-research-plan.md), queue and latest R6 decision updated. New exact/count results preserve the frozen measurement audit; no idle-window timing repeat was needed.
+
+
+## 2026-10-02 — Q13/E87 reading, exact switch and paid-cost returns
+
+[Closest switching controls](batched-score-bridge-closest-work-20261002.md) are now targeted-read and hash-pinned; three additional primary PDFs bring the archive to **49**. The stronger control switches the packed polynomial once before extraction. No author code or paper speedup is imported.
+
+[E87 exact/count screen](batched-score-bridge-screen.md): 692 residue/negation cases, 30,312 full public-coordinate equalities, 29,928 independent phase/error equalities, a fresh homemade BGV product differential, and 146 rejected corrupt transcripts. Thirty scoped tests pass. The implemented receiver pays full owner-approved inputs and recomputation; no compact original-input/digit/PBS/winner proof is implied. Evaluation-only digit binding and modular/range-only carry binding have concrete counterexamples.
+
+Sixty-four modeled cards pay keys, sparse/dense/batched modes, transforms/materialization, full recomputation and known quotient costs. Partial-GLWE key storage beats the proposed scalar-column keys under different unapproved key laws. All near-minimum modeled Q cards fail a sufficient worst-case post-unit bound after illustrative KS error1; that is not measured failure. Actual secure noise/keys, PBS and complete proofs remain open.
+
+**R6 return:** keep known switching controls; stop treating shared convolution/fingerprints alone as a novel authenticated interface. Q6 remains conditional. Next is [Q14/E88](orbit-common-mask-preregistration-20261002.md): test original-ring signed orbit keys as a common-mask view and whether slot-diagonal selection stays in the compact ring algebra. Original measurements/checkpoints and production source are unchanged.
+
+
+## 2026-10-02 — Q14/E88 orbit/block and nonlinear-key return
+
+[Orbit common-mask screen](orbit-common-mask-screen.md) checks 14,580 original phases, 43,256 canonical-block phases, 336 public prefix/width support cases and 6,651 full ternary secret laws. Signed rotations reuse a canonical block-key family without a packing step; after a known partial-key switch the public union dimension is min(N,D+w-1). Sixteen scoped tests pass. These are known exact ring identities, not a CM-PBS implementation or new independent-key reduction.
+
+All 276 binary diagonals are checked; 270 nonconstant maps leave compact ring algebra. In 1,332 whole-input cases the ring-multiplier surrogate gives 924 wrong results. Ninety-six auxiliary-key cards include ordinary shared PBS keys and common-mask Appendix C.1 regeneration controls; no key per block is falsely charged to the competitor. Rank/precision/seed-format and complete proof/winner costs remain uninstantiated.
+
+**R6 return:** keep exact grouped views/support, stop free independent-key/ring-diagonal PBS shortcuts, then settle [Q15/E89 odd-domain precision](odd-domain-lut-preregistration-20261002.md). The full even-eight-point negative does not rule out odd moduli. No original complete main mechanism or broad gate has been selected.
+
+
+## 2026-10-02 — Q15/E89 full odd-domain LUT and final rounding return
+
+[Odd-domain screen](odd-domain-lut-screen.md): 40,560 function/message/permutation/error cases, 3,222 independent ring shifts and 405 full small output-function cases; sixteen scoped tests pass. Known odd-domain test vectors handle arbitrary functions with a paid quarter-torus margin. E85's full even-domain negative remains valid without ruling out odd domains.
+
+160 precision cards and 1,440 rank-width shapes include the final componentwise switch to 2M. 145 cards fail the chosen sufficient worst-case floor for every Q, including all 96 degree≤8192 cards; that is not a failure of probabilistic/bias-corrected/Meta-PBS. Fifteen conditional changed-prime/gadget contexts pass only the model. No actual PBS, secure parameters, whole latency or complete winner authentication is inferred.
+
+Four more primary PDFs are cached with hashes (**53** total), including odd-domain p-encoding and high-precision/Meta-PBS. Targeted algorithm/theorem reading is separate from full proof audit and artifact execution. **R6 return:** keep exact controls; [Q16/E90](orbit-remainder-trace-plan-20261002.md) now specifies tie-aware shared orbit remainder/packing authentication against strongest hoisted/Meta-PBS/proof controls. No original complete main mechanism is selected.
+
+This tranche adds **62** scoped tests (139 including the prior 77), three handmade reference interfaces, three exact/count runners and immutable results. Earlier performance/revalidation evidence and production code are unchanged. All 139 tests and explicit Ruff checks on the nine new Python files pass. [Identity/preservation validation](batched-score-execution-validation-20261002.json) and [source/result/archive manifest](publication-batched-score-execution-manifest-20261002.json) record six repeat receipts, all 53 primary PDF/text pairs and the preserved prior acceptance gates. The checkpoint is `checkpoint/batched-score-interfaces-2026-10-02` on branch `experiment/batched-score-bridge-20261002`; the workspace checkpoint folder retains its Git bundle, source and paper/cache archives.

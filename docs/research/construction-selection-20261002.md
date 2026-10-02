@@ -1,11 +1,12 @@
-# R6 returns through Q12: use the correct unit-conversion control
+# R6 returns through Q15: share exact interfaces, pay precision and authentication
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
 E82/E83/E84 returns. It preserves the earlier experiments and company code.
-No original useful complete protocol has been selected. The latest return is
-Q12/E86 below: a cheap **known** BGV scaled-phase converter advances the control
-and supersedes Q11's unresolved carry-interface priority.
+No original useful complete protocol has been selected. The historical Q12/E86
+return below supplied a cheap **known** BGV scaled-phase converter and
+superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
+and the Q16 next candidate are appended below.
 
 | Packet | Executed result | Decision |
 |---|---|---|
@@ -78,7 +79,7 @@ strongest-control difference, stop/advance and the next packet. New papers are
 stored outside Git and listed in [the archive](prior-work-archive.md); retrieval
 and targeted-reading status remain distinct from artifact execution.
 
-## Latest return and next packet: Q13/E87
+## Historical next packet after Q12: Q13/E87
 
 E86 shows that public modular-unit multiplication accounts for Q carries
 without a secret witness. Keep the exact extra rounding/PBS constraints and
@@ -102,3 +103,15 @@ Known converter/native integration and a matched larger BGV/hybrid panel are
 independent company tasks; a conference claim still needs an original surviving
 mechanism and assurance. Exact public counts from this tranche require no idle
 timing window, and do not replace the frozen revalidation measurements.
+
+## Latest returns: Q13–Q15, next Q16/E90
+
+| Packet | Exact/count result | R6 decision |
+|---|---|---|
+| Q13/E87 | 692 residues; 30,312 public-coordinate / 29,928 phase equalities; 146 corrupt receiver transcripts; 64 key/noise cards | Keep known scalar/convolution and once-packed controls. Stop inferring compact digit/input/PBS authentication from a fingerprint. |
+| Q14/E88 | 14,580 original / 43,256 block phases; 6,651 whole secret laws; 276 full binary diagonals; 96 key cards | Keep exact orbit/block/public-support interface. Stop independent-key and one-ring slot-diagonal shortcuts; strongest shared PBS/CM keys are paid. |
+| Q15/E89 | 40,560 LUT cases, 3,222 independent monomial shifts, 405 complete function cases; 160 precision / 1,440 rank-width shapes | Advance known full odd-domain LUT. Final small-ring rounding is a missing cost; higher Q alone cannot cure that worst-case bound. Compare reviewed high-precision methods. |
+
+**139 scoped tests** pass together. No new timing, accepted original complete mechanism, approved parameters or production gate follows. The three new reports retain exact falsifiers and conditional cost distinctions, including unsupported generic CM assumptions and unpublished seed-format adaptation. All earlier receipts/source identities and main/staging are preserved.
+
+[Q16/E90](orbit-remainder-trace-plan-20261002.md) is the next finite question: can original-coefficient signed orbits share a complete authenticated quotient/remainder/packing trace across precision iterations? Power-of-two half ties require explicit carry correction; original odd-Q gadget equivariance does not justify copying signs through all stages. Compare Meta-PBS, strongest hoisted decomposition and HasteBoots/general proof baselines first. No plaintext-score/secret-key witness is given to the server. Return here after each component; Q6 remains conditional.

@@ -1,8 +1,8 @@
 # Primary-paper archive
 
-2026-10-02. **46 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
+2026-10-02. **53 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
 
-Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No author artifact was executed during E82–E86.
+Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No author artifact was executed during E82–E89.
 
 | Source | Versioned/local PDF | Reading scope |
 |---|---|---|
@@ -53,6 +53,15 @@ Earlier caches/checkpoint archives remain intact. Each new download has PDF/text
 | THRESHOLD (FULLY) HOMOMORPHIC ENCRYPTION | [threshold-fhe-2025-699](../../../research-data/literature-fixed-function-screens-20261002/threshold-fhe-2025-699.pdf) | Targeted section 5.6.2, Figure 11 and Lemma 7; remaining 259-page document not audited |
 | On the Hardness of Scheme-Switching Between SIMD FHE Schemes | [switching-hardness-2023-988](../../../research-data/literature-fixed-function-screens-20261002/switching-hardness-2023-988.pdf) | Targeted introduction, elementary BGV/BFV conversion statement and informal relative-hardness reductions; no full theorem proof audit |
 
-Archive groups: `literature-20260930` (15), `literature-contribution-review-20261001` (4), `literature-fixed-function-screens-20261002` (6), `literature-mechanism-screen-20260930` (1), `literature-plan-revision-20260930` (9), `literature-post-revalidation-20261002` (8), `literature-query-packing-20261001` (3).
+| New Secret Keys for Enhanced Performance in (T)FHE | [tfhe-secret-keys-2023-979](../../../research-data/literature-batched-score-bridge-20261002/tfhe-secret-keys-2023-979.pdf) | Targeted sections 3.2.1/3.2.2/3.2.5/4, Algorithms 1-3, Theorems 2/5, Remark 4; complete algorithm/noise pages visually inspected, no full proof or parameter audit |
+| HERMES: Efficient Ring Packing using MLWE Ciphertexts and Application to Transciphering | [hermes-2023-1244](../../../research-data/literature-batched-score-bridge-20261002/hermes-2023-1244.pdf) | Targeted sections 4.1-4.5 and Tables 3-5; complete cost page visually inspected, no full proof/parameter audit |
+| Sharing the Mask: TFHE Bootstrapping on Packed Messages | [common-mask-2025-2112](../../../research-data/literature-batched-score-bridge-20261002/common-mask-2025-2112.pdf) | Targeted sections 3/4/5, Algorithm 10, Table 7 and CM-PBS construction; complete definition/packing pages visually inspected, no full proof or parameter audit |
 
-Mutable ePrint revisions retain their recorded date/hash. A later version is a new source identity; keep older papers and measurements. Additional uncached leads are labeled in the registry; Faster Secret Keys for (T)FHE and HERMES are queued for Q13 targeted reading.
+| Further Improvements in AES Execution over TFHE | [hippogryph-cic2025](../../../research-data/literature-odd-domain-20261002/hippogryph-cic2025.pdf) | Targeted section 2.2.3 Equation1 and full-LUT/p-encoding overview; complete odd-domain page visually inspected, no full proof/parameter/artifact audit |
+| Meta-PBS: Compact High-Precision Programmable Bootstrapping | [meta-pbs-2025-2284](../../../research-data/literature-odd-domain-20261002/meta-pbs-2025-2284.pdf) | Targeted introduction, section 3.3 Definition3/Lemmas2-3/Algorithm1 and section3.4 Theorem2 premises; complete algorithm/theorem pages visually inspected; section5/proof/artifact adaptation remains pending |
+| Large-Precision Homomorphic Sign Evaluation using FHEW/TFHE Bootstrapping | [large-precision-sign-2021-1337](../../../research-data/literature-odd-domain-20261002/large-precision-sign-2021-1337.pdf) | Targeted abstract/introduction/algorithm overview and sections6.2-6.4 rank/precision and noise tradeoffs; no full proof/parameter/artifact audit |
+| Fast and Accurate: Efficient Full-Domain Functional Bootstrap and Digit Decomposition for Homomorphic Computation | [full-domain-bootstrap-2023-645](../../../research-data/literature-odd-domain-20261002/full-domain-bootstrap-2023-645.pdf) | Targeted abstract/introduction and full-domain/refined-digit algorithm overview; remaining construction/proof/artifact adaptation pending |
+
+Archive groups: `literature-odd-domain-20261002` (4), `literature-batched-score-bridge-20261002` (3), `literature-20260930` (15), `literature-contribution-review-20261001` (4), `literature-fixed-function-screens-20261002` (6), `literature-mechanism-screen-20260930` (1), `literature-plan-revision-20260930` (9), `literature-post-revalidation-20261002` (8), `literature-query-packing-20261001` (3).
+
+Mutable ePrint revisions retain their recorded date/hash. A later version is a new source identity; keep older papers and measurements. Additional uncached leads are labeled in the registry; The earlier Faster Secret Keys for (T)FHE/HERMES leads now resolve to current cached revisions. Q13 also records the common-mask TFHE control; no author runtime is reproduced.
