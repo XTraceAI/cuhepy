@@ -1,21 +1,24 @@
 {
   "schema_version": 2,
-  "plan_date": "2026-09-30",
+  "plan_date": "2026-10-02",
   "plan": "docs/research/publication-research-plan.md",
   "baseline_commit": "02e06c0f5636def284ed6864b3e208538fcb10a6",
   "baseline_tag": "checkpoint/verification-frontier-2026-09-30",
-  "primary_question": "Can subring/module structure survive the full verified owner-encrypted linear evaluation protocol and reduce total registration or trusted work without larger hidden query/packing/release costs? Competing composed seed/answer proof; exact outputs and observable rejection.",
+  "primary_question": "Can privacy and verification be amortized together for a fixed owner-private thin/block linear operator, eliminating repeated trusted matvec or reducing binding client state without moving cost to another party, while retaining exact outputs and observable-rejection security?",
   "implementation_policy": "Homemade deliverable arithmetic/protocols; external artifacts are pinned baselines and differential references.",
   "critical_path": [
-    "R0",
-    "R3",
-    "R6",
-    "R7 if selected mechanism passes gates"
+    "R0 refresh via Q0 without reopening historical R0 acceptance",
+    "R4/E82 via Q1/Q2",
+    "R3/E83 via Q3",
+    "R6 selection via Q4; conditional R5/E84 via Q5",
+    "R7 via Q6–Q10 only after selection"
   ],
   "gate_C_initial_targets": {
     "amortized_cost_reduction_fraction": 0.2,
     "alternative_binding_state_or_update_reduction_factor": 2.0,
-    "scope": "Project decision thresholds, not promised gains or conference criteria; disclose all regressions and uncertainty."
+    "scope": "Project decision thresholds, not promised gains or conference criteria; disclose all regressions and uncertainty.",
+    "state_objective_max_latency_regression_fraction": 0.1,
+    "state_objective_max_per_query_traffic_regression_fraction": 0.1
   },
   "all_new_experiments_are_proposals": false,
   "tasks": [
@@ -42,7 +45,7 @@
         "E75",
         "E76"
       ],
-      "current_activity": "E75/E76 finite returning-client panel loses to permitted caches. Full cold/new-client provisioning and resource viability remain; no fabricated plaintext-retention cap."
+      "current_activity": "Primary full-score owner/private contract retained; E82-D changes primitives, E84 changes output under separate contract; all plaintext retention permitted."
     },
     {
       "id": "P01",
@@ -83,7 +86,7 @@
         "E75",
         "E76"
       ],
-      "current_activity": "Retain pinned author and actual enrolled service controls. Full malicious arbitrary-form vLHE/EMVP Hamming adaptation and strongest recursive baseline remain gaps."
+      "current_activity": "Q0 strongest paid controls include Maverick private-M, compressed EMVP/recursive BNTM, coded/structured verification and RevoLUT conditionally. Historical artifact gaps remain explicit."
     },
     {
       "id": "P02",
@@ -125,9 +128,11 @@
         "E71",
         "E72",
         "E73",
-        "E77"
+        "E77",
+        "E83",
+        "E84"
       ],
-      "current_activity": "Proposed E80 independent module/signed-matrix closure oracle; E78 composed relation DAG. No new implementation in planning revision."
+      "current_activity": "Q2/Q3 finite algebra/all-error oracles; conditional Q5 exact tie/coverage. Existing planner negatives remain stopped."
     },
     {
       "id": "P03",
@@ -185,9 +190,10 @@
         "E72",
         "E73",
         "E74",
-        "E77"
+        "E77",
+        "E83"
       ],
-      "current_activity": "Price every module outer object and composed seed-proof interface; compare complete known controls before proof-system/native work."
+      "current_activity": "E82-T versus E82-D complete fixed-function interface; E83 code/operator representation. No new native or HE adapter before a viable step."
     },
     {
       "id": "P04",
@@ -226,7 +232,7 @@
         "E57",
         "E65"
       ],
-      "current_activity": "Deferred expansion: E57/E65 failed stronger controls. Resume only after R6 identifies two useful safe protocol actions.",
+      "current_activity": "Q4 select at most one mechanism; do not grow the dominated representation optimizer.",
       "scheduling": "deferred_until_protocol_selection"
     },
     {
@@ -266,7 +272,7 @@
         "E59",
         "E64"
       ],
-      "current_activity": "Preserve known private buffers/deltas/tile controls; scope lifecycle work to a surviving protocol after R6.",
+      "current_activity": "Account for epoch and correlation invalidation in candidate ledgers; complete mutable reference only after Q4 selection.",
       "scheduling": "conditional_on_selected_protocol"
     },
     {
@@ -319,7 +325,7 @@
         "E76",
         "E77"
       ],
-      "current_activity": "E75/E76 actual returning enrolled TCP completed in legacy and strong global geometries; next private bootstrap, independent endpoint resources and process-level uncertainty. No useful outsourced regime established."
+      "current_activity": "Revalidation complete with limits. Q9 matched BGV/lookup-hybrid large fixture, lifecycle/cache/resource/network panels; no pooled cross-study speedup."
     },
     {
       "id": "P07",
@@ -369,9 +375,11 @@
         "E74",
         "E75",
         "E76",
-        "E77"
+        "E77",
+        "E83",
+        "E84"
       ],
-      "current_activity": "Owner-built setup authenticity, exact admitted-output correctness and feedback-safe pre-key verification; extraction/module-SIS only for optional server-built registration. No completed reduction or approved parameters."
+      "current_activity": "Begin exactness, owner/input binding and feedback proofs with Q1/Q3; formal reduction/private assurance Q8 remains open."
     },
     {
       "id": "P08",
@@ -398,7 +406,7 @@
       "additional_gate": "Gate C practical-effect decision must pass before this task starts.",
       "experiment_ids": [],
       "acceptance_met": false,
-      "current_activity": "After mechanism/useful-effect gates, implement only lifecycle/TEE obligations the chosen protocol requires."
+      "current_activity": "Durable consume/epoch/state design depends on selected transcript; TEE is a separately paid company mode, not a new automatic task."
     },
     {
       "id": "P09",
@@ -423,7 +431,7 @@
       "additional_gate": "Gate C practical-effect decision must pass; P07 defines the complete verifier boundary before new GPU kernels.",
       "experiment_ids": [],
       "acceptance_met": false,
-      "current_activity": "No new CUDA until R6 selection and useful-effect/protocol gates. Preserve current optimized company backends."
+      "current_activity": "Q7 only after complete reference and measured bottleneck; preserve existing native/CUDA baseline."
     },
     {
       "id": "P10",
@@ -479,9 +487,11 @@
         "E72",
         "E73",
         "E74",
-        "E77"
+        "E77",
+        "E83",
+        "E84"
       ],
-      "current_activity": "Retain E72/E73/E77 controls and stop E74 one-level public-code recipe. Secret/recursive/block-preserving correlation and complete stable winner coverage remain distinct bounded alternatives."
+      "current_activity": "E82/E83 bounded competing screens; E84 conditional. All three unimplemented in this revision."
     },
     {
       "id": "P11",
@@ -520,7 +530,7 @@
         "E75",
         "E76"
       ],
-      "current_activity": "New75-raw/248-source identity manifest and scoped129-test receipt; immutable history retained. Repeated independent-resource/deployment evidence and final paper artifact remain open."
+      "current_activity": "Retain immutable f1b7552 audit/checkpoint. New planning source/validation manifest is separate from experimental receipts."
     },
     {
       "id": "P12",
@@ -549,7 +559,7 @@
       "experiment_ids": [
         "E77"
       ],
-      "current_activity": "Updated closest-work and construction selection plan; no new originality claim or selected winner."
+      "current_activity": "Updated closest-work and contribution strategy; no accepted mechanism. Claim/evidence table and final paper after relevant gates."
     }
   ],
   "handoff_fields": [
@@ -585,7 +595,7 @@
   "execution_date": "2026-10-01",
   "execution_note": "Initial planning reviews remain historical. Named bounded components through E81 are executed, including E79 isolated acquisition/resources and direct first release. All P-package and Gates A-D acceptance remains unmet; finite E79 completion does not establish WAN/scale/update/security readiness. Each return and scoped negative is recorded; no original useful complete protocol selected.",
   "client_retention": "User explicitly permits retaining all owned plaintext data; mandatory raw/compressed/mutable cache controls. No customer device/session limit inferred.",
-  "current_execution_priority": "Finite measurement revalidation accounted with explicit source/runtime/resource limits; retain final report and integrity/evidence checkpoint. Carry E27 complete CUDA near ties, the stronger Paillier lookup hybrid baseline and refreshed owner-CUDA layout reports forward. R6 return remains complete for E80/E78/E81/E79. Next proposed E82: paid authenticated fixed-private-M correlation interface, one contract/negative/count screen and conditional primitive adapter. Retain E81 conditional exactness building block; no generic proof port/native/CUDA announced as a novel mechanism.",
+  "current_execution_priority": "Q0: extract paid thin/block-geometry cards for the two closest controls, including Maverick private-M and compressed EMVP/recursive modes. Then Q1/Q2 E82 token versus direct-field contract/count and independent oracle; Q3 E83 coded-operator competing screen; Q4 return to R6. E84 conditional only. No new protocol or experiment implementation in this planning revision.",
   "initial_proposed_experiment_ids": [
     "E41",
     "E42",
@@ -886,14 +896,14 @@
         "P10"
       ],
       "status": "proposed_not_implemented",
-      "specification": "docs/research/construction-selection-20261001.md",
-      "hypothesis": "Paid secret-code refresh, a concrete recipient-programmed correlation adapter, or sparse private correction can supply fixed-private-M masks and correctly distributed fresh encrypted score tokens with approved full-Q provenance, at lower complete cost.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "hypothesis": "Joint fixed-function programming/projection and authentication can lower complete trusted work for actual thin/block private matrices; compare a compatible token adapter with a direct authenticated field-output backend that avoids unnecessary HE conversion.",
       "falsifier": "Noiseless span leakage, invalid mask/encryption law or t/Q lift, unpaid helper/authentication work, same dense owner correction, or strongest complete control dominates.",
       "initial_effort_cap_sessions": [
         1,
         1
       ],
-      "activation": "One contract/negative/count session; actual primitive adapter only if a complete plausible survivor remains.",
+      "activation": "Q0 paid closest controls; Q1 contract/count screen, Q2 independent oracle only for a plausible specified step. No automatic implementation of a generic PCG.",
       "proposed_source_paths": [
         "experiments/bfv_search_lab/secret_code_mask_oracle.py",
         "experiments/bfv_search_lab/test_secret_code_mask_oracle.py",
@@ -904,14 +914,88 @@
         "Actual F32/F23 legacy and 85/256 strong-global row matrices",
         "Fresh ciphertext/error law and owner-approved provenance before decryption",
         "Full-Q authentication and exact t/Q/global-RNS corrections",
-        "Vectorized owner token generation plus permitted raw/compressed cache"
+        "Vectorized owner token generation plus permitted raw/compressed cache",
+        "Maverick private-matrix construction and complete preprocessing/access state",
+        "Strongest compressed EMVP and recursive BNTM modes, with assumption/mode differences",
+        "Ring-LWR PCF bootstrap/output-share costs; secret-replication small-domain and authentication constraints",
+        "Shared-block correlation joint distribution and no repeated-query relation leakage"
       ],
-      "next_gate": "Return to R6 with one exact new construction step and full costs, or scoped rejection. No native/GPU implementation before a viable mechanism."
+      "next_gate": "Q2 returns to R6; compare Q3/E83 before selecting at most one primary mechanism. Both E82 routes may stop without a family-wide impossibility claim.",
+      "prior_specification": "docs/research/construction-selection-20261001.md",
+      "routes": {
+        "E82-T": "Existing fresh private mask, fresh encrypted score token and full-Q provenance interface",
+        "E82-D": "Separate direct authenticated field/share protocol implementing the same full-score functionality; complete privacy and feedback proof required"
+      }
+    },
+    {
+      "id": "E83",
+      "decision_task": "R3",
+      "work_packages": [
+        "P02",
+        "P03",
+        "P07",
+        "P10"
+      ],
+      "status": "proposed_not_implemented",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "hypothesis": "A code and authenticated representation jointly preserve compact ciphertext-operator generators through complete fresh verification, reducing binding state/preparation beyond generic coded checking and row access.",
+      "falsifier": "No full-error distance, malformed owner binding, RNS-limb/projection error escapes, repeated row downloads repay all hint savings, or no new step beyond strong structured/coded controls.",
+      "initial_effort_cap_sessions": [
+        1,
+        1
+      ],
+      "activation": "Q3 after first E82 return; mathematical/count screen before a proof backend.",
+      "proposed_source_paths": [
+        "experiments/bfv_search_lab/coded_operator_oracle.py",
+        "experiments/bfv_search_lab/test_coded_operator_oracle.py",
+        "benchmarks/coded_operator_lab.py"
+      ],
+      "mandatory_controls": [
+        "E72 complete direct-fresh gate",
+        "Maverick coded verification plus ordinary authenticated row access",
+        "Dumas–Zucca structured verification",
+        "Small-state vLHE and owner-approved registration",
+        "Rogue only for authenticated lookup, with a separate evaluation proof",
+        "Full and compressed authorized caches"
+      ],
+      "next_gate": "Q4/R6 after all-error oracle and full ledger; no proof/kernel port without a concrete new step."
+    },
+    {
+      "id": "E84",
+      "decision_task": "R5",
+      "work_packages": [
+        "P02",
+        "P07",
+        "P10"
+      ],
+      "status": "proposed_not_implemented",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "hypothesis": "Shared exact carry/conversion and complete coverage across packed Hamming scores can reduce full score-to-stable-top-3 cost beyond known key-value counting/tournament selection.",
+      "falsifier": "IDs or omitted-row coverage missing, unsafe tie/carry/overflow behavior, paid nonlinear conversion dominates, or generic counting/OMR alone explains the result.",
+      "initial_effort_cap_sessions": [
+        1,
+        1
+      ],
+      "activation": "Conditional Q5: E82/E83 stop or a selected system demonstrates all-score reply as dominant cost; separate exact-top-3 contract first.",
+      "proposed_source_paths": [
+        "experiments/bfv_search_lab/exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py",
+        "benchmarks/exact_bucket_release_lab.py"
+      ],
+      "mandatory_controls": [
+        "RevoLUT key-value top-k",
+        "Strong tournament/network selection",
+        "Full-score download plus stable local top-3",
+        "SophOMR after paid predicate",
+        "NOMOS/CKKS only under separate approximate contract",
+        "E19/E21/E23/E39 dense-tie, ID, coverage, overflow and round-trip negatives"
+      ],
+      "next_gate": "Return to Q4/R6 with complete score/query/index/coverage relation and counts; no TFHE/native port before survival."
     }
   ],
-  "revision": "construction return after E80/E78/E81 and isolated E79; proposed E82 correlation interface",
-  "planning_evidence_commit": "0d12afd5e0cdb7171a282fdfccc53087caff816b",
-  "planning_evidence_tag": "checkpoint/query-mechanism-screens-2026-10-01",
+  "revision": "post-revalidation contribution strategy: E82 token/direct interfaces, E83 coded structure, conditional E84 exact selection",
+  "planning_evidence_commit": "f1b755254cfe148868f43ce9df0113650500c528",
+  "planning_evidence_tag": "checkpoint/measurement-revalidation-2026-10-01",
   "historical_plan": "docs/research/publication-research-plan-through-e65.md",
   "mechanism_specifications": "docs/research/publication-mechanism-agenda.md",
   "initial_critical_path": [
@@ -923,6 +1007,7 @@
     "go_or_pivot"
   ],
   "planning_revision_is_implementation": false,
+  "plan_review_scope_note": "The singular plan_review below is the preserved earlier review. The latest review is the final entry in planning_reviews; its proposed execution is current_packet_queue.",
   "decision_tasks": [
     {
       "id": "R0",
@@ -1058,8 +1143,10 @@
         "R2"
       ],
       "completed_scope": "Projected dense, packed canonical-query and seed-affine controls completed; new certified offset/outer admissible construction unresolved. E80 module closure/paid retained-H fixture and ten-profile ledger completed; literal fallback stopped as universal winner. E78 typed relation/independent traces/three-interface ledger complete; no proof backend or new mechanism. E81 global bounded-alias exactness control completed; known-method conditional adapter without proof backend.",
-      "subcomponent_return_decision": "E80/E78/E81 returned to R6. Stop literal retained-H as universal winner and generic composition as originality. Retain E81 scoped exactness lemma. Next proposed E82 paid correlation screen; no proof port before a new viable step.",
-      "effort_cap_scope": "Per initial E80/E78 construction card; E81 one conditional mathematical screen"
+      "subcomponent_return_decision": "Q3/E83; earlier E80/E78/E81 returns unchanged; no new experiment executed or assurance gate accepted in the 2026-10-02 planning revision.",
+      "effort_cap_scope": "Per initial E80/E78 construction card; E81 one conditional mathematical screen",
+      "current_specification": "docs/research/contribution-plan-20261002.md",
+      "current_packet_scope": "Q3/E83; earlier E80/E78/E81 returns unchanged"
     },
     {
       "id": "R4",
@@ -1090,7 +1177,9 @@
         "docs/research/programmed-mask-block-results.md"
       ],
       "completed_scope": "Generic triples and one-level public-code programmed masks screened; secret/recursive/block-preserving fixed-matrix generation unresolved.",
-      "subcomponent_return_decision": "Earlier generic-triple/public-code recipes remain stopped. Next proposed E82 specifies paid fixed-M authenticated token functionality and noiseless span negative before HE integration; compare actual small row matrices."
+      "subcomponent_return_decision": "Q1/Q2/E82-T and E82-D after Q0; no new experiment executed or assurance gate accepted in the 2026-10-02 planning revision.",
+      "current_specification": "docs/research/contribution-plan-20261002.md",
+      "current_packet_scope": "Q1/Q2/E82-T and E82-D after Q0"
     },
     {
       "id": "R5",
@@ -1114,7 +1203,9 @@
       ],
       "acceptance": "Stable IDs/ties/coverage and full conversion/round/proof costs versus all-score and known selection/compression controls.",
       "acceptance_met": false,
-      "evidence": []
+      "evidence": [],
+      "current_specification": "docs/research/contribution-plan-20261002.md",
+      "current_packet_scope": "Conditional Q5/E84, distinct output contract"
     },
     {
       "id": "R6",
@@ -1149,12 +1240,14 @@
         "docs/research/construction-selection-20261001.md"
       ],
       "completed_scope": "Finite selection reviews through E81 and isolated E79 completed. No selected original useful complete mechanism. Scoped stops and next E82 interface/negative/count allocation documented.",
-      "subcomponent_return_decision": "Retain company baseline and E81 semantic building block; pivot to R4/E82 with one bounded contract/count screen and conditional concrete adapter. R5 exact-top-3 alternate needs separate output/coverage contract.",
+      "subcomponent_return_decision": "Q4 after finite competing screens; revisit after Q5 if activated; no new experiment executed or assurance gate accepted in the 2026-10-02 planning revision.",
       "interim_construction_review_dependencies": [
         "R0",
         "R3"
       ],
-      "dependencies_note": "Existing R1/R2/R3 dependencies govern full acceptance. Interim construction reviews do not assert deployment viability and may precede R2 completion."
+      "dependencies_note": "Existing R1/R2/R3 dependencies govern full acceptance. Interim construction reviews do not assert deployment viability and may precede R2 completion.",
+      "current_specification": "docs/research/contribution-plan-20261002.md",
+      "current_packet_scope": "Q4 after finite competing screens; revisit after Q5 if activated"
     },
     {
       "id": "R7",
@@ -1180,7 +1273,9 @@
       ],
       "acceptance": "Gates C/D and independent key-proof/parameter review for the selected scope; inactive packages are not marked complete.",
       "acceptance_met": false,
-      "evidence": []
+      "evidence": [],
+      "current_specification": "docs/research/contribution-plan-20261002.md",
+      "current_packet_scope": "Q6–Q10 after a selected viable mechanism"
     }
   ],
   "plan_review": {
@@ -1192,16 +1287,29 @@
   },
   "proposal_fields_note": "Original proposed_experiments/proposed_experiment_ids retain historical allocations; current status and actually executed scopes are in executed_experiment_scopes and decision_tasks.",
   "latest_execution_source_commit": "6390ffbf6e951f49d43d12277d2efb8713b9057a",
-  "current_execution_handoff": "docs/research/mechanism-execution-handoff-20261001.md",
-  "current_selection_review": "docs/research/construction-selection-20261001.md",
+  "current_execution_handoff": "docs/research/contribution-plan-20261002.md",
+  "current_selection_review": "docs/research/contribution-plan-20261002.md",
   "planning_revision_history": [
     {
       "revision": "bounded mechanism and enrolled-service execution through E77",
       "evidence_commit": "6207455db8d86fbe1394d3ef2294fe8e0c877163",
       "selection_review": "docs/research/publication-mechanism-review-20261001.md"
+    },
+    {
+      "revision": "construction return after E80/E78/E81 and isolated E79; proposed E82 correlation interface",
+      "evidence_commit": "f1b755254cfe148868f43ce9df0113650500c528",
+      "selection_review": "docs/research/construction-selection-20261001.md",
+      "planning_validation": "docs/research/contribution-plan-validation-20261001.json",
+      "critical_path": [
+        "R0",
+        "R3",
+        "R6",
+        "R7 if selected mechanism passes gates"
+      ],
+      "primary_question": "Can subring/module structure survive the full verified owner-encrypted linear evaluation protocol and reduce total registration or trusted work without larger hidden query/packing/release costs? Competing composed seed/answer proof; exact outputs and observable rejection."
     }
   ],
-  "current_construction_specification": "docs/research/construction-hypotheses-20261001.md",
+  "current_construction_specification": "docs/research/contribution-plan-20261002.md",
   "independent_evaluation_requirement": "E79 finite local private-bootstrap/independent-resource scope is complete; full R2/Gate C still requires scale, WAN, updates, concurrency, justified parameters and assurance. No cache restriction inferred.",
   "planning_reviews": [
     {
@@ -1213,8 +1321,20 @@
       "new_primary_pdfs_pinned": 4,
       "total_pinned_primary_pdfs": 32,
       "accepted_new_mechanisms": 0
+    },
+    {
+      "date": "2026-10-02",
+      "report": "docs/research/closest-work-comparison-20261002.md",
+      "execution_plan": "docs/research/contribution-plan-20261002.md",
+      "evidence_commit": "f1b755254cfe148868f43ce9df0113650500c528",
+      "scope": "Planning and targeted primary-source reassessment only; eight PDF/text sources pinned, no new performance or security result",
+      "new_experiments_run": 0,
+      "new_primary_pdfs_pinned": 8,
+      "total_pinned_primary_pdfs": 40,
+      "accepted_new_mechanisms": 0
     }
   ],
+  "construction_candidates_scope_note": "Historical H1-H3 decisions through E81 are retained below. Current unimplemented candidates are E82-E84 in next_experiment_proposals and current_packet_queue; do not restart a stopped historical candidate from its old priority.",
   "construction_candidates": [
     {
       "id": "H1",
@@ -1258,7 +1378,7 @@
     "optional": "untrusted server-generated registration; additional extraction/binding/auxiliary-key obligations",
     "scope": "Separate trust and cost rows. The initial retained-H module-LHE transcript is a known-composition control, not a new primitive."
   },
-  "current_planning_validation": "docs/research/contribution-plan-validation-20261001.json",
+  "current_planning_validation": "docs/research/contribution-plan-validation-20261002.json",
   "current_execution_validation": "docs/research/construction-execution-validation-20261001.json",
   "current_execution_manifest": "docs/research/publication-construction-execution-manifest-20261001.json",
   "execution_reviews": [
@@ -1336,5 +1456,196 @@
     ],
     "final_typed_coverage": "../research-data/revalidation-20261001/final-typed-coverage-04.json",
     "final_numeric_analysis": "../research-data/revalidation-20261001/analysis-final-followups-04.json"
-  }
+  },
+  "current_packet_queue": [
+    {
+      "id": "Q0",
+      "title": "Paid closest-control cards",
+      "status": "ready_next",
+      "dependencies": [],
+      "work_packages": [
+        "P00",
+        "P01",
+        "P07"
+      ],
+      "acceptance": "Actual dimensions, parties, complete objects/costs and exact mode of two closest controls; review already read, quantitative adapters remain.",
+      "activation": "Always next; bounded one-session contract/count extraction.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q1",
+      "title": "E82 contract and counts",
+      "status": "planned",
+      "dependencies": [
+        "Q0"
+      ],
+      "work_packages": [
+        "P03",
+        "P07",
+        "P10"
+      ],
+      "acceptance": "Separate T/D interfaces, one specified new step, full recipient/distribution/cost ledger.",
+      "activation": "One session; stop known-only/dense-correction recipes.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q2",
+      "title": "E82 oracle and return",
+      "status": "planned",
+      "dependencies": [
+        "Q1"
+      ],
+      "work_packages": [
+        "P02",
+        "P03",
+        "P07"
+      ],
+      "acceptance": "Independent tiny-field leakage/projection tests and complete actual-block ledger, or scoped negative.",
+      "activation": "One session after Q1 plausibility; return to R6.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q3",
+      "title": "E83 coded-operator screen",
+      "status": "planned",
+      "dependencies": [
+        "Q0",
+        "Q2"
+      ],
+      "work_packages": [
+        "P02",
+        "P03",
+        "P07"
+      ],
+      "acceptance": "All-error code/owner-binding oracle and full access/communication/state ledger, or scoped negative.",
+      "activation": "One algebra plus one ledger session, before main selection.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q4",
+      "title": "Select one mechanism",
+      "status": "planned",
+      "dependencies": [
+        "Q2",
+        "Q3"
+      ],
+      "work_packages": [
+        "P04",
+        "P06",
+        "P07",
+        "P12"
+      ],
+      "acceptance": "Concrete closest-work delta, conditional lemmas, primary resource and held-out preregistration; or no-survivor decision.",
+      "activation": "One R6 session; reassess after conditional Q5.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q5",
+      "title": "E84 exact selection fallback",
+      "status": "conditional",
+      "dependencies": [
+        "Q4"
+      ],
+      "work_packages": [
+        "P02",
+        "P07",
+        "P10"
+      ],
+      "acceptance": "Complete score/bucket/ID/tie/coverage relation and conversion counts against strong selector.",
+      "activation": "Only if E82/E83 stop or all-score traffic is shown dominant; return to Q4 without redefining its earlier result.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q6",
+      "title": "Complete homemade reference",
+      "status": "conditional",
+      "dependencies": [
+        "Q4"
+      ],
+      "work_packages": [
+        "P03",
+        "P05",
+        "P08"
+      ],
+      "acceptance": "Enrollment/query/evaluate/verify/release, exact independent outputs and malformed/adaptive state tests.",
+      "activation": "A selected viable mechanism and concrete primitives; no unlabeled ideal proof.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q7",
+      "title": "Native and optional CUDA",
+      "status": "conditional",
+      "dependencies": [
+        "Q6"
+      ],
+      "work_packages": [
+        "P06",
+        "P09"
+      ],
+      "acceptance": "Paired reference agreement and full protocol profiling; kernel work addresses measured bottleneck.",
+      "activation": "No acceleration of an unpaid/invalid interface.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q8",
+      "title": "Security and assurance closure",
+      "status": "conditional",
+      "dependencies": [
+        "Q0"
+      ],
+      "work_packages": [
+        "P07",
+        "P08"
+      ],
+      "acceptance": "Actual transcript reduction, parameter and private-implementation review; no secret release before matching gate.",
+      "activation": "Lemmas begin Q1/Q3; closure follows selected reference/native implementation.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q9",
+      "title": "Matched system evaluation",
+      "status": "conditional",
+      "dependencies": [
+        "Q4",
+        "Q6"
+      ],
+      "work_packages": [
+        "P01",
+        "P06",
+        "P11"
+      ],
+      "acceptance": "Preregistered process blocks, complete lifecycle/resources/network/cache/strongest-competitor ablations.",
+      "activation": "Pilot chooses final sample; experimental parameter points remain labeled until Q8.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    },
+    {
+      "id": "Q10",
+      "title": "Paper and artifact",
+      "status": "conditional",
+      "dependencies": [
+        "Q8",
+        "Q9"
+      ],
+      "work_packages": [
+        "P11",
+        "P12"
+      ],
+      "acceptance": "One contribution with source/lemma/raw claim map, limitations and reproducible checkpoint.",
+      "activation": "Only claims whose applicable gates pass; retain negative result if no winner.",
+      "specification": "docs/research/contribution-plan-20261002.md",
+      "implemented": false
+    }
+  ],
+  "current_packet_next": "Q0",
+  "packet_return_policy": "After each packet record hypothesis, result classification, immutable evidence, closest-work difference, pass/stop and next queue item; revisit earliest unmet gate. Q4 can be revisited after Q5; this is a new decision record, not rewritten earlier evidence."
 }

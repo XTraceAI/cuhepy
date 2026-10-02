@@ -541,3 +541,39 @@ archive: `checkpoint/mechanism-screens-2026-09-30`. The
 ten additional raw result receipts alongside the historical59, with separate
 author source/executable/log dependencies. Both manifests are verified.
 No production-source difference from `02e06c0`; main/staging untouched.
+
+
+## 2026-10-02 — contribution strategy after the completed revalidation
+
+**Completed scope: planning/literature review only.** Evidence remains
+`f1b755254cfe148868f43ce9df0113650500c528` and
+`checkpoint/measurement-revalidation-2026-10-01`; no new experiment,
+implementation, reduction or accepted originality/security gate is claimed.
+
+The [new closest-work comparison](closest-work-comparison-20261002.md) adds
+eight hash-pinned primary PDFs (40 total), preserving all 32 prior source
+entries. It adds Maverick including private M, Ring-LWR/secret-replication PCFs,
+structured matrix verification, RevoLUT counting-sort selection, Rogue,
+authenticated incremental PIR and NOMOS. Targeted reading and unavailable/
+unexecuted adaptations stay explicit; no new author artifact was run.
+
+The [execution plan](contribution-plan-20261002.md) asks for joint amortization
+of privacy and verification for the actual fixed thin/block operator. It keeps
+E82 first, now separates a compatible token adapter from a direct field-output
+backend, and proposes E83 code/operator verification as a competing screen.
+E84 exact bucket/tie/coverage selection is conditional. All three are
+unimplemented. Generic compositions, coded checks, counting sort and a larger
+optimizer are not labeled original. Earlier scoped negatives remain stopped.
+
+The fresh measurement findings govern controls: include Paillier lookup hybrid;
+do not pool the separate BGV fixture; retain E27 GPU ties, vectorized factory
+negatives and permitted caches. Complete lifecycle, private setup/state,
+authentication and parameter premises precede any performance claim.
+
+**Return / next:** Q0 paid closest-control cards at the real matrix geometry,
+then Q1/Q2 E82 contract/count and independent oracle, Q3 E83, Q4/R6 selection.
+Q5/E84 is a conditional fallback. Reference/native/security/evaluation/paper
+packets follow a survivor. Every packet must append evidence and return here.
+Broad P-package acceptance remains unmet. Planning validation is recorded in
+[the dated receipt](contribution-plan-validation-20261002.json); earlier
+execution/test receipts and production crypto are unchanged.
