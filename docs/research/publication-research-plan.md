@@ -15,6 +15,22 @@ retained at `b60a715`. New bounded R0–R4/E70–E77 controls are recorded in th
 [E77 selection review](publication-mechanism-review-20261001.md).
 These are executed oracles/pilots, not a new complete cryptographic protocol
 or security approval.
+The owner's measurement concern is addressed by the finite monitored serial
+[revalidation](measurement-revalidation-20261001.md). Its final accounting
+separates current-source confirmations, recovered recorded nonbinary source
+closures with new binaries/runtime, deterministic counts and dependency models,
+instrumented correctness and unresolved historical inputs. Failed and
+resource-qualified attempts remain visible. Timing-dependent decisions use
+matching fresh evidence and complete cost boundaries. The audit identifies no
+historical background workload as the cause of a timing difference, and accepts
+no security or production gate. E82 remains the next construction screen;
+historical counts and receipts remain frozen.
+The separately regenerated BGV owner-index layout models change 25/63 choices
+at 8k and 17/63 at 32k, primarily terminal precision. Refresh experimental
+routing reports from the matching all-precision CUDA-server panels; no
+production/runtime code consumes these saved reports. They model nominal
+links and incomplete setup floors, so they do not select a WAN/security winner
+or change the publication models' unrelated dependency graph.
 The [preceding plan, through E65](publication-research-plan-through-e65.md)
 retains the original hypotheses, gates and execution amendments unchanged.
 
@@ -189,7 +205,8 @@ The [E01–E40 synthesis](research-synthesis-and-system-roadmap.md),
 
 | Experiment family | Strongest relevant observation | Planning consequence |
 |---|---|---|
-| E01–E08, E26/E27 | Homemade CPU/CUDA and shallow BGV are strong foundations. Mushroom CPU roughly 639–640 → 206–214 ms, CUDA roughly 53.5–54.3 → 50.9–51.1 ms on the historical paired scope | Preserve the fast backend; a CPU algebra gain may leave GPU, client and wire costs dominant |
+| E01–E08; E26/E27 vs full baseline | Homemade CPU/CUDA and shallow BGV remain useful company foundations. Matching-controller repeats retain large CPU gains; complete local CUDA improvements are smaller than server-stage arithmetic gains. The audit supplies source/workload/toolchain and stage/elapsed boundaries | Preserve the backend; price client, framing, preparation and authentication separately from server arithmetic |
+| E27 allocated vs repair32 | Five matching-controller fixed-split CUDA local stage-sum ratios are 1.00153 [0.99966,1.00340] and 1.00075 [0.99980,1.00171]. Both provisional independent-block intervals cross a tie; the mixed-controller all-six view is sensitivity | No established complete-query CUDA preference; do not promote a sub-percent ordering as a new winner |
 | E10/E19–E25/E39 | Lookup, filtering, moments and residual hints expose coverage, selection, extra-round or local-state costs; complete two-round refinement lost | A new selection proposal must solve the previously measured bottleneck, not repeat a filter-count argument |
 | E29–E37 | Trusted fresh correlations make the online ciphertext circuit linear; field/geometry choices and native checking help | The main unresolved cost is the entire preparation/release protocol; hiding it in an offline column is not a contribution |
 | E30/E31 | About 69–71% query-body reduction becomes only about 0.4–0.5% less total online traffic, with worse CPU/state | Optimize the actual dominant term |
@@ -355,12 +372,28 @@ process runs and disjoint tuning/test splits. Do not report p95 from three
 samples. Quote each security/profile tuple beside its point.
 
 Baseline ladder: (1) raw/compressed authenticated cache and ordinary deltas;
-(2) Paillier CPU/lookup/CUDA and homemade general BFV/BGV CPU/CUDA;
+(2) Paillier CPU, lookup CPU, all-CUDA and GPU-client/CPU-server lookup hybrid,
+plus homemade general BFV/BGV CPU/CUDA;
 (3) strongest direct-fresh BGV/full gate and E48/E64 controls;
 (4) original EMVP and compatible recursive/vLHE constructions;
 (5) relevant terminal compression or exact-selection construction.
 HBC, conditional private-gate, full malicious-proof and actual-attested modes
 receive separate panels. An author-reported number is never a local point.
+
+Compare compatible variants within the same fixture and complete elapsed
+boundary, disclose client/server hardware, setup and actual serialized bytes,
+and retain nonwinning configurations. Smaller BFV/BGV responses do not imply
+lower total computation or uniformly lower local latency than every Paillier
+configuration. The matched 8k BFV/Paillier repeat makes the lookup hybrid a
+required strong baseline. BGV's separate 8k fixture and authenticated
+service/cache panels remain separate studies. Parameters, trust modes and
+starting states do not imply equal security or equivalent deployment.
+
+The next larger-workload comparison must include matched Paillier lookup
+hybrid: the same corpus, queries, count/dimension, complete latency,
+authentication and lifecycle accounting, with CPU-server/GPU-client costs
+disclosed. Do not extrapolate its 8k latency to unmeasured geometries or insert
+unrelated synthetic calibrations into the publication cost models.
 
 ## 7. Security argument to develop with the selected mechanism
 

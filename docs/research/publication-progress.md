@@ -1,5 +1,49 @@
 # Publication research execution log
 
+## 2026-10-01: finite measurement revalidation closed with explicit limits
+
+The predefined serial measurement audit and explicit coverage accounting are
+documented in [the report](measurement-revalidation-20261001.md). The final
+comparison has 272 successful measurement/model outer receipts, 290 normalized
+observations, 297 pairs and one separate new study. Compared identities cover
+215 of 224 primary historical JSONs; the nine remaining typed controls, 29
+additional JSONs and three supplemental artifacts are accounted separately.
+The suite and optional SEAL BGV oracle give 1,965 unique passing cases; one live
+Nitro check is unavailable. Overlapping native/helper executions do not inflate
+that count.
+
+Large CPU reductions survive. E27 allocated/repair32 complete CUDA differences
+remain near ties in five matching-controller process blocks. The matched 8k
+BFV/Paillier comparison includes the stronger GPU-client/CPU-server lookup
+hybrid: 344.524 ms versus prepared BFV's 395.213 ms local elapsed. BFV still
+has a 20.63× smaller response and 4.49× smaller query plus response in that
+fixture. Payload and elapsed-time advantages remain separate. BGV's different
+8k fixture is its own experiment. Strong vectorized/plaintext, paid-factory
+and permitted-cache controls remain mandatory.
+Separate offline owner-index BGV models retain geometry/payload formulas but
+change 25/63 and 17/63 layout/terminal-precision rankings at 8k/32k. Refresh the
+research routing reports from matching CUDA panel costs; no production/runtime
+consumer uses the saved reports. The frontier oracle semantics remain exact.
+
+Twenty archived jobs check their recorded nonbinary source requirements with
+fresh GCC13/CUDA12.9 binaries and recorded current dependencies; 22 jobs check
+current implementations at retained geometries. Two exact historical dirty
+source closures remain unavailable. All 42 jobs passed their common final
+accounting; a bounded radix8k resource repeat completed cleanly and passed a
+separate 37-gate review. Its original failed declaration-only bookkeeping
+receipt remains intact. Resource flags and unsuccessful attempts are retained;
+telemetry does not certify hardware exclusivity. Source/runtime epochs remain
+separate. No earlier background workload is identified as the cause of a
+timing difference; no security-equivalent parameter or production gate follows.
+
+**Return decision:** preserve the company backend, exact algebra and negative
+controls. No complete original paper mechanism is selected. Next proposed
+E82 remains the paid authenticated fixed-private-M correlation/token interface,
+with a contract/negative/count screen before a conditional primitive adapter.
+Require a matched larger-workload Paillier lookup hybrid baseline. Final
+integrity and source/raw/log retention are recorded with the audit checkpoint;
+historical documents and main/staging remain unchanged.
+
 ## 2026-10-01: E79 completion and R6 construction/pivot decision
 
 [E79 report](isolated-enrolled-service-control.md) retains smoke/pilot/final/
