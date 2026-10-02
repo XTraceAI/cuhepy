@@ -651,3 +651,62 @@ All 276 binary diagonals are checked; 270 nonconstant maps leave compact ring al
 Four more primary PDFs are cached with hashes (**53** total), including odd-domain p-encoding and high-precision/Meta-PBS. Targeted algorithm/theorem reading is separate from full proof audit and artifact execution. **R6 return:** keep exact controls; [Q16/E90](orbit-remainder-trace-plan-20261002.md) now specifies tie-aware shared orbit remainder/packing authentication against strongest hoisted/Meta-PBS/proof controls. No original complete main mechanism is selected.
 
 This tranche adds **62** scoped tests (139 including the prior 77), three handmade reference interfaces, three exact/count runners and immutable results. Earlier performance/revalidation evidence and production code are unchanged. All 139 tests and explicit Ruff checks on the nine new Python files pass. [Identity/preservation validation](batched-score-execution-validation-20261002.json) and [source/result/archive manifest](publication-batched-score-execution-manifest-20261002.json) record six repeat receipts, all 53 primary PDF/text pairs and the preserved prior acceptance gates. The checkpoint is `checkpoint/batched-score-interfaces-2026-10-02` on branch `experiment/batched-score-bridge-20261002`; the workspace checkpoint folder retains its Git bundle, source and paper/cache archives.
+
+
+## 2026-10-02 — Q16/E90 reading, carry/grid oracle and count returns
+
+[Full public remainder screen](orbit-remainder-trace-screen.md): 3,976 signed
+multi-stage chains, 89,856 whole integer phases and 439,164 complete public
+step cells; 196 corrupted transcripts rejected before any private callback.
+Twenty-nine new scoped tests pass. The receiver pays owner-approved original
+components and full recomputation; it proves no upstream score/PBS/ID relation.
+
+The rounded odd-source grid has exactly 2*floor((Q+L)/(2L)) half residues,
+with zero ties iff Q<L, under the stated dyadic/odd assumptions. The proof
+and independent interval/residue oracles agree on 2,304 grids/152,064 values.
+Different-stage half sets are disjoint. These are derived restricted arithmetic
+results, with priority and a useful complete-system consequence unestablished.
+
+Ninety-six paid hoisting cards give the strong standard control identical reuse;
+64 modeled grid cards give uniformly no ties in 22/32 B64 and 32/32 B128 cases.
+No latency, real cipher distribution or approved parameter claim follows.
+**R6 return:** retain exact controls, stop generic hoisting novelty claims,
+then [Q17/E91](quadratic-drift-plan-20261002.md) tests a deterministic
+dependent-secret drift certificate against exact drift and canonical norms.
+Prior raw measurements, acceptance gates and production code are unchanged.
+
+
+## 2026-10-02 — Q17/E91 derived-secret drift and certificate returns
+
+[Quadratic drift screen](quadratic-drift-screen.md) completes the next bounded
+packet: 6,642 schoolbook/GMP products, 342 all-k Gram and 360 dense/polynomial
+trace identities, 39,096 all-secret bound inequalities, 17,496 whole rounding
+cases and 56 corrupted certificates rejected before callback. A fresh local
+homemade BGV product agrees at every coefficient. Thirty-one new tests pass.
+
+The exact all-k signed quadratic identity and upward integer moment roots
+yield a sound deterministic certificate for the actual S/S-squared relation.
+Forty-six of 96 synthetic cards tighten a strong pair-box bound; full-secret
+uniform cards tighten it by 12.24–32.98×. These are bound ratios, not speed,
+traffic or secure parameter gains. The canonical norm is tighter, and no
+specified sufficient original-q synthetic lookup margin passes. No new
+complete authenticated selector or original main mechanism is accepted.
+
+Three more primary PDF/text pairs are hash-pinned (**56 total**). Public exact
+drift, dependent-secret rounding and canonical norms are recorded as closest
+known controls. No author artifact or full proof/parameter audit is claimed.
+**R6 return:** keep useful homemade integer certificates; next
+[Q18/E92](partial-packed-switch-plan-20261002.md) tests actual low-C2 switching
+omission with mixed source/target keys, exact rounding and complete costs.
+The B64/q64 zero-mask obstruction is an explicit falsifier.
+
+Both E90/E91 initial and repeat receipts retain the exact source identities.
+The combined ten-file scope has **199 passing tests**; explicit Ruff on all
+six new Python files passes. [Validation](orbit-precision-execution-validation-20261002.json)
+and [identity manifest](publication-orbit-precision-execution-manifest-20261002.json)
+pin four raw receipts, all56 papers and preservation checks. No new timing
+panels or production source changes; historical measurements and all broad
+acceptance gates remain unchanged. Intended checkpoint:
+`checkpoint/orbit-precision-interfaces-2026-10-02`, branch
+`experiment/orbit-remainder-trace-20261002`; its workspace archive retains
+the Git bundle, exact source and literature/cache dependencies.

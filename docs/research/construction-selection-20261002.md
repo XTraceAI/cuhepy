@@ -1,4 +1,4 @@
-# R6 returns through Q15: share exact interfaces, pay precision and authentication
+# R6 returns through Q17: share exact interfaces, test saved switching work
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
@@ -6,7 +6,7 @@ E82/E83/E84 returns. It preserves the earlier experiments and company code.
 No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
-and the Q16 next candidate are appended below.
+and later finite returns are appended below. The active next packet is Q18.
 
 | Packet | Executed result | Decision |
 |---|---|---|
@@ -115,3 +115,46 @@ timing window, and do not replace the frozen revalidation measurements.
 **139 scoped tests** pass together. No new timing, accepted original complete mechanism, approved parameters or production gate follows. The three new reports retain exact falsifiers and conditional cost distinctions, including unsupported generic CM assumptions and unpublished seed-format adaptation. All earlier receipts/source identities and main/staging are preserved.
 
 [Q16/E90](orbit-remainder-trace-plan-20261002.md) is the next finite question: can original-coefficient signed orbits share a complete authenticated quotient/remainder/packing trace across precision iterations? Power-of-two half ties require explicit carry correction; original odd-Q gadget equivariance does not justify copying signs through all stages. Compare Meta-PBS, strongest hoisted decomposition and HasteBoots/general proof baselines first. No plaintext-score/secret-key witness is given to the server. Return here after each component; Q6 remains conditional.
+
+## Q16/E90 return and next Q17
+
+The [finite remainder screen](orbit-remainder-trace-screen.md) now completes
+that historical proposal: 3,976 signed chains, 89,856 whole integer phases,
+439,164 full public step cells, 2,304 grid cards/152,064 residues, 196 rejected
+corruptions and 29 tests. A sharp odd-grid half-count proof and the necessary
+multi-stage carry corrections survive. Generic hoisting has the same reuse;
+96 paid work cards and 64 conditional grid cards imply no new full performance
+or security result. No original complete main mechanism is selected.
+
+Next is [Q17/E91](quadratic-drift-plan-20261002.md), a deterministic public
+quadratic drift certificate exploiting the actual S/S-squared relation.
+Strong canonical-norm, exact drift, key-law, binding and complete-cost controls
+must be paid. Moment/norm identities alone are known mathematics, not an
+accepted new cryptographic primitive. Return here after each finite component.
+
+## Q17/E91 return and next Q18
+
+The [derived-secret screen](quadratic-drift-screen.md) completes the preceding
+proposal: 6,642 exact products, 342 all-k Gram identities, 360 independent
+trace equalities, 39,096 all-secret inequalities, 17,496 whole rounding cases
+and 56 rejected certificate corruptions. A fresh homemade BGV toy product
+matches the literal drift and GMP decoded coefficients. Thirty-one new scoped
+tests pass; the combined ten-file scope has 199 passing tests.
+
+The all-k H_k-squared identity supports a deterministic public certificate
+without treating S-squared as an independent ternary key. Forty-six of 96
+synthetic cards improve a strong pair-box bound, by 12.24–32.98× on full-secret
+uniform cards. Those are bound ratios, not speed or secure parameter claims.
+The exact canonical norm is stronger; no modeled original-q sufficient lookup
+margin passes. Generic norm mathematics and public drift tests are known.
+No complete new authenticated selector or original main mechanism is accepted.
+
+**Keep** the homemade GMP certificate and exact dependent-secret controls.
+**Stop** inferring useful whole performance or originality from the norm
+improvement alone. **Next:** [Q18/E92](partial-packed-switch-plan-20261002.md)
+tests whether precision can safely remove actual low C2 switching levels.
+Pay both source/target key classes, mixed (1,T,S-squared) semantics, honest
+key error, integer carries, original binding and stronger truncated/canonical
+controls. A nonzero residual cannot round away at B64 with q<2^64 under this
+condition. Return after targeted review/oracle, certificate and cost components;
+Q6–Q10 and all broad acceptance gates remain conditional.

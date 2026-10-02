@@ -1,0 +1,130 @@
+{
+  "utc": "2026-10-02T09:39:00.502150+00:00",
+  "kind": "bounded_E90_E91_identity_scope_and_preservation_validation",
+  "evidence_base_commit": "26ef5c61ede013a4a570ca1c6be1bfb0e197fa7f",
+  "scope": "Exact arithmetic/counts and scoped tests; not timing/cryptographic parameter/novelty/production assurance",
+  "validator_workspace_copy": "cuhepy-bfv-research/../research-data/orbit-precision-interfaces-20261002/validate_execution.py",
+  "validator_sha256": "47d502509dc1e8a8755536dfe81192b8465eb2423335d66ac797a9c551e7a371",
+  "environment": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]\npytest=9.0.2\ngmpy2=2.3.0\n",
+  "ruff_version": "ruff 0.15.6",
+  "manifest": {
+    "path": "docs/research/publication-orbit-precision-execution-manifest-20261002.json",
+    "sha256": "d591c5be359a18a96b2d164d21f75c36dc5a2c948f8321e397db3a354f2294a2"
+  },
+  "documents": {
+    "publication-research-plan.md": "bf97374418cf1aeaf98ded464bd29741d88760619e62e8a6725afa2e4c2ff60f",
+    "publication-progress.md": "b1c9d71acd1c65151564f2e56327a4fb44163a7dd22e4550b1eda785ffb51a94",
+    "publication-work-packages.json": "5caa0e36f3d6b9798c61dbbfc22ca896514e2d6ce40bc6a4b4b7fe82e413664f",
+    "publication-literature-sources.json": "d34976aa11382f1924993d70accb3738854c4fe0cdc56a60f42ce25a8cfc007b",
+    "construction-selection-20261002.md": "a0688f78909747da58b3e620478cb3f030dd1a8a23eea1c644cd556361f24906",
+    "prior-work-archive.md": "7ea802390b30fff486977b6256e2e628085d8361765e5b87597dec873ea608a0",
+    "orbit-remainder-closest-work-20261002.md": "f30075a3d6804d2b678b9ec53e6f9df12827196993a26d4c63eeccd4794a858f",
+    "orbit-remainder-preregistration-20261002.md": "4bd5e81605e88909d4dd9df1c99fed49fbb49b94a6160d17035e0e89c7d294c7",
+    "orbit-remainder-trace-screen.md": "9edd875d47fada2c0aed5c666ab29e9066631e1de38f47a65bbb4073ac2c982e",
+    "quadratic-drift-plan-20261002.md": "11265c39e0435eaaae809570ef76ebaf76b134eb72dc813df88cd9920aadf01f",
+    "quadratic-drift-closest-work-20261002.md": "20340b4ee062f2c9e85ec2757d834ab857f9e77a6ec5bae7aac2ece8198aa98a",
+    "quadratic-drift-screen.md": "26fda96658dc8181ce5b9a36a5b83a7d9467e96567238d8beeabae57470c00ac",
+    "partial-packed-switch-plan-20261002.md": "4530904f9e8ed6c6293d0f7f43bdbe233e63424bade3b9f3b5ac60aaf61bff5d"
+  },
+  "checks": {
+    "pytest": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "experiments/bfv_search_lab/test_secret_code_mask_oracle.py",
+        "experiments/bfv_search_lab/test_coded_operator_oracle.py",
+        "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/test_score_phase_bridge_oracle.py",
+        "experiments/bfv_search_lab/test_bgv_unit_bridge.py",
+        "experiments/bfv_search_lab/test_batched_score_bridge.py",
+        "experiments/bfv_search_lab/test_orbit_common_mask.py",
+        "experiments/bfv_search_lab/test_odd_domain_lut.py",
+        "experiments/bfv_search_lab/test_orbit_remainder_trace.py",
+        "experiments/bfv_search_lab/test_quadratic_drift.py"
+      ],
+      "exit_code": 0,
+      "passed": 199,
+      "new_tests": 60,
+      "prior_tests": 139,
+      "scope": "Ten specified CPU arithmetic/interface files; not whole repository CI",
+      "log": {
+        "path": "cuhepy-bfv-research/../research-data/orbit-precision-interfaces-20261002/pytest-scoped-199.txt",
+        "sha256": "4dce919bcc0308b366ff819d672d30eaf296831ba632061bd8b064caf9ba97cb"
+      },
+      "validator_reruns_tests": false
+    },
+    "ruff": {
+      "command": [
+        ".venv/bin/ruff",
+        "check",
+        "--config",
+        "force-exclude = false",
+        "experiments/bfv_search_lab/orbit_remainder_trace.py",
+        "experiments/bfv_search_lab/test_orbit_remainder_trace.py",
+        "benchmarks/orbit_remainder_trace_lab.py",
+        "experiments/bfv_search_lab/quadratic_drift.py",
+        "experiments/bfv_search_lab/test_quadratic_drift.py",
+        "benchmarks/quadratic_drift_lab.py"
+      ],
+      "files": [
+        "experiments/bfv_search_lab/orbit_remainder_trace.py",
+        "experiments/bfv_search_lab/test_orbit_remainder_trace.py",
+        "benchmarks/orbit_remainder_trace_lab.py",
+        "experiments/bfv_search_lab/quadratic_drift.py",
+        "experiments/bfv_search_lab/test_quadratic_drift.py",
+        "benchmarks/quadratic_drift_lab.py"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "cuhepy-bfv-research/../research-data/orbit-precision-interfaces-20261002/ruff-new-6.txt",
+        "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+      },
+      "exclusion_override": "force-exclude = false; six research Python paths explicitly checked"
+    }
+  },
+  "raw_runs_verified": 4,
+  "source_versions_verified": 16,
+  "all_initial_and_final_results_and_sources_equal": true,
+  "primary_pdf_text_pairs_verified": 56,
+  "local_links_checked": 210,
+  "prior_53_source_records_identical": true,
+  "all_historical_additional_readings_identical": true,
+  "prior_experiment_scopes_identical": true,
+  "retained_queue_fields": [
+    "tasks",
+    "decision_tasks",
+    "measurement_revalidation",
+    "gate_C_initial_targets",
+    "client_retention"
+  ],
+  "prior_progress_log_preserved": true,
+  "Q6_Q10_conditional_unchanged": true,
+  "queue_dependency_graph_acyclic": true,
+  "protected_refs": {
+    "main": "0f8522e449d00622e10f4111ac8eb89d52ca577b",
+    "staging": "eb96aa1f79a92d6b6f0c1f6389d3daadff5546be",
+    "checkpoint/batched-score-interfaces-2026-10-02": "26ef5c61ede013a4a570ca1c6be1bfb0e197fa7f",
+    "checkpoint/fixed-function-screens-2026-10-02": "d03292541b8796bbc259b033ce6581137f996f0f",
+    "checkpoint/contribution-plan-2026-10-02": "7a9a13dfb1e7f4f8c1ef112a8c2437b4aa55b9ce",
+    "checkpoint/measurement-revalidation-2026-10-01": "f1b755254cfe148868f43ce9df0113650500c528",
+    "checkpoint/verification-frontier-2026-09-30": "02e06c0f5636def284ed6864b3e208538fcb10a6",
+    "checkpoint/publication-controls-2026-09-30": "6207455db8d86fbe1394d3ef2294fe8e0c877163",
+    "checkpoint/construction-screens-2026-10-01": "66c04dc69423438220ed4eb87a09a7831bac80ab"
+  },
+  "frozen_revalidation_sha256": {
+    "analysis-final-followups-04.json": "5a2036be9b8988da2544b14a6211992ec93fb566f5383d719157ca27f7e370cd",
+    "analysis-final-followups-04.md": "1cac6c0326c6f5f8c46e432c126e694984715527505e3ac768255381f11aeae3",
+    "analysis-main209.json": "5b4b71a4ae85b158f3d441183d522b9a697f2a96e001f0bce02547e849b6c310"
+  },
+  "production_source_changes": [],
+  "accepted_original_main_mechanisms": 0,
+  "known_controls_advanced": [
+    "signed unreduced remainder/carry interface",
+    "sharp restricted odd-grid half count",
+    "all-secret derived-quadratic GMP certificate"
+  ],
+  "next_packet": "Q18/E92",
+  "next_packet_implemented": false
+}

@@ -1217,6 +1217,74 @@
       "version_note": "Primary PDF revision pinned by retrieval date and PDF/text hashes",
       "artifact_executed": false,
       "performance_reproduced": false
+    },
+    {
+      "id": "ciphertext-drift-2024-1718",
+      "url": "https://eprint.iacr.org/2024/1718.pdf",
+      "final_url": "https://eprint.iacr.org/2024/1718.pdf",
+      "retrieved_utc": "2026-10-02T08:20:18.642335+00:00",
+      "file": "ciphertext-drift-2024-1718.pdf",
+      "text_file": "ciphertext-drift-2024-1718.txt",
+      "bytes": 885558,
+      "status": "downloaded",
+      "sha256": "ed989536365d54e0edac649f3d990de592ce8313683f6f5e82af8e6cbae6723a",
+      "text_sha256": "1da34697e21b556c49e6755b7f9784ac1ed8b6b28b8574801524de0439247236",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "Drifting Towards Better Error Probabilities in Fully Homomorphic Encryption Schemes",
+      "reading_depth": "Targeted section3 definitions/propositions, section5 public quality tests and section6 premises; complete quality-test pages inspected; not a full theorem or artifact audit",
+      "passages": [
+        "Definitions3.2/3.3 and Propositions3.4/3.5",
+        "Sections5.1-5.4 and Figures5.1/5.2",
+        "Section6 probabilistic/security premises"
+      ],
+      "version_note": "ePrint extended EUROCRYPT2025 revision 2025-06-26, pinned by retrieval and PDF/text hashes; distinct author PDF was not substituted",
+      "cache_directory": "../research-data/literature-orbit-precision-20261002"
+    },
+    {
+      "id": "dependent-noise-critique-2025-1036",
+      "url": "https://eprint.iacr.org/2025/1036.pdf",
+      "final_url": "https://eprint.iacr.org/2025/1036.pdf",
+      "retrieved_utc": "2026-10-02T08:49:26.841310+00:00",
+      "file": "dependent-noise-critique-2025-1036.pdf",
+      "text_file": "dependent-noise-critique-2025-1036.txt",
+      "bytes": 739911,
+      "status": "downloaded",
+      "sha256": "800d7a5a5433af68cb51139df624ee09a9184aeac7fe5150fc150234bdb8fcce",
+      "text_sha256": "03f225f0bdbedc97da211536dcbbc973e1ccc47575e37d82f722ca77901cfabf",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "A Critique on Average-Case Noise Analysis in RLWE-Based Homomorphic Encryption",
+      "reading_depth": "Targeted abstract, section2 canonical norms, section5 Example5.1 and section6.2 degree-k BGV derived-secret rounding; complete case/figure pages inspected; not full tail/proof audit",
+      "passages": [
+        "Section2 canonical embedding and noise analysis",
+        "Section5 Example5.1 dependent products",
+        "Section6.2 Case2 rounding term tau_k*S^k"
+      ],
+      "version_note": "ePrint last revision 2025-10-29, WAHC2025; exact PDF/text hashes retained",
+      "cache_directory": "../research-data/literature-orbit-precision-20261002"
+    },
+    {
+      "id": "cyclotomic-prime-norms-2024-1587",
+      "url": "https://eprint.iacr.org/2024/1587.pdf",
+      "final_url": "https://eprint.iacr.org/2024/1587.pdf",
+      "retrieved_utc": "2026-10-02T08:49:27.567879+00:00",
+      "file": "cyclotomic-prime-norms-2024-1587.pdf",
+      "text_file": "cyclotomic-prime-norms-2024-1587.txt",
+      "bytes": 594464,
+      "status": "downloaded",
+      "sha256": "3158eb77d6aebe92d34479ed6163af34fde7b9f2fc7d82cb85ca7d50151ea4de",
+      "text_sha256": "549bc4103736d12b713673e9510abc0fdaa4fe8739374be00d9c932088783f13",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "Fully Homomorphic Encryption for Cyclotomic Prime Moduli",
+      "reading_depth": "Targeted abstract and section2.1 Definition2/Lemma1 canonical/coefficient norms; complete norm page inspected; no scheme/SEAL-artifact or parameter adoption",
+      "passages": [
+        "Abstract/context",
+        "Section2.1 Definition2 and Lemma1 norm controls"
+      ],
+      "version_note": "Primary PDF revision pinned by retrieval date and PDF/text hashes; prime-cyclotomic conditioning not transplanted to our power-of-two ring",
+      "cache_directory": "../research-data/literature-orbit-precision-20261002"
     }
   ],
   "additional_readings": [
@@ -1494,7 +1562,36 @@
         "https://fhe.org/conferences/conference-2027/call-for-presentations"
       ],
       "search_scope": "Bounded primary-source searches and targeted citation following; not an exhaustive novelty search."
+    },
+    {
+      "date": "2026-10-02",
+      "report": "docs/research/quadratic-drift-closest-work-20261002.md",
+      "plan": "docs/research/partial-packed-switch-plan-20261002.md",
+      "baseline_commit": "26ef5c61ede013a4a570ca1c6be1bfb0e197fa7f",
+      "new_primary_pdfs_pinned": 3,
+      "total_primary_pdfs_pinned": 56,
+      "new_artifacts_executed": 0,
+      "new_bounded_experiments": [
+        "E90",
+        "E91"
+      ],
+      "source_ids": [
+        "ciphertext-drift-2024-1718",
+        "dependent-noise-critique-2025-1036",
+        "cyclotomic-prime-norms-2024-1587"
+      ],
+      "additional_existing_source_reading": {
+        "meta-pbs-2025-2284": "Targeted section3 Definition3/Algorithm1/Theorems1-3, section5 Definition4/Lemmas5-6, AppendicesD/E and Table12; pages6/10/11/18/19 inspected in addition to earlier pages7/8; no full proof/parameter/artifact audit"
+      },
+      "key_change": "Exact drift and dependent-secret/canonical norm methods are strong known controls. Keep sound integer certificates; test a paid mixed-key partial-switch consequence before a new complete mechanism claim.",
+      "web_refresh": [
+        "https://eprint.iacr.org/2025/2284",
+        "https://eprint.iacr.org/2024/1718",
+        "https://eprint.iacr.org/2025/1036",
+        "https://eprint.iacr.org/2024/1587.pdf"
+      ],
+      "search_scope": "Bounded primary-source searches and targeted passages; not exhaustive priority or full proof audit"
     }
   ],
-  "execution_reading_note": "E82-E86 targeted controls; 46 primary PDFs retained. The first 40 source records remain identical to the planning checkpoint. New downloads and reading scopes are distinct from author artifact execution and proof audit."
+  "execution_reading_note": "E90/E91 targeted carry/drift/dependence/norm controls; 56 primary PDF/text pairs retained. Earlier 53 source records remain identical to the batched-score checkpoint. New reading of an old source is appended as a review record. No author artifact executed or full proof/parameter audit claimed."
 }
