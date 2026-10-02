@@ -1,4 +1,4 @@
-# R6 returns through Q20: keep exact controls, justify source and noise budgets
+# R6 returns through Q22: keep exact controls, justify source and noise budgets
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
@@ -6,7 +6,7 @@ E82/E83/E84 returns. It preserves the earlier experiments and company code.
 No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
-and later finite returns are appended below. The active next packet is Q21.
+and later finite returns are appended below. The active next packet is Q23; E95/E96 returns are appended below.
 
 | Packet | Executed result | Decision |
 |---|---|---|
@@ -220,3 +220,31 @@ aiming at an all-fixed-target-key conditional rounding guarantee without fresh
 target epochs. Rerandomization/ACER/MGF and equally shared known controls are
 strong baselines. Public seeded masks require a separate ROM/provenance argument.
 Return after each proof/oracle/cost component and stop generic known composition.
+
+## Q21/E95 and Q22/E96 returns; next Q23
+
+[E95/E96](late-owner-precision-screen.md) preserves the true-uniform rounding
+law for any fixed target key, with810000 integer identities and65 rejection
+controls. A standard equally shared zero supplies the same arithmetic/proof
+subrelation and costs: **stop generic shared-rerandomization originality**.
+Reused masks/post-coin inputs falsify the freshness premise; bounded shared
+zeros are not jointly fresh encryption and do not establish full ACER.
+
+R6 next executed a parameter prerequisite: publicly known zero suffixes give
+an exact disjoint subset of independent p-dimensional LWE samples from fresh
+owner zeros. All12 p512/p1024 profiles are sub128 in the pinned named classical
+model at4096 zeros. **Stop their128-bit design claims under that model**;
+larger supports are unapproved. The two isolated repeats agree on84 finite
+costs and4 timeouts, preserving the initial swallowed soft timer. Reproduce
+all1600 old precision points before720 larger-support tuples/8640 points.
+These are model bounds/estimates, not HE elapsed, parameter approval or an
+executed key-recovery attack; production full-ring keys remain separate.
+
+365 tests pass across16 CPU files,56 added.62 primary PDF/text pairs and the
+pinned estimator source are retained; external cost-tool execution is disclosed.
+No original complete main construction or broad gate is accepted. Next
+[Q23/E97](owner-bound-rounding-plan-20261002.md) is the missing complete known
+owner-bound stochastic-rounding control, proposed/unimplemented. Its potential
+owner-product saving precedes a truly new score/proof or correlated-query step.
+Use larger/full-ring supports and pay seeds/provenance/lifecycle/PBS/proof;
+do not repeat a stopped generic composition or claim originality from an MGF.

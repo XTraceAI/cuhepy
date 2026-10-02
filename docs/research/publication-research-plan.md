@@ -1,27 +1,27 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-02, after Q0–Q5/Q11–Q20 bounded execution**. Start with the
+Revision: **2026-10-02, after Q0–Q5/Q11–Q22 bounded execution**. Start with the
 [latest return decision](construction-selection-20261002.md) and
-[next bounded candidate](late-owner-rerandomization-plan-20261002.md). The
+[next bounded control](owner-bound-rounding-plan-20261002.md). The
 [original detailed plan](contribution-plan-20261002.md) and
 [closest-work comparison](closest-work-comparison-20261002.md) retain the
 pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** E82–E94 bounded arithmetic/count screens are implemented;
-309 scoped tests pass across fourteen specified CPU files. Known unit, packed
-switching and odd-domain controls remain intact. E93 audits source headroom
-and the finite fresh-key dependency/MGF interface, while stopping generic
-fresh-epoch composition as original. E94's conditional fixed-index/fresh-query
-source bound restores original modeled-Q quarter margin in all 40 lifetime
-cards, with 33.72–37.49x tighter phase bounds. These are arithmetic bounds,
-not speed ratios or approved parameters. Reused-target-key precision, original
-score/provenance/PBS authentication and private assurance remain separate.
-No original complete protocol or new production/security gate is selected.
-Next Q21/E95 tests late owner true-uniform rerandomization against equally
-shared strong controls. Company BFV/BGV/Paillier and SEAL references, production
-sources, frozen measurements and main/staging are preserved.
+**Current status:** E82–E96 bounded arithmetic/count and limited estimator
+screens are implemented; **365 scoped tests** pass across sixteen CPU files.
+E94 restores the modeled source headroom; E95 supplies a true-uniform rounding
+law for any fixed target key and stops generic shared rerandomization as original.
+E96's exact independent sample subset exposes sub128 classical estimates for
+all registered p512/p1024 target contexts. Larger supports are repriced but not
+security approved. These are arithmetic/count/heuristic results, not measured
+speed or an attack execution. No original complete main protocol or broad
+production/security gate is selected. **Next Q23/E97** is the missing complete
+owner-bound stochastic-rounding strong control, followed by R6 before a new
+score/proof/compressed-query construction. Company homemade BFV/BGV/Paillier,
+SEAL references, production sources, frozen measurements and main/staging remain
+preserved. Original-score/PBS authentication and private assurance stay open.
 
 ## 1. Decision
 
@@ -51,7 +51,9 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q18 | [E92 partial packed switching](partial-packed-switch-screen.md) | Exact mixed-key control survives; candidate is contained in ordinary approximate switching; inherited quarter-domain source budget is already negative |
 | Q19 | [E93 source/fresh-key family/degree controls](committed-precision-epoch-screen.md) | Correct restricted law; posterior negative and shared known control stop generic original composition |
 | Q20 | [E94 conditional adaptive-query source phase](committed-precision-epoch-screen.md) | All40 source margins restored, no new Q needed in that model; reusable target precision and complete proof remain open |
-| **Next: Q21** | [**E95 late owner zero across the fixed reply family**](late-owner-rerandomization-plan-20261002.md) | True-uniform all-fixed-key law/provenance and strongest shared controls first; proposed, unimplemented |
+| Q21/E95 | [Late owner zero, fixed-key precision](late-owner-precision-screen.md) | Exact law/receiver survives; known shared control contains generic mechanism, tiny target costs qualified by E96 |
+| Q22/E96 | [Known-prefix security and coupled precision](late-owner-precision-screen.md) | Exact independent public LWE rows; all p512/p1024 profiles sub128 in named model; larger supports repriced, unapproved |
+| **Next: Q23** | [**E97 owner-bound stochastic rounding**](owner-bound-rounding-plan-20261002.md) | Missing strong known baseline before original proof/query construction; proposed, unimplemented |
 
 The [detailed plan](contribution-plan-20261002.md) specifies algebra, candidate
 representations, proposed paths, controls, stop conditions, phase budgets and
@@ -129,15 +131,15 @@ state. Measure full elapsed, endpoint work and memory separately.
 
 ## 4. Execution queue and gates
 
-**Next:** Q19/E93, first audit source headroom and valid full-domain/changed-
-context controls, then targeted review and a proof-first finite epoch/dependency
-screen. Return to Q4/R6 after each component. Q0–Q5 and Q11–Q18
-have completed bounded scopes; no original main mechanism is selected. Q6
-reference, Q7 native/CUDA, Q8 security, Q9 matched evaluation and Q10 paper/
-artifact remain conditional on actual unmet selection/assurance gates.
-The detailed queue and per-packet acceptance tests are in
-[plan §7](contribution-plan-20261002.md#7-execution-order-and-the-return-to-plan-rule)
-and `current_packet_queue` in the machine tasks.
+**Next:** Q23/E97, primary randomized-rounding review/preregistration, exact
+fixed-input coin/order law, full diagnostic subrelation and paid strongest
+shared-control comparison. Return to Q4/R6 after each component. Q0–Q5 and
+Q11–Q22 have completed bounded scopes; no original main mechanism is selected.
+Q6 reference, Q7 native/CUDA, Q8 security, Q9 matched evaluation and Q10 paper/
+artifact remain conditional on unmet selection/assurance gates. The detailed
+queue and acceptance tests are in [plan §7](contribution-plan-20261002.md#7-execution-order-and-the-return-to-plan-rule)
+and `current_packet_queue` in the machine tasks. Larger target support and
+precision must be coupled; a p512 arithmetic win is not an equal-security result.
 
 After **each** packet: log hypothesis, result classification, source/evidence,
 closest-work difference, pass/stop and next action; update the queue; return to
@@ -159,14 +161,14 @@ P package. Keep prior E IDs and stopped recipes unchanged.
 The primary research question can survive a failed recipe. A generic composition
 or a faster known implementation remains useful engineering, without passing B.
 
-The [latest execution receipt](partial-switch-execution-validation-20261002.json) and
-[identity manifest](publication-partial-switch-execution-manifest-20261002.json)
-record E92 and the current source/headroom qualification; the orbit-precision,
-fixed-function and batched-score receipts retain earlier
-execution scopes, and original planning-only validation is historical.
-The [paper archive](prior-work-archive.md) links **58 hash-pinned PDFs** with
-extracted text, reading scopes and artifact status. Preserve prior measurements
-and source versions; a download or targeted reading is not a complete proof audit.
+The [latest execution receipt](late-owner-execution-validation-20261002.json)
+and [identity manifest](publication-late-owner-execution-manifest-20261002.json)
+record seven E95/E96 raw results and exact sources. Earlier source-lifetime,
+partial-switch, orbit-precision, fixed-function and batched-score receipts retain
+their historical scopes. The [paper archive](prior-work-archive.md) links
+**62 hash-pinned PDF/text pairs**, with reading and artifact status. The pinned
+external estimator source is archived separately; its execution is not an HE
+protocol/performance reproduction. Targeted reading is not a full proof audit.
 
 ## 5. Development, evaluation and proof
 
@@ -217,7 +219,7 @@ unchanged.
 
 ## 7. Latest execution return and paper controls
 
-Q13–Q15 completed their finite sessions with [validation](batched-score-execution-validation-20261002.json) and [source/result manifest](publication-batched-score-execution-manifest-20261002.json), which pin the then-53 PDF/text pairs. Q16/Q17's [checkpoint receipt](orbit-precision-execution-validation-20261002.json) pins 56 pairs. The [primary archive](prior-work-archive.md) now retains **58 pairs**, adding approximate CRT decomposition and mean compensation. Targeted reading, complete proof audits and reproduced author artifacts are separate statuses.
+Q13–Q15 completed their finite sessions with [validation](batched-score-execution-validation-20261002.json) and [source/result manifest](publication-batched-score-execution-manifest-20261002.json), which pin the then-53 PDF/text pairs. Q16/Q17's [checkpoint receipt](orbit-precision-execution-validation-20261002.json) pins 56 pairs. The [primary archive](prior-work-archive.md) now retains **62 pairs**, including source/dependency and HE security controls; each earlier receipt retains its own archive count. Targeted reading, complete proof audits and reproduced author artifacts are separate statuses.
 
 E88's exact signed orbit view is a useful interface: block masks reuse canonical slot-key rows and a public partial-key support union. It does not turn slot-diagonal/nonlinear operators into ring multipliers. E89 supplies a full odd-domain test vector, with a stricter margin. Increasing Q does not remove the final componentwise rounding floor. Reviewed probabilistic/high-precision methods can beat the worst-case control; the next candidate must include their actual key, noise, packing and proof premises.
 
@@ -246,10 +248,30 @@ The inherited source bound itself exhausts the chosen quarter-domain budget,
 so the larger zero-pass cards cannot rank switching methods. All 2,430 small
 mixed-key cases and one fresh trusted BGV differential pass their exact checks.
 
-Q19/E93 now starts with that source-budget prerequisite, then investigates a
+Q19/E93 completed that source-budget prerequisite, then investigated a
 committed finite precision family before a fresh target-key epoch. Its first
 question is an actual dependency/order proof for statistical bounds under
 malicious postselection and feedback. A Gaussian substitution or a standard
 fresh-key composition alone is not a contribution. Every epoch, extra RTT,
 owner key preparation, complete proof and permitted cache is paid. Keep useful
 company interfaces while returning to R6 after each result; Q6 is conditional.
+
+E93 stops generic fresh-epoch originality, while E94's conditional fixed-index/
+fresh-query source law restores all40 original modeled-Q margins. E95 then
+proves a restricted all-fixed-target precision law using a late true-uniform
+owner zero; an equally shared standard adapter has the same resources, so the
+generic mechanism is stopped as original. Colocated fresh-key and zero routes
+both avoid extra RTT; older separate-provisioning counts remain conditional.
+
+E96's exact disjoint-row argument makes known zero suffixes relevant to the
+unknown LWE dimension. All12 small-prefix profiles are below128 in the named
+classical model at4096 published zeros. Larger supports have only limited
+positive estimates and materially larger modeled lookup degrees. Neither an
+executed attack nor production-key compromise is inferred. Seven immutable
+results preserve the soft-timer exception and two hard-isolated repeats.
+
+Next is [Q23/E97](owner-bound-rounding-plan-20261002.md), a complete standard
+stochastic-rounding competitor. Its potential owner-product saving is worth
+testing, but is not originality. Preserve exact laws and negative boundaries;
+a main paper result must still supply a genuinely new complete proof/binding or
+correlated-query consequence with approved parameters and useful matched costs.

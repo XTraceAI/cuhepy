@@ -786,3 +786,50 @@ No original complete main system or Q6–Q10 gate passes. R6 next selects
 late honest owner true-uniform zero, all-fixed-target-key conditional rounding,
 shared-output/ACER controls and a paid complete binding/resource consequence.
 Public SHAKE seeds require a separate argument. Preserve before further work.
+
+## 2026-10-02 — Q21/E95 fixed-key control; Q22/E96 security prerequisite
+
+Parent2290f4b; branch experiment/late-owner-precision-20261002.
+[Report](late-owner-precision-screen.md), [restricted lemmas](late-owner-precision-lemmas-20261002.md),
+[next proposal](owner-bound-rounding-plan-20261002.md).
+
+1. E95A proves the odd-Q/dyadic residue permutation and fresh rounding law for
+   every fixed target T, with50625 full tiny coin branches/810000 phase identities,
+   a genuine exact nonzero tail and explicit post-coin/reused-coin falsifiers.
+   Shared masks are jointly distinguishable from independent fresh ciphertexts;
+   full ACER's statistical rerandomization premise remains unestablished.
+2. E95B implements homemade GMP owner-zero/public recomputation controls and
+   a volatile reserve/consume ledger.65 corruptions reject before the callback;
+   two adaptive homemade BGV families reuse one target/switch-key generation.
+   Digests do not attest sampling/order, and no secret-release protocol follows.
+3. E95C prices160 tuples/1600 points. The shared known-zero control has identical
+   arithmetic/proof subrelation/resources, stopping generic originality. Both
+   colocated zero and fresh-key controls avoid extra RTT; prior provisioning
+   assumptions remain historical. Prefix512 price advantages need assurance.
+4. R6 activates Q22/E96: an exact independent LWE sample subset at the public
+   unknown prefix dimension, checked in59049 cases/118098 equations. At4096
+   fresh zeros, all12 p512/p1024 profiles are sub128 in the named classical cost
+   model. No actual recovery/reduction is run. Larger supports are not approved.
+5. Preserve the original soft-timer cap failure. Two hard-isolated cohorts have
+   equal84 finite costs/four timeouts; all overlapping initial costs match.
+   Independently reproduce1600 old points then reprice720 support tuples/8640
+   expanded degree points. Larger supports expose larger precision demands;
+   no PBS implementation or speed comparison is inferred.
+
+365 scoped CPU tests pass,56 added across two files; explicit Ruff includes8
+new paths. Seven immutable raw results/source closures are validated. One new
+HE security-guidelines PDF/text pair brings the archive to62; deeper drift
+proof-premise reading and FINALLY randomized-switching lead are recorded.
+The external pinned lattice-estimator cost tool is executed and its exact
+tracked source archived; no HE author protocol/performance artifact is reproduced.
+Earlier source records/scopes/progress, main/staging, company code and frozen
+measurements remain intact. No original complete main mechanism or Q6–Q10
+gate passes. R6 next: Q23/E97 complete owner-bound stochastic-rounding strong
+control, proposed/unimplemented. Standard rounding is not a novelty claim;
+a later new proof/binding/correlated-query consequence must beat this control.
+
+[Validation](late-owner-execution-validation-20261002.json) and
+[manifest](publication-late-owner-execution-manifest-20261002.json) retain the
+current evidence. Intended checkpoint:
+checkpoint/reused-target-precision-controls-2026-10-02, with Git bundle,
+source, all62 paper/text pairs, estimator snapshot and execution/cache dependencies.

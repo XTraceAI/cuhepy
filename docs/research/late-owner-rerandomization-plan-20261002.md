@@ -1,7 +1,10 @@
 # Q21/E95: one late owner zero across a verified reply family
 
-2026-10-02. **Proposed, unimplemented and unselected.** This is the next R6
-return after [E93/E94](committed-precision-epoch-screen.md). E94's source bound
+2026-10-02. **Historical proposal; bounded E95 scope now executed, generic
+composition stopped as original.** See [the E95/E96 return](late-owner-precision-screen.md)
+and [current Q23 proposal](owner-bound-rounding-plan-20261002.md). The text below
+retains the original proposed tasks and unfulfilled complete-protocol obligations.
+This was the next R6 return after [E93/E94](committed-precision-epoch-screen.md). E94's source bound
 restores headroom without changing the modeled depth-one Q, while E93 still
 requires fresh target keys for new adaptive inputs. Test a different source of
 rounding randomness before another parameter/kernel optimization.

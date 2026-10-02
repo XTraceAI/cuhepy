@@ -1397,6 +1397,29 @@
       ],
       "cache_directory": "../research-data/literature-committed-precision-20261002",
       "version_note": "arXiv v3, 2026-03-05, exact PDF/text hashes pinned"
+    },
+    {
+      "id": "security-guidelines-2024-463",
+      "url": "https://eprint.iacr.org/2024/463.pdf",
+      "final_url": "https://eprint.iacr.org/2024/463.pdf",
+      "retrieved_utc": "2026-10-02T19:20:12.051176+00:00",
+      "file": "security-guidelines-2024-463.pdf",
+      "text_file": "security-guidelines-2024-463.txt",
+      "bytes": 566900,
+      "status": "downloaded",
+      "sha256": "44419917b3a117dc995696799b97f3298ff5420c74ab7c7df37ace48e4af594a",
+      "text_sha256": "314aefab548d3a1ee1b4e8570e400651858403e4c918bb766caa2cb34548d76a",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "Security Guidelines for Implementing Homomorphic Encryption",
+      "cache_directory": "../research-data/literature-target-precision-20261002",
+      "version_note": "Mutable ePrint latest revision2025-01-06; retrieved2026-10-02 PDF/text hashes pinned",
+      "reading_depth": "Targeted sections2.1 LWE/RLWE definitions,2.2 error distributions/CBD and2.3 secret/sparsity warnings; full pages6/7 inspected; not full parameter tables/proof/artifact audit",
+      "passages": [
+        "Section2.1 LWE/RLWE",
+        "Section2.2 CBD/error",
+        "Section2.3 secrets/sparsity"
+      ]
     }
   ],
   "additional_readings": [
@@ -1626,9 +1649,9 @@
     "Paper parameter labels are assumptions/claims to check, not parameter assurance for our implementation."
   ],
   "execution_supplement": "Original review-only status is superseded for explicitly recorded partial unified and original EMVP executions. The original fifteen cached primary PDFs remain pinned unchanged. Browser-only readings have no local PDF hash/full-proof claim. Deliverable arithmetic/protocols remain homemade; references are baselines, not imported BFV/BGV.",
-  "review_revision": "post-revalidation closest work and bounded contribution plan",
-  "latest_evidence_commit": "f1b755254cfe148868f43ce9df0113650500c528",
-  "revision_note": "Preserve all 32 earlier source entries unchanged; add eight new primary PDF/text identities. No new author artifact runs. New comparison and current plan supersede next-task prioritization only.",
+  "review_revision": "2026-10-02 E95/E96 fixed-target and known-prefix security prerequisite",
+  "latest_evidence_commit": "2290f4b35e3e99ce5fbdd9f1553c6d50c789b925",
+  "revision_note": "Earlier61 source records and additional readings retained exactly;one guidelines PDF/text appended;deeper drift reading and pinned external estimator execution separately recorded.",
   "review_records": [
     {
       "date": "2026-10-01",
@@ -1762,7 +1785,55 @@
         "https://arxiv.org/abs/2504.18597v3"
       ],
       "search_scope": "Bounded primary-source searches/targeted passages; not exhaustive priority or complete proof audit"
+    },
+    {
+      "date": "2026-10-02",
+      "report": "docs/research/late-owner-precision-screen.md",
+      "plan": "docs/research/owner-bound-rounding-plan-20261002.md",
+      "baseline_commit": "2290f4b35e3e99ce5fbdd9f1553c6d50c789b925",
+      "new_primary_pdfs_pinned": 1,
+      "total_primary_pdfs_pinned": 62,
+      "new_bounded_experiments": [
+        "E95",
+        "E96"
+      ],
+      "source_ids": [
+        "security-guidelines-2024-463"
+      ],
+      "new_HE_author_protocol_artifacts_executed": 0,
+      "external_reference_tool_executed": {
+        "tool": "lattice-estimator",
+        "revision": "53da5982597709ba0fdf94ea37a84d822310fd84",
+        "tracked_file_hashes": "E96 raw estimator_tracked_sha256",
+        "cohorts": "One retained soft-timer cohort and two hard-isolated cohorts",
+        "scope": "Named generic cost estimates, no lattice reduction/key recovery or HE performance reproduced"
+      },
+      "additional_existing_source_reading": {
+        "ciphertext-drift-2024-1718": "Sections3.3/3.4 Definition3.3/Proposition3.5 entire relevant proof and5.1/5.2/5.4; full pages10/15/18 inspected. Fresh-encryption statistical premise not supplied by one bounded shared zero."
+      },
+      "uncached_primary_leads": [
+        {
+          "title": "FINALLY: A Multi-Key FHE Scheme Based on NTRU and LWE",
+          "url": "https://eprint.iacr.org/2024/1505.pdf",
+          "status": "Web primary text/metadata read, not downloaded or hash-pinned",
+          "reading": "Section3.5 Definition3.9/Lemma3.5 randomized rounding;no whole noise proof/artifact audit",
+          "version_caveat": "Web latest metadata2025-05-26;search snippet used older Definition13 numbering,primary latest says3.9",
+          "followup": "Cache exact revision and read cited FHEW before E97; randomized rounding already known"
+        }
+      ],
+      "web_refresh": [
+        "https://eprint.iacr.org/2024/1718",
+        "https://arxiv.org/abs/2301.07041",
+        "https://eprint.iacr.org/2025/809",
+        "https://homomorphicencryption.org/security-guidelines/",
+        "https://eprint.iacr.org/2024/463",
+        "https://lattice-estimator.readthedocs.io/en/latest/algorithms/lwe-primal.html",
+        "https://github.com/malb/lattice-estimator",
+        "https://eprint.iacr.org/2024/1505"
+      ],
+      "key_change": "Keep fixed-target arithmetic control, stop generic shared-zero originality;known-prefix samples stop p512/p1024 security claims in named model;couple larger support and precision. Next strong stochastic-rounding control before original selection.",
+      "search_scope": "Bounded primary searches/targeted passages;not exhaustive priority or complete security proof audit"
     }
   ],
-  "execution_reading_note": "E92 targeted approximate/CRT decomposition and mean-compensation controls; 58 primary PDF/text pairs retained. Prior56 source records identical to orbit-precision checkpoint. Additional reading of an old source is appended in review records. No author artifact or full probability/parameter audit claimed."
+  "execution_reading_note": "Targeted readings, full relevant proof passages and complete document audits remain distinct. E96 executes a pinned external estimator reference, not an HE author protocol/performance artifact."
 }
