@@ -111,6 +111,9 @@ a certified Fourier/prefix control and its actual cost are not implemented.
 None of the 96 conditional original-q cards passes the specified sufficient
 odd-domain lookup margin. This is a failed sufficient model, not an observed
 decoding failure or a proof that high-precision/other methods cannot work.
+The subsequent [E92 audit](partial-packed-switch-screen.md) also identifies
+that the inherited source bounds alone exhaust the quarter-domain budget;
+these cards do not isolate a failure of the quadratic certificate.
 Each moment calculation pays four exact wide-integer polynomial products,
 plus two products for the pair-box control; the full verifier repeats them.
 The modeled moment body uses variable-width integers, with no implemented

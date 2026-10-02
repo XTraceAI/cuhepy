@@ -1,6 +1,8 @@
 # Q18/E92: precision-targeted partial packed switching
 
-2026-10-02. **Proposed, not implemented.** This is the R6 return after
+2026-10-02. **Original proposal, retained below.** Its bounded execution is
+now recorded in the [E92 return](partial-packed-switch-screen.md), which stops
+the zero-mask mechanism as an original candidate. This was the R6 return after
 [E91](quadratic-drift-screen.md). It tests a concrete saved-work consequence,
 rather than treating a better known norm as a conference contribution.
 

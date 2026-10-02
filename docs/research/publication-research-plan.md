@@ -1,22 +1,26 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-02, after Q0–Q5/Q11–Q17 bounded execution**. Start with the
+Revision: **2026-10-02, after Q0–Q5/Q11–Q18 bounded execution**. Start with the
 [latest return decision](construction-selection-20261002.md) and
-[next bounded candidate](partial-packed-switch-plan-20261002.md). The
+[next bounded candidate](committed-precision-epoch-plan-20261002.md). The
 [original detailed plan](contribution-plan-20261002.md) and
 [closest-work comparison](closest-work-comparison-20261002.md) retain the
 pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** E82–E91 bounded arithmetic/count screens are implemented;
-199 scoped tests pass, including 60 added in E90/E91. Correct known BGV unit, shared/
+**Current status:** E82–E92 bounded arithmetic/count screens are implemented;
+227 scoped tests pass, including 88 added in E90–E92. Correct known BGV unit, shared/
 packed switching, orbit/block/support and full odd-domain LUT controls advance.
 Specified fingerprint/carry/ring-diagonal/small-ring precision shortcuts stop.
 E90's exact signed carries and sharp odd-grid half count survive; standard
 hoisting supplies the same sharing. E91 supplies a deterministic derived-secret
 drift certificate; the known canonical norm is tighter and modeled lookup
-margins remain unmet. E92 is proposed, not implemented. No original complete protocol has been
+margins remain unmet. E92 keeps an exact mixed-key adapter but stops the proposed
+zero-mask mechanism: ordinary approximate switching supplies identical outputs
+with fewer restrictions. Its original-q source budget is already empty, so the
+larger cards cannot isolate a switching improvement. E93 is proposed, not
+implemented. No original complete protocol has been
 selected or new production/security gate passed. Company BFV/BGV/Paillier and
 SEAL references remain preserved; no production source changed this tranche.
 
@@ -45,7 +49,8 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q15 | [E89 odd-domain LUT/precision](odd-domain-lut-screen.md) | Full odd-domain signed LUT works; final MS margin is paid, standard small-degree worst-case bound fails |
 | Q16 | [E90 shared orbit remainder](orbit-remainder-trace-screen.md) | Full signed carry/phase and sharp odd-grid count controls survive; generic hoisting gives equal or less division work |
 | Q17 | [E91 dependent-secret drift certificate](quadratic-drift-screen.md) | Sound all-secret integer certificate; 46/96 synthetic bounds improve, no original-q sufficient lookup margin passes; canonical control is tighter |
-| **Next: Q18** | [**E92 precision-targeted partial packed switching**](partial-packed-switch-plan-20261002.md) | Test an admissible mixed source/target release against known truncated-switch controls; proposed, unimplemented |
+| Q18 | [E92 partial packed switching](partial-packed-switch-screen.md) | Exact mixed-key control survives; candidate is contained in ordinary approximate switching; inherited quarter-domain source budget is already negative |
+| **Next: Q19** | [**E93 committed precision family and fresh target-key epoch**](committed-precision-epoch-plan-20261002.md) | First resolve source headroom, then prove the actual mask/secret dependency law and price a complete finite-family epoch rule; proposed, unimplemented |
 
 The [detailed plan](contribution-plan-20261002.md) specifies algebra, candidate
 representations, proposed paths, controls, stop conditions, phase budgets and
@@ -83,7 +88,7 @@ Two dirty historical source closures remain unavailable.
 - The 1,965 unique passing tests and scoped tool checks are correctness evidence,
   not security or parameter assurance.
 - This tranche adds exhaustive finite arithmetic and deterministic counts,
-  not new timing panels. E86, E87 and E91 also check actual local homemade BGV products. E89 corrects the scope of the earlier even-domain LUT negative; its odd-domain control is known prior work.
+  not new timing panels. E86, E87, E91 and E92 also check actual local homemade BGV products. E89 corrects the scope of the earlier even-domain LUT negative; its odd-domain control is known prior work.
   Frozen revalidation is unchanged; background load cannot contaminate exact
   finite distributions/counts, while those counts imply no speedup.
 
@@ -123,9 +128,9 @@ state. Measure full elapsed, endpoint work and memory separately.
 
 ## 4. Execution queue and gates
 
-**Next:** Q18/E92, targeted truncated-switch review, then exact mixed-key
-residual/rounding oracles and a paid public admissibility screen. Return to
-Q4/R6 after each component. Q0–Q5 and Q11–Q17
+**Next:** Q19/E93, first audit source headroom and valid full-domain/changed-
+context controls, then targeted review and a proof-first finite epoch/dependency
+screen. Return to Q4/R6 after each component. Q0–Q5 and Q11–Q18
 have completed bounded scopes; no original main mechanism is selected. Q6
 reference, Q7 native/CUDA, Q8 security, Q9 matched evaluation and Q10 paper/
 artifact remain conditional on actual unmet selection/assurance gates.
@@ -153,11 +158,12 @@ P package. Keep prior E IDs and stopped recipes unchanged.
 The primary research question can survive a failed recipe. A generic composition
 or a faster known implementation remains useful engineering, without passing B.
 
-The [latest execution receipt](orbit-precision-execution-validation-20261002.json) and
-[identity manifest](publication-orbit-precision-execution-manifest-20261002.json)
-record E90/E91; the fixed-function and batched-score receipts retain earlier
+The [latest execution receipt](partial-switch-execution-validation-20261002.json) and
+[identity manifest](publication-partial-switch-execution-manifest-20261002.json)
+record E92 and the current source/headroom qualification; the orbit-precision,
+fixed-function and batched-score receipts retain earlier
 execution scopes, and original planning-only validation is historical.
-The [paper archive](prior-work-archive.md) links **56 hash-pinned PDFs** with
+The [paper archive](prior-work-archive.md) links **58 hash-pinned PDFs** with
 extracted text, reading scopes and artifact status. Preserve prior measurements
 and source versions; a download or targeted reading is not a complete proof audit.
 
@@ -210,14 +216,14 @@ unchanged.
 
 ## 7. Latest execution return and paper controls
 
-Q13–Q15 completed their finite sessions with [validation](batched-score-execution-validation-20261002.json) and [source/result manifest](publication-batched-score-execution-manifest-20261002.json), which pin the then-53 PDF/text pairs. The [primary archive](prior-work-archive.md) now retains **56 pairs**, adding exact drift, dependent-noise critique and canonical-norm controls. Targeted reading, complete proof audits and reproduced author artifacts are separate statuses.
+Q13–Q15 completed their finite sessions with [validation](batched-score-execution-validation-20261002.json) and [source/result manifest](publication-batched-score-execution-manifest-20261002.json), which pin the then-53 PDF/text pairs. Q16/Q17's [checkpoint receipt](orbit-precision-execution-validation-20261002.json) pins 56 pairs. The [primary archive](prior-work-archive.md) now retains **58 pairs**, adding approximate CRT decomposition and mean compensation. Targeted reading, complete proof audits and reproduced author artifacts are separate statuses.
 
 E88's exact signed orbit view is a useful interface: block masks reuse canonical slot-key rows and a public partial-key support union. It does not turn slot-diagonal/nonlinear operators into ring multipliers. E89 supplies a full odd-domain test vector, with a stricter margin. Increasing Q does not remove the final componentwise rounding floor. Reviewed probabilistic/high-precision methods can beat the worst-case control; the next candidate must include their actual key, noise, packing and proof premises.
 
 Q16/E90 completes the full public remainder subrelation and a restricted exact
 odd-grid half-count proof. Distinct dyadic stages have disjoint half sets;
 public corrections preserve unreduced integer phases. The strong hoisted
-control gets identical reuse. Keep this company/reference interface, and
+control gets identical reuse. Keep this company/reference interface.
 Q17 then tested a dependent-secret deterministic certificate without assuming
 Gaussian or independent-key failure estimates. No complete new selector is
 supplied by the arithmetic alone.
@@ -229,10 +235,20 @@ Canonical norms remain stronger. The modeled original-q margins do not pass,
 and complete score/PBS/ID authentication is still missing. The source S-squared
 must remain its actual derived secret, not an independent ternary key.
 
-Q18 now tests a more concrete consequence: switching only upper C2 levels,
+Q18 tested a more concrete consequence: switching only upper C2 levels,
 certifying the remaining source-secret term, and safely releasing a rounded
 target-key result. B64/q64 makes any nonzero omitted residual impossible under
 the proposed zero-mask condition; smaller precision has a paid noise/PBS
-tradeoff. Ordinary truncated switching and strongest canonical/prefix controls
-must precede a novelty claim. Keep useful company interfaces while returning
-to R6 after each result; Q6 has not been activated.
+tradeoff. E92 finds identical outputs already supplied by ordinary approximate
+switching; stop this zero-mask mechanism and keep the exact company control.
+The inherited source bound itself exhausts the chosen quarter-domain budget,
+so the larger zero-pass cards cannot rank switching methods. All 2,430 small
+mixed-key cases and one fresh trusted BGV differential pass their exact checks.
+
+Q19/E93 now starts with that source-budget prerequisite, then investigates a
+committed finite precision family before a fresh target-key epoch. Its first
+question is an actual dependency/order proof for statistical bounds under
+malicious postselection and feedback. A Gaussian substitution or a standard
+fresh-key composition alone is not a contribution. Every epoch, extra RTT,
+owner key preparation, complete proof and permitted cache is paid. Keep useful
+company interfaces while returning to R6 after each result; Q6 is conditional.

@@ -710,3 +710,43 @@ acceptance gates remain unchanged. Intended checkpoint:
 `checkpoint/orbit-precision-interfaces-2026-10-02`, branch
 `experiment/orbit-remainder-trace-20261002`; its workspace archive retains
 the Git bundle, exact source and literature/cache dependencies.
+
+
+## 2026-10-02 — Q18/E92 mixed-key containment and source-budget return
+
+[Partial-switch screen](partial-packed-switch-screen.md) records 1,222 balanced
+residues, 6,110 zero-mask boundaries, 2,430 whole small mixed-key cases, 8,748
+phase/rounding/bound coefficients and 62 rejected certificate corruptions. A
+fresh homemade BGV product with independent target-prefix3 and one omitted
+C2 level matches every decoded coefficient. Twenty-eight more tests pass;
+the combined eleven-file scope has **227 passing tests** and explicit Ruff
+passes on all three new Python files.
+
+**R6 stop:** ordinary approximate switching already has the same outputs and
+at least the zero-mask candidate's admissibility region. Keep the homemade
+GMP mixed-key/source-residual adapter as a company control; no original main
+construction is accepted. Both key families/supports and honest key error are
+paid, and the opaque callback is not decryption authorization.
+
+The 180 original-q synthetic cards pass neither stated margin. All inherited
+source budgets are already negative at zero omitted levels, because near-q/2
+source phase bounds do not supply the selected quarter-domain LUT margin.
+This also qualifies E91's zero-pass original-q count: it does not isolate a
+failure of the new norm bound or rank real switching methods. Preserve all
+raw receipts. No runtime, secure parameter or real workload failure is inferred.
+
+Two more primary PDF/text pairs are retained (**58 total**), with targeted
+approximate-CRT/mean-compensation reading and no author artifact executed.
+**Next:** [Q19/E93](committed-precision-epoch-plan-20261002.md) starts with source
+headroom, then a proof-first committed-family/fresh-target-key dependency and
+whole-family feedback rule, charging every epoch/proof/owner/lifecycle cost.
+Concentration and fresh-key composition alone are not original mechanisms.
+
+[Identity/preservation validation](partial-switch-execution-validation-20261002.json)
+and [manifest](publication-partial-switch-execution-manifest-20261002.json)
+pin both new exact/count receipts, source bytes, 58 papers and the preserved
+acceptance gates. Prior measurements and production sources are unchanged.
+Intended checkpoint: `checkpoint/partial-switch-controls-2026-10-02`, branch
+`experiment/partial-packed-switch-20261002`; preserve its Git bundle/source
+and workspace paper/cache archive alongside the completed orbit-precision
+checkpoint `41d65ba` and all earlier company checkpoints.

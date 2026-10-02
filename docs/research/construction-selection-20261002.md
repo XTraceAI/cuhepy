@@ -1,4 +1,4 @@
-# R6 returns through Q17: share exact interfaces, test saved switching work
+# R6 returns through Q18: keep exact controls, justify source and noise budgets
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
@@ -6,7 +6,7 @@ E82/E83/E84 returns. It preserves the earlier experiments and company code.
 No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
-and later finite returns are appended below. The active next packet is Q18.
+and later finite returns are appended below. The active next packet is Q19.
 
 | Packet | Executed result | Decision |
 |---|---|---|
@@ -158,3 +158,35 @@ key error, integer carries, original binding and stronger truncated/canonical
 controls. A nonzero residual cannot round away at B64 with q<2^64 under this
 condition. Return after targeted review/oracle, certificate and cost components;
 Q6–Q10 and all broad acceptance gates remain conditional.
+
+
+## Q18/E92 return and next Q19
+
+[E92](partial-packed-switch-screen.md) checks 1,222 balanced residues,
+6,110 zero-mask boundaries, 2,430 complete small mixed-key cases and 8,748
+rounding/bound coefficients. Sixty-two false certificates reject before the
+opaque callback; a fresh local homemade BGV product decodes correctly after
+one low C2 level is omitted. Twenty-eight more tests pass, for **227** in the
+combined eleven-file scope.
+
+Ordinary approximate switching has identical two-component outputs and at
+least the proposed candidate's admissibility region. **Stop the zero-mask
+mechanism as an original contribution.** Keep the correct source/target
+adapter, exact residual and full public subrelation as company controls.
+
+All 180 synthetic original-q margin cards fail, but their inherited source
+budgets are already negative at zero omitted levels. The near-q/2 E72 phase
+bound cannot certify this route's quarter-domain lookup margin. That makes
+these cards non-discriminating for a switching improvement, including E91's
+original-q count; it does not show that real search or a stronger justified
+source/context/full-domain control fails. Preserve the receipts and add the
+qualification rather than replacing them with favorable measurements.
+
+**Next:** [Q19/E93](committed-precision-epoch-plan-20261002.md) audits source
+headroom first, then tests a committed finite precision family before fresh
+target-key sampling. The prospective step is a complete dependency/order and
+epoch rule supporting verified statistical precision under malicious
+postselection/feedback, with every source bound, proof and epoch cost paid.
+Concentration and fresh-key composition alone are known controls. Return
+after each prerequisite/lemma/oracle/count; no original complete main mechanism
+or broad assurance gate is accepted, and Q6–Q10 remain conditional.

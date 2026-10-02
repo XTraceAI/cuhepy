@@ -1,0 +1,125 @@
+{
+  "utc": "2026-10-02T10:31:42.101663+00:00",
+  "kind": "bounded_E92_identity_scope_and_preservation_validation",
+  "evidence_base_commit": "41d65badfd0784185fae0986b8108bf603fb0dee",
+  "scope": "Exact arithmetic/counts and scoped tests; not timing/cryptographic parameter/novelty/production assurance",
+  "validator_workspace_copy": "cuhepy-bfv-research/../research-data/partial-packed-switch-20261002/validate_execution.py",
+  "validator_sha256": "b7dd94620f46d59cb1daf1da9dc37e7f12fd4f89cde4c2e9a033dba1496eea09",
+  "environment": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]\npytest=9.0.2\ngmpy2=2.3.0\n",
+  "ruff_version": "ruff 0.15.6",
+  "manifest": {
+    "path": "docs/research/publication-partial-switch-execution-manifest-20261002.json",
+    "sha256": "17957ff57b8b4d1c0fbafbdf0cd7a8a04c682aa06165db0127d50995bb88fca4"
+  },
+  "documents": {
+    "publication-research-plan.md": "df6a23f29f79793e1a16b647e351e129c3d01ce14a17952f0fa26aea657e9eb1",
+    "publication-progress.md": "f2292c47fd73e13a69e9b4d26fec06490f3307aabba46981dcd875a7e2a6169c",
+    "publication-work-packages.json": "0f9e024bf70ea372e87b50918f5bfaa7d8e1db8823f71041776432b135be9f8a",
+    "publication-literature-sources.json": "77a5d1ecf4005e1a1ae972ca65cdd211b3a810766d292dd7b5ffaf7edf99ea76",
+    "construction-selection-20261002.md": "9a1126ea871ceb6c9a25dd56e6ec8420f71d6fbaae628299777d80b9de64fe76",
+    "prior-work-archive.md": "e9c4402a5b6dcbb52c5192d3da454e599333b1fa6dcaceea72f8ac6d60f80a99",
+    "partial-packed-switch-plan-20261002.md": "b3b630093b04576764e3d362748c52467d4df3844b3b42a221528d3855533c2e",
+    "partial-packed-switch-preregistration-20261002.md": "ba57fcbd9830b4d2a865ab0df906c0a9d92b9c76f05f0ae7f2de337ab788b137",
+    "partial-packed-switch-screen.md": "8387d82fb30aa750466cc22ce989b935e471fefa0070ded7789615148b2f3bfb",
+    "committed-precision-epoch-plan-20261002.md": "98ac488fdc81850217e198f12e226315927eb5d951f2f1f76bec7ad22b09d1d7",
+    "quadratic-drift-screen.md": "29c65577b075345c3343165c52b48f597f2409df6702f2d802d0581364e1fefd"
+  },
+  "checks": {
+    "pytest": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "experiments/bfv_search_lab/test_secret_code_mask_oracle.py",
+        "experiments/bfv_search_lab/test_coded_operator_oracle.py",
+        "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/test_score_phase_bridge_oracle.py",
+        "experiments/bfv_search_lab/test_bgv_unit_bridge.py",
+        "experiments/bfv_search_lab/test_batched_score_bridge.py",
+        "experiments/bfv_search_lab/test_orbit_common_mask.py",
+        "experiments/bfv_search_lab/test_odd_domain_lut.py",
+        "experiments/bfv_search_lab/test_orbit_remainder_trace.py",
+        "experiments/bfv_search_lab/test_quadratic_drift.py",
+        "experiments/bfv_search_lab/test_partial_packed_switch.py"
+      ],
+      "exit_code": 0,
+      "passed": 227,
+      "new_tests": 28,
+      "prior_tests": 199,
+      "scope": "Eleven specified CPU arithmetic/interface files; not whole repository CI",
+      "log": {
+        "path": "cuhepy-bfv-research/../research-data/partial-packed-switch-20261002/pytest-scoped-227.txt",
+        "sha256": "632756be401c8f50e037e8578ca22c89770fe5b338d74c6d475a346271eb4905"
+      },
+      "validator_reruns_tests": false
+    },
+    "ruff": {
+      "command": [
+        ".venv/bin/ruff",
+        "check",
+        "--config",
+        "force-exclude = false",
+        "experiments/bfv_search_lab/partial_packed_switch.py",
+        "experiments/bfv_search_lab/test_partial_packed_switch.py",
+        "benchmarks/partial_packed_switch_lab.py"
+      ],
+      "files": [
+        "experiments/bfv_search_lab/partial_packed_switch.py",
+        "experiments/bfv_search_lab/test_partial_packed_switch.py",
+        "benchmarks/partial_packed_switch_lab.py"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "cuhepy-bfv-research/../research-data/partial-packed-switch-20261002/ruff-new-3.txt",
+        "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+      },
+      "exclusion_override": "force-exclude = false; three research Python paths explicitly checked"
+    }
+  },
+  "raw_runs_verified": 2,
+  "source_versions_verified": 14,
+  "all_initial_and_final_results_and_sources_equal": true,
+  "primary_pdf_text_pairs_verified": 58,
+  "local_links_checked": 223,
+  "prior_56_source_records_identical": true,
+  "all_historical_additional_readings_identical": true,
+  "prior_experiment_scopes_identical": true,
+  "retained_queue_fields": [
+    "tasks",
+    "decision_tasks",
+    "measurement_revalidation",
+    "gate_C_initial_targets",
+    "client_retention"
+  ],
+  "prior_progress_log_preserved": true,
+  "Q6_Q10_conditional_unchanged": true,
+  "queue_dependency_graph_acyclic": true,
+  "protected_refs": {
+    "main": "0f8522e449d00622e10f4111ac8eb89d52ca577b",
+    "staging": "eb96aa1f79a92d6b6f0c1f6389d3daadff5546be",
+    "checkpoint/orbit-precision-interfaces-2026-10-02": "41d65badfd0784185fae0986b8108bf603fb0dee",
+    "checkpoint/batched-score-interfaces-2026-10-02": "26ef5c61ede013a4a570ca1c6be1bfb0e197fa7f",
+    "checkpoint/fixed-function-screens-2026-10-02": "d03292541b8796bbc259b033ce6581137f996f0f",
+    "checkpoint/contribution-plan-2026-10-02": "7a9a13dfb1e7f4f8c1ef112a8c2437b4aa55b9ce",
+    "checkpoint/measurement-revalidation-2026-10-01": "f1b755254cfe148868f43ce9df0113650500c528",
+    "checkpoint/verification-frontier-2026-09-30": "02e06c0f5636def284ed6864b3e208538fcb10a6",
+    "checkpoint/publication-controls-2026-09-30": "6207455db8d86fbe1394d3ef2294fe8e0c877163",
+    "checkpoint/construction-screens-2026-10-01": "66c04dc69423438220ed4eb87a09a7831bac80ab"
+  },
+  "frozen_revalidation_sha256": {
+    "analysis-final-followups-04.json": "5a2036be9b8988da2544b14a6211992ec93fb566f5383d719157ca27f7e370cd",
+    "analysis-final-followups-04.md": "1cac6c0326c6f5f8c46e432c126e694984715527505e3ac768255381f11aeae3",
+    "analysis-main209.json": "5b4b71a4ae85b158f3d441183d522b9a697f2a96e001f0bce02547e849b6c310"
+  },
+  "production_source_changes": [],
+  "accepted_original_main_mechanisms": 0,
+  "original_Q_180_cards_source_budget_already_negative": true,
+  "stopped_recipe": "zero-mask mechanism contained in known approximate switching",
+  "known_controls_advanced": [
+    "mixed-source/target approximate switching",
+    "exact original-source residual and honest-key error control"
+  ],
+  "next_packet": "Q19/E93",
+  "next_packet_implemented": false
+}
