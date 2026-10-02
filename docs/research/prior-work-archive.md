@@ -1,8 +1,8 @@
 # Primary-paper archive
 
-2026-10-02. **58 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
+2026-10-02. **61 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
 
-Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No author artifact was executed during E82–E92.
+Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No author artifact was executed during E82–E94.
 
 | Source | Versioned/local PDF | Reading scope |
 |---|---|---|
@@ -65,6 +65,12 @@ Earlier caches/checkpoint archives remain intact. Each new download has PDF/text
 | Approximate CRT-Based Gadget Decomposition and Application to TFHE Blind Rotation | [approximate-crt-gadget-2024-909](../../../research-data/literature-partial-switch-20261002/approximate-crt-gadget-2024-909.pdf) | Targeted §2.1 Definition1, §2.1.1 radix/mixed-radix, §2.1.2 exact-CRT omission negative, scalar/external product overview; full definition/radix pages inspected; not full approximate-CRT/proof/parameter/artifact audit |
 | Don’t be mean: Reducing Approximation Noise in TFHE through Mean Compensation | [mean-compensation-2025-809](../../../research-data/literature-partial-switch-20261002/mean-compensation-2025-809.pdf) | Targeted §2.3.1, §3/§3.1 Equations4–8 and §5 scope; complete mean/key-decomposition pages inspected; no full probability/reduction/parameter/artifact audit |
 
-Archive groups: `literature-partial-switch-20261002` (2), `literature-orbit-precision-20261002` (3), `literature-odd-domain-20261002` (4), `literature-batched-score-bridge-20261002` (3), `literature-20260930` (15), `literature-contribution-review-20261001` (4), `literature-fixed-function-screens-20261002` (6), `literature-mechanism-screen-20260930` (1), `literature-plan-revision-20260930` (9), `literature-post-revalidation-20261002` (8), `literature-query-packing-20261001` (3).
+| Spiral: Fast, High-Rate Single-Server PIR via FHE Composition | [spiral-2022-368](../../../research-data/literature-committed-precision-20261002/spiral-2022-368.pdf) | Targeted section2 noise facts/Remark2.18 and section3.4/Theorem3.4; full page16 inspected; no full artifact/parameter/security audit |
+| YPIR: High-Throughput Single-Server PIR with Silent Preprocessing | [ypir-2024-270](../../../research-data/literature-committed-precision-20261002/ypir-2024-270.pdf) | Targeted section2 independence heuristic, ModReduce and Lemma2.4; full page8 inspected; no full protocol/artifact/security audit |
+| Accurate BGV Parameters Selection: Accounting for Secret and Public Key Dependencies in Average-Case Analysis | [bgv-dependencies-2504.18597v3](../../../research-data/literature-committed-precision-20261002/bgv-dependencies-2504.18597v3.pdf) | Targeted section4 dependence setup and section5/5.1/5.2 Gaussian/rescaling premises; full pages16/18 inspected; no full proof/finite-tail/parameter/artifact audit |
+
+Archive groups: `literature-committed-precision-20261002` (3), `literature-partial-switch-20261002` (2), `literature-orbit-precision-20261002` (3), `literature-odd-domain-20261002` (4), `literature-batched-score-bridge-20261002` (3), `literature-20260930` (15), `literature-contribution-review-20261001` (4), `literature-fixed-function-screens-20261002` (6), `literature-mechanism-screen-20260930` (1), `literature-plan-revision-20260930` (9), `literature-post-revalidation-20261002` (8), `literature-query-packing-20261001` (3).
 
 Mutable ePrint revisions retain their recorded date/hash. A later version is a new source identity; keep older papers and measurements. Additional uncached leads are labeled in the registry; The earlier Faster Secret Keys for (T)FHE/HERMES leads now resolve to current cached revisions. Q13 also records the common-mask TFHE control; no author runtime is reproduced.
+
+E93/E94 deeper existing-source reading is recorded without altering the earlier58 source records; see [the targeted comparison](committed-precision-closest-work-20261002.md). No author artifact or claimed runtime was reproduced.

@@ -1,6 +1,6 @@
 # Q19/E93: committed precision families before a fresh target-key epoch
 
-2026-10-02. **Proposed, not implemented or selected.** This is the R6 return
+2026-10-02. **Historical proposal, now bounded-executed in [E93](committed-precision-epoch-screen.md); no original mechanism selected.** This is the R6 return
 after [E92](partial-packed-switch-screen.md), not a restarted zero-mask recipe.
 The candidate is a complete ordering/assurance/resource trade, not a claim that
 concentration bounds, fresh keys or approximate switching are new mathematics.

@@ -1,28 +1,27 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-02, after Q0–Q5/Q11–Q18 bounded execution**. Start with the
+Revision: **2026-10-02, after Q0–Q5/Q11–Q20 bounded execution**. Start with the
 [latest return decision](construction-selection-20261002.md) and
-[next bounded candidate](committed-precision-epoch-plan-20261002.md). The
+[next bounded candidate](late-owner-rerandomization-plan-20261002.md). The
 [original detailed plan](contribution-plan-20261002.md) and
 [closest-work comparison](closest-work-comparison-20261002.md) retain the
 pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** E82–E92 bounded arithmetic/count screens are implemented;
-227 scoped tests pass, including 88 added in E90–E92. Correct known BGV unit, shared/
-packed switching, orbit/block/support and full odd-domain LUT controls advance.
-Specified fingerprint/carry/ring-diagonal/small-ring precision shortcuts stop.
-E90's exact signed carries and sharp odd-grid half count survive; standard
-hoisting supplies the same sharing. E91 supplies a deterministic derived-secret
-drift certificate; the known canonical norm is tighter and modeled lookup
-margins remain unmet. E92 keeps an exact mixed-key adapter but stops the proposed
-zero-mask mechanism: ordinary approximate switching supplies identical outputs
-with fewer restrictions. Its original-q source budget is already empty, so the
-larger cards cannot isolate a switching improvement. E93 is proposed, not
-implemented. No original complete protocol has been
-selected or new production/security gate passed. Company BFV/BGV/Paillier and
-SEAL references remain preserved; no production source changed this tranche.
+**Current status:** E82–E94 bounded arithmetic/count screens are implemented;
+309 scoped tests pass across fourteen specified CPU files. Known unit, packed
+switching and odd-domain controls remain intact. E93 audits source headroom
+and the finite fresh-key dependency/MGF interface, while stopping generic
+fresh-epoch composition as original. E94's conditional fixed-index/fresh-query
+source bound restores original modeled-Q quarter margin in all 40 lifetime
+cards, with 33.72–37.49x tighter phase bounds. These are arithmetic bounds,
+not speed ratios or approved parameters. Reused-target-key precision, original
+score/provenance/PBS authentication and private assurance remain separate.
+No original complete protocol or new production/security gate is selected.
+Next Q21/E95 tests late owner true-uniform rerandomization against equally
+shared strong controls. Company BFV/BGV/Paillier and SEAL references, production
+sources, frozen measurements and main/staging are preserved.
 
 ## 1. Decision
 
@@ -50,7 +49,9 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q16 | [E90 shared orbit remainder](orbit-remainder-trace-screen.md) | Full signed carry/phase and sharp odd-grid count controls survive; generic hoisting gives equal or less division work |
 | Q17 | [E91 dependent-secret drift certificate](quadratic-drift-screen.md) | Sound all-secret integer certificate; 46/96 synthetic bounds improve, no original-q sufficient lookup margin passes; canonical control is tighter |
 | Q18 | [E92 partial packed switching](partial-packed-switch-screen.md) | Exact mixed-key control survives; candidate is contained in ordinary approximate switching; inherited quarter-domain source budget is already negative |
-| **Next: Q19** | [**E93 committed precision family and fresh target-key epoch**](committed-precision-epoch-plan-20261002.md) | First resolve source headroom, then prove the actual mask/secret dependency law and price a complete finite-family epoch rule; proposed, unimplemented |
+| Q19 | [E93 source/fresh-key family/degree controls](committed-precision-epoch-screen.md) | Correct restricted law; posterior negative and shared known control stop generic original composition |
+| Q20 | [E94 conditional adaptive-query source phase](committed-precision-epoch-screen.md) | All40 source margins restored, no new Q needed in that model; reusable target precision and complete proof remain open |
+| **Next: Q21** | [**E95 late owner zero across the fixed reply family**](late-owner-rerandomization-plan-20261002.md) | True-uniform all-fixed-key law/provenance and strongest shared controls first; proposed, unimplemented |
 
 The [detailed plan](contribution-plan-20261002.md) specifies algebra, candidate
 representations, proposed paths, controls, stop conditions, phase budgets and

@@ -1,4 +1,4 @@
-# R6 returns through Q18: keep exact controls, justify source and noise budgets
+# R6 returns through Q20: keep exact controls, justify source and noise budgets
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
@@ -6,7 +6,7 @@ E82/E83/E84 returns. It preserves the earlier experiments and company code.
 No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
-and later finite returns are appended below. The active next packet is Q19.
+and later finite returns are appended below. The active next packet is Q21.
 
 | Packet | Executed result | Decision |
 |---|---|---|
@@ -190,3 +190,33 @@ postselection/feedback, with every source bound, proof and epoch cost paid.
 Concentration and fresh-key composition alone are known controls. Return
 after each prerequisite/lemma/oracle/count; no original complete main mechanism
 or broad assurance gate is accepted, and Q6–Q10 remain conditional.
+
+## Q19/E93 and Q20/E94 returns; next Q21
+
+[E93/E94](committed-precision-epoch-screen.md) executes the historical Q19
+source prerequisite, restricted dependency/MGF/coupling and paid frontier,
+then returns to the plan and executes Q20's conditional fresh-query source
+question. Eight original moduli reproduce exactly; 455,625 tiny full coin
+branches and 1,822,500 phase identities separate unconditional mask independence
+from posterior-key dependence. Fifty-two public corruptions reject; 6,400
+refined degree points credit the same 134 improvements to the strong known
+shared-epoch control. **Stop generic fresh-epoch composition as original.**
+
+E94 conditions on any supported fixed index and adaptive plaintext message
+before honest fresh query CBD coins. All40 original-Q lifetime cards regain
+quarter source margin with 33.72–37.49x tighter phase bounds. Keep this useful
+known conditional interface; it is not a timing ratio, independent reused-target
+law or complete cryptographic/private assurance. Source and target failure
+allocations are explicit, and adaptive fresh targets still incur generation,
+upload and RTT costs. Packed-query expansion correlations need their own law.
+
+**309 scoped tests** pass across 14 CPU files. Production sources, main/staging,
+old experiment scopes, paper identities and frozen measurements are preserved.
+No complete original main construction or broad Q6–Q10 gate is accepted.
+
+Next [Q21/E95](late-owner-rerandomization-plan-20261002.md) tests one late
+owner-generated true-uniform zero across the fixed original reply family,
+aiming at an all-fixed-target-key conditional rounding guarantee without fresh
+target epochs. Rerandomization/ACER/MGF and equally shared known controls are
+strong baselines. Public seeded masks require a separate ROM/provenance argument.
+Return after each proof/oracle/cost component and stop generic known composition.

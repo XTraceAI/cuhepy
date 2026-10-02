@@ -1,0 +1,167 @@
+{
+  "utc": "2026-10-02T15:47:40.562524+00:00",
+  "kind": "bounded_E93_E94_identity_scope_and_preservation_validation",
+  "evidence_base_commit": "a6993d1b8910578ca4bb0da6c7ecacca5b359acf",
+  "scope": "Exact arithmetic/counts and scoped tests; not timing/cryptographic parameter/novelty/production assurance",
+  "validator_workspace_copy": "research-data/committed-precision-epoch-20261002/validate_execution.py",
+  "validator_sha256": "1b3796e39b4bb928657e45320845c57d57be405d9f848f858c3b55a12cf5aaa7",
+  "environment": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]\npytest=9.0.2\ngmpy2=2.3.0\n",
+  "ruff_version": "ruff 0.15.6",
+  "manifest": {
+    "path": "docs/research/publication-committed-precision-execution-manifest-20261002.json",
+    "sha256": "267984039d90a2033f75d8e94d6f43e5cb60df9dd3b3d9419a229d073a763f80"
+  },
+  "documents": {
+    "publication-research-plan.md": "9726ea61af151cacd676ea8bf5b8a810382fdb10377d07e47bb109703164497b",
+    "publication-progress.md": "411fb51bdaa145c151e0ba069f61fd58f5e22043c184d072c26c168ddbdb9149",
+    "publication-work-packages.json": "9c695092b96fb60929effaa6d81235e66b6ce87fc18ef519019778582af71f19",
+    "publication-literature-sources.json": "4f892a2f350802827eec5cd597cb33e49f74455184eb9ac8d6b3f35901a8ee8b",
+    "construction-selection-20261002.md": "f41c26dd6ceeaa34675e26b0fca1afa06a8ec17be86c9e8dcde75c4c53398adb",
+    "prior-work-archive.md": "eb6076849bf77111856c2ad5977482b2508f665ac17e345c8f48d0009d2ebddd",
+    "committed-precision-epoch-plan-20261002.md": "4fbc00624e5d7aedfeea1ce632f272fae8b7f980035505957b106f421140e058",
+    "committed-precision-preregistration-20261002.md": "2c1e447e3d34f07876628c5f663d7f0d697c750631f4c8a6c8ee861d3ceb9cfb",
+    "committed-precision-refinement-preregistration-20261002.md": "e947ee7103442c12c4a3ca06087124a5ad02ad070ab0b729b058489579a7018a",
+    "adaptive-query-phase-preregistration-20261002.md": "ef36ab110703ae51225d9cd9e0b5f71cec228a9315ae95496363200e186a144a",
+    "committed-precision-epoch-screen.md": "5af873e65ef305289c8f38fae44f45da4eda4bee43b293c91bf292e099f22539",
+    "committed-precision-closest-work-20261002.md": "99f2a5b12d87adeab2b94c91332bccbf0692ea3dbb034e507f999fe7872b45a7",
+    "committed-precision-lemmas-20261002.md": "064c2061bc733e9ad7ce1035edaa3b56b246e4c6144b0107899ae4c544e92baa",
+    "late-owner-rerandomization-plan-20261002.md": "e3a094b2e8c570697d21957b3f1b26cf1f38ee198254250aadd6b1ed0cd1232f"
+  },
+  "checks": {
+    "pytest": {
+      "utc": "2026-10-02T15:34:13.405766+00:00",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "experiments/bfv_search_lab/test_secret_code_mask_oracle.py",
+        "experiments/bfv_search_lab/test_coded_operator_oracle.py",
+        "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/test_score_phase_bridge_oracle.py",
+        "experiments/bfv_search_lab/test_bgv_unit_bridge.py",
+        "experiments/bfv_search_lab/test_batched_score_bridge.py",
+        "experiments/bfv_search_lab/test_orbit_common_mask.py",
+        "experiments/bfv_search_lab/test_odd_domain_lut.py",
+        "experiments/bfv_search_lab/test_orbit_remainder_trace.py",
+        "experiments/bfv_search_lab/test_quadratic_drift.py",
+        "experiments/bfv_search_lab/test_partial_packed_switch.py",
+        "experiments/bfv_search_lab/test_source_phase_budget.py",
+        "experiments/bfv_search_lab/test_committed_precision_epoch.py",
+        "experiments/bfv_search_lab/test_adaptive_query_phase.py"
+      ],
+      "exit_code": 0,
+      "files": [
+        "experiments/bfv_search_lab/test_secret_code_mask_oracle.py",
+        "experiments/bfv_search_lab/test_coded_operator_oracle.py",
+        "experiments/bfv_search_lab/test_exact_bucket_release_oracle.py",
+        "experiments/bfv_search_lab/test_score_phase_bridge_oracle.py",
+        "experiments/bfv_search_lab/test_bgv_unit_bridge.py",
+        "experiments/bfv_search_lab/test_batched_score_bridge.py",
+        "experiments/bfv_search_lab/test_orbit_common_mask.py",
+        "experiments/bfv_search_lab/test_odd_domain_lut.py",
+        "experiments/bfv_search_lab/test_orbit_remainder_trace.py",
+        "experiments/bfv_search_lab/test_quadratic_drift.py",
+        "experiments/bfv_search_lab/test_partial_packed_switch.py",
+        "experiments/bfv_search_lab/test_source_phase_budget.py",
+        "experiments/bfv_search_lab/test_committed_precision_epoch.py",
+        "experiments/bfv_search_lab/test_adaptive_query_phase.py"
+      ],
+      "log_sha256": "54ebe313af842658ffcc7d7216a0223d681cfce00fc1c429f52c22dac18729a7",
+      "scope": "Fourteen specified CPU arithmetic/interface files; not whole repository CI",
+      "passed": 309,
+      "new_tests": 82,
+      "prior_tests": 227,
+      "log": {
+        "path": "research-data/committed-precision-epoch-20261002/pytest-scoped-309.txt",
+        "sha256": "54ebe313af842658ffcc7d7216a0223d681cfce00fc1c429f52c22dac18729a7"
+      },
+      "validator_reruns_tests": false
+    },
+    "ruff": {
+      "utc": "2026-10-02T15:34:13.414198+00:00",
+      "command": [
+        ".venv/bin/ruff",
+        "check",
+        "--config",
+        "force-exclude = false",
+        "experiments/bfv_search_lab/source_phase_budget.py",
+        "experiments/bfv_search_lab/test_source_phase_budget.py",
+        "experiments/bfv_search_lab/committed_precision_epoch.py",
+        "experiments/bfv_search_lab/test_committed_precision_epoch.py",
+        "experiments/bfv_search_lab/adaptive_query_phase.py",
+        "experiments/bfv_search_lab/test_adaptive_query_phase.py",
+        "benchmarks/source_phase_budget_lab.py",
+        "benchmarks/committed_precision_epoch_lab.py",
+        "benchmarks/committed_precision_frontier_lab.py",
+        "benchmarks/adaptive_query_phase_lab.py"
+      ],
+      "exit_code": 0,
+      "files": [
+        "experiments/bfv_search_lab/source_phase_budget.py",
+        "experiments/bfv_search_lab/test_source_phase_budget.py",
+        "experiments/bfv_search_lab/committed_precision_epoch.py",
+        "experiments/bfv_search_lab/test_committed_precision_epoch.py",
+        "experiments/bfv_search_lab/adaptive_query_phase.py",
+        "experiments/bfv_search_lab/test_adaptive_query_phase.py",
+        "benchmarks/source_phase_budget_lab.py",
+        "benchmarks/committed_precision_epoch_lab.py",
+        "benchmarks/committed_precision_frontier_lab.py",
+        "benchmarks/adaptive_query_phase_lab.py"
+      ],
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "scope": "Fourteen specified CPU correctness files and ten explicitly included new Python files, not whole CI or runtime/security assurance",
+      "log": {
+        "path": "research-data/committed-precision-epoch-20261002/ruff-new-10.txt",
+        "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+      },
+      "exclusion_override": "force-exclude = false; ten new research Python paths explicitly checked"
+    }
+  },
+  "raw_runs_verified": 8,
+  "source_versions_verified": 27,
+  "all_initial_and_final_results_and_sources_equal": true,
+  "primary_pdf_text_pairs_verified": 61,
+  "local_links_checked": 247,
+  "prior_58_source_records_identical": true,
+  "all_historical_additional_readings_identical": true,
+  "prior_experiment_scopes_identical": true,
+  "retained_queue_fields": [
+    "tasks",
+    "decision_tasks",
+    "measurement_revalidation",
+    "gate_C_initial_targets",
+    "client_retention"
+  ],
+  "prior_progress_log_preserved": true,
+  "Q6_Q10_conditional_unchanged": true,
+  "queue_dependency_graph_acyclic": true,
+  "protected_refs": {
+    "main": "0f8522e449d00622e10f4111ac8eb89d52ca577b",
+    "staging": "eb96aa1f79a92d6b6f0c1f6389d3daadff5546be",
+    "checkpoint/partial-switch-controls-2026-10-02": "a6993d1b8910578ca4bb0da6c7ecacca5b359acf",
+    "checkpoint/orbit-precision-interfaces-2026-10-02": "41d65badfd0784185fae0986b8108bf603fb0dee",
+    "checkpoint/batched-score-interfaces-2026-10-02": "26ef5c61ede013a4a570ca1c6be1bfb0e197fa7f",
+    "checkpoint/fixed-function-screens-2026-10-02": "d03292541b8796bbc259b033ce6581137f996f0f",
+    "checkpoint/contribution-plan-2026-10-02": "7a9a13dfb1e7f4f8c1ef112a8c2437b4aa55b9ce",
+    "checkpoint/measurement-revalidation-2026-10-01": "f1b755254cfe148868f43ce9df0113650500c528",
+    "checkpoint/verification-frontier-2026-09-30": "02e06c0f5636def284ed6864b3e208538fcb10a6",
+    "checkpoint/publication-controls-2026-09-30": "6207455db8d86fbe1394d3ef2294fe8e0c877163",
+    "checkpoint/construction-screens-2026-10-01": "66c04dc69423438220ed4eb87a09a7831bac80ab"
+  },
+  "frozen_revalidation_sha256": {
+    "analysis-final-followups-04.json": "5a2036be9b8988da2544b14a6211992ec93fb566f5383d719157ca27f7e370cd",
+    "analysis-final-followups-04.md": "1cac6c0326c6f5f8c46e432c126e694984715527505e3ac768255381f11aeae3",
+    "analysis-main209.json": "5b4b71a4ae85b158f3d441183d522b9a697f2a96e001f0bce02547e849b6c310"
+  },
+  "production_source_changes": [],
+  "accepted_original_main_mechanisms": 0,
+  "original_8_source_budgets_and_40_conditional_lifetimes_reconciled": true,
+  "stopped_recipe": "generic fresh-family composition as original",
+  "known_controls_advanced": [
+    "precommitted fresh-target family MGF",
+    "fixed-index fresh-query conditional source lifetime"
+  ],
+  "next_packet": "Q21/E95",
+  "next_packet_implemented": false
+}

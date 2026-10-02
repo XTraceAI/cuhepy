@@ -750,3 +750,39 @@ Intended checkpoint: `checkpoint/partial-switch-controls-2026-10-02`, branch
 `experiment/partial-packed-switch-20261002`; preserve its Git bundle/source
 and workspace paper/cache archive alongside the completed orbit-precision
 checkpoint `41d65ba` and all earlier company checkpoints.
+
+## 2026-10-02 — Q19/E93 and Q20/E94; return after each component
+
+Parent: a6993d1. Branch: experiment/committed-precision-epoch-20261002.
+[Report](committed-precision-epoch-screen.md), [conditional lemmas](committed-precision-lemmas-20261002.md),
+[closest comparison](committed-precision-closest-work-20261002.md).
+
+1. E93A independently expands/reproduces all 8 modeled owner-source contexts;
+   6561 all-support cases attain the phase bound. Original quarter margins are
+   empty; changed-Q correctness and full-domain/even-p obligations are separate.
+   R6 returns to the finite fresh-target dependency question.
+2. E93B/C executes 455625 full tiny coin branches/1822500 phase identities,
+   posterior and adaptive-order falsifiers,52 public rejection controls and a
+   fresh valid BGV differential. Conditional MGFs/coupling are stated without
+   pretending to prove the private/HE protocol. The2560 paid cards include all
+   epoch/owner/key/RTT costs and unknown proof/PBS costs.
+3. E93D preserves the first grid and reproduces all 2560 rows before 6400
+   refined points:134 smaller statistical degree tuples belong equally to the
+   strong shared-epoch control. R6 stops generic epoch composition as original.
+4. Q20/E94 then tests fixed-index conditioning over fresh query errors:
+   6561 cases, exact rational nonzero tails, post-error/reused-error falsifiers,
+   fresh seeded BGV and40 lifetime cards. All regain modeled original-Q source
+   quarter headroom with 33.72–37.49x tighter bounds, not measured speed. Source
+   kappa 129 and lifetime-allocated target confidence are separate. Original
+   scores/key provenance, packed-query error correlation and durability stay open.
+
+309 specified CPU tests pass,82 added; explicit Ruff includes10 new files.
+Eight immutable initial/repeat raw receipts retain parent HEAD plus exact
+working-source hashes. Three new pinned primary PDF/text pairs bring the
+archive to 61; no author artifact is executed. Earlier sources/scopes/receipts,
+main/staging, production code and frozen timing measurements are preserved.
+No original complete main system or Q6–Q10 gate passes. R6 next selects
+[Q21/E95](late-owner-rerandomization-plan-20261002.md), proposed and unimplemented:
+late honest owner true-uniform zero, all-fixed-target-key conditional rounding,
+shared-output/ACER controls and a paid complete binding/resource consequence.
+Public SHAKE seeds require a separate argument. Preserve before further work.

@@ -1331,6 +1331,72 @@
       ],
       "version_note": "ePrint received 2025-05-06, approved2025-05-09; PDF title includes 'through' while webpage title omits it; cache identity pinned rather than substituted with later publisher version",
       "cache_directory": "../research-data/literature-partial-switch-20261002"
+    },
+    {
+      "id": "spiral-2022-368",
+      "url": "https://eprint.iacr.org/2022/368.pdf",
+      "final_url": "https://eprint.iacr.org/2022/368.pdf",
+      "retrieved_utc": "2026-10-02T14:38:08.384383+00:00",
+      "file": "spiral-2022-368.pdf",
+      "text_file": "spiral-2022-368.txt",
+      "bytes": 898464,
+      "status": "downloaded",
+      "sha256": "6d8e222256418740948d9a9d2a66a0a5f32f8fb513ac5a69aa655a7f689798b4",
+      "text_sha256": "d22cae9c62f6bfa7c1a94b3a8775ce44721f0c75ee438eae9a7732967df5895d",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "Spiral: Fast, High-Rate Single-Server PIR via FHE Composition",
+      "reading_depth": "Targeted section2 noise facts/Remark2.18 and section3.4/Theorem3.4; full page16 inspected; no full artifact/parameter/security audit",
+      "passages": [
+        "Section2 noise facts and independence heuristic",
+        "Section3.4 split-modulus switching Theorem3.4"
+      ],
+      "cache_directory": "../research-data/literature-committed-precision-20261002",
+      "version_note": "Mutable primary ePrint revision pinned by retrieval date and PDF/text hashes"
+    },
+    {
+      "id": "ypir-2024-270",
+      "url": "https://eprint.iacr.org/2024/270.pdf",
+      "final_url": "https://eprint.iacr.org/2024/270.pdf",
+      "retrieved_utc": "2026-10-02T14:38:09.401223+00:00",
+      "file": "ypir-2024-270.pdf",
+      "text_file": "ypir-2024-270.txt",
+      "bytes": 887320,
+      "status": "downloaded",
+      "sha256": "25e7ef02f4ec51ddae289f6d6ed19fb2a688023966c56b794d10c765a5173ada",
+      "text_sha256": "1f8b4a135d17e066218073c0b3a23131927b117beef4c86572785e04afb36cb6",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "YPIR: High-Throughput Single-Server PIR with Silent Preprocessing",
+      "reading_depth": "Targeted section2 independence heuristic, ModReduce and Lemma2.4; full page8 inspected; no full protocol/artifact/security audit",
+      "passages": [
+        "Section2 independence heuristic",
+        "ModReduce and Lemma2.4"
+      ],
+      "cache_directory": "../research-data/literature-committed-precision-20261002",
+      "version_note": "Mutable primary ePrint revision pinned by retrieval date and PDF/text hashes"
+    },
+    {
+      "id": "bgv-dependencies-2504.18597v3",
+      "url": "https://arxiv.org/pdf/2504.18597v3",
+      "final_url": "https://arxiv.org/pdf/2504.18597v3",
+      "retrieved_utc": "2026-10-02T15:05:02.944905+00:00",
+      "file": "bgv-dependencies-2504.18597v3.pdf",
+      "text_file": "bgv-dependencies-2504.18597v3.txt",
+      "bytes": 759357,
+      "status": "downloaded",
+      "sha256": "b5542125024c63daba611c19a4d2bf2509ce23a83a1022fe2305e666f8cc2e21",
+      "text_sha256": "9f9ca2a1e9cdf11157822dd7e4f36255b1a4e3d9263059587346eeca20b806f3",
+      "artifact_executed": false,
+      "performance_reproduced": false,
+      "title": "Accurate BGV Parameters Selection: Accounting for Secret and Public Key Dependencies in Average-Case Analysis",
+      "reading_depth": "Targeted section4 dependence setup and section5/5.1/5.2 Gaussian/rescaling premises; full pages16/18 inspected; no full proof/finite-tail/parameter/artifact audit",
+      "passages": [
+        "Section4 dependence setup",
+        "Sections5/5.1/5.2 Gaussianity/rescaling/CLT premises"
+      ],
+      "cache_directory": "../research-data/literature-committed-precision-20261002",
+      "version_note": "arXiv v3, 2026-03-05, exact PDF/text hashes pinned"
     }
   ],
   "additional_readings": [
@@ -1662,6 +1728,40 @@
         "https://eprint.iacr.org/2025/809"
       ],
       "search_scope": "Bounded primary-source searches and targeted passages; not exhaustive novelty/priority or full proof audit"
+    },
+    {
+      "date": "2026-10-02",
+      "report": "docs/research/committed-precision-epoch-screen.md",
+      "plan": "docs/research/late-owner-rerandomization-plan-20261002.md",
+      "baseline_commit": "a6993d1b8910578ca4bb0da6c7ecacca5b359acf",
+      "new_primary_pdfs_pinned": 3,
+      "total_primary_pdfs_pinned": 61,
+      "new_artifacts_executed": 0,
+      "new_bounded_experiments": [
+        "E93",
+        "E94"
+      ],
+      "source_ids": [
+        "spiral-2022-368",
+        "ypir-2024-270",
+        "bgv-dependencies-2504.18597v3"
+      ],
+      "additional_existing_source_reading": {
+        "full-domain-bootstrap-2023-645": "Section3 even-p, Algorithm1/Theorem1 half-margin/two-PBS control; full page10 inspected",
+        "ciphertext-drift-2024-1718": "Section3 ACER Definition3.3/Proposition3.4 and chosen-coin/rerandomization discussion revisited; full page9 inspected",
+        "chimera-2018-758": "Functional-switch Theorem2 precision/noise premises revisited; no new full audit"
+      },
+      "key_change": "Stop generic fresh-epoch composition as original; keep exact conditional controls. Fixed-index/fresh-query CBD conditioning restores original modeled-Q source margin. Next tests late true-uniform owner zero and fixed-key rounding assurance, against equally shared known controls.",
+      "web_refresh": [
+        "https://eprint.iacr.org/2018/758",
+        "https://eprint.iacr.org/2023/645",
+        "https://arxiv.org/abs/2301.07041",
+        "https://eprint.iacr.org/2024/1718",
+        "https://eprint.iacr.org/2022/368",
+        "https://eprint.iacr.org/2024/270",
+        "https://arxiv.org/abs/2504.18597v3"
+      ],
+      "search_scope": "Bounded primary-source searches/targeted passages; not exhaustive priority or complete proof audit"
     }
   ],
   "execution_reading_note": "E92 targeted approximate/CRT decomposition and mean-compensation controls; 58 primary PDF/text pairs retained. Prior56 source records identical to orbit-precision checkpoint. Additional reading of an old source is appended in review records. No author artifact or full probability/parameter audit claimed."
