@@ -1,3 +1,17 @@
+# Current system research blueprint, 2026-10-03
+
+Read the [executable blueprint](system-research-blueprint-20261003.md),
+[closest-work comparison](closest-work-system-blueprint-20261003.md) and
+[evidence review](research-evidence-review-20261003.md). The plan focuses on
+complete native verification, shared operator state and authenticated updates.
+E101/E110's negative originality results remain in force. Six bounded packages
+lead to a build-or-stop decision; Q56 is next and Q57 supplies static design.
+No new experiment, approved profile or original main is declared by this review.
+The [task ledger](system-research-blueprint-20261003.json) is current for future
+work. Earlier evidence and the historical recommendations below are preserved.
+
+---
+
 # Current bounded system-selection return, 2026-10-03
 
 The [three-package cap](system-selection-plan-20261003.md) is complete within its
