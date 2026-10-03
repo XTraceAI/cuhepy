@@ -1,3 +1,22 @@
+# Executed native verification return, 2026-10-03
+
+Read the [execution](native-verification-execution-20261003.md) and
+[Q61 selection decision](native-verification-selection-20261003.md).
+Q56 complete native controls pass the frozen and 8192×512 three-query cohorts.
+Q57 and Q59's bounded static component return generic containment, so the literal
+H1/H2 originality gates stop; Q58/Q60 are skipped under their prerequisites.
+The [current task ledger](system-research-blueprint-20261003.json) records these
+outcomes. Full authenticated updates, deployment assurance and a new original
+mechanism remain open; no original main or secure-service timing win is accepted.
+All automatically eligible experiments in this bounded selection cap are resolved.
+The company engineering handoff is owner-authenticated native tile replacement,
+with equal fresh-rebuild/mutable generic controls, as a planned component.
+
+The planning and historical bodies below are preserved as dated snapshots;
+their future-tense status is superseded by the current execution ledger.
+
+---
+
 # Current system research blueprint, 2026-10-03
 
 Read the [executable blueprint](system-research-blueprint-20261003.md),

@@ -6,6 +6,9 @@
 #include "compact.h"
 #include "query_codec.h"
 #include "packed_wire.h"
+#ifdef CUHEPY_BGV_COMPLETE
+#include "complete_continuation.h"
+#endif
 #ifdef CUHEPY_BGV_CUDA
 #include "cuda_trace.cuh"
 #endif
@@ -31,6 +34,9 @@ using WorkspacePtr = std::shared_ptr<Workspace>;
 constexpr const char* workspace_name = "cuhepy.lab.bgv.cuda.workspace.v1";
 constexpr const char* server_name = "cuhepy.lab.bgv.cuda.server.v1";
 constexpr const char* index_name = "cuhepy.lab.bgv.cuda.index.v1";
+#elif defined(CUHEPY_BGV_COMPLETE)
+constexpr const char* server_name = "cuhepy.lab.bgv.complete.server.v1";
+constexpr const char* index_name = "cuhepy.lab.bgv.complete.index.v1";
 #else
 constexpr const char* server_name = "cuhepy.lab.bgv.server.v1";
 constexpr const char* index_name = "cuhepy.lab.bgv.index.v1";
@@ -120,6 +126,10 @@ PyObject* create_server(PyObject*, PyObject* args) {
         if (level || ntt_variant) throw std::invalid_argument("CUDA kernel/NTT choice requires the CUDA extension");
 #endif
         auto n = integer(n_obj, 32768), bits = integer(bits_obj, 60), d = integer(d_obj, n / 2);
+#ifdef CUHEPY_BGV_COMPLETE
+        if (!residue || n > 16384 || bits != 30)
+            throw std::invalid_argument("Complete control requires persistent Q120 RNS, N<=16384, and 30-bit digits");
+#endif
         if (n < 8 || (n & (n - 1)) || bits < 4 || !d || (d & (d - 1)) ||
             length < 8 || length > 60 || text[0] == '0' || !std::all_of(text, text + length, [](char c) {
                 return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f');
@@ -127,6 +137,10 @@ PyObject* create_server(PyObject*, PyObject* args) {
         mpz_class q;
         q.set_str(text, 16);
         auto q_bits = mpz_sizeinbase(q.get_mpz_t(), 2);
+#ifdef CUHEPY_BGV_COMPLETE
+        if (q_bits != 120)
+            throw std::invalid_argument("Complete control requires the current Q120 product-check profile");
+#endif
         if (q_bits < 32 || q_bits > 240 || bits > q_bits || mpz_even_p(q.get_mpz_t()))
             throw std::invalid_argument("Invalid native BGV modulus");
         std::size_t count = 1;
@@ -200,6 +214,135 @@ PyObject* write_packed_pair(const Ciphertext& cipher, std::size_t n, const mpz_c
     return Py_BuildValue("(y#y#)",first.data(),static_cast<Py_ssize_t>(first.size()),
                          second.data(),static_cast<Py_ssize_t>(second.size()));
 }
+#ifdef CUHEPY_BGV_COMPLETE
+PyObject* complete_profile(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject* server_obj;
+        if (!PyArg_ParseTuple(args, "O", &server_obj)) return nullptr;
+        auto server = get<ServerPtr>(server_obj, server_name);
+        CompleteContinuation continuation(*server);
+        return Py_BuildValue("(nKKnnn)", static_cast<Py_ssize_t>(server->ring->n),
+                             static_cast<unsigned long long>(server->ring->transforms[0].modulus),
+                             static_cast<unsigned long long>(server->ring->transforms[1].modulus),
+                             static_cast<Py_ssize_t>(server->padded),
+                             static_cast<Py_ssize_t>(server->ring->digit_bits),
+                             static_cast<Py_ssize_t>(server->ring->digits));
+    });
+}
+
+PyObject* write_complete_response(const std::vector<Ciphertext>& output, const Server& server,
+                                 const TerminalReduction& reduction, bool packed) {
+    auto result = PyTuple_New(output.size());
+    if (!result) return nullptr;
+    try {
+        for (std::size_t i = 0; i < output.size(); ++i) {
+            auto pair = packed ? write_packed_pair(output[i], server.ring->n, reduction.modulus)
+                               : write_pair(output[i], server.ring->n, reduction.modulus,
+                                            reduction.coefficient_bytes);
+            if (!pair) { Py_DECREF(result); return nullptr; }
+            PyTuple_SET_ITEM(result, i, pair);
+        }
+    } catch (...) { Py_DECREF(result); throw; }
+    return result;
+}
+
+PyObject* validate_products_rns(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_obj, *raw, *count_obj;
+        if (!PyArg_ParseTuple(args, "OOO", &server_obj, &raw, &count_obj)) return nullptr;
+        auto server = get<ServerPtr>(server_obj, server_name);
+        CompleteContinuation continuation(*server);
+        const auto count = integer(count_obj, 4096);
+        if (!PyBytes_CheckExact(raw)) throw std::invalid_argument("Immutable exact product bytes required");
+        const auto data = reinterpret_cast<const unsigned char*>(PyBytes_AS_STRING(raw));
+        const auto size = static_cast<std::size_t>(PyBytes_GET_SIZE(raw));
+        { WithoutGIL release; continuation.validate_products(data, size, count); }
+        Py_RETURN_NONE;
+    });
+}
+
+PyObject* continue_products_impl(PyObject* args, bool raw_rns, bool packed) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_obj, *products_obj, *count_obj, *t_obj;
+        const char* p_text;
+        Py_ssize_t length;
+        if (!PyArg_ParseTuple(args, "OOOOs#", &server_obj, &products_obj, &count_obj,
+                              &t_obj, &p_text, &length)) return nullptr;
+        auto server = get<ServerPtr>(server_obj, server_name);
+        CompleteContinuation continuation(*server);
+        const auto count = integer(count_obj, 4096);
+        continuation.product_bytes(count);
+        auto reduction = terminal(t_obj, p_text, length, *server->ring);
+        std::vector<ResidueCiphertext> products;
+        if (raw_rns) {
+            if (!PyBytes_CheckExact(products_obj))
+                throw std::invalid_argument("Immutable exact product bytes required");
+            const auto data = reinterpret_cast<const unsigned char*>(PyBytes_AS_STRING(products_obj));
+            const auto size = static_cast<std::size_t>(PyBytes_GET_SIZE(products_obj));
+            { WithoutGIL release; products = continuation.read_products(data, size, count); }
+        } else {
+            if (!PyTuple_CheckExact(products_obj) ||
+                PyTuple_GET_SIZE(products_obj) != static_cast<Py_ssize_t>(count))
+                throw std::invalid_argument("Incomplete exact product-tile coverage");
+            std::vector<Ciphertext> canonical;
+            canonical.reserve(count);
+            for (std::size_t i = 0; i < count; ++i) {
+                auto pair = PyTuple_GET_ITEM(products_obj, i);
+                if (!PyTuple_CheckExact(pair) || PyTuple_GET_SIZE(pair) != 2 ||
+                    !PyBytes_CheckExact(PyTuple_GET_ITEM(pair, 0)) ||
+                    !PyBytes_CheckExact(PyTuple_GET_ITEM(pair, 1)))
+                    throw std::invalid_argument("Exact product component bytes required");
+                canonical.push_back(read_pair(pair, *server->ring));
+            }
+            { WithoutGIL release; products = continuation.split_products(canonical, count); }
+        }
+        std::vector<Ciphertext> output;
+        { WithoutGIL release;
+          output = continuation.continue_products(std::move(products), count);
+          continuation.compact(output, *reduction); }
+        return write_complete_response(output, *server, *reduction, packed);
+    });
+}
+PyObject* continue_products_compact(PyObject*, PyObject* args) {
+    return continue_products_impl(args, false, false);
+}
+PyObject* continue_products_packed(PyObject*, PyObject* args) {
+    return continue_products_impl(args, false, true);
+}
+PyObject* continue_products_rns_compact(PyObject*, PyObject* args) {
+    return continue_products_impl(args, true, false);
+}
+PyObject* continue_products_rns_packed(PyObject*, PyObject* args) {
+    return continue_products_impl(args, true, true);
+}
+
+PyObject* replay_packed(PyObject*, PyObject* args) {
+    return checked([&]() -> PyObject* {
+        PyObject *server_obj, *query_obj, *index_obj, *t_obj;
+        const char* p_text;
+        Py_ssize_t length;
+        if (!PyArg_ParseTuple(args, "OOOOs#", &server_obj, &query_obj, &index_obj,
+                              &t_obj, &p_text, &length)) return nullptr;
+        auto server = get<ServerPtr>(server_obj, server_name);
+        auto index = get<IndexPtr>(index_obj, index_name);
+        if (index->server != server)
+            throw std::invalid_argument("Index belongs to another native complete context");
+        CompleteContinuation continuation(*server);
+        continuation.product_bytes(index->tiles.size());
+        if (!PyTuple_CheckExact(query_obj) || PyTuple_GET_SIZE(query_obj) != 2 ||
+            !PyBytes_CheckExact(PyTuple_GET_ITEM(query_obj, 0)) ||
+            !PyBytes_CheckExact(PyTuple_GET_ITEM(query_obj, 1)))
+            throw std::invalid_argument("Exact query component bytes required");
+        auto query = read_pair(query_obj, *server->ring);
+        auto reduction = terminal(t_obj, p_text, length, *server->ring);
+        std::vector<Ciphertext> output;
+        { WithoutGIL release;
+          output = server->search(query, index->tiles, true);
+          continuation.compact(output, *reduction); }
+        return write_complete_response(output, *server, *reduction, true);
+    });
+}
+#endif
 PyObject* search_impl(PyObject* args, bool compact, bool persistent = false, bool gpu_terminal = false,
                      bool packed = false) {
     return checked([&]() -> PyObject* {
@@ -405,6 +548,15 @@ PyMethodDef methods[] = {
     {"prepare_index", prepare_index, METH_VARARGS, "Cache public encrypted index transforms."},
     {"search", search, METH_VARARGS, "Evaluate the per-tile or joint trace circuit."},
     {"search_compact", search_compact, METH_VARARGS, "Evaluate and reduce the result before exporting coefficients."},
+#ifdef CUHEPY_BGV_COMPLETE
+    {"complete_profile", complete_profile, METH_VARARGS, "Public exact N/prime/layout/gadget profile for enrollment equality."},
+    {"validate_products_rns", validate_products_rns, METH_VARARGS, "Validate every canonical immutable product word before protocol entropy."},
+    {"continue_products_compact", continue_products_compact, METH_VARARGS, "Complete trusted suffix of already checked unshifted products; no admission claim."},
+    {"continue_products_packed", continue_products_packed, METH_VARARGS, "Complete suffix with packed canonical terminal coefficients."},
+    {"continue_products_rns_compact", continue_products_rns_compact, METH_VARARGS, "Complete suffix from canonical checked RNS products."},
+    {"continue_products_rns_packed", continue_products_rns_packed, METH_VARARGS, "Complete suffix from RNS products with packed terminal coefficients."},
+    {"replay_packed", replay_packed, METH_VARARGS, "Secretless prepared full butterfly replay; no authentication claim."},
+#endif
 #ifdef CUHEPY_BGV_CUDA
     {"product_switch_rns", product_switch_rns, METH_VARARGS, "Bounded product/relinearization stage; canonical RNS input/output, no search receipt."},
     {"prepare_workspace", prepare_workspace, METH_VARARGS, "Allocate a bounded reusable single-request workspace."},
@@ -421,6 +573,8 @@ PyMethodDef methods[] = {
 };
 #ifdef CUHEPY_BGV_CUDA
 constexpr const char* module_name = "_bgv_trace_cuda";
+#elif defined(CUHEPY_BGV_COMPLETE)
+constexpr const char* module_name = "_bgv_complete";
 #else
 constexpr const char* module_name = "_bgv_trace";
 #endif
@@ -429,6 +583,8 @@ PyModuleDef module = {PyModuleDef_HEAD_INIT, module_name, "Experimental public B
 }
 #ifdef CUHEPY_BGV_CUDA
 PyMODINIT_FUNC PyInit__bgv_trace_cuda() { return PyModule_Create(&module); }
+#elif defined(CUHEPY_BGV_COMPLETE)
+PyMODINIT_FUNC PyInit__bgv_complete() { return PyModule_Create(&module); }
 #else
 PyMODINIT_FUNC PyInit__bgv_trace() { return PyModule_Create(&module); }
 #endif

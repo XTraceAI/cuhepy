@@ -1,3 +1,22 @@
+# Post-execution closest-work return
+
+The targeted registry now contains 102 pinned PDF/text pairs; all earlier101
+source entries are unchanged. The additional [KeyMemRT](https://arxiv.org/abs/2601.18445v1)
+read covers typed evaluation keys and shared lifetimes/hoisting/scheduling,
+with scope/hashes in the registry. No artifact or performance reproduction is
+claimed. The [actual operator comparison](operator-state-discriminator-20261003.md)
+finds non-additivity but the equally specialized generic compiler has every same
+choice; the [update comparison](operator-incremental-state-20261003.md) obtains
+the same affine state as the generic delta control. Thus neither literal H1 nor
+literal H2 establishes an original-main mechanism. Complete native correctness
+is a retained engineering result. The [claim/architecture return](native-verification-selection-20261003.md)
+records conditional skips and future proof/deployment obligations.
+
+The initial planning comparison below is preserved; its source counts and
+candidate language describe that earlier review, not current acceptance.
+
+---
+
 # Closest work for the complete-system blueprint
 
 2026-10-03. Read with the [blueprint](system-research-blueprint-20261003.md)

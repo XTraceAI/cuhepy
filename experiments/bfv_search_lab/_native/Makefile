@@ -14,9 +14,16 @@ TARGET := _bgv_trace$(EXT)
 CUDA_TARGET := _bgv_trace_cuda$(EXT)
 BOUNDARY_TARGET ?= /tmp/cuhepy-bgv-digit-boundary
 PRODUCT_SANITIZER_TARGET ?= /tmp/cuhepy-bgv-product-sanitizer
+COMPLETE_TARGET ?= /tmp/cuhepy-bgv-complete/_bgv_complete$(EXT)
 .PHONY: all cuda clean
 all: $(TARGET)
 cuda: $(CUDA_TARGET)
+.PHONY: complete
+complete: $(COMPLETE_TARGET)
+$(COMPLETE_TARGET): bindings.cpp complete_continuation.h trace_server.h residue_trace.h compact.h query_codec.h word_codec.h $(wildcard $(CPU)/*.h) Makefile
+	mkdir -p $(dir $@)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -DCUHEPY_BGV_COMPLETE -std=c++17 -Wall -Wextra -fPIC -shared \
+		-I$(PY_INC) -I$(CPU) bindings.cpp $(LDFLAGS) -lgmpxx -lgmp -o $@
 .PHONY: product-stage-sanitizer
 product-stage-sanitizer: sanitize_product.cu cuda_trace.cuh
 	$(NVCC) $(NVCCFLAGS) -std=c++17 -ccbin $(CUDA_CXX) \

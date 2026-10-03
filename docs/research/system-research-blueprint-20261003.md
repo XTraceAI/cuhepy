@@ -1,3 +1,16 @@
+# Execution outcome of this blueprint
+
+The [bounded execution and correctness record](native-verification-execution-20261003.md)
+and [Q61 selection return](native-verification-selection-20261003.md) are current.
+Q56 built the complete homemade native control and passed the three-query
+8192×512 source cohort. Q57 and Q59's static first component matched known
+generic controls. Q58/Q60 were skipped because no original candidate survived;
+Q61 records known engineering only. Full Q59 live authentication/reuse and
+Q62/Q63 deployment/paper acceptance remain unmet. The JSON ledger has the exact
+scope/status; the initial blueprint text follows unchanged.
+
+---
+
 # Research blueprint: complete verification for a reusable encrypted index
 
 2026-10-03. Planning revision based on checkpoint

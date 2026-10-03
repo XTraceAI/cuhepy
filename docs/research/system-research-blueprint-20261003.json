@@ -8,13 +8,13 @@
   "closest_work": "docs/research/closest-work-system-blueprint-20261003.md",
   "evidence_review": "docs/research/research-evidence-review-20261003.md",
   "literature_review": "docs/research/system-blueprint-literature-review-20261003.json",
-  "planning_only": true,
-  "new_experiments_run": 0,
-  "new_HE_tests_run": 0,
+  "planning_only": false,
+  "new_experiments_run": null,
+  "new_HE_tests_run": null,
   "new_timing_panels": 0,
   "accepted_original_main_mechanisms": 0,
-  "next_task": "Q56",
-  "independent_design_task": "Q57",
+  "next_task": null,
+  "independent_design_task": null,
   "selection_packages": 6,
   "conditional_full_system_packages": 2,
   "candidate_hypotheses": [
@@ -37,7 +37,7 @@
       "label": "B1",
       "title": "Complete native admission reference and controls",
       "dependencies": [],
-      "status": "planned_next",
+      "status": "complete_native_reference_correctness_scope",
       "specification": "docs/research/system-research-blueprint-20261003.md",
       "component_cap": [
         "One complete relation/schema; prepared native replay and checked-product/trusted-suffix modes; frozen tiny oracle plus one source geometry and held-out queries."
@@ -50,17 +50,29 @@
         "scoped correctness receipt",
         "complete resource ledger"
       ],
-      "implemented": false,
-      "bounded_first_component_complete": false,
+      "implemented": true,
+      "bounded_first_component_complete": true,
       "full_deployment_or_originality_accepted": false,
-      "execution_evidence": []
+      "execution_evidence": [
+        "docs/research/native-verification-execution-20261003.md"
+      ],
+      "correctness_evidence": {
+        "frozen_queries": 8,
+        "source_rows": 8192,
+        "source_dimension": 512,
+        "source_queries": 3,
+        "unique_source_distances": 24576,
+        "native_tests": 116,
+        "new_timing_panels": 0
+      },
+      "raw_evidence": "../research-data/native-verification-system-20261003/native/source-geometry/results.json"
     },
     {
       "id": "Q57",
       "label": "B2",
       "title": "Shared-operator and update-dependency discriminator",
       "dependencies": [],
-      "status": "planned_static_design",
+      "status": "complete_static_comparison_literal_H1_stopped",
       "specification": "docs/research/system-research-blueprint-20261003.md",
       "component_cap": [
         "One symbolic census at the existing 8k and 32k graphs; strongest bilinear/adjoint control; one targeted prior comparison."
@@ -72,10 +84,12 @@
         "dependency sets",
         "candidate/control difference card"
       ],
-      "implemented": false,
-      "bounded_first_component_complete": false,
+      "implemented": true,
+      "bounded_first_component_complete": true,
       "full_deployment_or_originality_accepted": false,
-      "execution_evidence": []
+      "execution_evidence": [
+        "docs/research/operator-state-discriminator-20261003.md"
+      ]
     },
     {
       "id": "Q58",
@@ -85,7 +99,7 @@
         "Q56",
         "Q57"
       ],
-      "status": "conditional_on_distinct_feasible_H1",
+      "status": "skipped_no_distinct_feasible_H1",
       "specification": "docs/research/system-research-blueprint-20261003.md",
       "component_cap": [
         "Four registered cut policies, tiny exhaustive oracle, one selected native rule, partial-group and second-geometry holdouts."
@@ -101,7 +115,10 @@
       "implemented": false,
       "bounded_first_component_complete": false,
       "full_deployment_or_originality_accepted": false,
-      "execution_evidence": []
+      "execution_evidence": [
+        "docs/research/native-verification-selection-20261003.md"
+      ],
+      "conditional_skip_is_completed_experiment": false
     },
     {
       "id": "Q59",
@@ -110,7 +127,7 @@
       "dependencies": [
         "Q56"
       ],
-      "status": "conditional_design_with_independent_novelty_gate",
+      "status": "bounded_static_component_complete_literal_H2_stopped",
       "specification": "docs/research/system-research-blueprint-20261003.md",
       "component_cap": [
         "One state design; single-row, single-tile, dispersed32 and whole-snapshot edits; mutable generic/cache and fresh rebuild controls."
@@ -122,10 +139,14 @@
         "reusable-state proof obligation",
         "update dependency/cost ledger"
       ],
-      "implemented": false,
-      "bounded_first_component_complete": false,
+      "implemented": true,
+      "bounded_first_component_complete": true,
       "full_deployment_or_originality_accepted": false,
-      "execution_evidence": []
+      "execution_evidence": [
+        "docs/research/operator-incremental-state-20261003.md"
+      ],
+      "full_component_implemented": false,
+      "scope_note": "Static algebra/cost/dependency screen only. Full authenticated live update/epoch/reuse service unimplemented; generic containment closes literal original candidate."
     },
     {
       "id": "Q60",
@@ -134,7 +155,7 @@
       "dependencies": [
         "Q56"
       ],
-      "status": "conditional_on_Q58_or_Q59_survivor",
+      "status": "skipped_no_original_candidate_survivor",
       "specification": "docs/research/system-research-blueprint-20261003.md",
       "component_cap": [
         "One preregistered panel: 8k/32k, five independent process/key blocks per size, fixed queries/updates, at most one candidate plus strong controls."
@@ -149,7 +170,10 @@
       "implemented": false,
       "bounded_first_component_complete": false,
       "full_deployment_or_originality_accepted": false,
-      "execution_evidence": []
+      "execution_evidence": [
+        "docs/research/native-verification-selection-20261003.md"
+      ],
+      "conditional_skip_is_completed_experiment": false
     },
     {
       "id": "Q61",
@@ -162,7 +186,7 @@
         "Q59",
         "Q60"
       ],
-      "status": "planned_decision_including_early_stop",
+      "status": "decision_complete_known_controls_no_original_main",
       "specification": "docs/research/system-research-blueprint-20261003.md",
       "component_cap": [
         "One claim/architecture decision after applicable packages; may close early when all candidates stop."
@@ -174,10 +198,12 @@
         "architecture freeze or stop record",
         "next build handoff"
       ],
-      "implemented": false,
-      "bounded_first_component_complete": false,
+      "implemented": true,
+      "bounded_first_component_complete": true,
       "full_deployment_or_originality_accepted": false,
-      "execution_evidence": []
+      "execution_evidence": [
+        "docs/research/native-verification-selection-20261003.md"
+      ]
     },
     {
       "id": "Q62",
@@ -186,7 +212,7 @@
       "dependencies": [
         "Q61"
       ],
-      "status": "conditional_full_system",
+      "status": "deferred_no_original_architecture_or_complete_usefulness_result",
       "specification": "docs/research/system-research-blueprint-20261003.md",
       "component_cap": [
         "Selected architecture only: enrollment, requests, complete receipts, private finish, updates, concurrency, rollback/lifetime and real chosen TEE transport."
@@ -201,7 +227,9 @@
       "implemented": false,
       "bounded_first_component_complete": false,
       "full_deployment_or_originality_accepted": false,
-      "execution_evidence": []
+      "execution_evidence": [
+        "docs/research/native-verification-selection-20261003.md"
+      ]
     },
     {
       "id": "Q63",
@@ -210,7 +238,7 @@
       "dependencies": [
         "Q62"
       ],
-      "status": "conditional_full_system",
+      "status": "conditional_on_selected_assured_system",
       "specification": "docs/research/system-research-blueprint-20261003.md",
       "component_cap": [
         "Selected regimes, approved comparable profiles, held-out workloads and reproducible ablations; no unfocused new parameter grid."
@@ -225,7 +253,9 @@
       "implemented": false,
       "bounded_first_component_complete": false,
       "full_deployment_or_originality_accepted": false,
-      "execution_evidence": []
+      "execution_evidence": [
+        "docs/research/native-verification-selection-20261003.md"
+      ]
     }
   ],
   "return_fields": [
@@ -237,5 +267,27 @@
     "pass/stop",
     "next task"
   ],
-  "dependencies_note": "Q57 is static design independent of Q56 implementation. Q59 can use B1 without H1 but must earn its own originality. Q60 requires a surviving Q58 or Q59 candidate. Q61 requires a recorded outcome for every predecessor: completed within scope or explicitly skipped because a prerequisite stopped. It may close early when all candidate routes stop; it may not select an original useful system without the applicable relation, prior and matched-measurement gates."
+  "dependencies_note": "Q57 is static design independent of Q56 implementation. Q59 can use B1 without H1 but must earn its own originality. Q60 requires a surviving Q58 or Q59 candidate. Q61 requires a recorded outcome for every predecessor: completed within scope or explicitly skipped because a prerequisite stopped. It may close early when all candidate routes stop; it may not select an original useful system without the applicable relation, prior and matched-measurement gates.",
+  "original_planning_snapshot": "../research-data/native-verification-system-20261003/baseline-system-research-blueprint-20261003.json",
+  "execution_branch": "experiment/native-verification-system-20261003",
+  "execution_parent": "dfdd6bd298dec2da93b9d5a9dd1acad1d1889734",
+  "execution_report": "docs/research/native-verification-execution-20261003.md",
+  "selection_report": "docs/research/native-verification-selection-20261003.md",
+  "execution_scopes": {
+    "frozen_native_cohort": "8 original queries, every packet byte",
+    "source_native_cohort": "one fresh key, three queries,24576 unique distances/98304 terminalcoordinates",
+    "native_tests": 116,
+    "operator_tests": {
+      "Q57": 31,
+      "Q59": 27
+    },
+    "static_graph_censuses": 6,
+    "static_update_cards": 24,
+    "public_update_algebra_comparisons": 144,
+    "native_worker_algebra_cases": 35,
+    "native_worker_parser_negatives": 28,
+    "new_timing_panels": 0
+  },
+  "selection_cap_outcome": "Known controls retained; literal H1/H2 originality gates stopped. No eligible Q58/Q60 experiment. Q59 full service contract not fulfilled; candidate closed at bounded static component. Q61 early stop applied.",
+  "next_engineering_component": "Planned owner-authenticated native tile replacement with fresh rebuild/mutable generic controls; no original-main approval."
 }
