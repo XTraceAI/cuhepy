@@ -1,0 +1,293 @@
+{
+  "kind": "bounded_system_selection_return",
+  "evidence_parent": "11e1690d4c4a90a718e5f2b8a98e79b4757a59bd",
+  "branch": "experiment/system-selection-20261003",
+  "plan": "docs/research/system-selection-plan-20261003.md",
+  "report": "docs/research/system-selection-return-20261003.md",
+  "next_packet": "Q55",
+  "bounded_cap_complete": true,
+  "actual_protocol_security_complete": false,
+  "accepted_original_main_mechanisms": 0,
+  "new_approved_parameters": 0,
+  "new_external_proof_cohorts": 0,
+  "new_timing_panels": 1,
+  "unqualified_timing_panels": 0,
+  "resource_qualified_timing_panels": 1,
+  "actual_large_HE_executions": 28,
+  "actual_large_HE_execution_count_scope": "Completed32k HE search calls, excluding cache and crypto setup, not all primitive operations.",
+  "literature_pdf_text_pairs": 100,
+  "executed_counts": {
+    "main_attempts": 1,
+    "main_completed_searches": 35,
+    "main_checked_distances": 1146880,
+    "main_completed_HE_searches": 28,
+    "main_completed_cache_searches": 7,
+    "main_updates": 5,
+    "main_resource_qualified": true,
+    "intrinsic_attempts": 2,
+    "intrinsic_successful_searches": 15,
+    "intrinsic_successful_checked_distances": 240,
+    "failed_intrinsic_completed_searches": 0,
+    "admission_main_attempts": 1,
+    "admission_queries": 8,
+    "admission_blocks": 24,
+    "admission_complete_coefficients": 256,
+    "static_symbolic_attempts": 1,
+    "scientific_retries": 0,
+    "new_native_builds": 0,
+    "unqualified_timing_panels": 0
+  },
+  "scoped_tests": {
+    "complete_checked_bgv": 89,
+    "system_selection_controller": 20
+  },
+  "historical_tests_rerun": 0,
+  "artifacts": [
+    "benchmarks/complete_checked_bgv_lab.py",
+    "benchmarks/system_selection_measurement.py",
+    "experiments/bfv_search_lab/complete_checked_bgv.py",
+    "experiments/bfv_search_lab/test_complete_checked_bgv.py",
+    "experiments/bfv_search_lab/test_system_selection_measurement.py",
+    "benchmarks/results/publication-complete-checked-bgv-reference-20261003.json",
+    "benchmarks/results/publication-system-selection-measurement-20261003.json",
+    "docs/research/system-selection-plan-20261003.md",
+    "docs/research/system-selection-return-20261003.md",
+    "docs/research/system-selection-gpu-admission-plan-20261003.md",
+    "docs/research/system-selection-gpu-admission-return-20261003.md",
+    "docs/research/system-selection-measurement-plan-20261003.md",
+    "docs/research/system-selection-measurement-return-20261003.md",
+    "docs/research/system-selection-fourier-attempt-20261003.md"
+  ],
+  "selected_raw_sha256": {
+    "benchmarks/results/publication-complete-checked-bgv-reference-20261003.json": "078c32a75d78c0ca4949058b9ee5b30f57eb1936a278c55ac4a75f873c5b454b",
+    "benchmarks/results/publication-system-selection-measurement-20261003.json": "599c5f2bd44b81a4622c2ab12ecb762ac23c12ec4872ad2085e24f76982373dc"
+  },
+  "completed_bounded_components": [
+    "Q52_system_selection_return_20261003",
+    "Q53_system_selection_return_20261003",
+    "Q54_system_selection_return_20261003",
+    "Q55_system_selection_return_20261003"
+  ],
+  "scope_notes": [
+    "One complete32k matched local arithmetic cohort,35 searches/1146880 full distances and5 updates. Timings retain global setup-swap qualification; no actual WAN or authenticated GPU service.",
+    "One adapter-failed intrinsic retained; one separately reviewed corrected intrinsic15 searches/240 distances. No main retry/profile tuning; crypto setup in failed attempt is not mislabeled zero HE work.",
+    "One complete tiny checked-product/trusted-suffix known control:8 original queries/24 blocks/256 full coefficients and89 final distinct tests; no private callback/native/GPU/timing/attestation in that cohort.",
+    "20 final distinct measurement controller tests; development collections/reruns not added. No historical scientific suite rerun.",
+    "One fixed symbolic2+2 Fourier attempt gives known supporting bound; original route STOP and stronger theorem/source consequence unproved.",
+    "Company native/CUDA schemes unchanged. HE profiles unequal/unapproved; ordinary BGV is public-index reference, stronger E16 and cache/update controls retained.",
+    "Finite construction handoff recorded; no original main, full protocol security, parameter approval or automatic successor experiment.",
+    "32protected refs,1493priorcachemembers and100PDF/textpairs preserved; selected raw packets are byte-identical final copies."
+  ],
+  "validation_contract": {
+    "all_writes_stopped_receipt": "research-data/system-selection-20261003/root/all-writes-stopped.json",
+    "test_groups": [
+      {
+        "id": "complete_checked_bgv",
+        "xml": "research-data/system-selection-20261003/gpu-admission-design/scoped-tests-final.xml",
+        "ids_file": "research-data/system-selection-20261003/gpu-admission-design/scoped-test-identities.json",
+        "ids_key": "case_ids",
+        "expected_count": 89
+      },
+      {
+        "id": "system_selection_controller",
+        "xml": "research-data/system-selection-20261003/measurement-design/qa03/controller-junit.xml",
+        "ids_file": "research-data/system-selection-20261003/root/measurement-test-identities.json",
+        "ids_key": null,
+        "expected_count": 20
+      }
+    ],
+    "source_freezes": [
+      {
+        "path": "research-data/system-selection-20261003/gpu-admission-design/main-source-and-argv-freeze.json",
+        "schema": "pins-list",
+        "mode": "current"
+      },
+      {
+        "path": "research-data/system-selection-20261003/measurement-design/main-freeze.json",
+        "schema": "inputs-list",
+        "mode": "current"
+      },
+      {
+        "path": "research-data/system-selection-20261003/measurement-design/intrinsic-corrected-freeze.json",
+        "schema": "inputs-list",
+        "mode": "current"
+      },
+      {
+        "path": "research-data/system-selection-20261003/measurement-design/intrinsic-freeze.json",
+        "schema": "inputs-list",
+        "mode": "historical",
+        "historical_substitutions": [
+          {
+            "original_path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/benchmarks/system_selection_measurement.py",
+            "expected_sha256": "30b4cce1c21d203571e184ce90669be9e36bc6f10b611433653e03f6a5f1c66f",
+            "preserved_path": "research-data/system-selection-20261003/measurement-design/corrective-source-before-v1/runner.py"
+          },
+          {
+            "original_path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/test_system_selection_measurement.py",
+            "expected_sha256": "1757198175d0fcb623071017f8afd2244bae9d3207592d62226598deaaea4e1a",
+            "preserved_path": "research-data/system-selection-20261003/measurement-design/corrective-source-before-v1/tests.py"
+          }
+        ]
+      },
+      {
+        "path": "research-data/system-selection-20261003/root/fourier-source-pin-ledger.json",
+        "schema": "pins-list",
+        "mode": "current"
+      }
+    ],
+    "json_assertions": [
+      {
+        "path": "research-data/system-selection-20261003/measurement-design/main/report.json",
+        "assertions": {
+          "complete": true,
+          "all_scores_and_top3_correct": true,
+          "cleanup_failures": []
+        }
+      },
+      {
+        "path": "research-data/system-selection-20261003/measurement-design/main/supervisor-receipt.json",
+        "assertions": {
+          "state": "completed",
+          "complete_report_validated": true,
+          "source_inputs_unchanged": true,
+          "automatic_retries": 0,
+          "timing_qualified": true
+        }
+      },
+      {
+        "path": "research-data/system-selection-20261003/measurement-design/intrinsic-corrected/report.json",
+        "assertions": {
+          "complete": true,
+          "all_scores_and_top3_correct": true,
+          "cleanup_failures": []
+        }
+      },
+      {
+        "path": "research-data/system-selection-20261003/measurement-design/intrinsic/supervisor-receipt.json",
+        "assertions": {
+          "state": "failed",
+          "source_inputs_unchanged": true
+        }
+      },
+      {
+        "path": "research-data/system-selection-20261003/gpu-admission-design/main-supervisor-receipt.json",
+        "assertions": {
+          "exit_code": 0,
+          "timeout": false,
+          "scientific_main_count": 1,
+          "scientific_retries": 0
+        }
+      },
+      {
+        "path": "cuhepy-bfv-research/benchmarks/results/publication-complete-checked-bgv-reference-20261003.json",
+        "assertions": {
+          "summary.queries": 8,
+          "summary.blocks_checked": 24,
+          "summary.complete_response_coefficients": 256,
+          "summary.private_callbacks": 0,
+          "summary.native_gpu_proofs_attestation_timing": 0
+        }
+      },
+      {
+        "path": "research-data/system-selection-20261003/fourier-attempt/attempt-receipt.json",
+        "assertions": {
+          "fixed_temperature_split": [
+            2,
+            2
+          ],
+          "second_approach_or_optimizer_executed": false,
+          "source_applicability_security_originality_or_application_GO": false,
+          "new_paper_pairs_or_registry_entries": 0
+        }
+      }
+    ],
+    "executed_count_bindings": {
+      "executed_counts.main_attempts": {
+        "path": "research-data/system-selection-20261003/measurement-design/main/supervisor-receipt.json",
+        "source_key": "main_attempt_count"
+      },
+      "executed_counts.main_completed_searches": {
+        "path": "research-data/system-selection-20261003/measurement-design/main/report.json",
+        "source_key": "total_searches"
+      },
+      "executed_counts.main_checked_distances": {
+        "path": "research-data/system-selection-20261003/measurement-design/main/report.json",
+        "source_key": "checked_distances"
+      },
+      "executed_counts.main_completed_HE_searches": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.main_completed_HE_searches"
+      },
+      "executed_counts.main_completed_cache_searches": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.main_completed_cache_searches"
+      },
+      "executed_counts.main_updates": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.main_updates"
+      },
+      "executed_counts.main_resource_qualified": {
+        "path": "research-data/system-selection-20261003/measurement-design/main/supervisor-receipt.json",
+        "source_key": "timing_qualified"
+      },
+      "executed_counts.intrinsic_attempts": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.intrinsic_attempts"
+      },
+      "executed_counts.intrinsic_successful_searches": {
+        "path": "research-data/system-selection-20261003/measurement-design/intrinsic-corrected/report.json",
+        "source_key": "total_searches"
+      },
+      "executed_counts.intrinsic_successful_checked_distances": {
+        "path": "research-data/system-selection-20261003/measurement-design/intrinsic-corrected/report.json",
+        "source_key": "checked_distances"
+      },
+      "executed_counts.failed_intrinsic_completed_searches": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.failed_intrinsic_completed_searches"
+      },
+      "executed_counts.admission_main_attempts": {
+        "path": "research-data/system-selection-20261003/gpu-admission-design/main-supervisor-receipt.json",
+        "source_key": "scientific_main_count"
+      },
+      "executed_counts.admission_queries": {
+        "path": "research-data/system-selection-20261003/gpu-admission-design/final-execution-receipt.json",
+        "source_key": "main_summary.queries"
+      },
+      "executed_counts.admission_blocks": {
+        "path": "research-data/system-selection-20261003/gpu-admission-design/final-execution-receipt.json",
+        "source_key": "main_summary.blocks_checked"
+      },
+      "executed_counts.admission_complete_coefficients": {
+        "path": "research-data/system-selection-20261003/gpu-admission-design/final-execution-receipt.json",
+        "source_key": "main_summary.complete_response_coefficients"
+      },
+      "executed_counts.static_symbolic_attempts": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.static_symbolic_attempts"
+      },
+      "executed_counts.scientific_retries": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.scientific_retries"
+      },
+      "executed_counts.new_native_builds": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.new_native_builds"
+      },
+      "executed_counts.unqualified_timing_panels": {
+        "path": "research-data/system-selection-20261003/root/science-counts.json",
+        "source_key": "counts.unqualified_timing_panels"
+      }
+    },
+    "scope_notes": [
+      "One complete32k matched local arithmetic cohort,35 searches/1146880 full distances and5 updates. Timings retain global setup-swap qualification; no actual WAN or authenticated GPU service.",
+      "One adapter-failed intrinsic retained; one separately reviewed corrected intrinsic15 searches/240 distances. No main retry/profile tuning; crypto setup in failed attempt is not mislabeled zero HE work.",
+      "One complete tiny checked-product/trusted-suffix known control:8 original queries/24 blocks/256 full coefficients and89 final distinct tests; no private callback/native/GPU/timing/attestation in that cohort.",
+      "20 final distinct measurement controller tests; development collections/reruns not added. No historical scientific suite rerun.",
+      "One fixed symbolic2+2 Fourier attempt gives known supporting bound; original route STOP and stronger theorem/source consequence unproved.",
+      "Company native/CUDA schemes unchanged. HE profiles unequal/unapproved; ordinary BGV is public-index reference, stronger E16 and cache/update controls retained.",
+      "Finite construction handoff recorded; no original main, full protocol security, parameter approval or automatic successor experiment.",
+      "32protected refs,1493priorcachemembers and100PDF/textpairs preserved; selected raw packets are byte-identical final copies."
+    ]
+  }
+}
