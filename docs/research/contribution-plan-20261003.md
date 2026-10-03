@@ -1,5 +1,28 @@
 # Current bounded execution return, 2026-10-03
 
+E121 tiny public assurance is complete. Read the [current return](cyclic-window-return-20261003.md)
+and [machine queue](publication-work-packages.json). The exact joint laws obey
+the all-window bound; two scalar controls agree, with generic ratio 1. A separate
+indicator falsifies full-vector independence. These 81 distinct passing tests
+establish a known finite control, not a new concentration theorem or large
+communication/security result.
+
+**Next Q48/E122 prioritizes creative research:** separately register the
+[raw-ternary joint-root discriminator](raw-ternary-joint-root-plan-20261003.md).
+Structured-quartet extremality is unproved; its fixed toy symbolic norm argument
+gives a sharp falsifier. Retain negative outcomes. The known all-window owner
+consequence remains separate supporting work requiring its own setup, tail,
+lifetime, terminal and complete-cost registration. No original main contribution
+has been selected. Protected/generic/proof and permitted plaintext-cache controls
+remain paid competitors; concrete security and private release remain open.
+
+Earlier company code, source/raw/test scopes, caches and main/staging are
+preserved. The preceding returns and strategy below are historical.
+
+---
+
+# Current bounded execution return, 2026-10-03
+
 E120 first component is complete. Read the [current return](multilimb-consequence-return-20261003.md)
 and [machine queue](publication-work-packages.json). Its one fixed candidate would
 save about6% HE query-plus-response bytes, but the pointwise correlated suffix
