@@ -1,0 +1,2267 @@
+{
+  "metadata": {
+    "utc": "2026-10-03T04:37:56.336529+00:00",
+    "evidence_parent": "be8e275d5b06e14c78652ce6e19856836c618a2f",
+    "kind": "E108_frozen_native_toy_complete_transparent_scalar_R1CS_and_exact_counts_not_cryptographic_proof",
+    "fixture": "/home/pete/yavor-projects/xtrace-work/research-data/native-boundary-20261003/frozen-fixture.json",
+    "fixture_sha256": "0a49605dd8d26d0e73e38c681013e83a64801df4c95b62fab80bf7b81beeb4a1",
+    "source_sha256": {
+      "experiments/bfv_search_lab/native_opening_constraints.py": "75c5e8700268093344b42d6037d9f2308998f5dd23b103b9891110e6ce907ecc",
+      "experiments/bfv_search_lab/test_native_opening_constraints.py": "2696e61cc2b3f29abe653f7f775d1d4e1917f9a37d923854adcbbee6797b1882",
+      "benchmarks/native_opening_lab.py": "11fc61fa71b5f71c9263d0748ca6c96060d09fbe0d784a4ee29f3c37757e1e38",
+      "experiments/bfv_search_lab/native_boundary_oracle.py": "4c9aaa7b779c186212993f68a71eceff0fdf42e625d3483f5237e8bd9d52de71",
+      "experiments/bfv_search_lab/native_boundary_controls.py": "77afbeaa98f5e9ce136f002979069c6c08c5e7cbf727a3068b275dfa45ee84bc",
+      "experiments/bfv_search_lab/target_prime_lift.py": "9b3ac9f11f75a6f7d4179230db7f4ce95c281c0b7fda73420abc3ab640a36b81",
+      "docs/research/native-proof-interface-preregistration.md": "7adeadd986ec76511d037b2c04b5ed69b79f765d263636dfb9a90aebd1af94e5",
+      "docs/research/native-proof-interface-control-amendment.md": "0009d8b2d882467d85904bcbf11d457deb062d96af9c3d71e8d3aac79a5b8a8c",
+      "docs/research/native-proof-interface-quotient-amendment.md": "1c04f8514b19984365b2c27ce317a00ec855bf933c9d75b06c10914316676fe7"
+    },
+    "native_golden_raw_sha256": "53d10253f239b80ddcf4e858df3e583f9b1441f54a04fd763d69729c14def9b8",
+    "no_new_native_or_GPU_or_binary_rebuild": true
+  },
+  "evaluation": {
+    "query_cards": [
+      {
+        "query": [
+          0,
+          0,
+          0
+        ],
+        "original_query_sha256": "2c444b58c3dfe563b653747dd50f3971e647324a6452f887a57e206f6372e1de",
+        "response_sha256": "cea9ffcce3d73e564d05d5c640eb01c0215ff989fe62334322c1a6d5d35f4ceb",
+        "response_packet_bytes": 211,
+        "native_agreement_scope": "unchanged_E106_fixture_and_exact_pinned_native_response_hash_not_new_native_execution",
+        "modes": {
+          "baseline-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              0,
+              1,
+              1,
+              2,
+              1,
+              2,
+              2,
+              3,
+              0
+            ],
+            "stable_top3": [
+              [
+                0,
+                0
+              ],
+              [
+                8,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                12,
+                4,
+                4,
+                13,
+                4,
+                13,
+                13,
+                5
+              ],
+              [
+                12,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 13645,
+            "scalar_assignment_bytes_32_per_variable": 3493056,
+            "tape_sha256": "ba42683ad51f224d446963b46d89f1854bc145915507f4c76d9a2cf632be4ace",
+            "actual_proof_bytes": null,
+            "all_coordinate_mutation_rejections": {
+              "source": 80,
+              "preterminal": 32,
+              "remainder": 32,
+              "affine": 224,
+              "terminal": 96
+            },
+            "boundary_rejections": {
+              "rejected_cases": 46,
+              "case_labels": [
+                "original_query_swap",
+                "epoch",
+                "IDs",
+                "index_order",
+                "key",
+                "layout",
+                "missing_group",
+                "duplicate_group",
+                "reordered_groups",
+                "wrong_modulus",
+                "float_header",
+                "noncanonical_coefficient",
+                "nonminimal_msgpack",
+                "extra_body_byte",
+                "terminal_output:0",
+                "terminal_output:1",
+                "terminal_output:2",
+                "terminal_output:3",
+                "terminal_output:4",
+                "terminal_output:5",
+                "terminal_output:6",
+                "terminal_output:7",
+                "terminal_output:8",
+                "terminal_output:9",
+                "terminal_output:10",
+                "terminal_output:11",
+                "terminal_output:12",
+                "terminal_output:13",
+                "terminal_output:14",
+                "terminal_output:15",
+                "terminal_output:16",
+                "terminal_output:17",
+                "terminal_output:18",
+                "terminal_output:19",
+                "terminal_output:20",
+                "terminal_output:21",
+                "terminal_output:22",
+                "terminal_output:23",
+                "terminal_output:24",
+                "terminal_output:25",
+                "terminal_output:26",
+                "terminal_output:27",
+                "terminal_output:28",
+                "terminal_output:29",
+                "terminal_output:30",
+                "terminal_output:31"
+              ],
+              "private_callback_calls": 0
+            },
+            "honest_output_false_canonical_kernel_unrepresentable": true
+          },
+          "folded-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              0,
+              1,
+              1,
+              2,
+              1,
+              2,
+              2,
+              3,
+              0
+            ],
+            "stable_top3": [
+              [
+                0,
+                0
+              ],
+              [
+                8,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                12,
+                4,
+                4,
+                13,
+                4,
+                13,
+                13,
+                5
+              ],
+              [
+                12,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3860,
+            "scalar_assignment_bytes_32_per_variable": 988096,
+            "tape_sha256": "9a5aa303374f74bc8c9a33c530cefdb3ef170e195752d66c2adb542a103b05a0",
+            "actual_proof_bytes": null,
+            "all_coordinate_mutation_rejections": {
+              "source": 80,
+              "remainder": 32,
+              "affine": 224,
+              "terminal": 32
+            },
+            "boundary_rejections": {
+              "rejected_cases": 46,
+              "case_labels": [
+                "original_query_swap",
+                "epoch",
+                "IDs",
+                "index_order",
+                "key",
+                "layout",
+                "missing_group",
+                "duplicate_group",
+                "reordered_groups",
+                "wrong_modulus",
+                "float_header",
+                "noncanonical_coefficient",
+                "nonminimal_msgpack",
+                "extra_body_byte",
+                "terminal_output:0",
+                "terminal_output:1",
+                "terminal_output:2",
+                "terminal_output:3",
+                "terminal_output:4",
+                "terminal_output:5",
+                "terminal_output:6",
+                "terminal_output:7",
+                "terminal_output:8",
+                "terminal_output:9",
+                "terminal_output:10",
+                "terminal_output:11",
+                "terminal_output:12",
+                "terminal_output:13",
+                "terminal_output:14",
+                "terminal_output:15",
+                "terminal_output:16",
+                "terminal_output:17",
+                "terminal_output:18",
+                "terminal_output:19",
+                "terminal_output:20",
+                "terminal_output:21",
+                "terminal_output:22",
+                "terminal_output:23",
+                "terminal_output:24",
+                "terminal_output:25",
+                "terminal_output:26",
+                "terminal_output:27",
+                "terminal_output:28",
+                "terminal_output:29",
+                "terminal_output:30",
+                "terminal_output:31"
+              ],
+              "private_callback_calls": 0
+            },
+            "honest_output_false_canonical_kernel_unrepresentable": true
+          },
+          "folded-width": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              0,
+              1,
+              1,
+              2,
+              1,
+              2,
+              2,
+              3,
+              0
+            ],
+            "stable_top3": [
+              [
+                0,
+                0
+              ],
+              [
+                8,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                12,
+                4,
+                4,
+                13,
+                4,
+                13,
+                13,
+                5
+              ],
+              [
+                12,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3610,
+            "scalar_assignment_bytes_32_per_variable": 924128,
+            "tape_sha256": "09069a40742acecfe31ff81f6030713c4b527d397ce67981603cb8871e48b75a",
+            "actual_proof_bytes": null,
+            "all_coordinate_mutation_rejections": {
+              "source": 80,
+              "remainder": 32,
+              "affine": 224,
+              "terminal": 32
+            },
+            "boundary_rejections": {
+              "rejected_cases": 46,
+              "case_labels": [
+                "original_query_swap",
+                "epoch",
+                "IDs",
+                "index_order",
+                "key",
+                "layout",
+                "missing_group",
+                "duplicate_group",
+                "reordered_groups",
+                "wrong_modulus",
+                "float_header",
+                "noncanonical_coefficient",
+                "nonminimal_msgpack",
+                "extra_body_byte",
+                "terminal_output:0",
+                "terminal_output:1",
+                "terminal_output:2",
+                "terminal_output:3",
+                "terminal_output:4",
+                "terminal_output:5",
+                "terminal_output:6",
+                "terminal_output:7",
+                "terminal_output:8",
+                "terminal_output:9",
+                "terminal_output:10",
+                "terminal_output:11",
+                "terminal_output:12",
+                "terminal_output:13",
+                "terminal_output:14",
+                "terminal_output:15",
+                "terminal_output:16",
+                "terminal_output:17",
+                "terminal_output:18",
+                "terminal_output:19",
+                "terminal_output:20",
+                "terminal_output:21",
+                "terminal_output:22",
+                "terminal_output:23",
+                "terminal_output:24",
+                "terminal_output:25",
+                "terminal_output:26",
+                "terminal_output:27",
+                "terminal_output:28",
+                "terminal_output:29",
+                "terminal_output:30",
+                "terminal_output:31"
+              ],
+              "private_callback_calls": 0
+            },
+            "honest_output_false_canonical_kernel_unrepresentable": true
+          }
+        }
+      },
+      {
+        "query": [
+          0,
+          0,
+          1
+        ],
+        "original_query_sha256": "c9a94da2e528eee3d73001b4c96e394b1438ff03b4265d5e6218a2cd0c510a7b",
+        "response_sha256": "fa760e617137ecb480e967d345985f634e6747b0a791dd3cea4c70b73413c2ad",
+        "response_packet_bytes": 211,
+        "native_agreement_scope": "unchanged_E106_fixture_and_exact_pinned_native_response_hash_not_new_native_execution",
+        "modes": {
+          "baseline-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              0,
+              2,
+              1,
+              2,
+              1,
+              3,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                13,
+                13,
+                5,
+                12,
+                4,
+                4,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 13645,
+            "scalar_assignment_bytes_32_per_variable": 3493056,
+            "tape_sha256": "3622c29978bd749102b13a70b2827fb7866d48def1f670651ce6e71e766aabb9",
+            "actual_proof_bytes": null
+          },
+          "folded-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              0,
+              2,
+              1,
+              2,
+              1,
+              3,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                13,
+                13,
+                5,
+                12,
+                4,
+                4,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3860,
+            "scalar_assignment_bytes_32_per_variable": 988096,
+            "tape_sha256": "0a7242ca1e01f27d12e644f922078304aeaea4372fb1425b729473ec74d0b4d9",
+            "actual_proof_bytes": null
+          },
+          "folded-width": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              0,
+              2,
+              1,
+              2,
+              1,
+              3,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                13,
+                13,
+                5,
+                12,
+                4,
+                4,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3610,
+            "scalar_assignment_bytes_32_per_variable": 924128,
+            "tape_sha256": "5dd750ff3d1066e0c06407382b7c1d7bbaf3b1e810e33c5777ce5e38329d0b00",
+            "actual_proof_bytes": null
+          }
+        }
+      },
+      {
+        "query": [
+          0,
+          1,
+          0
+        ],
+        "original_query_sha256": "88f791d4ea627de5fd2ec16a21412780ce9b6188e285387ff1e42c4cfb43aa2a",
+        "response_sha256": "a612950fdf6f0b7d1cfffbf9e9ce6728a1d59862bbf5bb7067ead4463099ccb9",
+        "response_packet_bytes": 211,
+        "native_agreement_scope": "unchanged_E106_fixture_and_exact_pinned_native_response_hash_not_new_native_execution",
+        "modes": {
+          "baseline-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              2,
+              0,
+              1,
+              2,
+              3,
+              1,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                12,
+                13,
+                4,
+                13,
+                4,
+                5,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 13645,
+            "scalar_assignment_bytes_32_per_variable": 3493056,
+            "tape_sha256": "25d96eb9035b0baa0611a48ed88e608443227e5d8ddb01677c9058919958ee87",
+            "actual_proof_bytes": null
+          },
+          "folded-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              2,
+              0,
+              1,
+              2,
+              3,
+              1,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                12,
+                13,
+                4,
+                13,
+                4,
+                5,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3860,
+            "scalar_assignment_bytes_32_per_variable": 988096,
+            "tape_sha256": "2e4805b677febd55375b04a04addbd2982b086ab5c1a736bc303685b4045025d",
+            "actual_proof_bytes": null
+          },
+          "folded-width": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              2,
+              0,
+              1,
+              2,
+              3,
+              1,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                12,
+                13,
+                4,
+                13,
+                4,
+                5,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3610,
+            "scalar_assignment_bytes_32_per_variable": 924128,
+            "tape_sha256": "c396b773d09917252b09a9c3697a2cb9ddbce26c1ec3dfb4474f18f4ca19a0d9",
+            "actual_proof_bytes": null
+          }
+        }
+      },
+      {
+        "query": [
+          0,
+          1,
+          1
+        ],
+        "original_query_sha256": "0834cebfd0e88a012da2307d4dc6f68aab640492d13944e53fe3b0d589ed224b",
+        "response_sha256": "1460891b587fdb9f0683a72381987bb008a6eda27dde6f4ea21e8c81b7e815a2",
+        "response_packet_bytes": 211,
+        "native_agreement_scope": "unchanged_E106_fixture_and_exact_pinned_native_response_hash_not_new_native_execution",
+        "modes": {
+          "baseline-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              1,
+              1,
+              0,
+              3,
+              2,
+              2,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                4,
+                5,
+                13,
+                4,
+                12,
+                13,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 13645,
+            "scalar_assignment_bytes_32_per_variable": 3493056,
+            "tape_sha256": "ea75e610b99a60be77cf68a1c5a38706595379836fea9ad265cbc3ef26734dbe",
+            "actual_proof_bytes": null
+          },
+          "folded-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              1,
+              1,
+              0,
+              3,
+              2,
+              2,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                4,
+                5,
+                13,
+                4,
+                12,
+                13,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3860,
+            "scalar_assignment_bytes_32_per_variable": 988096,
+            "tape_sha256": "60155972269fc4efd0fecdaa69d41013e35d888606ae68516d33d00224020c28",
+            "actual_proof_bytes": null
+          },
+          "folded-width": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              1,
+              1,
+              0,
+              3,
+              2,
+              2,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                4,
+                5,
+                13,
+                4,
+                12,
+                13,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3610,
+            "scalar_assignment_bytes_32_per_variable": 924128,
+            "tape_sha256": "4e5c6c3d179688f3645176deba0aec2f117047a6342882c1a5d0907e8e0c75e0",
+            "actual_proof_bytes": null
+          }
+        }
+      },
+      {
+        "query": [
+          1,
+          0,
+          0
+        ],
+        "original_query_sha256": "b67ecf971db427f875fb1e315ef410bae5dd913ebcc667131a1253049002228d",
+        "response_sha256": "67d7ae13e71d4a30956c623b2cbce2220cf329c451c549eff7a935b2cf3cb151",
+        "response_packet_bytes": 211,
+        "native_agreement_scope": "unchanged_E106_fixture_and_exact_pinned_native_response_hash_not_new_native_execution",
+        "modes": {
+          "baseline-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              2,
+              2,
+              3,
+              0,
+              1,
+              1,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                13,
+                12,
+                4,
+                13,
+                5,
+                4,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 13645,
+            "scalar_assignment_bytes_32_per_variable": 3493056,
+            "tape_sha256": "a113de875cc1916723c8b0275c1b19c9fce3286a135d6177e87de57eefe38a52",
+            "actual_proof_bytes": null
+          },
+          "folded-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              2,
+              2,
+              3,
+              0,
+              1,
+              1,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                13,
+                12,
+                4,
+                13,
+                5,
+                4,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3860,
+            "scalar_assignment_bytes_32_per_variable": 988096,
+            "tape_sha256": "991ac74eda9819f907713e9e78436aafddb649e39a07fdf852c85097ec61724d",
+            "actual_proof_bytes": null
+          },
+          "folded-width": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              1,
+              2,
+              2,
+              3,
+              0,
+              1,
+              1,
+              2,
+              1
+            ],
+            "stable_top3": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                4,
+                13,
+                12,
+                4,
+                13,
+                5,
+                4,
+                13
+              ],
+              [
+                4,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3610,
+            "scalar_assignment_bytes_32_per_variable": 924128,
+            "tape_sha256": "b1d86b021fb64618b6af79ab923326106260624c1df261146f109e4ebd7d0ed5",
+            "actual_proof_bytes": null
+          }
+        }
+      },
+      {
+        "query": [
+          1,
+          0,
+          1
+        ],
+        "original_query_sha256": "e2c688d1972ee4f1e3909c05ba4ac272d47f5bb82a729142a18153bcd1e13ff1",
+        "response_sha256": "2834f16e131e96ff6f301114dd375d08f16b447c2f7190597604d4d6e6eaa634",
+        "response_packet_bytes": 211,
+        "native_agreement_scope": "unchanged_E106_fixture_and_exact_pinned_native_response_hash_not_new_native_execution",
+        "modes": {
+          "baseline-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              1,
+              3,
+              2,
+              1,
+              0,
+              2,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                5,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                4,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                5,
+                4,
+                13,
+                4,
+                13,
+                12,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 13645,
+            "scalar_assignment_bytes_32_per_variable": 3493056,
+            "tape_sha256": "088c954ffed6e29585f91dd0a08700397d9ad7f7a8c427d3f9515cbf7da6e2e7",
+            "actual_proof_bytes": null
+          },
+          "folded-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              1,
+              3,
+              2,
+              1,
+              0,
+              2,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                5,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                4,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                5,
+                4,
+                13,
+                4,
+                13,
+                12,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3860,
+            "scalar_assignment_bytes_32_per_variable": 988096,
+            "tape_sha256": "296bccd226c87149c47bfa431c443da3da128e093b4b9530ce7bf1272ed778c3",
+            "actual_proof_bytes": null
+          },
+          "folded-width": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              1,
+              3,
+              2,
+              1,
+              0,
+              2,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                5,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                4,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                5,
+                4,
+                13,
+                4,
+                13,
+                12,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3610,
+            "scalar_assignment_bytes_32_per_variable": 924128,
+            "tape_sha256": "df947b58b1a407bd3c614a52aff72f5d3a18b5c66da3c441924d92a40c7880af",
+            "actual_proof_bytes": null
+          }
+        }
+      },
+      {
+        "query": [
+          1,
+          1,
+          0
+        ],
+        "original_query_sha256": "f36eff347cc65f40d9862e3ad2e8df55fb8ffd7ce024975c4a1aeef7531c8ab9",
+        "response_sha256": "83e5e983cdecfd49d32bfb36ba357ca3cef8908fec6bb446020476b946f2a9b1",
+        "response_packet_bytes": 211,
+        "native_agreement_scope": "unchanged_E106_fixture_and_exact_pinned_native_response_hash_not_new_native_execution",
+        "modes": {
+          "baseline-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              3,
+              1,
+              2,
+              1,
+              2,
+              0,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                6,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                4,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                4,
+                4,
+                12,
+                5,
+                13,
+                13,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 13645,
+            "scalar_assignment_bytes_32_per_variable": 3493056,
+            "tape_sha256": "8d404670678dbe46355707f12f9cdaa54594b0f5d6f67c0ad2b7932428f0eb99",
+            "actual_proof_bytes": null
+          },
+          "folded-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              3,
+              1,
+              2,
+              1,
+              2,
+              0,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                6,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                4,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                4,
+                4,
+                12,
+                5,
+                13,
+                13,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3860,
+            "scalar_assignment_bytes_32_per_variable": 988096,
+            "tape_sha256": "365825bb2b20330098225450fef50d0a8777ccc0157a9cfbb39357cbb8c41ca9",
+            "actual_proof_bytes": null
+          },
+          "folded-width": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              2,
+              3,
+              1,
+              2,
+              1,
+              2,
+              0,
+              1,
+              2
+            ],
+            "stable_top3": [
+              [
+                6,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                4,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                13,
+                4,
+                4,
+                12,
+                5,
+                13,
+                13,
+                4
+              ],
+              [
+                13,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3610,
+            "scalar_assignment_bytes_32_per_variable": 924128,
+            "tape_sha256": "d7a875d934e6a4152adccddb71c729c38a2896cfbb7264630cffe70b4675bb76",
+            "actual_proof_bytes": null
+          }
+        }
+      },
+      {
+        "query": [
+          1,
+          1,
+          1
+        ],
+        "original_query_sha256": "a085d43438d97250f8ee8e4d8f5c89ce334867386e729a2634307c65b90db6e1",
+        "response_sha256": "2326bef2fc2636144ad60f3bb14716763a8dbf21a6a76845ddb60edd2571e904",
+        "response_packet_bytes": 211,
+        "native_agreement_scope": "unchanged_E106_fixture_and_exact_pinned_native_response_hash_not_new_native_execution",
+        "modes": {
+          "baseline-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              3,
+              2,
+              2,
+              1,
+              2,
+              1,
+              1,
+              0,
+              3
+            ],
+            "stable_top3": [
+              [
+                7,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                5,
+                13,
+                13,
+                4,
+                13,
+                4,
+                4,
+                12
+              ],
+              [
+                5,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 13645,
+            "scalar_assignment_bytes_32_per_variable": 3493056,
+            "tape_sha256": "1fbfc865bd9afef4e9e03db81acc63802fc8926c633deb21b4fd4d43e4983cdf",
+            "actual_proof_bytes": null
+          },
+          "folded-tight": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              3,
+              2,
+              2,
+              1,
+              2,
+              1,
+              1,
+              0,
+              3
+            ],
+            "stable_top3": [
+              [
+                7,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                5,
+                13,
+                13,
+                4,
+                13,
+                4,
+                4,
+                12
+              ],
+              [
+                5,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3860,
+            "scalar_assignment_bytes_32_per_variable": 988096,
+            "tape_sha256": "f0a3bdf136218146a27b52a026e773740a6520db1a1f9ee50b578ef8fbbe309a",
+            "actual_proof_bytes": null
+          },
+          "folded-width": {
+            "sparse_R1CS_and_direct_field_checks_agree": true,
+            "all_recovered_preterminal_coefficients": 32,
+            "all_terminal_coefficients": 32,
+            "exact_scores": [
+              3,
+              2,
+              2,
+              1,
+              2,
+              1,
+              1,
+              0,
+              3
+            ],
+            "stable_top3": [
+              [
+                7,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            "all_diagnostic_plaintext_coefficients_mod17": [
+              [
+                5,
+                13,
+                13,
+                4,
+                13,
+                4,
+                4,
+                12
+              ],
+              [
+                5,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "transparent_bit_tape_bytes": 3610,
+            "scalar_assignment_bytes_32_per_variable": 924128,
+            "tape_sha256": "1ebba13ffeba8d5ba49295b57fb7dfb3ffda1c725d1c0873faf73c16a5f4e5d3",
+            "actual_proof_bytes": null
+          }
+        }
+      }
+    ],
+    "costs": {
+      "baseline-tight": {
+        "mode": "baseline",
+        "field": 7237005577332262213973186563042994240857116359379907606001950938285454250989,
+        "public_inputs": 48,
+        "tight_quotient_slack": true,
+        "witness_variables": 109158,
+        "boolean_constraints": 109158,
+        "base_value_slack_pairs": 144,
+        "base_boolean_constraints": 34560,
+        "quotient_count": 320,
+        "linear_constraints": 784,
+        "total_R1CS_constraints": 109942,
+        "A_nonzeros": 731119,
+        "B_nonzeros": 219100,
+        "C_nonzeros": 0,
+        "paid_query_dependent_RHS_field_products": 0,
+        "paid_terminal_RHS_field_products": 0,
+        "materialized_public_affine_Q_coefficients": 41216,
+        "paid_online_context_validation_and_full_index_key_digest_additional": true,
+        "static_instance_and_original_public_inputs_require_owner_pins": true,
+        "max_integer_residual_bound": 17486205119506828791155156951895923499049307238701280480,
+        "field_no_wrap_admitted": true,
+        "generic_gets_identical_elimination_folding_and_public_preprocessing": true,
+        "proof_backend_bytes_prover_verifier_lifecycle_and_runtime_unknown": true,
+        "quotient_width_histogram": {
+          "92": 64,
+          "120": 12,
+          "121": 32,
+          "122": 45,
+          "123": 99,
+          "124": 68
+        },
+        "spartan_artifact_row_padding_power_of_two": 131072,
+        "spartan_artifact_variable_padding_power_of_two": 131072,
+        "instance_stream": {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/native-proof-interface-20261003/main/baseline-tight-instance.r1cs-stream",
+          "sha256": "bbf6ebf238a4714931db96a7998276fc424c1b4d6776bbe5a92aa5ebd8f6212b",
+          "bytes": 38958979,
+          "entry_bytes": 41,
+          "matrix_nonzeros": {
+            "A": 731119,
+            "B": 219100
+          },
+          "wire_semantics": "full_static_transparent_instance_not_cryptographic_proof"
+        },
+        "locally_paid_expanded_query_and_parsed_output_coefficients": 48,
+        "locally_paid_RHS_rows": 0,
+        "public_inputs_not_server_trusted": true,
+        "current_host_pin_traverses_full_index_and_keys": true,
+        "sublinear_or_low_state_verifier_implemented": false
+      },
+      "folded-tight": {
+        "mode": "folded",
+        "field": 7237005577332262213973186563042994240857116359379907606001950938285454250989,
+        "public_inputs": 256,
+        "tight_quotient_slack": true,
+        "witness_variables": 30878,
+        "boolean_constraints": 30878,
+        "base_value_slack_pairs": 112,
+        "base_boolean_constraints": 26880,
+        "quotient_count": 256,
+        "linear_constraints": 624,
+        "total_R1CS_constraints": 31502,
+        "A_nonzeros": 521339,
+        "B_nonzeros": 62380,
+        "C_nonzeros": 0,
+        "paid_query_dependent_RHS_field_products": 2592,
+        "paid_terminal_RHS_field_products": 32,
+        "materialized_public_affine_Q_coefficients": 41216,
+        "paid_online_context_validation_and_full_index_key_digest_additional": true,
+        "static_instance_and_original_public_inputs_require_owner_pins": true,
+        "max_integer_residual_bound": 1329227995784917346337489947830429182,
+        "field_no_wrap_admitted": true,
+        "generic_gets_identical_elimination_folding_and_public_preprocessing": true,
+        "proof_backend_bytes_prover_verifier_lifecycle_and_runtime_unknown": true,
+        "quotient_width_histogram": {
+          "3": 40,
+          "4": 40,
+          "6": 32,
+          "9": 15,
+          "10": 59,
+          "11": 38,
+          "12": 32
+        },
+        "spartan_artifact_row_padding_power_of_two": 32768,
+        "spartan_artifact_variable_padding_power_of_two": 32768,
+        "instance_stream": {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/native-proof-interface-20261003/main/folded-tight-instance.r1cs-stream",
+          "sha256": "3ab2cfa6c87989f4c18aa2619a782d9d755d0fc4535e1c687014f64434fdaa43",
+          "bytes": 23932479,
+          "entry_bytes": 41,
+          "matrix_nonzeros": {
+            "A": 521339,
+            "B": 62380
+          },
+          "wire_semantics": "full_static_transparent_instance_not_cryptographic_proof"
+        },
+        "locally_paid_expanded_query_and_parsed_output_coefficients": 48,
+        "locally_paid_RHS_rows": 256,
+        "public_inputs_not_server_trusted": true,
+        "current_host_pin_traverses_full_index_and_keys": true,
+        "sublinear_or_low_state_verifier_implemented": false
+      },
+      "folded-width": {
+        "mode": "folded",
+        "field": 7237005577332262213973186563042994240857116359379907606001950938285454250989,
+        "public_inputs": 256,
+        "tight_quotient_slack": false,
+        "witness_variables": 28879,
+        "boolean_constraints": 28879,
+        "base_value_slack_pairs": 112,
+        "base_boolean_constraints": 26880,
+        "quotient_count": 256,
+        "linear_constraints": 368,
+        "total_R1CS_constraints": 29247,
+        "A_nonzeros": 515086,
+        "B_nonzeros": 58126,
+        "C_nonzeros": 0,
+        "paid_query_dependent_RHS_field_products": 2592,
+        "paid_terminal_RHS_field_products": 32,
+        "materialized_public_affine_Q_coefficients": 41216,
+        "paid_online_context_validation_and_full_index_key_digest_additional": true,
+        "static_instance_and_original_public_inputs_require_owner_pins": true,
+        "max_integer_residual_bound": 1329227995784917346337489947830429182,
+        "field_no_wrap_admitted": true,
+        "generic_gets_identical_elimination_folding_and_public_preprocessing": true,
+        "proof_backend_bytes_prover_verifier_lifecycle_and_runtime_unknown": true,
+        "quotient_width_histogram": {
+          "3": 40,
+          "4": 40,
+          "6": 32,
+          "9": 15,
+          "10": 59,
+          "11": 38,
+          "12": 32
+        },
+        "spartan_artifact_row_padding_power_of_two": 32768,
+        "spartan_artifact_variable_padding_power_of_two": 32768,
+        "instance_stream": {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/native-proof-interface-20261003/main/folded-width-instance.r1cs-stream",
+          "sha256": "c981d3eabf4db366df770b837fb84dc00f881d2de90c5183ca3462475677fc75",
+          "bytes": 23501692,
+          "entry_bytes": 41,
+          "matrix_nonzeros": {
+            "A": 515086,
+            "B": 58126
+          },
+          "wire_semantics": "full_static_transparent_instance_not_cryptographic_proof"
+        },
+        "locally_paid_expanded_query_and_parsed_output_coefficients": 48,
+        "locally_paid_RHS_rows": 256,
+        "public_inputs_not_server_trusted": true,
+        "current_host_pin_traverses_full_index_and_keys": true,
+        "sublinear_or_low_state_verifier_implemented": false
+      }
+    },
+    "pre_callback_rejections": [
+      {
+        "query": 0,
+        "mode": "baseline-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 0,
+        "mode": "baseline-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 0,
+        "mode": "baseline-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 0,
+        "mode": "folded-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 0,
+        "mode": "folded-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 0,
+        "mode": "folded-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 0,
+        "mode": "folded-width",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 0,
+        "mode": "folded-width",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 0,
+        "mode": "folded-width",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "baseline-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "baseline-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "baseline-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "folded-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "folded-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "folded-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "folded-width",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "folded-width",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 1,
+        "mode": "folded-width",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "baseline-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "baseline-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "baseline-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "folded-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "folded-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "folded-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "folded-width",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "folded-width",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 2,
+        "mode": "folded-width",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "baseline-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "baseline-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "baseline-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "folded-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "folded-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "folded-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "folded-width",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "folded-width",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 3,
+        "mode": "folded-width",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "baseline-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "baseline-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "baseline-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "folded-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "folded-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "folded-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "folded-width",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "folded-width",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 4,
+        "mode": "folded-width",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "baseline-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "baseline-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "baseline-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "folded-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "folded-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "folded-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "folded-width",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "folded-width",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 5,
+        "mode": "folded-width",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "baseline-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "baseline-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "baseline-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "folded-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "folded-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "folded-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "folded-width",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "folded-width",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 6,
+        "mode": "folded-width",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "baseline-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "baseline-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "baseline-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "folded-tight",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "folded-tight",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "folded-tight",
+        "case": "query_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "folded-width",
+        "case": "bad_source",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "folded-width",
+        "case": "context_binding",
+        "callback_calls": 0
+      },
+      {
+        "query": 7,
+        "mode": "folded-width",
+        "case": "query_binding",
+        "callback_calls": 0
+      }
+    ],
+    "shared_generic_ratio": 1,
+    "cryptographic_proof_backend_executed": false,
+    "range_and_modular_row_proofs": "all_bits_boolean_plus_exact_source_and_remainder_Q_slack;_quotients_have_declared_tight_slack_or_unsigned_width_with_actual_nowrap_bound",
+    "unknown_costs": [
+      "PCS/generators/computationcommitment registration and memory",
+      "prover/verification time and RSS",
+      "proof/challenges/openings and network transport",
+      "ROM/extractability/adaptive lifetime/attempt composition",
+      "private release sidechannels",
+      "real attestation and durable lifecycle",
+      "large native graph adaptation",
+      "current repeated full owner-context validation/hash traversal and index/key residency"
+    ]
+  },
+  "summary": {
+    "queries": 8,
+    "exact_record_distances": 72,
+    "preterminal_coefficients_per_mode": 256,
+    "terminal_coefficients_per_mode": 256,
+    "modes": 3,
+    "original_main_mechanisms": 0,
+    "timing_panels": 0,
+    "approved_parameters": 0,
+    "external_proof_runs": 0
+  }
+}

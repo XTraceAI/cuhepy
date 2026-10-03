@@ -1096,3 +1096,35 @@ Receipt: [native-boundary-validation-20261003.json](native-boundary-validation-2
 Checkpoint target: `checkpoint/native-boundary-openings-2026-10-03`; earlier
 company code, main/staging, checkpoints, negative scopes and frozen timings
 are preserved.
+
+## 2026-10-03: E108 interface and complete transparent relation return
+
+Branch `experiment/native-proof-interface-20261003`, parent `be8e275`.
+The [interface component](native-proof-interface-audit.md) pins Spartan's actual
+scalar interface, corrected2025/286, GlueLUT and official BatchPackProve slides.
+Four PDF/text pairs append to77 preserved older records; initial acquisition
+failures and exact version/source/reading receipts are retained outside Git.
+Return to R6 after this component selected the frozen complete constraint screen.
+
+[E108](native-proof-interface-screen.md) runs three homemade scalar relation
+models on the unchanged E106 native-agreed fixture:8 queries,72 scores/ties,
+256preterminal/256terminalcoeffs permodel, whole response hashes, independent
+sparse R1CS/directfield checks. The strongest shared compiler has29,247 logical
+constraints versus109,942; routine C elimination/bit folding/quotient slack
+removal receives no novelty credit. Main negatives cover1,200 low-bit logical
+coordinates,138 whole packet/metadata cases and72 pre-callback checks.103 final
+current-source scoped tests pass/103 IDs collect; initial59/88 snapshots retained
+separately, never added. Nonempty lint covers three new files.
+
+Current verifier keeps/traverses full owner Context/index/keys and staticmatrix;
+3,610-byte literal bit tape is not proof size. No cryptographic proof/backend,
+new native/GPU output panel, timing, approved parameters, original main,
+authenticated service/private assurance or broad gate follows.
+The [new R6 return](native-proof-interface-selection-20261003.md) activates
+proposed [Q35/E109](native-proof-backend-plan-20261003.md) actualbackend/control
+pilot and keeps three creative leads with specific differences/falsifiers.
+E100 remains conditional/unimplemented, E104 conditional. Earlier227/113/448/
+1,965 scopes, all company sources/negative results, immutabletimings and
+main/staging/checkpoints remain unchanged.
+Receipt: [native-proof-interface-validation-20261003.json](native-proof-interface-validation-20261003.json).
+Checkpoint: `checkpoint/native-proof-interface-2026-10-03`.

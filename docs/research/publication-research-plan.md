@@ -1,43 +1,35 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-03, E106/E107 native controls and specialized-opening handoff**.
-Start with the [current R6 decision](native-opening-selection-20261003.md), then the
-[refreshed executable roadmap](contribution-roadmap-refresh-20261002.md),
-[closest-work synthesis](closest-work-roadmap-refresh-20261002.md), and
-[machine handoff](contribution-roadmap-refresh-20261002.json). The
-[return history](construction-selection-20261002.md) preserves all bounded decisions. The
-[original detailed plan](contribution-plan-20261002.md) and
-[closest-work comparison](closest-work-comparison-20261002.md) retain the
-pre-execution strategy. The
-[machine work packages](publication-work-packages.json) and
-[progress log](publication-progress.md) govern execution and return decisions.
+Revision: **2026-10-03, E108 complete transparent scalar relation and backend handoff**.
+Start with the [current R6 return](native-proof-interface-selection-20261003.md),
+[constraint result](native-proof-interface-screen.md), [current primary audit](native-proof-interface-audit.md),
+[roadmap](contribution-roadmap-refresh-20261002.md) and [machine queue](publication-work-packages.json).
+The [progress log](publication-progress.md) and [return history](construction-selection-20261002.md)
+retain all earlier results. Original strategy and closest-work files remain historical.
 
-**Current status:** E106 closes one actual CPU/RNS native BGV query-to-full-wire
-boundary on a frozen toy fixture:8 queries,72 distances,256 full preterminal
-and256 terminal coefficients. Its184 tests and affine-kernel controls expose
-why canonical/range checks cannot be replaced by extra affine rounds. E107
-exhausts180,978 richer and60,326 reduced terminal witnesses;43 tests and256
-native-agreed scalar coordinates retain the centered-remainder relation.
-The equally optimized generic compiler gets the same elimination, so that
-literal originality claim stops. The distinct227-test inventory comes from
-separate184/43 current-source runs, not a combined run or a historical sum.
+**Current status:** E108 completes one applicable scalar interface and three
+homemade transparent native toy relation models. Eight immutable original queries
+match all72 distances/ties and exact E106 native-agreed response bytes. Independent
+sparse R1CS and direct field checks agree;103 final scoped tests pass. The strongest
+shared generic compiler reduces109,942 logical constraints to29,247, but no proof
+backend, search speedup, low-state client or original main follows. Full context
+hash/traversal/residency and cryptographic proof costs remain unknown.
 
-Earlier E101–E103/E105113-test scope, fixed reused-error joint laws and
-literal mechanism stops remain unchanged. **Next Q34/E108** is a proposed,
-unimplemented complete specialized-opening interface and fair proof budget:
-[bounded handoff](native-opening-discriminator-plan-20261003.md). This is a
-known comparison prerequisite, not an accepted new algorithm. No original
-complete main or broad gate is selected. No new timing panel or parameter
-approval occurred. BFV/CUDA/proof/lifecycle adapters remain named open tasks.
+**Next Q35/E109** is a proposed capped [complete backend/control pilot](native-proof-backend-plan-20261003.md).
+Three narrower creative leads have exact proposed differences, paid targets and
+first falsifiers there; none is promoted without an uncontained sound mechanism.
+Current corrected range/CMC and oracle packing controls are archived alongside
+all77 earlier source records;81 PDF/text pairs include versions and talk slides.
 
-Earlier E82–E99 evidence, 448 scoped tests across 20 files, parameter/sample
-qualifications, 720 precision cards and all frozen timings remain historical
-and unchanged; they were not rerun or added to the new count. Q26/E100 remains
-an unimplemented conditional control. E104's complete matched service follows
-an accepted complete construction, not these small reference controls.
-Company homemade BFV/BGV/Paillier, SEAL examples, production sources and
-main/staging remain preserved. Complete binding/PBS/private assurance and
-useful-effect/mechanism gates remain open.
+Earlier E106/E107227 tests in separate184/43 runs, E101–E103/E105113,
+E82–E99448 and historical1,965 scopes are preserved, not rerun or added to103.
+All old source/raw/timing/checkpoints and company homemade BFV/BGV/Paillier,
+native/CUDA/SEAL controls, main and staging remain unchanged. E100 is still an
+unimplemented conditional control; E104 and broad gates remain unmet. Private
+side channels, actual attestation/durable lifecycle, reviewed proof composition,
+parameter security and scaled BFV/CUDA proof adapters remain named open tasks.
+No new timing panel or parameter approval occurred. Conference choice follows
+a defensible result rather than an acceptance promise.
 
 ## 1. Decision
 
@@ -87,7 +79,8 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q31 | [E105 full carry-law discriminator](carry-trace-noise-screen.md) | Full tiny fresh-error domain and joint nonlinear maintenance matched actual API; full tensors distinct, literal carry loses equally optimized controls; no general theorem/timing claim |
 | Q32 | [E106 actual native boundary](native-boundary-screen.md) | Complete selected tiny CPU/RNS original-query/full-wire oracle and affine count controls;184 tests; full proof/BFV/CUDA/lifecycle assurance deferred |
 | Q33 | [E107 target-prime lifting](target-prime-lift-screen.md) | Complete finite scalar relation; strong generic remainder elimination contains candidate;43 tests; no originalmain/proof-cost claim |
-| **Next: Q34** | [E108 specialized-opening adapter](native-opening-discriminator-plan-20261003.md) | Proposed applicable field/range/commitment interface then full native tiny relation/paid proof budget; known comparison prerequisite |
+| Q34 | [E108 scalar interface/complete relation](native-proof-interface-screen.md) | Three complete transparent native models;103 tests; strongest shared29,247 constraints; cryptographic backend and full costs remain unknown |
+| **Next: Q35** | [E109 complete backend/control pilot](native-proof-backend-plan-20261003.md) | Proposed actual strongest relation proof/setup/bytes/binding cohort; retain creative leads with exact falsifiers |
 
 The [current detailed plan](contribution-roadmap-refresh-20261002.md) specifies
 mechanisms, strongest controls, stop conditions, full costs and security proof

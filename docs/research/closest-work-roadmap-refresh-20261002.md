@@ -164,3 +164,7 @@ Reviewing 77 archived papers is not 77 full proof audits. A negative screen
 or integration artifact may be useful; it is not automatically a noteworthy
 conference contribution. The next plan explicitly allows all three routes to
 stop, while retaining the company code and accurate evidence.
+
+## 2026-10-03: current range/CMC and proof interface amendment
+
+The [E108 primary audit](native-proof-interface-audit.md) appends the separately pinned corrected2025/286 revision, GlueLUT, Spartan and BatchPackProve slides. The77 previous source records stay unchanged. Corrected range/CMC, virtual oracle packing and sparse commitments are mandatory controls; old range timings are not complete corrected costs. The [complete native scalar result](native-proof-interface-screen.md) is contained by equally optimized generic compilation. The [next plan](native-proof-backend-plan-20261003.md) retains three precise creative leads, all unproved/unpromoted.

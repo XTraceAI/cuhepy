@@ -1,4 +1,4 @@
-# R6 returns through E107 and the specialized-opening prerequisite
+# R6 returns through E108 and the complete backend prerequisite
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
@@ -7,8 +7,8 @@ No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
 and later finite returns are appended below. The current return is
-[D4 after E106/E107](native-opening-selection-20261003.md). The active next packet
-is proposed **Q34/E108**, the complete specialized-opening interface/budget.
+[D12 after E108](native-proof-interface-selection-20261003.md). The active next packet
+is proposed **Q35/E109**, the complete strongest backend/control pilot.
 Q32 closes the tiny native boundary; Q33 retains a known centered-remainder
 terminal relation and stops the contained literal claim.
 E105's full tiny joint law is complete and stops the literal carry recipe. The
@@ -408,3 +408,7 @@ paid consequence and first falsifier before implementation. Company homemade
 BFV/BGV/Paillier, SEAL controls, old negative evidence, main/staging and all
 protected checkpoints remain preserved. The new checkpoint is
 `checkpoint/native-boundary-openings-2026-10-03`.
+
+## 2026-10-03: Q34/E108 bounded return
+
+[E108](native-proof-interface-screen.md) closes the scalar interface and complete transparent native toy relation;103 final tests. Strong generic elimination/folding/unsigned quotients give29,247 logical constraints versus109,942, no originality or measured speed claim. All proof/backend/private lifecycle costs remain explicit. [Current R6](native-proof-interface-selection-20261003.md) retains zero original main and activates proposed [Q35/E109](native-proof-backend-plan-20261003.md).

@@ -8,15 +8,15 @@ the [machine-readable handoff](contribution-roadmap-refresh-20261002.json),
 [progress log](publication-progress.md).
 The original planning checkpoint `07ef3f7` ran no experiment. Earlier
 [E101–E103/E105 return](boundary-reuse-selection-20261003.md) and113-test scope
-remain historical. The [current return](native-opening-selection-20261003.md)
-closes E106's actual tiny CPU/RNS native boundary and E107's finite centered
-terminal relation.184 and43 tests pass separately,227 distinct IDs across
-three new modules. Exact/count controls are retained; the literal terminal
-candidate is contained by the strongest generic compiler. **Q34/E108** is
-next as a proposed complete specialized-opening interface/budget prerequisite
-under the [bounded plan](native-opening-discriminator-plan-20261003.md).
-E100/E104 remain unimplemented, and no original main, timing/parameter or
-broad gate is selected.
+remain historical. The [current E108 return](native-proof-interface-selection-20261003.md) completes
+one scalar interface and three transparent native toy relations,103 final tests
+and a29,247-constraint strongest generic control. The earlier
+[E106/E107 return](native-opening-selection-20261003.md) and227-test separate-run
+inventory remain unchanged. No cryptographic backend, original main, timing,
+parameter or broad gate passes. **Next Q35/E109** is the proposed
+[bounded backend/control pilot](native-proof-backend-plan-20261003.md), with
+three precise creative leads retained rather than promoted without a protocol.
+E100/E104 remain unimplemented and conditional.
 
 ## 1. Recommendation and intended paper
 
@@ -466,3 +466,8 @@ acquisition records and targeted reading scopes. Earlier 68 records remain
 unchanged. New planning validation checks links, dependencies, original raw
 and source identities, protected refs, and historical governance documents at
 their original commit. It does not rerun or rename the earlier experiments.
+
+## 2026-10-03: E108 return
+
+See the [complete screen](native-proof-interface-screen.md) and [R6 selection](native-proof-interface-selection-20261003.md).
+The interface/count component is complete as a known control. Next [Q35/E109](native-proof-backend-plan-20261003.md) is proposed; full proof and publication gates remain open.
