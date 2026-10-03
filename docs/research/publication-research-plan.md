@@ -1,3 +1,26 @@
+# Current bounded execution return, 2026-10-03
+
+E120 first component is complete. Read the [current return](multilimb-consequence-return-20261003.md)
+and [machine queue](publication-work-packages.json). Its one fixed candidate would
+save about6% HE query-plus-response bytes, but the pointwise correlated suffix
+already consumes the correctness margin. Stop this recipe for the unchanged
+candidate; it is not an accepted improvement or global impossibility result.
+The64 distinct toy tests and one reviewed public arithmetic cohort provide
+no statistical/lifetime, actual HE, security, parameter or performance approval.
+
+**Next Q47/E121:** separately freeze the [cyclic-window joint-law gate](cyclic-window-consequence-plan-20261003.md).
+The all-window argument can avoid the suffix charge under ideal premises, but
+its independence-system concentration method is directly known prior work.
+Its full-vector oracle must retain fresh-error-dependent image cosets. Only a
+later separately registered unchanged-candidate consequence can assess usefulness.
+Strong generic/protected/ring-proof and permitted plaintext-cache controls,
+complete lifecycle costs and actual cryptographic assurance remain required.
+
+Earlier company code, source/raw/test scopes, caches and main/staging are
+preserved. The preceding returns and strategy below are historical.
+
+---
+
 # Current research execution return, 2026-10-03
 
 Start with the [current return](seeded-correctness-return-20261003.md) and
