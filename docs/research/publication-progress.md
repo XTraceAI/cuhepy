@@ -972,3 +972,44 @@ checkpoints and frozen timing evidence are preserved. Planning validation
 checks current documents/queue/archive and historical identities at their
 original commit. Intended checkpoint:
 `checkpoint/contribution-roadmap-refresh-2026-10-02`.
+
+## 2026-10-03 — E101–E103 bounded returns and D4 carry-law pivot
+
+Parent planning checkpoint `07ef3f7`; branch
+`experiment/complete-boundary-screens-20261003`. Independent components were
+prepared/executed in parallel within the plan's bounded scopes, with frozen
+preregistrations and return reports. No production code or old raw was edited.
+
+[E101](joint-binding-screen.md): actual N16/H2 packed BGV graph, all four legal
+queries and stable ties match two independent arithmetic controls. Five
+false-digit kernel traces retain honest output and pass affine-only checks;
+global canonical constraints reject. Single-limb corruption, 15,500 complete
+finite residual checks and 81 feedback states retained. 48 count cards match
+generic elimination; literal recipe stops. 28 new tests pass.
+
+[E102](finite-lifetime-noise-screen.md): exact fresh-CBD/shared-atom laws,
+uniform setup-L1 maintenance and lifetime controls survive. 648 registered
+cards equal the matched standard formula; none is an actual API parameter
+candidate. Actual supported trace diagnostics preserve 1,024 distances and
+expose fresh-error-dependent rotation digits. Literal generic theorem stops.
+50 new tests pass; no approved parameters or speedup.
+
+[E103](owner-summary-screen.md): 9,360 exhaustive corpus/layout/query cases,
+18,720 exact results and 13 geometry/count/update cases. Trusted complete owner
+coverage and ties survive. Private retrieval, failure-transcript padding and
+uniform all-query schedules are unimplemented; favorable geometry does not
+license a small budget. Known centroid/radius composition stops. 11 tests pass.
+
+The combined **89 distinct scoped tests** pass in one current-source run;
+this does not add to or rerun historical 448/1,965 scopes. Explicit lint covers
+all new files. Peer reviews clarify API geometry, matched formula containment,
+RNS limb scope, honest-output/false-witness errors and malformed fixed-slot
+abort leakage. Source versions/initial new outcomes and corrections are
+preserved outside the repository rather than overwriting old experiments.
+
+[D4/R6](boundary-reuse-selection-20261003.md) accepts no original main and no
+broad gate. Q31/E105 is proposed to close E102's two-atom diagnostic with the
+full N8 CBD support and joint carry/error law; identical caching goes to the
+generic comparator. Complete service E104 and new native kernels remain
+conditional. Return to the plan after that discriminator rather than promise
+a conference result from known controls.

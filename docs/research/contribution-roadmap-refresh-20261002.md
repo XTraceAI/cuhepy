@@ -6,8 +6,11 @@ Planning revision, 2026-10-02. Evidence base: `8e7cd6b` / checkpoint
 the [machine-readable handoff](contribution-roadmap-refresh-20261002.json),
 [canonical queue](publication-work-packages.json), and
 [progress log](publication-progress.md).
-**This revision runs no new experiment and selects no proven original main
-construction.** E100 remains unimplemented. E101–E104 are new proposals.
+The original planning checkpoint `07ef3f7` ran no experiment. The current
+[bounded return](boundary-reuse-selection-20261003.md) records E101–E103 and
+89 new scoped tests: all three literal recipes stop as original mechanisms.
+Q31/E105 next closes the full nonlinear carry-law diagnostic. E100/E104 remain
+unimplemented, and no original complete main or broad gate is selected.
 
 ## 1. Recommendation and intended paper
 
@@ -338,10 +341,11 @@ component and one exact/count component before any large retrieval service.
 | Step | Status / prerequisites | Deliverable and return decision |
 | --- | --- | --- |
 | **D0: evidence and closest-work revision** | Completed planning in this revision | This plan, comparison, 9 newly pinned sources, targeted complete-page review, append-only registry/queue updates; no new benchmark/proof result |
-| **D1 / Q27 / E101** | Next; no assumed parameter or originality pass | Original-input-to-wire graph, full-error oracle, strongest fused controls, four-party/lifecycle ledger, one-page mechanism difference; advance one variant or stop it |
-| **D2 / Q28 / E102** | Ready second, including if D1 stops | Restricted theorem/freshness graph, exact tails and certified control, honest lifetime bound, parameter-use limits; advance or record a finite negative |
-| **D3 / Q29 / E103** | Conditional third; separate top-three contract | Complete omitted-row coverage and traffic-privacy screen, summary/cache frontier; stop before building a service if already defeated |
-| **D4: select main mechanism** | After applicable D1/D2/D3 returns | Earliest unmet gates A/B; accept one precise claim or publish a pivot decision. Do not mark old P packages or Q6 complete. |
+| **D1 / Q27 / E101** | Completed bounded literal stop | Complete tiny BGV graph and false-witness oracle retained; generic elimination contains recipe; full native/terminal proof remains open |
+| **D2 / Q28 / E102** | Completed bounded literal stop | Known restricted conditioning/setup-cap certificate retained; toy model geometry qualified; nonlinear joint carry law open |
+| **D3 / Q29 / E103** | Completed bounded literal stop; separate top-three contract | Exact owner coverage retained; ordinary metric recipe and fixed-padding limits stop originality; PIR/failure padding unimplemented |
+| **D4: select main mechanism** | Bounded pivot complete; no original main selected | [Current R6 return](boundary-reuse-selection-20261003.md) proposes full carry-law discriminator. Broad gates and old P/Q6 remain unmet. |
+| **D9 / Q31 / E105** | Next, proposed | Full tiny conditional nonlinear law and equally cached generic state comparison; advance a distinct scalable mechanism or return a scoped stop |
 | **D5: homemade complete reference** | Selected mechanism and credible useful ledger | All protocol roles, canonical messages, safe release, persistent epochs/budget, updates, matched strong baseline adapter; toy oracle first, then real ring arithmetic |
 | **D6 / Q30 / E104: matched service evaluation** | Complete reference and stated parameter scope | One matched BGV/BFV/Paillier/hybrid fixture plus cache controls; measured full service/lifecycle costs, not multiplied cross-study ratios |
 | **D7: theorem and assurance package** | Start lemmas at D1; finish before security claims | Actual transcript reduction, correctness/soundness/lifetime budgets, full auxiliary-key parameter analysis, private implementation review; independent review remains an explicit external requirement |

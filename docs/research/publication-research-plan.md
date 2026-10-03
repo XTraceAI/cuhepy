@@ -1,6 +1,7 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-02, post-E99 contribution roadmap review**. Start with the
+Revision: **2026-10-03, bounded E101–E103 returns and nonlinear carry pivot**.
+Start with the [current R6 decision](boundary-reuse-selection-20261003.md), then the
 [refreshed executable roadmap](contribution-roadmap-refresh-20261002.md),
 [closest-work synthesis](closest-work-roadmap-refresh-20261002.md), and
 [machine handoff](contribution-roadmap-refresh-20261002.json). The
@@ -11,23 +12,24 @@ pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** E82–E99 bounded components are implemented; **448 scoped
-tests** pass across20 CPU files. E99 proves uniform adjacent masks with shared
-CBD errors, keeps standard modular basis/noise controls, and checks hidden
-full-ring support. All720 paid cards retain the prior numerical-cap precision
-and full-N resources. Old prefix-security estimates do not apply to hidden
-positions; sparse/derived-key assurance is open. Standard complete controls
-contain the generic compiler/gadget/sparse mechanism, so no original complete
-main or broad gate is selected. E98's estimator sample-budget qualification
-and earlier negative/raw timing evidence remain intact. **Next Q27/E101**
-screens the complete native authenticated boundary against the strongest fused
-controls; **Q28/E102** then screens a restricted finite adaptive-lifetime theorem.
-**Q29/E103** is a separate conditional exact-retrieval mode. Q26/E100 remains
-unimplemented as a conditional remainder-first control. This planning review
-adds no experiment/test execution or accepted main mechanism. Company
-homemade BFV/BGV/Paillier,SEAL references,production sources,main/staging and
-frozen measurements remain preserved. Complete binding/PBS/private assurance
-and useful-effect/mechanism gates remain open.
+**Current status:** E101–E103 bounded discriminators are implemented, with
+**89 distinct new tests** passing across three files. Complete BGV affine
+elimination retains canonical constraints but matches the generic control.
+Restricted conditional CBD/setup bounds match standard formulas; toy cards
+do not instantiate actual API parameters. Exact owner coverage survives, but
+ordinary metric summaries and fixed padding do not establish a new private
+retrieval mechanism. All three literal candidates stop at the originality
+gate. **Next Q31/E105** examines the complete nonlinear carry/noise law beyond
+E102's two-atom diagnostic. No original complete main or broad gate is selected.
+
+Earlier E82–E99 evidence, 448 scoped tests across 20 files, parameter/sample
+qualifications, 720 precision cards and all frozen timings remain historical
+and unchanged; they were not rerun or added to the new count. Q26/E100 remains
+an unimplemented conditional control. E104's complete matched service follows
+an accepted complete construction, not these small reference controls.
+Company homemade BFV/BGV/Paillier, SEAL examples, production sources and
+main/staging remain preserved. Complete binding/PBS/private assurance and
+useful-effect/mechanism gates remain open.
 
 ## 1. Decision
 
@@ -70,9 +72,11 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q24/E98 | [Setup-row law and sample-budget audit](owner-bound-rounding-screen.md) | Exact disjoint scaled-CBD rows;default tool sample shortage qualified;8 applicable sub128 profiles,all others unapproved |
 | Q25/E99 | [Gadget dependencies/hidden support](gadget-dependency-screen.md) | Exact mask/noise laws and standard LLL controls;720 equal-cost precision cards;hidden support changes security applicability;generic mechanism contained |
 | Conditional Q26 | [E100 remainder-first original-score binding](remainder-first-binding-plan-20261002.md) | Unimplemented supporting control if the refreshed routes identify a canonicalization bottleneck; identity alone not novelty |
-| **Next: Q27** | [**E101 complete native boundary**](contribution-roadmap-refresh-20261002.md#4-route-a-choose-the-verified-boundary-jointly-with-the-native-trace) | Proposed graph/strongest-control and all-error/count discriminator; no new implementation or selected mechanism |
-| Q28 | [E102 finite adaptive lifetime](contribution-roadmap-refresh-20261002.md#5-route-b-a-finite-certificate-across-adaptive-reuse) | Proposed restricted nonheuristic theorem screen; E94/E97/E99 and current literature are controls |
-| Conditional Q29/Q30 | [E103 owner-summary retrieval; E104 service evaluation](contribution-roadmap-refresh-20261002.md#7-execution-order-and-concrete-handoffs) | Separate exact-top-three/privacy contract and post-selection matched service evaluation; unimplemented |
+| Q27 | [E101 complete boundary discriminator](joint-binding-screen.md) | Complete tiny BGV relation, honest-output false-witness kernels; generic shared-cut recipe stops; full native/terminal/BFV proof remains open |
+| Q28 | [E102 finite adaptive lifetime](finite-lifetime-noise-screen.md) | Correct restricted conditioning and uniform maintenance cap; known formula containment, toy geometry qualifications; no original main |
+| Q29 | [E103 owner-summary retrieval](owner-summary-screen.md) | Separate exact-top-three coverage oracle; known mechanism and padding/geometry limits; no PIR/privacy implementation |
+| Conditional Q30 | [E104 service evaluation](contribution-roadmap-refresh-20261002.md#7-execution-order-and-concrete-handoffs) | Unimplemented until accepted complete construction and matched controls |
+| **Next: Q31** | [E105 full carry-law discriminator](boundary-reuse-selection-20261003.md) | Full tiny fresh-error domain, joint nonlinear maintenance and equally cached generic state control; proposed, no result assumed |
 
 The [current detailed plan](contribution-roadmap-refresh-20261002.md) specifies
 mechanisms, strongest controls, stop conditions, full costs and security proof
