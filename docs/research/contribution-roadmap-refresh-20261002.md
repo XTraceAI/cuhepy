@@ -6,14 +6,17 @@ Planning revision, 2026-10-02. Evidence base: `8e7cd6b` / checkpoint
 the [machine-readable handoff](contribution-roadmap-refresh-20261002.json),
 [canonical queue](publication-work-packages.json), and
 [progress log](publication-progress.md).
-The original planning checkpoint `07ef3f7` ran no experiment. The current
-[bounded return](boundary-reuse-selection-20261003.md) records E101–E103/E105
-and 113 distinct tests in four new modules: these literal recipes stop as
-original mechanisms. E105's complete tiny joint law preserves actual outputs,
-but injective digit tensors and stronger generic controls stop the carry
-representation. [Q32/E106](native-boundary-adapter-plan-20261003.md) is next as
-a proposed complete native-boundary/strong-baseline prerequisite. E100/E104 remain
-unimplemented, and no original complete main or broad gate is selected.
+The original planning checkpoint `07ef3f7` ran no experiment. Earlier
+[E101–E103/E105 return](boundary-reuse-selection-20261003.md) and113-test scope
+remain historical. The [current return](native-opening-selection-20261003.md)
+closes E106's actual tiny CPU/RNS native boundary and E107's finite centered
+terminal relation.184 and43 tests pass separately,227 distinct IDs across
+three new modules. Exact/count controls are retained; the literal terminal
+candidate is contained by the strongest generic compiler. **Q34/E108** is
+next as a proposed complete specialized-opening interface/budget prerequisite
+under the [bounded plan](native-opening-discriminator-plan-20261003.md).
+E100/E104 remain unimplemented, and no original main, timing/parameter or
+broad gate is selected.
 
 ## 1. Recommendation and intended paper
 
@@ -347,9 +350,11 @@ component and one exact/count component before any large retrieval service.
 | **D1 / Q27 / E101** | Completed bounded literal stop | Complete tiny BGV graph and false-witness oracle retained; generic elimination contains recipe; full native/terminal proof remains open |
 | **D2 / Q28 / E102** | Completed bounded literal stop | Known restricted conditioning/setup-cap certificate retained; toy model geometry qualified; honest full-N nonlinear maintenance theorem remains open after E105's fixed-setup law |
 | **D3 / Q29 / E103** | Completed bounded literal stop; separate top-three contract | Exact owner coverage retained; ordinary metric recipe and fixed-padding limits stop originality; PIR/failure padding unimplemented |
-| **D4: select main mechanism** | Bounded returns complete; no original main selected | [Current R6 return](boundary-reuse-selection-20261003.md) stops four literal candidates and proposes the complete native-boundary prerequisite. Broad gates and old P/Q6 remain unmet. |
+| **D4: select main mechanism** | Bounded returns complete; no original main selected | [Current R6 return](native-opening-selection-20261003.md) retains native/terminal known controls and stops contained literal claims; next complete specialized-opening comparison. Broad gates and old P/Q6 remain unmet. |
 | D9 / Q31 / E105 | Complete bounded literal stop | 26,244 weighted states and full joint law match actual API; injectivity and matched grouped controls stop carry representation; no general theorem |
-| **D10 / Q32 / E106** | Next, proposed | Complete actual native rotation/terminal/wire boundary and strong baseline adapter; known-control prerequisite before any new low-state/opening mechanism |
+| D10 / Q32 / E106 | Complete selected tiny BGV known control | Actual CPU/RNS original-query-to-full-wire oracle and complete affine count compiler; strict canonical checks; full proof/BFV/CUDA adapters deferred |
+| D11 / Q33 / E107 | Complete finite known-control/literal stop |180,978 rich/60,326 reduced tuples; centered terminal relation survives, shared generic compiler contains saving |
+| **D12 / Q34 / E108** | Next, proposed | Applicable specialized-opening interface/premise audit then complete tiny native relation and fair proof budget; known comparison prerequisite |
 | **D5: homemade complete reference** | Selected mechanism and credible useful ledger | All protocol roles, canonical messages, safe release, persistent epochs/budget, updates, matched strong baseline adapter; toy oracle first, then real ring arithmetic |
 | **D6 / Q30 / E104: matched service evaluation** | Complete reference and stated parameter scope | One matched BGV/BFV/Paillier/hybrid fixture plus cache controls; measured full service/lifecycle costs, not multiplied cross-study ratios |
 | **D7: theorem and assurance package** | Start lemmas at D1; finish before security claims | Actual transcript reduction, correctness/soundness/lifetime budgets, full auxiliary-key parameter analysis, private implementation review; independent review remains an explicit external requirement |

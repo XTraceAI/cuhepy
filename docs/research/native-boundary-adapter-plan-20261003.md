@@ -1,8 +1,10 @@
 # Q32 / E106: complete native boundary before the next mechanism claim
 
-2026-10-03 UTC. Proposed, **not implemented or measured**. This is the next
-prerequisite after the [E101–E105 return](boundary-reuse-selection-20261003.md),
-not an accepted original construction. Keep the [primary contract](exact-search-contract.md),
+2026-10-03 UTC. **Selected BGV tiny boundary/count scope completed**, with
+[results](native-boundary-screen.md) and [current R6 return](native-opening-selection-20261003.md).
+BFV/CUDA/proof adapters and complete specialized proof costs remain open.
+The original bounded plan below follows the [E101–E105 return](boundary-reuse-selection-20261003.md);
+this is not an accepted original construction. Keep the [primary contract](exact-search-contract.md),
 owner plaintext caches and all existing homemade backends. Do not restart
 the contained canonical-cut or carry recipes under a new name.
 
@@ -106,7 +108,8 @@ Proposed new files, only after the graph/preregistration is frozen:
 `experiments/bfv_search_lab/native_boundary_oracle.py`,
 `test_native_boundary_oracle.py`, `benchmarks/native_boundary_lab.py`,
 `docs/research/native-boundary-preregistration.md` and
-`native-boundary-screen.md`. These files do not exist as completed work.
+`native-boundary-screen.md`. These selected BGV files now exist; their
+completed scope is recorded in the result, not all deferred adapters.
 
 ## Strong controls and the decision this must enable
 

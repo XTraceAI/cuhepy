@@ -1052,3 +1052,47 @@ Checkpoint target: `checkpoint/boundary-reuse-carry-controls-2026-10-03`;
 branch: `experiment/complete-boundary-screens-20261003`. It preserves the four
 packets, all 77 primary PDF/text pairs, exact dataset inputs, correction history
 and frozen measurement summaries without replacing the earlier checkpoints.
+
+## 2026-10-03 — E106 actual native boundary and E107 terminal return
+
+Parent checkpoint `4214d80`; branch
+`experiment/native-boundary-adapter-20261003`. Both packets were frozen before
+their evaluations; E107 preserves its original registration plus a separate
+pre-evaluation stronger-control amendment. No production or old source/raw edit.
+
+[E106](native-boundary-screen.md) independently closes the selected actual
+N8/D4 CPU/RNS original compressed query-to-full-wire boundary:8 queries,
+72 distances,256 full preterminal/256 terminal coefficients; all private
+plaintext coefficients modulo17 and native ranking agree.10 cuts and32
+terminal coordinates per query include the partial-group rotations.8
+honest-output falsecanonical kernels pass every affine residual/frozen row;
+strict canonical replay rejects before private callback.112×368 relation,
+rank112 in each prime,1,697 small scalar cases/143 actual thresholds and
+15,500 ideal field checks retain strong known controls. Complete specialized
+proof/setup/lifecycle costs remain unknown.184 new tests pass.
+
+[E107](target-prime-lift-screen.md) exhausts180,978 richer and60,326 reduced
+witness tuples with146 accepted per representation. The centered remainder
+pins exact native compact output without a separately supplied lift/wrap/modt
+gate. All256 frozen native-agreed terminal coordinates/143 thresholds match;
+no new private/native execution. Strong generic compilation gets the same
+elimination and existingP: count difference0, literal originality stops.
+43 new tests pass. Q26/E100's different whole-score plan is not completed.
+
+The **227 distinct test IDs** are from separate184-case and43-case runs in
+three new modules, not a combined execution and not added to historical113,
+448 or1,965. Eight new Python files receive nonempty explicit lint. Initial
+standalone import failure, old/new modulus/primality guard versions and logs,
+frozen fixture/rows, binary/source hashes and77 archived primary pairs remain
+retained. Existing binaries were not rebuilt; native intermediate buffers
+were not instrumented. No new timing panel or parameter approval occurred.
+
+[Current R6 return](native-opening-selection-20261003.md) selects zero original
+main mechanisms. **Next proposed Q34/E108**: applicable complete specialized
+opening/interface and fair proof budget under the
+[bounded plan](native-opening-discriminator-plan-20261003.md), returning to R6
+after each component. No E104, new GPU kernel or reduced-Q deployment activation.
+Receipt: [native-boundary-validation-20261003.json](native-boundary-validation-20261003.json).
+Checkpoint target: `checkpoint/native-boundary-openings-2026-10-03`; earlier
+company code, main/staging, checkpoints, negative scopes and frozen timings
+are preserved.

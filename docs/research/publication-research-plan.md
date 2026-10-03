@@ -1,7 +1,7 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-03, bounded E101–E105 returns and native-boundary prerequisite**.
-Start with the [current R6 decision](boundary-reuse-selection-20261003.md), then the
+Revision: **2026-10-03, E106/E107 native controls and specialized-opening handoff**.
+Start with the [current R6 decision](native-opening-selection-20261003.md), then the
 [refreshed executable roadmap](contribution-roadmap-refresh-20261002.md),
 [closest-work synthesis](closest-work-roadmap-refresh-20261002.md), and
 [machine handoff](contribution-roadmap-refresh-20261002.json). The
@@ -12,19 +12,23 @@ pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** E101–E103 and E105 bounded discriminators are implemented,
-with **113 distinct tests** passing across four new files. Complete BGV affine
-elimination retains canonical constraints but matches the generic control.
-Restricted conditional CBD/setup bounds match standard formulas; toy cards
-do not instantiate actual API parameters. Exact owner coverage survives, but
-ordinary metric summaries and fixed padding do not establish a new private
-retrieval mechanism. E105 exhausts the four-query N8 fresh-error domain:
-26,244 weighted states preserve the full joint phase law, but complete digit
-tensors remain distinct and the carry representation loses matched logical
-work/storage controls. These literal candidates stop at the originality gate.
-**Next Q32/E106** closes the actual rotated/terminal native boundary and strong
-complete baseline as a known-control prerequisite. It is proposed, not
-implemented. No original complete main or broad gate is selected.
+**Current status:** E106 closes one actual CPU/RNS native BGV query-to-full-wire
+boundary on a frozen toy fixture:8 queries,72 distances,256 full preterminal
+and256 terminal coefficients. Its184 tests and affine-kernel controls expose
+why canonical/range checks cannot be replaced by extra affine rounds. E107
+exhausts180,978 richer and60,326 reduced terminal witnesses;43 tests and256
+native-agreed scalar coordinates retain the centered-remainder relation.
+The equally optimized generic compiler gets the same elimination, so that
+literal originality claim stops. The distinct227-test inventory comes from
+separate184/43 current-source runs, not a combined run or a historical sum.
+
+Earlier E101–E103/E105113-test scope, fixed reused-error joint laws and
+literal mechanism stops remain unchanged. **Next Q34/E108** is a proposed,
+unimplemented complete specialized-opening interface and fair proof budget:
+[bounded handoff](native-opening-discriminator-plan-20261003.md). This is a
+known comparison prerequisite, not an accepted new algorithm. No original
+complete main or broad gate is selected. No new timing panel or parameter
+approval occurred. BFV/CUDA/proof/lifecycle adapters remain named open tasks.
 
 Earlier E82–E99 evidence, 448 scoped tests across 20 files, parameter/sample
 qualifications, 720 precision cards and all frozen timings remain historical
@@ -81,7 +85,9 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q29 | [E103 owner-summary retrieval](owner-summary-screen.md) | Separate exact-top-three coverage oracle; known mechanism and padding/geometry limits; no PIR/privacy implementation |
 | Conditional Q30 | [E104 service evaluation](contribution-roadmap-refresh-20261002.md#7-execution-order-and-concrete-handoffs) | Unimplemented until accepted complete construction and matched controls |
 | Q31 | [E105 full carry-law discriminator](carry-trace-noise-screen.md) | Full tiny fresh-error domain and joint nonlinear maintenance matched actual API; full tensors distinct, literal carry loses equally optimized controls; no general theorem/timing claim |
-| **Next: Q32** | [E106 complete native boundary](native-boundary-adapter-plan-20261003.md) | Proposed known-control prerequisite: actual rotation/terminal/wire graph, independent oracle and complete strongest-baseline costs; BFV adapter separately scoped |
+| Q32 | [E106 actual native boundary](native-boundary-screen.md) | Complete selected tiny CPU/RNS original-query/full-wire oracle and affine count controls;184 tests; full proof/BFV/CUDA/lifecycle assurance deferred |
+| Q33 | [E107 target-prime lifting](target-prime-lift-screen.md) | Complete finite scalar relation; strong generic remainder elimination contains candidate;43 tests; no originalmain/proof-cost claim |
+| **Next: Q34** | [E108 specialized-opening adapter](native-opening-discriminator-plan-20261003.md) | Proposed applicable field/range/commitment interface then full native tiny relation/paid proof budget; known comparison prerequisite |
 
 The [current detailed plan](contribution-roadmap-refresh-20261002.md) specifies
 mechanisms, strongest controls, stop conditions, full costs and security proof

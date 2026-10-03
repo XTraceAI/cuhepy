@@ -1,4 +1,7 @@
-# R6 / D4: return from four bounded discriminators
+# Historical R6 / D4: return from four bounded discriminators
+
+Current successor: [E106/E107 return](native-opening-selection-20261003.md);
+Q34/E108 is now next. The evidence/then-next handoff below is historical.
 
 2026-10-03 UTC. Evidence parent `07ef3f7`; execution is on
 `experiment/complete-boundary-screens-20261003`. This is the current return

@@ -1,0 +1,595 @@
+{
+  "kind": "E106_exact_native_boundary_and_complete_known_controls_not_timing_or_security_approval",
+  "metadata": {
+    "utc": "2026-10-03T03:13:28.685883+00:00",
+    "command": [
+      "benchmarks/native_boundary_lab.py",
+      "--fixture",
+      "/home/pete/yavor-projects/xtrace-work/research-data/native-boundary-20261003/frozen-fixture.json",
+      "--protected-rows",
+      "/home/pete/yavor-projects/xtrace-work/research-data/native-boundary-20261003/frozen-checker-rows.json",
+      "--output",
+      "benchmarks/results/publication-native-boundary-20261003.json"
+    ],
+    "git_head": "4214d80a456eb97c94c05830b2386b64ed57e5eb",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "source_sha256": {
+      "experiments/bfv_search_lab/native_boundary_oracle.py": "4c9aaa7b779c186212993f68a71eceff0fdf42e625d3483f5237e8bd9d52de71",
+      "experiments/bfv_search_lab/native_boundary_controls.py": "77afbeaa98f5e9ce136f002979069c6c08c5e7cbf727a3068b275dfa45ee84bc",
+      "experiments/bfv_search_lab/test_native_boundary_oracle.py": "94eaa66899fd438559d14dccb3568e1e5a8d09febafb133a6294b99d2c1ad877",
+      "experiments/bfv_search_lab/test_native_boundary_controls.py": "0aabcd32ca455ea03ba6b90b251760024b76e7e5d62dc81f620dfda7f3c6dcac",
+      "benchmarks/native_boundary_lab.py": "18d638281ee77d9afacf0cc65ca99cff98b159661f74dab91c964e9f643aa5f2",
+      "docs/research/native-boundary-preregistration.md": "cd7f3a13b89a6c7f40e19d442b041ce9c41fa4bc777518efa8c0b7fd431657e4",
+      "experiments/bfv_search_lab/native_bgv.py": "7d04b12185a8b4afcf1e2d65d9d16589dda034427a4ec787c1d36729a0b167bb",
+      "experiments/bfv_search_lab/butterfly_bgv.py": "07a1312356851b670dfc51da9bd648aee6aad22250b48d7a13575903ae388167",
+      "experiments/bfv_search_lab/trace_bgv.py": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5",
+      "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+      "experiments/bfv_search_lab/compact_bgv.py": "4b98630622c75052a74ae4f1380bc529f2db088ad961716147b858f3936e0ff9",
+      "experiments/bfv_search_lab/compressed_query_bgv.py": "cc5639f4ceb2e60419d748d3e29e97c05b2202bc6ba28241b4f01281cc2b5836",
+      "experiments/bfv_search_lab/owner_bgv.py": "d8ab7f0cc208ce2ba844dddd7ad3e21acf234341326834b1241be6dc756d5c10",
+      "experiments/bfv_search_lab/private_bgv.py": "65435e215abd4e0ba8e8072b27a1481d658534ade3b9e02f5e1802767a0a6ca8",
+      "experiments/bfv_search_lab/results_bgv.py": "56d1ba8295b51e36d298b86056137d9814d70335787b956e73700a162324034a",
+      "experiments/bfv_search_lab/transport_bgv.py": "6e31742ada14844715f1f04b9f02db3cfe0d7ed88615254e0cf4b73805902330",
+      "experiments/bfv_search_lab/seeded_bgv.py": "7e8631304dde122c4755f5f7391ef8ba6b9be213fd2c667a473b388175890272",
+      "experiments/bfv_search_lab/attested_bgv.py": "e1a0f7c3d02fa3668d43373f9eedd39c78aa7afe93341e2295d7ef789c96ccf5",
+      "experiments/bfv_search_lab/security_bgv.py": "df3085cef85595b0a2ae364f60e351dc90235924a202172b3f2effc9dcfd0d48",
+      "experiments/bfv_search_lab/_native/residue_trace.h": "b24841d01c67be525dd219339f109f3c59d6dcf45e31b42d38f3056ea3e73a47",
+      "experiments/bfv_search_lab/_native/trace_server.h": "522500097d81f59eb789694fb2fb9714ffb4b12a6a1c90dd9e0efa4636946c11",
+      "experiments/bfv_search_lab/_native/compact.h": "384a35dec51de848e5ea98d16a137d222054e1bc2060d4ac7911004f3bea2de0",
+      "experiments/bfv_search_lab/_native/query_codec.h": "fc4008d5a5676b90d374449022c7ac41e21756aaf345d2d328c741c0eeb02f85",
+      "experiments/bfv_search_lab/_native/word_codec.h": "0dd0302b5c7bbfef3d237abab86663bc0a613b063967af3e98dedf87d8d07f9a",
+      "experiments/bfv_search_lab/_native/bindings.cpp": "3dcc67f30a1104482395a9e879e62dbb5a0b75ca3bda005eb3be7b66aeb042cb",
+      "experiments/bfv_search_lab/_owner/bgv_private.h": "5bf9a72323eb8941f9bbd8de7f2d61b250b9352eda7dcc30abce7e6f20393332",
+      "experiments/bfv_search_lab/_owner/finish.h": "efbf9333538900f7fbf002b528a8d15b80e9e385bc6c3076a2fd2abab09c9575",
+      "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+      "src/cuhepy/bfv/_cpu_ext/rns_ntt.h": "f9886933ab66eeac9a4b25968b9bf485e065ab62d8f2efe4223598c927062f67",
+      "src/cuhepy/bfv/_cpu_ext/bfv_residue.h": "e8704caa4f62d93fe3a397b128cfe91bc2a349be815264f381b2d2eff80bca66"
+    },
+    "binary_sha256": {
+      "experiments/bfv_search_lab/_native/_bgv_trace.cpython-312-x86_64-linux-gnu.so": "5753d77e87c84b09199a740c8bbeb94df4e7df8cca97a252021051b0a6f72454",
+      "experiments/bfv_search_lab/_owner/_bgv_owner.cpython-312-x86_64-linux-gnu.so": "91e97d7c12ad28e60e141ccc205526db5bc7d8fbcfa411697059b7612fcbdc51",
+      "experiments/bfv_search_lab/_owner/_bgv_private.cpython-312-x86_64-linux-gnu.so": "c51a396a4e28ca099ba6e994b4c75fb5b475fd057548ac8e2e9db6887aad17c4"
+    },
+    "binary_source_correspondence_rebuilt": false
+  },
+  "frozen_fixture": {
+    "path": "/home/pete/yavor-projects/xtrace-work/research-data/native-boundary-20261003/frozen-fixture.json",
+    "sha256": "0a49605dd8d26d0e73e38c681013e83a64801df4c95b62fab80bf7b81beeb4a1"
+  },
+  "query_cards": [
+    {
+      "query": [
+        0,
+        0,
+        0
+      ],
+      "original_packet_sha256": "2c444b58c3dfe563b653747dd50f3971e647324a6452f887a57e206f6372e1de",
+      "query_packet_bytes": 172,
+      "response_packet_bytes": 211,
+      "response_sha256": "cea9ffcce3d73e564d05d5c640eb01c0215ff989fe62334322c1a6d5d35f4ceb",
+      "switch_cuts": 10,
+      "terminal_coordinates": 32,
+      "exact_distances": [
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        3,
+        0
+      ],
+      "stable_top3": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "all_preterminal_coefficients": 32,
+      "all_terminal_coefficients": 32,
+      "honest_output_false_digit_kernel_rank": 24,
+      "false_affine_trace_rejected_canonically": true,
+      "honest_and_false_canonical_traces_both_pass_all_frozen_affine_rows": true,
+      "first_per_tile_preterminal_equal": false,
+      "per_tile_alternate_graph_scores_equal": true,
+      "complete_trace_sha256": "c588dbc16ecd7f12eecc4700ebb01a128be11ca1ec1b54fa4dd9c72dbac0d9bb"
+    },
+    {
+      "query": [
+        0,
+        0,
+        1
+      ],
+      "original_packet_sha256": "c9a94da2e528eee3d73001b4c96e394b1438ff03b4265d5e6218a2cd0c510a7b",
+      "query_packet_bytes": 172,
+      "response_packet_bytes": 211,
+      "response_sha256": "fa760e617137ecb480e967d345985f634e6747b0a791dd3cea4c70b73413c2ad",
+      "switch_cuts": 10,
+      "terminal_coordinates": 32,
+      "exact_distances": [
+        1,
+        0,
+        2,
+        1,
+        2,
+        1,
+        3,
+        2,
+        1
+      ],
+      "stable_top3": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "all_preterminal_coefficients": 32,
+      "all_terminal_coefficients": 32,
+      "honest_output_false_digit_kernel_rank": 24,
+      "false_affine_trace_rejected_canonically": true,
+      "honest_and_false_canonical_traces_both_pass_all_frozen_affine_rows": true,
+      "first_per_tile_preterminal_equal": false,
+      "per_tile_alternate_graph_scores_equal": true,
+      "complete_trace_sha256": "8a14540e13b61c4441fc0a83590cde045e40b1d9afcfb1d9c341d9e7a4d2e043"
+    },
+    {
+      "query": [
+        0,
+        1,
+        0
+      ],
+      "original_packet_sha256": "88f791d4ea627de5fd2ec16a21412780ce9b6188e285387ff1e42c4cfb43aa2a",
+      "query_packet_bytes": 172,
+      "response_packet_bytes": 211,
+      "response_sha256": "a612950fdf6f0b7d1cfffbf9e9ce6728a1d59862bbf5bb7067ead4463099ccb9",
+      "switch_cuts": 10,
+      "terminal_coordinates": 32,
+      "exact_distances": [
+        1,
+        2,
+        0,
+        1,
+        2,
+        3,
+        1,
+        2,
+        1
+      ],
+      "stable_top3": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "all_preterminal_coefficients": 32,
+      "all_terminal_coefficients": 32,
+      "honest_output_false_digit_kernel_rank": 24,
+      "false_affine_trace_rejected_canonically": true,
+      "honest_and_false_canonical_traces_both_pass_all_frozen_affine_rows": true,
+      "first_per_tile_preterminal_equal": false,
+      "per_tile_alternate_graph_scores_equal": true,
+      "complete_trace_sha256": "1f6b5f3ba76fdaa248828bba3017c3ff34da073b14e7d6136fab37a1c71ca734"
+    },
+    {
+      "query": [
+        0,
+        1,
+        1
+      ],
+      "original_packet_sha256": "0834cebfd0e88a012da2307d4dc6f68aab640492d13944e53fe3b0d589ed224b",
+      "query_packet_bytes": 172,
+      "response_packet_bytes": 211,
+      "response_sha256": "1460891b587fdb9f0683a72381987bb008a6eda27dde6f4ea21e8c81b7e815a2",
+      "switch_cuts": 10,
+      "terminal_coordinates": 32,
+      "exact_distances": [
+        2,
+        1,
+        1,
+        0,
+        3,
+        2,
+        2,
+        1,
+        2
+      ],
+      "stable_top3": [
+        [
+          3,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "all_preterminal_coefficients": 32,
+      "all_terminal_coefficients": 32,
+      "honest_output_false_digit_kernel_rank": 24,
+      "false_affine_trace_rejected_canonically": true,
+      "honest_and_false_canonical_traces_both_pass_all_frozen_affine_rows": true,
+      "first_per_tile_preterminal_equal": false,
+      "per_tile_alternate_graph_scores_equal": true,
+      "complete_trace_sha256": "698573250d492990a05dcdb14039c451c4c99d5df88cc61c419874618c439022"
+    },
+    {
+      "query": [
+        1,
+        0,
+        0
+      ],
+      "original_packet_sha256": "b67ecf971db427f875fb1e315ef410bae5dd913ebcc667131a1253049002228d",
+      "query_packet_bytes": 172,
+      "response_packet_bytes": 211,
+      "response_sha256": "67d7ae13e71d4a30956c623b2cbce2220cf329c451c549eff7a935b2cf3cb151",
+      "switch_cuts": 10,
+      "terminal_coordinates": 32,
+      "exact_distances": [
+        1,
+        2,
+        2,
+        3,
+        0,
+        1,
+        1,
+        2,
+        1
+      ],
+      "stable_top3": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "all_preterminal_coefficients": 32,
+      "all_terminal_coefficients": 32,
+      "honest_output_false_digit_kernel_rank": 24,
+      "false_affine_trace_rejected_canonically": true,
+      "honest_and_false_canonical_traces_both_pass_all_frozen_affine_rows": true,
+      "first_per_tile_preterminal_equal": false,
+      "per_tile_alternate_graph_scores_equal": true,
+      "complete_trace_sha256": "2ff35be1564c51a50b7933abb76177cd456523edc5ebe1ff0c045143089e991d"
+    },
+    {
+      "query": [
+        1,
+        0,
+        1
+      ],
+      "original_packet_sha256": "e2c688d1972ee4f1e3909c05ba4ac272d47f5bb82a729142a18153bcd1e13ff1",
+      "query_packet_bytes": 172,
+      "response_packet_bytes": 211,
+      "response_sha256": "2834f16e131e96ff6f301114dd375d08f16b447c2f7190597604d4d6e6eaa634",
+      "switch_cuts": 10,
+      "terminal_coordinates": 32,
+      "exact_distances": [
+        2,
+        1,
+        3,
+        2,
+        1,
+        0,
+        2,
+        1,
+        2
+      ],
+      "stable_top3": [
+        [
+          5,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "all_preterminal_coefficients": 32,
+      "all_terminal_coefficients": 32,
+      "honest_output_false_digit_kernel_rank": 24,
+      "false_affine_trace_rejected_canonically": true,
+      "honest_and_false_canonical_traces_both_pass_all_frozen_affine_rows": true,
+      "first_per_tile_preterminal_equal": false,
+      "per_tile_alternate_graph_scores_equal": true,
+      "complete_trace_sha256": "bace654eff3ea5546fc20ea6812e5c71cedaf005f27b97f5aca110f6265b76ce"
+    },
+    {
+      "query": [
+        1,
+        1,
+        0
+      ],
+      "original_packet_sha256": "f36eff347cc65f40d9862e3ad2e8df55fb8ffd7ce024975c4a1aeef7531c8ab9",
+      "query_packet_bytes": 172,
+      "response_packet_bytes": 211,
+      "response_sha256": "83e5e983cdecfd49d32bfb36ba357ca3cef8908fec6bb446020476b946f2a9b1",
+      "switch_cuts": 10,
+      "terminal_coordinates": 32,
+      "exact_distances": [
+        2,
+        3,
+        1,
+        2,
+        1,
+        2,
+        0,
+        1,
+        2
+      ],
+      "stable_top3": [
+        [
+          6,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "all_preterminal_coefficients": 32,
+      "all_terminal_coefficients": 32,
+      "honest_output_false_digit_kernel_rank": 24,
+      "false_affine_trace_rejected_canonically": true,
+      "honest_and_false_canonical_traces_both_pass_all_frozen_affine_rows": true,
+      "first_per_tile_preterminal_equal": false,
+      "per_tile_alternate_graph_scores_equal": true,
+      "complete_trace_sha256": "7e7f7fb4c56f926c4312ad46bd376f8b2d2099fdc801764f1b577fd8b8036547"
+    },
+    {
+      "query": [
+        1,
+        1,
+        1
+      ],
+      "original_packet_sha256": "a085d43438d97250f8ee8e4d8f5c89ce334867386e729a2634307c65b90db6e1",
+      "query_packet_bytes": 172,
+      "response_packet_bytes": 211,
+      "response_sha256": "2326bef2fc2636144ad60f3bb14716763a8dbf21a6a76845ddb60edd2571e904",
+      "switch_cuts": 10,
+      "terminal_coordinates": 32,
+      "exact_distances": [
+        3,
+        2,
+        2,
+        1,
+        2,
+        1,
+        1,
+        0,
+        3
+      ],
+      "stable_top3": [
+        [
+          7,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "all_preterminal_coefficients": 32,
+      "all_terminal_coefficients": 32,
+      "honest_output_false_digit_kernel_rank": 24,
+      "false_affine_trace_rejected_canonically": true,
+      "honest_and_false_canonical_traces_both_pass_all_frozen_affine_rows": true,
+      "first_per_tile_preterminal_equal": false,
+      "per_tile_alternate_graph_scores_equal": true,
+      "complete_trace_sha256": "895a6fa32402274cf2ca0522779454362586457a26de94a6986978eed3995030"
+    }
+  ],
+  "scalar_exhaustion_cases": 1697,
+  "actual_congruent_threshold_coefficients": 143,
+  "actual_threshold_diagnostics_never_decrypted": true,
+  "compiled_residual_dimensions": {
+    "features": 336,
+    "outputs": 32,
+    "residuals": 112
+  },
+  "per_prime_rank_inventory": {
+    "1152921504606846577": {
+      "complete_residual_map_rank": 112,
+      "feature_only_map_rank": 112,
+      "residual_rows": 112,
+      "feature_columns": 336,
+      "including_terminal_preimage_columns": 368
+    },
+    "1152921504606846097": {
+      "complete_residual_map_rank": 112,
+      "feature_only_map_rank": 112,
+      "residual_rows": 112,
+      "feature_columns": 336,
+      "including_terminal_preimage_columns": 368
+    }
+  },
+  "uniform_field_control": {
+    "prime": 5,
+    "residual_coordinates": 3,
+    "nonzero_residuals": 124,
+    "uniform_rows": 125,
+    "checks": 15500,
+    "maximum_accept_count": 25,
+    "one_row_exact_miss_probability": [
+      1,
+      5
+    ],
+    "nonlinear_and_release_prerequisites_not_proved": true
+  },
+  "frozen_checker_rows": {
+    "path": "/home/pete/yavor-projects/xtrace-work/research-data/native-boundary-20261003/frozen-checker-rows.json",
+    "sha256": "1bb23c62c89d59aa114817dde8f7f83c40fa1fe5eb2b64e46f686f08163db86c",
+    "disclosed_toy_only": true,
+    "k_per_prime": 4
+  },
+  "paid_costs": {
+    "n": 8,
+    "padded": 4,
+    "records": 9,
+    "tile_capacity": 2,
+    "tiles": 5,
+    "active_group_sizes": [
+      4,
+      1
+    ],
+    "replies": 2,
+    "gadget_levels": 4,
+    "homomorphic_query_expansion_cuts": 0,
+    "product_relinearization_cuts": 5,
+    "butterfly_cuts": 5,
+    "total_canonical_switch_cuts": 10,
+    "canonical_source_coefficients": 80,
+    "canonical_digit_coefficients_derived_or_supplied": 320,
+    "terminal_coordinate_relations": 32,
+    "affine_feature_count": 336,
+    "affine_residual_count": 112,
+    "source_witness_packed_bytes": 1200,
+    "source_witness_two_uint64_RNS_bytes": 1280,
+    "terminal_preimage_packed_bytes": 480,
+    "terminal_preimage_two_uint64_RNS_bytes": 512,
+    "source_and_terminal_witness_packed_bytes": 1680,
+    "source_and_terminal_witness_two_uint64_RNS_bytes": 1792,
+    "compact_response_coefficient_body_bytes": 128,
+    "dense_compiled_hint_packed_bytes": 20160,
+    "retained_private_output_weights_packed_bytes": 1920,
+    "dense_hint_and_retained_weights_packed_bytes": 22080,
+    "dense_hint_and_retained_weights_two_uint64_RNS_bytes": 23552,
+    "discardable_zero_RHS_source_weights_per_prime": 320,
+    "sampled_uniform_weights_per_prime_at_registration": 448,
+    "online_dense_field_products_both_primes": 2944,
+    "unfused_reverse_adjoint_ring_products_both_primes_registration_upper_bound": 800,
+    "native_pointwise_ring_products_per_prime": 100,
+    "native_online_forward_NTTs_per_prime": 42,
+    "native_online_inverse_NTTs_per_prime": 35,
+    "native_index_forward_NTTs_per_prime_registration": 10,
+    "native_key_forward_NTTs_per_prime_registration": 24,
+    "native_constructor_auxiliary_transforms_CRT_bases_and_allocations_additional_unpriced": true,
+    "native_switch_and_final_CRT_coefficients": 112,
+    "literal_dense_matrix_Q_coefficients_if_materialized": 41216,
+    "query_codec_SHAKE_original_packet_binding_and_local_bounds_additional": true,
+    "range_global_CRT_digit_derivation_terminal_quotient_checks_additional": true,
+    "source_witness_may_be_derived_locally_at_paid_public_work": true,
+    "all_controls_receive_same_grouping_fusion_and_derived_digits": true,
+    "terminal_quotient_range_proof_bytes_or_prover_cost_unknown": true,
+    "specialized_ring_double_CRT_complete_adapter_cost_unknown": true,
+    "TEE_attestation_provisioning_links_durable_lifecycle_cost_unknown": true,
+    "word_counts_are_not_RSS_hardware_cycles_or_witness_lower_bounds": true,
+    "rank_seed_entropy_compression_or_approved_parameters_not_claimed": true,
+    "rounds_count_choice_not_an_HE_or_protocol_security_target": true
+  },
+  "illustrative_Q120_count_model_not_approved_parameters": {
+    "n": 8192,
+    "padded": 512,
+    "records": 8192,
+    "tile_capacity": 16,
+    "tiles": 512,
+    "active_group_sizes": [
+      512
+    ],
+    "replies": 1,
+    "gadget_levels": 4,
+    "homomorphic_query_expansion_cuts": 0,
+    "product_relinearization_cuts": 512,
+    "butterfly_cuts": 511,
+    "total_canonical_switch_cuts": 1023,
+    "canonical_source_coefficients": 8380416,
+    "canonical_digit_coefficients_derived_or_supplied": 33521664,
+    "terminal_coordinate_relations": 16384,
+    "affine_feature_count": 33538048,
+    "affine_residual_count": 8396800,
+    "source_witness_packed_bytes": 125706240,
+    "source_witness_two_uint64_RNS_bytes": 134086656,
+    "terminal_preimage_packed_bytes": 245760,
+    "terminal_preimage_two_uint64_RNS_bytes": 262144,
+    "source_and_terminal_witness_packed_bytes": 125952000,
+    "source_and_terminal_witness_two_uint64_RNS_bytes": 134348800,
+    "compact_response_coefficient_body_bytes": 65536,
+    "dense_compiled_hint_packed_bytes": 2012282880,
+    "retained_private_output_weights_packed_bytes": 983040,
+    "dense_hint_and_retained_weights_packed_bytes": 2013265920,
+    "dense_hint_and_retained_weights_two_uint64_RNS_bytes": 2147483648,
+    "discardable_zero_RHS_source_weights_per_prime": 33521664,
+    "sampled_uniform_weights_per_prime_at_registration": 33587200,
+    "online_dense_field_products_both_primes": 268435456,
+    "unfused_reverse_adjoint_ring_products_both_primes_registration_upper_bound": 81856,
+    "native_pointwise_ring_products_per_prime": 10232,
+    "native_online_forward_NTTs_per_prime": 4094,
+    "native_online_inverse_NTTs_per_prime": 3582,
+    "native_index_forward_NTTs_per_prime_registration": 1024,
+    "native_key_forward_NTTs_per_prime_registration": 80,
+    "native_constructor_auxiliary_transforms_CRT_bases_and_allocations_additional_unpriced": true,
+    "native_switch_and_final_CRT_coefficients": 8396800,
+    "literal_dense_matrix_Q_coefficients_if_materialized": 281749854617600,
+    "query_codec_SHAKE_original_packet_binding_and_local_bounds_additional": true,
+    "range_global_CRT_digit_derivation_terminal_quotient_checks_additional": true,
+    "source_witness_may_be_derived_locally_at_paid_public_work": true,
+    "all_controls_receive_same_grouping_fusion_and_derived_digits": true,
+    "terminal_quotient_range_proof_bytes_or_prover_cost_unknown": true,
+    "specialized_ring_double_CRT_complete_adapter_cost_unknown": true,
+    "TEE_attestation_provisioning_links_durable_lifecycle_cost_unknown": true,
+    "word_counts_are_not_RSS_hardware_cycles_or_witness_lower_bounds": true,
+    "rank_seed_entropy_compression_or_approved_parameters_not_claimed": true,
+    "rounds_count_choice_not_an_HE_or_protocol_security_target": true
+  },
+  "summary": {
+    "queries": 8,
+    "exact_record_distances": 72,
+    "native_preterminal_coefficients": 256,
+    "native_terminal_coefficients": 256,
+    "honest_output_false_witnesses": 8,
+    "original_main_mechanisms": 0,
+    "timing_panels": 0,
+    "approved_parameters": 0,
+    "BFV_adapter_implemented": false,
+    "CUDA_terminal_adapter_implemented": false
+  },
+  "scope": "Exact N8 supported toy fixed sampled fixture. Publicrecomputation/affineknowncontrols; no efficientremoteproof, attestation/replay/durable lifecycle/security/privatecompleteassurance or timing claim."
+}
