@@ -1,5 +1,27 @@
 # Current bounded execution return, 2026-10-03
 
+E122's exact public joint-root gate is complete. Read the
+[current return](joint-root-return-20261003.md) and
+[machine queue](publication-work-packages.json). The fixed structured-extremality shortcut is refuted at the registered toy parameters. The first visited counterexample tuple is (1, 3, 13, 31); its exact count is 33/43046721, compared with the symbolic structured-packet count 1 over the same denominator.
+The structural partition is complete; its 40/120 mass prefix is
+reported separately. 58 distinct tests passed. This is finite hypothesis
+evidence, with no source-prime, original-main or production/security approval.
+
+**Next Q50/E123:** separately freeze the [remaining-orbit census](joint-root-census-plan-20261003.md)
+and return R6 before a regime-aware theorem. Q49's
+[known owner-window consequence](owner-window-consequence-plan-20261003.md)
+is supporting work with unresolved honest oracle-call inventory. Strongest
+generic/protected/proof and permitted plaintext-cache controls remain paid.
+The archive now retains 99 primary PDF/text pairs; targeted readings do not
+constitute exhaustive novelty clearance.
+
+All earlier company code, source/raw/test scopes, caches, main/staging and
+checkpoints remain preserved. The returns and strategy below are historical.
+
+---
+
+# Current bounded execution return, 2026-10-03
+
 E121 tiny public assurance is complete. Read the [current return](cyclic-window-return-20261003.md)
 and [machine queue](publication-work-packages.json). The exact joint laws obey
 the all-window bound; two scalar controls agree, with generic ratio 1. A separate
