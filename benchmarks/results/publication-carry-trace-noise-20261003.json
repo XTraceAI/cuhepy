@@ -1,0 +1,1731 @@
+{
+  "kind": "E105_full_support_conditioned_trace_joint_law_and_matched_counts",
+  "metadata": {
+    "utc": "2026-10-03T02:27:11.044025+00:00",
+    "command": [
+      "benchmarks/carry_trace_noise_lab.py",
+      "--fixture",
+      "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/frozen-fixture.json",
+      "--law-cache",
+      "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/full-joint-laws-reviewed",
+      "--output",
+      "benchmarks/results/publication-carry-trace-noise-20261003.json"
+    ],
+    "git_head": "3a1f2e2c89dda75a7195d87a71b71fdbe582e5c1",
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+    "source_sha256": {
+      "benchmarks/carry_trace_noise_lab.py": "4aa050faf727b3f0011e1105610f6bb40b697ec3daeb71230c974b7b9be96822",
+      "docs/research/carry-trace-noise-preregistration.md": "790889624fab7b87ec2f762dd3ee611b80c134db5dd8b6a07e828978f8a1ccbf",
+      "experiments/bfv_search_lab/carry_trace_noise.py": "604e7bbe08cb352f53e10969f5d1343e748f955cc91e612602ef6f0057be55f7",
+      "experiments/bfv_search_lab/test_carry_trace_noise.py": "48f78141dd87f3ce2103e214c9ebceef0e8ee04bdf7393472b97b9286a21af7b",
+      "experiments/bfv_search_lab/test_finite_lifetime_noise.py": "267b138c6e3a4325262803f1d78dbfb54780ce75cc1966646a32e225f8e012e7",
+      "experiments/bfv_search_lab/finite_lifetime_noise.py": "568aba85e9811347c7fafdc2832cab4ffc22571b7bd48e9e9f8a98837e43b6f7",
+      "experiments/bfv_search_lab/shallow_bgv.py": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+      "experiments/bfv_search_lab/trace_bgv.py": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5",
+      "src/cuhepy/bfv/scheme.py": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4"
+    }
+  },
+  "frozen_fixture": {
+    "path": "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/frozen-fixture.json",
+    "sha256": "67865c3a405f9fde1257685cd4d384c107e1fde557ac7781bb5daac3be1f4c78",
+    "contents": {
+      "kind": "E105_fixed_supported_setup_and_original_uniform_mask_realization",
+      "utc_before_main_error_enumeration": "2026-10-03T02:18:16.419062+00:00",
+      "preregistration_sha256": "790889624fab7b87ec2f762dd3ee611b80c134db5dd8b6a07e828978f8a1ccbf",
+      "N": 8,
+      "dimension": 2,
+      "t": 5,
+      "Q": 2305843009213693951,
+      "index_mask": [
+        1988871112820527403,
+        711510856191565670,
+        1031010871629900,
+        798133186135646588,
+        1823959156852065097,
+        2137114452065430446,
+        2223635905000960667,
+        1641879628814770328
+      ],
+      "query_mask": [
+        172833944746179678,
+        363450350335163846,
+        1470531050025747424,
+        1787710380253859393,
+        1569464594367938321,
+        1864400505495596177,
+        1942559778179068011,
+        1710499799073805033
+      ],
+      "draw_method": "Two independent full coefficient polynomials via OS-backed secrets.randbelow(Q), sampled once then conditioned/frozen",
+      "not_production_SHAKE_seed_encoder_or_OS_entropy_assurance": true,
+      "supported_deterministic_setup_helper": "test_finite_lifetime_noise.synthetic_context(8,2)",
+      "same_mask_across_four_conditional_message_laws_not_deployed_mask_reuse": true
+    }
+  },
+  "graph": {
+    "N": 8,
+    "D": 2,
+    "t": 5,
+    "Q": 2305843009213693951,
+    "gadget_levels": 16,
+    "one_product_one_relin_one_rotation": true,
+    "full_N_support": true,
+    "fixed_deterministic_setup_not_honest_setup_sampling": true,
+    "original_index_integer_phase": [
+      1,
+      6,
+      -4,
+      -1,
+      4,
+      -4,
+      0,
+      5
+    ],
+    "rotated_mask_affine_inverse_verified": true,
+    "rotated_mask_affine_inverse": [
+      [
+        258460589297521373,
+        1942009994776427522,
+        1605709322549932154,
+        74282101122329146,
+        2007969415682994785,
+        1669285930344938069,
+        421635745106889482,
+        566527227772471175
+      ],
+      [
+        566527227772471175,
+        2047382419916172578,
+        363833014437266429,
+        700133686663761797,
+        2231560908091364805,
+        297873593530699166,
+        636557078868755882,
+        1884207264106804469
+      ],
+      [
+        1884207264106804469,
+        1739315781441222776,
+        258460589297521373,
+        1942009994776427522,
+        1605709322549932154,
+        74282101122329146,
+        2007969415682994785,
+        1669285930344938069
+      ],
+      [
+        1669285930344938069,
+        421635745106889482,
+        566527227772471175,
+        2047382419916172578,
+        363833014437266429,
+        700133686663761797,
+        2231560908091364805,
+        297873593530699166
+      ],
+      [
+        297873593530699166,
+        636557078868755882,
+        1884207264106804469,
+        1739315781441222776,
+        258460589297521373,
+        1942009994776427522,
+        1605709322549932154,
+        74282101122329146
+      ],
+      [
+        74282101122329146,
+        2007969415682994785,
+        1669285930344938069,
+        421635745106889482,
+        566527227772471175,
+        2047382419916172578,
+        363833014437266429,
+        700133686663761797
+      ],
+      [
+        700133686663761797,
+        2231560908091364805,
+        297873593530699166,
+        636557078868755882,
+        1884207264106804469,
+        1739315781441222776,
+        258460589297521373,
+        1942009994776427522
+      ],
+      [
+        1942009994776427522,
+        1605709322549932154,
+        74282101122329146,
+        2007969415682994785,
+        1669285930344938069,
+        421635745106889482,
+        566527227772471175,
+        2047382419916172578
+      ]
+    ],
+    "unprojected_source_affine_inverse_verified": true,
+    "unprojected_source_affine_inverse": [
+      [
+        1725796763293826594,
+        517085290476430350,
+        221663530311393581,
+        1755723613909896459,
+        1487906075235390026,
+        1307879751355379959,
+        2096386301032938612,
+        1171233473699011767
+      ],
+      [
+        1134609535514682184,
+        1725796763293826594,
+        517085290476430350,
+        221663530311393581,
+        1755723613909896459,
+        1487906075235390026,
+        1307879751355379959,
+        2096386301032938612
+      ],
+      [
+        209456708180755339,
+        1134609535514682184,
+        1725796763293826594,
+        517085290476430350,
+        221663530311393581,
+        1755723613909896459,
+        1487906075235390026,
+        1307879751355379959
+      ],
+      [
+        997963257858313992,
+        209456708180755339,
+        1134609535514682184,
+        1725796763293826594,
+        517085290476430350,
+        221663530311393581,
+        1755723613909896459,
+        1487906075235390026
+      ],
+      [
+        817936933978303925,
+        997963257858313992,
+        209456708180755339,
+        1134609535514682184,
+        1725796763293826594,
+        517085290476430350,
+        221663530311393581,
+        1755723613909896459
+      ],
+      [
+        550119395303797492,
+        817936933978303925,
+        997963257858313992,
+        209456708180755339,
+        1134609535514682184,
+        1725796763293826594,
+        517085290476430350,
+        221663530311393581
+      ],
+      [
+        2084179478902300370,
+        550119395303797492,
+        817936933978303925,
+        997963257858313992,
+        209456708180755339,
+        1134609535514682184,
+        1725796763293826594,
+        517085290476430350
+      ],
+      [
+        1788757718737263601,
+        2084179478902300370,
+        550119395303797492,
+        817936933978303925,
+        997963257858313992,
+        209456708180755339,
+        1134609535514682184,
+        1725796763293826594
+      ]
+    ],
+    "complete_source_digit_state_injectivity_is_known_algebra_not_novelty": true,
+    "projected_source_field_rank_upper_bound": 4,
+    "projected_source_distinct_bounded_ternary_vectors": 6561,
+    "setup_rotation_error_distinct_rows": 3,
+    "setup_rotation_error_signed_primitive_orbits": 2,
+    "Q_wrap_kernel_exactly_last_periodic_error_row": true,
+    "Q_wrap_diagnostic_cancellation_not_generic_IID": true
+  },
+  "common_preparation_and_canonical_operation_counts": {
+    "common_affine_matrix_entries": 128,
+    "common_affine_state_integer_products": 839808,
+    "common_affine_state_integer_adds": 839808,
+    "common_delta_mod_Q": 52488,
+    "common_query_beta_mod_Q": 32,
+    "common_rotation_input_adds": 209952,
+    "common_rotation_input_mod_Q": 209952,
+    "common_rotation_digit_extracts": 3359232
+  },
+  "carry_specific_prepared_digit_counts_also_paid_in_carry_snapshot": {
+    "carry_only_prepared_delta_digit_extracts": 839808,
+    "carry_only_prepared_beta_digit_extracts": 512
+  },
+  "query_cards": [
+    {
+      "query": [
+        0,
+        0
+      ],
+      "weighted_error_states": 6561,
+      "literal_coin_outcomes": 65536,
+      "distinct_canonical_full_digit_sources": 6561,
+      "distinct_joint_vector_law_values": 6561,
+      "exact_original_phase_max": 264,
+      "exact_maintenance_phase_max": 1405,
+      "exact_final_phase_max": 1515,
+      "matched_fixed_setup_all_support_phase_bound": 7335,
+      "all_support_to_exact_finite_max_ratio": "489/101",
+      "joint_law_archive": {
+        "path": "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/full-joint-laws-reviewed/joint-vector-law-00.json.gz",
+        "compressed_sha256": "c35fa96b76004bdf35fade596b8a1805402dd9d525955dd19098fa3670c180b4",
+        "uncompressed_sha256": "6fd739524eb2275b4f69d6d953f7c5b4344d3a15e2c8484c5a9221e47f95a5b4"
+      },
+      "coefficient_joint_diagnostics": [
+        {
+          "coefficient": 0,
+          "joint_mean_source": "14",
+          "joint_mean_maintenance": "8616235/32768",
+          "exact_covariance": "4246825/16384",
+          "joint_pair_count": 3742,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -236,
+            "maintenance": 90,
+            "joint_mass": "1/32768",
+            "false_product_mass": "215/536870912"
+          },
+          "maximum_exact_total_tail_difference": "6457089/536870912",
+          "tail_witness": {
+            "absolute_threshold_ge": 354,
+            "true_joint_tail": "25037/65536",
+            "false_independent_marginal_tail": "198646015/536870912"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 619,
+              "exact_strict_tail": "123/2048",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 849,
+              "exact_strict_tail": "203/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 1,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "40255/16384",
+          "exact_covariance": "0",
+          "joint_pair_count": 249,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 385,
+              "exact_strict_tail": "2033/32768",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 585,
+              "exact_strict_tail": "117/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 2,
+          "joint_mean_source": "-10",
+          "joint_mean_maintenance": "-46277765/65536",
+          "exact_covariance": "-10350075/32768",
+          "joint_pair_count": 3727,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -260,
+            "maintenance": -890,
+            "joint_mass": "1/65536",
+            "false_product_mass": "7/16777216"
+          },
+          "maximum_exact_total_tail_difference": "2622577/268435456",
+          "tail_witness": {
+            "absolute_threshold_ge": 505,
+            "true_joint_tail": "27767/32768",
+            "false_independent_marginal_tail": "224844687/268435456"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 1050,
+              "exact_strict_tail": "3935/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 1285,
+              "exact_strict_tail": "249/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 3,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "17245/16384",
+          "exact_covariance": "0",
+          "joint_pair_count": 250,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 375,
+              "exact_strict_tail": "3957/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 565,
+              "exact_strict_tail": "245/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 4,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "19522805/32768",
+          "exact_covariance": "-394925/2048",
+          "joint_pair_count": 3789,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -250,
+            "maintenance": 525,
+            "joint_mass": "1/65536",
+            "false_product_mass": "743/1073741824"
+          },
+          "maximum_exact_total_tail_difference": "5544237/536870912",
+          "tail_witness": {
+            "absolute_threshold_ge": 375,
+            "true_joint_tail": "6997/8192",
+            "false_independent_marginal_tail": "453011155/536870912"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 925,
+              "exact_strict_tail": "1015/16384",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 1175,
+              "exact_strict_tail": "231/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 5,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "-242965/32768",
+          "exact_covariance": "0",
+          "joint_pair_count": 247,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 380,
+              "exact_strict_tail": "3939/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 570,
+              "exact_strict_tail": "127/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 6,
+          "joint_mean_source": "10",
+          "joint_mean_maintenance": "-11453215/32768",
+          "exact_covariance": "564125/16384",
+          "joint_pair_count": 3742,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -240,
+            "maintenance": -485,
+            "joint_mass": "1/32768",
+            "false_product_mass": "367/536870912"
+          },
+          "maximum_exact_total_tail_difference": "3127235/536870912",
+          "tail_witness": {
+            "absolute_threshold_ge": 260,
+            "true_joint_tail": "41781/65536",
+            "false_independent_marginal_tail": "345397187/536870912"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 685,
+              "exact_strict_tail": "3927/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 925,
+              "exact_strict_tail": "113/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 7,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "540565/65536",
+          "exact_covariance": "0",
+          "joint_pair_count": 253,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 380,
+              "exact_strict_tail": "1961/32768",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 585,
+              "exact_strict_tail": "239/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": [
+        0,
+        1
+      ],
+      "weighted_error_states": 6561,
+      "literal_coin_outcomes": 65536,
+      "distinct_canonical_full_digit_sources": 6561,
+      "distinct_joint_vector_law_values": 6561,
+      "exact_original_phase_max": 266,
+      "exact_maintenance_phase_max": 1485,
+      "exact_final_phase_max": 1496,
+      "matched_fixed_setup_all_support_phase_bound": 7331,
+      "all_support_to_exact_finite_max_ratio": "7331/1496",
+      "joint_law_archive": {
+        "path": "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/full-joint-laws-reviewed/joint-vector-law-01.json.gz",
+        "compressed_sha256": "a33fd619ae8da4e625354477f5645d43621e6c25563f2cb2769a25eea9163de7",
+        "uncompressed_sha256": "ee0083ba305f63d8c10215da2931279151fe300648d856002315c8185c370f61"
+      },
+      "coefficient_joint_diagnostics": [
+        {
+          "coefficient": 0,
+          "joint_mean_source": "-10",
+          "joint_mean_maintenance": "17128525/65536",
+          "exact_covariance": "23574875/32768",
+          "joint_pair_count": 3742,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -260,
+            "maintenance": 420,
+            "joint_mass": "1/32768",
+            "false_product_mass": "197/536870912"
+          },
+          "maximum_exact_total_tail_difference": "9665871/1073741824",
+          "tail_witness": {
+            "absolute_threshold_ge": 475,
+            "true_joint_tail": "10587/65536",
+            "false_independent_marginal_tail": "163791537/1073741824"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 590,
+              "exact_strict_tail": "3953/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 835,
+              "exact_strict_tail": "117/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 1,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "17165/8192",
+          "exact_covariance": "0",
+          "joint_pair_count": 244,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 385,
+              "exact_strict_tail": "993/16384",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 575,
+              "exact_strict_tail": "245/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 2,
+          "joint_mean_source": "-6",
+          "joint_mean_maintenance": "-46438115/65536",
+          "exact_covariance": "12124625/32768",
+          "joint_pair_count": 3738,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -256,
+            "maintenance": -645,
+            "joint_mass": "1/32768",
+            "false_product_mass": "201/268435456"
+          },
+          "maximum_exact_total_tail_difference": "5285939/536870912",
+          "tail_witness": {
+            "absolute_threshold_ge": 781,
+            "true_joint_tail": "24325/65536",
+            "false_independent_marginal_tail": "204556339/536870912"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 1066,
+              "exact_strict_tail": "991/16384",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 1316,
+              "exact_strict_tail": "255/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 3,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "71465/65536",
+          "exact_covariance": "0",
+          "joint_pair_count": 252,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 375,
+              "exact_strict_tail": "243/4096",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 610,
+              "exact_strict_tail": "217/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 4,
+          "joint_mean_source": "16",
+          "joint_mean_maintenance": "38846505/65536",
+          "exact_covariance": "-3781525/32768",
+          "joint_pair_count": 3810,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -234,
+            "maintenance": 315,
+            "joint_mass": "1/32768",
+            "false_product_mass": "145/536870912"
+          },
+          "maximum_exact_total_tail_difference": "7365531/1073741824",
+          "tail_witness": {
+            "absolute_threshold_ge": 711,
+            "true_joint_tail": "1383/4096",
+            "false_independent_marginal_tail": "355179621/1073741824"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 941,
+              "exact_strict_tail": "4061/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 1161,
+              "exact_strict_tail": "233/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 5,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "-63445/8192",
+          "exact_covariance": "0",
+          "joint_pair_count": 256,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 380,
+              "exact_strict_tail": "4017/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 585,
+              "exact_strict_tail": "29/8192",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 6,
+          "joint_mean_source": "-10",
+          "joint_mean_maintenance": "-22686775/65536",
+          "exact_covariance": "-1549425/32768",
+          "joint_pair_count": 3759,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -260,
+            "maintenance": -665,
+            "joint_mass": "1/65536",
+            "false_product_mass": "247/1073741824"
+          },
+          "maximum_exact_total_tail_difference": "8280461/1073741824",
+          "tail_witness": {
+            "absolute_threshold_ge": 450,
+            "true_joint_tail": "21511/65536",
+            "false_independent_marginal_tail": "360716685/1073741824"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 695,
+              "exact_strict_tail": "3933/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 950,
+              "exact_strict_tail": "127/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 7,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "130185/65536",
+          "exact_covariance": "0",
+          "joint_pair_count": 249,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 390,
+              "exact_strict_tail": "2001/32768",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 600,
+              "exact_strict_tail": "15/4096",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": [
+        1,
+        0
+      ],
+      "weighted_error_states": 6561,
+      "literal_coin_outcomes": 65536,
+      "distinct_canonical_full_digit_sources": 6561,
+      "distinct_joint_vector_law_values": 6561,
+      "exact_original_phase_max": 266,
+      "exact_maintenance_phase_max": 1410,
+      "exact_final_phase_max": 1624,
+      "matched_fixed_setup_all_support_phase_bound": 7331,
+      "all_support_to_exact_finite_max_ratio": "7331/1624",
+      "joint_law_archive": {
+        "path": "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/full-joint-laws-reviewed/joint-vector-law-10.json.gz",
+        "compressed_sha256": "b6d2d0acfc17d626d32d2b7d9c215a3ad85d458caa13e95ce16eb0dc6e15efa9",
+        "uncompressed_sha256": "3c5948510e0c5dc4e31ad2e34c141ca258203647ed054a689bf2345e5140473b"
+      },
+      "coefficient_joint_diagnostics": [
+        {
+          "coefficient": 0,
+          "joint_mean_source": "10",
+          "joint_mean_maintenance": "16559655/65536",
+          "exact_covariance": "7560575/32768",
+          "joint_pair_count": 3750,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -240,
+            "maintenance": 60,
+            "joint_mass": "1/32768",
+            "false_product_mass": "375/1073741824"
+          },
+          "maximum_exact_total_tail_difference": "17766101/1073741824",
+          "tail_witness": {
+            "absolute_threshold_ge": 315,
+            "true_joint_tail": "51/128",
+            "false_independent_marginal_tail": "445585109/1073741824"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 600,
+              "exact_strict_tail": "2047/32768",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 830,
+              "exact_strict_tail": "27/8192",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 1,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "119925/32768",
+          "exact_covariance": "0",
+          "joint_pair_count": 248,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 380,
+              "exact_strict_tail": "4059/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 570,
+              "exact_strict_tail": "247/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 2,
+          "joint_mean_source": "6",
+          "joint_mean_maintenance": "-22987245/32768",
+          "exact_covariance": "556975/4096",
+          "joint_pair_count": 3750,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -244,
+            "maintenance": -1380,
+            "joint_mass": "1/65536",
+            "false_product_mass": "1/1073741824"
+          },
+          "maximum_exact_total_tail_difference": "349203/33554432",
+          "tail_witness": {
+            "absolute_threshold_ge": 484,
+            "true_joint_tail": "27095/32768",
+            "false_independent_marginal_tail": "28094483/33554432"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 1029,
+              "exact_strict_tail": "499/8192",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 1269,
+              "exact_strict_tail": "127/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 3,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "-5275/8192",
+          "exact_covariance": "0",
+          "joint_pair_count": 251,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 380,
+              "exact_strict_tail": "4013/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 620,
+              "exact_strict_tail": "61/16384",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 4,
+          "joint_mean_source": "-16",
+          "joint_mean_maintenance": "38812375/65536",
+          "exact_covariance": "21230775/32768",
+          "joint_pair_count": 3740,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -266,
+            "maintenance": 460,
+            "joint_mass": "1/65536",
+            "false_product_mass": "541/1073741824"
+          },
+          "maximum_exact_total_tail_difference": "8762167/1073741824",
+          "tail_witness": {
+            "absolute_threshold_ge": 914,
+            "true_joint_tail": "2355/32768",
+            "false_independent_marginal_tail": "68406473/1073741824"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 924,
+              "exact_strict_tail": "4073/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 1144,
+              "exact_strict_tail": "249/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 5,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "-12845/32768",
+          "exact_covariance": "0",
+          "joint_pair_count": 251,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 380,
+              "exact_strict_tail": "1001/16384",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 590,
+              "exact_strict_tail": "115/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 6,
+          "joint_mean_source": "10",
+          "joint_mean_maintenance": "-1447405/4096",
+          "exact_covariance": "7955275/16384",
+          "joint_pair_count": 3750,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -240,
+            "maintenance": -610,
+            "joint_mass": "1/32768",
+            "false_product_mass": "253/1073741824"
+          },
+          "maximum_exact_total_tail_difference": "2743035/268435456",
+          "tail_witness": {
+            "absolute_threshold_ge": 245,
+            "true_joint_tail": "5715/8192",
+            "false_independent_marginal_tail": "184526085/268435456"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 680,
+              "exact_strict_tail": "4005/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 915,
+              "exact_strict_tail": "245/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 7,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "12265/4096",
+          "exact_covariance": "0",
+          "joint_pair_count": 251,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 380,
+              "exact_strict_tail": "2045/32768",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 590,
+              "exact_strict_tail": "203/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": [
+        1,
+        1
+      ],
+      "weighted_error_states": 6561,
+      "literal_coin_outcomes": 65536,
+      "distinct_canonical_full_digit_sources": 6561,
+      "distinct_joint_vector_law_values": 6561,
+      "exact_original_phase_max": 264,
+      "exact_maintenance_phase_max": 1465,
+      "exact_final_phase_max": 1475,
+      "matched_fixed_setup_all_support_phase_bound": 7335,
+      "all_support_to_exact_finite_max_ratio": "1467/295",
+      "joint_law_archive": {
+        "path": "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/full-joint-laws-reviewed/joint-vector-law-11.json.gz",
+        "compressed_sha256": "76d044890d629ad1f1343e3a66991bb4b04059a9321aaec341f7e82aa335f069",
+        "uncompressed_sha256": "07532ccb32908e8b65b820bce985151b2b134ec0822fcb9fc905b75bf6841913"
+      },
+      "coefficient_joint_diagnostics": [
+        {
+          "coefficient": 0,
+          "joint_mean_source": "-14",
+          "joint_mean_maintenance": "16761385/65536",
+          "exact_covariance": "2370075/32768",
+          "joint_pair_count": 3753,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -264,
+            "maintenance": 215,
+            "joint_mass": "1/65536",
+            "false_product_mass": "295/536870912"
+          },
+          "maximum_exact_total_tail_difference": "952687/67108864",
+          "tail_witness": {
+            "absolute_threshold_ge": 161,
+            "true_joint_tail": "43885/65536",
+            "false_independent_marginal_tail": "45890927/67108864"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 591,
+              "exact_strict_tail": "15/256",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 866,
+              "exact_strict_tail": "5/2048",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 1,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "190665/65536",
+          "exact_covariance": "0",
+          "joint_pair_count": 251,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 385,
+              "exact_strict_tail": "3991/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 595,
+              "exact_strict_tail": "249/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 2,
+          "joint_mean_source": "10",
+          "joint_mean_maintenance": "-22948725/32768",
+          "exact_covariance": "6217525/16384",
+          "joint_pair_count": 3752,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -240,
+            "maintenance": -1065,
+            "joint_mass": "1/32768",
+            "false_product_mass": "19/134217728"
+          },
+          "maximum_exact_total_tail_difference": "10042891/1073741824",
+          "tail_witness": {
+            "absolute_threshold_ge": 660,
+            "true_joint_tail": "36277/65536",
+            "false_independent_marginal_tail": "604405259/1073741824"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 1035,
+              "exact_strict_tail": "4085/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 1310,
+              "exact_strict_tail": "63/16384",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 3,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "-168635/65536",
+          "exact_covariance": "0",
+          "joint_pair_count": 257,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 390,
+              "exact_strict_tail": "3903/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 600,
+              "exact_strict_tail": "123/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 4,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "4828355/8192",
+          "exact_covariance": "1607375/4096",
+          "joint_pair_count": 3744,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -250,
+            "maintenance": 670,
+            "joint_mass": "1/32768",
+            "false_product_mass": "643/1073741824"
+          },
+          "maximum_exact_total_tail_difference": "13131567/1073741824",
+          "tail_witness": {
+            "absolute_threshold_ge": 485,
+            "true_joint_tail": "44019/65536",
+            "false_independent_marginal_tail": "734338863/1073741824"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 945,
+              "exact_strict_tail": "3909/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 1160,
+              "exact_strict_tail": "255/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 5,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "-2735/32768",
+          "exact_covariance": "0",
+          "joint_pair_count": 252,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 405,
+              "exact_strict_tail": "4029/65536",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 590,
+              "exact_strict_tail": "97/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 6,
+          "joint_mean_source": "-10",
+          "joint_mean_maintenance": "-23198365/65536",
+          "exact_covariance": "902575/32768",
+          "joint_pair_count": 3725,
+          "joint_not_product_of_marginals": true,
+          "one_pair_independence_falsifier": {
+            "source": -260,
+            "maintenance": -605,
+            "joint_mass": "1/65536",
+            "false_product_mass": "119/268435456"
+          },
+          "maximum_exact_total_tail_difference": "11731661/1073741824",
+          "tail_witness": {
+            "absolute_threshold_ge": 445,
+            "true_joint_tail": "22871/65536",
+            "false_independent_marginal_tail": "386450125/1073741824"
+          },
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 705,
+              "exact_strict_tail": "995/16384",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 955,
+              "exact_strict_tail": "249/65536",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        },
+        {
+          "coefficient": 7,
+          "joint_mean_source": "0",
+          "joint_mean_maintenance": "-7925/65536",
+          "exact_covariance": "0",
+          "joint_pair_count": 256,
+          "joint_not_product_of_marginals": false,
+          "one_pair_independence_falsifier": null,
+          "maximum_exact_total_tail_difference": "0",
+          "tail_witness": null,
+          "independent_marginal_model_is_only_a_falsifier_not_bound": true,
+          "exact_conditional_total_phase_quantiles": [
+            {
+              "radius": 380,
+              "exact_strict_tail": "1021/16384",
+              "conditional_toy_target": "1/16"
+            },
+            {
+              "radius": 600,
+              "exact_strict_tail": "125/32768",
+              "conditional_toy_target": "1/256"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "representation_count_snapshots": {
+    "generic_grouped_direct": {
+      "functional": {
+        "kernel_span_compile_rational_operations": 390,
+        "group_input_integer_adds": 4408992,
+        "functional_output_integer_adds": 419904
+      },
+      "memo": {
+        "compile_orbit_coefficient_visits": 256,
+        "compile_gcd_visits": 16,
+        "kernel_apply_calls": 52488,
+        "cache_probes": 104976,
+        "miss_unit_sign_coefficient_uses": 2239257,
+        "miss_nonzero_integer_adds": 2239257,
+        "cache_misses": 104607,
+        "stored_input_integer_coefficients": 418428,
+        "stored_output_integer_coefficients": 836856,
+        "chunk_position_orbit_coefficient_visits": 839808,
+        "chunk_merge_integer_adds": 839808,
+        "restore_orbit_coefficient_visits": 419904,
+        "cache_hits": 369,
+        "compiled_original_kernels": 2,
+        "compiled_distinct_primitive_orbits": 2,
+        "cache_entries": 104607,
+        "stored_integer_coefficients_excluding_kernel_and_key_object_overhead": 1255284,
+        "resident_memory_and_elapsed_time_measured": false
+      },
+      "registered_rows": 16,
+      "distinct_error_polynomials": 3,
+      "exact_rational_kernel_span_rank": 2,
+      "integer_row_relation_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "group_input_absolute_bounds": [
+        76,
+        75
+      ]
+    },
+    "generic_grouped_signed_binary": {
+      "functional": {
+        "kernel_span_compile_rational_operations": 390,
+        "group_input_integer_adds": 4408992,
+        "binary_plane_coefficient_extracts": 2939328,
+        "functional_output_integer_adds": 2939328,
+        "functional_scale_integer_products": 2519424
+      },
+      "memo": {
+        "compile_orbit_coefficient_visits": 256,
+        "compile_gcd_visits": 16,
+        "kernel_apply_calls": 367416,
+        "cache_probes": 469541,
+        "miss_unit_sign_coefficient_uses": 2376,
+        "miss_nonzero_integer_adds": 2376,
+        "cache_misses": 160,
+        "stored_input_integer_coefficients": 640,
+        "stored_output_integer_coefficients": 1280,
+        "chunk_position_orbit_coefficient_visits": 3756328,
+        "chunk_merge_integer_adds": 3756328,
+        "restore_orbit_coefficient_visits": 2139824,
+        "zero_chunk_skips": 65415,
+        "cache_hits": 469381,
+        "zero_kernel_or_input_calls": 99938,
+        "compiled_original_kernels": 2,
+        "compiled_distinct_primitive_orbits": 2,
+        "cache_entries": 160,
+        "stored_integer_coefficients_excluding_kernel_and_key_object_overhead": 1920,
+        "resident_memory_and_elapsed_time_measured": false
+      },
+      "registered_rows": 16,
+      "distinct_error_polynomials": 3,
+      "exact_rational_kernel_span_rank": 2,
+      "integer_row_relation_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "group_input_absolute_bounds": [
+        76,
+        75
+      ]
+    },
+    "carry_grouped_signed_binary_factor": {
+      "factor": {
+        "compile_Q_kernel_integer_products": 128,
+        "compile_Q_kernel_integer_adds": 128,
+        "compile_carry_kernel_integer_products": 120,
+        "compile_carry_kernel_integer_adds": 120,
+        "carry_only_beta_digit_extracts": 512,
+        "carry_only_delta_digit_extracts": 839808,
+        "beta_delta_whole_state_cache_probes": 52488,
+        "carry_wrap_comparisons": 209952,
+        "carry_coefficient_integer_adds": 10077696,
+        "carry_Q_digit_integer_products": 3359232,
+        "carry_coefficient_mod_radix": 3359232,
+        "carry_coefficient_floor_div_radix": 3359232,
+        "factor_output_integer_adds": 629856
+      },
+      "grouped_carry_binary_control": {
+        "functional": {
+          "kernel_span_compile_rational_operations": 390,
+          "group_input_integer_adds": 4199040,
+          "binary_plane_coefficient_extracts": 1259712,
+          "functional_output_integer_adds": 1259712,
+          "functional_scale_integer_products": 839808
+        },
+        "memo": {
+          "compile_orbit_coefficient_visits": 256,
+          "compile_gcd_visits": 16,
+          "kernel_apply_calls": 157464,
+          "cache_probes": 188709,
+          "miss_nonzero_integer_products": 2376,
+          "miss_nonzero_integer_adds": 3456,
+          "miss_unit_sign_coefficient_uses": 1080,
+          "cache_misses": 160,
+          "stored_input_integer_coefficients": 640,
+          "stored_output_integer_coefficients": 1280,
+          "chunk_position_orbit_coefficient_visits": 1509672,
+          "chunk_merge_integer_adds": 1509672,
+          "restore_orbit_coefficient_visits": 881128,
+          "zero_kernel_or_input_calls": 47323,
+          "cache_hits": 188549,
+          "zero_chunk_skips": 31573,
+          "compiled_original_kernels": 2,
+          "compiled_distinct_primitive_orbits": 2,
+          "cache_entries": 160,
+          "stored_integer_coefficients_excluding_kernel_and_key_object_overhead": 1920,
+          "resident_memory_and_elapsed_time_measured": false
+        },
+        "registered_rows": 15,
+        "distinct_error_polynomials": 3,
+        "exact_rational_kernel_span_rank": 2,
+        "integer_row_relation_coefficients": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ]
+        ],
+        "group_input_absolute_bounds": [
+          5,
+          5
+        ]
+      },
+      "base_delta_binary_control": {
+        "functional": {
+          "kernel_span_compile_rational_operations": 390,
+          "group_input_integer_adds": 1102920,
+          "binary_plane_coefficient_extracts": 735280,
+          "functional_output_integer_adds": 735280,
+          "functional_scale_integer_products": 630240
+        },
+        "memo": {
+          "compile_orbit_coefficient_visits": 256,
+          "compile_gcd_visits": 16,
+          "kernel_apply_calls": 118154,
+          "cache_probes": 168444,
+          "miss_unit_sign_coefficient_uses": 2376,
+          "miss_nonzero_integer_adds": 2376,
+          "cache_misses": 160,
+          "stored_input_integer_coefficients": 640,
+          "stored_output_integer_coefficients": 1280,
+          "chunk_position_orbit_coefficient_visits": 1347552,
+          "chunk_merge_integer_adds": 1347552,
+          "restore_orbit_coefficient_visits": 745984,
+          "cache_hits": 168284,
+          "zero_chunk_skips": 18052,
+          "zero_kernel_or_input_calls": 24906,
+          "compiled_original_kernels": 2,
+          "compiled_distinct_primitive_orbits": 2,
+          "cache_entries": 160,
+          "stored_integer_coefficients_excluding_kernel_and_key_object_overhead": 1920,
+          "resident_memory_and_elapsed_time_measured": false
+        },
+        "registered_rows": 16,
+        "distinct_error_polynomials": 3,
+        "exact_rational_kernel_span_rank": 2,
+        "integer_row_relation_coefficients": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "group_input_absolute_bounds": [
+          76,
+          75
+        ]
+      },
+      "beta_state_entries": 4,
+      "delta_state_entries": 6561,
+      "additional_beta_delta_output_integer_coefficients": 52520,
+      "cross_query_reuse_is_finite_law_computation_not_online_HE_protocol": true
+    }
+  },
+  "heterogeneous_logical_integer_visit_counts": {
+    "generic_grouped_direct": 9167929,
+    "generic_grouped_signed_binary": 22462184,
+    "carry_grouped_signed_binary_factor": 39107968
+  },
+  "summary": {
+    "queries": 4,
+    "weighted_states": 26244,
+    "equivalent_literal_coin_outcomes": 262144,
+    "actual_API_exact_record_distances": 78732,
+    "actual_API_full_phase_coefficients": 209952,
+    "full_canonical_sources_across_all_contexts": 26244,
+    "canonical_state_compression_found": false,
+    "coefficient_laws_not_independent_marginals": 16,
+    "nonzero_covariance_coefficient_laws": 16,
+    "carry_fewer_registered_arithmetic_visits_than_both_controls": false,
+    "known_carry_identity_finite_law_reuse_not_online_HE_optimization": true,
+    "candidate_status": "STOP_literal_full_state_compression_known_injectivity_and_finite_domain_control",
+    "new_original_mechanisms_accepted": 0,
+    "parameters_approved": 0,
+    "timing_panels": 0,
+    "general_adaptive_setup_theorem": false
+  },
+  "scope": "Exact conditional small synthetic setup/fixed ideal-uniform mask law only. Logical counts exclude Python object memory/hardware calibration and separately list common prep. All error-dependent carries and joint noise preserved; no new security/parameter/privacy/release/performance claim."
+}

@@ -1,6 +1,6 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-03, bounded E101–E103 returns and nonlinear carry pivot**.
+Revision: **2026-10-03, bounded E101–E105 returns and native-boundary prerequisite**.
 Start with the [current R6 decision](boundary-reuse-selection-20261003.md), then the
 [refreshed executable roadmap](contribution-roadmap-refresh-20261002.md),
 [closest-work synthesis](closest-work-roadmap-refresh-20261002.md), and
@@ -12,15 +12,19 @@ pre-execution strategy. The
 [machine work packages](publication-work-packages.json) and
 [progress log](publication-progress.md) govern execution and return decisions.
 
-**Current status:** E101–E103 bounded discriminators are implemented, with
-**89 distinct new tests** passing across three files. Complete BGV affine
+**Current status:** E101–E103 and E105 bounded discriminators are implemented,
+with **113 distinct tests** passing across four new files. Complete BGV affine
 elimination retains canonical constraints but matches the generic control.
 Restricted conditional CBD/setup bounds match standard formulas; toy cards
 do not instantiate actual API parameters. Exact owner coverage survives, but
 ordinary metric summaries and fixed padding do not establish a new private
-retrieval mechanism. All three literal candidates stop at the originality
-gate. **Next Q31/E105** examines the complete nonlinear carry/noise law beyond
-E102's two-atom diagnostic. No original complete main or broad gate is selected.
+retrieval mechanism. E105 exhausts the four-query N8 fresh-error domain:
+26,244 weighted states preserve the full joint phase law, but complete digit
+tensors remain distinct and the carry representation loses matched logical
+work/storage controls. These literal candidates stop at the originality gate.
+**Next Q32/E106** closes the actual rotated/terminal native boundary and strong
+complete baseline as a known-control prerequisite. It is proposed, not
+implemented. No original complete main or broad gate is selected.
 
 Earlier E82–E99 evidence, 448 scoped tests across 20 files, parameter/sample
 qualifications, 720 precision cards and all frozen timings remain historical
@@ -76,7 +80,8 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q28 | [E102 finite adaptive lifetime](finite-lifetime-noise-screen.md) | Correct restricted conditioning and uniform maintenance cap; known formula containment, toy geometry qualifications; no original main |
 | Q29 | [E103 owner-summary retrieval](owner-summary-screen.md) | Separate exact-top-three coverage oracle; known mechanism and padding/geometry limits; no PIR/privacy implementation |
 | Conditional Q30 | [E104 service evaluation](contribution-roadmap-refresh-20261002.md#7-execution-order-and-concrete-handoffs) | Unimplemented until accepted complete construction and matched controls |
-| **Next: Q31** | [E105 full carry-law discriminator](boundary-reuse-selection-20261003.md) | Full tiny fresh-error domain, joint nonlinear maintenance and equally cached generic state control; proposed, no result assumed |
+| Q31 | [E105 full carry-law discriminator](carry-trace-noise-screen.md) | Full tiny fresh-error domain and joint nonlinear maintenance matched actual API; full tensors distinct, literal carry loses equally optimized controls; no general theorem/timing claim |
+| **Next: Q32** | [E106 complete native boundary](native-boundary-adapter-plan-20261003.md) | Proposed known-control prerequisite: actual rotation/terminal/wire graph, independent oracle and complete strongest-baseline costs; BFV adapter separately scoped |
 
 The [current detailed plan](contribution-roadmap-refresh-20261002.md) specifies
 mechanisms, strongest controls, stop conditions, full costs and security proof

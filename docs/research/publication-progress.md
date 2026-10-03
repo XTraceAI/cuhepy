@@ -1013,3 +1013,42 @@ full N8 CBD support and joint carry/error law; identical caching goes to the
 generic comparator. Complete service E104 and new native kernels remain
 conditional. Return to the plan after that discriminator rather than promise
 a conference result from known controls.
+
+## 2026-10-03 — E105 full joint-law return and native-boundary handoff
+
+From intermediate checkpoint `3a1f2e2`,
+[Q31/E105](carry-trace-noise-screen.md) exhausted the full registered N8/D2
+fresh-CBD1 domain: 26,244 weighted states / 262,144 literal coin equivalents,
+78,732 actual-API distances and 209,952 full phase coefficient matches. All
+four conditional joint vector laws retain 6,561 states. Exact modular inverses
+and joint counters exclude full-source/digit compression; the 16 nonzero
+projected-source coefficient laws expose source/maintenance dependence.
+
+The literal carry representation stops: grouped direct and signed binary
+controls get the same row-span, top-width, orbit/chunk and zero reuse. Its
+registered heterogeneous work/storage loses those controls; no timing claim
+follows. Structured fixed keys, one frozen ideal-uniform mask realization and
+Q61-specific carry signs are diagnostics, not honest setup/lifetime assurance.
+The preregistration, initial masks/results/source, guard-review repeat and
+exact raw evidence are retained.
+
+24 E105 tests pass; the final four new modules contain **113 distinct passing
+tests** and receive nonempty explicit lint. Historical 448/1,965 scopes, old
+measurements, company arithmetic and production/main/staging remain unchanged.
+This execution runs no timing panel and approves no parameter or original main.
+
+[R6/D4](boundary-reuse-selection-20261003.md) returns to proposed
+[Q32/E106](native-boundary-adapter-plan-20261003.md): one actual native rotated
+BGV/terminal/wire boundary and strong complete known-control adapter. Source
+audit distinguishes ordinary coefficient query decoding from packed expansion,
+native compaction from E64/E66 masked controls, and BFV's quadratic integer
+scaling from BGV's affine regions. The illustrative 1,023-cut witness count is
+a model, not client traffic or an approved profile. This prerequisite is not
+implemented, and a further successor requires a precise surviving distinction.
+
+The final integrity receipt is
+[boundary-reuse-validation-20261003.json](boundary-reuse-validation-20261003.json).
+Checkpoint target: `checkpoint/boundary-reuse-carry-controls-2026-10-03`;
+branch: `experiment/complete-boundary-screens-20261003`. It preserves the four
+packets, all 77 primary PDF/text pairs, exact dataset inputs, correction history
+and frozen measurement summaries without replacing the earlier checkpoints.

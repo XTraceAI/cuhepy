@@ -1,4 +1,4 @@
-# R6 returns through E103 and the full carry-law pivot
+# R6 returns through E105 and the native-boundary prerequisite
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
@@ -7,8 +7,9 @@ No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
 and later finite returns are appended below. The current return is
-[D4 after E101–E103](boundary-reuse-selection-20261003.md). The active next packet
-is **Q31/E105**, the full nonlinear carry-law discriminator. The
+[D4 after E101–E105](boundary-reuse-selection-20261003.md). The active next packet
+is proposed **Q32/E106**, the complete native-boundary/strong-baseline adapter.
+E105's full tiny joint law is complete and stops the literal carry recipe. The
 [refreshed roadmap](contribution-roadmap-refresh-20261002.md) retains the strategy.
 The E99 return and its then-next Q26 priority remain historical below.
 
@@ -338,3 +339,23 @@ is selected. Historical evidence above remains unchanged. Next proposed
 Q31/E105 examines the full nonlinear carry dependency beyond E102's two-atom
 slice, with the same caching given to the generic control. E104/full native
 proof/service remain conditional; 89 new scoped tests do not extend old scopes.
+
+## 2026-10-03 — Q31/E105 return; next Q32/E106
+
+[E105](carry-trace-noise-screen.md) completes all four legal queries and
+6,561 weighted fresh-error vectors per query for one frozen supported setup.
+The same-error joint source/maintenance law and full API phase agree; 78,732
+record distances match. Invertible source maps keep all full digit tensors
+distinct. Known grouped direct/binary controls beat the literal carry adapter's
+registered work/state; heterogeneous operation totals imply no wall-clock
+speedup. Diagnostic row aliases and Q61 carry bounds are explicitly scoped.
+The 24 E105 tests join the other three modules in a 113-case current-source
+run, separate from historical 448/1,965 evidence.
+
+R6 retains zero selected original mains and returns to the
+[Q32/E106 native-boundary prerequisite](native-boundary-adapter-plan-20261003.md).
+Close the actual rotation/terminal/wire graph and strongest complete baseline,
+then specify a precise unhandled low-state/opening/finite-theorem case. BFV's
+quadratic integer scaling is separate; ordinary coefficient query decoding is
+not SealPIR expansion. Q32 is proposed/unimplemented, E104 remains conditional,
+and no general honest-key theorem, parameter or production gate is accepted.
