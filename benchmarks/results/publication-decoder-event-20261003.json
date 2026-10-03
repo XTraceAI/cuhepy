@@ -1,0 +1,925 @@
+{
+  "schema": "publication-decoder-event-exact-control-v1",
+  "utc": "2026-10-03T06:25:22.433280+00:00",
+  "git_head": "95f857b9c4a788eeafd28e1e5816a3ad04b45d56",
+  "git_branch": "experiment/verification-aware-screens-20261003",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "assertions_active": true,
+  "command": [
+    "benchmarks/decoder_event_lab.py",
+    "--fixture",
+    "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/frozen-fixture.json",
+    "--cache-dir",
+    "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference",
+    "--output",
+    "benchmarks/results/publication-decoder-event-20261003.json"
+  ],
+  "preregistration": {
+    "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/decoder-event-preregistration.md",
+    "sha256": "6a927610a2ec2cc2d943e56ed84ca74a7a27facbaae9f01069f6914c0d578df0",
+    "bytes": 6226
+  },
+  "original_E105_fixture": {
+    "path": "/home/pete/yavor-projects/xtrace-work/research-data/carry-trace-noise-20261003/frozen-fixture.json",
+    "sha256": "67865c3a405f9fde1257685cd4d384c107e1fde557ac7781bb5daac3be1f4c78",
+    "bytes": 1139
+  },
+  "sources": [
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/decoder_event.py",
+      "sha256": "810d28633c1ad11715aafa220654651f01f151dbfb1ea8e4b5b0f31f094bb037",
+      "bytes": 21605
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/test_decoder_event.py",
+      "sha256": "ee6912dcd1f7c2da7b4d0982ee20734bf9fc43ca0d2add7604fd521442266382",
+      "bytes": 9986
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/benchmarks/decoder_event_lab.py",
+      "sha256": "edd870ced2d0bf29a47acc9488f9f2e36d8ba3d8e85e02afa71d27e392ebb2e3",
+      "bytes": 12448
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/carry_trace_noise.py",
+      "sha256": "604e7bbe08cb352f53e10969f5d1343e748f955cc91e612602ef6f0057be55f7",
+      "bytes": 22744
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/test_carry_trace_noise.py",
+      "sha256": "48f78141dd87f3ce2103e214c9ebceef0e8ee04bdf7393472b97b9286a21af7b",
+      "bytes": 7534
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/finite_lifetime_noise.py",
+      "sha256": "568aba85e9811347c7fafdc2832cab4ffc22571b7bd48e9e9f8a98837e43b6f7",
+      "bytes": 14149
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/test_finite_lifetime_noise.py",
+      "sha256": "267b138c6e3a4325262803f1d78dbfb54780ce75cc1966646a32e225f8e012e7",
+      "bytes": 19190
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/shallow_bgv.py",
+      "sha256": "ea5e8fd75147d02683513a70af2fe3b68693bd8046c80489adea0a2a2df755be",
+      "bytes": 8209
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/trace_bgv.py",
+      "sha256": "51f7829b384c41d344aae2410501cd86bf3c190ac211aed4e529915daf46fde5",
+      "bytes": 8255
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/compact_bgv.py",
+      "sha256": "4b98630622c75052a74ae4f1380bc529f2db088ad961716147b858f3936e0ff9",
+      "bytes": 5363
+    },
+    {
+      "path": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/src/cuhepy/bfv/scheme.py",
+      "sha256": "7bba9ddd6d43ada1a4db6af817ac78e9377c248f84118c1327b053e11a727be4",
+      "bytes": 37115
+    }
+  ],
+  "contexts": 1,
+  "queries": [
+    {
+      "query_bits": [
+        0,
+        0
+      ],
+      "event_digest": "714d516cf8d45b47c6e64cd219124e16f97ad65e40283ca6cc6467a36e7f84a6",
+      "expected_distances": [
+        0,
+        1,
+        1
+      ],
+      "local_stable_ids": [
+        20,
+        40,
+        10
+      ],
+      "expected_rank": [
+        20,
+        10,
+        40
+      ],
+      "P": 65521,
+      "uniform_control": {
+        "product_cap": 392,
+        "switch_cap": 9600,
+        "whole_trace_cap": 29584,
+        "terminal_cap": 24,
+        "failure_interval": [
+          "0",
+          "0"
+        ],
+        "canonical_digit_independence_not_assumed": true
+      },
+      "root_phase_intervals": [
+        {
+          "lower": -2991,
+          "upper": 3534
+        },
+        {
+          "lower": -3010,
+          "upper": 3015
+        },
+        {
+          "lower": -3975,
+          "upper": 2550
+        },
+        {
+          "lower": -3015,
+          "upper": 3010
+        },
+        {
+          "lower": -2670,
+          "upper": 3855
+        },
+        {
+          "lower": -3015,
+          "upper": 3010
+        },
+        {
+          "lower": -3605,
+          "upper": 2920
+        },
+        {
+          "lower": -3010,
+          "upper": 3015
+        }
+      ],
+      "root_phase_cap": 3975,
+      "root_terminal_cap": 24,
+      "generic": {
+        "nodes": 1,
+        "branch_nodes": 0,
+        "safe_leaves": 1,
+        "unsafe_leaves": 0,
+        "unresolved_leaves": 0,
+        "safe_mass": 65536,
+        "unsafe_mass": 0,
+        "unresolved_mass": 0,
+        "covered_distinct_states": 6561,
+        "denominator": 65536,
+        "failure_lower": "0",
+        "failure_upper": "0",
+        "safe_lower": "1",
+        "abstract_diagnostic": false
+      },
+      "candidate_residue": {
+        "nodes": 1,
+        "branch_nodes": 0,
+        "safe_leaves": 1,
+        "unsafe_leaves": 0,
+        "unresolved_leaves": 0,
+        "safe_mass": 65536,
+        "unsafe_mass": 0,
+        "unresolved_mass": 0,
+        "covered_distinct_states": 6561,
+        "denominator": 65536,
+        "failure_lower": "0",
+        "failure_upper": "0",
+        "safe_lower": "1",
+        "abstract_diagnostic": false
+      },
+      "candidate_generic_node_ratio": "1",
+      "actual_failure_states": 0,
+      "actual_failure_coin_mass": 0,
+      "exact_failure_probability": "0",
+      "maximum_exact_abs_Q_phase": 1515,
+      "maximum_exact_abs_terminal_phase": 11,
+      "same_E_coefficient_joint_diagnostics": [
+        {
+          "coefficient_joint_pair_count": 3742,
+          "covariance": "4246825/16384",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -236,
+            "maintenance": 90,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "215/536870912"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 249,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3727,
+          "covariance": "-10350075/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -260,
+            "maintenance": -890,
+            "joint_mass": "1/65536",
+            "false_independent_mass": "7/16777216"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 250,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3789,
+          "covariance": "-394925/2048",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -250,
+            "maintenance": 525,
+            "joint_mass": "1/65536",
+            "false_independent_mass": "743/1073741824"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 247,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3742,
+          "covariance": "564125/16384",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -240,
+            "maintenance": -485,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "367/536870912"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 253,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        }
+      ],
+      "certificate_files": [
+        {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-00-generic-certificate.json",
+          "sha256": "5e674a77631928b52cff0fe2dcb7775416b55cd8d97760fd84429138092cdcd4",
+          "bytes": 230
+        },
+        {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-00-candidate-residue-certificate.json",
+          "sha256": "681f3b7311f9daa4c986e774684b99499ac0345075b15758337d8f07bcb118dd",
+          "bytes": 240
+        }
+      ],
+      "whole_joint_reference_cache": {
+        "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-00-reference.jsonl.gz",
+        "sha256": "7f1fcac8e6d3621047fb54b3be43da8ab374edac697b74474510275bd69d0ea5",
+        "bytes": 1441237
+      }
+    },
+    {
+      "query_bits": [
+        0,
+        1
+      ],
+      "event_digest": "fa5153516e598e1d63a88aa94ed6f79a75b5bb41471ab32bd0a38a8cf2f353e1",
+      "expected_distances": [
+        1,
+        0,
+        2
+      ],
+      "local_stable_ids": [
+        20,
+        40,
+        10
+      ],
+      "expected_rank": [
+        40,
+        20,
+        10
+      ],
+      "P": 65521,
+      "uniform_control": {
+        "product_cap": 392,
+        "switch_cap": 9600,
+        "whole_trace_cap": 29584,
+        "terminal_cap": 24,
+        "failure_interval": [
+          "0",
+          "0"
+        ],
+        "canonical_digit_independence_not_assumed": true
+      },
+      "root_phase_intervals": [
+        {
+          "lower": -3015,
+          "upper": 3510
+        },
+        {
+          "lower": -3010,
+          "upper": 3015
+        },
+        {
+          "lower": -3971,
+          "upper": 2554
+        },
+        {
+          "lower": -3015,
+          "upper": 3010
+        },
+        {
+          "lower": -2654,
+          "upper": 3871
+        },
+        {
+          "lower": -3015,
+          "upper": 3010
+        },
+        {
+          "lower": -3625,
+          "upper": 2900
+        },
+        {
+          "lower": -3010,
+          "upper": 3015
+        }
+      ],
+      "root_phase_cap": 3971,
+      "root_terminal_cap": 24,
+      "generic": {
+        "nodes": 1,
+        "branch_nodes": 0,
+        "safe_leaves": 1,
+        "unsafe_leaves": 0,
+        "unresolved_leaves": 0,
+        "safe_mass": 65536,
+        "unsafe_mass": 0,
+        "unresolved_mass": 0,
+        "covered_distinct_states": 6561,
+        "denominator": 65536,
+        "failure_lower": "0",
+        "failure_upper": "0",
+        "safe_lower": "1",
+        "abstract_diagnostic": false
+      },
+      "candidate_residue": {
+        "nodes": 1,
+        "branch_nodes": 0,
+        "safe_leaves": 1,
+        "unsafe_leaves": 0,
+        "unresolved_leaves": 0,
+        "safe_mass": 65536,
+        "unsafe_mass": 0,
+        "unresolved_mass": 0,
+        "covered_distinct_states": 6561,
+        "denominator": 65536,
+        "failure_lower": "0",
+        "failure_upper": "0",
+        "safe_lower": "1",
+        "abstract_diagnostic": false
+      },
+      "candidate_generic_node_ratio": "1",
+      "actual_failure_states": 0,
+      "actual_failure_coin_mass": 0,
+      "exact_failure_probability": "0",
+      "maximum_exact_abs_Q_phase": 1496,
+      "maximum_exact_abs_terminal_phase": 11,
+      "same_E_coefficient_joint_diagnostics": [
+        {
+          "coefficient_joint_pair_count": 3742,
+          "covariance": "23574875/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -260,
+            "maintenance": 420,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "197/536870912"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 244,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3738,
+          "covariance": "12124625/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -256,
+            "maintenance": -645,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "201/268435456"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 252,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3810,
+          "covariance": "-3781525/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -234,
+            "maintenance": 315,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "145/536870912"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 256,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3759,
+          "covariance": "-1549425/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -260,
+            "maintenance": -665,
+            "joint_mass": "1/65536",
+            "false_independent_mass": "247/1073741824"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 249,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        }
+      ],
+      "certificate_files": [
+        {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-01-generic-certificate.json",
+          "sha256": "62a22d1ddb77c66f5771398f7d788a24ac935c469747f0a74464b087ca24a8ac",
+          "bytes": 230
+        },
+        {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-01-candidate-residue-certificate.json",
+          "sha256": "b12fc3059f8cf5f8ae53cc40d12ecff852df63b7e848a81210d37a20edadd904",
+          "bytes": 240
+        }
+      ],
+      "whole_joint_reference_cache": {
+        "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-01-reference.jsonl.gz",
+        "sha256": "3348d1b6c60f7c3ba80ff18fa38143ab38ec79957b5027bec99d6b164972f90d",
+        "bytes": 1447679
+      }
+    },
+    {
+      "query_bits": [
+        1,
+        0
+      ],
+      "event_digest": "3fa6317b67b3e7b89e7d84289d312aa04c323eb522fa55fd514d3a7ff593aa2c",
+      "expected_distances": [
+        1,
+        2,
+        0
+      ],
+      "local_stable_ids": [
+        20,
+        40,
+        10
+      ],
+      "expected_rank": [
+        10,
+        20,
+        40
+      ],
+      "P": 65521,
+      "uniform_control": {
+        "product_cap": 392,
+        "switch_cap": 9600,
+        "whole_trace_cap": 29584,
+        "terminal_cap": 24,
+        "failure_interval": [
+          "0",
+          "0"
+        ],
+        "canonical_digit_independence_not_assumed": true
+      },
+      "root_phase_intervals": [
+        {
+          "lower": -2995,
+          "upper": 3530
+        },
+        {
+          "lower": -3010,
+          "upper": 3015
+        },
+        {
+          "lower": -3959,
+          "upper": 2566
+        },
+        {
+          "lower": -3015,
+          "upper": 3010
+        },
+        {
+          "lower": -2686,
+          "upper": 3839
+        },
+        {
+          "lower": -3015,
+          "upper": 3010
+        },
+        {
+          "lower": -3605,
+          "upper": 2920
+        },
+        {
+          "lower": -3010,
+          "upper": 3015
+        }
+      ],
+      "root_phase_cap": 3959,
+      "root_terminal_cap": 24,
+      "generic": {
+        "nodes": 1,
+        "branch_nodes": 0,
+        "safe_leaves": 1,
+        "unsafe_leaves": 0,
+        "unresolved_leaves": 0,
+        "safe_mass": 65536,
+        "unsafe_mass": 0,
+        "unresolved_mass": 0,
+        "covered_distinct_states": 6561,
+        "denominator": 65536,
+        "failure_lower": "0",
+        "failure_upper": "0",
+        "safe_lower": "1",
+        "abstract_diagnostic": false
+      },
+      "candidate_residue": {
+        "nodes": 1,
+        "branch_nodes": 0,
+        "safe_leaves": 1,
+        "unsafe_leaves": 0,
+        "unresolved_leaves": 0,
+        "safe_mass": 65536,
+        "unsafe_mass": 0,
+        "unresolved_mass": 0,
+        "covered_distinct_states": 6561,
+        "denominator": 65536,
+        "failure_lower": "0",
+        "failure_upper": "0",
+        "safe_lower": "1",
+        "abstract_diagnostic": false
+      },
+      "candidate_generic_node_ratio": "1",
+      "actual_failure_states": 0,
+      "actual_failure_coin_mass": 0,
+      "exact_failure_probability": "0",
+      "maximum_exact_abs_Q_phase": 1624,
+      "maximum_exact_abs_terminal_phase": 11,
+      "same_E_coefficient_joint_diagnostics": [
+        {
+          "coefficient_joint_pair_count": 3750,
+          "covariance": "7560575/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -240,
+            "maintenance": 60,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "375/1073741824"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 248,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3750,
+          "covariance": "556975/4096",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -244,
+            "maintenance": -1380,
+            "joint_mass": "1/65536",
+            "false_independent_mass": "1/1073741824"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 251,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3740,
+          "covariance": "21230775/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -266,
+            "maintenance": 460,
+            "joint_mass": "1/65536",
+            "false_independent_mass": "541/1073741824"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 251,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3750,
+          "covariance": "7955275/16384",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -240,
+            "maintenance": -610,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "253/1073741824"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 251,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        }
+      ],
+      "certificate_files": [
+        {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-10-generic-certificate.json",
+          "sha256": "31d1d80c99edef2da9a759c69e899216b7001324a41851af89ca069c50e0cd8f",
+          "bytes": 230
+        },
+        {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-10-candidate-residue-certificate.json",
+          "sha256": "2d52d37fc29882da33ce2fadcbfe62115e23069c8f97b4f99c0fc656c0a0998f",
+          "bytes": 240
+        }
+      ],
+      "whole_joint_reference_cache": {
+        "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-10-reference.jsonl.gz",
+        "sha256": "38b884a9c9776c0d4b2e1b583011a4a89146d4938b62f99dba49aa1730adbc0e",
+        "bytes": 1448234
+      }
+    },
+    {
+      "query_bits": [
+        1,
+        1
+      ],
+      "event_digest": "bb9a28c4fb35fb511392c161bef30a011e488d6b683ed94d5dcb61cfc9859f6f",
+      "expected_distances": [
+        2,
+        1,
+        1
+      ],
+      "local_stable_ids": [
+        20,
+        40,
+        10
+      ],
+      "expected_rank": [
+        10,
+        40,
+        20
+      ],
+      "P": 65521,
+      "uniform_control": {
+        "product_cap": 392,
+        "switch_cap": 9600,
+        "whole_trace_cap": 29584,
+        "terminal_cap": 24,
+        "failure_interval": [
+          "0",
+          "0"
+        ],
+        "canonical_digit_independence_not_assumed": true
+      },
+      "root_phase_intervals": [
+        {
+          "lower": -3019,
+          "upper": 3506
+        },
+        {
+          "lower": -3010,
+          "upper": 3015
+        },
+        {
+          "lower": -3955,
+          "upper": 2570
+        },
+        {
+          "lower": -3015,
+          "upper": 3010
+        },
+        {
+          "lower": -2670,
+          "upper": 3855
+        },
+        {
+          "lower": -3015,
+          "upper": 3010
+        },
+        {
+          "lower": -3625,
+          "upper": 2900
+        },
+        {
+          "lower": -3010,
+          "upper": 3015
+        }
+      ],
+      "root_phase_cap": 3955,
+      "root_terminal_cap": 24,
+      "generic": {
+        "nodes": 1,
+        "branch_nodes": 0,
+        "safe_leaves": 1,
+        "unsafe_leaves": 0,
+        "unresolved_leaves": 0,
+        "safe_mass": 65536,
+        "unsafe_mass": 0,
+        "unresolved_mass": 0,
+        "covered_distinct_states": 6561,
+        "denominator": 65536,
+        "failure_lower": "0",
+        "failure_upper": "0",
+        "safe_lower": "1",
+        "abstract_diagnostic": false
+      },
+      "candidate_residue": {
+        "nodes": 1,
+        "branch_nodes": 0,
+        "safe_leaves": 1,
+        "unsafe_leaves": 0,
+        "unresolved_leaves": 0,
+        "safe_mass": 65536,
+        "unsafe_mass": 0,
+        "unresolved_mass": 0,
+        "covered_distinct_states": 6561,
+        "denominator": 65536,
+        "failure_lower": "0",
+        "failure_upper": "0",
+        "safe_lower": "1",
+        "abstract_diagnostic": false
+      },
+      "candidate_generic_node_ratio": "1",
+      "actual_failure_states": 0,
+      "actual_failure_coin_mass": 0,
+      "exact_failure_probability": "0",
+      "maximum_exact_abs_Q_phase": 1475,
+      "maximum_exact_abs_terminal_phase": 11,
+      "same_E_coefficient_joint_diagnostics": [
+        {
+          "coefficient_joint_pair_count": 3753,
+          "covariance": "2370075/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -264,
+            "maintenance": 215,
+            "joint_mass": "1/65536",
+            "false_independent_mass": "295/536870912"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 251,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3752,
+          "covariance": "6217525/16384",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -240,
+            "maintenance": -1065,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "19/134217728"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 257,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3744,
+          "covariance": "1607375/4096",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -250,
+            "maintenance": 670,
+            "joint_mass": "1/32768",
+            "false_independent_mass": "643/1073741824"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 252,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 3725,
+          "covariance": "902575/32768",
+          "not_product_of_marginals": true,
+          "one_pair_falsifier": {
+            "original": -260,
+            "maintenance": -605,
+            "joint_mass": "1/65536",
+            "false_independent_mass": "119/268435456"
+          },
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        },
+        {
+          "coefficient_joint_pair_count": 256,
+          "covariance": "0",
+          "not_product_of_marginals": false,
+          "one_pair_falsifier": null,
+          "no_covariance_or_independence_bound_used_for_native_certificate": true
+        }
+      ],
+      "certificate_files": [
+        {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-11-generic-certificate.json",
+          "sha256": "3734289b875d63f1147e9413539838d0a3efff8cb3c3d493141f15e90575b0d6",
+          "bytes": 230
+        },
+        {
+          "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-11-candidate-residue-certificate.json",
+          "sha256": "93ee831db62b2f515583edf67eab61c36f3f107173fb7683a141421cd5a5c52a",
+          "bytes": 240
+        }
+      ],
+      "whole_joint_reference_cache": {
+        "path": "/home/pete/yavor-projects/xtrace-work/research-data/decoder-event-20261003/full-reference/query-11-reference.jsonl.gz",
+        "sha256": "7c84ff7a44d559089f528963065fc2ed25c1b1f9760a4451223f00bd3ebffca8",
+        "bytes": 1441479
+      }
+    }
+  ],
+  "totals": {
+    "query_error_states": 26244,
+    "literal_coin_equivalents": 262144,
+    "Q_component_equalities": 419904,
+    "terminal_component_equalities": 419904,
+    "Q_phase_equalities": 209952,
+    "terminal_phase_equalities": 209952,
+    "preterminal_plaintext_equalities": 209952,
+    "terminal_plaintext_equalities": 209952,
+    "distance_equalities": 78732,
+    "local_stable_ID_equalities": 26244
+  },
+  "literal_coin_distribution_unique_errors": 6561,
+  "literal_coin_distribution_total": 65536,
+  "status": "completed bounded negative/control; stop literal native event compression and return to plan",
+  "interpretation": {
+    "native_failure_event_already_empty_by_strong_uniform_control": true,
+    "generic_receives_every_residue_enclosure_normalization_and_branch_rule": true,
+    "new_uncontained_algorithm_demonstrated": false,
+    "timing_or_GPU_run": false,
+    "abstract_tests_not_new_native_parameters_or_surviving_candidate": true,
+    "conditioned_structured_setup_not_honest_IID_or_adaptive_lifetime_assurance": true,
+    "actual_private_decoder_is_disclosed_toy_GMP_API_not_production_side_channel_assurance": true,
+    "no_security_parameter_approval_tail_forecast_proof_bytes_or_novelty_claim": true
+  }
+}

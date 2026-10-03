@@ -1,3 +1,10 @@
+> Current execution amendment2026-10-03: see the
+> [E109–E115 return](verification-aware-screens-return-20261003.md) and
+> [queue](publication-work-packages.json). E109–E114 bounded components now have
+> actual/scoped results; E115 remains partial. The planning/reassessment body
+> below is preserved historical evidence, not current execution status. No new
+> timing, original-main selection or parameter approval occurred.
+
 # Closest work: what remains a plausible contribution after E108
 
 2026-10-03. Planning/evidence review at

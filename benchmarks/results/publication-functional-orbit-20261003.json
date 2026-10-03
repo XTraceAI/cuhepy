@@ -1,0 +1,1693 @@
+{
+  "experiment": "Q36/E110",
+  "utc": "2026-10-03T06:23:56.267166+00:00",
+  "command": [
+    "benchmarks/functional_orbit_lab.py",
+    "--keys",
+    "/home/pete/yavor-projects/xtrace-work/research-data/functional-orbit-20261003/frozen-keys-02.json",
+    "--json-out",
+    "benchmarks/results/publication-functional-orbit-20261003.json"
+  ],
+  "python": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/.venv/bin/python",
+  "python_version": "3.12.3",
+  "assertions_enabled": true,
+  "fixture_sha256": "0a49605dd8d26d0e73e38c681013e83a64801df4c95b62fab80bf7b81beeb4a1",
+  "keys_sha256": "d95853b4ce1fd459da0b9862b830ca593eb26bbb394ba6c06bc02e52535f29e4",
+  "source_hashes": {
+    "experiments/bfv_search_lab/functional_orbit.py": "41667c16ff698814caf2351486a81165a44606c7955042bda54bc42727e45104",
+    "experiments/bfv_search_lab/functional_orbit_test.py": "bd719b62e32444a124507fd933d6490dda57484a4fc308583effbdb40b17f8db",
+    "experiments/bfv_search_lab/native_boundary_oracle.py": "4c9aaa7b779c186212993f68a71eceff0fdf42e625d3483f5237e8bd9d52de71",
+    "benchmarks/functional_orbit_lab.py": "453886c67eebb40f6707a8f9cfd7916dc586940dc575fd32332daca2d9e09bfd",
+    "docs/research/functional-orbit-preregistration.md": "55a8640b2e0aa6bb85a9dc21e133d95505d169295d93a3fe165faf1c42bce5e9"
+  },
+  "timing_measurements": false,
+  "native_cuda_or_external_HE_artifact_executed": false,
+  "git_head": "95f857b9c4a788eeafd28e1e5816a3ad04b45d56",
+  "status": "completed",
+  "result": {
+    "cards": [
+      {
+        "query": [
+          0,
+          0,
+          0
+        ],
+        "mode": "ordinary",
+        "packet_sha256": "cea9ffcce3d73e564d05d5c640eb01c0215ff989fe62334322c1a6d5d35f4ceb",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          3,
+          0
+        ],
+        "top3": [
+          [
+            0,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "counts": {
+          "ring_products": 100
+        },
+        "non_query_canonical_sources": 10,
+        "public_query_sources": 0
+      },
+      {
+        "query": [
+          0,
+          0,
+          0
+        ],
+        "mode": "product-only",
+        "packet_sha256": "a8e0b2c44207cc7ebd941fe0093ceb798c7c8e793c87439ddbb4dc8660bcc40b",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          3,
+          0
+        ],
+        "top3": [
+          [
+            0,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 10,
+          "monomials": 16,
+          "polynomial_additions": 117,
+          "ring_products": 90
+        },
+        "non_query_canonical_sources": 5,
+        "public_query_sources": 1
+      },
+      {
+        "query": [
+          0,
+          0,
+          0
+        ],
+        "mode": "full-orbit",
+        "packet_sha256": "3204da839bfbcdfd95bc96ec3027dfa7e95ff6117b35f6269b3782c4134b9aa1",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          3,
+          0
+        ],
+        "top3": [
+          [
+            0,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 6,
+          "monomials": 0,
+          "polynomial_additions": 160,
+          "ring_products": 128
+        },
+        "non_query_canonical_sources": 0,
+        "public_query_sources": 8
+      },
+      {
+        "query": [
+          0,
+          0,
+          0
+        ],
+        "fresh_error_identity": {
+          "product_tiles": [
+            {
+              "tile": 0,
+              "actual_fresh_error_linf": 117395906452,
+              "absolute_bound": 288654444264
+            },
+            {
+              "tile": 1,
+              "actual_fresh_error_linf": 109219647958,
+              "absolute_bound": 288654444264
+            },
+            {
+              "tile": 2,
+              "actual_fresh_error_linf": 62690933235,
+              "absolute_bound": 288654444264
+            },
+            {
+              "tile": 3,
+              "actual_fresh_error_linf": 110221217391,
+              "absolute_bound": 288654444264
+            },
+            {
+              "tile": 4,
+              "actual_fresh_error_linf": 99826207858,
+              "absolute_bound": 288654444264
+            }
+          ],
+          "full_orbit_responses": [
+            {
+              "response": 0,
+              "actual_fresh_error_linf": 129018646074,
+              "absolute_bound": 2082957786608
+            },
+            {
+              "response": 1,
+              "actual_fresh_error_linf": 383246313549,
+              "absolute_bound": 2082957786608
+            }
+          ]
+        }
+      },
+      {
+        "query": [
+          0,
+          0,
+          1
+        ],
+        "mode": "ordinary",
+        "packet_sha256": "fa760e617137ecb480e967d345985f634e6747b0a791dd3cea4c70b73413c2ad",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          0,
+          2,
+          1,
+          2,
+          1,
+          3,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "counts": {
+          "ring_products": 100
+        },
+        "non_query_canonical_sources": 10,
+        "public_query_sources": 0
+      },
+      {
+        "query": [
+          0,
+          0,
+          1
+        ],
+        "mode": "product-only",
+        "packet_sha256": "5052a6d46a21e785d45b8a9038a95a7741d86a65dd908f7ac7fb1abd58703c39",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          0,
+          2,
+          1,
+          2,
+          1,
+          3,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 10,
+          "monomials": 16,
+          "polynomial_additions": 117,
+          "ring_products": 90
+        },
+        "non_query_canonical_sources": 5,
+        "public_query_sources": 1
+      },
+      {
+        "query": [
+          0,
+          0,
+          1
+        ],
+        "mode": "full-orbit",
+        "packet_sha256": "1a414886785bee5a2374fb08fef2004a372617432a48e0788c8ffa5feaa3cd9e",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          0,
+          2,
+          1,
+          2,
+          1,
+          3,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 6,
+          "monomials": 0,
+          "polynomial_additions": 160,
+          "ring_products": 128
+        },
+        "non_query_canonical_sources": 0,
+        "public_query_sources": 8
+      },
+      {
+        "query": [
+          0,
+          0,
+          1
+        ],
+        "fresh_error_identity": {
+          "product_tiles": [
+            {
+              "tile": 0,
+              "actual_fresh_error_linf": 45519382325,
+              "absolute_bound": 295154625583
+            },
+            {
+              "tile": 1,
+              "actual_fresh_error_linf": 94107275224,
+              "absolute_bound": 295154625583
+            },
+            {
+              "tile": 2,
+              "actual_fresh_error_linf": 51392175346,
+              "absolute_bound": 295154625583
+            },
+            {
+              "tile": 3,
+              "actual_fresh_error_linf": 80269574254,
+              "absolute_bound": 295154625583
+            },
+            {
+              "tile": 4,
+              "actual_fresh_error_linf": 82570148622,
+              "absolute_bound": 295154625583
+            }
+          ],
+          "full_orbit_responses": [
+            {
+              "response": 0,
+              "actual_fresh_error_linf": 202731844098,
+              "absolute_bound": 2006957382404
+            },
+            {
+              "response": 1,
+              "actual_fresh_error_linf": 185954322758,
+              "absolute_bound": 2006957382404
+            }
+          ]
+        }
+      },
+      {
+        "query": [
+          0,
+          1,
+          0
+        ],
+        "mode": "ordinary",
+        "packet_sha256": "a612950fdf6f0b7d1cfffbf9e9ce6728a1d59862bbf5bb7067ead4463099ccb9",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          2,
+          0,
+          1,
+          2,
+          3,
+          1,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "counts": {
+          "ring_products": 100
+        },
+        "non_query_canonical_sources": 10,
+        "public_query_sources": 0
+      },
+      {
+        "query": [
+          0,
+          1,
+          0
+        ],
+        "mode": "product-only",
+        "packet_sha256": "05da759ed71a5b9804c69efe267b5524a1c06816fe80c5c93ec5889b8bbb47af",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          2,
+          0,
+          1,
+          2,
+          3,
+          1,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 10,
+          "monomials": 16,
+          "polynomial_additions": 117,
+          "ring_products": 90
+        },
+        "non_query_canonical_sources": 5,
+        "public_query_sources": 1
+      },
+      {
+        "query": [
+          0,
+          1,
+          0
+        ],
+        "mode": "full-orbit",
+        "packet_sha256": "2469229a1f5ab055a4940f634111c81008b720c7371f3356bf67ee5eccfa04d4",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          2,
+          0,
+          1,
+          2,
+          3,
+          1,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 6,
+          "monomials": 0,
+          "polynomial_additions": 160,
+          "ring_products": 128
+        },
+        "non_query_canonical_sources": 0,
+        "public_query_sources": 8
+      },
+      {
+        "query": [
+          0,
+          1,
+          0
+        ],
+        "fresh_error_identity": {
+          "product_tiles": [
+            {
+              "tile": 0,
+              "actual_fresh_error_linf": 57367826867,
+              "absolute_bound": 299547111576
+            },
+            {
+              "tile": 1,
+              "actual_fresh_error_linf": 92381000296,
+              "absolute_bound": 299547111576
+            },
+            {
+              "tile": 2,
+              "actual_fresh_error_linf": 44669149289,
+              "absolute_bound": 299547111576
+            },
+            {
+              "tile": 3,
+              "actual_fresh_error_linf": 41112798912,
+              "absolute_bound": 299547111576
+            },
+            {
+              "tile": 4,
+              "actual_fresh_error_linf": 80575692710,
+              "absolute_bound": 299547111576
+            }
+          ],
+          "full_orbit_responses": [
+            {
+              "response": 0,
+              "actual_fresh_error_linf": 202177672216,
+              "absolute_bound": 2082419338536
+            },
+            {
+              "response": 1,
+              "actual_fresh_error_linf": 187455063548,
+              "absolute_bound": 2082419338536
+            }
+          ]
+        }
+      },
+      {
+        "query": [
+          0,
+          1,
+          1
+        ],
+        "mode": "ordinary",
+        "packet_sha256": "1460891b587fdb9f0683a72381987bb008a6eda27dde6f4ea21e8c81b7e815a2",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          1,
+          1,
+          0,
+          3,
+          2,
+          2,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "counts": {
+          "ring_products": 100
+        },
+        "non_query_canonical_sources": 10,
+        "public_query_sources": 0
+      },
+      {
+        "query": [
+          0,
+          1,
+          1
+        ],
+        "mode": "product-only",
+        "packet_sha256": "2194baadd3c37093f40caf9fd0a2ac57d1f577dbf4e3330a4bc4a2a42cf324fe",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          1,
+          1,
+          0,
+          3,
+          2,
+          2,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 10,
+          "monomials": 16,
+          "polynomial_additions": 117,
+          "ring_products": 90
+        },
+        "non_query_canonical_sources": 5,
+        "public_query_sources": 1
+      },
+      {
+        "query": [
+          0,
+          1,
+          1
+        ],
+        "mode": "full-orbit",
+        "packet_sha256": "83bec4244db2ab797fa4ed922f541b334670638821c4a661279dbdfe34f9653e",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          1,
+          1,
+          0,
+          3,
+          2,
+          2,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 6,
+          "monomials": 0,
+          "polynomial_additions": 160,
+          "ring_products": 128
+        },
+        "non_query_canonical_sources": 0,
+        "public_query_sources": 8
+      },
+      {
+        "query": [
+          0,
+          1,
+          1
+        ],
+        "fresh_error_identity": {
+          "product_tiles": [
+            {
+              "tile": 0,
+              "actual_fresh_error_linf": 50658672521,
+              "absolute_bound": 321001845908
+            },
+            {
+              "tile": 1,
+              "actual_fresh_error_linf": 107729634389,
+              "absolute_bound": 321001845908
+            },
+            {
+              "tile": 2,
+              "actual_fresh_error_linf": 61369994662,
+              "absolute_bound": 321001845908
+            },
+            {
+              "tile": 3,
+              "actual_fresh_error_linf": 57129067647,
+              "absolute_bound": 321001845908
+            },
+            {
+              "tile": 4,
+              "actual_fresh_error_linf": 108323634755,
+              "absolute_bound": 321001845908
+            }
+          ],
+          "full_orbit_responses": [
+            {
+              "response": 0,
+              "actual_fresh_error_linf": 208773731580,
+              "absolute_bound": 2064986230624
+            },
+            {
+              "response": 1,
+              "actual_fresh_error_linf": 261285659594,
+              "absolute_bound": 2064986230624
+            }
+          ]
+        }
+      },
+      {
+        "query": [
+          1,
+          0,
+          0
+        ],
+        "mode": "ordinary",
+        "packet_sha256": "67d7ae13e71d4a30956c623b2cbce2220cf329c451c549eff7a935b2cf3cb151",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          2,
+          2,
+          3,
+          0,
+          1,
+          1,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "counts": {
+          "ring_products": 100
+        },
+        "non_query_canonical_sources": 10,
+        "public_query_sources": 0
+      },
+      {
+        "query": [
+          1,
+          0,
+          0
+        ],
+        "mode": "product-only",
+        "packet_sha256": "91c6317c29a8477f46c75bf87b74bb602825b662e86f6b5b900ddfaf4582bfc4",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          2,
+          2,
+          3,
+          0,
+          1,
+          1,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 10,
+          "monomials": 16,
+          "polynomial_additions": 117,
+          "ring_products": 90
+        },
+        "non_query_canonical_sources": 5,
+        "public_query_sources": 1
+      },
+      {
+        "query": [
+          1,
+          0,
+          0
+        ],
+        "mode": "full-orbit",
+        "packet_sha256": "6a93c99d73af43c495a836bc35717385080a369688a7f129bf99c572950ce07a",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          1,
+          2,
+          2,
+          3,
+          0,
+          1,
+          1,
+          2,
+          1
+        ],
+        "top3": [
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 6,
+          "monomials": 0,
+          "polynomial_additions": 160,
+          "ring_products": 128
+        },
+        "non_query_canonical_sources": 0,
+        "public_query_sources": 8
+      },
+      {
+        "query": [
+          1,
+          0,
+          0
+        ],
+        "fresh_error_identity": {
+          "product_tiles": [
+            {
+              "tile": 0,
+              "actual_fresh_error_linf": 60496547684,
+              "absolute_bound": 309333062993
+            },
+            {
+              "tile": 1,
+              "actual_fresh_error_linf": 112449942160,
+              "absolute_bound": 309333062993
+            },
+            {
+              "tile": 2,
+              "actual_fresh_error_linf": 43057045120,
+              "absolute_bound": 309333062993
+            },
+            {
+              "tile": 3,
+              "actual_fresh_error_linf": 53139776876,
+              "absolute_bound": 309333062993
+            },
+            {
+              "tile": 4,
+              "actual_fresh_error_linf": 73802923616,
+              "absolute_bound": 309333062993
+            }
+          ],
+          "full_orbit_responses": [
+            {
+              "response": 0,
+              "actual_fresh_error_linf": 192595198967,
+              "absolute_bound": 1976828907460
+            },
+            {
+              "response": 1,
+              "actual_fresh_error_linf": 184503194802,
+              "absolute_bound": 1976828907460
+            }
+          ]
+        }
+      },
+      {
+        "query": [
+          1,
+          0,
+          1
+        ],
+        "mode": "ordinary",
+        "packet_sha256": "2834f16e131e96ff6f301114dd375d08f16b447c2f7190597604d4d6e6eaa634",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          1,
+          3,
+          2,
+          1,
+          0,
+          2,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            5,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "counts": {
+          "ring_products": 100
+        },
+        "non_query_canonical_sources": 10,
+        "public_query_sources": 0
+      },
+      {
+        "query": [
+          1,
+          0,
+          1
+        ],
+        "mode": "product-only",
+        "packet_sha256": "c8da75c5a8978d440dd26474213c1b48d80526e3d5414298abf72ba12f88b290",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          1,
+          3,
+          2,
+          1,
+          0,
+          2,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            5,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 10,
+          "monomials": 16,
+          "polynomial_additions": 117,
+          "ring_products": 90
+        },
+        "non_query_canonical_sources": 5,
+        "public_query_sources": 1
+      },
+      {
+        "query": [
+          1,
+          0,
+          1
+        ],
+        "mode": "full-orbit",
+        "packet_sha256": "30ee6e08d98fa377ea756570c1aff31f1e783240ee05f2052305bec3f7157067",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          1,
+          3,
+          2,
+          1,
+          0,
+          2,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            5,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 6,
+          "monomials": 0,
+          "polynomial_additions": 160,
+          "ring_products": 128
+        },
+        "non_query_canonical_sources": 0,
+        "public_query_sources": 8
+      },
+      {
+        "query": [
+          1,
+          0,
+          1
+        ],
+        "fresh_error_identity": {
+          "product_tiles": [
+            {
+              "tile": 0,
+              "actual_fresh_error_linf": 46544645780,
+              "absolute_bound": 296225633165
+            },
+            {
+              "tile": 1,
+              "actual_fresh_error_linf": 76777318586,
+              "absolute_bound": 296225633165
+            },
+            {
+              "tile": 2,
+              "actual_fresh_error_linf": 47828839992,
+              "absolute_bound": 296225633165
+            },
+            {
+              "tile": 3,
+              "actual_fresh_error_linf": 65116010180,
+              "absolute_bound": 296225633165
+            },
+            {
+              "tile": 4,
+              "actual_fresh_error_linf": 89674633769,
+              "absolute_bound": 296225633165
+            }
+          ],
+          "full_orbit_responses": [
+            {
+              "response": 0,
+              "actual_fresh_error_linf": 179511999001,
+              "absolute_bound": 2040777689140
+            },
+            {
+              "response": 1,
+              "actual_fresh_error_linf": 106552604675,
+              "absolute_bound": 2040777689140
+            }
+          ]
+        }
+      },
+      {
+        "query": [
+          1,
+          1,
+          0
+        ],
+        "mode": "ordinary",
+        "packet_sha256": "83e5e983cdecfd49d32bfb36ba357ca3cef8908fec6bb446020476b946f2a9b1",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          3,
+          1,
+          2,
+          1,
+          2,
+          0,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            6,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "counts": {
+          "ring_products": 100
+        },
+        "non_query_canonical_sources": 10,
+        "public_query_sources": 0
+      },
+      {
+        "query": [
+          1,
+          1,
+          0
+        ],
+        "mode": "product-only",
+        "packet_sha256": "9aeb533529cd3c094263301c890c76fdf78f63fd757932509bef3be31cf655c1",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          3,
+          1,
+          2,
+          1,
+          2,
+          0,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            6,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 10,
+          "monomials": 16,
+          "polynomial_additions": 117,
+          "ring_products": 90
+        },
+        "non_query_canonical_sources": 5,
+        "public_query_sources": 1
+      },
+      {
+        "query": [
+          1,
+          1,
+          0
+        ],
+        "mode": "full-orbit",
+        "packet_sha256": "753a66d8465e69949c2be6762c7c933d4c4ce5009dd03f3a9790c9827220bc77",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          2,
+          3,
+          1,
+          2,
+          1,
+          2,
+          0,
+          1,
+          2
+        ],
+        "top3": [
+          [
+            6,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 6,
+          "monomials": 0,
+          "polynomial_additions": 160,
+          "ring_products": 128
+        },
+        "non_query_canonical_sources": 0,
+        "public_query_sources": 8
+      },
+      {
+        "query": [
+          1,
+          1,
+          0
+        ],
+        "fresh_error_identity": {
+          "product_tiles": [
+            {
+              "tile": 0,
+              "actual_fresh_error_linf": 50673048622,
+              "absolute_bound": 358860745098
+            },
+            {
+              "tile": 1,
+              "actual_fresh_error_linf": 119020143827,
+              "absolute_bound": 358860745098
+            },
+            {
+              "tile": 2,
+              "actual_fresh_error_linf": 59846258635,
+              "absolute_bound": 358860745098
+            },
+            {
+              "tile": 3,
+              "actual_fresh_error_linf": 75965724918,
+              "absolute_bound": 358860745098
+            },
+            {
+              "tile": 4,
+              "actual_fresh_error_linf": 102583130583,
+              "absolute_bound": 358860745098
+            }
+          ],
+          "full_orbit_responses": [
+            {
+              "response": 0,
+              "actual_fresh_error_linf": 181017637236,
+              "absolute_bound": 2233860528296
+            },
+            {
+              "response": 1,
+              "actual_fresh_error_linf": 150695126842,
+              "absolute_bound": 2233860528296
+            }
+          ]
+        }
+      },
+      {
+        "query": [
+          1,
+          1,
+          1
+        ],
+        "mode": "ordinary",
+        "packet_sha256": "2326bef2fc2636144ad60f3bb14716763a8dbf21a6a76845ddb60edd2571e904",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          3,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          0,
+          3
+        ],
+        "top3": [
+          [
+            7,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "counts": {
+          "ring_products": 100
+        },
+        "non_query_canonical_sources": 10,
+        "public_query_sources": 0
+      },
+      {
+        "query": [
+          1,
+          1,
+          1
+        ],
+        "mode": "product-only",
+        "packet_sha256": "1e93c72fa2da90b4e767225421ffe21dba9c65757d9c5a8e5bfcc33914dd4f25",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          3,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          0,
+          3
+        ],
+        "top3": [
+          [
+            7,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 10,
+          "monomials": 16,
+          "polynomial_additions": 117,
+          "ring_products": 90
+        },
+        "non_query_canonical_sources": 5,
+        "public_query_sources": 1
+      },
+      {
+        "query": [
+          1,
+          1,
+          1
+        ],
+        "mode": "full-orbit",
+        "packet_sha256": "0b82c904a291a5787d5651e50fd2e6a69799ec510678aba6b4f47f7cea88fb54",
+        "packet_bytes": 211,
+        "all_preterminal_coefficients": 32,
+        "all_terminal_coefficients": 32,
+        "all_plaintext_coefficients": 16,
+        "scores": [
+          3,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          0,
+          3
+        ],
+        "top3": [
+          [
+            7,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "counts": {
+          "automorphisms": 6,
+          "monomials": 0,
+          "polynomial_additions": 160,
+          "ring_products": 128
+        },
+        "non_query_canonical_sources": 0,
+        "public_query_sources": 8
+      },
+      {
+        "query": [
+          1,
+          1,
+          1
+        ],
+        "fresh_error_identity": {
+          "product_tiles": [
+            {
+              "tile": 0,
+              "actual_fresh_error_linf": 88861184721,
+              "absolute_bound": 317487135773
+            },
+            {
+              "tile": 1,
+              "actual_fresh_error_linf": 88673143046,
+              "absolute_bound": 317487135773
+            },
+            {
+              "tile": 2,
+              "actual_fresh_error_linf": 27059416528,
+              "absolute_bound": 317487135773
+            },
+            {
+              "tile": 3,
+              "actual_fresh_error_linf": 63892632261,
+              "absolute_bound": 317487135773
+            },
+            {
+              "tile": 4,
+              "actual_fresh_error_linf": 84659882037,
+              "absolute_bound": 317487135773
+            }
+          ],
+          "full_orbit_responses": [
+            {
+              "response": 0,
+              "actual_fresh_error_linf": 252459002690,
+              "absolute_bound": 2144313233894
+            },
+            {
+              "response": 1,
+              "actual_fresh_error_linf": 259861368331,
+              "absolute_bound": 2144313233894
+            }
+          ]
+        }
+      }
+    ],
+    "different_complete_packets_vs_ordinary": {
+      "ordinary": 0,
+      "product-only": 8,
+      "full-orbit": 8
+    },
+    "costs": {
+      "tiles": 5,
+      "rotations": 5,
+      "response_groups": 2,
+      "full_compiled_terms_after_equal_orbit_aggregation": 8,
+      "distinct_query_orbits": 4,
+      "product_extra_key_packed_Q_bytes": 4800,
+      "full_key_packed_Q_bytes": 15360,
+      "terminal_coordinates": 32,
+      "terminal_body_bytes": 128,
+      "actual_combined_diagnostic_enrollment_Q_coefficients": 1344,
+      "actual_combined_enrollment_and_original_context_packed_Q_bytes": 24240,
+      "residency_note": "Per-mode active-server fields are minimal logical key subsets, not RSS. The diagnostic harness retains BOTH new families plus original context; public replay hashes/traverses that full enrollment. Disclosed error/target diagnostic integers and Python-object overhead are additional.",
+      "models": {
+        "ordinary": {
+          "active_server_Q_coefficients": 272,
+          "active_server_packed_Q_bytes": 4080,
+          "active_server_two_word_RNS_bytes": 4352,
+          "fresh_raw_key_ciphertexts": 0,
+          "online_ring_products": 100,
+          "non_query_canonical_sources": 10,
+          "public_query_digit_sources": 0,
+          "total_canonical_sources": 10,
+          "digit_words": 320,
+          "E108_shared_source_terminal_boolean_input_model": 26880,
+          "whole_epoch_new_raw_key_mask_products": 0,
+          "owner_target_products": 0,
+          "owner_static_map_automorphisms": 0,
+          "owner_static_map_monomials": 0,
+          "owner_shared_secret_orbit_automorphisms": 0,
+          "per_index_update_new_raw_ciphertexts_upper_bound": 0,
+          "retained_original_owner_context_Q_coefficients_additional": 272
+        },
+        "product-only": {
+          "active_server_Q_coefficients": 528,
+          "active_server_packed_Q_bytes": 7920,
+          "active_server_two_word_RNS_bytes": 8448,
+          "fresh_raw_key_ciphertexts": 20,
+          "online_ring_products": 90,
+          "non_query_canonical_sources": 5,
+          "public_query_digit_sources": 1,
+          "total_canonical_sources": 6,
+          "digit_words": 192,
+          "E108_shared_source_terminal_boolean_input_model": 17280,
+          "whole_epoch_new_raw_key_mask_products": 20,
+          "owner_target_products": 10,
+          "owner_static_map_automorphisms": 0,
+          "owner_static_map_monomials": 0,
+          "owner_shared_secret_orbit_automorphisms": 0,
+          "per_index_update_new_raw_ciphertexts_upper_bound": 4,
+          "retained_original_owner_context_Q_coefficients_additional": 272
+        },
+        "full-orbit": {
+          "active_server_Q_coefficients": 1024,
+          "active_server_packed_Q_bytes": 15360,
+          "active_server_two_word_RNS_bytes": 16384,
+          "fresh_raw_key_ciphertexts": 64,
+          "online_ring_products": 128,
+          "non_query_canonical_sources": 0,
+          "public_query_digit_sources": 8,
+          "total_canonical_sources": 8,
+          "digit_words": 256,
+          "E108_shared_source_terminal_boolean_input_model": 7680,
+          "whole_epoch_new_raw_key_mask_products": 64,
+          "owner_target_products": 13,
+          "owner_static_map_automorphisms": 7,
+          "owner_static_map_monomials": 9,
+          "owner_shared_secret_orbit_automorphisms": 3,
+          "per_index_update_new_raw_ciphertexts_upper_bound": 32,
+          "retained_original_owner_context_Q_coefficients_additional": 272
+        }
+      },
+      "update_note": "Each mode shares one new original encrypted-index ciphertext per record/tile update, plus the listed extra raw keys. Per-index raw-key bounds are locality models; no incremental update API is implemented. prepare() builds both entire new families with shared index phases.",
+      "original_enrollment_note": "The existing index/relin/rotation keys are reused identically from E106. Their original key generation/public encryption work was not reproduced; complete new-enrollment cost is not claimed.",
+      "representation_note": "Full-orbit aggregates the fixed index PHASE map. Re-enrollment from exact owner plaintexts, additional sparse-support identities and their state/security costs are stronger unexecuted controls; this is not a global optimum.",
+      "unimplemented_paid_costs": [
+        "PCS commitments/openings/proof bytes",
+        "reviewed correlated-key security",
+        "production parameters/side channels",
+        "immutable enrollment/rollback authentication",
+        "incremental updates and original enrollment generation",
+        "native NTT/CUDA work and latency"
+      ],
+      "qualifier": "Executed tiny integer-operation/storage counts and explicit shared scalar-bit model; no timings or proof-cost forecast."
+    },
+    "amplification": {
+      "fresh_rotated_index_wide_coefficient_error_linf": 664613997892457199735062086365129976,
+      "bounded_one_component_gadget_error_bound": 584115551712,
+      "uniform_index_coefficient_times_ordinary_key_error": [
+        {
+          "tile": 0,
+          "row": 0,
+          "scaled_key_error_linf": 650873641270996400652049239695056498
+        },
+        {
+          "tile": 0,
+          "row": 1,
+          "scaled_key_error_linf": 663847608332195124450809158398423763
+        },
+        {
+          "tile": 0,
+          "row": 2,
+          "scaled_key_error_linf": 661978450328507662460355937521440149
+        },
+        {
+          "tile": 0,
+          "row": 3,
+          "scaled_key_error_linf": 630886531814834804892013742309464331
+        },
+        {
+          "tile": 1,
+          "row": 0,
+          "scaled_key_error_linf": 569248522365558165376440467190050361
+        },
+        {
+          "tile": 1,
+          "row": 1,
+          "scaled_key_error_linf": 534198622557691152000178817210596979
+        },
+        {
+          "tile": 1,
+          "row": 2,
+          "scaled_key_error_linf": 569477464559079111835150607477679885
+        },
+        {
+          "tile": 1,
+          "row": 3,
+          "scaled_key_error_linf": 327316535973307039640042135525152116
+        },
+        {
+          "tile": 2,
+          "row": 0,
+          "scaled_key_error_linf": 634436555603005254693400855008494723
+        },
+        {
+          "tile": 2,
+          "row": 1,
+          "scaled_key_error_linf": 544799048096546957469890268898515199
+        },
+        {
+          "tile": 2,
+          "row": 2,
+          "scaled_key_error_linf": 569805040544058953785332908089258699
+        },
+        {
+          "tile": 2,
+          "row": 3,
+          "scaled_key_error_linf": 623366800083057134874477786325116104
+        },
+        {
+          "tile": 3,
+          "row": 0,
+          "scaled_key_error_linf": 624102327093050656636681398674079785
+        },
+        {
+          "tile": 3,
+          "row": 1,
+          "scaled_key_error_linf": 556093901799224056277237747854579344
+        },
+        {
+          "tile": 3,
+          "row": 2,
+          "scaled_key_error_linf": 552803124072889677356670366028484043
+        },
+        {
+          "tile": 3,
+          "row": 3,
+          "scaled_key_error_linf": 501104880045328728847336462131889944
+        },
+        {
+          "tile": 4,
+          "row": 0,
+          "scaled_key_error_linf": 569805040544058953785332908089258699
+        },
+        {
+          "tile": 4,
+          "row": 1,
+          "scaled_key_error_linf": 462977163895119331240840180928705444
+        },
+        {
+          "tile": 4,
+          "row": 2,
+          "scaled_key_error_linf": 374437799762326364005185728346927106
+        },
+        {
+          "tile": 4,
+          "row": 3,
+          "scaled_key_error_linf": 397880918790708473746816399746643103
+        }
+      ],
+      "scope": "Raw full-Q error amplification counterexamples; no private release, production probability or chosen-ciphertext service."
+    },
+    "prior_return": "Contained known control; no original main mechanism, no A3 optimizer/backend advancement."
+  }
+}

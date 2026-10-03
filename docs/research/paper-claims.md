@@ -1,3 +1,9 @@
+**Latest execution2026-10-03:** [bounded return](verification-aware-screens-return-20261003.md).
+Actual toy scalar proofs and conditional two-card codec bounds are now measured
+serialization/math controls. They establish no original main, speedup or
+production security. Earlier claim/status text below is historical; use current
+queue/report for E109–E115 scope. The generic receives identical improvements.
+
 # P12 claim-to-evidence ledger
 
 **Current review2026-10-03:** use the [post-E108 claim table](closest-work-comparison-20261003.md#7-paper-claims-we-can-and-cannot-make-now)

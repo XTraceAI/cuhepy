@@ -1,3 +1,28 @@
+# Current execution return, 2026-10-03
+
+E109–E114 bounded components are complete; E115 has two partial mathematical
+cards. Start with the [current return](verification-aware-screens-return-20261003.md)
+and [machine queue](publication-work-packages.json). Actual Spartan proofs bind
+the unchanged toy relation, while functional compilation/event certificates are
+known controls. One-prime owner math is feasible for24/36 profiles but the large
+general API refuses; the ideal compressor's extra bit saves only0.884% exchange.
+No new timing, original main, parameter approval or production change follows.
+
+**Next Q41/E115:** actual unit/nonunit setup and the seed-blind all-admitted-
+response implication, explicit bounded-output cryptographic budgets and closest
+theorem comparison. [Marginal correctness card](query-mask-marginal-correctness-card-20261003.md)
+and [finite stream card](query-mask-stream-budget-card-20261003.md) are ordinary
+conditional controls, not a completed security reduction. Q42 is optional typed
+owner-only engineering; Q43 is a paid known protected-verifier control. Return
+to R6 after each bounded card before implementation. All company code,
+historical scopes/raws/checkpoints and main/staging remain preserved.
+
+The pre-E109 strategy text below is historical. Its proposed statuses are
+superseded by this execution return and current queue; numerical observations
+and prior reading scopes remain unchanged.
+
+---
+
 # Research plan: compact, verified owner-private search
 
 Revision: **2026-10-03, post-E108 contribution and closest-work reassessment**.

@@ -1162,3 +1162,53 @@ negative results, source/binary snapshots, company homemade HE/native/CUDA/SEAL
 controls and protected main/staging/checkpoints remain intact. The
 [validation receipt](contribution-plan-validation-20261003.json) checks preserved
 identities, appended source records, archive hashes, queue and document links.
+
+## 2026-10-03: verification-aware bounded screens and actual proof control
+
+Branch `experiment/verification-aware-screens-20261003`, parent `95f857b`.
+Returned to the [plan](contribution-plan-20261003.md) after every first component;
+see the [current R6 return](verification-aware-screens-return-20261003.md).
+
+E110 known external-product containment stopped a new compiler. Its three tiny
+homemade graphs agree on all plaintext coefficients,72scores/stableties;ring
+products100/90/128 and packed active material4080/7920/15360B reveal tradeoffs.
+E111 exhausts26244weighted states and checks actual APIs/compactterminal, but
+standard full-support already proves[0,0]; generic/candidate both one root.
+E113 owner-only complete bounds pass24/36profiles, current large general keygen
+and public-index pass0/36;16tiny full API observations agree. MRzero-base helper
+fix/regressions repeat the SAME panel with identical science.
+
+E109 produces8actual Spartan SNARKs135200B each for211B toyresponses,52backend
+negativechecks and1unsatisfied proof produced/rejected. Separate local verify
+authorizes8private callbacks/72scores;6release negatives callnone. Actual prover
+decommitment553648696B is setup, not reply/RSS. Source36filesunmodified,64registry
+crates checksumlocked, failedborrow/finalizer and exactsource snapshots retained.
+No second provecohort. E112 records a precise actual-witness-oracle TEE protocol
+and logical unbound-tape omission;no signing/affineproofexploit/attestation/service.
+Its PCSinterface is unresolved; full protected affine checking is a separate
+strong known control, not an impossibility claim aboutTEEs.
+
+Returned to the plan, selected one bounded creative successor. E114 exact ideal
+codec PMF/bias/fixedrationalMGF gives complete2^32-query terms2^-2722/drop22 and
+2^-2595/drop23 under unit/uniform-mask premises; same genericratio1 stops the
+literal mechanism. Declaredquery100460→98412B saves2048B/about0.884%exchange,
+response131164B unchanged. Exactlaw/MGFrationals and priorguard-version raw retained.
+
+E115 has PARTIAL mathematical cards: a seed-blind all-choice stopped-prefix PRG
+correctness argument (distinct from jointpublicseed privacy) and one frozen
+M=N+6 uniformstream exhaustion card,<2^-186 over2^32queries. No actualSHAKEadv,
+unitprobability, all-admitted protocol implication or actualparameterapproval.
+Currentuncapped sampler unchanged. No benchmark/test in these puremathcards.
+
+Five separate final test scopes:38(E110),42(E111),32(E113),12(E109admission
+units),58(E114);nonempty explicitlint scopes retained. Realproof/protocol/count
+evidence is separate. Earlier103/227/113/448/1965 and frozen timing panels remain
+unchanged/notrerun/notadded. No newtiming/estimator/nativeGPU/production changes.
+All91PDF/text pairs and oldregistry/code/raw/checkpoints/main/staging preserved.
+
+**R6 next Q41/E115:** one actualsetup/nonunit/seed-blind admitted-event and
+direct-prior theoremcard, thenreturn. Q42 optionaldistinct owner-only setup
+engineering;Q43 paid fullprotected verifiercontrol. Zero originalmain selected;
+E100/E104/broadgates remainconditional. [Validation](verification-aware-screens-validation-20261003.json),
+[manifest](verification-aware-screens-20261003.json). Checkpointtarget
+`checkpoint/verification-aware-screens-2026-10-03`.
