@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "Q70-factorized-sibling-fused-control",
+  "parent": "docs/research/gadget-cut-factorization-registration-20261003.json",
+  "prior_run_preserved": "../research-data/gadget-cut-research-20261003/Q70-factorization/",
+  "motivation": "The first sufficient model computes and caches each tile family separately. Stronger linearity combines sibling index digits before multiplying shared query digits. Cache the signed first-node family instead; do not canonicalize it or count its setup as free.",
+  "repeated_public_inputs": true,
+  "input_policy": "Reuse every parent seed, context and trial count. This is a stronger implementation/control comparison, not new independent HE correctness evidence.",
+  "new_required": ["Sibling-combined fused correction equals the same independent whole source-switch oracle", "Disclose all tile canonical decompositions and first-node digit NTT preparation", "Both candidate and generic control get sibling fusion and the same costs"],
+  "HE_keys_or_timing_or_native_admission": false,
+  "originality_accepted": false
+}

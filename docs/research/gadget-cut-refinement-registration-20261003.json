@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "parent_registration": "docs/research/gadget-cut-preregistration-20261003.json",
+  "reason": "Q65 v1 counted multiplication per sibling input. The equally specialized known fused control can combine sibling digit families before multiplication. This is an adaptive cost refinement, not new independent evidence.",
+  "preservation": "Original Q65 raw output and exact source archive, Q66 raw output and pre-run source archive remain immutable.",
+  "refinement": "Two common signed digit families per output node; apply public K and H after adding the shifted sibling. Cache the first stage digit NTTs, where available, and charge all lifetimes. Same one-stage semantic rule and original noise guards.",
+  "Q65_repeat": "Same public seed/trials/models to verify corrected fusion and ledger; report separately, do not add to independent sample counts.",
+  "Q67_prototype": {
+    "scope": "Isolated homemade persistent-RNS C++ complete public evaluator, original canonical evaluator available in the same module. No production file or binary edits.",
+    "geometry": "N16384/Q120/D512/digit30, one unary anchor and exactly one propagated stage; canonical fallback for full groups.",
+    "tiny_checks": "Independent whole-byte equality to public propagated Python reference at small power-of-two rings; malformed context/index/coefficients rejected.",
+    "timing_pilot": "No complete-service timing campaign until complete native admission is implemented. Public arithmetic prototype timings, if recorded, are engineering observations only and cannot select a secure-service winner.",
+    "extra_public_state": "H is shared and public; pair-local digit NTTs should be released after the second stage. All output polynomials remain canonical Q residues.",
+    "security_boundary": "Deterministic common integer state derivation only. Arbitrary independently supplied RNS digits are not accepted. Existing Q/P guards and trusted owner metadata remain required; private operations stay outside the prototype."
+  }
+}

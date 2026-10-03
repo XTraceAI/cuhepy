@@ -1,3 +1,5 @@
+> Latest execution2026-10-03: [gadget-cut research and follow-ups](gadget-cut-followups-20261003.md). Q64–Q69 bounded components completed; Q67 complete public C++ evaluator, not native admission. Q70 encrypted and [factorized known-control](gadget-cut-factorization-20261003.md) components completed. Shared composite keys and streamed digit families avoid requiring the large expanded matrix, with additional arithmetic. Full noise-budgeted planner/closest-control gate remains open; no original main or measured service win accepted. [Progress/next task](gadget-cut-progress-20261003.json). Earlier decisions/evidence below remain preserved.
+
 # Executed native verification return, 2026-10-03
 
 Read the [execution](native-verification-execution-20261003.md) and

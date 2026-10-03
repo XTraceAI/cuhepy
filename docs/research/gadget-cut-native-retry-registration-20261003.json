@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "parent": "docs/research/gadget-cut-native-source-registration-20261003.json",
+  "failure": {
+    "utc": "2026-10-03T22:00:32.796328+00:00",
+    "attempt": "Q67-source",
+    "stage": "query1 after full Q/compact physical truth and full-distance assertions",
+    "error": "AssertionError comparing native SearchResult.top tuples to reversed expected fields",
+    "actual_contract": "(original index,Hamming distance)",
+    "incorrect_harness_contract": "(Hamming distance,original index)",
+    "algorithm_or_parameters_changed": false,
+    "completed_cohort": false,
+    "secret_retained": false,
+    "source_archive": "Q67-source/Q67-executed-source.tar.gz",
+    "retry_policy": "One corrected run, same fixed inputs/profile, fresh OS key because the aborted process did not retain its secret. Report separately; do not count as an independent successful cohort."
+  },
+  "cap_adjustment": "One aborted context and one corrective completed context; no further automatic repeats. Same fixed plaintext/query seed and three completed queries, not a larger sample panel.",
+  "corrective_change": "Expected top3 represented as(ID,distance), sorted by(distance,ID); all arithmetic, bounds, dimensions and outputs unchanged."
+}

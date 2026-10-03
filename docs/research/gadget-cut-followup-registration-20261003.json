@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "Q69",
+  "parent_decision": "docs/research/gadget-cut-selection-20261003.md",
+  "kind": "New public algebra/noise/cost screen; no new HE key generation or timing cohort.",
+  "public_seed": 64069,
+  "tiny_rings": [8, 16],
+  "tiny_Q": 65537,
+  "tiny_seed_digit_bits": 3,
+  "tiny_relin_digit_bits": 4,
+  "trials_per_ring": 12,
+  "source_context": {"N": 16384, "Q_hex": "ffffffffffc00020000003bffc0001", "P": 33548413, "t": 1031, "eta": 21, "D": 512, "dimension": 512, "vectors": [8192, 32768]},
+  "radices": [8, 12, 13, 14, 18, 30],
+  "mixed_anchor_rule": "First three rotation keys use screened radix; exactly two stages propagate after a unary anchor; product relinearization and later rotations remain30-bit. Full groups stay canonical.",
+  "tensor_seed_rule": "Decompose public query/index C0/C1 into screened radix. Reduce B^(a+b) mod Q into common small scalar digits, including every cross term. Add canonical30-bit C2/relinearization-key-A contribution. Derive a bounded common C1 state before the first rotation, for unary and binary nodes; only the first rotation consumes it. Later rotations reset to canonical30-bit sources.",
+  "required_comparisons": ["independent schoolbook C1/source/switch identities", "exact scalar radix-power reconstruction", "public Q/P guards for all physical output coordinates", "whole source-body and added evaluation-key columns", "direct convolution and compiled public matrix state/online work", "strong controls receive identical known homomorphic gadget and public compilation opportunities"],
+  "stop": "Reject failed guards. Body gains alone cannot establish complete usefulness or originality. No native/controller expansion or large timing panel from this public screen alone.",
+  "next_if_survives": "Q70 closest-control schedule discriminator and small encrypted mixed/tensor-seed correctness; Q71 complete native admission only for selected rule; Q72 matched complete pilot only after native correctness/security binding and fixed resource registration; Q73 claim/architecture return.",
+  "originality_accepted": false,
+  "production_parameter_assurance": false
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "Q70-bounded-correctness-component",
+  "parent": "docs/research/gadget-cut-followup-registration-20261003.json",
+  "cap": "Two fresh small homemade key contexts, two fixed queries each, half/full/tail shapes; canonical, mixed14 and tensor18 public replay. No native extension, timing grid or production changes.",
+  "public_seed": 64070,
+  "contexts": [{"N": 16, "t": 17, "q_bits": 120, "eta": 1, "dimension": 5}, {"N": 32, "t": 37, "q_bits": 120, "eta": 1, "dimension": 9}],
+  "queries_per_context": 2,
+  "selected_mixed_bits": 14,
+  "selected_tensor_bits": 18,
+  "why_selected": "Largest screened radix (fewest columns) passing the respective active-policy Q/P guards; selected from the fixed Q69 set, not a latency winner.",
+  "key_material": "Generate complete30/14/18-bit diagnostic key sets under one secret per context using existing homemade key generator. Only selected columns enter each evaluator. Unused fixture keys are recorded; production setup/key costs are not measured.",
+  "before_private_diagnostics": "Require strict whole public replay and exact terminal frame binding; no secret enters the relation. Check all physical plaintexts, distances, stable IDs/top3 against canonical and independent truth.",
+  "scope": "Bounded arithmetic correctness component only. Q70 full closest-control/algorithm discriminator remains open; Q71 complete native admission remains conditional. No original primitive or production assurance."
+}

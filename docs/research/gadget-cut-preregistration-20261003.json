@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "parent_commit": "6edc0ea4e4358b3b02211dda1b9f11f39119b8b8",
+  "candidate": "one propagated stage after a wholly unary canonical anchor",
+  "known_method_controls": ["bounded common homomorphic gadget representations", "explicit public digit convolution", "fused public composite-key correction", "canonical switching with hoisting/lazy opportunities preserved"],
+  "Q65": {
+    "public_oracle_seed": 64065,
+    "rings": [8, 16],
+    "gadgets": [{"Q": 65537, "digit_bits": 4}],
+    "public_trials_per_ring": 12,
+    "continuation_stages_after_anchor": [0, 1, 2],
+    "required_negatives": ["radix componentwise multiplication", "binary minus-only anchor ambiguity", "unbounded representation", "independent RNS-limb digits", "third-stage Q120 noise failure"],
+    "large_models": [{"N": 16384, "Q_hex": "ffffffffffc00020000003bffc0001", "P": 33548413, "t": 1031, "eta": 21, "D": 512, "dimension": 512, "vectors": 8192, "digit_bits": 30}, {"N": 16384, "Q_hex": "ffffffffffc00020000003bffc0001", "P": 33548413, "t": 1031, "eta": 21, "D": 512, "dimension": 512, "vectors": 32768, "digit_bits": 30}],
+    "model_is_measurement": false,
+    "resource_policy": "Count full canonical source bodies and terminal Q bodies; charge derived public matrices and extra online products. Keep the prior product-only body path separate."
+  },
+  "Q66": {
+    "contexts": [{"N": 16, "t": 17, "q_bits": 120, "eta": 1, "dimension": 5, "digit_bits": 4}, {"N": 16, "t": 17, "q_bits": 120, "eta": 1, "dimension": 5, "digit_bits": 4}, {"N": 32, "t": 37, "q_bits": 120, "eta": 1, "dimension": 9, "digit_bits": 6}, {"N": 32, "t": 37, "q_bits": 120, "eta": 1, "dimension": 9, "digit_bits": 6}],
+    "queries_per_context": 4,
+    "public_data_seed": 64066,
+    "shapes": ["half group", "full group", "full group plus one vector tail"],
+    "policy": "canonical first stage; propagate exactly the next stage only if the entire first stage is unary; otherwise canonical",
+    "before_private_diagnostics": "Require full public trace replay/source recomposition and guarded terminal frame equality. Private keys never enter the relation checker.",
+    "correctness_contract": "All physical plaintext coefficients and all Hamming distances/stable IDs/top3 agree; alternate ciphertext bytes may differ.",
+    "retain": "Every complete compact response for both evaluators, public contexts/inputs, source hashes and per-case receipts; no private keys or error coins.",
+    "parameter_assurance": false
+  },
+  "Q67": {
+    "conditional": true,
+    "gate": "A noise-safe rule with an unexcluded useful complete resource tradeoff and a distinct testable schedule claim; no native timing cohort when the arithmetic/cost screen already stops it.",
+    "cap": "One source geometry, prototype plus honest held-outs; a full pilot requires a separate fixed measurement registration.",
+    "production_files_or_baseline_binary_mutations": false
+  }
+}
