@@ -1,3 +1,26 @@
+# Current research execution return, 2026-10-03
+
+Start with the [current return](seeded-correctness-return-20261003.md) and
+[machine queue](publication-work-packages.json). E115 has four further
+conditional mathematical/source cards; E117 has a paid known-verifier ledger;
+E118 and E119 are complete separately registered public mathematical oracles.
+They retain a unit-free fixed-prefix correctness consequence and its valid
+squarefree extension. Direct norm/CRT/concentration ingredients are known.
+
+**Next Q46/E120:** execute the first frozen source/precision/numerical/cost
+contract in the [multi-limb consequence plan](multilimb-owner-consequence-plan-20261003.md),
+then register a single useful consequence only if its premises and rigorous
+numerics survive. Compare the strongest generic, protected replay, ring-proof
+and permitted-cache controls. Return to R6 after each component; do not activate
+large key/native/service work from an ideal-model pass. Originality, actual
+sampler/security assurance and a material complete frontier remain open.
+
+Progress, old raw observations, company code and main/staging remain preserved.
+The earlier execution-return/strategy text below is historical, including its
+old proposed statuses and distinct testing scopes.
+
+---
+
 # Current execution return, 2026-10-03
 
 E109–E114 bounded components are complete; E115 has two partial mathematical

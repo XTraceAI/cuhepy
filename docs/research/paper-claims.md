@@ -1,3 +1,10 @@
+**Latest return2026-10-03:** [E115/E117–E119](seeded-correctness-return-20261003.md).
+Claim only the registered finite mathematical checks, source-linked conditional
+correctness consequence and paid encoding/count ledger. Every ideal bound,
+epoch/admission premise and generic-control scope is explicit. Norm/nullity and
+CRT ingredients are known; no original main, measured speedup, concrete SHAKE
+security or approved parameter follows. Earlier claim text remains historical.
+
 **Latest execution2026-10-03:** [bounded return](verification-aware-screens-return-20261003.md).
 Actual toy scalar proofs and conditional two-card codec bounds are now measured
 serialization/math controls. They establish no original main, speedup or

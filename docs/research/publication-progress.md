@@ -1212,3 +1212,38 @@ engineering;Q43 paid fullprotected verifiercontrol. Zero originalmain selected;
 E100/E104/broadgates remainconditional. [Validation](verification-aware-screens-validation-20261003.json),
 [manifest](verification-aware-screens-20261003.json). Checkpointtarget
 `checkpoint/verification-aware-screens-2026-10-03`.
+
+
+## 2026-10-03: E115 follow-up, E117 ledger, E118/E119 independent oracles
+
+The [return](seeded-correctness-return-20261003.md) records four conditional
+E115 cards, the [paid protected control](protected-affine-ledger-20261003.md),
+and separately preregistered [nonunit](nonunit-projection-screen-20261003.md)
+and [squarefree CRT](squarefree-projection-screen-20261003.md) oracles.
+All6561 tiny ternary states, exactly167042 E118 masks, and one independently
+reconstructed drop23 model pass. E119 has one ternary witness, exactly8450
+tiny masks and65 scalar coefficients. The56 and78 distinct final test scopes
+remain separate from every historical suite; unchanged E119 passing receipts
+were promoted without rerunning. Explicit six-path integration Ruff passes.
+
+The large ideal model retains14473 prefix coordinates, pays1911 dependent
+suffix terms, and bounds nonzero-secret lifetime/once-setup total by2^-2138/
+2^-2137. This is not observed reliability, actual SHAKE assurance, RLWE
+security or permission to bypass the unchanged general key-generation guard.
+The CRT witness falsifies treating productQ as a field; the limb-codec
+comparison is expressly formal/unadmitted and its guard rejects. The E115
+initial invalid rounding diagnostic and later complete-component correction
+remain archived; no actual seed/backend attack was run.
+
+E117's dense h+map model costs967936 B before metadata versus4080 B replay
+coefficient bodies, and adds4096 B tape before headers. It is not a lower
+bound or latency result; service remains stopped. Verdict-only reused-check
+soundness and ideal-XOF budgets retain separate unassigned implementation,
+authentication, entropy and lifecycle terms.
+
+Five new primary PDF/text pairs bring the pinned registry to96, with all91
+earlier records/bytes preserved. Direct EUROCRYPT2018 norm machinery contains
+the rank ingredient; the complete consequence's novelty is unconfirmed.
+No timings, HE/native/GPU keys/evaluations/builds, proofs or estimators ran.
+No original main or production parameter was selected. Return to Q46/E120's
+source-selected complete consequence contract before further implementation.

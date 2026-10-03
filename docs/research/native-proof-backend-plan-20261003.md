@@ -1,3 +1,11 @@
+> Latest bounded return2026-10-03: [E115/E117–E119](seeded-correctness-return-20261003.md)
+> and [machine queue](publication-work-packages.json). The unit-free fixed-prefix
+> ideal consequence now has independent public oracles; the squarefree extension
+> uses prime-limb bounds. Protected-checker costs are explicitly paid.
+> [Q46/E120](multilimb-owner-consequence-plan-20261003.md) is proposed, not executed.
+> No new timing, original-main selection, actual cryptographic/parameter approval
+> or production change. Earlier amendment/body below remains historical.
+
 > Current execution amendment2026-10-03: see the
 > [E109–E115 return](verification-aware-screens-return-20261003.md) and
 > [queue](publication-work-packages.json). E109–E114 bounded components now have
