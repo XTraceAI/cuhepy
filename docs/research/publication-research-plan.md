@@ -1,8 +1,10 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-02, after Q0–Q5/Q11–Q25 bounded execution**. Start with the
-[latest return decision](construction-selection-20261002.md) and
-[next original-binding discriminator](remainder-first-binding-plan-20261002.md). The
+Revision: **2026-10-02, post-E99 contribution roadmap review**. Start with the
+[refreshed executable roadmap](contribution-roadmap-refresh-20261002.md),
+[closest-work synthesis](closest-work-roadmap-refresh-20261002.md), and
+[machine handoff](contribution-roadmap-refresh-20261002.json). The
+[return history](construction-selection-20261002.md) preserves all bounded decisions. The
 [original detailed plan](contribution-plan-20261002.md) and
 [closest-work comparison](closest-work-comparison-20261002.md) retain the
 pre-execution strategy. The
@@ -17,16 +19,26 @@ and full-N resources. Old prefix-security estimates do not apply to hidden
 positions; sparse/derived-key assurance is open. Standard complete controls
 contain the generic compiler/gadget/sparse mechanism, so no original complete
 main or broad gate is selected. E98's estimator sample-budget qualification
-and earlier negative/raw timing evidence remain intact. **Next Q26/E100**
-compares a concrete remainder-first original-score proof relation against an
-equally optimized compiler, before registration/implementation. Company
+and earlier negative/raw timing evidence remain intact. **Next Q27/E101**
+screens the complete native authenticated boundary against the strongest fused
+controls; **Q28/E102** then screens a restricted finite adaptive-lifetime theorem.
+**Q29/E103** is a separate conditional exact-retrieval mode. Q26/E100 remains
+unimplemented as a conditional remainder-first control. This planning review
+adds no experiment/test execution or accepted main mechanism. Company
 homemade BFV/BGV/Paillier,SEAL references,production sources,main/staging and
 frozen measurements remain preserved. Complete binding/PBS/private assurance
 and useful-effect/mechanism gates remain open.
 
 ## 1. Decision
 
-Pursue a construction that amortizes privacy and verification for a fixed,
+The refreshed roadmap prioritizes a complete verified native boundary,
+with a separate finite-lifetime theorem route and conditional owner-summary
+retrieval. Its [closest-work audit](closest-work-roadmap-refresh-20261002.md)
+adds nine sources and distinguishes actual gaps from known compositions.
+The archive now has77 pinned PDF/text pairs; earlier68 entries are unchanged.
+No original main construction is yet selected.
+
+Retain the primary question: pursue a construction that amortizes privacy and verification for a fixed,
 owner-private linear operator, removing repeated trusted matrix work or reducing
 binding verifier state without merely moving that cost to another party.
 Exact Hamming scores and stable IDs remain the primary application.
@@ -57,12 +69,16 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q23/E97 | [Owner-bound stochastic control](owner-bound-rounding-screen.md) | Fixed-input law/receiver works;720 equal-degree cards,owner product/CBD eliminated;standard equally shared control contains generic mechanism |
 | Q24/E98 | [Setup-row law and sample-budget audit](owner-bound-rounding-screen.md) | Exact disjoint scaled-CBD rows;default tool sample shortage qualified;8 applicable sub128 profiles,all others unapproved |
 | Q25/E99 | [Gadget dependencies/hidden support](gadget-dependency-screen.md) | Exact mask/noise laws and standard LLL controls;720 equal-cost precision cards;hidden support changes security applicability;generic mechanism contained |
-| **Next: Q26** | [**E100 remainder-first original-score binding**](remainder-first-binding-plan-20261002.md) | Proposed complete proof relation;equally optimized compiler/original binding/range/carry comparison first;unimplemented |
+| Conditional Q26 | [E100 remainder-first original-score binding](remainder-first-binding-plan-20261002.md) | Unimplemented supporting control if the refreshed routes identify a canonicalization bottleneck; identity alone not novelty |
+| **Next: Q27** | [**E101 complete native boundary**](contribution-roadmap-refresh-20261002.md#4-route-a-choose-the-verified-boundary-jointly-with-the-native-trace) | Proposed graph/strongest-control and all-error/count discriminator; no new implementation or selected mechanism |
+| Q28 | [E102 finite adaptive lifetime](contribution-roadmap-refresh-20261002.md#5-route-b-a-finite-certificate-across-adaptive-reuse) | Proposed restricted nonheuristic theorem screen; E94/E97/E99 and current literature are controls |
+| Conditional Q29/Q30 | [E103 owner-summary retrieval; E104 service evaluation](contribution-roadmap-refresh-20261002.md#7-execution-order-and-concrete-handoffs) | Separate exact-top-three/privacy contract and post-selection matched service evaluation; unimplemented |
 
-The [detailed plan](contribution-plan-20261002.md) specifies algebra, candidate
-representations, proposed paths, controls, stop conditions, phase budgets and
-security obligations. Do not infer a new protocol from these sketches.
-No larger representation optimizer or new GPU kernel is the immediate research task.
+The [current detailed plan](contribution-roadmap-refresh-20261002.md) specifies
+mechanisms, strongest controls, stop conditions, full costs and security proof
+obligations. The earlier detailed plan remains a historical strategy. Do not
+infer a new protocol from these sketches. No new GPU kernel is the immediate
+research task.
 
 The new BGV control multiplies all components by `t^{-1} mod Q`, then accounts
 for a known plaintext permutation. It adds no secret material or body bytes
@@ -135,13 +151,16 @@ state. Measure full elapsed, endpoint work and memory separately.
 
 ## 4. Execution queue and gates
 
-**Next:** Q26/E100 starts with closest modular/range/cross-field proof and
-compiler controls,then a fresh preregistration. Test the proposed dyadic
-remainder-first relation with source-field scaling and canonical bit reuse,
-pay the inverse multiply/carries and bind original query/index/key/coins.
-The basic identity is not novelty;the strongest generic compiler gets the
-same rewrites/intermediates. Only a distinct useful complete mechanism
-advances. No source-phase witness or unchecked expanded query is free.
+**Next:** Q27/E101 records the actual original-query-to-wire graph, compares
+strongest complete native/adjoint/proof controls, and preregisters one bounded
+discriminator before its exact oracle. Q28/E102 follows with a restricted
+finite-tail/freshness theorem screen, including if Q27 stops. Q29/E103 stays
+conditional and changes functionality explicitly; Q30/E104 follows a selected
+complete reference. Q26/E100 is a retained conditional control. The refreshed
+[step table](contribution-roadmap-refresh-20261002.md#7-execution-order-and-concrete-handoffs)
+and machine handoff govern priorities; historical next-task paragraphs below
+record the decisions at those returns. No unchecked expanded input, source
+phase witness, hidden helper work or parameter approval is free.
 
 After **each** packet: log hypothesis, result classification, source/evidence,
 closest-work difference, pass/stop and next action; update the queue; return to
@@ -170,7 +189,9 @@ The [earlier E97/E98 receipt](owner-rounding-execution-validation-20261002.json)
 retains its eight raw results and estimator sample-budget qualification.
 Earlier source-lifetime,late-owner,partial-switch,orbit-precision,fixed-function
 and batched-score receipts retain their historical scopes. The
-[paper archive](prior-work-archive.md) links **68 hash-pinned PDF/text pairs**.
+[paper archive](prior-work-archive.md) now links **77 hash-pinned PDF/text pairs**.
+The new [planning validation](roadmap-refresh-validation-20261002.json) checks
+documentation, archive and preserved identities; it runs no new crypto tests.
 The external estimator source is archived separately; its execution is not
 an HE protocol/performance reproduction. Targeted reading is not a full proof audit.
 
@@ -309,10 +330,26 @@ cards match the equally shared known control. The generic compiler/gadget/
 sparse recipe is contained,not an original main mechanism.448 scoped tests
 and68 pinned paper/text pairs support this return;older scopes/gates remain.
 
-Q26/E100's [separate plan](remainder-first-binding-plan-20261002.md) describes
+At the E99 return, Q26/E100's [separate plan](remainder-first-binding-plan-20261002.md) described
 a concrete original-source-field-to-dyadic proof relation and strongest
 compiler control. It is proposed/unimplemented. Return after each component;
 select only after distinct mechanism and complete useful-effect evidence.
 The [receipt](gadget-execution-validation-20261002.json) and
 [manifest](publication-gadget-execution-manifest-20261002.json) pin four
 immutable raw runs,two repeat pairs and the bounded source/cache evidence.
+
+## 2026-10-02 — post-E99 contribution roadmap review
+
+The [refreshed plan](contribution-roadmap-refresh-20261002.md) and
+[comparison](closest-work-roadmap-refresh-20261002.md) supersede the next-task
+priority only. Complete native binding is the first discriminator, finite
+adaptive-lifetime correctness is a second possible main/supporting result,
+and owner-summary exact retrieval is a separate conditional mode. E100 is a
+supporting control rather than the automatic main-paper route. Q27/E101 is
+next; Q28/E102 follows. All E100–E104 proposals remain unimplemented.
+
+Nine new primary sources/16 targeted complete-page inspections bring the
+archive to77 pairs. Earlier source records, raw results, execution counts,
+gate/package statuses, company code and protected refs remain preserved.
+No original main, security reduction, parameter approval or new performance
+result is accepted by this planning revision.

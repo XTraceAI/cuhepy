@@ -938,3 +938,37 @@ are pinned by the new receipt/manifest. Earlier source/scopes/receipts,company
 code,main/staging and frozen timing panels remain exact. Intended checkpoint:
 checkpoint/gadget-dependency-controls-2026-10-02,with Git bundle/source/cache
 and unchanged external estimator snapshot retained as historical dependency.
+
+## 2026-10-02 — post-E99 closest-work and contribution-roadmap revision
+
+Planning base: `8e7cd6b61839907c181fddd8dd0860532470323c`, protected
+`checkpoint/gadget-dependency-controls-2026-10-02`. Branch:
+`research/contribution-roadmap-refresh-20261002`.
+The [comparison](closest-work-roadmap-refresh-20261002.md),
+[plan](contribution-roadmap-refresh-20261002.md), and
+[machine handoff](contribution-roadmap-refresh-20261002.json) now govern next
+priorities. Earlier execution evidence is unchanged.
+
+Nine primary papers are newly hash-pinned: Slalom, DataSeal, CHEX-MIX,
+current small-prime SNARKs, current composable CKKS estimates, central-limit
+Ring-LWE analysis, PANTHER, Pirex and Libra. Sixteen complete selected pages
+are rendered/inspected. Current paper versions and a raw acquisition date
+typo are qualified in append-only reading/errata records. The archive has77
+PDF/text pairs; the earlier68 source records and reading history are exact.
+No new author artifact, experiment, test, timing or security-cost computation
+was run. This does not extend the earlier448 scoped tests or1965-case scope.
+
+R6 nominates a complete native verification boundary as the first discriminator,
+a restricted nonheuristic adaptive-lifetime theorem as a second possible
+main/supporting route, and owner-summary exact retrieval as a conditional
+separate-output route. Each has explicit strongest controls, proposed files,
+lemmas, complete-cost/privacy ledgers, effort caps and stop/advance criteria.
+Q27/E101 is next; Q28/E102 follows; Q29/E103 and Q30/E104 are conditional.
+E100 remains unimplemented as a supporting canonicalization control.
+
+No original main, broad P/Q6–Q10 gate, parameter approval or completed security
+reduction is accepted. Company/production code, main/staging, earlier raws,
+checkpoints and frozen timing evidence are preserved. Planning validation
+checks current documents/queue/archive and historical identities at their
+original commit. Intended checkpoint:
+`checkpoint/contribution-roadmap-refresh-2026-10-02`.

@@ -1,6 +1,6 @@
 # Primary-paper archive
 
-2026-10-02. **68 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
+2026-10-02. **77 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
 
 Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No HE author protocol/performance artifact was executed during E82–E99. E96 does execute the separately pinned external lattice-estimator cost tool; its tracked source is archived and its limited scope disclosed.
 
@@ -121,3 +121,21 @@ passages. These are targeted readings,not full proof/attack/parameter audits.
 Sage10.9 reduces small public gadget bases as an external linear-algebra
 control;no new HE author artifact,actual attack or estimator cost is run.
 See [the comparison](gadget-dependency-closest-work-20261002.md).
+
+## Post-E99 roadmap review
+
+Nine new PDF/text pairs are pinned in `literature-roadmap-refresh-20261002`. Sixteen selected complete pages were rendered and inspected; no new author artifact, benchmark or security cost was executed. The previous68 source records and all earlier acquisition/review receipts remain unchanged. The [closest-work synthesis](closest-work-roadmap-refresh-20261002.md) and [roadmap](contribution-roadmap-refresh-20261002.md) state the scoped conclusions.
+
+| Primary work | Retained PDF | Reading scope |
+| --- | --- | --- |
+| Accurate and Composable Noise Estimates for CKKS with Application to Exact HE Computation | [ckks-composable-2024-853](../../../research-data/literature-roadmap-refresh-20261002/ckks-composable-2024-853.pdf) | Sections1.1/1.2.3 and5.4; current qualification and complete relevant pages3/4/22 inspected; not a full noise/proof/artifact audit |
+| A Central Limit Approach for Ring-LWE Noise Analysis | [clt-noise-2019-452](../../../research-data/literature-roadmap-refresh-20261002/clt-noise-2019-452.pdf) | Introduction discussion and Section4.2 Proposition2 premises; complete relevant pages4/20 inspected; not a full CLT proof/noise audit |
+| PANTHER: Private Approximate Nearest Neighbor Search in the Single Server Setting | [panther-2024-1774](../../../research-data/literature-roadmap-refresh-20261002/panther-2024-1774.pdf) | Sections3.2 and4.1 full relevant page4; clustering and static semi-honest contract; not a full protocol/artifact audit |
+| Client-Efficient Online-Offline Private Information Retrieval | [pirex-popets2025-0095](../../../research-data/literature-roadmap-refresh-20261002/pirex-popets2025-0095.pdf) | Section2 definitions/threat model and introduction; full relevant page4 inspected; not a full protocol/artifact audit |
+| DataSeal: Ensuring the Verifiability of Private Computation on Encrypted Data | [dataseal-2410.15215v1](../../../research-data/literature-roadmap-refresh-20261002/dataseal-2410.15215v1.pdf) | Sections4.3-4.5 Algorithms1-6 and decryption/check order; full relevant pages9/10 inspected; not an attack reproduction or full security-game proof audit |
+| CHEX-MIX: Combining Homomorphic Encryption with Trusted Execution Environments for Two-party Oblivious Inference in the Cloud | [chex-mix-2021-1603](../../../research-data/literature-roadmap-refresh-20261002/chex-mix-2021-1603.pdf) | Introduction and Sections3/3.1 ownership/adversary model; full relevant page4 inspected; not a full protocol/proof audit |
+| Libra: Pattern-Scheduling Co-Optimization for Cross-Scheme FHE Code Generation over GPGPU | [libra-sec26](../../../research-data/literature-roadmap-refresh-20261002/libra-sec26.pdf) | Section4 cost models/partition/rewrites and minimum-distance graph; full relevant pages8/9 inspected; not a full compiler/artifact audit |
+| Slalom: Fast, Verifiable and Private Execution of Neural Networks in Trusted Hardware | [slalom-1806.03287v2](../../../research-data/literature-roadmap-refresh-20261002/slalom-1806.03287v2.pdf) | Section3.2 Lemma3.1/Table2 and Section3.3; full relevant pages5/6 inspected; not complete AppendixB/C proof audit or artifact execution |
+| SNARKs over Small Prime Fields without Extension Field Multiplication | [small-prime-snarks-2025-719](../../../research-data/literature-roadmap-refresh-20261002/small-prime-snarks-2025-719.pdf) | Current SectionH TFHE overview and start of H.1; full relevant pages71/72 inspected; not all packed-sumcheck/lookup/NTT proofs or parameter/artifact audit |
+
+New acquisition, render, reading and errata records are retained alongside the papers. Current2024/853 and2025/719 downloaded revisions differ from earlier indexed titles/claims. The Slalom raw acquisition date typo is corrected in an append-only review, not by replacing its receipt. [BibTeX for the nine new sources](roadmap-refresh-references.bib) is provided; the JSON registry remains the version/hash authority. A preliminary Slalom page4 render is retained but not counted among the16 inspected pages.

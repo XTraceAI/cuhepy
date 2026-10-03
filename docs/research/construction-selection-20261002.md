@@ -1,4 +1,4 @@
-# R6 returns through Q24: keep exact controls, justify source and noise budgets
+# R6 returns through E99 and post-E99 contribution planning
 
 2026-10-02. This supersedes next-task priorities in the
 [original execution plan](contribution-plan-20261002.md) after the bounded
@@ -6,7 +6,9 @@ E82/E83/E84 returns. It preserves the earlier experiments and company code.
 No original useful complete protocol has been selected. The historical Q12/E86
 return below supplied a cheap **known** BGV scaled-phase converter and
 superseded Q11's unresolved carry-interface priority. Latest Q13–Q15 returns
-and later finite returns are appended below. The active next packet is Q26;E99 dependency/hidden-support return is appended below.
+and later finite returns are appended below. The active next packet is
+**Q27/E101**, governed by the [refreshed roadmap](contribution-roadmap-refresh-20261002.md).
+The E99 return and its then-next Q26 priority remain historical below.
 
 | Packet | Executed result | Decision |
 |---|---|---|
@@ -287,8 +289,39 @@ to hidden full-N positions;no sparse/auxiliary-key parameter approval follows.
 
 The strongest generic compiler/gadget/sparse control contains this mechanism.
 Stop generic originality,retain useful assurance tooling and68 pinned papers.
-448 scoped tests across20 CPU files pass. Next [Q26/E100](remainder-first-binding-plan-20261002.md)
+448 scoped tests across20 CPU files pass. The then-next [Q26/E100](remainder-first-binding-plan-20261002.md)
 proposes a concrete remainder-first complete original-score proof relation.
 Compare equally optimized modular-proof/compiler controls before new oracles;
 no unit-identity novelty,free phase witness or missing range/carry cost. All
 previous broad tasks,gates,company controls and frozen timing claims remain.
+
+## Post-E99 planning review: Q27 next, with a finite-theorem route
+
+This is a planning decision at `8e7cd6b`, not a new experiment return.
+The [closest-work synthesis](closest-work-roadmap-refresh-20261002.md) and
+[executable roadmap](contribution-roadmap-refresh-20261002.md) review the
+accumulated evidence and add nine primary PDF/text controls. Standard
+checksum/TEE/adjoint/RNS/range-proof and dependency-analysis competitors get
+the same elementary optimizations; a generic composition does not pass B.
+
+**Q27/E101** is next: describe the actual complete native trace and test a
+specific shared witness/check boundary against E13/E72 and strong complete
+proof controls. **Q28/E102** follows: a restricted finite adaptive-lifetime
+noise theorem with exact dependency and fresh-coin premises. It can become
+the main contribution if Q27 is only engineering. **Q29/E103** remains a
+separate exact-top-three summary/retrieval coverage and traffic-privacy
+screen. **Q30/E104** requires a selected complete reference before matched
+service evaluation. All four are proposed/unimplemented.
+
+Retain Q26/E100 as an unimplemented conditional canonicalization control,
+not an automatically selected paper mechanism. Its identity and earlier
+work remain available. No original main, useful-effect/assurance gate or
+parameter approval is accepted by this review. No crypto tests, timing
+panels, security costs or author artifacts are newly executed. Historical
+448-test/68-paper execution records retain their scopes; the current archive
+has77 pairs and16 new targeted complete-page inspections.
+
+Return to R6 after each component. Use the refreshed machine handoff and
+canonical queue for current priorities. A failed literal route does not
+prove a family impossible; a known-contained route needs a new distinction
+before another variant is attempted.
