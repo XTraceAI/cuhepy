@@ -1,3 +1,54 @@
+# Latest reviewed research handoff, 2026-10-03
+
+The next Q51 task is the [finite Fourier certificate proof plan](cyclotomic-fourier-certificate-plan-20261003.md),
+preferably a complete weighted energy-spectrum bound. Known Fourier, scalar,
+dyadic-product and norm controls are paid; the stronger lemma and original
+contribution remain unproved. This specification activates no source calculation,
+larger scan or backend. The [completed census and audit return](joint-root-census-return-20261003.md)
+records the evidence and the [queue](publication-work-packages.json) records the handoff.
+
+---
+
+# Latest conditional theorem-usefulness return, 2026-10-03
+
+Q51's [reviewed symbolic envelope](known-joint-root-envelope-card-20261003.md)
+shows that the known quartet additive-error/ordinary-union recipe is vacuous
+for declared C>=1 at the source bit/degree range, even granting its remaining
+premises. This concerns the reported upper-bound allowance, **not the actual
+bad-key probability**. No numerical source exponent/probability or new test
+was evaluated, and sharper controls are not ruled out.
+
+The [census/source-audit return](joint-root-census-return-20261003.md) and
+[queue](publication-work-packages.json) record all completed scopes. An explicit
+stronger finite certificate or fully paid system consequence remains unproved;
+global enrollment/input budgets, actual owner origin, concrete security and a
+matched useful frontier remain open. No original main is selected. Earlier
+code/data/scopes/checkpoints and the100-pair corpus remain preserved.
+
+---
+
+# Current bounded execution return, 2026-10-03
+
+The fixed public census is complete: all120 orbit classes and1820 root quartets. The largest exact quartet count is 65/43046721. The exact raw-law probability of at least four zero roots is 1281/43046721; this uses the independently reviewed nonzero defect cap and charges the zero secret once.
+Read the [current return](joint-root-census-return-20261003.md) and
+[queue](publication-work-packages.json). 16 new controller tests passed;
+58 historical tests were reused as evidence, not rerun. This is a known-method
+finite assurance result, not a source-prime security or timing claim.
+
+The retained [primary comparison](joint-root-census-prior-comparison-20261003.md)
+shows generic prescribed multiple-root near-uniformity is already known.
+The [BGV source audit](owner-seed-call-audit-20261003.md) leaves the full honest
+same-domain input budget unenforced, so Q49 probability work stays unactivated.
+**Next Q51:** one [source-certificate eligibility/usefulness gate](source-certificate-eligibility-plan-20261003.md)
+The [first static eligibility review](source-certificate-eligibility-screen-20261003.md)
+records explicit unmet premises; no source-profile probability was calculated.
+No larger toy scan or backend is activated, and no original main is selected.
+The archive retains100 primary PDF/text pairs. All earlier source/raw/test/
+measurement scopes, company code, caches, main/staging and checkpoints remain
+preserved. The returns below are historical.
+
+---
+
 # Current bounded execution return, 2026-10-03
 
 E122's exact public joint-root gate is complete. Read the
