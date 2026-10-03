@@ -1,13 +1,14 @@
 # Research plan: compact, verified owner-private search
 
-Revision: **2026-10-03, E108 complete transparent scalar relation and backend handoff**.
-Start with the [current R6 return](native-proof-interface-selection-20261003.md),
-[constraint result](native-proof-interface-screen.md), [current primary audit](native-proof-interface-audit.md),
-[roadmap](contribution-roadmap-refresh-20261002.md) and [machine queue](publication-work-packages.json).
+Revision: **2026-10-03, post-E108 contribution and closest-work reassessment**.
+Start with the [current contribution plan](contribution-plan-20261003.md),
+[closest-work comparison](closest-work-comparison-20261003.md),
+[results reassessment](results-reassessment-20261003.md) and
+[machine queue](publication-work-packages.json).
 The [progress log](publication-progress.md) and [return history](construction-selection-20261002.md)
 retain all earlier results. Original strategy and closest-work files remain historical.
 
-**Current status:** E108 completes one applicable scalar interface and three
+**Current execution evidence:** E108 completes one applicable scalar interface and three
 homemade transparent native toy relation models. Eight immutable original queries
 match all72 distances/ties and exact E106 native-agreed response bytes. Independent
 sparse R1CS and direct field checks agree;103 final scoped tests pass. The strongest
@@ -15,11 +16,16 @@ shared generic compiler reduces109,942 logical constraints to29,247, but no proo
 backend, search speedup, low-state client or original main follows. Full context
 hash/traversal/residency and cryptographic proof costs remain unknown.
 
-**Next Q35/E109** is a proposed capped [complete backend/control pilot](native-proof-backend-plan-20261003.md).
-Three narrower creative leads have exact proposed differences, paid targets and
-first falsifiers there; none is promoted without an uncontained sound mechanism.
-Current corrected range/CMC and oracle packing controls are archived alongside
-all77 earlier source records;81 PDF/text pairs include versions and talk slides.
+**Next creative packet Q36/E110** screens selective functional-orbit compilation
+against equally optimized RGSW/GGSW/BLAS and uncompiled controls. Q37/E111 is an
+independent certified decoder-event/dependent-noise screen; Q38/E112 is a capped
+TEE/oracle composition comparison; Q39/E113 is an optional one-prime feasibility
+branch. All are proposed and unimplemented. Q35/E109 remains a capped
+[known backend/control pilot](native-proof-backend-plan-20261003.md), independent
+of the first creative algebra screen. BitZ directly occupies the broad shared
+binary/odd-ring oracle idea; semantic relaxed release and generic gadget
+compilation also have direct priors. No original main is selected. Current
+literature versions/reading scopes are recorded in the comparison and registry.
 
 Earlier E106/E107227 tests in separate184/43 runs, E101–E103/E105113,
 E82–E99448 and historical1,965 scopes are preserved, not rerun or added to103.
@@ -28,17 +34,19 @@ native/CUDA/SEAL controls, main and staging remain unchanged. E100 is still an
 unimplemented conditional control; E104 and broad gates remain unmet. Private
 side channels, actual attestation/durable lifecycle, reviewed proof composition,
 parameter security and scaled BFV/CUDA proof adapters remain named open tasks.
-No new timing panel or parameter approval occurred. Conference choice follows
+This planning revision executes zero new experiments/tests/proofs/timing panels.
+No parameter approval occurred. Conference choice follows
 a defensible result rather than an acceptance promise.
 
 ## 1. Decision
 
-The refreshed roadmap prioritizes a complete verified native boundary,
-with a separate finite-lifetime theorem route and conditional owner-summary
-retrieval. Its [closest-work audit](closest-work-roadmap-refresh-20261002.md)
-adds nine sources and distinguishes actual gaps from known compositions.
-The archive now has77 pinned PDF/text pairs; earlier68 entries are unchanged.
-No original main construction is yet selected.
+The current plan prioritizes joint evaluation/verification graph choices and
+certified dependent-noise events, with complete proof and TEE controls. The
+[earlier roadmap](contribution-roadmap-refresh-20261002.md) and its
+[audit](closest-work-roadmap-refresh-20261002.md) remain historical evidence.
+The new comparison preserves all81 prior literature entries; its additional
+sources update the strongest controls, not earlier executed conclusions.
+No original main construction is selected.
 
 Retain the primary question: pursue a construction that amortizes privacy and verification for a fixed,
 owner-private linear operator, removing repeated trusted matrix work or reducing
@@ -80,9 +88,13 @@ The new step must have a precise algorithm/distribution/bound consequence.
 | Q32 | [E106 actual native boundary](native-boundary-screen.md) | Complete selected tiny CPU/RNS original-query/full-wire oracle and affine count controls;184 tests; full proof/BFV/CUDA/lifecycle assurance deferred |
 | Q33 | [E107 target-prime lifting](target-prime-lift-screen.md) | Complete finite scalar relation; strong generic remainder elimination contains candidate;43 tests; no originalmain/proof-cost claim |
 | Q34 | [E108 scalar interface/complete relation](native-proof-interface-screen.md) | Three complete transparent native models;103 tests; strongest shared29,247 constraints; cryptographic backend and full costs remain unknown |
-| **Next: Q35** | [E109 complete backend/control pilot](native-proof-backend-plan-20261003.md) | Proposed actual strongest relation proof/setup/bytes/binding cohort; retain creative leads with exact falsifiers |
+| Q35 known control | [E109 complete backend/control pilot](native-proof-backend-plan-20261003.md) | Proposed actual strongest relation proof/setup/bytes/binding cohort, independent of first creative screen |
+| **Next creative: Q36** | [E110 selective functional-orbit compilation](contribution-plan-20261003.md#3-track-a-move-and-choose-expensive-native-proof-boundaries) | Proposed prior/algebra/noise/tiny full-graph discriminator; ordinary external-product identity is known |
+| Q37 | [E111 certified decoder-event cells](contribution-plan-20261003.md#4-track-b-certify-the-decoder-event-not-the-full-noise-state) | Proposed exact joint-event certificate versus generic weighted branch-and-bound; full-state merging remains stopped |
+| Q38 | [E112 authenticated TEE/oracle partition](contribution-plan-20261003.md#5-track-c-a-tee-verifies-only-the-authentic-proof-boundary) | Proposed complete commitment/statement binding and paid hybrid comparison; no new TEE service |
+| Q39 | [E113 one-prime feasibility](contribution-plan-20261003.md#6-track-d-small-orthogonal-parameter-domain-feasibility-screen) | Proposed complete noise/terminal/parameter/proof ledger; choosing one prime is known tuning |
 
-The [current detailed plan](contribution-roadmap-refresh-20261002.md) specifies
+The [current detailed plan](contribution-plan-20261003.md) specifies
 mechanisms, strongest controls, stop conditions, full costs and security proof
 obligations. The earlier detailed plan remains a historical strategy. Do not
 infer a new protocol from these sketches. No new GPU kernel is the immediate
@@ -159,14 +171,14 @@ state. Measure full elapsed, endpoint work and memory separately.
 
 ## 4. Execution queue and gates
 
-**Next:** Q27/E101 records the actual original-query-to-wire graph, compares
-strongest complete native/adjoint/proof controls, and preregisters one bounded
-discriminator before its exact oracle. Q28/E102 follows with a restricted
-finite-tail/freshness theorem screen, including if Q27 stops. Q29/E103 stays
-conditional and changes functionality explicitly; Q30/E104 follows a selected
-complete reference. Q26/E100 is a retained conditional control. The refreshed
-[step table](contribution-roadmap-refresh-20261002.md#7-execution-order-and-concrete-handoffs)
-and machine handoff govern priorities; historical next-task paragraphs below
+**Next:** Q36/E110's first prior/difference component, then one tiny exact/count
+component if it survives. Q37/E111 may proceed independently. Q35/E109 is a
+known comparison prerequisite for complete proof-cost claims, amended with
+BitZ and current specialized controls. Q38/E112 and Q39/E113 are bounded
+alternatives. Q30/E104 remains conditional on a surviving complete construction;
+Q26/E100 remains an unimplemented supporting control. The current
+[step table](contribution-plan-20261003.md#7-known-proof-controls-and-execution-order)
+and machine handoff govern priorities. Historical next-task paragraphs below
 record the decisions at those returns. No unchecked expanded input, source
 phase witness, hidden helper work or parameter approval is free.
 
@@ -190,15 +202,16 @@ P package. Keep prior E IDs and stopped recipes unchanged.
 The primary research question can survive a failed recipe. A generic composition
 or a faster known implementation remains useful engineering, without passing B.
 
-The [latest execution receipt](gadget-execution-validation-20261002.json)
+The [latest execution receipt](native-proof-interface-validation-20261003.json)
+records E108's scope. The historical [E99 receipt](gadget-execution-validation-20261002.json)
 and [identity manifest](publication-gadget-execution-manifest-20261002.json)
 record four E99 raw results,exact sources and hidden-support qualifications.
 The [earlier E97/E98 receipt](owner-rounding-execution-validation-20261002.json)
 retains its eight raw results and estimator sample-budget qualification.
 Earlier source-lifetime,late-owner,partial-switch,orbit-precision,fixed-function
 and batched-score receipts retain their historical scopes. The
-[paper archive](prior-work-archive.md) now links **77 hash-pinned PDF/text pairs**.
-The new [planning validation](roadmap-refresh-validation-20261002.json) checks
+[paper archive](prior-work-archive.md) retains versioned hash-pinned PDF/text pairs.
+The current [planning validation](contribution-plan-validation-20261003.json) checks
 documentation, archive and preserved identities; it runs no new crypto tests.
 The external estimator source is archived separately; its execution is not
 an HE protocol/performance reproduction. Targeted reading is not a full proof audit.
@@ -250,7 +263,7 @@ The full measurement archive and all-ref bundle are retained outside Git under
 changes documentation/task routing only; production crypto and measurements stay
 unchanged.
 
-## 7. Latest execution return and paper controls
+## 7. Preserved earlier execution returns and paper controls
 
 Q13–Q15 completed their finite sessions with [validation](batched-score-execution-validation-20261002.json) and [source/result manifest](publication-batched-score-execution-manifest-20261002.json), which pin the then-53 PDF/text pairs. Q16/Q17's [checkpoint receipt](orbit-precision-execution-validation-20261002.json) pins 56 pairs. The [primary archive](prior-work-archive.md) now retains **68 pairs**, including source/dependency and HE security controls; each earlier receipt retains its own archive count. Targeted reading, complete proof audits and reproduced author artifacts are separate statuses.
 

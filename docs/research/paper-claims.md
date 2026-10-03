@@ -1,5 +1,12 @@
 # P12 claim-to-evidence ledger
 
+**Current review2026-10-03:** use the [post-E108 claim table](closest-work-comparison-20261003.md#7-paper-claims-we-can-and-cannot-make-now)
+and [execution plan](contribution-plan-20261003.md). Tables below retain earlier
+claim/decision history; an old proposed status is not current execution status.
+BitZ/shared-oracle, semantic relaxed release and generic compiled external
+products are known controls. New E110–E113 are unimplemented; no original main,
+new speedup, security reduction or parameter assurance is declared by planning.
+
 2026-10-01. Supporting ledger, **not a paper draft or accepted originality
 claim**. Follow the [execution plan](publication-research-plan.md) and
 [progress](publication-progress.md). No theorem here has independent review.

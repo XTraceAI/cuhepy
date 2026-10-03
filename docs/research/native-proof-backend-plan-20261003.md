@@ -63,3 +63,20 @@ controls. If commitments/ranges do not dominate the complete backend, reprioriti
 rather than building another identity or calling routine preprocessing novel.
 Zero original main mechanisms are currently selected; E104 and publication
 broad gates remain conditional. Conference choice follows a defensible result.
+
+## Post-E108 closest-work amendment, 2026-10-03
+
+The [new comparison](closest-work-comparison-20261003.md) supersedes the broad
+creative-lead priorities above. BitZ is a direct arbitrary-ring/shared-binary
+oracle control, and semantic relaxed maintenance/safe release have direct
+prior work. Neither remains a generic original mechanism. Preserve their
+proposed interfaces as known controls; do not assume a backend is inapplicable
+or slow without the matching adaptation.
+
+Q35/E109 remains proposed, capped and unimplemented. Spartan is the immediately
+exported interface, not the only strongest proof baseline. Compare BitZ,
+corrected2025/286, GlueLUT and the closest applicable specialized method with
+all commitments, range/CMC, public weights and full statement costs. Unknown
+adaptations remain explicit. The first creative Q36/E110 graph/algebra screen
+may proceed independently under the [current plan](contribution-plan-20261003.md);
+no cryptographic backend must be completed merely to test that identity.

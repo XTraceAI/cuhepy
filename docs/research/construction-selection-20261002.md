@@ -412,3 +412,15 @@ protected checkpoints remain preserved. The new checkpoint is
 ## 2026-10-03: Q34/E108 bounded return
 
 [E108](native-proof-interface-screen.md) closes the scalar interface and complete transparent native toy relation;103 final tests. Strong generic elimination/folding/unsigned quotients give29,247 logical constraints versus109,942, no originality or measured speed claim. All proof/backend/private lifecycle costs remain explicit. [Current R6](native-proof-interface-selection-20261003.md) retains zero original main and activates proposed [Q35/E109](native-proof-backend-plan-20261003.md).
+
+
+## 2026-10-03: post-E108 current planning amendment
+
+The [current comparison](closest-work-comparison-20261003.md) and
+[contribution plan](contribution-plan-20261003.md) supersede next-task priorities
+above. All earlier decisions/scopes remain historical. BitZ supplies the direct
+shared-bit/arbitrary-ring control; semantic relaxed release and generic gadget
+compilation have direct priors. No original main is selected. Next creative
+Q36/E110, independent Q37/E111, enabling Q38/E112 and optional Q39/E113 are all
+proposed/unimplemented. Q35/E109 remains a capped known backend control. This
+revision runs zero experiments/tests/timings and preserves previous receipts.

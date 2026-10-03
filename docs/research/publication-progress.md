@@ -1128,3 +1128,37 @@ E100 remains conditional/unimplemented, E104 conditional. Earlier227/113/448/
 main/staging/checkpoints remain unchanged.
 Receipt: [native-proof-interface-validation-20261003.json](native-proof-interface-validation-20261003.json).
 Checkpoint: `checkpoint/native-proof-interface-2026-10-03`.
+
+
+## 2026-10-03: post-E108 contribution/current-work reassessment
+
+Reassessed E01–E108 and monitored measurements against current primary controls;
+see the [results ledger](results-reassessment-20261003.md),
+[closest-work comparison](closest-work-comparison-20261003.md) and
+[new execution plan](contribution-plan-20261003.md). Three independent bounded
+reviews retain numerical/source anchors, full selected math-page reading scopes
+and acquisition receipts. Ten new PDF/text pairs (including Bae v1/currentv2)
+extend81 preserved source records to91; none implies a complete proof audit or
+reproduced author benchmark.
+
+BitZ directly contains the broad shared-bit/odd-ring oracle lead. Corrected
+2025/286, vCCA and Fherret contain broad semantic relaxed-release ideas. Bae and
+GGSW/RGSW contain generic compiled-index external products. Preserve them as
+strong controls. No original main construction is selected.
+
+**R6 return:** Q36/E110 is the next bounded creative prior/algebra/noise/full-graph
+discriminator for selective functional-orbit compilation. Q37/E111 independently
+tests joint decoder-event certificates against generic branch-and-bound;
+injectivity alone is not its falsifier. Q38/E112 prices complete authenticated
+TEE/oracle partitioning; Q39/E113 is an optional one-prime feasibility screen.
+Q35/E109 remains a proposed capped known proof control, amended with current
+BitZ/ring methods. All new successors are unimplemented. E104 and broad gates
+remain conditional. Each component returns to the plan before widening scope.
+
+This is **planning only**: zero new experiments/tests/timings/proofs/estimators,
+parameter approvals or production changes. E108103 tests and earlier227/113/
+448/1965 scopes remain separate, unchanged and not added. Raw observations,
+negative results, source/binary snapshots, company homemade HE/native/CUDA/SEAL
+controls and protected main/staging/checkpoints remain intact. The
+[validation receipt](contribution-plan-validation-20261003.json) checks preserved
+identities, appended source records, archive hashes, queue and document links.
