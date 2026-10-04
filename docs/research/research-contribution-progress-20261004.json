@@ -290,9 +290,11 @@
       ],
       "next_control_registration": {
         "milestone": "Q76.5_certificate_resource_client_context_handoff_with_early_Q79.1",
-        "status": "unregistered_unimplemented",
+        "status": "registered_unimplemented_certificate_handoff",
         "scope": "Independent effect/certificate checker, honest-owner client descriptor, resource/lifetime handoff and early claim-to-prior discriminator",
-        "new_HE_or_timing_authorized_by_cache_return": false
+        "new_HE_or_timing_authorized_by_cache_return": false,
+        "file": "docs/research/native-shared-query-certificate-registration-20261004.json",
+        "next_component": "reference_specification_and_toolchain_freeze"
       },
       "matched_authenticated_mutable_cache": {
         "complete_bounded_gate": true,
@@ -673,16 +675,21 @@
   },
   "top_level_count_scope_note": "Top-level new_HE_experiments/tests describe the original Q74/Q75 return. Q76 milestone receipts and later planning revisions have separate non-additive units.",
   "preserved_latest_implementation_checkpoint": {
-    "commit": "155d69f180f6e11a9a87734fdb6249699e9f0549",
-    "implementation_commit": "10e2169b64775da832502113abcd94b9b4ce850a",
-    "test_followup_commit": "b4ab43d972c1664ced61686b1ae72f49b6027874",
-    "tag": "checkpoint/native-shared-query-aggregate-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/manifest.json",
-    "manifest_sha256": "7f128f3bf011cb46011491ed2f22ed98f51ac911504f256bdadda69600c88caf",
-    "evidence_archive_members_verified": 117,
+    "commit": "6cffed1548c8fe5b701d9d1a20f5b15a4709c54a",
+    "implementation_commit": "890b2810231540cbf2af4ead3b2ebe69cbdcd2c9",
+    "tag": "checkpoint/native-shared-query-cache-2026-10-04",
+    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/manifest.json",
+    "manifest_sha256": "731c36058c63a90a920d9fe7f896b9af8ab52c31adb509ec2e127dd3c11a4152",
+    "evidence_archive_members_verified": 78,
     "company_archive_members_verified": 66,
     "branch_and_tag_remote_verified": true,
-    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/remote-verification.json"
+    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/remote-verification.json",
+    "remote_verification_receipt": {
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/remote-verification.json",
+      "bytes": 1949,
+      "sha256": "6096f3a85913d661e1577098350863deba650729ab30f58e93c9823d51c6e59f"
+    },
+    "prior_remote_verification_not_newly_repeated_for_this_promotion": true
   },
   "Q76_control_design_return": {
     "card": "docs/research/native-shared-query-product-control-card-20261004.md",
@@ -721,6 +728,18 @@
       "company_archive_members_verified": 66,
       "branch_and_tag_remote_verified": true,
       "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-replay-2026-10-04/remote-verification.json"
+    },
+    {
+      "commit": "155d69f180f6e11a9a87734fdb6249699e9f0549",
+      "implementation_commit": "10e2169b64775da832502113abcd94b9b4ce850a",
+      "test_followup_commit": "b4ab43d972c1664ced61686b1ae72f49b6027874",
+      "tag": "checkpoint/native-shared-query-aggregate-2026-10-04",
+      "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/manifest.json",
+      "manifest_sha256": "7f128f3bf011cb46011491ed2f22ed98f51ac911504f256bdadda69600c88caf",
+      "evidence_archive_members_verified": 117,
+      "company_archive_members_verified": 66,
+      "branch_and_tag_remote_verified": true,
+      "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/remote-verification.json"
     }
   ],
   "historical_plan_revisions": [
@@ -971,10 +990,13 @@
     "known_method_not_original_main": true
   },
   "last_milestone_return_utc": "2026-10-04T21:26:06.430331+00:00",
-  "current_implementation_checkpoint_pending_external_verification": {
-    "tag": "checkpoint/native-shared-query-cache-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/manifest.json",
-    "source_commit": "890b2810231540cbf2af4ead3b2ebe69cbdcd2c9",
-    "note": "Create and verify after this cache return commit; preceding verified checkpoints stay preserved"
-  }
+  "historical_implementation_checkpoint_declarations": [
+    {
+      "tag": "checkpoint/native-shared-query-cache-2026-10-04",
+      "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/manifest.json",
+      "source_commit": "890b2810231540cbf2af4ead3b2ebe69cbdcd2c9",
+      "note": "Create and verify after this cache return commit; preceding verified checkpoints stay preserved"
+    }
+  ],
+  "current_certificate_registration": "docs/research/native-shared-query-certificate-registration-20261004.json"
 }
