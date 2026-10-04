@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T13:56:59.932395+00:00",
+  "utc": "2026-10-04T14:20:48.805296+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -137,7 +137,8 @@
         "docs/research/native-shared-query-lifecycle-registration-20261004.json",
         "docs/research/native-shared-query-lifecycle-model-20261004.md",
         "docs/research/native-shared-query-lifecycle-20261004.md",
-        "docs/research/native-shared-query-lifecycle-return-20261004.json"
+        "docs/research/native-shared-query-lifecycle-return-20261004.json",
+        "docs/research/native-shared-query-gmp-preflight-20261004.md"
       ],
       "implemented": false,
       "selected": {
@@ -170,7 +171,8 @@
       "completed_native_correctness_or_lifecycle_gates": [
         "Q76.1_retained_N16_N32_public_core_only",
         "Q76.2_owner_authenticated_local_factory_only",
-        "Q76.3a_retained_local_durable_lifecycle_only"
+        "Q76.3a_retained_local_durable_lifecycle_only",
+        "Q76.3b_independent_GMP_small_preflight_only_source_run_unexecuted"
       ],
       "native_draft_not_authoritative_release_or_HE_correctness_evidence": false,
       "local_lifecycle_contract": {
@@ -350,7 +352,7 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/system-contribution-review-20261004.json",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q76.3b_independent_GMP_then_registered_source_scale",
+  "next_subtask": "Q76.3b_registered_source_scale_six_searches",
   "latest_planning_review": {
     "execution_branch": "experiment/native-shared-query-service-20261004",
     "validation_receipt": "docs/research/system-contribution-plan-validation-20261004.json",
@@ -412,6 +414,19 @@
       "timing_panels": 0,
       "actual_remote_attestation_or_release": false,
       "next": "Q76.3b_independent_GMP_then_registered_source_scale"
+    },
+    {
+      "milestone": "Q76.3b-independent-GMP-preflight",
+      "utc": "2026-10-04T14:20:48.805296+00:00",
+      "status": "complete_bounded_independent_GMP_preflight_source_run_unexecuted",
+      "producer_unit_cases": 59,
+      "separate_public_fixture_unit_cases": 2,
+      "retained_cases": 16,
+      "fresh_HE_keys": 0,
+      "private_HE_work": 0,
+      "timing_panels": 0,
+      "evidence": "docs/research/native-shared-query-gmp-preflight-20261004.md",
+      "next": "Q76.3b_registered_source_scale_six_searches"
     }
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
@@ -430,11 +445,11 @@
   },
   "top_level_count_scope_note": "Top-level new_HE_experiments/tests describe the original Q74/Q75 return. Q76 milestone receipts and later planning revisions have separate non-additive units.",
   "preserved_latest_implementation_checkpoint": {
-    "commit": "50840499716d353c76a0052417aaea546d2b95cd",
-    "tag": "checkpoint/native-shared-query-auth-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-auth-2026-10-04/manifest.json",
-    "manifest_sha256": "dc2ad3f13fd5de24dc6a809b02dcd86fecf5e7b65081d208073f9ecbca01e71d",
-    "evidence_archive_members_verified": 59,
+    "commit": "c265b979c545415b9fdd97ca806953fe469df1d1",
+    "tag": "checkpoint/native-shared-query-lifecycle-2026-10-04",
+    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-lifecycle-2026-10-04/manifest.json",
+    "manifest_sha256": "18247ddf032b1688ec8afc0b4aa13136a1085723ff697265062f78192f37bfc4",
+    "evidence_archive_members_verified": 533,
     "company_archive_members_verified": 66,
     "branch_and_tag_remote_verified": true
   }

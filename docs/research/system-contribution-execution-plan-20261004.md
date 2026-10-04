@@ -209,7 +209,9 @@ No timing panel or CUDA port precedes this gate.
 | Q76.4: matched controls | Build prepared replay and checked-product/trusted-prefix/suffix in the same native backend, plus the permitted authenticated cache. Grant layout, expansion, lazy relinearization, Karatsuba, fusion, preparation and streaming equally. | Same source/terminal/snapshot contract and full correctness gates. Count protected work, duplicate work and transfers in both directions, not just the control's return packet. |
 | Q76.5: certificate and handoff | Validate the high-level certificate independently, publish owned/resident/scratch accounting and source/codec commands, and audit the boundary. | No free input or approval-by-oracle path; full test/mutation/lifecycle report, honest limitations, ledger return selecting or stopping Q77. |
 
-**Next executable task is Q76.3b independent GMP producer, then registered source scale.** Source belongs in
+The [independent GMP preflight](native-shared-query-gmp-preflight-20261004.md)
+now passes 59 producer tests and two public fixture tests, with no fresh HE key.
+**Next executable task is Q76.3b's registered source-scale cohort.** Source belongs in
 `experiments/bfv_search_lab/_shared_query/`; Python adapter/tests beside the
 other research implementations; reproducible runners in `benchmarks/`.
 Keep isolated libraries and outer evidence. Migrate a reviewed selected
@@ -491,7 +493,8 @@ new keys, timing cohorts or protocol changes.
 
 Q76.1's isolated build/retained-fixture recipe is preserved in its receipt.
 Q76.3a's local state-machine registration and retained lifecycle gate are complete.
-Q76.3b begins with the bounded independent GMP producer. Use `.venv/bin/python -m pytest` and lint new experimental files with
+Q76.3b's bounded independent GMP preflight passes; the registered six searches follow.
+Use `.venv/bin/python -m pytest` and lint new experimental files with
 `ruff --no-force-exclude`. The public-native/lifecycle gates precede new large keys.
 The registry retains primary PDFs/text/version/hash/scope outside Git; no
 author artifact is executed merely to download or review it.
