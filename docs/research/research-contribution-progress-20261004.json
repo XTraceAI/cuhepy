@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T19:41:41.249509+00:00",
+  "utc": "2026-10-04T20:42:23.645330+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -310,7 +310,36 @@
         "one_round_60bit_not_stronger_lifetime_target",
         "Q78_actual_deployment_required_before_deployed_headline"
       ],
-      "baseline_policy_and_oracle_semantics": "Frozen compatible policies over preregistered held-out workload; charge selection/repreparation. Best per-instance measured method is a separate oracle lower bound, not a policy to claim switching beats."
+      "baseline_policy_and_oracle_semantics": "Frozen compatible policies over preregistered held-out workload; charge selection/repreparation. Best per-instance measured method is a separate oracle lower bound, not a policy to claim switching beats.",
+      "planned_calibration_and_held_out_split": {
+        "planned_total_blocks_per_implementation": 18,
+        "planned_total_query_observations_per_implementation": 144,
+        "calibration_blocks": 6,
+        "calibration_observations": 48,
+        "held_out_blocks": 12,
+        "held_out_observations": 96,
+        "warmups_excluded": 18,
+        "partition": "First block per key/size calibration; freeze policies then remaining two blocks held out",
+        "unexecuted_future_registration": true,
+        "dependent_within_key_corpus": true,
+        "additional_update_checks_not_added_to_query_observation_total": true
+      },
+      "primary_latency_metric": {
+        "primary": "mean client-visible completion delay over a preregistered arrival/device/update trace",
+        "completion": "Complete authenticated admitted decoded distance vector and ordinal top-k with bound IDs",
+        "trace_weights_arrivals_initial_state_frozen_before_held_out": true,
+        "separate_dimensions": [
+          "first_answer_delay",
+          "tail_delay",
+          "makespan",
+          "server_client_protected_CPU_work",
+          "links_both_directions",
+          "owned_resident_scratch_memory"
+        ],
+        "background_contention_and_policy_repreparation_paid": true,
+        "remote_policy_20_percent_gate_is_not_cache_or_paper_gate": true,
+        "prototype_latency_is_not_deployed_protected_latency": true
+      }
     },
     {
       "id": "Q78",
@@ -336,10 +365,11 @@
       "early_discriminator": {
         "subtask": "Q79.1",
         "during": "Q76.5_before_Q77",
-        "status": "design_scope_defined_not_priority_clearance",
+        "status": "local_prior_mapping_written_executable_certificate_and_external_priority_unfinished",
         "deliverable": "Precise claim-to-prior mapping and strongest compatible counterconstruction; close a contained claim rather than claiming novelty from a combined implementation",
         "new_preliminary_HE_experiment": false,
-        "external_review_still_required": true
+        "external_review_still_required": true,
+        "local_mapping": "docs/research/closest-work-contract-matrix-20261004.md"
       }
     },
     {
@@ -373,6 +403,19 @@
         "docs/research/paper-system-reassessment-20261004.json"
       ],
       "outcome": "Keep selected homemade BGV; add VERITAS/WAHC2024 controls; separate exact generic selector validation from systems originality; fix finite hypothesis/native-control handoff"
+    },
+    {
+      "id": "P3",
+      "title": "Closest-work mapping and finite publication build handoff",
+      "status": "complete_targeted_planning_scope",
+      "dependencies": [
+        "P2"
+      ],
+      "is_new_experiment": false,
+      "evidence": [
+        "docs/research/paper-build-handoff-review-20261004.json"
+      ],
+      "outcome": "Prioritize canonicalization placement; map prior interfaces; define latency and in-cap calibration/held-out split; preserve cache/certificate queue"
     }
   ],
   "next_task": "Q76",
@@ -462,7 +505,7 @@
   "current_closest_review": "docs/research/closest-work-contract-matrix-20261004.md",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
   "next_subtask": "Q76.4c_permitted_authenticated_cache",
-  "latest_planning_review": "docs/research/publication-system-design-review-20261004.json",
+  "latest_planning_review": "docs/research/paper-build-handoff-review-20261004.json",
   "latest_execution_return": "docs/research/native-shared-query-aggregate-return-20261004.json",
   "Q76_execution_returns": [
     {
@@ -568,23 +611,25 @@
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
   "latest_plan_revision": {
-    "utc": "2026-10-04T19:41:41.249509+00:00",
-    "receipt": "docs/research/paper-contribution-discriminator-review-20261004.json",
+    "utc": "2026-10-04T20:42:23.645330+00:00",
+    "receipt": "docs/research/paper-build-handoff-review-20261004.json",
     "guide": "docs/research/paper-contribution-discriminator-20261004.md",
-    "planning_baseline": "8bfe630dbe49b064abbd601784fb4689ddde634f",
+    "planning_baseline": "09d2b15120ca8a18e1c94d832fc88ece25d74bb7",
     "implementation_baseline": "155d69f180f6e11a9a87734fdb6249699e9f0549",
-    "scope": "Strongest compatible counterconstruction, retained evidence reanalysis and finite one-main-result paper plan",
-    "progress_classification": "planning_and_public_retained_data_reanalysis_only",
+    "scope": "Targeted prior mapping, saved-result audit and concrete finite paper build handoff",
+    "progress_classification": "planning_and_read_only_retained_result_audit",
     "new_HE_key_contexts": 0,
     "new_HE_experiments": 0,
+    "new_plaintext_control_probes": 0,
     "new_regression_invocations": 0,
     "new_timing_panels": 0,
-    "new_public_plaintext_control_probes": 1,
-    "saved_source_top3_cases_reanalysed": 6,
+    "new_native_builds": 0,
     "new_source_records": 0,
     "author_artifacts_executed": 0,
+    "old_timing_medians_rederived": 5,
+    "selected_geometry_body_models_rederived": 3,
     "next_executable_subtask": "Q76.4c_permitted_authenticated_cache",
-    "early_originality_discriminator": "Q76.5/Q79.1 inherited/adapted/substantive interface mapping before Q77",
+    "early_originality_discriminator": "local_prior_mapping_written_executable_certificate_and_external_priority_unfinished",
     "original_main_accepted": false
   },
   "top_level_count_scope_note": "Top-level new_HE_experiments/tests describe the original Q74/Q75 return. Q76 milestone receipts and later planning revisions have separate non-additive units.",
@@ -672,6 +717,26 @@
       "early_originality_discriminator": "Q76.5/Q79.1 prior counterconstruction before Q77; final external review still required",
       "conditional_query_only_TEE_variant_registered_or_selected": false,
       "superseded_by_planning_receipt": "docs/research/paper-contribution-discriminator-review-20261004.json"
+    },
+    {
+      "utc": "2026-10-04T19:41:41.249509+00:00",
+      "receipt": "docs/research/paper-contribution-discriminator-review-20261004.json",
+      "guide": "docs/research/paper-contribution-discriminator-20261004.md",
+      "planning_baseline": "8bfe630dbe49b064abbd601784fb4689ddde634f",
+      "implementation_baseline": "155d69f180f6e11a9a87734fdb6249699e9f0549",
+      "scope": "Strongest compatible counterconstruction, retained evidence reanalysis and finite one-main-result paper plan",
+      "progress_classification": "planning_and_public_retained_data_reanalysis_only",
+      "new_HE_key_contexts": 0,
+      "new_HE_experiments": 0,
+      "new_regression_invocations": 0,
+      "new_timing_panels": 0,
+      "new_public_plaintext_control_probes": 1,
+      "saved_source_top3_cases_reanalysed": 6,
+      "new_source_records": 0,
+      "author_artifacts_executed": 0,
+      "next_executable_subtask": "Q76.4c_permitted_authenticated_cache",
+      "early_originality_discriminator": "Q76.5/Q79.1 inherited/adapted/substantive interface mapping before Q77",
+      "original_main_accepted": false
     }
   ],
   "publication_design": "docs/research/publication-system-design-20261004.md",
@@ -694,27 +759,70 @@
       "negative_result": "Separately original rigorous finding; current exact work observation alone insufficient",
       "fallback": "Company engineering if no defensible main contribution survives",
       "not_three_additional_experiment_queues": true
-    }
+    },
+    "primary_execution_question": "Does delegated common-Q source construction plus complete public admission improve paid execution over equally optimized protected native construction, after producer/witness/state and permitted cache costs?",
+    "Q77_primary_metric": {
+      "primary": "mean client-visible completion delay over a preregistered arrival/device/update trace",
+      "completion": "Complete authenticated admitted decoded distance vector and ordinal top-k with bound IDs",
+      "trace_weights_arrivals_initial_state_frozen_before_held_out": true,
+      "separate_dimensions": [
+        "first_answer_delay",
+        "tail_delay",
+        "makespan",
+        "server_client_protected_CPU_work",
+        "links_both_directions",
+        "owned_resident_scratch_memory"
+      ],
+      "background_contention_and_policy_repreparation_paid": true,
+      "remote_policy_20_percent_gate_is_not_cache_or_paper_gate": true,
+      "prototype_latency_is_not_deployed_protected_latency": true
+    },
+    "Q77_planned_split": {
+      "planned_total_blocks_per_implementation": 18,
+      "planned_total_query_observations_per_implementation": 144,
+      "calibration_blocks": 6,
+      "calibration_observations": 48,
+      "held_out_blocks": 12,
+      "held_out_observations": 96,
+      "warmups_excluded": 18,
+      "partition": "First block per key/size calibration; freeze policies then remaining two blocks held out",
+      "unexecuted_future_registration": true,
+      "dependent_within_key_corpus": true,
+      "additional_update_checks_not_added_to_query_observation_total": true
+    },
+    "local_prior_mapping": "Written; interfaces inherited/adapted, distinct main result not established",
+    "security_feasibility_card_before_Q77": true
   },
   "historical_planning_checkpoint_declarations": [
     {
       "tag": "checkpoint/publication-admission-design-2026-10-04",
       "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/manifest.json",
       "note": "Created and verified externally after this planning commit; current aggregate checkpoint retained above"
+    },
+    {
+      "tag": "checkpoint/paper-contribution-discriminator-2026-10-04",
+      "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-contribution-discriminator-2026-10-04/manifest.json",
+      "note": "Create/verify externally after this planning commit; prior verified checkpoints remain authoritative"
     }
   ],
   "preserved_latest_planning_checkpoint": {
-    "commit": "8bfe630dbe49b064abbd601784fb4689ddde634f",
-    "tag": "checkpoint/publication-admission-design-2026-10-04",
+    "commit": "09d2b15120ca8a18e1c94d832fc88ece25d74bb7",
+    "tag": "checkpoint/paper-contribution-discriminator-2026-10-04",
     "manifest": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/manifest.json",
-      "bytes": 21237,
-      "sha256": "302da1a0b9e19a08f044a9d43caedfa73a933d199c8e33282416fd744c9cdb53"
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-contribution-discriminator-2026-10-04/manifest.json",
+      "bytes": 24951,
+      "sha256": "2f8c3387b4973903de0c53f7892045025b1caf6b0d68b9b6663e59ad3de1e0a7"
     },
     "branch_and_tag_remote_verified": true,
-    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/remote-verification.json",
-    "evidence_archive_members_verified": 35,
-    "company_archive_members_verified": 66
+    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-contribution-discriminator-2026-10-04/remote-verification.json",
+    "remote_verification_receipt": {
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-contribution-discriminator-2026-10-04/remote-verification.json",
+      "bytes": 2114,
+      "sha256": "20f05e5c011d75efd4a5fab120ec27c73195e7b224b565b895b8ec484eaf6361"
+    },
+    "evidence_archive_members_verified": 48,
+    "company_archive_members_verified": 66,
+    "prior_remote_verification_not_newly_network_repeated_for_this_promotion": true
   },
   "selected_top_k_contract": {
     "rank_key": [
@@ -744,9 +852,9 @@
     "guide": "docs/research/paper-contribution-discriminator-20261004.md"
   },
   "current_planning_checkpoint_pending_external_verification": {
-    "tag": "checkpoint/paper-contribution-discriminator-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-contribution-discriminator-2026-10-04/manifest.json",
-    "note": "Create/verify externally after this planning commit; prior verified checkpoints remain authoritative"
+    "tag": "checkpoint/paper-build-handoff-2026-10-04",
+    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-build-handoff-2026-10-04/manifest.json",
+    "note": "Create/verify externally after this planning commit; earlier verified checkpoints remain authoritative"
   },
   "planned_verification_custody_effects": {
     "HE_decryption_key": "Owner/client only in the primary selected contract",
@@ -768,5 +876,20 @@
     "query_only_confidential_variant": "Separate unselected query-custody contract",
     "no_HE_key_implies_no_other_CPU_secret": false,
     "guide": "docs/research/paper-contribution-discriminator-20261004.md"
-  }
+  },
+  "historical_verified_planning_checkpoints": [
+    {
+      "commit": "8bfe630dbe49b064abbd601784fb4689ddde634f",
+      "tag": "checkpoint/publication-admission-design-2026-10-04",
+      "manifest": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/manifest.json",
+        "bytes": 21237,
+        "sha256": "302da1a0b9e19a08f044a9d43caedfa73a933d199c8e33282416fd744c9cdb53"
+      },
+      "branch_and_tag_remote_verified": true,
+      "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/remote-verification.json",
+      "evidence_archive_members_verified": 35,
+      "company_archive_members_verified": 66
+    }
+  ]
 }

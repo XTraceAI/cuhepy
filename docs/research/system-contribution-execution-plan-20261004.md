@@ -62,6 +62,15 @@ typing; Argos supplies integrity-only attested HE and application input binding.
 The proposed distinction must survive their compatible specialization. A compiler that merely renames known transformations, or a
 fast evaluator with an expensive verifier, does not meet the paper gate.
 
+The latest [decision guide](paper-contribution-discriminator-20261004.md)
+prioritizes one concrete boundary: untrusted common-Q source construction
+versus protected native construction, with complete admission and the same
+terminal frame. The [claim mapping](closest-work-contract-matrix-20261004.md)
+marks supporting interfaces inherited/adapted. No substantive new theorem or
+paid execution result has yet survived the comparison. The
+[build-handoff receipt](paper-build-handoff-review-20261004.json) separates
+this planning work from executed correctness gates.
+
 There are **zero remaining preliminary gates in the selected Q74/Q75 plan**.
 There are four system packages: Q76 implementation/control, Q77 evaluation,
 Q78 deployment/security, and Q79 final originality/paper decision. Optional
@@ -382,6 +391,53 @@ separate post-32-row-update correctness check per distinct implementation.
 Thus there are 18 matched blocks and 144 measured queries per implementation;
 these are dependent within a key/corpus and are not 144 independent setups.
 Identical candidate/known-composition code is an alias, not another experiment.
+
+### Freeze a metric and a genuine held-out split
+
+Use **client-visible completion delay** as the primary latency metric:
+`mean_j(completion_j - arrival_j)` over a declared query/device/update trace.
+Completion means the client has authenticated, admitted and decoded complete
+distances and produced ordinal top-k with bound IDs. Local prototype latency
+is explicitly labelled; deployed protected latency requires Q78. Freeze
+arrivals, horizons, update placement, trace weights, hardware roles and initial
+state before the held-out stage. Report failures/timeouts, rather than silently
+removing them from a successful subset.
+
+Report first-answer delay, makespan, tail delay, server/client/protected CPU
+work, both link directions and owned/resident/scratch memory separately. Do not
+add bytes, milliseconds and memory into an adjustable scalar. Setup/acquisition/
+updates enter the measured scheduling graph; background work is not zero-cost
+because it lies outside one answer's critical path. Give all policies equal
+permitted observations and charge selection/repreparation. Show cold, warm and
+update results separately, alongside any preregistered aggregate.
+
+Within the **existing** 18-block/144-query cap, use the first fresh-process
+block per key/size for calibration: 6 blocks and 48 observations. Then freeze
+and hash policies, cost data, legal choices and the generic-selector control.
+The remaining two blocks per key/size are held out: 12 blocks and 96
+observations. All 18 excluded warmups and separate update checks keep their
+own units. This is a future registration, not a relabelling of old runs. Do not
+call all 144 observations held out, add hidden calibration cohorts or change
+policies after viewing held-out performance. Observations remain correlated
+within key/corpus; two keys do not support population-wide hardware/security
+claims. Preserve every block, its pairing and resource qualifications.
+
+The 20% project gate compares latency selection against the best compatible
+frozen **remote** policy under the declared trace. Passing it does not establish
+a win against cache or a publishable contribution. The paper utility gate
+separately requires a useful region after the strongest permitted cache/
+acquisition/prefetch control and a meaningful prior-system distinction. A
+same-information exact generic selector is a validation control; a retrospective
+per-instance minimum is an oracle lower bound. Neither is a fixed policy that
+mere switching can claim to beat.
+
+Q76.5 must provide a security-feasibility card before freezing this profile for
+paper evaluation: actual secret/error/seed laws, evaluation-key basis and
+related-secret assumptions, public correctness bounds, parameter-estimation
+scope and unresolved private side channels. A failed parameter/origin premise
+returns to a revised registration before more keys or timing. Final independent
+cryptographic/deployment approval remains Q78; successful timings/correctness
+alone cannot supply it.
 
 Primary protected-contract controls are complete deterministic admission,
 equally prepared replay and checked-product/trusted-suffix. Also report the

@@ -190,6 +190,61 @@ than relabeling this recomputation as a faster check.
 
 ## Make the certificate and theorem handoff specific
 
+### Promote one concrete execution question
+
+The primary candidate is **outsourcing dynamic representation construction
+only when its complete admission is cheaper than constructing it inside the
+protected boundary**. In the full-relation plan, the untrusted producer
+supplies canonical common-Q expansion sources. Public admission parses their
+shared integers, derives digits, lowers both limbs and checks the complete
+relation. Prepared replay derives those sources internally from the original
+ciphertext. Both finish the same exact frame.
+
+Test whether avoiding particular inverse-transform/CRT/source-construction
+work outweighs the producer, approximately 120MiB witness, parsing, additional
+transforms and state. This is unmeasured. Replay's common-Q CRT/digits already
+use fixed-width native arithmetic; only the terminal codec uses GMP. Do not
+motivate a result with Python/GMP conversions absent from this comparator.
+
+The exact aggregate seam is a **negative control for redundant delegation**:
+it recomputes expected products rather than avoiding them. Preserve and measure
+its overhead, but do not start another kernel project expecting a speedup from
+its witness reduction alone. Randomized/proof delegation needs its separately
+justified relation and paid adapter.
+
+| Priority | Candidate result | Promotion gate | Reason to stop or narrow |
+| --- | --- | --- | --- |
+| 1 | A canonicalization/admission placement finding in the no-HE-secret contract | Q76.5 validates both plans; Q77 finds a paid held-out advantage and explains the boundary. Strong replay/cache/generic controls receive equal information/arithmetic. | No distinct complete execution wins, or a compatible predecessor already demonstrates the claimed finding. Retain engineering. |
+| 2, conditional | Bounded-state multi-object execution with one authenticated query prefix | Measured state/prefix bottleneck and justified corpus beyond two groups. Prove per-group bounds/complete authenticated coverage before a separately capped extension. | Ordinary streaming/replay obtains the same useful result, or cache eliminates the region. No new sharing claim. |
+| 3, separate contract | Query-confidential protected evaluation using a linear encrypted index | Decisive query-prefix/product cost and accepted confidential-query deployment; paid Slalom/EMVP/linear-HE controls. | Known construction contains it, masking/noise/custody is unsafe, or no paid advantage. Do not promote it silently into the primary contract. |
+| Supporting now; formal main only after a new gap | Native representation-to-authorized-release refinement | Complete supporting specification; a formal main also needs a non-routine reviewed distinction from ILA + vFHE/Argos + validation. | The prior composition suffices. Keep the assurance artifact without a new general theorem claim. |
+
+This selects no new experiment or parameter grid. The
+[claim mapping](closest-work-contract-matrix-20261004.md) labels current
+interfaces inherited or adapted; none is an accepted substantive new result.
+A crossover also needs a meaningful strongest-system distinction, rather than
+a renamed cost function. Return each decision to the existing ledger.
+
+### Account for the cache before promoting an outsourcing headline
+
+The retained selected graph supplies this **raw-body accounting**, not a new
+network or cache measurement:
+
+| Records | Packed vectors | Ordered IDs | Client coefficient body per query | Replies whose coefficient bodies cover one packed-vector body |
+| ---: | ---: | ---: | ---: | ---: |
+| 8,224 | 526,336 B | 65,792 B | 102,400 B | 6 |
+| 16,384 | 1,048,576 B | 131,072 B | 102,400 B | 11 |
+| 32,768 | 2,097,152 B | 262,144 B | 204,800 B | 11 |
+
+The last column is `ceil(vector_bytes / coefficient_reply_bytes)`. It compares
+downloads only if both paths acquire the same complete ordered-ID context;
+that common acquisition then cancels. AEAD/authentication headers, private
+context, upload, setup, transport, updates and CPU work are excluded. This is
+neither a latency break-even nor a cache-dominance theorem. The new cache/
+context gates must replace bodies with actual packets/state. These counts make
+a long returning-device outsourcing claim at this small scale demanding.
+Time prefetch as a competing dependency graph with shared-link/CPU contention.
+
 Q76.5 produces a specification/checker independent of the optimizer. Planned
 source locations are `experiments/bfv_search_lab/shared_query_certificate.py`,
 adjacent `test_shared_query_certificate.py`, a public runner in `benchmarks/`,
@@ -236,7 +291,7 @@ before committing to the large Q77 panel; external review remains required.
 | --- | --- | --- |
 | Q76.4c — two native milestones remain overall | Authenticated compact mutable cache, strict current descriptor, native all-score/ordinal-tie search with bound IDs, bounded 32-row update and paid cold/prefetch paths | Correctness/authentication/resource gate including reversed-ID ties; return to ledger, then Q76.5. Zero new HE keys or timings in this correctness gate. |
 | Q76.5 + early Q79.1 | Certificate/checker, reference/refinement specification, resource and client-context handoff, claim-to-prior counterconstruction | Select only invariant-supported methods for Q77. Close a contained certificate/algorithm claim explicitly. Keep company engineering even if its novelty claim closes. |
-| Q77 | Frozen same-backend complete-cost cohort and held-out policy/representation/state ablations | Seek H1/H2/H3 with paid setup, acquisition, updates, both links and strong cache/replay/randomized scope. Retain the 18 blocks/144 dependent queries per implementation cap and old qualifications. No workload tuning after results. |
+| Q77 | Frozen same-backend complete-cost cohort and held-out policy/representation/state ablations | Seek H1/H2/H3 with paid setup, acquisition, updates, both links and strong cache/replay/randomized scope. Retain 18 blocks/144 dependent queries: 6 blocks/48 calibration observations then 12 blocks/96 held-out observations. No workload tuning after results. |
 | Q78 | Selected real protected deployment, private release/freshness, parameter/sampler/side-channel assurance and relevant comparison rerun | Establish the actual trust contract before any secure-service latency statement. Optional kernels/cuts are selected by a paid bottleneck. |
 | Q79 | Claim/evidence table, artifact restoration and paper, with human external review | Choose a supported main result or retain an engineering-only outcome. No automatic publication promise. |
 
@@ -261,3 +316,10 @@ There are **zero broad preliminary gates left**, **two immediate native
 milestones**, and then the three existing evaluation, deployment/security and
 paper packages. This revision completes a planning/counterconstruction-design
 task only. The next executable implementation task stays **Q76.4c cache**.
+
+The [build-handoff review](paper-build-handoff-review-20261004.json) records
+the later planning return at `09d2b15120ca8a18e1c94d832fc88ece25d74bb7`. It
+advances the local claim mapping, rechecks five saved medians/three geometries,
+and specifies the primary latency metric and calibration split. It adds no
+HE, timing, tests, build, author execution, formal proof or production change.
+The implementation/certificate queue is unchanged.

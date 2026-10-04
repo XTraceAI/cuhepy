@@ -151,6 +151,47 @@ strong compatible control, or copy Argos's no-CPU-secret argument to a CPU signe
 
 ## Known ingredients that every compatible control receives
 
+### Claim-by-claim handoff after the strongest reference construction
+
+This mapping advances early Q79.1's **local design review**. It does not
+complete the executable certificate, reproduce author backends, or clear
+priority. "Adapted" means a proof/implementation obligation remains; it does
+not mean a new research result. No row currently has evidence for a substantive
+new theorem or measured system result.
+
+| Proposed obligation | Strong compatible predecessor | Status for our main claim | Specific remaining deliverable |
+| --- | --- | --- | --- |
+| Exact signed binary matching and compact encrypted scores | HERS plus credited coefficient expansion and delayed maintenance | Inherited mechanism | Preserve coefficient-ring encoding, complete distances and ordinal ties; exclude approximate compression. |
+| Valid owner origin, message and noise bounds | ILA's valid-model semantics; Argos's application input validation | Adapted supporting assurance | Instantiate our sampler/key/encoding and Q-to-P codec. Signatures authenticate origin; they do not prove semantic types. |
+| Correct protected execution without an HE secret | Argos's attested circuit execution | Inherited architecture | Bind original request, snapshot and actual binary; implement the protected boundary. Local signatures/replay are not attestation. |
+| Verification before private work with observable public rejection | vFHE's malicious-server definition; Argos's verify-before-decrypt flow | Inherited goal, adapted protocol | State ideal exact-search leakage and prove authorized frames are the intended valid computation. No first oracle-defense claim. |
+| Delegated tensor/aggregate checking | vFHE Appendix D, including untrusted accelerators | Inherited mechanism, randomized adapter unexecuted | Align ring/component challenges, commitments, complete maintenance and lifetime target. Exact recomputation is not this entire comparator. |
+| Common-Q digits, actual RNS limbs and maintained ciphertext relations | Corrected ring-verification methods; vFHE's maintenance discussion | Adapted supporting assurance | Prove shared-integer representation and the complete coordinate adapter. A backend adaptation is not automatically a new proof technique. |
+| Independent schedule/ownership validation | FlowCert; conversion-aware Silph/CirC assignment | Inherited methods, adapted effects | Add HE-origin, representation and authority effects; grant the generic control duplicated representations and equal observations. |
+| Current snapshot, failed-attempt consumption and at-most-once release | Stateful authenticated services; prior input/database binding | Adapted supporting assurance | Specify non-rollback authority, crash-lost delivery and client acceptance. A SQLite journal is not a new state-machine contribution. |
+| Owner plaintext retention, mutable backup and prefetch | Ordinary authenticated storage and local search | Inherited allowed control | Implement ordinal ties, a fresh current descriptor and bounded updates; pay acquisition and contention. |
+| Useful complete execution missed by evaluator-only selection | Known conversion-aware assignment plus the complete protected/cache controls | Systems hypothesis; no distinct measured result yet | Identify the plan, justified workload and paid crossover. Equal-cost generic selection should match it; no superior generic optimizer claim. |
+
+Supporting assurance can proceed with established techniques. The formal-paper
+branch cannot yet be selected on a novel type-system/admission/composition
+claim. The systems branch remains eligible for a **specific** execution
+finding, but must demonstrate and distinguish it from applicable complete
+systems. Unknown predecessor adaptation cost remains unknown.
+
+Five existing primary PDF/text pairs were rehashed and copied for this return;
+six complete pages were inspected with adjacent text: ILA page9 (§5.1.2,
+trusted initial inputs), Argos page8 (§§6-7, application validity/database
+binding), vFHE pages13/18 (evaluation scope and delegated tensor checks),
+Silph page6 (multiple representations), and BioZKFHE page10 (current proof
+domain and extension requirements). Primary links and versions appear above.
+This targeted reading is not a fresh proof audit of all 120 source records.
+
+The native audit also prevents an unfair arithmetic baseline: replay already
+reconstructs common-Q integers/canonical digits with fixed-width `Wide` CRT in
+`shared_query.cpp`, rather than GMP at every digit. Its exact terminal codec
+still uses GMP. Time these actual stages; an assumed slow GMP replay would
+manufacture a gap. Source reading is not an instruction count or timing.
+
 | Ingredient | Primary predecessor / retained reading | Comparison requirement |
 | --- | --- | --- |
 | Predivided coefficient-query expansion | [SealPIR](https://eprint.iacr.org/2017/1142), pinned original client/server source; [MulPIR](https://www.usenix.org/system/files/sec21-ali.pdf), §§3.1–3.2 | Once-per-query expansion, seeded symmetric queries and compatible pre-normalization are credited. Bind all expanded branches to the original owner ciphertext. |

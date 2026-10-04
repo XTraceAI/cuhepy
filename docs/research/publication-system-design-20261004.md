@@ -137,6 +137,17 @@ affected encrypted-group refresh; do not use an unvalidated linear HE patch.
 The known-composition alias is not an extra implementation. Final method and
 workload counts are frozen in the Q77 registration rather than inferred here.
 
+The later build-handoff plan fixes a genuine split within that cap: the first
+block per key/size gives 6 calibration blocks/48 observations; policies are
+then frozen before the remaining 12 blocks/96 held-out observations. The 144
+total is not 144 held-out or independent experiments. Primary latency is mean
+client-visible completion delay over a preregistered arrival/device/update
+trace; bytes, CPU work and memory remain separate dimensions. Cold, warm,
+updates and actual prefetch contention are explicit. Passing the 20% remote-
+policy project gate does not defeat the permitted cache. See the
+[execution plan](system-contribution-execution-plan-20261004.md) for the metric,
+security-feasibility card and finite gate.
+
 Use an idle window, paired order, clocks/activity/swap/thermal records and
 synchronized boundaries. Calibrate and freeze policies before held-out
 measurements; charge selection, preparation changes and overlap from a
