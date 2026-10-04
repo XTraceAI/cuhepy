@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "task": "Q76.2",
+  "utc": "2026-10-04T12:00:31.045866+00:00",
+  "parent_commit": "7efab9f87ca441b650b94b3fae3dfe11ba42aa54",
+  "branch": "experiment/native-shared-query-service-20261004",
+  "complete_bounded_owner_authenticated_factory_gate": true,
+  "cohort": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-authenticated-factory-20261004/retained-cohort1/Q76.2-authenticated-core.json",
+    "bytes": 132899,
+    "sha256": "891a95e0088f36644b16c1b6fbb8a9338ff5cf7d7a49b4001184ad1868a49187"
+  },
+  "retained_complete_cases": 16,
+  "retained_HE_key_contexts": 2,
+  "context_faults": 112,
+  "body_frame_grammar_faults": 48,
+  "request_signature_faults": 16,
+  "tests": {
+    "final_suite_cases": 68,
+    "final_passed": 68,
+    "first_passed": 65,
+    "overlapping_invocations_not_added": true,
+    "no_skips_or_warnings": true,
+    "first_log": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-authenticated-factory-20261004/pytest-first.txt",
+      "bytes": 99,
+      "sha256": "75400c098bee3b83732b89327f70fbdf40d53dea4cf6837597b806d41321f5bd"
+    },
+    "final_log": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-authenticated-factory-20261004/pytest-final.txt",
+      "bytes": 99,
+      "sha256": "1b31415680ac15c2108f07d999cf3b83f8c7e908cedbba667d8de5a9da38d79f"
+    }
+  },
+  "supporting_standard_Ed25519_key_contexts": {
+    "cohort": 1,
+    "first_test_invocation": 2,
+    "final_test_invocation": 2,
+    "none_serialized": true
+  },
+  "dependencies": {
+    "cryptography": "50.0.1",
+    "PyCryptodome": "3.23.0",
+    "msgpack": "1.2.2"
+  },
+  "source_archive": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-authenticated-factory-20261004/executed-source.tar.gz",
+    "bytes": 822480,
+    "sha256": "c0da12aaa06a4614c1f775feb127c30e027c858221f4d3bea67718fa2ecb6c22"
+  },
+  "source_files": 398,
+  "new_HE_key_contexts": 0,
+  "private_HE_work": 0,
+  "timing_panels": 0,
+  "production_source_files_byte_exact": 54,
+  "delivered_libraries_byte_exact": 12,
+  "main_and_staging_locally_unchanged": true,
+  "scope": "Authenticated local owner-origin enrollment and original seeded query, full public native response/context check; public predicate only",
+  "limitations": [
+    "Signatures bind exact bytes but do not prove binary encoding, error support or approved parameters",
+    "Trusted local code/filesystem; policy code hashes are not attestation",
+    "No current-snapshot or nonce-consumption authority; public acceptance is repeatable",
+    "No private callback/release, durable lifecycle, source-scale native validation or actual TEE",
+    "No accepted original main or security/parameter assurance"
+  ],
+  "next": "Q76.3_lifecycle_then_registered_source_scale"
+}

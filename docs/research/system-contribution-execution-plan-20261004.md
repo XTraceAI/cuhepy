@@ -8,7 +8,8 @@ This is the current execution plan. Read the
 [progress ledger](research-contribution-progress-20261004.json).
 The [planning integrity receipt](system-contribution-plan-validation-20261004.json)
 preserves the reviewed planning baseline. The [Q76.1 core return](native-shared-query-core-20261004.md)
-records subsequent small native correctness, and the ledger controls the next step.
+and [Q76.2 factory return](native-shared-query-auth-20261004.md)
+record subsequent bounded implementation gates; the ledger controls the next step.
 The [earlier derivation and plan](research-contribution-plan-20261004.md)
 remains intact as a technical reference. Registrations and negative results
 are preserved; this document changes priorities and clarifies acceptance.
@@ -38,7 +39,7 @@ a publishable result.
 | Q74 source-profile public bounds | Owner canonical Q120 passes. Public-key-index canonical Q120 and both derived Q120 modes fail. One Q180 rescue passes its algebra screens. | Start owner canonical Q120. Do not silently substitute an input law, approve parameters from successful decryptions, or use the Q120 parser for three primes. |
 | Q75 finite resource screen | 60 cards, nine exact finite frontiers, zero compiler-cap failures; known composition has identical algebra/resources. | New expansion/gadget/asymptotic claims are closed. Models are sufficient schedules, not measured time, peaks or lower bounds. |
 | Q180 derived versus owner canonical Q120, one full group | Witness body 90.703125 versus 120.468750 MiB; modeled pointwise work about 2.81x, keys 2.25x, query/index about 1.5x. | Preserve the tradeoff, but select no larger-Q variant from bytes alone. Client response bodies remain 102,400 bytes/group. |
-| Current Q76 work | Q76.1 passes 16 retained N16/N32 native cases, 304 source/output faults and a 58-case boundary suite on normal/UBSan builds. No fresh keys or private work. | Next Q76.2 authenticates enrollment/requests. Large native correctness, lifecycle and release remain unfinished; no timing or completed-service claim. |
+| Current Q76 work | Q76.1 passes 16 retained native cases/304 faults/58 normal-UBSan tests. Q76.2 passes authenticated seeded flow on the same 16 cases/176 faults/68 tests. No fresh HE keys, private HE work or timing. | Next Q76.3 supplies lifecycle then large native correctness. Private release, real attestation and the completed service remain unfinished. |
 
 The final Q74/Q75 regression invocation passed 157 cases; that is not 157
 independent encrypted experiments. Neither those tests nor the large earlier
@@ -158,12 +159,12 @@ No timing panel or CUDA port precedes this gate.
 | Milestone | Concrete next work | Completion evidence |
 | --- | --- | --- |
 | Q76.1: public native core — complete bounded gate | Reviewed C++ core, bounded ctypes adapter and frozen isolated build/source/dependencies. Reused the 16 retained owner-canonical N16/N32 cases. | Exact GMP tapes/frames, both whole-limb schoolbook vectors, 208 source/96 output faults and 58 boundary cases on normal/UBSan builds. No source-scale or service approval. |
-| Q76.2: enrollment/request authority | Add an owner-authenticated immutable factory, seed-to-common-Q preparation, signed original request and strict complete packet grammar. Never admit arbitrary graphs or peer-provided bounds. | Signature/context/coverage/ID/key/nonce faults; producer/private-decode hooks cannot approve a packet; native handles have explicit ownership and bounds. |
+| Q76.2: enrollment/request authority — complete bounded gate | Owner-authenticated immutable factory, original seeded query, strict complete packet grammar and internal native graph. | Sixteen retained flows, 176 cohort faults and 68 unit cases pass; signed byte origin is trusted, not a plaintext/noise proof. No lifecycle or private authority. |
 | Q76.3: lifecycle and source scale | Add the fail-closed local journal; test concurrency, process/fork/restart, epoch changes, races and failed callbacks. Then run the registered N16k d512 counts 8,224/16,384/32,768 with two queries. | At most six large searches, exact independent GMP source/output/frame equality, every distance/tail/stable tie checked privately only after public acceptance. No secret key serialized. |
 | Q76.4: matched controls | Build prepared replay and checked-product/trusted-prefix/suffix in the same native backend, plus the permitted authenticated cache. Grant layout, expansion, lazy relinearization, Karatsuba, fusion, preparation and streaming equally. | Same source/terminal/snapshot contract and full correctness gates. Count protected work, duplicate work and transfers in both directions, not just the control's return packet. |
 | Q76.5: certificate and handoff | Validate the high-level certificate independently, publish owned/resident/scratch accounting and source/codec commands, and audit the boundary. | No free input or approval-by-oracle path; full test/mutation/lifecycle report, honest limitations, ledger return selecting or stopping Q77. |
 
-**Next executable task is Q76.2.** Source belongs in
+**Next executable task is Q76.3 lifecycle, then registered source scale.** Source belongs in
 `experiments/bfv_search_lab/_shared_query/`; Python adapter/tests beside the
 other research implementations; reproducible runners in `benchmarks/`.
 Keep isolated libraries and outer evidence. Migrate a reviewed selected

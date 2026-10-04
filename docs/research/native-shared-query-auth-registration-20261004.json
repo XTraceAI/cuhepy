@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "task": "Q76.2",
+  "utc": "2026-10-04T11:38:01.093822+00:00",
+  "parent_commit": "7efab9f87ca441b650b94b3fae3dfe11ba42aa54",
+  "branch": "experiment/native-shared-query-service-20261004",
+  "scope": "Owner-authenticated immutable native enrollment, signed original seeded query and complete bound reply grammar; no private release/lifecycle or actual attestation",
+  "small_correctness": {
+    "retained_owner_canonical_cases": 16,
+    "fresh_HE_keys": 0,
+    "private_HE_work": 0,
+    "timing_panels": 0,
+    "source": "Retained Q74 owner-canonical N16/N32 inputs; Q76.1 isolated ABI1202 core"
+  },
+  "owner_signatures": "Standard cryptography Ed25519; domain-separated signature on SHA256 of exact canonical payload; anchored owner public key supplied by trusted caller, never a peer-selected verification key",
+  "required_bindings": [
+    "Profile/origin law/actual ordered primes/full keys/seeded index/ordered IDs/epoch/snapshot/policy code digest",
+    "Original signed seeded query/request nonce/snapshot/epoch/policy",
+    "Every source/output coefficient and complete compact frame plus all request/snapshot/IDs context"
+  ],
+  "encoding": "Preserve original owner seeded query/index packets on the wire; charge seed-to-whole-Q expansion and expanded preparation separately",
+  "gates": [
+    "Authentication rejects before native enrollment/query arithmetic",
+    "Late malformed/noncanonical seeded index/key/query rejects",
+    "Foreign owner/key/profile/ID/order/snapshot/epoch/nonce/code context rejects",
+    "Full reply grammar, all source/terminal/frame coordinates bound; no supplied graph",
+    "No producer/private/authority hook in public verification; explicit owned handles"
+  ],
+  "limits": {
+    "packet_bytes": 2147483648,
+    "source_scale_new_keys": 0,
+    "GPU_ports": 0,
+    "callbacks_or_private_authorizations": 0
+  },
+  "assumptions": [
+    "Honest owner binary encoding and samplers; signatures do not prove origin validity",
+    "Trusted local prototype code/storage; code hashes are not attestation",
+    "Freshness/current snapshot and at-most-once release deferred to Q76.3/Q78"
+  ],
+  "next": "Return ledger after authenticated factory gate; then Q76.3 lifecycle and registered source-scale correctness"
+}
