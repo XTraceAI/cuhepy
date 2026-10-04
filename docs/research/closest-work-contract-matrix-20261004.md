@@ -12,6 +12,12 @@ Read with the [execution plan](system-contribution-execution-plan-20261004.md),
 The [previous detailed comparison](closest-work-contribution-design-20261004.md)
 and [broader system comparison](closest-work-system-blueprint-20261003.md)
 retain the earlier inspected passages and version qualifications.
+The later [strongest reference construction](paper-contribution-discriminator-20261004.md)
+uses planning checkpoint `8bfe630dbe49b064abbd601784fb4689ddde634f` and
+the same preserved implementation. It specifies the compatible prior
+composition, interface-by-interface theorem/checker handoff and finite paper
+decision. Its [review receipt](paper-contribution-discriminator-review-20261004.json)
+rechecks saved results without a new HE/timing or author-artifact run.
 
 The initial review added four cached primary papers and inspected ten rendered
 pages. The [source-scale reassessment](paper-system-reassessment-20261004.json)
@@ -26,6 +32,10 @@ specialization is slower or incapable of supporting our contract.
 
 Our selected experiment uses an owner-hidden binary index and query,
 exact all-distance Hamming output, complete ordered IDs and client top-k.
+For the selected source graph, ties use `(distance, original row ordinal)`;
+bound IDs are labels. The later decision guide identifies the older cache's
+numeric-ID rule and requires the new matched cache to honor the source rule.
+SB01 used IDs equal to positions, so its recorded comparison is unaffected.
 The owner may cache all plaintext. The server is malicious and may observe
 public admission feedback. The proposed protected checker holds no HE
 decryption secret, but correctness/freshness of its authorization is trusted.
@@ -114,6 +124,29 @@ malicious trace admission have different premises; combining their names does
 not prove a gap. If an ordinary specialization contains the claimed result,
 retain the artifact and close that claim. The final external originality
 review remains open.
+
+The executable counterconstruction is now specified in the decision guide:
+known packed graph + valid ILA-style model + Argos-style complete protected
+execution or paid vFHE delegation + independently validated schedule +
+conversion-aware assignment + permitted mutable cache/prefetch. Every claimed
+invariant must be marked inherited, adapted or substantive with a reason.
+Unknown backend adaptation is not a missing scientific capability. Supporting
+assurance may be established methodology if a distinct systems result survives;
+a formal main claim must earn a non-routine assurance distinction of its own.
+
+The current exact aggregate mode recomputes the protected prefix, all three
+paired products and suffix, and adds claim parsing/transforms/comparisons. A
+smaller aggregate body than the full witness is not an arithmetic advantage
+over original-request-only replay. This source-level work containment closes
+that particular proposed speedup rationale; it supplies no universal verifier
+lower bound or measured latency inequality. The deterministic control remains
+in Q77, and the randomized author's full adapter remains unexecuted.
+The decision guide also separates HE-key custody from signer/challenge custody.
+Its prospective known public-after-commit challenge adapter needs unpredictable
+fresh entropy and irrevocable full-claim binding, but not secrecy after that
+binding. It changes no registered method and offers no new primitive or free
+soundness/performance gain. Do not impose unnecessary challenge secrecy on a
+strong compatible control, or copy Argos's no-CPU-secret argument to a CPU signer.
 
 
 ## Known ingredients that every compatible control receives

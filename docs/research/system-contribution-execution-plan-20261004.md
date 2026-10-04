@@ -39,6 +39,18 @@ an early novelty discriminator into Q76.5, and specifies the paper/artifact and
 conditional query-only protected variant. The [review receipt](publication-system-design-review-20261004.json)
 separates this planning work from the preceding aggregate gate. No new timing,
 HE experiment, formal proof or positive originality decision follows from it.
+The later [strongest reference construction and paper decision](paper-contribution-discriminator-20261004.md)
+uses planning checkpoint `8bfe630dbe49b064abbd601784fb4689ddde634f`. It
+specifies the prior composition and theorem interfaces, independently rechecks
+saved counts/medians and closes the exact aggregate witness-size rationale for
+an arithmetic speedup over matched replay. This is a planning return with no
+new timing, runtime build, HE experiment or positive originality decision.
+That reanalysis also resolves an output-contract ambiguity: source-scale HE
+uses `(distance, original row ordinal)` and returns the corresponding ordered
+ID; the older cache helper sorts by numeric ID. SB01 IDs equaled positions, so
+its results are unaffected. The next cache/certificate gates must use the
+source rule and test reversed/nonmonotonic IDs through updates. Old APIs and
+historical contracts remain intact; see the decision guide's diagnostic.
 
 **Build one complete homemade BGV system to answer a specific research
 question: when does jointly compiling evaluation, public admission, and
@@ -102,6 +114,13 @@ papers. Prior work contains the component transformations. The possible new
 result is their contract-specific, independently assured implementation and
 an experimentally defensible design finding. External review must determine
 whether that remaining distinction is substantial enough.
+One main contribution is sufficient: for the default systems framing,
+complete supporting assurance can use established techniques while the
+execution finding must be prior-separated. A formal/security framing instead
+requires a substantive assurance result beyond a routine composition. The
+[decision guide](paper-contribution-discriminator-20261004.md) defines both
+branches and the strongest compatible counterconstruction. Do not keep seeking
+a separate novelty claim for every module or promise one from their combination.
 
 The promising scientific tension is concrete: smaller Internet replies may
 require large admission witnesses; avoiding those witnesses may require more
@@ -277,7 +296,7 @@ HE parameter experiments.
 | --- | --- | --- |
 | Q76.4a: prepared replay - bounded gate complete | Isolated native entry point/adapter uses the same canonical expansion, paired products and terminal codec, but returns the full frame without serializing unused source witnesses. The trusted factory pins mode/code/profile; replies cannot select executables or a graph. Reuse the local lifecycle. | Register 16 retained small cases plus six saved large public transcripts before implementation. Compare complete frames to independently validated retained outputs; zero new HE keys/private decryptions/timing. Test strict packet/mode/context/epoch/full-tail grammar, ownership and direct C ABI bounds. Preserve the original ABI 1202 build. |
 | Q76.4b: aggregate seam - bounded gate complete | Same-backend untrusted producer emits three canonical common-Q pre-relinearization aggregates. Protected prefix derives the genuine query; exact aggregate admission and protected suffix complete the frame. | Test both actual prime vectors, all coordinates, one-limb and component-cancellation faults, original-query/ID/snapshot binding and the existing lifecycle. Choose the exact three-product control first. Randomized control requires its separate reviewed adaptive budget/challenge argument; an unimplemented adapter stays unknown. |
-| Q76.4c: permitted cache | Owner-authenticated compact binary backup and ordered-ID descriptor, returning search and bounded 32-row invalidation. New-device acquisition may overlap the initial remote query. No HE index download is imposed on the cache. | Independent XOR/popcount/stable-ID answers, authentication/epoch/update faults and acquired/retained byte accounting. Charge preparation, private context, mutable updates and prefetch; no artificial cache prohibition. |
+| Q76.4c: permitted cache | Owner-authenticated compact binary backup and ordered-ID descriptor, returning search and bounded 32-row invalidation. New-device acquisition may overlap the initial remote query. No HE index download is imposed on the cache. | Independent XOR/popcount/all-score answers and top3 by `(distance, original ordinal)` with bound IDs, including reversed IDs; authentication/epoch/update faults and acquired/retained byte accounting. Charge preparation, private context, mutable updates and prefetch; no artificial cache prohibition. |
 | Q76.5: certificate/resource handoff | A checker separate from the optimizer validates graph effects, actual primes, common integers, origin/public phase bounds, complete coverage/terminal framing and mode-bound release assumptions. Publish a compact client provisioning descriptor and the exact owned/resident/scratch lifetime ledger. | Mutate each certificate obligation and reject before authority/private work. Document trusted-owner encoding and native/formal assurance boundaries. Freeze the complete methods and runtime budgets before Q77; stop any plan that lacks its invariant. |
 
 The replay files now exist alongside the experimental core:
@@ -294,6 +313,12 @@ the control gets the same optimization and pays three protected products.
 The registered correctness gate now passes; its complete latency is unmeasured.
 This control may expose replay dominance; it is not a promised performance improvement. Its large reference can use the saved GMP full
 outputs/C2 and independent GMP key switching, with no new private HE work.
+Source inspection now confirms that this exact aggregate checker recomputes
+the complete protected aggregate and adds canonical claim parsing, six prime
+forward NTTs per group and full comparisons. Under an identical schedule it
+removes no protected prefix/product/suffix work. Close the arithmetic-speedup
+claim based solely on reduced witness bytes; keep the complete measured control
+and separately scoped randomized/other-placement hypotheses.
 
 The [independent GMP preflight](native-shared-query-gmp-preflight-20261004.md)
 passes 59 producer tests and two public fixture tests; the later
@@ -564,7 +589,8 @@ The proof deliverables are concrete and can proceed alongside implementation:
    premises; cover every physical coordinate, not just decoded scores.
 2. **Exact-output theorem:** the graph, honest owner encoding/sampler support
    and public phase induction imply the complete Q-to-P frame decrypts to
-   every exact distance, with zero tails and the declared stable ID/tie rule.
+   every exact distance, with zero tails, top-k by `(distance, original row
+   ordinal)` and the corresponding bound IDs.
    This theorem concerns the selected origin/profile, not arbitrary ciphertexts.
 3. **Authorization invariant:** model reserve, reject, authorize, callback and
    snapshot replacement; prove at-most-once release and snapshot/request/frame
@@ -630,6 +656,16 @@ A main system paper needs all of the following:
    exists, alongside cache/control wins and limits.
 4. Correct profile/security scope, reproducible source/build/data receipts
    and external cryptographic/systems review.
+
+For this default systems paper, item 1 is one concrete prior-separated
+execution/assurance finding; item 2 is necessary supporting correctness and
+security, not a requirement to invent a new general type system. If that
+systems result closes, a formal/security framing may proceed only with its own
+substantive reviewed theorem/invariant beyond the reference composition and a
+demonstrating artifact. The 20% systems project threshold is not a definition
+of formal originality. A negative-result framing also requires a distinct
+rigorous contribution; the current exact recomputation observation alone is
+insufficient. These are decisions inside Q79, not three extra experiment queues.
 
 If only a faster implementation of known methods remains, keep it for the
 company and present it honestly as engineering/supporting evidence. If a

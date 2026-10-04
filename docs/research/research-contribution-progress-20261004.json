@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T18:51:11.997535+00:00",
+  "utc": "2026-10-04T19:41:41.249509+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -221,20 +221,59 @@
         "no_timing_claim": true,
         "no_actual_attestation": true
       },
-      "next_control_registration": {
-        "file": "docs/research/native-shared-query-aggregate-registration-20261004.json",
-        "status": "registered_unimplemented_exact_three_product_control",
-        "fresh_HE_key_cap": 0,
-        "retained_small_case_cap": 16,
-        "retained_large_case_cap": 6,
-        "timing_panels": 0,
-        "randomized_admission_rounds": 0
-      },
       "certificate_prior_counterconstruction": [
         "ILA_valid_FHE_model",
         "vFHE_or_Argos_full_protected_execution_and_input_validity",
         "conversion_aware_compiler_and_FlowCert_validation_lifetime_reasoning"
-      ]
+      ],
+      "historical_control_registration_declarations": [
+        {
+          "file": "docs/research/native-shared-query-aggregate-registration-20261004.json",
+          "status": "registered_unimplemented_exact_three_product_control",
+          "fresh_HE_key_cap": 0,
+          "retained_small_case_cap": 16,
+          "retained_large_case_cap": 6,
+          "timing_panels": 0,
+          "randomized_admission_rounds": 0
+        }
+      ],
+      "latest_control_registration": {
+        "file": "docs/research/native-shared-query-aggregate-registration-20261004.json",
+        "status": "complete_bounded_exact_aggregate_local_public_gate",
+        "fresh_HE_key_cap": 0,
+        "retained_small_case_cap": 16,
+        "retained_large_case_cap": 6,
+        "timing_panels": 0,
+        "randomized_admission_rounds": 0,
+        "return": "docs/research/native-shared-query-aggregate-return-20261004.json"
+      },
+      "next_control_registration": {
+        "milestone": "Q76.4c_permitted_authenticated_cache",
+        "status": "not_yet_registered_or_implemented",
+        "scope": "Owner-authenticated cache acquisition/mutable updates with ordinal ties and bound IDs",
+        "fresh_HE_key_cap": 0,
+        "private_HE_work": 0,
+        "timing_panels": 0,
+        "registration_before_implementation": true
+      },
+      "top_k_contract": {
+        "rank_key": [
+          "distance",
+          "original_row_ordinal"
+        ],
+        "returned_ID": "bound ordered UInt64 ID at selected ordinal",
+        "numeric_ID_is_not_tie_key": true,
+        "selected_source_reference_rule_unchanged": true,
+        "older_cache_numeric_ID_rule_preserved_for_its_own_contract": true,
+        "SB01_IDs_equal_positions_so_comparison_unchanged": true,
+        "next_gate_requires": [
+          "reversed_ID_ties",
+          "nonmonotonic_ID_ties",
+          "tie_rule_after_32_row_update"
+        ],
+        "evidence": "/home/pete/yavor-projects/xtrace-work/research-data/paper-counterconstruction-plan-20261004/retained-evidence-reanalysis.json"
+      },
+      "early_originality_counterconstruction_guide": "docs/research/paper-contribution-discriminator-20261004.md"
     },
     {
       "id": "Q77",
@@ -529,20 +568,24 @@
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
   "latest_plan_revision": {
-    "utc": "2026-10-04T18:51:11.997535+00:00",
-    "receipt": "docs/research/publication-system-design-review-20261004.json",
+    "utc": "2026-10-04T19:41:41.249509+00:00",
+    "receipt": "docs/research/paper-contribution-discriminator-review-20261004.json",
+    "guide": "docs/research/paper-contribution-discriminator-20261004.md",
+    "planning_baseline": "8bfe630dbe49b064abbd601784fb4689ddde634f",
     "implementation_baseline": "155d69f180f6e11a9a87734fdb6249699e9f0549",
-    "scope": "Closest-work/certificate/finite paper-build reassessment only; preceding aggregate control gate separately checkpointed",
-    "progress_classification": "planning_and_targeted_primary_review_only",
+    "scope": "Strongest compatible counterconstruction, retained evidence reanalysis and finite one-main-result paper plan",
+    "progress_classification": "planning_and_public_retained_data_reanalysis_only",
     "new_HE_key_contexts": 0,
     "new_HE_experiments": 0,
     "new_regression_invocations": 0,
     "new_timing_panels": 0,
-    "new_source_records": 3,
+    "new_public_plaintext_control_probes": 1,
+    "saved_source_top3_cases_reanalysed": 6,
+    "new_source_records": 0,
     "author_artifacts_executed": 0,
     "next_executable_subtask": "Q76.4c_permitted_authenticated_cache",
-    "early_originality_discriminator": "Q76.5/Q79.1 prior counterconstruction before Q77; final external review still required",
-    "conditional_query_only_TEE_variant_registered_or_selected": false
+    "early_originality_discriminator": "Q76.5/Q79.1 inherited/adapted/substantive interface mapping before Q77",
+    "original_main_accepted": false
   },
   "top_level_count_scope_note": "Top-level new_HE_experiments/tests describe the original Q74/Q75 return. Q76 milestone receipts and later planning revisions have separate non-additive units.",
   "preserved_latest_implementation_checkpoint": {
@@ -612,14 +655,26 @@
       "next_executable_subtask": "Q76.4a_prepared_replay",
       "planned_task_completed_by": "docs/research/native-shared-query-replay-return-20261004.json",
       "next_executable_subtask_after_return": "Q76.4c_permitted_authenticated_cache"
+    },
+    {
+      "utc": "2026-10-04T18:51:11.997535+00:00",
+      "receipt": "docs/research/publication-system-design-review-20261004.json",
+      "implementation_baseline": "155d69f180f6e11a9a87734fdb6249699e9f0549",
+      "scope": "Closest-work/certificate/finite paper-build reassessment only; preceding aggregate control gate separately checkpointed",
+      "progress_classification": "planning_and_targeted_primary_review_only",
+      "new_HE_key_contexts": 0,
+      "new_HE_experiments": 0,
+      "new_regression_invocations": 0,
+      "new_timing_panels": 0,
+      "new_source_records": 3,
+      "author_artifacts_executed": 0,
+      "next_executable_subtask": "Q76.4c_permitted_authenticated_cache",
+      "early_originality_discriminator": "Q76.5/Q79.1 prior counterconstruction before Q77; final external review still required",
+      "conditional_query_only_TEE_variant_registered_or_selected": false,
+      "superseded_by_planning_receipt": "docs/research/paper-contribution-discriminator-review-20261004.json"
     }
   ],
   "publication_design": "docs/research/publication-system-design-20261004.md",
-  "publication_plan_checkpoint_pending_external_verification": {
-    "tag": "checkpoint/publication-admission-design-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/manifest.json",
-    "note": "Created and verified externally after this planning commit; current aggregate checkpoint retained above"
-  },
   "paper_build_decision": {
     "primary": "complete exact-search admission certificate plus paid verification-placement/state frontier",
     "originality_status": "provisional_specific_result_not_accepted",
@@ -629,6 +684,89 @@
     ],
     "remaining_broad_preliminary_gates": 0,
     "new_parameter_grid_authorized_by_this_review": false,
-    "conditional_query_only_protected_variant": "new custody contract; register one feasibility task only after paid query-prefix/product bottleneck and justified deployment; compare Slalom/EMVP/linear HE first"
+    "conditional_query_only_protected_variant": "new custody contract; register one feasibility task only after paid query-prefix/product bottleneck and justified deployment; compare Slalom/EMVP/linear HE first",
+    "main_original_results_required": 1,
+    "supporting_assurance_may_use_known_methods": true,
+    "framing_decision_guide": "docs/research/paper-contribution-discriminator-20261004.md",
+    "framing_candidates": {
+      "default_systems": "Specific prior-separated useful execution finding plus complete supporting assurance and real deployment",
+      "formal_security": "Substantive reviewed invariant/theorem beyond routine reference composition plus demonstrating artifact",
+      "negative_result": "Separately original rigorous finding; current exact work observation alone insufficient",
+      "fallback": "Company engineering if no defensible main contribution survives",
+      "not_three_additional_experiment_queues": true
+    }
+  },
+  "historical_planning_checkpoint_declarations": [
+    {
+      "tag": "checkpoint/publication-admission-design-2026-10-04",
+      "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/manifest.json",
+      "note": "Created and verified externally after this planning commit; current aggregate checkpoint retained above"
+    }
+  ],
+  "preserved_latest_planning_checkpoint": {
+    "commit": "8bfe630dbe49b064abbd601784fb4689ddde634f",
+    "tag": "checkpoint/publication-admission-design-2026-10-04",
+    "manifest": {
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/manifest.json",
+      "bytes": 21237,
+      "sha256": "302da1a0b9e19a08f044a9d43caedfa73a933d199c8e33282416fd744c9cdb53"
+    },
+    "branch_and_tag_remote_verified": true,
+    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/remote-verification.json",
+    "evidence_archive_members_verified": 35,
+    "company_archive_members_verified": 66
+  },
+  "selected_top_k_contract": {
+    "rank_key": [
+      "distance",
+      "original_row_ordinal"
+    ],
+    "returned_ID": "bound ordered UInt64 ID at selected ordinal",
+    "numeric_ID_is_not_tie_key": true,
+    "selected_source_reference_rule_unchanged": true,
+    "older_cache_numeric_ID_rule_preserved_for_its_own_contract": true,
+    "SB01_IDs_equal_positions_so_comparison_unchanged": true,
+    "next_gate_requires": [
+      "reversed_ID_ties",
+      "nonmonotonic_ID_ties",
+      "tie_rule_after_32_row_update"
+    ],
+    "evidence": "/home/pete/yavor-projects/xtrace-work/research-data/paper-counterconstruction-plan-20261004/retained-evidence-reanalysis.json"
+  },
+  "exact_aggregate_work_containment": {
+    "scope": "Current deterministic mode with identical hardware/preparation/schedule",
+    "protected_prefix_products_suffix_recomputed": true,
+    "extra_claim_forward_prime_NTTs_per_group": 6,
+    "witness_size_alone_is_not_arithmetic_speedup_vs_replay": true,
+    "latency_measured": false,
+    "universal_verifier_lower_bound": false,
+    "Q77_control_retained": true,
+    "guide": "docs/research/paper-contribution-discriminator-20261004.md"
+  },
+  "current_planning_checkpoint_pending_external_verification": {
+    "tag": "checkpoint/paper-contribution-discriminator-2026-10-04",
+    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-contribution-discriminator-2026-10-04/manifest.json",
+    "note": "Create/verify externally after this planning commit; prior verified checkpoints remain authoritative"
+  },
+  "planned_verification_custody_effects": {
+    "HE_decryption_key": "Owner/client only in the primary selected contract",
+    "attestation_signing_key": "Protected custody still required; actual deployment must name its boundary",
+    "registered_exact_admission": "No randomized challenge",
+    "existing_randomized_card": "Hidden fresh independent challenges; unchanged, unimplemented",
+    "known_public_after_commit_adapter": {
+      "selected_or_registered_or_implemented": false,
+      "before_challenge": "Full immutable canonical claim, original inputs/request and proposed frame irreversibly bound; attempt consumed",
+      "entropy": "Fresh trusted independent and unpredictable given precommit adversarial view",
+      "after_binding": "Challenge need not remain secret for the fixed-error root argument",
+      "lifetime": "Same conditional root/union bound and global nonrollback attempt authority",
+      "required_before_selection": "Scoped proof and bounded registration; actual entropy, buffer and release review",
+      "readable_future_PRNG_state_sufficient": false,
+      "offline_Fiat_Shamir_grinding_covered_by_online_quota": false,
+      "product_count_advantage_from_custody_change": false,
+      "new_primitive_or_originality_claim": false
+    },
+    "query_only_confidential_variant": "Separate unselected query-custody contract",
+    "no_HE_key_implies_no_other_CPU_secret": false,
+    "guide": "docs/research/paper-contribution-discriminator-20261004.md"
   }
 }

@@ -8,14 +8,24 @@ Read with the [execution plan](system-contribution-execution-plan-20261004.md),
 [progress ledger](research-contribution-progress-20261004.json).
 This memo refines those living documents. It does not approve a new primitive,
 production parameters, secure-service timing, or a main originality claim.
+The later [strongest reference construction and paper decision](paper-contribution-discriminator-20261004.md)
+uses planning checkpoint `8bfe630dbe49b064abbd601784fb4689ddde634f`. It
+turns the early comparison into a concrete counterconstruction, states the
+exact aggregate work-containment observation and clarifies that one main
+original result can use established supporting assurance. Its
+[review receipt](paper-contribution-discriminator-review-20261004.json)
+rechecks saved numerical evidence; it adds no execution cohort.
 
 ## The result worth building toward
 
 Build a homemade BGV exact-search service with independently checked execution
 plans, then establish **which verification placements remain useful after
 paying for their arithmetic, internal traffic, state, updates and acquisition**.
-The strongest prospective paper combines a substantive assurance result with
-a reproducible deployment finding. Fast ciphertext evaluation alone is already
+The default prospective systems paper combines complete supporting assurance
+with a prior-separated, reproducible deployment finding. A formal/security
+framing instead requires a substantive assurance result beyond routine
+composition. One main result is enough; the supporting components need not
+each be original. Fast ciphertext evaluation alone is already
 well represented in the literature.
 
 Our specific question is whether a complete certificate can connect the
@@ -38,6 +48,10 @@ closest-work counterconstruction. A certificate, Pareto selector and TEE do
 not become original by being placed in one repository. If the distinction does
 not survive, preserve the useful engineering and revise the paper claim rather
 than promising novelty from a larger benchmark.
+The [decision guide](paper-contribution-discriminator-20261004.md) specifies
+the inherited reference, proposed refinement interfaces and systems/formal/
+negative-result paper branches. Closing a generic certificate novelty claim
+does not remove the need for a complete supporting certificate.
 
 ## Evidence that changes the build decision
 
@@ -135,7 +149,10 @@ that oracle merely by selecting one of its methods.
 ## The formal work starts with a small, explicit specification
 
 Specify `Search(snapshot, query)` as the complete ordered vector of exact
-Hamming distances, zero tails and the declared stable local top-k rule. Keep
+Hamming distances, zero tails and top-k by `(distance, original row ordinal)`,
+returning the corresponding bound IDs. Test reversed IDs in the new cache and
+certificate controls; the older cache's numeric-ID rule is a different
+contract that SB01's positional IDs did not expose. Keep
 owner origin/sampler support as explicit premises. A signature authenticates
 bytes; it does not prove those premises or a security parameter estimate.
 
