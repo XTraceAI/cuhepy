@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "task": "Q76.1",
+  "utc": "2026-10-04T11:28:29.114858+00:00",
+  "parent_commit": "719da6e7139eee3a46404a5ef14c4c63dbad3afb",
+  "branch": "experiment/native-shared-query-service-20261004",
+  "complete_bounded_public_core_gate": true,
+  "ABI": 1202,
+  "cohort": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/retained-cohort1/Q76.1-retained-core.json",
+    "bytes": 126760,
+    "sha256": "ba12f0d6f59ea3de2ce5c03b481f8b6509b34761de890601e2506e1356b508cd"
+  },
+  "retained_complete_cases": 16,
+  "retained_key_contexts": 2,
+  "source_coordinate_faults": 208,
+  "output_coordinate_faults": 96,
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q experiments/bfv_search_lab/test_native_shared_query.py",
+    "suite_cases": 58,
+    "normal_build_passed": 58,
+    "ubsan_build_passed": 58,
+    "not_116_independent_cases": true,
+    "normal_run_source": "Tool session exit code 0 and complete 58-passed output, prior to retained-cohort1",
+    "ubsan_log": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/ubsan-pytest.txt",
+      "bytes": 611,
+      "sha256": "e47dcd787dee5bf9fcefdd474b78158bf15ed10545d1d599823ab9702d2a4ab7"
+    },
+    "warning": "The intentional fork-with-a-held-thread-lock test emits Python 3.12 DeprecationWarning; the child rejects before acquiring the inherited mutex",
+    "no_tests_skipped": true
+  },
+  "builds": [
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/build/libshared_query_native.so",
+      "bytes": 117208,
+      "sha256": "93bc086de68fbab47b01705c8941e23bf8e39d88f1cd5692b631567650b7f70a",
+      "flags": "-Werror -O3 -std=c++17 -Wall -Wextra -fPIC -shared -lgmpxx -lgmp",
+      "exit_code": 0
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/build/libshared_query_ubsan.so",
+      "bytes": 479512,
+      "sha256": "f1bca8bb016de0245762afc1470cc3a24a4420c1966d169d6e3b50c7af8d00aa",
+      "flags": "-Werror -fsanitize=undefined -fno-sanitize-recover=all -O3 -std=c++17 -Wall -Wextra -fPIC -shared -lgmpxx -lgmp",
+      "exit_code": 0
+    }
+  ],
+  "dependencies": {
+    "compiler": {
+      "command": [
+        "g++",
+        "--version"
+      ],
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/compiler.txt",
+      "bytes": 246,
+      "sha256": "59d1cbef41d4ae78d5063d525b7aa13d18dc0493ea00537efc19b2ee398cb5a8"
+    },
+    "native_dynamic_dependencies": {
+      "command": [
+        "ldd",
+        "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/build/libshared_query_native.so"
+      ],
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/native_dynamic_dependencies.txt",
+      "bytes": 447,
+      "sha256": "d0aa99d796a3dbd256db65f448b795849691006ea979de8dcc831de12e2ac9f1"
+    },
+    "ubsan_dynamic_dependencies": {
+      "command": [
+        "ldd",
+        "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/build/libshared_query_ubsan.so"
+      ],
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/ubsan_dynamic_dependencies.txt",
+      "bytes": 597,
+      "sha256": "ab2adcaa912ca39d740fe286fbf03b0b8ab627afa30b5867dc0cf324b4207af2"
+    }
+  },
+  "gmpy2_version": "2.3.0",
+  "GMP_version": "GMP 6.3.0",
+  "source_archive": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/executed-source.tar.gz",
+    "bytes": 812617,
+    "sha256": "14f98e6c21913c6cdf56507089372015af32e8df6ecbb87977844ba7f05287b8"
+  },
+  "source_files": 394,
+  "new_HE_key_contexts": 0,
+  "private_work": 0,
+  "timing_panels": 0,
+  "smoke_run": "One manual public smoke invocation reused the first of these same 16 retained cases; not another independent context",
+  "production_source_files_byte_exact": 54,
+  "delivered_libraries_byte_exact": 12,
+  "main_and_staging_locally_unchanged": true,
+  "limitations": [
+    "Only retained N16/N32 core correctness; no N16k native gate",
+    "No authenticated factory, request controller, lifecycle or private authorization",
+    "UBSan coverage is these public tests, not exhaustive native memory assurance",
+    "Actual attestation, concrete security parameters and private side channels unapproved",
+    "Known-method supporting implementation, not accepted original main result"
+  ],
+  "next": "Q76.2"
+}

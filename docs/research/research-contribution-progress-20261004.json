@@ -118,7 +118,7 @@
     {
       "id": "Q76",
       "title": "One complete authoritative native prototype",
-      "status": "started_unvalidated_native_draft_only",
+      "status": "partial_native_public_core_complete",
       "dependencies": [
         "Q75"
       ],
@@ -128,7 +128,9 @@
       "evidence": [
         "docs/research/native-shared-query-registration-20261004.json",
         "experiments/bfv_search_lab/_shared_query/README.md",
-        "/home/pete/yavor-projects/xtrace-work/research-data/system-contribution-refresh-20261004/unvalidated-native-draft-receipt.json"
+        "/home/pete/yavor-projects/xtrace-work/research-data/system-contribution-refresh-20261004/unvalidated-native-draft-receipt.json",
+        "docs/research/native-shared-query-core-20261004.md",
+        "docs/research/native-shared-query-core-return-20261004.json"
       ],
       "implemented": false,
       "selected": {
@@ -158,13 +160,16 @@
         "Q76.5 independent compilation certificate, resource/boundary audit and Q77 handoff"
       ],
       "research_designation": "Supporting homemade build and scientific full-cost discriminator; originality remains conditional. No GPU/timing build until complete native correctness/lifecycle gate.",
-      "completed_native_correctness_or_lifecycle_gates": [],
-      "native_draft_not_authoritative_release_or_HE_correctness_evidence": true,
+      "completed_native_correctness_or_lifecycle_gates": [
+        "Q76.1_retained_N16_N32_public_core_only"
+      ],
+      "native_draft_not_authoritative_release_or_HE_correctness_evidence": false,
       "local_lifecycle_contract": {
         "local_contract": "at_most_once_authorization_and_callback_crash_may_lose_delivery",
         "SQLite_requires_trusted_nonrollback_storage": true,
         "actual_attestation_freshness_private_release_unimplemented_for_selected_service": true
-      }
+      },
+      "native_core_not_authenticated_service_or_source_scale_evidence": true
     },
     {
       "id": "Q77",
@@ -321,7 +326,7 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/system-contribution-review-20261004.json",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q76.1",
+  "next_subtask": "Q76.2",
   "latest_planning_review": {
     "execution_branch": "experiment/native-shared-query-service-20261004",
     "validation_receipt": "docs/research/system-contribution-plan-validation-20261004.json",
@@ -330,5 +335,23 @@
     "previous_source_records_unchanged": 110,
     "new_HE_tests_or_experiments_or_timings": 0,
     "originality_or_security_approval": false
-  }
+  },
+  "latest_execution_return": "docs/research/native-shared-query-core-return-20261004.json",
+  "Q76_execution_returns": [
+    {
+      "milestone": "Q76.1",
+      "utc": "2026-10-04T11:30:03.999929+00:00",
+      "status": "complete_bounded_public_core_gate",
+      "retained_cases": 16,
+      "retained_keys": 2,
+      "fresh_keys": 0,
+      "source_faults": 208,
+      "output_faults": 96,
+      "suite_cases": 58,
+      "normal_and_ubsan_same_suite_not_added": true,
+      "private_work": 0,
+      "timing_panels": 0,
+      "next": "Q76.2"
+    }
+  ]
 }

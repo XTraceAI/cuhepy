@@ -1,22 +1,30 @@
-# Unvalidated Q76 native draft
+# Q76 public native core
 
 This is a work-in-progress public evaluator/checker for owner-canonical
 shared-query BGV. It uses our PrimeNTT/RNS arithmetic and GMP. It imports or
 links no SEAL implementation.
 
-The context builds the graph internally and shares public preparation. The
-draft exports evaluation, complete-body checking, residual diagnostics and a
-terminal coefficient codec. **A successful build is the only current gate.**
-No encrypted/native correctness cohort, authoritative owner-authenticated
-factory, request controller, durable lifecycle, private release or attestation
-has passed for this draft. Raw C ABI handles/buffers are trusted caller
+The context builds the graph internally and shares public preparation. It
+exports evaluation, complete-body checking, length-bounded residual diagnostics
+and a terminal coefficient codec. The ABI is 1202. The bounded Python adapter
+is `experiments/bfv_search_lab/native_shared_query.py`.
+
+**Q76.1 passed its retained N16/N32 public correctness gate:** 16 complete
+fixtures, 208 source and 96 output faults, exact GMP tapes/frames and complete
+schoolbook residuals in both actual primes. A 58-case boundary suite passes on
+normal and UBSan builds. These are overlapping retained cases, not fresh keys.
+See the [core return](../../../docs/research/native-shared-query-core-20261004.md).
+
+No source-scale native cohort, authoritative owner-authenticated factory,
+request controller, durable lifecycle, private release or attestation has
+passed. Raw C ABI handles/buffers are trusted caller
 interfaces, not an admission API for network peers.
 
 Use the [current execution plan](../../../docs/research/system-contribution-execution-plan-20261004.md)
 and [registration](../../../docs/research/native-shared-query-registration-20261004.json).
-Q76.1 first adds the bounded Python adapter and retained-fixture gate. Fix the
-compiler's misleading-indentation warnings during that review, and preserve
-the initial build/source receipt. Do not benchmark or deploy this draft first.
+Q76.2 adds owner-authenticated enrollment and signed original requests. The
+initial unvalidated build/source and warning receipt remain preserved. Do not
+benchmark or deploy before the later correctness/controller/lifecycle gates.
 
 Build only an isolated target, from this directory:
 

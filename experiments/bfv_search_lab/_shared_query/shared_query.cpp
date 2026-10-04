@@ -1,4 +1,5 @@
-// Q76 public canonical shared-query BGV evaluator and authoritative admission.
+// Q76 public canonical shared-query BGV evaluator and complete relation check.
+// This core does not authenticate enrollment/requests or authorize release.
 // Homemade exact NTT/RNS, no SEAL, HE secret, signer or challenge entropy.
 // The context compiles its graph internally. Public preparation is immutable
 // and shared across requests; request wire inputs are full common-Q integers.
@@ -237,8 +238,10 @@ struct Query {
                     if(diagnostic) {auto copy=value[k];c.fft[k]->inverse(copy);std::copy(copy.begin(),copy.end(),diagnostic+(2*root+k)*c.n);}
                 }
             }
-            if(op.kind>=2)consume(op.a);if(op.kind==2 || op.kind==3)consume(op.b);
-            for(auto r:at_root[a]){(void)r;consume(a);}if(!remaining[a])for(auto& row:value)Vector().swap(row);
+            if(op.kind>=2)consume(op.a);
+            if(op.kind==2 || op.kind==3)consume(op.b);
+            for(auto r:at_root[a]){(void)r;consume(a);}
+            if(!remaining[a])for(auto& row:value)Vector().swap(row);
         }
         return exact;
     }
@@ -251,7 +254,8 @@ struct Query {
             Wide x=c.compose(source[0][i],source[1][i]);write_common(x,output+WIDTH*i);
             for(std::size_t j=0;j<DIGITS;++j)for(std::size_t k=0;k<2;++k)rows[j][k][i]=Word(x>>(30*j))&((Word(1)<<30)-1);
         }
-        for(auto& row:rows)for(std::size_t k=0;k<2;++k)c.fft[k]->forward(row[k]);return rows;
+        for(auto& row:rows)for(std::size_t k=0;k<2;++k)c.fft[k]->forward(row[k]);
+        return rows;
     }
     Pair switching(const std::array<Rows,DIGITS>& ds,std::size_t key) const {
         const auto& c=*ctx;Pair out{c.zero(),c.zero()};
@@ -265,7 +269,8 @@ struct Query {
         const auto& c=*ctx;if(!body || length!=c.body_size)throw std::invalid_argument("Wrong producer buffer");
         Pair query{c.zero(),c.zero()};
         for(std::size_t a=0;a<2;++a)for(std::size_t k=0;k<2;++k) {
-            for(std::size_t i=0;i<c.n;++i)query[a][k][i]=original[a][i]%c.primes[k];c.fft[k]->forward(query[a][k]);
+            for(std::size_t i=0;i<c.n;++i)query[a][k][i]=original[a][i]%c.primes[k];
+            c.fft[k]->forward(query[a][k]);
         }
         std::vector<Pair> work{std::move(query)};std::size_t slot=0;
         for(std::size_t l=0;l<c.levels;++l) {
@@ -278,7 +283,8 @@ struct Query {
                 for(std::size_t a=0;a<2;++a){c.add(plus[a],rotated[a]);c.add(minus[a],rotated[a],true);minus[a]=c.permute(minus[a],l,true);}
                 even.push_back(std::move(plus));odd.push_back(std::move(minus));
             }
-            for(auto& pair:odd)even.push_back(std::move(pair));work=std::move(even);
+            for(auto& pair:odd)even.push_back(std::move(pair));
+            work=std::move(even);
         }
         for(std::size_t g=0;g<c.groups;++g) {
             std::array<Rows,3> total{c.zero(),c.zero(),c.zero()};
@@ -322,7 +328,7 @@ using Handle=std::shared_ptr<const Context>;
 }
 
 extern "C" {
-unsigned cuhepy_shared_abi() noexcept{return 1201;}
+unsigned cuhepy_shared_abi() noexcept{return 1202;}
 void* cuhepy_shared_create(std::size_t n,std::size_t d,std::size_t records,Word p0,Word p1,Word t,Word eta,Word p,
                           const unsigned char* keys,std::size_t kl,const unsigned char* index,std::size_t il) noexcept {
     try{return new Handle(std::make_shared<Context>(n,d,records,p0,p1,t,eta,p,keys,kl,index,il));}catch(...){return nullptr;}
@@ -335,8 +341,14 @@ void cuhepy_shared_query_destroy(void* raw) noexcept{delete static_cast<Query*>(
 int cuhepy_shared_check(void* raw,const unsigned char* body,std::size_t length) noexcept {
     try{if(!raw)return -1;return static_cast<Query*>(raw)->check(body,length)?1:0;}catch(...){return -1;}
 }
-int cuhepy_shared_residuals(void* raw,const unsigned char* body,std::size_t length,Word* output) noexcept {
-    try{if(!raw || !output)return -1;static_cast<Query*>(raw)->check(body,length,output);return 0;}catch(...){return -1;}
+int cuhepy_shared_residuals(void* raw,const unsigned char* body,std::size_t length,Word* output,std::size_t output_words) noexcept {
+    try{
+        if(!raw || !output)return -1;
+        const auto& query=*static_cast<Query*>(raw);
+        if(output_words!=2*query.ctx->roots.size()*query.ctx->n)return -1;
+        query.check(body,length,output);
+        return 0;
+    }catch(...){return -1;}
 }
 int cuhepy_shared_produce(void* raw,unsigned char* body,std::size_t length) noexcept {
     try{if(!raw)return -1;static_cast<Query*>(raw)->produce(body,length);return 0;}catch(...){return -1;}
