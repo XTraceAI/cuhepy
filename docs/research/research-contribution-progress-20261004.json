@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T14:20:48.805296+00:00",
+  "utc": "2026-10-04T15:06:16.644415+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -118,7 +118,7 @@
     {
       "id": "Q76",
       "title": "One complete authoritative native prototype",
-      "status": "partial_public_core_authenticated_factory_local_lifecycle_complete_source_scale_unfinished",
+      "status": "partial_native_factory_local_lifecycle_source_correctness_complete_controls_certificate_unfinished",
       "dependencies": [
         "Q75"
       ],
@@ -138,7 +138,10 @@
         "docs/research/native-shared-query-lifecycle-model-20261004.md",
         "docs/research/native-shared-query-lifecycle-20261004.md",
         "docs/research/native-shared-query-lifecycle-return-20261004.json",
-        "docs/research/native-shared-query-gmp-preflight-20261004.md"
+        "docs/research/native-shared-query-gmp-preflight-20261004.md",
+        "docs/research/native-shared-query-source-20261004.md",
+        "docs/research/native-shared-query-source-return-20261004.json",
+        "docs/research/native-shared-query-product-control-card-20261004.md"
       ],
       "implemented": false,
       "selected": {
@@ -172,7 +175,8 @@
         "Q76.1_retained_N16_N32_public_core_only",
         "Q76.2_owner_authenticated_local_factory_only",
         "Q76.3a_retained_local_durable_lifecycle_only",
-        "Q76.3b_independent_GMP_small_preflight_only_source_run_unexecuted"
+        "Q76.3b_independent_GMP_small_preflight_only_source_run_unexecuted",
+        "Q76.3b_registered_one_key_six_source_searches_pass"
       ],
       "native_draft_not_authoritative_release_or_HE_correctness_evidence": false,
       "local_lifecycle_contract": {
@@ -181,14 +185,15 @@
         "actual_attestation_freshness_private_release_unimplemented_for_selected_service": true,
         "bounded_local_implementation_and_gate_complete": true
       },
-      "native_core_not_authenticated_service_or_source_scale_evidence": true,
+      "native_core_not_authenticated_service_or_source_scale_evidence": false,
       "remaining_control_obligations": [
         "matched_prepared_replay",
         "matched_checked_product_protected_suffix",
         "randomized_prior_adapter_card_before_broad_claim",
         "permitted_cache_acquisition_prefetch",
         "independent_effect_certificate"
-      ]
+      ],
+      "selected_service_not_attested_or_production_security_approved": true
     },
     {
       "id": "Q77",
@@ -352,7 +357,7 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/system-contribution-review-20261004.json",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q76.3b_registered_source_scale_six_searches",
+  "next_subtask": "Q76.4_prepared_replay_then_matched_product_cache_controls",
   "latest_planning_review": {
     "execution_branch": "experiment/native-shared-query-service-20261004",
     "validation_receipt": "docs/research/system-contribution-plan-validation-20261004.json",
@@ -362,7 +367,7 @@
     "new_HE_tests_or_experiments_or_timings": 0,
     "originality_or_security_approval": false
   },
-  "latest_execution_return": "docs/research/native-shared-query-lifecycle-return-20261004.json",
+  "latest_execution_return": "docs/research/native-shared-query-source-return-20261004.json",
   "Q76_execution_returns": [
     {
       "milestone": "Q76.1",
@@ -427,6 +432,23 @@
       "timing_panels": 0,
       "evidence": "docs/research/native-shared-query-gmp-preflight-20261004.md",
       "next": "Q76.3b_registered_source_scale_six_searches"
+    },
+    {
+      "milestone": "Q76.3b",
+      "utc": "2026-10-04T15:06:16.644415+00:00",
+      "status": "complete_registered_source_correctness_gate",
+      "fresh_HE_keys": 1,
+      "dependent_complete_searches": 6,
+      "all_distance_comparisons": 114752,
+      "whole_Q_source_output_coefficients_byte_compared": 50626560,
+      "private_phase_positions_each_modulus": 131072,
+      "new_GMP_and_fixture_unit_cases": 61,
+      "final_combined_invocation": 258,
+      "selected_existing_cases": 197,
+      "overlapping_invocations_not_added": true,
+      "private_HE_work": "Owner setup and six post-public-authorization diagnostics; variable-time research, no secrets serialized",
+      "timing_panels": 0,
+      "next": "Q76.4_prepared_replay_then_matched_product_cache_controls"
     }
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
@@ -452,5 +474,13 @@
     "evidence_archive_members_verified": 533,
     "company_archive_members_verified": 66,
     "branch_and_tag_remote_verified": true
+  },
+  "Q76_control_design_return": {
+    "card": "docs/research/native-shared-query-product-control-card-20261004.md",
+    "scope": "Aggregate degree2, complete actual-prime vectors, hidden-random amplification versus exact three-point interpolation and matched paired Karatsuba; prepared replay omits unnecessary witness serialization",
+    "public_toy_degree_two_triples_checked": 5038,
+    "new_HE_keys_searches_or_private_work": 0,
+    "control_implementation_complete": false,
+    "originality_or_protocol_security_approval": false
   }
 }

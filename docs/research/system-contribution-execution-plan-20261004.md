@@ -43,7 +43,7 @@ a publishable result.
 | Q74 source-profile public bounds | Owner canonical Q120 passes. Public-key-index canonical Q120 and both derived Q120 modes fail. One Q180 rescue passes its algebra screens. | Start owner canonical Q120. Do not silently substitute an input law, approve parameters from successful decryptions, or use the Q120 parser for three primes. |
 | Q75 finite resource screen | 60 cards, nine exact finite frontiers, zero compiler-cap failures; known composition has identical algebra/resources. | New expansion/gadget/asymptotic claims are closed. Models are sufficient schedules, not measured time, peaks or lower bounds. |
 | Q180 derived versus owner canonical Q120, one full group | Witness body 90.703125 versus 120.468750 MiB; modeled pointwise work about 2.81x, keys 2.25x, query/index about 1.5x. | Preserve the tradeoff, but select no larger-Q variant from bytes alone. Client response bodies remain 102,400 bytes/group. |
-| Current Q76 work | Q76.1 passes 16 retained native cases/304 faults/58 normal-UBSan tests. Q76.2 passes authenticated seeded flow on the same 16 cases/176 faults/68 tests. Q76.3a adds local durable lifecycle: 71 unit cases and a retained 16-case/112-request cohort pass. No fresh HE keys, private HE work or timing. | Next Q76.3b supplies bounded independent GMP/source-scale correctness. Private release, real attestation and the completed service remain unfinished. |
+| Current Q76 work | Public core/factory/local lifecycle gates pass. Q76.3b now passes one fresh key and six searches at 8224/16384/32768: all native/GMP source/output/frame bytes and 114,752 distances agree. Final selected suite 258 includes 197 existing cases; no timing. | Next Q76.4 builds matched controls, then Q76.5 validates the certificate/handoff. Actual private production release, real attestation and the completed service remain unfinished. |
 
 The final Q74/Q75 regression invocation passed 157 cases; that is not 157
 independent encrypted experiments. Neither those tests nor the large earlier
@@ -205,13 +205,15 @@ No timing panel or CUDA port precedes this gate.
 | Q76.1: public native core — complete bounded gate | Reviewed C++ core, bounded ctypes adapter and frozen isolated build/source/dependencies. Reused the 16 retained owner-canonical N16/N32 cases. | Exact GMP tapes/frames, both whole-limb schoolbook vectors, 208 source/96 output faults and 58 boundary cases on normal/UBSan builds. No source-scale or service approval. |
 | Q76.2: enrollment/request authority — complete bounded gate | Owner-authenticated immutable factory, original seeded query, strict complete packet grammar and internal native graph. | Sixteen retained flows, 176 cohort faults and 68 unit cases pass; signed byte origin is trusted, not a plaintext/noise proof. No lifecycle or private authority. |
 | Q76.3a: local lifecycle — complete bounded gate | Trusted non-rollback SQLite controller consumes signed original requests before preparation and callback claims before dispatch. | 71 lifecycle unit cases and 16 retained cases/112 protocol requests pass; 80 bad replies rejected, 32 public hooks, replay/restart/process-exit gates. Final combined 197 includes 126 existing native/auth cases; overlapping first runs not added. No remote release or source-scale assurance. |
-| Q76.3b: source scale | Supply the bounded independent GMP producer, then run the registered N16k d512 counts 8,224/16,384/32,768 with two queries. | At most six large searches, exact independent GMP source/output/frame equality, every distance/tail/stable tie checked privately only after public acceptance. No secret key serialized. |
+| Q76.3b: source scale — complete registered correctness gate | Bounded independent GMP preflight, then the registered N16k d512 counts 8,224/16,384/32,768 with two queries. | One fresh key/six searches pass: all 50,626,560 source/output coefficients and full frames match; 114,752 distances and all Q/P phase positions/tails/stable ties checked after public acceptance and callback claim. No secret serialized, no timing or security approval. |
 | Q76.4: matched controls | Build prepared replay and checked-product/trusted-prefix/suffix in the same native backend, plus the permitted authenticated cache. Grant layout, expansion, lazy relinearization, Karatsuba, fusion, preparation and streaming equally. | Same source/terminal/snapshot contract and full correctness gates. Count protected work, duplicate work and transfers in both directions, not just the control's return packet. |
 | Q76.5: certificate and handoff | Validate the high-level certificate independently, publish owned/resident/scratch accounting and source/codec commands, and audit the boundary. | No free input or approval-by-oracle path; full test/mutation/lifecycle report, honest limitations, ledger return selecting or stopping Q77. |
 
 The [independent GMP preflight](native-shared-query-gmp-preflight-20261004.md)
-now passes 59 producer tests and two public fixture tests, with no fresh HE key.
-**Next executable task is Q76.3b's registered source-scale cohort.** Source belongs in
+passes 59 producer tests and two public fixture tests; the later
+[source return](native-shared-query-source-20261004.md) records the separate
+fresh-key/six-search gate and private diagnostics. **Next executable task is
+Q76.4 matched prepared replay, then product/cache controls.** Source belongs in
 `experiments/bfv_search_lab/_shared_query/`; Python adapter/tests beside the
 other research implementations; reproducible runners in `benchmarks/`.
 Keep isolated libraries and outer evidence. Migrate a reviewed selected
@@ -240,7 +242,9 @@ Each remaining Q76 milestone has a bounded handoff:
    restart, fork, epoch replacement and callback failure. Persist UInt64 epochs
    without truncation to SQLite's signed integer range. No HE private callback
    is needed to test this controller.
-2. **Source scale:** provide a bounded independent GMP producer before the
+2. **Source scale — registered correctness gate complete:** the
+   [source return](native-shared-query-source-return-20261004.json) preserves
+   the exact one-key/six-search scope. Provide a bounded independent GMP producer before the
    one new key is generated. The existing small reference rejects N>64; raising
    that guard alone does not constitute independent large correctness. Freeze
    source/build/dependencies and execute only the registered six searches.
@@ -278,8 +282,9 @@ remain engineering context, with their actual profiles and assurance scope.
 [vFHE Appendix D](https://arxiv.org/html/2301.07041v2#A4) already checks delegated
 tensor products with private polynomial challenges. Our deterministic
 checked-product control does not reproduce its statistical optimization.
-Within Q76.4, write one adaptation card for the exact aggregate tensor that
-our lazy-relinearization graph needs. Bind all operands/results first; use
+The [aggregate-product adaptation card](native-shared-query-product-control-card-20261004.md)
+now specifies the exact tensor, whole-vector actual-prime checks and paid
+prefix/suffix. The control is not implemented or measured yet. Bind all operands/results first; use
 fresh hidden verifier challenges, every actual limb/full ring, protected
 maintenance/terminal processing and the same lifecycle. Prove the lifetime
 soundness budget before implementing or measuring that control. This does not
@@ -299,6 +304,17 @@ single-round control as if it had the stronger lifetime target.
 The attempt budget must cover the relevant key lifetime across verifier
 instances. Enforce it through the actual authority or state it as an explicit
 deployment assumption; a rollbackable per-process counter is insufficient.
+
+For this degree-two aggregate, three distinct points `0,1,-1` instead force
+exact coefficient equality by interpolation; two is a unit in both actual
+primes. That known control costs three protected products per feature, as
+does matched paired Karatsuba. Three independent amplification rounds can
+therefore remove the one-point product-count advantage. Full latency remains
+unmeasured, and a correctly labeled lower-assurance control is still valid.
+Prepared replay must be allowed to omit witness serialization it does not
+need, while still doing genuine internal canonicalization. The adaptation
+card records these obligations without claiming a new primitive or defeating
+the author implementation.
 
 If a correct applicable randomized adapter is unfinished, explicitly narrow
 the result to the implemented deterministic class; do not declare the prior
@@ -493,7 +509,7 @@ new keys, timing cohorts or protocol changes.
 
 Q76.1's isolated build/retained-fixture recipe is preserved in its receipt.
 Q76.3a's local state-machine registration and retained lifecycle gate are complete.
-Q76.3b's bounded independent GMP preflight passes; the registered six searches follow.
+Q76.3b's independent GMP and registered six-search correctness gates pass.
 Use `.venv/bin/python -m pytest` and lint new experimental files with
 `ruff --no-force-exclude`. The public-native/lifecycle gates precede new large keys.
 The registry retains primary PDFs/text/version/hash/scope outside Git; no
@@ -511,4 +527,6 @@ bundle and all 59 evidence/66 company archive members checked. The core gate
 has its preceding independent checkpoint. This reassessment changes planning
 and comparison obligations only. The later Q76.3a execution is separately
 recorded in its [lifecycle return](native-shared-query-lifecycle-return-20261004.json).
-Next is Q76.3b independent GMP/source scale; Q76 as a whole is still incomplete.
+The later [Q76.3b source return](native-shared-query-source-return-20261004.json)
+records its fresh-key/private-diagnostic scope separately. Next is Q76.4
+matched controls, then Q76.5 independent certificate; Q76 remains incomplete.
