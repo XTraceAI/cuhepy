@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "task": "Q76.4a",
+  "registration": "Matched native prepared replay correctness and local authorization",
+  "parent_commit": "e729a13bff76ae6d9b51039cf588ee88edc46e42",
+  "evidence_directory": "/home/pete/yavor-projects/xtrace-work/research-data/q76-replay-20261004",
+  "scope": "Public retained-input gate, not timing, new HE contexts, deployed attestation, security parameter approval or originality approval",
+  "selected_control": {
+    "mode": "trusted prepared replay of the same homemade BGV circuit",
+    "input_law": "authenticated honest-owner binary canonical30 seeded index and original query",
+    "arithmetic": "same actual-prime NTT/CRT primitives, whole-Q canonical radix30, paired Karatsuba, genuine evaluation keys and exact Q-to-P codec",
+    "production_changes": 0,
+    "implementation": "isolated replay translation unit and adapter; retain original full-witness implementation and libraries",
+    "prohibited_fallbacks": ["full source-witness allocation or serialization", "Python/GMP producer", "HE private work", "peer-chosen executable or graph"],
+    "trusted_request_seam": "factory-selected request type; no peer mode field can change admission policy",
+    "authorization": "same local trusted nonrollback SQLite reserve/admit/claim lifecycle; distinct owner-signed policy digest",
+    "control_entry_points": ["proposed-frame full recomputation predicate", "protected original-request-only execution, one evaluation, no untrusted producer or witness required"]
+  },
+  "caps": {
+    "retained_small_cases": 16,
+    "retained_source_scale_cases": 6,
+    "fresh_HE_key_contexts": 0,
+    "new_HE_encryption_or_private_operations": 0,
+    "timing_panels": 0,
+    "CUDA_runs": 0,
+    "source_scale_records": [8224, 16384, 32768],
+    "source_scale_N": 16384,
+    "source_scale_dimension": 512,
+    "groups_per_case": 2,
+    "native_public_rows_bytes": 1073741824,
+    "packet_bytes": 2147483648,
+    "cohort_standard_Ed25519_contexts": 1,
+    "unit_test_standard_Ed25519_contexts": "separate ephemeral fixture contexts; no HE secrets generated"
+  },
+  "acceptance": [
+    "Freeze sources, build flags, dependency versions, original input pins and policy before executing the cohort",
+    "Verify saved source-scale file hashes and historical owner signatures before re-signing retained public inputs under the current trusted control policy",
+    "Compare both complete compact ciphertext components, all coordinates, groups, headers and tails with retained reference frames for all 22 cases",
+    "Source-scale cases must admit the frame, then durably claim a public-only callback exactly once; no decryption rerun or new ciphertext generation",
+    "Reject malformed or foreign mode/context/frame and inherited/closed ownership before unauthorized hooks",
+    "New C ABI rejects null handles/buffers and wrong exact output lengths before writes; no hidden full-witness path",
+    "Exercise normal and UBSan builds on the same small regression cases, without adding them as independent experiments",
+    "Recheck existing factory/lifecycle regressions after adding the trusted request-factory seam",
+    "Verify all preserved company source/libraries and local main/staging refs before checkpoint"
+  ],
+  "interpretation": {
+    "known_method": true,
+    "same_native_backend_is_not_an_independent_reference": true,
+    "retained_GMP_validated_source_frames_supply_large_reference": true,
+    "no_performance_claim_from_correctness_duration": true,
+    "local_code_hash_is_not_attestation": true,
+    "next": "Q76.4b matched protected prefix/product/suffix, then Q76.4c product/cache controls and Q76.5 certificate; Q77 timing remains gated"
+  }
+}

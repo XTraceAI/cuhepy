@@ -266,6 +266,11 @@ class OwnerFactory:
     def policy_digest(self):
         return self._policy_digest
 
+    def _make_request(self, query, binding, original_wire):
+        # A trusted factory may select a matched control. No received packet
+        # chooses this method, the native library, the policy or the graph.
+        return PublicRequest(query, binding, original_wire)
+
     def enroll(self, packet):
         payload = _verify(packet, self._anchor, ENROLL_TAG, native.PACKET_CAP)
         fields = _unpack(payload, limit=native.PACKET_CAP, array_cap=1024)
@@ -352,7 +357,12 @@ class OwnerEnrollment:
             nonce,
             hashlib.sha256(ids).digest(),
         )
-        return PublicRequest(self._context.query(raw), binding, packet)
+        query = self._context.query(raw)
+        try:
+            return self._factory._make_request(query, binding, packet)
+        except BaseException:
+            query.close()
+            raise
 
     def close(self):
         self._context.close()

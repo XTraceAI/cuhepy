@@ -251,7 +251,8 @@ struct Query {
         std::array<Rows,DIGITS> rows;
         for(auto& row:rows)row=c.zero();
         for(std::size_t i=0;i<c.n;++i) {
-            Wide x=c.compose(source[0][i],source[1][i]);write_common(x,output+WIDTH*i);
+            // Replay still derives whole-Q digits; it omits only witness writes.
+            Wide x=c.compose(source[0][i],source[1][i]);if(output)write_common(x,output+WIDTH*i);
             for(std::size_t j=0;j<DIGITS;++j)for(std::size_t k=0;k<2;++k)rows[j][k][i]=Word(x>>(30*j))&((Word(1)<<30)-1);
         }
         for(auto& row:rows)for(std::size_t k=0;k<2;++k)c.fft[k]->forward(row[k]);
@@ -265,8 +266,9 @@ struct Query {
         }
         return out;
     }
-    void produce(unsigned char* body,std::size_t length) const {
-        const auto& c=*ctx;if(!body || length!=c.body_size)throw std::invalid_argument("Wrong producer buffer");
+    void produce(unsigned char* body,std::size_t length,bool include_sources=true) const {
+        const auto& c=*ctx;auto start=include_sources?c.sources:0;
+        if(!body || length!=(start+2*c.groups)*c.n*WIDTH)throw std::invalid_argument("Wrong producer buffer");
         Pair query{c.zero(),c.zero()};
         for(std::size_t a=0;a<2;++a)for(std::size_t k=0;k<2;++k) {
             for(std::size_t i=0;i<c.n;++i)query[a][k][i]=original[a][i]%c.primes[k];
@@ -277,7 +279,7 @@ struct Query {
             std::vector<Pair> even,odd;even.reserve(work.size());odd.reserve(work.size());
             for(const auto& pair:work) {
                 Pair rotated{c.permute(pair[0],l),c.permute(pair[1],l)};
-                auto ds=digits(rotated[1],body+slot++*c.n*WIDTH);auto sw=switching(ds,l+1);
+                auto ds=digits(rotated[1],include_sources?body+slot*c.n*WIDTH:nullptr);++slot;auto sw=switching(ds,l+1);
                 c.add(rotated[0],sw[0]);rotated[1]=std::move(sw[1]);
                 Pair plus=pair,minus=pair;
                 for(std::size_t a=0;a<2;++a){c.add(plus[a],rotated[a]);c.add(minus[a],rotated[a],true);minus[a]=c.permute(minus[a],l,true);}
@@ -298,22 +300,23 @@ struct Query {
                 std::array<Word,3> products{x,y,z};
                 for(std::size_t part=0;part<3;++part){auto value=total[part][k][i]+products[part];total[part][k][i]=value>=modulus?value-modulus:value;}
             }
-            auto ds=digits(total[2],body+slot++*c.n*WIDTH);auto sw=switching(ds,0);
+            auto ds=digits(total[2],include_sources?body+slot*c.n*WIDTH:nullptr);++slot;auto sw=switching(ds,0);
             for(std::size_t a=0;a<2;++a) {
                 c.add(total[a],sw[a]);for(std::size_t k=0;k<2;++k)c.fft[k]->inverse(total[a][k]);
-                for(std::size_t i=0;i<c.n;++i)write_common(c.compose(total[a][0][i],total[a][1][i]),body+((c.sources+2*g+a)*c.n+i)*WIDTH);
+                for(std::size_t i=0;i<c.n;++i)write_common(c.compose(total[a][0][i],total[a][1][i]),body+((start+2*g+a)*c.n+i)*WIDTH);
             }
         }
         if(slot!=c.sources)throw std::logic_error("Incomplete source producer");
     }
-    void terminal(const unsigned char* body,std::size_t length,unsigned char* output,std::size_t output_size) const {
+    void terminal(const unsigned char* body,std::size_t length,unsigned char* output,std::size_t output_size,bool include_sources=true) const {
         const auto& c=*ctx;unsigned bits=0;for(auto x=c.p;x;x/=2)++bits;
         auto width=(c.n*bits+7)/8;
-        if(!body || length!=c.body_size || !output || output_size!=2*c.groups*width)throw std::invalid_argument("Wrong terminal buffers");
+        auto start=include_sources?c.sources:0;
+        if(!body || length!=(start+2*c.groups)*c.n*WIDTH || !output || output_size!=2*c.groups*width)throw std::invalid_argument("Wrong terminal buffers");
         std::memset(output,0,output_size);
         mpz_class modulus=integer(c.q),qt=modulus*c.t,denominator=2*qt,numerator,rounded;
         for(std::size_t row=0;row<2*c.groups;++row)for(std::size_t i=0;i<c.n;++i) {
-            auto wide=common(body+((c.sources+row)*c.n+i)*WIDTH);
+            auto wide=common(body+((start+row)*c.n+i)*WIDTH);
             if(wide>=c.q)throw std::invalid_argument("Noncanonical terminal source");
             auto x=integer(wide);Word residue=mpz_fdiv_ui(x.get_mpz_t(),c.t);
             numerator=2*(c.p*x-modulus*residue)+qt;
