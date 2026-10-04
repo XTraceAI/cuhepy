@@ -104,6 +104,55 @@ def test_component_cancellation_at_one_visible_point_is_insufficient(case):
     assert request.checked_frame(request.reply(other, tape.response)) is None
 
 
+def test_each_physical_NTT_coordinate_cannot_hide_a_single_prime_fault(case):
+    ctx, _tape, enrollment, request, _original, _owner, _query, _library = case
+    body, n, q = reference.small_aggregates(ctx), ctx.profile.n, ctx.profile.q
+    faults = 0
+    # Every odd root is visited, so this does not assume the native transform's
+    # root choice, bit reversal or frequency ordering. The error is zero at all
+    # but one root in one actual prime, and zero everywhere in the other prime.
+    for prime, other in (enrollment.metadata.primes, enrollment.metadata.primes[::-1]):
+        candidate, psi = 2, 0
+        while not psi:
+            root = pow(candidate, (prime - 1) // (2 * n), prime)
+            if pow(root, n, prime) == prime - 1:
+                psi = root
+            candidate += 1
+        for frequency in range(n):
+            scale = pow(n, -1, prime)
+            delta = tuple(
+                other
+                * (
+                    (scale * pow(psi, -(2 * frequency + 1) * i, prime) * pow(other, -1, prime))
+                    % prime
+                )
+                for i in range(n)
+            )
+            assert all(value % other == 0 for value in delta)
+            for point in range(n):
+                residual = (
+                    sum(
+                        value * pow(psi, (2 * point + 1) * i, prime)
+                        for i, value in enumerate(delta)
+                    )
+                    % prime
+                )
+                assert residual == int(point == frequency)
+            for group in range(enrollment.metadata.groups):
+                for part in range(3):
+                    changed_body = bytearray(body)
+                    for i, value in enumerate(delta):
+                        at = ((3 * group + part) * n + i) * 15
+                        coefficient = (int.from_bytes(body[at : at + 15], "little") + value) % q
+                        changed_body[at : at + 15] = coefficient.to_bytes(15, "little")
+                    assert (
+                        request._arithmetic.checked_frame(request._query, bytes(changed_body))
+                        is None
+                    )
+                    faults += 1
+    assert faults == 2 * n * enrollment.metadata.groups * 3 == 384
+
+
 @pytest.mark.parametrize(
     "fault",
     [
