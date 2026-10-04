@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-04",
+  "utc": "2026-10-04T08:27:58.656882+00:00",
+  "task": "Q74",
+  "parent_commit": "50473fc665572e2548fb95d1de4d817238771901",
+  "branch": "experiment/shared-query-admission-20261004",
+  "registration_precedes_fresh_key_runs": true,
+  "prior_design_calculation": "/home/pete/yavor-projects/xtrace-work/research-data/shared-query-admission-20261004/exploratory-source-bound-screen.json",
+  "prior_design_calculation_sha256": "7136f769f55b6f93b221587343d069fd900cead6e4b782d705cad6c7ace1e48f",
+  "small_geometries": [
+    {
+      "N": 16,
+      "dimension": 3,
+      "padded": 4,
+      "t": 11,
+      "eta": 1,
+      "Q_bits": 120
+    },
+    {
+      "N": 32,
+      "dimension": 5,
+      "padded": 8,
+      "t": 19,
+      "eta": 1,
+      "Q_bits": 120
+    }
+  ],
+  "terminal_bits": 25,
+  "policies": [
+    "canonical30",
+    "derived_last30"
+  ],
+  "index_modes": [
+    "owner",
+    "public_key"
+  ],
+  "queries_per_context": 2,
+  "record_counts": "N-1, N, N+1, 2N-1",
+  "fresh_experiment_key_contexts": 2,
+  "honest_complete_relations": 64,
+  "data_seed": 7404,
+  "data_seed_is_not_used_for_cryptographic_randomness": true,
+  "complete_checks": [
+    "Independent schoolbook whole-Q residuals of the original query through expansion, all tensor cross terms and one relin per group",
+    "Same whole residuals reduced modulo each actual prime, including unused coordinates",
+    "Independent nearest-lift round and whole compact frame",
+    "Variable-time private diagnostics only after whole public acceptance, exact full plaintext and padded features",
+    "One coefficient mutation in every canonical source slot and every complete output component at an unused/final coordinate",
+    "Frame/header/context/order/common-Q grammar mutations in dedicated tests"
+  ],
+  "source_bound_cards": {
+    "N": 16384,
+    "dimension": 512,
+    "t": 1031,
+    "eta": 21,
+    "requested_Q_bits": [
+      120,
+      180
+    ],
+    "Q180_is_the_only_rescue": true,
+    "reason": "Q120 derived-last fails in both input modes and Q120 canonical fails for public-key index; one larger-Q public screen passes and has a potentially useful witness-byte tradeoff, with larger keys/index paid.",
+    "security_review": "Neither source profile is concrete-security approved. Toy parameters are not security parameters."
+  },
+  "caps": {
+    "small_geometries": 2,
+    "policies": 2,
+    "radix_bits": 30,
+    "larger_Q_rescues": 1,
+    "timing_panels": 0,
+    "native_libraries_changed": 0,
+    "production_changes": 0
+  },
+  "stop_rules": [
+    "Unbound original query, any branch/source/cross term/output coordinate/frame",
+    "No public no-wrap and terminal-safe paid candidate",
+    "Incorrect independent semantics or common integer lifts"
+  ],
+  "next_if_pass": "Q75 matched strongest-known composition and full-cost discriminator; no originality or production claim from Q74",
+  "known_ingredients": [
+    "HERS/E07 feature-major encrypted search and lazy relinearization",
+    "SealPIR/MulPIR/E73 packed query expansion and predivision",
+    "Cascudo 2025/286 bounded noncanonical gadget preimages and noise-aware relaxed checking",
+    "Generic affine normalization/fusion/streaming"
+  ],
+  "scope": "A small homemade correctness and exact deterministic public-bound experiment; no latency, protected release, remote verifier, secret side-channel assurance, or parameter approval."
+}

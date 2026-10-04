@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T07:55:13.360169+00:00",
+  "utc": "2026-10-04T09:08:54.499571+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
-  "branch": "experiment/research-contribution-plan-20261004",
+  "branch": "experiment/shared-query-admission-20261004",
   "plan": "docs/research/research-contribution-plan-20261004.md",
   "comparison": "docs/research/closest-work-contribution-design-20261004.md",
   "assessment": "docs/research/research-results-assessment-20261004.md",
@@ -24,7 +24,7 @@
     {
       "id": "Q74",
       "title": "Shared-query graph, exact semantics, and public noise gate",
-      "status": "ready_unexecuted",
+      "status": "complete_bounded_reference_gate",
       "dependencies": [
         "P0"
       ],
@@ -46,13 +46,37 @@
         "free_expanded_query_or_unbound_branch",
         "unpaid_anchor_or_terminal_cost"
       ],
-      "evidence": [],
-      "implemented": false
+      "evidence": [
+        "docs/research/shared-query-admission-registration-20261004.json",
+        "/home/pete/yavor-projects/xtrace-work/research-data/shared-query-admission-20261004/q74/Q74-correctness.json",
+        "/home/pete/yavor-projects/xtrace-work/research-data/shared-query-admission-20261004/exploratory-source-bound-screen.json",
+        "experiments/bfv_search_lab/shared_query_bgv.py",
+        "experiments/bfv_search_lab/test_shared_query_bgv.py",
+        "/home/pete/yavor-projects/xtrace-work/research-data/shared-query-admission-20261004/final-authority-followup.json"
+      ],
+      "implemented": true,
+      "outcome": "Complete small-ring semantics and public source bounds pass. Original Q120 derived policy stops in both index modes; Q120 canonical public-key mode stops. One Q180 rescue passes public boxes, with all larger keys/index/state paid next.",
+      "counts": {
+        "fresh_experiment_key_contexts": 2,
+        "honest_complete_relations": 64,
+        "source_mutations": 320,
+        "terminal_component_mutations": 192,
+        "new_regression_tests_first_pass": 64,
+        "timing_panels": 0,
+        "final_new_regression_cases": 66,
+        "same_digest_weakened_graph_mutations_rejected_followup": 64
+      },
+      "limitations": [
+        "No large encrypted run or timing",
+        "No native/protected admission/release",
+        "Neither source profile concrete-security approved",
+        "Same graph admitted to strongest known composition; originality not accepted"
+      ]
     },
     {
       "id": "Q75",
       "title": "Strongest prior composition and complete-cost discriminator",
-      "status": "conditional_unexecuted",
+      "status": "complete_bounded_resource_and_containment_gate",
       "dependencies": [
         "Q74"
       ],
@@ -67,13 +91,34 @@
         "known_combination_contains_claim_and_no_distinct_system_question",
         "replay_or_cache_removes_all_useful_regimes"
       ],
-      "evidence": [],
-      "implemented": false
+      "evidence": [
+        "docs/research/shared-query-cost-registration-20261004.json",
+        "docs/research/shared-query-gates-20261004.md",
+        "/home/pete/yavor-projects/xtrace-work/research-data/shared-query-admission-20261004/q75/Q75-paid-resource-screen.json",
+        "/home/pete/yavor-projects/xtrace-work/research-data/shared-query-admission-20261004/q75/tiny-whole-vector-controls.json",
+        "experiments/bfv_search_lab/shared_query_cost.py"
+      ],
+      "implemented": true,
+      "counts": {
+        "exact_symbolic_resource_cards": 60,
+        "compiler_cap_failures": 0,
+        "finite_exhaustive_frontier_panels": 9,
+        "retained_relation_contexts": 8,
+        "whole_vector_rewrite_and_fault_cases": 48,
+        "new_HE_key_contexts": 0,
+        "timing_panels": 0
+      },
+      "outcome": "Equally specialized known program contains the algebra/asymptotic claim. Paid resource frontier remains a real modeled tradeoff; no measured service advantage or main originality. Select lower-modulus owner canonical Q120 as one complete native admission-versus-replay discriminator, including cache acquisition.",
+      "limitations": [
+        "Sufficient models, not native latency/peaks/optimality",
+        "Full setup/private acquisition/update/release costs unknown",
+        "No full author artifact execution or original main acceptance"
+      ]
     },
     {
       "id": "Q76",
       "title": "One complete authoritative native prototype",
-      "status": "conditional_unexecuted",
+      "status": "ready_selected_system_discriminator_not_original_main",
       "dependencies": [
         "Q75"
       ],
@@ -81,7 +126,34 @@
       "cpu_before_cuda": true,
       "delivered_libraries_preserved": true,
       "evidence": [],
-      "implemented": false
+      "implemented": false,
+      "selected": {
+        "foundation": "homemade_BGV",
+        "N": 16384,
+        "dimension": 512,
+        "Q_requested_bits": 120,
+        "ordered_primes": [
+          1152921504606748673,
+          1152921504606683137
+        ],
+        "P": 33548413,
+        "t": 1031,
+        "eta": 21,
+        "index_mode": "owner",
+        "policy": "canonical30",
+        "relation": "direct_paired_Karatsuba_shared_query",
+        "backend": "isolated_CPU_native_first",
+        "lifetime_choices": "cached/streamed public preparation; same choices for controls",
+        "source_profile_security_approved": false
+      },
+      "milestones": [
+        "Authoritative copied enrollment/public-safe graph and shared preparation",
+        "Original-query request binding and complete matched native producer/codec",
+        "Whole-coordinate/common-Q/terminal/native mutation gates",
+        "Exactly-once lifecycle/restart/epoch/frame release under real assurance contract",
+        "Equally rewritten native replay and checked-product controls before timing"
+      ],
+      "research_designation": "Supporting homemade build and scientific full-cost discriminator; originality remains conditional. No GPU/timing build until complete native correctness/lifecycle gate."
     },
     {
       "id": "Q77",
@@ -131,11 +203,8 @@
       "implemented": false
     }
   ],
-  "next_task": "Q74",
-  "preliminary_research_gates_remaining": [
-    "Q74",
-    "Q75"
-  ],
+  "next_task": "Q76",
+  "preliminary_research_gates_remaining": [],
   "post_selection_system_packages": [
     "Q76",
     "Q77",
@@ -164,17 +233,17 @@
   "claim_cards": [
     {
       "id": "C1",
-      "status": "conditional_unproved",
+      "status": "small_reference_invariant_supported_native_formal_lifecycle_unbuilt",
       "kind": "complete_compilation_and_admission_invariant"
     },
     {
       "id": "C2",
-      "status": "conditional_unexecuted",
+      "status": "new_algebra_contained_finite_cost_selector_known_system_question_conditional",
       "kind": "useful_prior_separated_verified_cost_transformation_or_system_design"
     },
     {
       "id": "C3",
-      "status": "unmeasured",
+      "status": "unmeasured_complete_system_frontier",
       "kind": "complete_useful_system_frontier"
     }
   ],
@@ -192,16 +261,28 @@
     "ordinary_DP_fusion_streaming",
     "TEE_plus_HE_delegation"
   ],
-  "new_HE_experiments": 0,
-  "new_HE_tests": 0,
+  "new_HE_experiments": 1,
+  "new_HE_tests": 82,
   "new_timing_panels": 0,
   "new_author_artifacts_executed": 0,
   "old_186_test_count_not_rerun_or_added": true,
-  "all_experiment_tasks_are_unexecuted_proposals": true,
+  "all_experiment_tasks_are_unexecuted_proposals": false,
   "production_source_or_delivered_libraries_changed": false,
   "main_or_staging_modified": false,
   "complete_new_service_implemented": false,
   "originality_accepted": false,
   "security_or_parameter_approval": false,
-  "validation_receipt": "docs/research/research-contribution-validation-20261004.json"
+  "validation_receipt": "docs/research/shared-query-gate-validation-20261004.json",
+  "execution_parent_commit": "50473fc665572e2548fb95d1de4d817238771901",
+  "preliminary_gate_outcome": "Q74 small semantics/public boxes pass with scoped Q120 mode failures and one Q180 rescue; Q75 closes new algebra, selects one complete systems discriminator. Full original system remains conditional.",
+  "final_test_invocation_passed": 157,
+  "selected_existing_regression_cases_rerun": 75,
+  "new_symbolic_resource_experiments": 1,
+  "execution_return": "docs/research/shared-query-gates-20261004.md",
+  "full_cost_lifetimes": {
+    "tenant_enrollment": "Index encryption/keys/trusted preparation amortized over all tenant queries and charged updates",
+    "device_acquisition": "Owner private context, attestation and authenticated cache acquisition amortized over queries on that device",
+    "no_cache_prohibition": true,
+    "cold_cache_comparator": "Owner may prepare an authenticated compact encrypted plaintext-vector backup; do not force the cache control to download/decrypt a bulky HE index."
+  }
 }
