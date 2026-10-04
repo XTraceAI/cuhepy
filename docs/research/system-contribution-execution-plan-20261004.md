@@ -379,6 +379,15 @@ Each remaining Q76 milestone has a bounded handoff:
    resources, document the native assurance boundary, and return a pass/stop
    receipt to the ledger. Q77 becomes eligible only after this handoff.
 
+   Q76.5 is now [registered](native-shared-query-certificate-registration-20261004.json).
+   Its [reference specification](native-shared-query-certificate-spec-20261004.md)
+   and official workspace-local Lean 4.34.1 toolchain are frozen before
+   implementation. The [preparation return](native-shared-query-certificate-preparation-return-20261004.json)
+   records this component only: no checker, client adapter or model exists,
+   and no proof/test/HE/timing gate ran. Implement the independent checker and
+   scoped model next, then finish client/resource/security/prior handoff.
+   The same one Q76.5 milestone remains open; Q77 is not yet eligible.
+
 Do not change the selected key/search budgets to obtain a more attractive
 result. A failed source gate returns here for a documented correction before
 another cohort is authorized by a revised registration.
