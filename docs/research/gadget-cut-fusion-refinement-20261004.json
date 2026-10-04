@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "id": "Q71-fusion-Karatsuba-shared-input",
+  "parent_registration": "gadget-cut-fusion-registration-20261004.json",
+  "before_first_cohort_execution": true,
+  "reason": "The earlier complete relation uses four direct tensor products. Both new large-model controls must receive the known three-product Karatsuba tensor. Preserve the shared locally computed query_C0+query_C1 node as an enrolled island boundary so distributive normalization cannot accidentally expand it into four products.",
+  "change": "Add one shared query-sum materialization boundary to the identical generic shape compiler on both sides. This is computed from the original bound query, has no wire payload or new independent input. Toy shape residual vectors must equal the earlier exact relation on honest and changed tapes. All registration caps and complete-relation checks stay unchanged.",
+  "claim": "Known arithmetic/CSE control, no new algorithm or cohort. Models still do not infer latency or memory lower bounds."
+}

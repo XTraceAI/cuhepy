@@ -1,3 +1,5 @@
+> Latest execution, 2026-10-04: [the complete resource comparison](gadget-cut-fusion-results-20261004.md) selects no-seed30 for the next native build; the initial 14-bit selection below is superseded. Small exact native NTT equality and common-Q parsing pass on two fresh RNS key contexts. The [next construction plan](gadget-cut-native-controller-plan-20261004.md) uses deterministic full-vector checking and requires authoritative source-scale enrollment, full release binding and a matched producer before timing. [Current ledger](gadget-cut-fusion-progress-20261004.json). The dated specification/body below remains preserved; no complete protected admission or originality is accepted.
+
 # Q71 construction gate: a complete noise-budgeted admission relation
 
 Current execution: [the first complete generic relation component](gadget-cut-relation-results-20261003.md)
