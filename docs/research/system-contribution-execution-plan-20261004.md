@@ -13,6 +13,10 @@ record subsequent bounded implementation gates; the ledger controls the next ste
 The [earlier derivation and plan](research-contribution-plan-20261004.md)
 remains intact as a technical reference. Registrations and negative results
 are preserved; this document changes priorities and clarifies acceptance.
+The [paper-facing reassessment receipt](paper-contribution-review-20261004.json)
+uses implementation baseline `50840499716d353c76a0052417aaea546d2b95cd`.
+It rechecks existing sources and sharpens the comparisons below; it contains
+no new HE experiment, timing or originality approval.
 
 **Build one complete homemade BGV system to answer a specific research
 question: when does jointly compiling evaluation, public admission, and
@@ -55,6 +59,31 @@ move the bottleneck to **server-to-verifier** traffic. In the selected full-grou
 model the latter is approximately 120 MiB while the client coefficient reply
 is 100 KiB. They are different links and cannot be added to one ambiguous
 "response reduction" number.
+
+### Research decision from the accumulated experiments
+
+The selected direction is **exact BGV search with certified verification
+placement and explicitly managed retained state**. It builds on the useful
+homemade CPU/RNS/CUDA assets. Its publication case must come from a specific
+result about complete execution, rather than another isolated arithmetic ratio.
+
+| Research question | Distinctive result to attempt | Required discriminator | Decision if it fails |
+| --- | --- | --- | --- |
+| C1: Can the same compiler certify arithmetic, exact decoding and authorized release across representation boundaries? | A small specification/checker connects owner-origin coefficients, common-Q digits, both actual limbs, conservative phase bounds, complete terminal frame and state transitions. Optimizer output is independently checked. | Formal obligations below; native and lifecycle counterexamples; comparison against PEEV/CirC and corrected maintenance-proof methods. | Keep the checker as company assurance. A collection of signatures and NTT checks alone is insufficient as a new research result. |
+| C2: Can choosing verification placement change the best complete execution plan? | A reproducible rule selects evaluation, checking/replay and preparation lifetimes under declared link/memory/update budgets, and explains the measured crossover. | Equally optimized fixed choices, a conversion-aware generic planner with duplicated representations, and the evaluator-only ablation on held-out blocks. | Do not claim a new planner from a renamed objective or ordinary Pareto search. Report the measured frontier or stop the main systems claim. |
+| C3: Does the resulting system earn outsourcing's cost in a real owner deployment? | A useful region survives setup, device acquisition, updates, admission and release, with precise trust and leakage. | Prepared protected replay, delegated-product checking, allowed cache including acquisition/prefetch, and real attested deployment. | If cache/replay dominates all justified regimes, retain the implementation and consider a scoped negative result only after its own originality review. |
+
+These are three obligations for one system, not three established original
+papers. Prior work contains the component transformations. The possible new
+result is their contract-specific, independently assured implementation and
+an experimentally defensible design finding. External review must determine
+whether that remaining distinction is substantial enough.
+
+The promising scientific tension is concrete: smaller Internet replies may
+require large admission witnesses; avoiding those witnesses may require more
+protected recomputation or retained state. Fresh-device and update costs can
+reverse a steady-state winner again. The paper should explain and exploit
+those reversals if they occur, including regimes where outsourcing loses.
 
 ## 2. Exact contract and the claim worth pursuing
 
@@ -144,11 +173,26 @@ client and not hardware attestation. Its checker must be separate from the
 optimizer and producer. A native implementation is not correct merely because
 two code paths share the same bug.
 
-Current owner-seeded query/index wire formats should be retained. The native
-draft consumes expanded two-component buffers: preparing those buffers is a
+Represent these obligations as explicit effects on each graph value:
+origin/key namespace, integer representation and range, ciphertext key basis,
+phase bound, covered record coordinates, authority/snapshot and state lifetime.
+Every rewrite must preserve the effects or supply a checked transition. In
+particular, an RNS value does not automatically carry common-integer evidence,
+and a valid modular relation does not automatically carry exact-decoding or
+fresh-release evidence. This is a proposed specification, not an implemented
+new type system or a claim that effect typing is novel.
+
+Current owner-seeded query/index wire formats should be retained. The public
+native interface consumes expanded two-component buffers: preparing them is a
 paid step, not a reason to double query uploads or label expanded resident
 state as the compact wire size. Every byte category is measured at its actual
 interface.
+
+The online client needs authenticated compact snapshot/query/ID context and
+its private context, rather than the complete HE enrollment. Q76.5 must specify
+how the owner provisions that context or signs a compact descriptor, and Q78
+must bind the release receipt to it. Account for this acquisition explicitly;
+the current local factory is not yet that client-release protocol.
 
 ## 4. Q76: finish one authoritative native prototype
 
@@ -180,6 +224,31 @@ real freshness/revocation and protected-release assumptions, including
 owner-side request/snapshot binding. Actual attestation remains unimplemented
 for this selected service.
 
+Each remaining Q76 milestone has a bounded handoff:
+
+1. **Lifecycle:** write the state machine and registration first. Use existing
+   retained public cases; atomically consume the owner-bound request before
+   admission, recheck the current snapshot before authorization, and consume
+   failed attempts. Test independent processes as well as threads, crashes,
+   restart, fork, epoch replacement and callback failure. Persist UInt64 epochs
+   without truncation to SQLite's signed integer range. No HE private callback
+   is needed to test this controller.
+2. **Source scale:** provide a bounded independent GMP producer before the
+   one new key is generated. The existing small reference rejects N>64; raising
+   that guard alone does not constitute independent large correctness. Freeze
+   source/build/dependencies and execute only the registered six searches.
+3. **Controls:** implement the same native prepared replay and protected
+   prefix/product/suffix contract; write the randomized-delegation comparison
+   card below before choosing its assurance scope. Credit cached and streamed
+   inputs, shared expansion and paired Karatsuba to every compatible control.
+4. **Certificate:** separately validate graph/effect transitions and high-level
+   resources, document the native assurance boundary, and return a pass/stop
+   receipt to the ledger. Q77 becomes eligible only after this handoff.
+
+Do not change the selected key/search budgets to obtain a more attractive
+result. A failed source gate returns here for a documented correction before
+another cohort is authorized by a revised registration.
+
 ## 5. Q77: decisive complete-cost evaluation
 
 Freeze methods, actual deployment budgets and the primary success metric
@@ -197,6 +266,37 @@ allowed retained and newly acquired cache. A protected plaintext-search
 control is relevant when the owner accepts secret/plaintext custody inside
 the TEE; label that extra trust separately. Paillier/BFV and bare BGV CUDA
 remain engineering context, with their actual profiles and assurance scope.
+
+**Resolve the strongest randomized control before a broad performance claim.**
+[vFHE Appendix D](https://arxiv.org/html/2301.07041v2#A4) already checks delegated
+tensor products with private polynomial challenges. Our deterministic
+checked-product control does not reproduce its statistical optimization.
+Within Q76.4, write one adaptation card for the exact aggregate tensor that
+our lazy-relinearization graph needs. Bind all operands/results first; use
+fresh hidden verifier challenges, every actual limb/full ring, protected
+maintenance/terminal processing and the same lifecycle. Prove the lifetime
+soundness budget before implementing or measuring that control. This does not
+reopen failed private-adjoint reuse proposals.
+
+For orientation only, if a committed erroneous aggregate has a nonzero
+degree-at-most-two challenge polynomial in an actual prime field, one fresh
+round has error at most `2/p`. With independent fresh rounds and at most B
+adaptive attempts, the prospective bound is `B*(2/min(p0,p1))^r`.
+At B<=2^32 and r=3, the selected approximately 60-bit primes give an error
+bound below 2^-128 **under those obligations**. All rounds, randomness,
+maintenance, witness/commitment handling and retained state must be paid.
+This is a proposed comparator argument, not a completed protocol reduction
+or an approved HE security level. Do not multiply limb failure probabilities
+for an error supported in only one limb. Do not compare a roughly 60-bit
+single-round control as if it had the stronger lifetime target.
+The attempt budget must cover the relevant key lifetime across verifier
+instances. Enforce it through the actual authority or state it as an explicit
+deployment assumption; a rollbackable per-process counter is insufficient.
+
+If a correct applicable randomized adapter is unfinished, explicitly narrow
+the result to the implemented deterministic class; do not declare the prior
+approach defeated. Same-backend adaptation is distinct from reproducing an
+author artifact, which is still a separate stated scope.
 
 Q77 initially measures native prototype roles under the declared local
 storage/authority assumptions. It must label that placement as a prototype,
@@ -233,6 +333,16 @@ sequential illustration. Derive device lifetimes 1/8/128 from the same paid
 stages. A returning device's allowed plaintext cache pays no invented download.
 A new device may acquire an owner-authenticated compact encrypted vector
 backup; it must not be forced to download the HE index.
+
+Also give the permitted cache a **background acquisition policy**: it may
+answer an initial query remotely while acquiring the compact backup, then use
+local search once ready. Charge actual overlap, duplicated work and update
+invalidation. Grant the generic control the same declared horizon/budget
+knowledge as our selector; our candidate cannot win by knowing future query
+counts that its competitor is denied. This is a stronger ordinary control,
+not a new prefetch contribution. Returning devices keep their zero-download
+baseline. Cache and private-context custody inside a TEE remain distinct
+trust choices.
 
 Transfer-only accounting on the **old** 32k public-index measurements puts one
 2,359,388-byte cache acquisition at about 5.23 exchanges of 450,761 bytes.
@@ -297,6 +407,31 @@ statistical equality error; implementation bugs and the other assumptions
 do not disappear. Related-secret evaluation keys require the appropriate
 explicit HE/KDM/circular assumptions or a reviewed alternative construction.
 
+The proof deliverables are concrete and can proceed alongside implementation:
+
+1. **Admission lemma:** canonical bounded sources and complete zero residuals
+   in both actual prime NTTs imply every relation in the internally compiled
+   whole-Q graph. State prime/NTT invertibility and source-recomposition
+   premises; cover every physical coordinate, not just decoded scores.
+2. **Exact-output theorem:** the graph, honest owner encoding/sampler support
+   and public phase induction imply the complete Q-to-P frame decrypts to
+   every exact distance, with zero tails and the declared stable ID/tie rule.
+   This theorem concerns the selected origin/profile, not arbitrary ciphertexts.
+3. **Authorization invariant:** model reserve, reject, authorize, callback and
+   snapshot replacement; prove at-most-once release and snapshot/request/frame
+   binding under durable non-rollback storage, with crash-lost delivery allowed.
+4. **Conditional confidentiality theorem:** simulate observable admission from
+   public authenticated ciphertext data, and couple every authorized private
+   output to ideal exact search. State evaluation-key assumptions, permitted
+   application leakage and the actual trusted authorization boundary separately.
+
+These are planned instantiations of established verification/composition ideas.
+Neither the lemma list nor a simulator sketch establishes a novel theorem.
+For a CSF-oriented result, mechanized semantics/state and a reviewed composition
+argument should be central; for a systems-oriented result, they support the
+measured design finding. Choose that framing after the evidence rather than
+inventing a new primitive to fit a venue.
+
 The allowed leakage must list dimensions/counts, lengths, request/update
 timing and public admission outcomes. Private decode errors or result-dependent
 client behavior must not become an unmodeled server oracle. Keeping the HE
@@ -349,14 +484,21 @@ controls and changed registrations. Do not add overlapping test counts or
 silently relabel models as measurements. Freeze a revised registration before
 new keys, timing cohorts or protocol changes.
 
-For Q76.1, inspect the isolated draft and registration; build only its isolated
-library; add the public adapter and retained-fixture gate; run via
-`.venv/bin/python -m pytest`; lint new experimental files with
-`ruff --no-force-exclude`. The public-native gate precedes new large keys.
+Q76.1's isolated build/retained-fixture recipe is preserved in its receipt.
+Q76.3 begins with the local state-machine registration and retained lifecycle
+gate. Use `.venv/bin/python -m pytest` and lint new experimental files with
+`ruff --no-force-exclude`. The public-native/lifecycle gates precede new large keys.
 The registry retains primary PDFs/text/version/hash/scope outside Git; no
 author artifact is executed merely to download or review it.
 
-Checkpoint this plan and unvalidated draft separately from successful evidence.
+Keep the original plan/unvalidated-draft checkpoint separate from successful gates.
 Preserve the 54 production source files, 12 delivered libraries, main/staging
 refs and earlier evidence archives. Approval of an original main, secure
 parameters or production deployment is never inferred from a checkpoint.
+
+The Q76.2 authenticated factory is now preserved at commit
+`50840499716d353c76a0052417aaea546d2b95cd` and tag
+`checkpoint/native-shared-query-auth-2026-10-04`, with a verified incremental
+bundle and all 59 evidence/66 company archive members checked. The core gate
+has its preceding independent checkpoint. This reassessment changes planning
+and comparison obligations only; Q76.3 remains the next executable milestone.

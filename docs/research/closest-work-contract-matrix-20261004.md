@@ -1,7 +1,10 @@
 # Closest work for the selected exact-search system
 
-2026-10-04. Current evidence baseline:
+2026-10-04. Original comparison evidence baseline:
 `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
+The current implementation is `50840499716d353c76a0052417aaea546d2b95cd`;
+the [paper-facing rereading receipt](paper-contribution-review-20261004.json)
+records this later planning return separately from the original review.
 Read with the [execution plan](system-contribution-execution-plan-20261004.md),
 [claim cards](system-contribution-claim-cards-20261004.json),
 [targeted reading receipt](system-contribution-review-20261004.json), and
@@ -23,7 +26,9 @@ exact all-distance Hamming output, complete ordered IDs and client top-k.
 The owner may cache all plaintext. The server is malicious and may observe
 public admission feedback. The proposed protected checker holds no HE
 decryption secret, but correctness/freshness of its authorization is trusted.
-This selected service is not deployed; the native draft remains unvalidated.
+This selected service is not deployed. The N16/N32 public native core and local
+owner-authenticated factory pass their bounded gates; durable lifecycle,
+source-scale correctness, private release and real attestation remain open.
 
 There are three different comparison classes:
 
@@ -41,7 +46,7 @@ absence from a prototype limitation or from the passages inspected here.
 | Work, primary source and reading | Existing result relevant to us | Contract/adaptation obligation | Current conclusion |
 | --- | --- | --- | --- |
 | **Cascudo et al., corrected CRYPTO 2025 revision**, [2025/286](https://eprint.iacr.org/2025/286), retained §§3.4, 4.1/Remark4.1 and correction review | Ring-oriented verification, bounded alternative decomposition and noise-aware maintenance relaxation, including the key-switch route for automorphisms. | Apply the corrected common-integer/range relation to exact BGV and our terminal guard. Pay all larger-Q and transformation costs. Approximate CKKS bounds cannot be copied unchanged. | Spare noise, noncanonical gadget witnesses and verifying maintenance are known. Q75's algebraic claim is contained; a complete-cost result remains unmeasured. |
-| **vFHE**, [Viand et al.](https://arxiv.org/html/2301.07041v2), retained malicious-server model, V-B and AppendixD; [author artifact](https://github.com/zkFHE/FHE-in-TEE) | Malicious-server FHE integrity analysis and TEE-assisted outsourced tensor products with equality checks. | Our main matched native control must also check the full products and pay protected query expansion, key switching/relinearization and terminal/frame work. The artifact has not been reproduced in this review. | TEE plus HE and delegated product checks are known. A full maintained-graph system needs a measurable distinction beyond them. |
+| **vFHE**, [Viand et al.](https://arxiv.org/html/2301.07041v2), retained malicious-server model, V-B and AppendixD; [author artifact](https://github.com/zkFHE/FHE-in-TEE) | Malicious-server FHE integrity analysis and TEE-assisted outsourced tensor products, including private polynomial-challenge equality checking. | Pay protected query expansion, maintenance and terminal/frame work. A deterministic product checker does not reproduce the randomized optimization: align its actual-limb, commitment, feedback and lifetime soundness assumptions before a broad comparison. The author artifact has not been reproduced in this review. | TEE plus HE and delegated product checks are known. A full maintained-graph system needs a measurable distinction beyond them. |
 | **BioZKFHE**, [2607.22065v1](https://arxiv.org/html/2607.22065v1), retained §§IV, V-C, VII and concrete formulation | BGV similarity search, packing, blockwise proofs and committee-governed opening/release, with query/gallery context and full block coverage. | Preserve its quantized metric and trust/committee contract. Its stated prototype excludes rotations, modulus switching, bootstrapping and encrypted top-k; a complete adaptation to our expanded-query graph must supply and pay those boundaries. | Encrypted similarity plus verification, context binding and release are prior work. Our stronger protected-verifier assumption cannot be called cryptographic dominance. |
 | **HERS**, [2003.12197v3](https://arxiv.org/abs/2003.12197v3), retained §3.2/AppendixB Algorithm7 | Transposed feature packing and encrypted matching with client score decryption/selection. | The exact binary adaptation receives one expanded query and delayed relinearization; optional lossy dimension reduction is excluded from an exact-distance control. | Feature-major layout is known; Q74 validates our implementation, not its originality. |
 | **PEEV**, [2024 paper](https://doi.org/10.1109/ACCESS.2024.3424420), retained §§IV–VI and pinned [author source](https://github.com/TrustworthyComputing/PEEV-verifiableFHE/tree/2fb6bfb3de42acb92ddc373ec9829f1299377c02) | A program-to-BGV-to-ring-proof framework with verify-before-decrypt flow and small Hamming workloads. | Determine the complete maintenance/common-Q/terminal adapter for our circuit before performance comparison. Original artifact execution remains unknown; homemade arithmetic is not a scientific distinction by itself. | A verifiable HE compiler and encrypted Hamming computation are already established. |
@@ -92,7 +97,7 @@ remain distinct. We do not count all source records as newly reviewed proofs.
 
 | Candidate result | Current evidence | Missing discriminator | Falsifier |
 | --- | --- | --- | --- |
-| A certificate/effect model for a complete exact native search plan | Small reference binds all sources, limbs, outputs and frame; native/lifecycle remains unfinished. | An independently checked native specification spanning origin, representation, public bounds and release; applicable prior compiler comparison. | A free input, wrong frame or false semantic/noise implication; known certificate/compiler covers the same claimed design result. |
+| A certificate/effect model for a complete exact native search plan | Small reference, native core and owner-authenticated factory bind all sources, limbs, outputs and frame; lifecycle/source scale remain unfinished. | An independently checked native specification spanning origin, representation, public bounds and release; applicable prior compiler comparison. | A free input, wrong frame or false semantic/noise implication; known certificate/compiler covers the same claimed design result. |
 | A useful jointly selected verification/evaluation/state plan | Q75 contains real modeled tradeoffs; ordinary finite Pareto selection is known. | Same-backend complete measurements and held-out ablation showing a concrete decision/cost change under fixed budgets. | Equally specialized prior/replay gives the same paid frontier, or the difference is only a renamed objective. |
 | A reproducible useful protected-search system | Strong earlier unverified BGV engineering; cache wins local returning queries. | Complete acquisition, protected admission, updates, real deployment and truthful trust/feedback scope. | Replay/cache removes all justified operating regimes, or the advantage requires hiding cost or assuming forbidden caching. |
 | A security/assurance contribution suitable for formal analysis | Full common-Q/frame counterexamples and public-bound lessons are retained. | Actual conditional composition/mechanization and externally reviewed implementation boundary. | Raw algebraic integrity is presented as CCA security, or a theorem omits origin, noise, freshness or private feedback. |
@@ -101,6 +106,40 @@ This is a set of testable opportunities, not a declaration that we are first.
 E101/E110/Q57/H1/Q59/H2 negative originality gates remain closed. Q74/Q75's
 known-composition containment is preserved. A strong engineering artifact and
 a main original paper are separate decisions.
+
+## Executable closest-work obligations for the paper
+
+The later targeted rereading sharpens the controls without adding papers or
+rerunning their artifacts. The existing 114 registry records and PDF versions
+are retained. The proposed distinction below is ours to demonstrate; an
+unimplemented adaptation is unknown, not a slower competitor.
+
+| Comparator | Strong specialization to credit | Concrete remaining task | What a successful comparison would mean |
+| --- | --- | --- | --- |
+| HERS + SealPIR/MulPIR + ordinary delayed maintenance | Feature-major index, one original-query expansion, seeded uploads and one relinearization per sum. | Use the identical paid graph for the known-composition alias. | Q75 already establishes algebraic containment. No new layout/expansion claim survives merely because our code is homemade. |
+| vFHE / FHE-in-TEE | Offloaded products with protected maintenance and private randomized checking, not only a slower deterministic checker. | Q76.4 adaptation card: exact aggregate statement, actual-prime challenge law, committed operands, adaptive attempt budget, paid rounds/state and complete release. | A scoped full-cost difference could support a system finding. A copied product-checking technique cannot be the main new primitive. |
+| Silph / CirC | Conversion-aware assignment, with values represented in multiple domains when that avoids conversions. | Give the generic planner the same legal choices, input effects, retained-state budgets, lifetimes and cost data as our selector. | Held-out selection benefit against evaluator-only policy is evidence of usefulness. Benefit absent against this stronger specialization closes the algorithmic claim. |
+| Fhelipe / HEIR / KeyMemRT | Layout, noise management, relinearization placement and explicit key lifetimes. | Attribute these mechanisms; separately demonstrate the admission/release constraints and measured system finding. | A new cost name, delayed switch or streamed key is insufficient. Compiler differences require an executable consequence. |
+| PEEV + corrected Cascudo ring/range methods | Program-to-HE-to-verification and maintenance/common-integer constraints. | Specify our source-origin/phase/frame effects and prove the complete invariant independently of the optimizer; do not infer absent capabilities from inspected examples. | A coherent assured artifact may be valuable, but certificate novelty is open until this comparison and external review. |
+| BioZKFHE / Laminate | Bound inputs/coverage and encrypted similarity verification, or blind proofs with corrected packing checks. | Keep committee/public-verification and verdict-feedback assumptions separate; supply a paid coefficient-ring/maintenance adapter before timing. | Different trust, metric or feedback can explain costs. It cannot establish domination by our protected verifier. |
+| Permitted owner cache | Compact authenticated backup, returning-device local search, mutable updates and background acquisition while a remote first query runs. | Charge acquisition/invalidation/overlap and grant both selectors the same horizon information. | Only surviving cold-device/resource regions justify outsourcing. Prohibiting cache or forcing HE-index acquisition is an invalid advantage. |
+
+Silph's multiple-representation assignment is particularly relevant: a control
+that forces every value into one domain can overpay conversion and manufacture
+an apparent advantage for our planner. Its MPC threat model differs from ours;
+that difference calls for a new correctness argument, not a claim that cost-aware
+selection or representation duplication was invented here.
+
+Likewise, vFHE's challenge variable combines **ciphertext components with
+ring-valued coefficients**. It is not our rejected shortcut of checking one
+physical NTT coordinate. Do not dismiss the strongest delegated-product
+control using the counterexample to that different shortcut. The common-Q,
+noise, maintenance and release obligations still have to be supplied.
+
+The corrected Cascudo metadata inspected again reports the 2026-10-01 range
+protocol correction. Laminate's retained May2026 text includes packing
+well-formedness and its verdict-leakage qualification. These are the versions
+to compare; the earlier PDFs remain archived for provenance.
 
 ## Before claiming a comparison with a blind/public proof system
 
