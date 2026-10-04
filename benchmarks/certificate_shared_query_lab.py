@@ -119,7 +119,7 @@ def _cache_context(snapshot, anchor):
     )
 
 
-def main():
+def main(owner=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workspace", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -174,7 +174,10 @@ def main():
     )
     # Exactly one fresh standard Ed25519 signing context. No HE/symmetric key
     # or previous private context is restored or serialized by this metadata run.
-    owner = Ed25519PrivateKey.generate()
+    if owner is None:
+        owner = Ed25519PrivateKey.generate()
+    elif not isinstance(owner, Ed25519PrivateKey):
+        raise ValueError("Explicit standard cohort signing context required")
     anchor = owner.public_key().public_bytes_raw()
     result = {
         "task": "Q76.5",
