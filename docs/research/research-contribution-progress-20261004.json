@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T16:46:08.187286+00:00",
+  "utc": "2026-10-04T18:29:53.887134+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -118,7 +118,7 @@
     {
       "id": "Q76",
       "title": "One complete authoritative native prototype",
-      "status": "partial_native_factory_lifecycle_source_and_replay_complete_aggregate_cache_certificate_unfinished",
+      "status": "partial_native_factory_lifecycle_source_replay_aggregate_complete_cache_certificate_unfinished",
       "dependencies": [
         "Q75"
       ],
@@ -146,7 +146,9 @@
         "docs/research/native-shared-query-replay-registration-20261004.json",
         "docs/research/native-shared-query-replay-20261004.md",
         "docs/research/native-shared-query-replay-return-20261004.json",
-        "docs/research/native-shared-query-aggregate-registration-20261004.json"
+        "docs/research/native-shared-query-aggregate-registration-20261004.json",
+        "docs/research/native-shared-query-aggregate-20261004.md",
+        "docs/research/native-shared-query-aggregate-return-20261004.json"
       ],
       "implemented": false,
       "selected": {
@@ -182,7 +184,8 @@
         "Q76.3a_retained_local_durable_lifecycle_only",
         "Q76.3b_independent_GMP_small_preflight_pass",
         "Q76.3b_registered_one_key_six_source_searches_pass",
-        "Q76.4a_16_small_6_saved_large_replay_local_public_gate"
+        "Q76.4a_16_small_6_saved_large_replay_local_public_gate",
+        "Q76.4b_16_small_6_saved_large_exact_aggregate_local_public_gate"
       ],
       "native_draft_not_authoritative_release_or_HE_correctness_evidence": false,
       "local_lifecycle_contract": {
@@ -193,7 +196,6 @@
       },
       "native_core_not_authenticated_service_or_source_scale_evidence": true,
       "remaining_control_obligations": [
-        "matched_checked_product_protected_suffix",
         "randomized_prior_adapter_card_before_broad_claim",
         "permitted_cache_acquisition_prefetch",
         "independent_effect_certificate",
@@ -206,7 +208,6 @@
         "Q76.3b_independent_GMP_small_preflight_only_source_run_unexecuted"
       ],
       "ordered_remaining_native_subtasks": [
-        "Q76.4b_aggregate_prefix_suffix_control",
         "Q76.4c_permitted_authenticated_cache",
         "Q76.5_certificate_resource_client_context_handoff"
       ],
@@ -406,7 +407,7 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/system-contribution-review-20261004.json",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q76.4b_aggregate_prefix_suffix_then_cache_controls",
+  "next_subtask": "Q76.4c_permitted_authenticated_cache",
   "latest_planning_review": {
     "execution_branch": "experiment/native-shared-query-service-20261004",
     "receipt": "docs/research/paper-system-reassessment-20261004.json",
@@ -417,7 +418,7 @@
     "new_HE_tests_or_experiments_or_timings": 0,
     "originality_or_security_approval": false
   },
-  "latest_execution_return": "docs/research/native-shared-query-replay-return-20261004.json",
+  "latest_execution_return": "docs/research/native-shared-query-aggregate-return-20261004.json",
   "Q76_execution_returns": [
     {
       "milestone": "Q76.1",
@@ -517,7 +518,8 @@
       "witness_source_bytes": 0,
       "untrusted_producer_not_required_for_protected_control": true,
       "next": "Q76.4b_aggregate_prefix_suffix_then_cache_controls"
-    }
+    },
+    "docs/research/native-shared-query-aggregate-return-20261004.json"
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
   "latest_plan_revision": {
@@ -534,17 +536,19 @@
     "author_artifacts_executed": 0,
     "next_executable_subtask": "Q76.4a_prepared_replay",
     "planned_task_completed_by": "docs/research/native-shared-query-replay-return-20261004.json",
-    "next_executable_subtask_after_return": "Q76.4b_aggregate_prefix_suffix_then_cache_controls"
+    "next_executable_subtask_after_return": "Q76.4c_permitted_authenticated_cache"
   },
   "top_level_count_scope_note": "Top-level new_HE_experiments/tests describe the original Q74/Q75 return. Q76 milestone receipts and later planning revisions have separate non-additive units.",
   "preserved_latest_implementation_checkpoint": {
-    "commit": "9ccf11a5dda656b68a1664301093c891c49e0743",
-    "tag": "checkpoint/native-shared-query-source-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-source-2026-10-04/manifest.json",
-    "manifest_sha256": "873d3b8338880207fb6f9289e64c56bdaa21eafb46b50b5e9d08df75fdcc3c34",
-    "evidence_archive_members_verified": 54,
+    "commit": "abcb22a5f4de64bb4576e39f810a96d6e2b15739",
+    "implementation_commit": "e26050ad53e206e20fdfbf6873dec4a9b9b4b69f",
+    "tag": "checkpoint/native-shared-query-replay-2026-10-04",
+    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-replay-2026-10-04/manifest.json",
+    "manifest_sha256": "2faa9b8ef19f8dd8106e5ec13cdd96e8d477c9cd27a7a929628fcd415e1b5990",
+    "evidence_archive_members_verified": 109,
     "company_archive_members_verified": 66,
-    "branch_and_tag_remote_verified": true
+    "branch_and_tag_remote_verified": true,
+    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-replay-2026-10-04/remote-verification.json"
   },
   "Q76_control_design_return": {
     "card": "docs/research/native-shared-query-product-control-card-20261004.md",
@@ -552,7 +556,9 @@
     "public_toy_degree_two_triples_checked": 5038,
     "new_HE_keys_searches_or_private_work": 0,
     "control_implementation_complete": false,
-    "originality_or_protocol_security_approval": false
+    "originality_or_protocol_security_approval": false,
+    "exact_control_registered_gate_complete": true,
+    "scope_note": "Exact control complete locally/publicly; randomized protocol and complete service remain unfinished"
   },
   "focused_research_hypotheses": {
     "H1": "Measured complete-cost placement winner differs from evaluator-only winner",
@@ -562,9 +568,21 @@
   },
   "current_originality_status": "Complete-system hypothesis, no accepted original main; component algebra/standard optimizer containment preserved",
   "latest_implementation_checkpoint_pending_external_verification": {
-    "implementation_commit": "e26050ad53e206e20fdfbf6873dec4a9b9b4b69f",
-    "tag": "checkpoint/native-shared-query-replay-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-replay-2026-10-04/manifest.json",
-    "verification_note": "External manifest and remote-verification receipt are created/checked after this ledger commit; previous verified checkpoint retained above"
-  }
+    "implementation_commit": "10e2169b64775da832502113abcd94b9b4ce850a",
+    "test_followup_commit": "b4ab43d972c1664ced61686b1ae72f49b6027874",
+    "tag": "checkpoint/native-shared-query-aggregate-2026-10-04",
+    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/manifest.json",
+    "verification_note": "External manifest and remote receipt are created/checked after this ledger commit; preceding verified checkpoint retained above"
+  },
+  "historical_verified_implementation_checkpoints": [
+    {
+      "commit": "9ccf11a5dda656b68a1664301093c891c49e0743",
+      "tag": "checkpoint/native-shared-query-source-2026-10-04",
+      "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-source-2026-10-04/manifest.json",
+      "manifest_sha256": "873d3b8338880207fb6f9289e64c56bdaa21eafb46b50b5e9d08df75fdcc3c34",
+      "evidence_archive_members_verified": 54,
+      "company_archive_members_verified": 66,
+      "branch_and_tag_remote_verified": true
+    }
+  ]
 }

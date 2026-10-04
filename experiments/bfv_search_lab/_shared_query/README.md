@@ -45,3 +45,12 @@ adds replay ABI1, sharing canonical expansion, paired products and the terminal
 codec while omitting source-witness writes. Original normal and UBSan libraries
 remain preserved; never overwrite them. This known-method control is not a
 performance or security approval.
+
+The later [exact aggregate return](../../../docs/research/native-shared-query-aggregate-20261004.md)
+records Q76.4b. `SOURCE=shared_query_aggregate.cpp` preserves both existing ABIs
+and adds aggregate ABI1. It shares the genuine prefix, optimized three-product
+aggregate and exact suffix, compares every coordinate of all three components
+in both actual prime NTTs, and returns no expansion-source witness. Retained
+small/source frames and normal/UBSan regression gates pass. All previous
+libraries remain preserved. Randomized admission is unimplemented; no full-cost
+speedup, attestation or security approval follows from these gates.

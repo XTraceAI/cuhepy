@@ -26,6 +26,11 @@ The [matched prepared replay return](native-shared-query-replay-20261004.md)
 subsequently completes Q76.4a using retained public data: 16 small plus six large
 complete frames, zero new HE work, 309 selected tests including 51 new cases.
 This is a known-method control, with no new timing or originality approval.
+The [exact aggregate return](native-shared-query-aggregate-20261004.md)
+subsequently completes Q76.4b: 22 retained cases, 394,944 aggregate coefficient
+comparisons, 5,568 small coefficient/isolated-NTT faults rejected and 360 selected tests
+including 51 new cases. No fresh HE, private operation, timing or randomized
+protocol is added. Next is the permitted authenticated cache control.
 
 **Build one complete homemade BGV system to answer a specific research
 question: when does jointly compiling evaluation, public admission, and
@@ -115,13 +120,13 @@ ordered-ID context. These are byte counts, not timing, transport or security
 estimates. The [reassessment receipt](paper-system-reassessment-20261004.json)
 pins the calculation and its inputs.
 
-| Records | Whole-trace witness body | Client coefficient body | Proposed aggregate-only body | Packed owner vectors |
+| Records | Whole-trace witness body | Client coefficient body | Implemented exact aggregate body | Packed owner vectors |
 | ---: | ---: | ---: | ---: | ---: |
 | 8,224 | 126,320,640 B | 102,400 B | 737,280 B | 526,336 B |
 | 16,384 | 126,320,640 B | 102,400 B | 737,280 B | 1,048,576 B |
 | 32,768 | 127,057,920 B | 204,800 B | 1,474,560 B | 2,097,152 B |
 
-The aggregate column is a prospective **internal** control body, before its
+The aggregate column is the implemented exact **internal** control body, before its
 packet and paid protected prefix/suffix. Its roughly 86-fold byte reduction
 at 32k does not imply a speedup. Prepared replay sends zero source-witness
 bytes, and cache sizes here exclude IDs, authentication and private-context
@@ -275,15 +280,15 @@ builds. No production migration follows merely from passing these gates.
 The next [aggregate registration](native-shared-query-aggregate-registration-20261004.json)
 permits the equivalent direct coefficient comparison with paired Karatsuba:
 the control gets the same optimization and pays three protected products.
-This prospective control may expose replay dominance; it is not a promised
-performance improvement. Its large reference can use the saved GMP full
+The registered correctness gate now passes; its complete latency is unmeasured.
+This control may expose replay dominance; it is not a promised performance improvement. Its large reference can use the saved GMP full
 outputs/C2 and independent GMP key switching, with no new private HE work.
 
 The [independent GMP preflight](native-shared-query-gmp-preflight-20261004.md)
 passes 59 producer tests and two public fixture tests; the later
 [source return](native-shared-query-source-20261004.md) records the separate
 fresh-key/six-search gate and private diagnostics. **Next executable task is
-Q76.4b aggregate prefix/suffix control, then the permitted cache.** Source belongs in
+Q76.4c permitted authenticated cache, then certificate/handoff.** Source belongs in
 `experiments/bfv_search_lab/_shared_query/`; Python adapter/tests beside the
 other research implementations; reproducible runners in `benchmarks/`.
 Keep isolated libraries and outer evidence. Migrate a reviewed selected
@@ -318,8 +323,9 @@ Each remaining Q76 milestone has a bounded handoff:
    one new key is generated. The existing small reference rejects N>64; raising
    that guard alone does not constitute independent large correctness. Freeze
    source/build/dependencies and execute only the registered six searches.
-3. **Controls — prepared replay gate complete:** implement the remaining protected
-   prefix/product/suffix contract; the randomized-delegation comparison card
+3. **Controls — prepared replay and exact aggregate gates complete:** implement
+   the permitted authenticated cache. The protected prefix/product/suffix
+   contract passes its registered gate; the randomized-delegation comparison card
    preserves the prospective assurance scope. Credit cached and streamed
    inputs, shared expansion and paired Karatsuba to every compatible control.
 4. **Certificate:** separately validate graph/effect transitions and high-level
