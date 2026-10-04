@@ -17,6 +17,11 @@ The [paper-facing reassessment receipt](paper-contribution-review-20261004.json)
 uses implementation baseline `50840499716d353c76a0052417aaea546d2b95cd`.
 It rechecks existing sources and sharpens the comparisons below; it contains
 no new HE experiment, timing or originality approval.
+The [source-scale reassessment](paper-system-reassessment-20261004.json) uses
+implementation checkpoint `9ccf11a5dda656b68a1664301093c891c49e0743`.
+It incorporates the completed six-search correctness gate, three additional
+primary references and an explicit research decision sequence. It changes
+the living plan only; earlier registrations, readings and results are retained.
 
 **Build one complete homemade BGV system to answer a specific research
 question: when does jointly compiling evaluation, public admission, and
@@ -70,7 +75,7 @@ result about complete execution, rather than another isolated arithmetic ratio.
 | Research question | Distinctive result to attempt | Required discriminator | Decision if it fails |
 | --- | --- | --- | --- |
 | C1: Can the same compiler certify arithmetic, exact decoding and authorized release across representation boundaries? | A small specification/checker connects owner-origin coefficients, common-Q digits, both actual limbs, conservative phase bounds, complete terminal frame and state transitions. Optimizer output is independently checked. | Formal obligations below; native and lifecycle counterexamples; comparison against PEEV/CirC and corrected maintenance-proof methods. | Keep the checker as company assurance. A collection of signatures and NTT checks alone is insufficient as a new research result. |
-| C2: Can choosing verification placement change the best complete execution plan? | A reproducible rule selects evaluation, checking/replay and preparation lifetimes under declared link/memory/update budgets, and explains the measured crossover. | Equally optimized fixed choices, a conversion-aware generic planner with duplicated representations, and the evaluator-only ablation on held-out blocks. | Do not claim a new planner from a renamed objective or ordinary Pareto search. Report the measured frontier or stop the main systems claim. |
+| C2: Can choosing verification placement change the best complete execution plan? | A reproducible rule selects evaluation, checking/replay and preparation lifetimes under declared link/memory/update budgets, and explains the measured crossover. | Equally optimized fixed choices, a conversion-aware generic planner with duplicated representations, and the evaluator-only ablation on held-out blocks. The exact generic selector should reproduce the same finite frontier. | Claim a specific execution/assurance finding if established. Do not claim a new generic optimizer from agreement, a renamed objective or ordinary Pareto search. |
 | C3: Does the resulting system earn outsourcing's cost in a real owner deployment? | A useful region survives setup, device acquisition, updates, admission and release, with precise trust and leakage. | Prepared protected replay, delegated-product checking, allowed cache including acquisition/prefetch, and real attested deployment. | If cache/replay dominates all justified regimes, retain the implementation and consider a scoped negative result only after its own originality review. |
 
 These are three obligations for one system, not three established original
@@ -84,6 +89,40 @@ require large admission witnesses; avoiding those witnesses may require more
 protected recomputation or retained state. Fresh-device and update costs can
 reverse a steady-state winner again. The paper should explain and exploit
 those reversals if they occur, including regimes where outsourcing loses.
+
+### Focused hypotheses for the paper build
+
+The work now has one primary systems question and three finite hypotheses.
+They reuse Q76/Q77's selected profile and controls; they do not reopen an
+unbounded preliminary search. A successful hypothesis is useful evidence,
+but priority still requires the closest-system review in Q79.
+
+| Hypothesis | Why the existing results motivate it | Decisive evidence and falsifier |
+| --- | --- | --- |
+| H1: Verification placement changes the paid winner. | Sharing query expansion saves evaluator work but exposes 511 canonical expansion sources. The resulting large internal witness may outweigh compact client IO. | Complete native/deployed paths choose a different placement from evaluator-only selection on preregistered held-out blocks. Test the existing 20% project threshold against frozen compatible policies over a declared workload, charging selection/repreparation. Report the best-per-instance oracle separately. If equally prepared replay always dominates, close the delegated-admission performance claim. |
+| H2: Representation and retained-state constraints explain the crossover. | Whole-Q digits, both-prime NTTs, exact terminal conversion and prepared index rows have different computation, traffic and lifetime costs. | Independent certificates admit each compared plan; charged boundary/streaming ablations explain an observed choice reversal. The same legal choices are available to the generic selector. If ordinary prior specialization already gives the same demonstrated result, narrow or close the new design claim. |
+| H3: Outsourcing has a useful owner deployment region after cache acquisition. | Returning cache queries are already much faster in the retained local panel. A new device pays compact backup acquisition; updates and query horizon change that cost. | Measured cold/returning device and update paths, including cache prefetch and real link/placement costs. State the useful region and its limits. If no realistic region survives, retain the company implementation and stop the positive outsourcing headline. |
+
+For the frozen graph, with `g=ceil(records/N)` and whole-Q width15, structural
+accounting gives `W=(511+3*g)*N*15` witness bytes and
+`R=2*g*N*25/8` compact ciphertext coefficient bytes. The source cohort
+confirms W; R excludes frame/authentication headers and separately provisioned
+ordered-ID context. These are byte counts, not timing, transport or security
+estimates. The [reassessment receipt](paper-system-reassessment-20261004.json)
+pins the calculation and its inputs.
+
+| Records | Whole-trace witness body | Client coefficient body | Proposed aggregate-only body | Packed owner vectors |
+| ---: | ---: | ---: | ---: | ---: |
+| 8,224 | 126,320,640 B | 102,400 B | 737,280 B | 526,336 B |
+| 16,384 | 126,320,640 B | 102,400 B | 737,280 B | 1,048,576 B |
+| 32,768 | 127,057,920 B | 204,800 B | 1,474,560 B | 2,097,152 B |
+
+The aggregate column is a prospective **internal** control body, before its
+packet and paid protected prefix/suffix. Its roughly 86-fold byte reduction
+at 32k does not imply a speedup. Prepared replay sends zero source-witness
+bytes, and cache sizes here exclude IDs, authentication and private-context
+acquisition. In this scope the 511 expansion-source polynomials dominate W;
+this is the structural reason to test placement before further kernel tuning.
 
 ## 2. Exact contract and the claim worth pursuing
 
@@ -129,7 +168,9 @@ or asymptotic source-count result. Its distinctive artifact would include:
 Ablating to an evaluator-only cost objective must change a choice and harm the
 complete cost on held-out instances. This alone does not establish priority:
 if the strongest applicable prior compiler reproduces the same design result,
-the algorithmic claim is contained. A systems contribution then needs an
+the algorithmic claim is contained. With identical legal plans and costs, an
+exact generic solver is expected to reproduce our finite optimum: this is a
+cross-check, not a competitor that must be made slower. A systems contribution needs an
 independently defensible artifact, finding and closest-system distinction.
 
 ## 3. Architecture and certificate
@@ -208,6 +249,23 @@ No timing panel or CUDA port precedes this gate.
 | Q76.3b: source scale — complete registered correctness gate | Bounded independent GMP preflight, then the registered N16k d512 counts 8,224/16,384/32,768 with two queries. | One fresh key/six searches pass: all 50,626,560 source/output coefficients and full frames match; 114,752 distances and all Q/P phase positions/tails/stable ties checked after public acceptance and callback claim. No secret serialized, no timing or security approval. |
 | Q76.4: matched controls | Build prepared replay and checked-product/trusted-prefix/suffix in the same native backend, plus the permitted authenticated cache. Grant layout, expansion, lazy relinearization, Karatsuba, fusion, preparation and streaming equally. | Same source/terminal/snapshot contract and full correctness gates. Count protected work, duplicate work and transfers in both directions, not just the control's return packet. |
 | Q76.5: certificate and handoff | Validate the high-level certificate independently, publish owned/resident/scratch accounting and source/codec commands, and audit the boundary. | No free input or approval-by-oracle path; full test/mutation/lifecycle report, honest limitations, ledger return selecting or stopping Q77. |
+
+Execute the remaining native work in this order. Every completion returns to
+the ledger; these are Q76 subtasks, not extra HE parameter experiments.
+
+| Order | Artifact and implementation boundary | Bounded gate before proceeding |
+| --- | --- | --- |
+| Q76.4a: prepared replay | Isolated native entry point/adapter uses the same canonical expansion, paired products and terminal codec, but returns the full frame without serializing unused source witnesses. The trusted factory pins mode/code/profile; replies cannot select executables or a graph. Reuse the local lifecycle. | Register 16 retained small cases plus six saved large public transcripts before implementation. Compare complete frames to independently validated retained outputs; zero new HE keys/private decryptions/timing. Test strict packet/mode/context/epoch/full-tail grammar, ownership and direct C ABI bounds. Preserve the original ABI 1202 build. |
+| Q76.4b: aggregate seam | Same-backend untrusted producer emits three canonical common-Q pre-relinearization aggregates. Protected prefix derives the genuine query; exact aggregate admission and protected suffix complete the frame. | Test both actual prime vectors, all coordinates, one-limb and component-cancellation faults, original-query/ID/snapshot binding and the existing lifecycle. Choose the exact three-product control first. Randomized control requires its separate reviewed adaptive budget/challenge argument; an unimplemented adapter stays unknown. |
+| Q76.4c: permitted cache | Owner-authenticated compact binary backup and ordered-ID descriptor, returning search and bounded 32-row invalidation. New-device acquisition may overlap the initial remote query. No HE index download is imposed on the cache. | Independent XOR/popcount/stable-ID answers, authentication/epoch/update faults and acquired/retained byte accounting. Charge preparation, private context, mutable updates and prefetch; no artificial cache prohibition. |
+| Q76.5: certificate/resource handoff | A checker separate from the optimizer validates graph effects, actual primes, common integers, origin/public phase bounds, complete coverage/terminal framing and mode-bound release assumptions. Publish a compact client provisioning descriptor and the exact owned/resident/scratch lifetime ledger. | Mutate each certificate obligation and reject before authority/private work. Document trusted-owner encoding and native/formal assurance boundaries. Freeze the complete methods and runtime budgets before Q77; stop any plan that lacks its invariant. |
+
+The anticipated replay files belong alongside the current experimental core,
+for example `_shared_query/shared_query_replay.cpp`, `replay_shared_query.py`
+and their tests/benchmark runner. Those names describe future artifacts,
+not files already implemented. Reuse existing homemade native primitives;
+keep a new isolated binary/source receipt and preserve earlier successful
+builds. No production migration follows merely from passing these gates.
 
 The [independent GMP preflight](native-shared-query-gmp-preflight-20261004.md)
 passes 59 producer tests and two public fixture tests; the later
@@ -375,7 +433,18 @@ It motivates measuring cold-device and returning-device regimes fairly.
 
 Before the main cohort, freeze actual prototype memory/link/update budgets and
 the project's 20% amortized complete-cost improvement threshold against the
-best compatible remote control. Report cache wins, reversals and ties. The
+best compatible frozen remote policy over a declared held-out workload.
+Freeze baseline policies, calibration/selection inputs and workload weights
+before the held-out cohort. Every selector receives the same information;
+charge its overhead and all preparation changes. A per-instance oracle that
+chooses the cheapest compared method after measurement is a separate lower
+bound, not a fixed baseline to claim that mere switching beats. If our
+candidate only selects among those same methods, it cannot improve on that
+oracle or on an exact generic selector with identical legal choices and costs.
+Any additional system advantage must identify its actually distinct certified
+execution plan; any selection benefit must be labelled as a policy finding.
+Do not tune the workload after seeing which mixture benefits switching.
+Report cache wins, reversals and ties. The
 threshold is a project decision, not a conference acceptance criterion.
 
 Required ablations isolate evaluator-only selection, verified-cost selection,
@@ -394,6 +463,7 @@ scope rows, not misleading cross-paper speed ratios.
 | Noise/state/communication selection | An all-witness-safe representation is selected for a genuine link/memory constraint rather than its small tape alone. | Only a measured source-witness bottleneck justifies reopening retained Q180 derived, with its larger keys/moduli/state and separate assurance charged. | Added producer/verification/setup costs remove the advantage. No new radix or ring-size grid. |
 | GPU execution of the complete public relation | Offloading the actual admission bottleneck may make the protected path competitive while keeping complete common-integer and terminal checks. | CPU-native gate passes and Q77 identifies a substantial parallel public-check bottleneck. Port that bounded kernel; charge both transfer directions and the protected checker. | A fast GPU checker is accepted as its own untrusted evidence, or complete cost fails to improve. GPU attestation is a separately implemented/reviewed path. |
 | Smaller trusted state through streaming | A compilation certificate remains valid with less trusted memory at an acceptable complete cost. | Native measured state exceeds a declared budget. Compare one existing cached and one streamed schedule with the same replay choices. | Saving modeled arrays only hides preparation, wire buffers or scratch, or controls obtain the same advantage with no distinct system result. |
+| Shared query across an authenticated multi-object snapshot | One genuinely derived query prefix feeds streamed record groups while the certificate binds complete global coverage, snapshot versions and release. A different admission boundary may make bounded trusted memory viable at scale. | Only Q77 showing a paid prefix/state bottleneck and a justified larger deployment motivates one separately registered scale extension. First prove per-group phase bounds are independent of group count and test saved public shards; declare new caps before fresh keys/timing. The current two-group cap is not bypassed. | Compatible replay receives the same prefix reuse/streaming. Stop a new sharing claim if known expansion/layout methods contain it; stop a system advantage if realistic permitted cache/acquisition dominates. |
 | Proof backend for the same public relation | Removing a trusted verifier without losing source/common-Q/noise/frame binding would be a meaningful later system extension. | Main native contract stabilizes; an actual ring-proof adapter or corrected blind-proof contract passes the comparison gate. Start with one small complete relation, not a free microbenchmark. | Missing range/oracle commitment/input/release binding, unmatched feedback assumptions, or no paid advantage. Do not call the TEE tape a cryptographic proof. |
 
 Ordinary private randomized adjoints/Freivalds/Slalom are controls, not a new
@@ -402,6 +472,16 @@ adaptive soundness/challenge-lifetime budget and charged preprocessing; it
 does not enter Q76 by default. Earlier E101/E110/Q57/H1/Q59/H2 containment,
 failed mask/reuse laws and Fourier/root/selection screens remain closed unless
 a precise changed premise supplies a new bounded question.
+
+The multi-object extension follows the source-count formula rather than a new
+ring-size grid. Its prospective certificate must bind an ordered object/group
+manifest, the same HE key and encoding, every physical tail, duplicate/omitted
+group rejection, snapshot replacement and one final authorized result.
+Private work cannot be released from an unbound partial group. Shared
+expansion, authenticated manifests and streaming are known; any originality
+must be the demonstrated contract-specific assurance or execution finding.
+The current corpus is at most 2 MiB of packed vectors, so an invented tiny
+client memory budget cannot justify a large-dataset or cache-defeat claim.
 
 ## 7. Q78: proof and actual security closure
 
@@ -460,6 +540,24 @@ timing and public admission outcomes. Private decode errors or result-dependent
 client behavior must not become an unmodeled server oracle. Keeping the HE
 secret out of the TEE reduces secret custody; it does not prove confidentiality
 against a compromised verifier that authorizes malicious ciphertexts.
+
+In the proof, define the ideal functionality before naming a security game:
+the honest owner obtains the complete exact distances for an authenticated
+snapshot/query, or no result if availability fails. Public admission depends
+only on public authenticated inputs; actual application actions/content fetch
+need their own declared leakage. Prove that every authorized deterministic
+frame equals the honest canonical graph's frame, and then use owner-origin
+phase bounds to couple its private decode to that ideal output. Reduction
+assumptions include related-secret evaluation keys and the actual sampler,
+encoding, authority/freshness and protected-execution boundary. For randomized
+admission add the reviewed lifetime soundness term. This is an instantiation
+agenda, not a new security definition or a completed reduction.
+
+The [later vFHE framework](https://cknabs.github.io/assets/pdf/vfhe.pdf) and
+[VERITAS preprint](https://arxiv.org/pdf/2207.14071v4) are now explicit
+comparison obligations. A private post-decryption verification bit is distinct
+from our public pre-decryption predicate; no first reaction-oracle defense,
+verified HE pipeline or TEE-plus-HE claim follows from that distinction.
 
 For the first 32-row update, re-encrypt affected owner feature groups and
 re-certify the new snapshot under the original fresh-origin law. Charge the
@@ -530,3 +628,10 @@ recorded in its [lifecycle return](native-shared-query-lifecycle-return-20261004
 The later [Q76.3b source return](native-shared-query-source-return-20261004.json)
 records its fresh-key/private-diagnostic scope separately. Next is Q76.4
 matched controls, then Q76.5 independent certificate; Q76 remains incomplete.
+The source-scale implementation is additionally preserved by tag
+`checkpoint/native-shared-query-source-2026-10-04`, with verified incremental
+bundle, 54 evidence members and 66 preserved company members. The later
+source-scale reassessment changes research/comparison priorities and appends
+three literature records; it runs no new HE, native, timing or author-artifact
+cohort. The ledger now points to the source checkpoint rather than the older
+lifecycle checkpoint.

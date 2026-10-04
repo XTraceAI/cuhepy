@@ -2,7 +2,7 @@
 
 2026-10-04. Original comparison evidence baseline:
 `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
-The current implementation is `50840499716d353c76a0052417aaea546d2b95cd`;
+The current implementation is `9ccf11a5dda656b68a1664301093c891c49e0743`;
 the [paper-facing rereading receipt](paper-contribution-review-20261004.json)
 records this later planning return separately from the original review.
 Read with the [execution plan](system-contribution-execution-plan-20261004.md),
@@ -13,8 +13,11 @@ The [previous detailed comparison](closest-work-contribution-design-20261004.md)
 and [broader system comparison](closest-work-system-blueprint-20261003.md)
 retain the earlier inspected passages and version qualifications.
 
-This review adds four cached primary papers, inspects ten rendered pages and
-selected adjacent text, and checks the new revision metadata. It does not
+The initial review added four cached primary papers and inspected ten rendered
+pages. The [source-scale reassessment](paper-system-reassessment-20261004.json)
+adds three pinned primary PDF/text pairs and inspects eight further pages,
+including two direct verification predecessors missing from this matrix.
+These are targeted readings with adjacent text and version qualifications. They do not
 reproduce a proof backend or audit all earlier papers. Priority clearance is
 still open. Reading a paper is not evidence that its strongest applicable
 specialization is slower or incapable of supporting our contract.
@@ -55,6 +58,8 @@ absence from a prototype limitation or from the passages inspected here.
 | **BioZKFHE**, [2607.22065v1](https://arxiv.org/html/2607.22065v1), retained §§IV, V-C, VII and concrete formulation | BGV similarity search, packing, blockwise proofs and committee-governed opening/release, with query/gallery context and full block coverage. | Preserve its quantized metric and trust/committee contract. Its stated prototype excludes rotations, modulus switching, bootstrapping and encrypted top-k; a complete adaptation to our expanded-query graph must supply and pay those boundaries. | Encrypted similarity plus verification, context binding and release are prior work. Our stronger protected-verifier assumption cannot be called cryptographic dominance. |
 | **HERS**, [2003.12197v3](https://arxiv.org/abs/2003.12197v3), retained §3.2/AppendixB Algorithm7 | Transposed feature packing and encrypted matching with client score decryption/selection. | The exact binary adaptation receives one expanded query and delayed relinearization; optional lossy dimension reduction is excluded from an exact-distance control. | Feature-major layout is known; Q74 validates our implementation, not its originality. |
 | **PEEV**, [2024 paper](https://doi.org/10.1109/ACCESS.2024.3424420), retained §§IV–VI and pinned [author source](https://github.com/TrustworthyComputing/PEEV-verifiableFHE/tree/2fb6bfb3de42acb92ddc373ec9829f1299377c02) | A program-to-BGV-to-ring-proof framework with verify-before-decrypt flow and small Hamming workloads. | Determine the complete maintenance/common-Q/terminal adapter for our circuit before performance comparison. Original artifact execution remains unknown; homemade arithmetic is not a scientific distinction by itself. | A verifiable HE compiler and encrypted Hamming computation are already established. |
+| **VERITAS**, [author-linked arXiv v4](https://arxiv.org/pdf/2207.14071v4), §II/Figure2 and Appendices F/G; [CCS2024 author page](https://s-chtl.github.io/publication/veritas/) | Replication and polynomial plaintext authenticators, compression and client-assisted degree reduction; verification supports HE maintenance. | The inspected preprint excludes observable verification/decryption oracles and discusses periodic independent requests after failure. Charge that application policy, challenge computation and encoding expansion before adapting it to our feedback contract. | Plaintext authentication is a mandatory mechanism comparator. Its decoder-side predicate cannot directly replace our public pre-decryption gate. This is a contract difference, not evidence that the published construction is broken or slower. |
+| **vFHE, WAHC2024**, [pinned author PDF](https://cknabs.github.io/assets/pdf/vfhe.pdf), §§3–6; separate from the 2023 extended version | circomlib-FHE/zkOpenFHE automate constraint and witness generation, optimize proof arithmetic/RNS, and compare MAC/proof/TEE integrity approaches. | Credit automatic FHE verification and prepared full protected evaluation. Supply the exact BGV/common-Q/rounding/release statement and actual backend cost before comparison. | A compiler-to-verifier pipeline, RNS proof optimization and FHE-in-TEE are established. Our claim must concern the specific certified placement and complete operating frontier. |
 
 **Additional direct comparator: [Laminate, corrected May2026 revision](https://eprint.iacr.org/2025/2285).**
 It combines blind proofs with GKR, supports slot-independent and cross-slot
@@ -98,12 +103,20 @@ Spiral/YPIR, selection, authenticated-update and binary/ring proof controls.
 Their retrieved-item/approximation/private-server-data/interaction contracts
 remain distinct. We do not count all source records as newly reviewed proofs.
 
+One newly archived scale comparator is [Isozaki et al., 2608.21131v1](https://arxiv.org/html/2608.21131v1),
+§§2/3/5. It studies GPU CKKS approximate hierarchical search with client routing
+and explicit access-pattern leakage. Its cold prototype includes on-demand
+encryption; warm results exclude client/network work. It is useful for scope,
+acquisition and residency accounting, rather than a direct malicious exact
+all-distance benchmark. We have not reproduced its artifact or accepted its
+reported security estimates as assurance for our parameters.
+
 ## What remains plausibly original, and how to disprove it
 
 | Candidate result | Current evidence | Missing discriminator | Falsifier |
 | --- | --- | --- | --- |
 | A certificate/effect model for a complete exact native search plan | Small reference, native core and factory bind all sources, limbs, outputs and frame; bounded local lifecycle and registered source-scale correctness pass. | An independently checked native specification spanning origin, representation, public bounds and actual remote release; applicable prior compiler comparison. | A free input, wrong frame or false semantic/noise implication; known certificate/compiler covers the same claimed design result. |
-| A useful jointly selected verification/evaluation/state plan | Q75 contains real modeled tradeoffs; ordinary finite Pareto selection is known. | Same-backend complete measurements and held-out ablation showing a concrete decision/cost change under fixed budgets. | Equally specialized prior/replay gives the same paid frontier, or the difference is only a renamed objective. |
+| A useful jointly selected verification/evaluation/state plan | Q75 contains real modeled tradeoffs; ordinary finite Pareto selection is known. | Same-backend complete measurements and held-out ablation showing a concrete decision/cost change under fixed budgets. | A complete prior system already demonstrates the claimed finding, replay removes the proposed advantage, or the difference is only a renamed objective. |
 | A reproducible useful protected-search system | Strong earlier unverified BGV engineering; cache wins local returning queries. | Complete acquisition, protected admission, updates, real deployment and truthful trust/feedback scope. | Replay/cache removes all justified operating regimes, or the advantage requires hiding cost or assuming forbidden caching. |
 | A security/assurance contribution suitable for formal analysis | Full common-Q/frame counterexamples and public-bound lessons are retained. | Actual conditional composition/mechanization and externally reviewed implementation boundary. | Raw algebraic integrity is presented as CCA security, or a theorem omits origin, noise, freshness or private feedback. |
 
@@ -118,17 +131,29 @@ E101/E110/Q57/H1/Q59/H2 negative originality gates remain closed. Q74/Q75's
 known-composition containment is preserved. A strong engineering artifact and
 a main original paper are separate decisions.
 
+The generic optimizer comparison needs a precise interpretation. Given exactly
+the same legal plans, cost observations and objective, an exact generic solver
+should recover the same finite frontier. Agreement validates our selector;
+it closes a claim to a superior generic selection algorithm. It does not by
+itself decide whether a newly demonstrated execution/assurance finding is a
+useful systems contribution. For that claim, compare existing complete
+systems and their compatible specializations, and identify the concrete
+artifact, invariant or finding that was not previously demonstrated. A
+relabelled objective alone remains insufficient.
+
 ## Executable closest-work obligations for the paper
 
 The later targeted rereading sharpens the controls without adding papers or
-rerunning their artifacts. The existing 114 registry records and PDF versions
-are retained. The proposed distinction below is ours to demonstrate; an
+rerunning their artifacts. All earlier registry records and PDF versions
+are retained; the source-scale reassessment appends three records, for 117.
+The proposed distinction below is ours to demonstrate; an
 unimplemented adaptation is unknown, not a slower competitor.
 
 | Comparator | Strong specialization to credit | Concrete remaining task | What a successful comparison would mean |
 | --- | --- | --- | --- |
 | HERS + SealPIR/MulPIR + ordinary delayed maintenance | Feature-major index, one original-query expansion, seeded uploads and one relinearization per sum. | Use the identical paid graph for the known-composition alias. | Q75 already establishes algebraic containment. No new layout/expansion claim survives merely because our code is homemade. |
 | vFHE / FHE-in-TEE | Offloaded products with protected maintenance and private randomized checking, not only a slower deterministic checker. | Q76.4 adaptation card: exact aggregate statement, actual-prime challenge law, committed operands, adaptive attempt budget, paid rounds/state and complete release. | A scoped full-cost difference could support a system finding. A copied product-checking technique cannot be the main new primitive. |
+| VERITAS / WAHC2024 vFHE | Plaintext authentication with an explicit client-behavior policy; automatic constraint/witness generation and protected full evaluation. | Keep authentication/verification feedback separate, and grant prepared replay all compatible arithmetic and serialization savings. | A new complete placement or assurance finding must survive these established alternatives. No first-verifiable-HE-compiler claim. |
 | Silph / CirC | Conversion-aware assignment, with values represented in multiple domains when that avoids conversions. | Give the generic planner the same legal choices, input effects, retained-state budgets, lifetimes and cost data as our selector. | Held-out selection benefit against evaluator-only policy is evidence of usefulness. Benefit absent against this stronger specialization closes the algorithmic claim. |
 | Fhelipe / HEIR / KeyMemRT | Layout, noise management, relinearization placement and explicit key lifetimes. | Attribute these mechanisms; separately demonstrate the admission/release constraints and measured system finding. | A new cost name, delayed switch or streamed key is insufficient. Compiler differences require an executable consequence. |
 | PEEV + corrected Cascudo ring/range methods | Program-to-HE-to-verification and maintenance/common-integer constraints. | Specify our source-origin/phase/frame effects and prove the complete invariant independently of the optimizer; do not infer absent capabilities from inspected examples. | A coherent assured artifact may be valuable, but certificate novelty is open until this comparison and external review. |
@@ -185,3 +210,13 @@ The main ePrint PDF downloads returned403; the IACR mirror supplied the PDFs,
 with exact hashes and origin recorded. The compute-engine paper came from its
 author's university page. No author code, HE experiment, timing panel or
 parameter/security estimate was executed in this targeted review.
+
+The later source-scale reassessment preserves those 114 records and appends
+three primary PDF/text pairs, for **117 source records**. Its eight inspected
+pages, four retained author/version metadata pages, acquisition/extraction
+receipts and exact hashes are under
+`/home/pete/yavor-projects/xtrace-work/research-data/paper-system-reassessment-20261004`.
+The VERITAS preprint and CCS title differ, and the WAHC author PDF has no
+versioned URL; those provenance qualifications are explicit. The existing
+six-search source cohort and qualified 32k panel were checked from retained
+artifacts; no HE, native build, timing or author-artifact run was added.
