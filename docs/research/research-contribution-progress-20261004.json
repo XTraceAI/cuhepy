@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T10:48:02.156430+00:00",
+  "utc": "2026-10-04T13:56:59.932395+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -118,7 +118,7 @@
     {
       "id": "Q76",
       "title": "One complete authoritative native prototype",
-      "status": "partial_public_core_and_authenticated_factory_complete",
+      "status": "partial_public_core_authenticated_factory_local_lifecycle_complete_source_scale_unfinished",
       "dependencies": [
         "Q75"
       ],
@@ -133,7 +133,11 @@
         "docs/research/native-shared-query-core-return-20261004.json",
         "docs/research/native-shared-query-auth-20261004.md",
         "docs/research/native-shared-query-auth-return-20261004.json",
-        "docs/research/native-shared-query-auth-registration-20261004.json"
+        "docs/research/native-shared-query-auth-registration-20261004.json",
+        "docs/research/native-shared-query-lifecycle-registration-20261004.json",
+        "docs/research/native-shared-query-lifecycle-model-20261004.md",
+        "docs/research/native-shared-query-lifecycle-20261004.md",
+        "docs/research/native-shared-query-lifecycle-return-20261004.json"
       ],
       "implemented": false,
       "selected": {
@@ -165,13 +169,15 @@
       "research_designation": "Supporting homemade build and scientific full-cost discriminator; originality remains conditional. No GPU/timing build until complete native correctness/lifecycle gate.",
       "completed_native_correctness_or_lifecycle_gates": [
         "Q76.1_retained_N16_N32_public_core_only",
-        "Q76.2_owner_authenticated_local_factory_only"
+        "Q76.2_owner_authenticated_local_factory_only",
+        "Q76.3a_retained_local_durable_lifecycle_only"
       ],
       "native_draft_not_authoritative_release_or_HE_correctness_evidence": false,
       "local_lifecycle_contract": {
         "local_contract": "at_most_once_authorization_and_callback_crash_may_lose_delivery",
         "SQLite_requires_trusted_nonrollback_storage": true,
-        "actual_attestation_freshness_private_release_unimplemented_for_selected_service": true
+        "actual_attestation_freshness_private_release_unimplemented_for_selected_service": true,
+        "bounded_local_implementation_and_gate_complete": true
       },
       "native_core_not_authenticated_service_or_source_scale_evidence": true,
       "remaining_control_obligations": [
@@ -344,7 +350,7 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/system-contribution-review-20261004.json",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q76.3_lifecycle_then_registered_source_scale",
+  "next_subtask": "Q76.3b_independent_GMP_then_registered_source_scale",
   "latest_planning_review": {
     "execution_branch": "experiment/native-shared-query-service-20261004",
     "validation_receipt": "docs/research/system-contribution-plan-validation-20261004.json",
@@ -354,7 +360,7 @@
     "new_HE_tests_or_experiments_or_timings": 0,
     "originality_or_security_approval": false
   },
-  "latest_execution_return": "docs/research/native-shared-query-auth-return-20261004.json",
+  "latest_execution_return": "docs/research/native-shared-query-lifecycle-return-20261004.json",
   "Q76_execution_returns": [
     {
       "milestone": "Q76.1",
@@ -386,6 +392,26 @@
       "private_HE_work": 0,
       "timing_panels": 0,
       "next": "Q76.3_lifecycle_then_registered_source_scale"
+    },
+    {
+      "milestone": "Q76.3a",
+      "utc": "2026-10-04T13:56:59.932395+00:00",
+      "status": "complete_bounded_local_lifecycle_gate",
+      "retained_cases": 16,
+      "retained_HE_keys": 2,
+      "protocol_requests": 112,
+      "bad_replies_consumed": 80,
+      "authorizations": 32,
+      "public_test_hook_calls": 32,
+      "new_final_lifecycle_cases": 71,
+      "final_combined_invocation": 197,
+      "selected_existing_native_and_auth_cases": 126,
+      "first_64_and_first_cohort_overlap_not_added": true,
+      "fresh_HE_keys": 0,
+      "private_HE_work": 0,
+      "timing_panels": 0,
+      "actual_remote_attestation_or_release": false,
+      "next": "Q76.3b_independent_GMP_then_registered_source_scale"
     }
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",

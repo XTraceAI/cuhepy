@@ -43,7 +43,7 @@ a publishable result.
 | Q74 source-profile public bounds | Owner canonical Q120 passes. Public-key-index canonical Q120 and both derived Q120 modes fail. One Q180 rescue passes its algebra screens. | Start owner canonical Q120. Do not silently substitute an input law, approve parameters from successful decryptions, or use the Q120 parser for three primes. |
 | Q75 finite resource screen | 60 cards, nine exact finite frontiers, zero compiler-cap failures; known composition has identical algebra/resources. | New expansion/gadget/asymptotic claims are closed. Models are sufficient schedules, not measured time, peaks or lower bounds. |
 | Q180 derived versus owner canonical Q120, one full group | Witness body 90.703125 versus 120.468750 MiB; modeled pointwise work about 2.81x, keys 2.25x, query/index about 1.5x. | Preserve the tradeoff, but select no larger-Q variant from bytes alone. Client response bodies remain 102,400 bytes/group. |
-| Current Q76 work | Q76.1 passes 16 retained native cases/304 faults/58 normal-UBSan tests. Q76.2 passes authenticated seeded flow on the same 16 cases/176 faults/68 tests. No fresh HE keys, private HE work or timing. | Next Q76.3 supplies lifecycle then large native correctness. Private release, real attestation and the completed service remain unfinished. |
+| Current Q76 work | Q76.1 passes 16 retained native cases/304 faults/58 normal-UBSan tests. Q76.2 passes authenticated seeded flow on the same 16 cases/176 faults/68 tests. Q76.3a adds local durable lifecycle: 71 unit cases and a retained 16-case/112-request cohort pass. No fresh HE keys, private HE work or timing. | Next Q76.3b supplies bounded independent GMP/source-scale correctness. Private release, real attestation and the completed service remain unfinished. |
 
 The final Q74/Q75 regression invocation passed 157 cases; that is not 157
 independent encrypted experiments. Neither those tests nor the large earlier
@@ -204,11 +204,12 @@ No timing panel or CUDA port precedes this gate.
 | --- | --- | --- |
 | Q76.1: public native core — complete bounded gate | Reviewed C++ core, bounded ctypes adapter and frozen isolated build/source/dependencies. Reused the 16 retained owner-canonical N16/N32 cases. | Exact GMP tapes/frames, both whole-limb schoolbook vectors, 208 source/96 output faults and 58 boundary cases on normal/UBSan builds. No source-scale or service approval. |
 | Q76.2: enrollment/request authority — complete bounded gate | Owner-authenticated immutable factory, original seeded query, strict complete packet grammar and internal native graph. | Sixteen retained flows, 176 cohort faults and 68 unit cases pass; signed byte origin is trusted, not a plaintext/noise proof. No lifecycle or private authority. |
-| Q76.3: lifecycle and source scale | Add the fail-closed local journal; test concurrency, process/fork/restart, epoch changes, races and failed callbacks. Then run the registered N16k d512 counts 8,224/16,384/32,768 with two queries. | At most six large searches, exact independent GMP source/output/frame equality, every distance/tail/stable tie checked privately only after public acceptance. No secret key serialized. |
+| Q76.3a: local lifecycle — complete bounded gate | Trusted non-rollback SQLite controller consumes signed original requests before preparation and callback claims before dispatch. | 71 lifecycle unit cases and 16 retained cases/112 protocol requests pass; 80 bad replies rejected, 32 public hooks, replay/restart/process-exit gates. Final combined 197 includes 126 existing native/auth cases; overlapping first runs not added. No remote release or source-scale assurance. |
+| Q76.3b: source scale | Supply the bounded independent GMP producer, then run the registered N16k d512 counts 8,224/16,384/32,768 with two queries. | At most six large searches, exact independent GMP source/output/frame equality, every distance/tail/stable tie checked privately only after public acceptance. No secret key serialized. |
 | Q76.4: matched controls | Build prepared replay and checked-product/trusted-prefix/suffix in the same native backend, plus the permitted authenticated cache. Grant layout, expansion, lazy relinearization, Karatsuba, fusion, preparation and streaming equally. | Same source/terminal/snapshot contract and full correctness gates. Count protected work, duplicate work and transfers in both directions, not just the control's return packet. |
 | Q76.5: certificate and handoff | Validate the high-level certificate independently, publish owned/resident/scratch accounting and source/codec commands, and audit the boundary. | No free input or approval-by-oracle path; full test/mutation/lifecycle report, honest limitations, ledger return selecting or stopping Q77. |
 
-**Next executable task is Q76.3 lifecycle, then registered source scale.** Source belongs in
+**Next executable task is Q76.3b independent GMP producer, then registered source scale.** Source belongs in
 `experiments/bfv_search_lab/_shared_query/`; Python adapter/tests beside the
 other research implementations; reproducible runners in `benchmarks/`.
 Keep isolated libraries and outer evidence. Migrate a reviewed selected
@@ -226,7 +227,11 @@ for this selected service.
 
 Each remaining Q76 milestone has a bounded handoff:
 
-1. **Lifecycle:** write the state machine and registration first. Use existing
+1. **Lifecycle — bounded local gate complete:** the
+   [state model](native-shared-query-lifecycle-model-20261004.md),
+   [registration](native-shared-query-lifecycle-registration-20261004.json) and
+   [return](native-shared-query-lifecycle-20261004.md) preserve the executed scope.
+   Use existing
    retained public cases; atomically consume the owner-bound request before
    admission, recheck the current snapshot before authorization, and consume
    failed attempts. Test independent processes as well as threads, crashes,
@@ -485,8 +490,8 @@ silently relabel models as measurements. Freeze a revised registration before
 new keys, timing cohorts or protocol changes.
 
 Q76.1's isolated build/retained-fixture recipe is preserved in its receipt.
-Q76.3 begins with the local state-machine registration and retained lifecycle
-gate. Use `.venv/bin/python -m pytest` and lint new experimental files with
+Q76.3a's local state-machine registration and retained lifecycle gate are complete.
+Q76.3b begins with the bounded independent GMP producer. Use `.venv/bin/python -m pytest` and lint new experimental files with
 `ruff --no-force-exclude`. The public-native/lifecycle gates precede new large keys.
 The registry retains primary PDFs/text/version/hash/scope outside Git; no
 author artifact is executed merely to download or review it.
@@ -501,4 +506,6 @@ The Q76.2 authenticated factory is now preserved at commit
 `checkpoint/native-shared-query-auth-2026-10-04`, with a verified incremental
 bundle and all 59 evidence/66 company archive members checked. The core gate
 has its preceding independent checkpoint. This reassessment changes planning
-and comparison obligations only; Q76.3 remains the next executable milestone.
+and comparison obligations only. The later Q76.3a execution is separately
+recorded in its [lifecycle return](native-shared-query-lifecycle-return-20261004.json).
+Next is Q76.3b independent GMP/source scale; Q76 as a whole is still incomplete.

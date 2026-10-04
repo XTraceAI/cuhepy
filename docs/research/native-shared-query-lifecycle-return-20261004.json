@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "task": "Q76.3a",
+  "utc": "2026-10-04T13:56:59.932395+00:00",
+  "parent_commit": "8da05b201fdab706eb486a83f1aacfbb8b894e4f",
+  "branch": "experiment/native-shared-query-service-20261004",
+  "complete_bounded_local_lifecycle_gate": true,
+  "cohort": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/retained-cohort2/Q76.3a-lifecycle.json",
+    "bytes": 222951,
+    "sha256": "153a77df2ee633d6afe27b30eff73db423a825ea5b2985925e53b5a2a39cba24"
+  },
+  "earlier_overlapping_cohort": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/retained-cohort1/Q76.3a-lifecycle.json",
+    "bytes": 222951,
+    "sha256": "25e58a440c0b3bbd428951966eda2ccbf867a597189367add53ea32859813d03"
+  },
+  "overlapping_cohorts_not_added": true,
+  "retained_complete_cases": 16,
+  "retained_HE_key_contexts": 2,
+  "protocol_requests": 112,
+  "bad_replies_rejected_and_consumed": 80,
+  "durable_authorizations": 32,
+  "public_test_hook_calls": 32,
+  "failed_hooks_consumed": 16,
+  "request_replays_denied": 112,
+  "callback_replays_denied": 32,
+  "restart_callback_replays_denied": 16,
+  "tests": {
+    "new_lifecycle_final_cases": 71,
+    "selected_native_existing_cases": 58,
+    "selected_auth_existing_cases": 68,
+    "final_combined_passed": 197,
+    "earlier_lifecycle_cases": 64,
+    "overlapping_invocations_not_added": true,
+    "skips": 0,
+    "intentional_fork_deprecation_warnings": 2,
+    "actual_spawned_process_race_tests": 2,
+    "actual_child_exit_tests": 2,
+    "real_fork_parent_SQLite_lock_tests": 1,
+    "first_log": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/pytest-first.txt",
+      "bytes": 644,
+      "sha256": "07ce5bb97229cc04207463f5a0a65d22af139be26239d937f57cc01fa4d6a6ea"
+    },
+    "final_log": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/pytest-final-combined.txt",
+      "bytes": 1154,
+      "sha256": "21dd6c2a56e2dfe4e5f54e3e8da3b06f60378bac345d8935bbe2f8539af29282"
+    },
+    "ruff": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/ruff-final.txt",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    }
+  },
+  "supporting_standard_Ed25519_contexts": {
+    "first_tests": 2,
+    "final_combined_tests": 4,
+    "cohort1": 1,
+    "cohort2": 1,
+    "total": 8,
+    "none_serialized": true
+  },
+  "dependencies": {
+    "cryptography": "50.0.1",
+    "gmpy2": "2.3.0",
+    "msgpack": "1.2.2",
+    "pycryptodome": "3.23.0"
+  },
+  "SQLite_version": "3.45.1",
+  "source_archive": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/executed-source.tar.gz",
+    "bytes": 858786,
+    "sha256": "666a0b2ae9ebe49211b5b0e5c19f50bf25d51274cc2a9674ee98f2e592a3b8bb"
+  },
+  "source_files": 400,
+  "first_cohort_source_archive": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/cohort1-executed-source.tar.gz",
+    "bytes": 858452,
+    "sha256": "61a9144d5d8a0be2669ea05966334dad02ca46fbbb4d738e61ae393548f68ac0"
+  },
+  "first_64_source_archive": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/first-64-source.tar.gz",
+    "bytes": 16498,
+    "sha256": "4f825b0019d7947aeb9b5cd4007d343b82a271ff68505162e65695f3e102746d"
+  },
+  "corrective_repeat_reason": "Ruff B023 runner closures bound explicitly; both complete cohorts pass, first frozen bytes preserved. Registration records one corrective repeat before execution.",
+  "native_source_ABI_and_binary_unchanged": true,
+  "library": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-native-core-20261004/build/libshared_query_native.so",
+    "bytes": 117208,
+    "sha256": "93bc086de68fbab47b01705c8941e23bf8e39d88f1cd5692b631567650b7f70a"
+  },
+  "auth_policy_change": "checked_frame factors complete predicate to avoid second witness parse; source-hash policy changes, retained owner inputs re-signed; earlier signed/source bytes preserved separately",
+  "local_contract": "at_most_once_authorization_and_callback_crash_may_lose_delivery",
+  "trusted_nonrollback_local_runtime_storage_required": true,
+  "actual_remote_attestation_or_release": false,
+  "new_HE_key_contexts": 0,
+  "private_HE_work": 0,
+  "source_scale_searches": 0,
+  "timing_panels": 0,
+  "production_source_files_byte_exact": 54,
+  "delivered_libraries_byte_exact": 12,
+  "main_and_staging_locally_unchanged": true,
+  "scope": "Trusted local durable authorization/controller around complete public native admission; public test hooks only",
+  "limitations": [
+    "No adversarial-host antirollback, replicated/global freshness or hidden-challenge lifetime budget",
+    "No signed/attested remote release or private HE callback integration",
+    "No source-scale correctness, approved HE parameters or private constant-time assurance",
+    "Tests support the local model; no finished reduction or original main claim"
+  ],
+  "next": "Q76.3b_independent_GMP_then_registered_source_scale"
+}

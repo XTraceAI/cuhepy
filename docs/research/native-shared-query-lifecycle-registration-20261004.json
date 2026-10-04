@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "task": "Q76.3a",
+  "date": "2026-10-04",
+  "parent_commit": "8da05b201fdab706eb486a83f1aacfbb8b894e4f",
+  "scope": "Local durable lifecycle around the retained public native/authenticated service; the source-scale Q76.3b gate follows separately",
+  "arithmetic": "Reuse isolated ABI1202 library and all 16 retained Q74 owner canonical N16/N32 cases; no new HE keys, encryption, decryption, CUDA port or timing panel",
+  "authentication": "Standard ephemeral Ed25519 test/cohort keys; public owner anchor fixed by trusted caller; authentication secrets never serialized",
+  "storage": "SQLite BEGIN IMMEDIATE transactions, rollback journal and synchronous FULL; trusted local filesystem, correct locking/flush semantics and no database rollback/cloning are explicit assumptions",
+  "state_machine": {
+    "activation": "Authenticated enrollment installs initial snapshot; exact same snapshot/epoch is idempotent, replacement requires strictly increasing UInt64 epoch",
+    "reservation": "Authenticate original query and bind nonce before seed/native admission; consume nonce globally within this owner/scope journal, including a valid signed stale-context or malformed-seed attempt",
+    "admission": "Only complete public native arithmetic/frame acceptance can authorize; current snapshot is rechecked in the authorization transaction",
+    "dispatch": "Verify the stored authorization and complete frame, recheck snapshot, durably claim callback before calling it; snapshot replacement after this commit is ordered after dispatch",
+    "failure": "Rejected, crashed, or callback-failed attempts are never reset; crash can lose delivery",
+    "contract": "At most one authorization and callback claim per consumed nonce; no exactly-once delivery"
+  },
+  "interfaces": "Public authorizer has no callback or HE secret; separate trusted local callback guard returns no callback value and exposes only a generic local failure. This is not a signed/attested remote client-release protocol",
+  "required_gates": [
+    "All 16 retained authenticated flows and complete frames accepted before public test hooks",
+    "Bad full body/frame/context/type/grammar denies; valid request nonce stays consumed",
+    "Bad owner signature cannot consume another owner's request identity or begin native work",
+    "Late malformed signed seed consumes the valid authenticated nonce before native work",
+    "Same/different-query nonce replay, cross-snapshot reuse, duplicate dispatch and forged local authorization deny",
+    "Thread and independent spawned-process races admit/dispatch at most once",
+    "Restart and actual child os._exit after reservation or callback claim preserve consumption",
+    "Snapshot replacement before authorization/dispatch rejects; replacement after dispatch commit is ordered later",
+    "UInt64 maximum epoch/IDs, wrong owner/scope/policy, database errors and closed/inherited process ownership fail closed",
+    "Callbacks cannot approve arithmetic; callback values/errors are not returned through public admission",
+    "No production source/library/main/staging changes; frozen source/library/evidence receipts"
+  ],
+  "cohort_cap": {
+    "retained_HE_contexts": 2,
+    "retained_cases": 16,
+    "per_case_protocol_requests": 7,
+    "public_test_hook_calls_per_case": 2,
+    "new_HE_key_contexts": 0,
+    "private_HE_work": 0,
+    "timing_panels": 0,
+    "source_scale_searches": 0
+  },
+  "source_scale_registration_unchanged": "native-shared-query-registration-20261004.json: one fresh HE key, N16384/d512, counts8224/16384/32768 and two queries, six searches maximum, after this lifecycle gate",
+  "not_claimed": [
+    "Adversarial-host antirollback or replicated/global freshness authority",
+    "Actual TEE attestation or authenticated remote release token",
+    "HE private side-channel, sampler or concrete-parameter assurance",
+    "Finished security reduction or original main paper result"
+  ],
+  "next": "Return lifecycle receipt to ledger, then Q76.3b bounded independent GMP/source-scale correctness",
+  "corrective_repeat": {
+    "utc": "2026-10-04T13:52:48.869379+00:00",
+    "reason": "The first cohort passed its complete frozen-source check, but Ruff B023 flagged loop-variable closures in the runner. Bind public frame/list/hook defaults explicitly; one retained-only repeat validates the corrected frozen runner. Do not add overlapping case counts.",
+    "first_cohort": "/home/pete/yavor-projects/xtrace-work/research-data/q76-lifecycle-20261004/retained-cohort1",
+    "first_executed_source_archive_sha256": "61a9144d5d8a0be2669ea05966334dad02ca46fbbb4d738e61ae393548f68ac0",
+    "additional_invocations_max": 1,
+    "per_invocation_cap": {
+      "retained_HE_contexts": 2,
+      "retained_cases": 16,
+      "per_case_protocol_requests": 7,
+      "public_test_hook_calls_per_case": 2,
+      "new_HE_key_contexts": 0,
+      "private_HE_work": 0,
+      "timing_panels": 0,
+      "source_scale_searches": 0
+    },
+    "new_HE_keys_or_private_HE_work": 0,
+    "timing_panels": 0
+  }
+}

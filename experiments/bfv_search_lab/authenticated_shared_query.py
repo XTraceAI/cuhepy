@@ -405,6 +405,15 @@ class PublicRequest:
         return self.reply(body, self._query.expected_response(body))
 
     def accepts_packet(self, packet):
+        return self.checked_frame(packet) is not None
+
+    def checked_frame(self, packet):
+        """Return the full immutable frame only after public acceptance.
+
+        This shares the complete predicate with accepts_packet, so a controller
+        need not parse/copy a large witness again just to obtain its frame. It
+        supplies no freshness, private callback or release authority.
+        """
         # Reject ownership before parsing; this is public acceptance, never a
         # permission to run private work or a proof of current snapshot state.
         self._query._require_process()
@@ -416,7 +425,7 @@ class PublicRequest:
                 + 1024
             )
             fields = _unpack(packet, limit=limit, array_cap=9)
-            return (
+            accepted = (
                 type(fields) is list
                 and len(fields) == 9
                 and fields[0] == REPLY_TAG
@@ -425,8 +434,9 @@ class PublicRequest:
                 and fields[1:7] == self.binding.fields()
                 and self._query.verifies(fields[7], fields[8])
             )
+            return fields[8] if accepted else None
         except (ValueError, TypeError, OverflowError):
-            return False
+            return None
 
     def close(self):
         self._query.close()

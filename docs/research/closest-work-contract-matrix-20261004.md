@@ -27,8 +27,10 @@ The owner may cache all plaintext. The server is malicious and may observe
 public admission feedback. The proposed protected checker holds no HE
 decryption secret, but correctness/freshness of its authorization is trusted.
 This selected service is not deployed. The N16/N32 public native core and local
-owner-authenticated factory pass their bounded gates; durable lifecycle,
-source-scale correctness, private release and real attestation remain open.
+owner-authenticated factory pass their bounded gates. The later
+[Q76.3a local lifecycle return](native-shared-query-lifecycle-20261004.md)
+adds tested durable state under trusted non-rollback storage. Source-scale
+correctness, remote freshness/private release and real attestation remain open.
 
 There are three different comparison classes:
 
@@ -97,7 +99,7 @@ remain distinct. We do not count all source records as newly reviewed proofs.
 
 | Candidate result | Current evidence | Missing discriminator | Falsifier |
 | --- | --- | --- | --- |
-| A certificate/effect model for a complete exact native search plan | Small reference, native core and owner-authenticated factory bind all sources, limbs, outputs and frame; lifecycle/source scale remain unfinished. | An independently checked native specification spanning origin, representation, public bounds and release; applicable prior compiler comparison. | A free input, wrong frame or false semantic/noise implication; known certificate/compiler covers the same claimed design result. |
+| A certificate/effect model for a complete exact native search plan | Small reference, native core and owner-authenticated factory bind all sources, limbs, outputs and frame; bounded trusted local lifecycle passes. Source scale and remote release remain unfinished. | An independently checked native specification spanning origin, representation, public bounds and release; applicable prior compiler comparison. | A free input, wrong frame or false semantic/noise implication; known certificate/compiler covers the same claimed design result. |
 | A useful jointly selected verification/evaluation/state plan | Q75 contains real modeled tradeoffs; ordinary finite Pareto selection is known. | Same-backend complete measurements and held-out ablation showing a concrete decision/cost change under fixed budgets. | Equally specialized prior/replay gives the same paid frontier, or the difference is only a renamed objective. |
 | A reproducible useful protected-search system | Strong earlier unverified BGV engineering; cache wins local returning queries. | Complete acquisition, protected admission, updates, real deployment and truthful trust/feedback scope. | Replay/cache removes all justified operating regimes, or the advantage requires hiding cost or assuming forbidden caching. |
 | A security/assurance contribution suitable for formal analysis | Full common-Q/frame counterexamples and public-bound lessons are retained. | Actual conditional composition/mechanization and externally reviewed implementation boundary. | Raw algebraic integrity is presented as CCA security, or a theorem omits origin, noise, freshness or private feedback. |
