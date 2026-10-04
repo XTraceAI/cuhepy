@@ -22,6 +22,10 @@ implementation checkpoint `9ccf11a5dda656b68a1664301093c891c49e0743`.
 It incorporates the completed six-search correctness gate, three additional
 primary references and an explicit research decision sequence. It changes
 the living plan only; earlier registrations, readings and results are retained.
+The [matched prepared replay return](native-shared-query-replay-20261004.md)
+subsequently completes Q76.4a using retained public data: 16 small plus six large
+complete frames, zero new HE work, 309 selected tests including 51 new cases.
+This is a known-method control, with no new timing or originality approval.
 
 **Build one complete homemade BGV system to answer a specific research
 question: when does jointly compiling evaluation, public admission, and
@@ -260,18 +264,26 @@ the ledger; these are Q76 subtasks, not extra HE parameter experiments.
 | Q76.4c: permitted cache | Owner-authenticated compact binary backup and ordered-ID descriptor, returning search and bounded 32-row invalidation. New-device acquisition may overlap the initial remote query. No HE index download is imposed on the cache. | Independent XOR/popcount/stable-ID answers, authentication/epoch/update faults and acquired/retained byte accounting. Charge preparation, private context, mutable updates and prefetch; no artificial cache prohibition. |
 | Q76.5: certificate/resource handoff | A checker separate from the optimizer validates graph effects, actual primes, common integers, origin/public phase bounds, complete coverage/terminal framing and mode-bound release assumptions. Publish a compact client provisioning descriptor and the exact owned/resident/scratch lifetime ledger. | Mutate each certificate obligation and reject before authority/private work. Document trusted-owner encoding and native/formal assurance boundaries. Freeze the complete methods and runtime budgets before Q77; stop any plan that lacks its invariant. |
 
-The anticipated replay files belong alongside the current experimental core,
-for example `_shared_query/shared_query_replay.cpp`, `replay_shared_query.py`
-and their tests/benchmark runner. Those names describe future artifacts,
-not files already implemented. Reuse existing homemade native primitives;
+The replay files now exist alongside the experimental core:
+`_shared_query/shared_query_replay.cpp`, `replay_shared_query.py` and their
+tests/benchmark runner. The registered 22 retained frames and local lifecycle
+gate pass. The protected original-request-only entry point performs one genuine
+evaluation; it requires no untrusted producer or source witness. Compare this
+stronger control without charging it an unnecessary second evaluation. Reuse existing homemade native primitives;
 keep a new isolated binary/source receipt and preserve earlier successful
 builds. No production migration follows merely from passing these gates.
+The next [aggregate registration](native-shared-query-aggregate-registration-20261004.json)
+permits the equivalent direct coefficient comparison with paired Karatsuba:
+the control gets the same optimization and pays three protected products.
+This prospective control may expose replay dominance; it is not a promised
+performance improvement. Its large reference can use the saved GMP full
+outputs/C2 and independent GMP key switching, with no new private HE work.
 
 The [independent GMP preflight](native-shared-query-gmp-preflight-20261004.md)
 passes 59 producer tests and two public fixture tests; the later
 [source return](native-shared-query-source-20261004.md) records the separate
 fresh-key/six-search gate and private diagnostics. **Next executable task is
-Q76.4 matched prepared replay, then product/cache controls.** Source belongs in
+Q76.4b aggregate prefix/suffix control, then the permitted cache.** Source belongs in
 `experiments/bfv_search_lab/_shared_query/`; Python adapter/tests beside the
 other research implementations; reproducible runners in `benchmarks/`.
 Keep isolated libraries and outer evidence. Migrate a reviewed selected
@@ -306,9 +318,9 @@ Each remaining Q76 milestone has a bounded handoff:
    one new key is generated. The existing small reference rejects N>64; raising
    that guard alone does not constitute independent large correctness. Freeze
    source/build/dependencies and execute only the registered six searches.
-3. **Controls:** implement the same native prepared replay and protected
-   prefix/product/suffix contract; write the randomized-delegation comparison
-   card below before choosing its assurance scope. Credit cached and streamed
+3. **Controls — prepared replay gate complete:** implement the remaining protected
+   prefix/product/suffix contract; the randomized-delegation comparison card
+   preserves the prospective assurance scope. Credit cached and streamed
    inputs, shared expansion and paired Karatsuba to every compatible control.
 4. **Certificate:** separately validate graph/effect transitions and high-level
    resources, document the native assurance boundary, and return a pass/stop

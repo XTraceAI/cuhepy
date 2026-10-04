@@ -5,6 +5,17 @@ speedup or originality claim. It follows the selected owner-canonical shared
 query graph, actual Q120 primes, original signed inputs and complete frame.
 It does not change Q76.3b's running one-key/six-search correctness cohort.
 
+That earlier source cohort and the later
+[prepared replay gate](native-shared-query-replay-20261004.md) now pass. The
+[aggregate registration](native-shared-query-aggregate-registration-20261004.json)
+selects the exact three-product control next. Its implementation and timings
+remain absent. Comparing the three tensor coefficient vectors directly with
+the equally optimized paired-Karatsuba aggregate is the coefficient form of
+the exact three-point identity and avoids gratuitous scalar overhead. It still
+pays all three protected products, prefix preparation/residency and the suffix.
+If this matches or loses to full protected replay, retain that result; the
+control is not required to produce a positive delegation headline.
+
 The closest mechanism is [vFHE Appendix D](https://arxiv.org/html/2301.07041v2#A4):
 it checks ciphertext tensor products by evaluating their component polynomial
 at a hidden scalar, replacing several ring products with one. Our adaptation
