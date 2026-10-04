@@ -88,7 +88,7 @@ a publishable result.
 | Q74 source-profile public bounds | Owner canonical Q120 passes. Public-key-index canonical Q120 and both derived Q120 modes fail. One Q180 rescue passes its algebra screens. | Start owner canonical Q120. Do not silently substitute an input law, approve parameters from successful decryptions, or use the Q120 parser for three primes. |
 | Q75 finite resource screen | 60 cards, nine exact finite frontiers, zero compiler-cap failures; known composition has identical algebra/resources. | New expansion/gadget/asymptotic claims are closed. Models are sufficient schedules, not measured time, peaks or lower bounds. |
 | Q180 derived versus owner canonical Q120, one full group | Witness body 90.703125 versus 120.468750 MiB; modeled pointwise work about 2.81x, keys 2.25x, query/index about 1.5x. | Preserve the tradeoff, but select no larger-Q variant from bytes alone. Client response bodies remain 102,400 bytes/group. |
-| Current Q76 work | Public core/factory/local lifecycle gates pass. Q76.3b now passes one fresh key and six searches at 8224/16384/32768: all native/GMP source/output/frame bytes and 114,752 distances agree. Final selected suite 258 includes 197 existing cases; no timing. | Replay and exact aggregate correctness controls now pass; cache and Q76.5's certificate/handoff remain. Complete-cost evaluation is unmeasured. Actual private production release, real attestation and the completed service remain unfinished. |
+| Current Q76 work | Public core/factory/local lifecycle gates pass. Q76.3b now passes one fresh key and six searches at 8224/16384/32768: all native/GMP source/output/frame bytes and 114,752 distances agree. Final selected suite 258 includes 197 existing cases; no timing. | Replay, exact aggregate and authenticated mutable-cache correctness controls now pass; Q76.5's certificate/handoff remains. The cache return separately records 93 new unit cases and 28 searches/229,980 distance comparisons. Complete-cost evaluation is unmeasured. Actual private production release, real attestation and the completed service remain unfinished. |
 
 The final Q74/Q75 regression invocation passed 157 cases; that is not 157
 independent encrypted experiments. Neither those tests nor the large earlier
@@ -305,7 +305,7 @@ HE parameter experiments.
 | --- | --- | --- |
 | Q76.4a: prepared replay - bounded gate complete | Isolated native entry point/adapter uses the same canonical expansion, paired products and terminal codec, but returns the full frame without serializing unused source witnesses. The trusted factory pins mode/code/profile; replies cannot select executables or a graph. Reuse the local lifecycle. | Register 16 retained small cases plus six saved large public transcripts before implementation. Compare complete frames to independently validated retained outputs; zero new HE keys/private decryptions/timing. Test strict packet/mode/context/epoch/full-tail grammar, ownership and direct C ABI bounds. Preserve the original ABI 1202 build. |
 | Q76.4b: aggregate seam - bounded gate complete | Same-backend untrusted producer emits three canonical common-Q pre-relinearization aggregates. Protected prefix derives the genuine query; exact aggregate admission and protected suffix complete the frame. | Test both actual prime vectors, all coordinates, one-limb and component-cancellation faults, original-query/ID/snapshot binding and the existing lifecycle. Choose the exact three-product control first. Randomized control requires its separate reviewed adaptive budget/challenge argument; an unimplemented adapter stays unknown. |
-| Q76.4c: permitted cache | Owner-authenticated compact binary backup and ordered-ID descriptor, returning search and bounded 32-row invalidation. New-device acquisition may overlap the initial remote query. No HE index download is imposed on the cache. | Independent XOR/popcount/all-score answers and top3 by `(distance, original ordinal)` with bound IDs, including reversed IDs; authentication/epoch/update faults and acquired/retained byte accounting. Charge preparation, private context, mutable updates and prefetch; no artificial cache prohibition. |
+| Q76.4c: permitted cache — bounded gate complete | Owner-authenticated compact binary backup and ordered-ID descriptor, returning search and bounded 32-row updates. Late-download/currentness correctness passes; actual prefetch overlap stays unmeasured until Q77. No HE index download is imposed on the cache. | [Cache return](native-shared-query-cache-return-20261004.json): 93 new normal/UBSan cases, 16 compatibility cases, 28 searches/229,980 complete distances, three 32-row updates and ordinal ties with reversed/nonmonotonic IDs. Actual snapshot/patch bytes and canonical retained-body accounting pass. Charge preparation, private context, mutable updates and prefetch later; no artificial cache prohibition. |
 | Q76.5: certificate/resource handoff | A checker separate from the optimizer validates graph effects, actual primes, common integers, origin/public phase bounds, complete coverage/terminal framing and mode-bound release assumptions. Publish a compact client provisioning descriptor and the exact owned/resident/scratch lifetime ledger. | Mutate each certificate obligation and reject before authority/private work. Document trusted-owner encoding and native/formal assurance boundaries. Freeze the complete methods and runtime budgets before Q77; stop any plan that lacks its invariant. |
 
 The replay files now exist alongside the experimental core:
@@ -332,8 +332,10 @@ and separately scoped randomized/other-placement hypotheses.
 The [independent GMP preflight](native-shared-query-gmp-preflight-20261004.md)
 passes 59 producer tests and two public fixture tests; the later
 [source return](native-shared-query-source-20261004.md) records the separate
-fresh-key/six-search gate and private diagnostics. **Next executable task is
-Q76.4c permitted authenticated cache, then certificate/handoff.** Source belongs in
+fresh-key/six-search gate and private diagnostics. The later
+[cache gate](native-shared-query-cache-20261004.md) also passes.
+**Next executable task is Q76.5 certificate/resource/client-context handoff,
+with the early Q79.1 claim-to-prior discriminator.** Source belongs in
 `experiments/bfv_search_lab/_shared_query/`; Python adapter/tests beside the
 other research implementations; reproducible runners in `benchmarks/`.
 Keep isolated libraries and outer evidence. Migrate a reviewed selected
@@ -368,8 +370,8 @@ Each remaining Q76 milestone has a bounded handoff:
    one new key is generated. The existing small reference rejects N>64; raising
    that guard alone does not constitute independent large correctness. Freeze
    source/build/dependencies and execute only the registered six searches.
-3. **Controls — prepared replay and exact aggregate gates complete:** implement
-   the permitted authenticated cache. The protected prefix/product/suffix
+3. **Controls — prepared replay, exact aggregate and permitted cache gates
+   complete:** preserve their bounded receipts. The protected prefix/product/suffix
    contract passes its registered gate; the randomized-delegation comparison card
    preserves the prospective assurance scope. Credit cached and streamed
    inputs, shared expansion and paired Karatsuba to every compatible control.
@@ -765,8 +767,9 @@ and comparison obligations only. The later Q76.3a execution is separately
 recorded in its [lifecycle return](native-shared-query-lifecycle-return-20261004.json).
 The later [Q76.3b source return](native-shared-query-source-return-20261004.json)
 records its fresh-key/private-diagnostic scope separately. Later prepared
-replay and exact aggregate gates also pass. Next is Q76.4c cache and Q76.5
-independent certificate; Q76 remains incomplete.
+replay, exact aggregate and permitted authenticated mutable-cache gates also
+pass. Next is Q76.5 independent certificate/resource/client-context handoff;
+Q76 remains incomplete and Q77 stays conditional.
 The source-scale implementation is additionally preserved by tag
 `checkpoint/native-shared-query-source-2026-10-04`, with verified incremental
 bundle, 54 evidence members and 66 preserved company members. The later

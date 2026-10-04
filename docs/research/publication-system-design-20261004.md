@@ -116,13 +116,13 @@ external originality review. An early self-review cannot replace it.
 ## Work packages with concrete handoffs
 
 There are **no remaining broad preliminary Q74/Q75 gates**. The immediate
-queue is two native milestones, followed by the existing evaluation,
+queue is now one native milestone, followed by the existing evaluation,
 deployment/security and final paper decisions. Return to the ledger after each
 milestone; do not start an optional branch merely because it is interesting.
 
 | Order | Work and files | Gate and next decision |
 | --- | --- | --- |
-| Q76.4c | Add the permitted owner-authenticated compact backup/cache adapter beside the research implementations; tests beside it and a reproducible runner in `benchmarks/`. Include cold/returning acquisition, IDs, bounded 32-row updates and prefetch accounting. Use a standard reviewed AEAD for the backup, not homemade symmetric encryption. | Independent XOR/popcount and stable-ID answers; tamper/epoch/gap/foreign-context rejection; honest byte/state inventory. No forced HE-index acquisition. Then return to Q76.5. |
+| Q76.4c — bounded correctness gate complete | The permitted authenticated mutable cache now uses standard AES-256-GCM-SIV/Ed25519 and an isolated native popcount control. Existing homemade HE code and old cache APIs stay preserved. | [Cache return](native-shared-query-cache-return-20261004.json): 93 new normal/UBSan cases plus 16 compatibility cases; 28 searches/229,980 distances; three 32-row updates and ordinal ties with bound IDs. Actual bytes and late-download currentness pass; acquisition/prefetch latency and contention remain unmeasured. No forced HE-index acquisition. |
 | Q76.5 + early Q79.1 | Write the reference and effect/certificate specification, independent checker, resource/lifetime ledger and compact client context descriptor. State the prior counterconstruction before expanding the optimizer. | Reject a mutation of every obligation before authority/private work; state native/model refinement gaps; freeze legal methods and comparison scope. Select Q77 only for plans with their invariant. |
 | Q77 | Freeze and measure complete prototype paths in the same homemade native backend: full relation admission, original-request-only prepared execution, exact aggregate admission, allowed cache and its acquisition/prefetch policy. Use a conversion-aware generic selector with identical legal choices and information. | Preserve all observations and contention qualifications; disclose all links and dependent stages. If a paid region survives, select a bounded deployment/optimization. If it does not, stop the positive outsourcing-performance claim. |
 | Q78 | Implement the selected actual protected deployment, freshness/revocation and client-private handoff; review parameters, seed/sampler laws and private side channels. Rerun the relevant frozen placement comparison in that deployment. | A real attestation/release path and layered assurance argument, with remaining assumptions exposed. An AWS/Nitro or GPU route is selected only after its actual capabilities and boundaries are verified. |
@@ -259,4 +259,8 @@ The literature registry preserves its 117 earlier records and appends three,
 for 120 source records; these are not 120 newly audited papers. The
 [review receipt](publication-system-design-review-20261004.json) records the
 scope and hashes. The preceding aggregate checkpoint and all earlier company
-assets remain intact. The next executable task is still **Q76.4c cache**.
+assets remain intact. The later [cache gate](native-shared-query-cache-20261004.md)
+completes its registered correctness/authentication/state scope without HE or
+timing work. The next executable task is **Q76.5 certificate/resource/client
+handoff with early Q79.1**. Q77 remains conditional, and no main originality or
+security approval follows from these control tests.

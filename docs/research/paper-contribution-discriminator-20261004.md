@@ -289,7 +289,7 @@ before committing to the large Q77 panel; external review remains required.
 
 | Next package | Concrete output | Decision |
 | --- | --- | --- |
-| Q76.4c — two native milestones remain overall | Authenticated compact mutable cache, strict current descriptor, native all-score/ordinal-tie search with bound IDs, bounded 32-row update and paid cold/prefetch paths | Correctness/authentication/resource gate including reversed-ID ties; return to ledger, then Q76.5. Zero new HE keys or timings in this correctness gate. |
+| Q76.4c — bounded correctness gate complete | Authenticated compact mutable cache, strict current owner pin, native all-score/ordinal-tie search with bound IDs and bounded 32-row update. Actual cold/prefetch latency remains paid later. | [Cache return](native-shared-query-cache-return-20261004.json): 93 new normal/UBSan cases, 16 compatibility cases and 28 searches/229,980 distances. Reversed/nonmonotonic ties, three updates and actual bytes pass. Zero new HE/private work or timings; return selects Q76.5. |
 | Q76.5 + early Q79.1 | Certificate/checker, reference/refinement specification, resource and client-context handoff, claim-to-prior counterconstruction | Select only invariant-supported methods for Q77. Close a contained certificate/algorithm claim explicitly. Keep company engineering even if its novelty claim closes. |
 | Q77 | Frozen same-backend complete-cost cohort and held-out policy/representation/state ablations | Seek H1/H2/H3 with paid setup, acquisition, updates, both links and strong cache/replay/randomized scope. Retain 18 blocks/144 dependent queries: 6 blocks/48 calibration observations then 12 blocks/96 held-out observations. No workload tuning after results. |
 | Q78 | Selected real protected deployment, private release/freshness, parameter/sampler/side-channel assurance and relevant comparison rerun | Establish the actual trust contract before any secure-service latency statement. Optional kernels/cuts are selected by a paid bottleneck. |
@@ -312,14 +312,18 @@ targets a measured bottleneck and requires a bounded registration. They are
 not new selected experiments, a reason to bypass current caps, or a revival
 of closed reusable-adjoint/expansion/gadget claims.
 
-There are **zero broad preliminary gates left**, **two immediate native
-milestones**, and then the three existing evaluation, deployment/security and
-paper packages. This revision completes a planning/counterconstruction-design
-task only. The next executable implementation task stays **Q76.4c cache**.
+There are **zero broad preliminary gates left**, **one immediate native
+milestone**, and then the three existing evaluation, deployment/security and
+paper packages. The planning revision alone executed no experiments; the
+later cache return separately records its completed bounded control gate.
+The next executable task is **Q76.5 certificate/resource/client handoff with
+early Q79.1**.
 
 The [build-handoff review](paper-build-handoff-review-20261004.json) records
 the later planning return at `09d2b15120ca8a18e1c94d832fc88ece25d74bb7`. It
 advances the local claim mapping, rechecks five saved medians/three geometries,
 and specifies the primary latency metric and calibration split. It adds no
 HE, timing, tests, build, author execution, formal proof or production change.
-The implementation/certificate queue is unchanged.
+The later cache gate removes that implementation subtask from the remaining
+queue. Its known authentication/cache techniques are supporting controls,
+not a substantive new certificate, algorithm or original main result.

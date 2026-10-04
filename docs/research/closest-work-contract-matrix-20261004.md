@@ -19,6 +19,13 @@ composition, interface-by-interface theorem/checker handoff and finite paper
 decision. Its [review receipt](paper-contribution-discriminator-review-20261004.json)
 rechecks saved results without a new HE/timing or author-artifact run.
 
+The later [Q76.4c cache return](native-shared-query-cache-return-20261004.json)
+implements the permitted owner baseline with authenticated mutable delivery
+and ordinal ties. Its bounded correctness/accounting gate passes; it adds no
+new literature claim, HE work or timing evidence. Cache/provisioning/signature
+composition remains a known method. Q76.5 must still separate a substantive
+system or assurance result from the compatible prior construction.
+
 The initial review added four cached primary papers and inspected ten rendered
 pages. The [source-scale reassessment](paper-system-reassessment-20261004.json)
 adds three pinned primary PDF/text pairs and inspects eight further pages,
