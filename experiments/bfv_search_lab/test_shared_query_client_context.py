@@ -126,7 +126,11 @@ def test_signed_and_pinned_false_field_never_publishes_metadata(owners, path):
         for part in path[:-1]:
             node = node[part]
         value = node[path[-1]]
-        if path[0] == 10 and path[-1] == 1:
+        if path[0] == 9 and path[-1] in (0, 1):
+            # These opaque cache labels are honest-owner provisioning inputs.
+            # Their private relationship to HE data is not publicly derivable.
+            node[path[-1]] = value[1:]
+        elif path[0] == 10 and path[-1] == 1:
             # A different valid HE epoch is an honest-owner declaration, not
             # derivable from the compact snapshot digest. Check its exact type.
             node[path[-1]] = True
@@ -139,6 +143,24 @@ def test_signed_and_pinned_false_field_never_publishes_metadata(owners, path):
         handle.acquire(bad.packet)
     with pytest.raises(ValueError, match="No validated"):
         handle.metadata()
+
+
+@pytest.mark.parametrize("position", [0, 1], ids=["cache-key-label", "cache-snapshot-label"])
+def test_valid_opaque_cache_labels_require_the_specific_trusted_pin(owners, position):
+    original = delivery(owners[0])
+
+    def mutate(fields):
+        fields[9][position] = token("different valid opaque cache label")
+
+    changed = rewritten(original, owners[0], mutate)
+    anchor = owners[0].public_key().public_bytes_raw()
+    with pytest.raises(ValueError, match="pinned current"):
+        client.verify_descriptor(changed.packet, anchor, original.pin)
+    # A separately trusted initial pin can provision valid independent labels.
+    # This assertion explicitly preserves the honest-owner equivalence premise;
+    # it is not a ciphertext/plaintext-equivalence or malicious-owner guarantee.
+    accepted = client.verify_descriptor(changed.packet, anchor, changed.pin)
+    assert accepted.cache.fields()[position] == token("different valid opaque cache label")
 
 
 @pytest.mark.parametrize(
