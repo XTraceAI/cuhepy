@@ -1,3 +1,5 @@
+> Planning update, 2026-10-04: the [contribution plan](research-contribution-plan-20261004.md) and [ledger](research-contribution-progress-20261004.json) now put Q74/Q75 graph/noise and strongest-control research gates first. This Q71 controller/producer specification remains preserved and reusable by the selected Q76 build or an explicitly supporting company build. No recorded Q71 component status or raw evidence is changed. The complete earlier plan below is byte exact.
+
 # Q71 return: build one complete native pipeline before timing
 
 The [completed fusion and native components](gadget-cut-fusion-results-20261004.md)
