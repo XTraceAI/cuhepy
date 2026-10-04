@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "id": "Q70-exact-live-state-refinement",
+  "parent_registration": "docs/research/gadget-cut-planner-registration-20261003.json",
+  "preserved_initial_runs": ["../research-data/gadget-cut-planner-20261003/tiny", "../research-data/gadget-cut-planner-20261003/large"],
+  "initial_large_scope": "Six completed one-tile cards. Initial32-tile batch Pareto step was intentionally interrupted; no completed32-tile or larger optimum from that run.",
+  "adaptation": "Collapse a retained common state when its current peak plus scale*state exceeds the exact maximum admitted Q/P peak. Every future derived switch must add at least scale*state, while canonical binary state/noise cannot decrease either quantity. Canonical unary resets do not depend on old common state, so opaque/discarded state reproduces the reset. Discard dominates the unnecessary preparation. Deduplicate identical labels; use explicit comparison/transition limits, no approximate frontier truncation.",
+  "inputs_unchanged": true,
+  "tiny_repeats_are_not_independent_evidence": true,
+  "additional_compute_caps": {"distinct_transition_labels_per_subproblem": 50000, "dominance_comparisons_per_profile": 5000000},
+  "required": ["Every tiny optimum still equals unpruned generic oracle", "Live-state algebra/guard lemma documented with all assumptions", "All stopped/capped large cards recorded without claiming optimum", "Publish actual work/key/digit-state ledger and strongest control opportunities"],
+  "originality_note": "Finite-state abstract interpretation, memoization and dominance pruning are known techniques. A useful closure criterion is a systems candidate, not accepted mathematical novelty or a full production/security result."
+}

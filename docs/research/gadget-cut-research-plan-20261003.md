@@ -1,3 +1,5 @@
+> Latest execution: [Q70 planner/encrypted/cost return](gadget-cut-planner-results-20261003.md) and [Q71 complete generic polynomial relation](gadget-cut-relation-results-20261003.md). The bounded uniform grammar is resolved within declared caps. Q71 first relation component is complete; full fused resource/native admission gates remain open. [Current progress](gadget-cut-planner-progress-20261003.json) and [construction specification](gadget-cut-native-admission-plan-20261003.md) supersede the next-task pointer below; original dated queue/body preserved.
+
 # Research pivot: spend noise budget to remove selected verification cuts
 
 Latest return: [Q69/Q70 follow-ups](gadget-cut-followups-20261003.md),

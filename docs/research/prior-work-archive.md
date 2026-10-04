@@ -162,3 +162,20 @@ The [comparison](closest-work-comparison-20261003.md) and
 | Binius64 Blueprint (binius64-blueprint-current) | [binius64-blueprint-current](../../../research-data/contribution-reassessment-20261003/primary-crossfield/binius64-blueprint-current.pdf) | Targeted word constraints/IntMul/wrap guard and primary blueprint scope; full rendered page24 inspected. |
 | Fast Homomorphic Linear Algebra with BLAS (bae-gpu-matvec-2503-16080v1) | [bae-gpu-matvec-2503-16080v1](../../../research-data/contribution-reassessment-20261003/primary-crossfield/bae-gpu-matvec-2503-16080v1.pdf) | Targeted exact-v1 sections3.4/5.4, Algorithm9, Theorems9–10 and implementation scope; full rendered pages16/32/34 inspected. |
 | Fast Homomorphic Linear Algebra with BLAS (bae-gpu-matvec-2503-16080v2) | [bae-gpu-matvec-2503-16080v2](../../../research-data/contribution-reassessment-20261003/primary-crossfield/bae-gpu-matvec-2503-16080v2.pdf) | Targeted current-v2 sections3.4/5.4–5.5, Algorithm9, Theorems9–10, format conversion and implementation scope; complete full math pages17/33/34/35/36 rendered and visually inspected, and exact-v1 counterparts compared. |
+
+
+## Q70 planner/control review,2026-10-03
+
+Two more paper PDF/text pairs and one official HEIR design HTML/text pair are
+pinned under `../../../research-data/gadget-cut-planner-20261003/primary/`.
+The registry now contains109 primary records, with the preceding106 entries
+preserved exactly; this is not109 papers/full audits. See [the scoped comparison](gadget-cut-planner-results-20261003.md) and its retrieval/reading receipts.
+
+| Primary resource | Local record | Reading scope |
+| --- | --- | --- |
+| Chen, relinearization placement1711.06319v1 | [PDF](../../../research-data/gadget-cut-planner-20261003/primary/chen-relinearization-1711.06319v1.pdf) | Section4; complete PDFpage9 rendered and inspected |
+| Neda et al., CiFlow2311.01598v4 | [PDF](../../../research-data/gadget-cut-planner-20261003/primary/ciflow-2311.01598v4.pdf) | SectionIV; complete PDFpage4 rendered and inspected |
+| HEIR, relinearization ILP design | [HTML snapshot](../../../research-data/gadget-cut-planner-20261003/primary/heir-relinearization-current.html) | Official formulation main page; extracted text pinned |
+
+No author compiler/hardware artifact or reported performance was reproduced.
+Earlier targeted reviews, PDFs, versions and checkpoints remain intact.
