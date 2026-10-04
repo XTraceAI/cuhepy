@@ -1,3 +1,5 @@
+> Current system handoff, 2026-10-04: the [execution plan](system-contribution-execution-plan-20261004.md), [contract-level closest comparison](closest-work-contract-matrix-20261004.md) and [current ledger](research-contribution-progress-20261004.json) now control execution. Q74/Q75 are complete within their bounded scope; the next task is Q76.1, the public-native retained-fixture gate. The compiled native draft is unvalidated. The review adds corrected Laminate and compiler/assurance controls; no new HE tests, timings, original main or security/parameter approval. Local lifecycle is at-most-once authorization, not exactly-once delivery or adversarial rollback protection. The earlier document below remains byte exact.
+
 # Q74–Q75 return: shared query works, but smaller witness is not a system result
 
 2026-10-04. Parent `50473fc665572e2548fb95d1de4d817238771901`.
