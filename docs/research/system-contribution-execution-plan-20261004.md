@@ -32,12 +32,22 @@ comparisons, 5,568 small coefficient/isolated-NTT faults rejected and 360 select
 including 51 new cases. No fresh HE, private operation, timing or randomized
 protocol is added. Next is the permitted authenticated cache control.
 
+The later [publication design and finite build decision](publication-system-design-20261004.md)
+uses preserved checkpoint `155d69f180f6e11a9a87734fdb6249699e9f0549`.
+It adds ILA, Argos and FlowCert to the closest-work counterconstruction, moves
+an early novelty discriminator into Q76.5, and specifies the paper/artifact and
+conditional query-only protected variant. The [review receipt](publication-system-design-review-20261004.json)
+separates this planning work from the preceding aggregate gate. No new timing,
+HE experiment, formal proof or positive originality decision follows from it.
+
 **Build one complete homemade BGV system to answer a specific research
 question: when does jointly compiling evaluation, public admission, and
 retained state improve the complete cost of exact encrypted search?**
 The intended contribution is a certified compiler/runtime and a demonstrated
 operating frontier, with known cryptography. No original main result has yet
-been established. A compiler that merely renames known transformations, or a
+been established. ILA already supplies functional correctness through quantitative
+typing; Argos supplies integrity-only attested HE and application input binding.
+The proposed distinction must survive their compatible specialization. A compiler that merely renames known transformations, or a
 fast evaluator with an expensive verifier, does not meet the paper gate.
 
 There are **zero remaining preliminary gates in the selected Q74/Q75 plan**.
@@ -57,7 +67,7 @@ a publishable result.
 | Q74 source-profile public bounds | Owner canonical Q120 passes. Public-key-index canonical Q120 and both derived Q120 modes fail. One Q180 rescue passes its algebra screens. | Start owner canonical Q120. Do not silently substitute an input law, approve parameters from successful decryptions, or use the Q120 parser for three primes. |
 | Q75 finite resource screen | 60 cards, nine exact finite frontiers, zero compiler-cap failures; known composition has identical algebra/resources. | New expansion/gadget/asymptotic claims are closed. Models are sufficient schedules, not measured time, peaks or lower bounds. |
 | Q180 derived versus owner canonical Q120, one full group | Witness body 90.703125 versus 120.468750 MiB; modeled pointwise work about 2.81x, keys 2.25x, query/index about 1.5x. | Preserve the tradeoff, but select no larger-Q variant from bytes alone. Client response bodies remain 102,400 bytes/group. |
-| Current Q76 work | Public core/factory/local lifecycle gates pass. Q76.3b now passes one fresh key and six searches at 8224/16384/32768: all native/GMP source/output/frame bytes and 114,752 distances agree. Final selected suite 258 includes 197 existing cases; no timing. | Next Q76.4 builds matched controls, then Q76.5 validates the certificate/handoff. Actual private production release, real attestation and the completed service remain unfinished. |
+| Current Q76 work | Public core/factory/local lifecycle gates pass. Q76.3b now passes one fresh key and six searches at 8224/16384/32768: all native/GMP source/output/frame bytes and 114,752 distances agree. Final selected suite 258 includes 197 existing cases; no timing. | Replay and exact aggregate correctness controls now pass; cache and Q76.5's certificate/handoff remain. Complete-cost evaluation is unmeasured. Actual private production release, real attestation and the completed service remain unfinished. |
 
 The final Q74/Q75 regression invocation passed 157 cases; that is not 157
 independent encrypted experiments. Neither those tests nor the large earlier
@@ -257,15 +267,16 @@ No timing panel or CUDA port precedes this gate.
 | Q76.3a: local lifecycle — complete bounded gate | Trusted non-rollback SQLite controller consumes signed original requests before preparation and callback claims before dispatch. | 71 lifecycle unit cases and 16 retained cases/112 protocol requests pass; 80 bad replies rejected, 32 public hooks, replay/restart/process-exit gates. Final combined 197 includes 126 existing native/auth cases; overlapping first runs not added. No remote release or source-scale assurance. |
 | Q76.3b: source scale — complete registered correctness gate | Bounded independent GMP preflight, then the registered N16k d512 counts 8,224/16,384/32,768 with two queries. | One fresh key/six searches pass: all 50,626,560 source/output coefficients and full frames match; 114,752 distances and all Q/P phase positions/tails/stable ties checked after public acceptance and callback claim. No secret serialized, no timing or security approval. |
 | Q76.4: matched controls | Build prepared replay and checked-product/trusted-prefix/suffix in the same native backend, plus the permitted authenticated cache. Grant layout, expansion, lazy relinearization, Karatsuba, fusion, preparation and streaming equally. | Same source/terminal/snapshot contract and full correctness gates. Count protected work, duplicate work and transfers in both directions, not just the control's return packet. |
-| Q76.5: certificate and handoff | Validate the high-level certificate independently, publish owned/resident/scratch accounting and source/codec commands, and audit the boundary. | No free input or approval-by-oracle path; full test/mutation/lifecycle report, honest limitations, ledger return selecting or stopping Q77. |
+| Q76.5: certificate and handoff | Validate the high-level certificate independently, publish owned/resident/scratch accounting and source/codec commands, and audit the boundary. Develop the reference-model lemmas and early Q79.1 mapping to ILA/vFHE/Argos. | No free input or approval-by-oracle path; full test/mutation/lifecycle report, explicit prior-contained versus proposed substantive obligations, honest limitations, ledger return selecting or stopping Q77. |
 
-Execute the remaining native work in this order. Every completion returns to
-the ledger; these are Q76 subtasks, not extra HE parameter experiments.
+Preserve the completed controls and execute the remaining native work in this
+order. Every completion returns to the ledger; these are Q76 subtasks, not extra
+HE parameter experiments.
 
 | Order | Artifact and implementation boundary | Bounded gate before proceeding |
 | --- | --- | --- |
-| Q76.4a: prepared replay | Isolated native entry point/adapter uses the same canonical expansion, paired products and terminal codec, but returns the full frame without serializing unused source witnesses. The trusted factory pins mode/code/profile; replies cannot select executables or a graph. Reuse the local lifecycle. | Register 16 retained small cases plus six saved large public transcripts before implementation. Compare complete frames to independently validated retained outputs; zero new HE keys/private decryptions/timing. Test strict packet/mode/context/epoch/full-tail grammar, ownership and direct C ABI bounds. Preserve the original ABI 1202 build. |
-| Q76.4b: aggregate seam | Same-backend untrusted producer emits three canonical common-Q pre-relinearization aggregates. Protected prefix derives the genuine query; exact aggregate admission and protected suffix complete the frame. | Test both actual prime vectors, all coordinates, one-limb and component-cancellation faults, original-query/ID/snapshot binding and the existing lifecycle. Choose the exact three-product control first. Randomized control requires its separate reviewed adaptive budget/challenge argument; an unimplemented adapter stays unknown. |
+| Q76.4a: prepared replay - bounded gate complete | Isolated native entry point/adapter uses the same canonical expansion, paired products and terminal codec, but returns the full frame without serializing unused source witnesses. The trusted factory pins mode/code/profile; replies cannot select executables or a graph. Reuse the local lifecycle. | Register 16 retained small cases plus six saved large public transcripts before implementation. Compare complete frames to independently validated retained outputs; zero new HE keys/private decryptions/timing. Test strict packet/mode/context/epoch/full-tail grammar, ownership and direct C ABI bounds. Preserve the original ABI 1202 build. |
+| Q76.4b: aggregate seam - bounded gate complete | Same-backend untrusted producer emits three canonical common-Q pre-relinearization aggregates. Protected prefix derives the genuine query; exact aggregate admission and protected suffix complete the frame. | Test both actual prime vectors, all coordinates, one-limb and component-cancellation faults, original-query/ID/snapshot binding and the existing lifecycle. Choose the exact three-product control first. Randomized control requires its separate reviewed adaptive budget/challenge argument; an unimplemented adapter stays unknown. |
 | Q76.4c: permitted cache | Owner-authenticated compact binary backup and ordered-ID descriptor, returning search and bounded 32-row invalidation. New-device acquisition may overlap the initial remote query. No HE index download is imposed on the cache. | Independent XOR/popcount/stable-ID answers, authentication/epoch/update faults and acquired/retained byte accounting. Charge preparation, private context, mutable updates and prefetch; no artificial cache prohibition. |
 | Q76.5: certificate/resource handoff | A checker separate from the optimizer validates graph effects, actual primes, common integers, origin/public phase bounds, complete coverage/terminal framing and mode-bound release assumptions. Publish a compact client provisioning descriptor and the exact owned/resident/scratch lifetime ledger. | Mutate each certificate obligation and reject before authority/private work. Document trusted-owner encoding and native/formal assurance boundaries. Freeze the complete methods and runtime budgets before Q77; stop any plan that lacks its invariant. |
 
@@ -360,7 +371,8 @@ tensor products with private polynomial challenges. Our deterministic
 checked-product control does not reproduce its statistical optimization.
 The [aggregate-product adaptation card](native-shared-query-product-control-card-20261004.md)
 now specifies the exact tensor, whole-vector actual-prime checks and paid
-prefix/suffix. The control is not implemented or measured yet. Bind all operands/results first; use
+prefix/suffix. The exact control is implemented; its complete cost is unmeasured. The randomized
+adapter remains unimplemented. Bind all operands/results first; use
 fresh hidden verifier challenges, every actual limb/full ring, protected
 maintenance/terminal processing and the same lifecycle. Prove the lifetime
 soundness budget before implementing or measuring that control. This does not
@@ -482,6 +494,7 @@ scope rows, not misleading cross-paper speed ratios.
 | GPU execution of the complete public relation | Offloading the actual admission bottleneck may make the protected path competitive while keeping complete common-integer and terminal checks. | CPU-native gate passes and Q77 identifies a substantial parallel public-check bottleneck. Port that bounded kernel; charge both transfer directions and the protected checker. | A fast GPU checker is accepted as its own untrusted evidence, or complete cost fails to improve. GPU attestation is a separately implemented/reviewed path. |
 | Smaller trusted state through streaming | A compilation certificate remains valid with less trusted memory at an acceptable complete cost. | Native measured state exceeds a declared budget. Compare one existing cached and one streamed schedule with the same replay choices. | Saving modeled arrays only hides preparation, wire buffers or scratch, or controls obtain the same advantage with no distinct system result. |
 | Shared query across an authenticated multi-object snapshot | One genuinely derived query prefix feeds streamed record groups while the certificate binds complete global coverage, snapshot versions and release. A different admission boundary may make bounded trusted memory viable at scale. | Only Q77 showing a paid prefix/state bottleneck and a justified larger deployment motivates one separately registered scale extension. First prove per-group phase bounds are independent of group count and test saved public shards; declare new caps before fresh keys/timing. The current two-group cap is not bypassed. | Compatible replay receives the same prefix reuse/streaming. Stop a new sharing claim if known expansion/layout methods contain it; stop a system advantage if realistic permitted cache/acquisition dominates. |
+| Query-only confidential protected evaluation, separate contract | With only query bits in a confidential TEE, binary Hamming search can use plaintext-weighted encrypted index sums, avoiding encrypted-query expansion/tensor products. Slalom/EMVP and ordinary linear HE are credited controls. | Only a decisive paid query-prefix/product bottleneck plus a real accepted query-custody deployment justifies one preregistered feasibility task. Prove masking/delegation, freshness, all-coordinate/phase and CPU-secret leakage obligations first. See the publication design memo. | A known compatible construction contains the mechanism; masked query leaks, terminal bounds fail, or paid protected/preparation costs remove the region. It is not the primary no-HE-secret/public-admission contract or a revival of failed reusable adjoints. |
 | Proof backend for the same public relation | Removing a trusted verifier without losing source/common-Q/noise/frame binding would be a meaningful later system extension. | Main native contract stabilizes; an actual ring-proof adapter or corrected blind-proof contract passes the comparison gate. Start with one small complete relation, not a free microbenchmark. | Missing range/oracle commitment/input/release binding, unmatched feedback assumptions, or no paid advantage. Do not call the TEE tape a cryptographic proof. |
 
 Ordinary private randomized adjoints/Freivalds/Slalom are controls, not a new
@@ -501,10 +514,25 @@ must be the demonstrated contract-specific assurance or execution finding.
 The current corpus is at most 2 MiB of packed vectors, so an invented tiny
 client memory budget cannot justify a large-dataset or cache-defeat claim.
 
+The [publication design memo](publication-system-design-20261004.md) adds a
+conditional query-only protected variant, not a newly authorized experiment
+queue. It changes query confidentiality custody and therefore cannot inherit
+Argos's no-secret-in-CPU argument. Keep its results, if later registered,
+in a separate trust-contract row. Current caps and the cache/certificate queue
+remain unchanged.
+
 ## 7. Q78: proof and actual security closure
 
-Start the semantic/certificate and public-bound proofs during Q76. Develop
-the threat/state model alongside Q77, then close the argument for the actual
+Start the semantic/certificate and public-bound proofs during Q76. Use ILA's
+valid-model/functional-correctness framework as a strongest prior control;
+state our actual canonical expansion, common-Q/RNS, terminal and response-authority
+adapter rather than claiming the first noise-aware type system. Credit Argos's
+input-validity/database-commitment and verify-before-decrypt constructions.
+Do not describe a formal reference-model theorem as verification of the complete
+native binary or deployment. The publication memo gives the initial Lean4
+model target and separately scoped native refinement obligations.
+
+Develop the threat/state model alongside Q77, then close the argument for the actual
 selected deployment in Q78. Do not wait for a promising timing result to
 check whether the design's assumptions are valid.
 
@@ -644,12 +672,14 @@ has its preceding independent checkpoint. This reassessment changes planning
 and comparison obligations only. The later Q76.3a execution is separately
 recorded in its [lifecycle return](native-shared-query-lifecycle-return-20261004.json).
 The later [Q76.3b source return](native-shared-query-source-return-20261004.json)
-records its fresh-key/private-diagnostic scope separately. Next is Q76.4
-matched controls, then Q76.5 independent certificate; Q76 remains incomplete.
+records its fresh-key/private-diagnostic scope separately. Later prepared
+replay and exact aggregate gates also pass. Next is Q76.4c cache and Q76.5
+independent certificate; Q76 remains incomplete.
 The source-scale implementation is additionally preserved by tag
 `checkpoint/native-shared-query-source-2026-10-04`, with verified incremental
 bundle, 54 evidence members and 66 preserved company members. The later
 source-scale reassessment changes research/comparison priorities and appends
 three literature records; it runs no new HE, native, timing or author-artifact
-cohort. The ledger now points to the source checkpoint rather than the older
-lifecycle checkpoint.
+cohort. That planning return pointed to the source checkpoint. The current
+ledger preserves the later verified aggregate checkpoint, and the publication
+design review sharpens the prior counterconstruction and finite queue.

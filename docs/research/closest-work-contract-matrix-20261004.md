@@ -2,7 +2,7 @@
 
 2026-10-04. Original comparison evidence baseline:
 `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
-The current implementation is `9ccf11a5dda656b68a1664301093c891c49e0743`;
+The latest preserved implementation checkpoint is `155d69f180f6e11a9a87734fdb6249699e9f0549`;
 the [paper-facing rereading receipt](paper-contribution-review-20261004.json)
 records this later planning return separately from the original review.
 Read with the [execution plan](system-contribution-execution-plan-20261004.md),
@@ -34,9 +34,9 @@ owner-authenticated factory pass their bounded gates. The later
 [Q76.3a local lifecycle return](native-shared-query-lifecycle-20261004.md)
 adds tested durable state under trusted non-rollback storage. The later
 [Q76.3b source return](native-shared-query-source-20261004.md) passes its
-registered one-key/six-search large correctness gate. Matched complete-cost
-controls, the independent certificate, remote freshness/private release and
-real attestation remain open.
+registered one-key/six-search large correctness gate. The matched prepared replay and exact aggregate local/public correctness gates
+now pass. Cache, complete-cost measurements, the independent certificate,
+remote freshness/private release and real attestation remain open.
 
 There are three different comparison classes:
 
@@ -86,6 +86,36 @@ search table. The actual complete adapter cost remains unknown.
 These are design/theory controls. Their published performance is not a direct
 benchmark of our protected exact-search implementation.
 
+The later [publication design review](publication-system-design-20261004.md)
+adds three particularly relevant predecessors. The prior comparison was
+incomplete without them; the remaining distinction must survive their strongest
+compatible specialization.
+
+| Work / newly inspected primary scope | Existing result to credit | Required distinction or control |
+| --- | --- | --- |
+| **ILA**, [2509.11559v1](https://arxiv.org/html/2509.11559v1), §§4-6; PDF pages5/7/8/9 and adjacent text | Quantitative FHE models, semantic safety, functional correctness and transformation validation; BGV/BFV/TFHE instances. The guarantee assumes inputs matching their semantic types. | Give the comparator the same valid origin/bound model. Specify our common-Q/native/terminal and adversarial admission/release adapter. Neither general noise typing nor model instantiation alone establishes a new certificate contribution. |
+| **Argos**, [PoPETs2025(3) publisher PDF](https://petsymposium.org/popets/2025/popets-2025-0099.pdf), §§2,4-7; pages3/5/6/7/8 | Integrity-only FHE execution, isolated attestation secret, transcript verification before decryption, valid-input checks and authenticated database commitments. | Grant equally optimized protected execution and application context. Separate actual hardware/TCB from our local replay and prospective Nitro deployment. Keeping HE secrets out of the verifier, input binding and pre-decryption verification are known; no performance or side-channel dominance is established. |
+| **FlowCert**, [OOPSLA2024 author PDF](https://www.contrib.andrew.cmu.edu/~bparno/papers/flowcert.pdf), §§1/5; pages2/14 and adjacent text | Translation validation of asynchronous dataflow and affine permissions for schedule/ownership correctness. | Grant independent validation and lifetime reasoning. Define the additional HE admission/representation/authority obligations and a substantive result. A certificate or affine state annotation is not a first-of-its-kind claim. |
+
+The ILA and Argos read-only artifact interfaces are pinned at commits
+`4d4fa73d207c67ea68f578641bd22e8900eba86e` and
+`65b74b4ca6597247d008cbf41480dd6ad5cea64f`. Their interfaces were inspected;
+no author code, proof suite, hardware monitor or benchmark was executed.
+ILA's preprint retains a template conference header; its version is pinned,
+not silently replaced by a publisher edition. Argos's publisher PDF and
+repository/preprint statements are not assumed byte-identical. Reported
+performance numbers are not imported into our table.
+
+**Early novelty discriminator:** before the Q77 cohort, Q76.5/Q79.1 must map
+ILA + vFHE/Argos + a conversion-aware compiler onto the same legal graph.
+List each proposed invariant as inherited, adapted or requiring a substantive
+new result. Static functional correctness, attested correct execution and
+malicious trace admission have different premises; combining their names does
+not prove a gap. If an ordinary specialization contains the claimed result,
+retain the artifact and close that claim. The final external originality
+review remains open.
+
+
 ## Known ingredients that every compatible control receives
 
 | Ingredient | Primary predecessor / retained reading | Comparison requirement |
@@ -115,7 +145,7 @@ reported security estimates as assurance for our parameters.
 
 | Candidate result | Current evidence | Missing discriminator | Falsifier |
 | --- | --- | --- | --- |
-| A certificate/effect model for a complete exact native search plan | Small reference, native core and factory bind all sources, limbs, outputs and frame; bounded local lifecycle and registered source-scale correctness pass. | An independently checked native specification spanning origin, representation, public bounds and actual remote release; applicable prior compiler comparison. | A free input, wrong frame or false semantic/noise implication; known certificate/compiler covers the same claimed design result. |
+| A certificate/effect model for a complete exact native search plan | Small reference, native core and factory bind all sources, limbs, outputs and frame; bounded local lifecycle, registered source-scale correctness and prepared replay/exact aggregate gates pass. | An independently checked native specification spanning origin, representation, public bounds and actual remote release; applicable prior compiler comparison. | A free input, wrong frame or false semantic/noise implication; known certificate/compiler covers the same claimed design result. |
 | A useful jointly selected verification/evaluation/state plan | Q75 contains real modeled tradeoffs; ordinary finite Pareto selection is known. | Same-backend complete measurements and held-out ablation showing a concrete decision/cost change under fixed budgets. | A complete prior system already demonstrates the claimed finding, replay removes the proposed advantage, or the difference is only a renamed objective. |
 | A reproducible useful protected-search system | Strong earlier unverified BGV engineering; cache wins local returning queries. | Complete acquisition, protected admission, updates, real deployment and truthful trust/feedback scope. | Replay/cache removes all justified operating regimes, or the advantage requires hiding cost or assuming forbidden caching. |
 | A security/assurance contribution suitable for formal analysis | Full common-Q/frame counterexamples and public-bound lessons are retained. | Actual conditional composition/mechanization and externally reviewed implementation boundary. | Raw algebraic integrity is presented as CCA security, or a theorem omits origin, noise, freshness or private feedback. |
@@ -123,8 +153,9 @@ reported security estimates as assurance for our parameters.
 The [later product adaptation card](native-shared-query-product-control-card-20261004.md)
 keeps the vFHE comparison concrete: aggregate degree two, full actual-prime
 vectors, paid prefix/suffix, lifetime amplification, exact three-point
-interpolation and equally optimized paired Karatsuba. Controls remain
-unimplemented; this is no measured defeat of the prior method.
+interpolation and equally optimized paired Karatsuba. Prepared replay and exact aggregate controls now pass their bounded gates;
+randomized admission remains unimplemented. There are no complete timings or
+measured defeats of a prior method.
 
 This is a set of testable opportunities, not a declaration that we are first.
 E101/E110/Q57/H1/Q59/H2 negative originality gates remain closed. Q74/Q75's
@@ -220,3 +251,14 @@ The VERITAS preprint and CCS title differ, and the WAHC author PDF has no
 versioned URL; those provenance qualifications are explicit. The existing
 six-search source cohort and qualified 32k panel were checked from retained
 artifacts; no HE, native build, timing or author-artifact run was added.
+
+
+The subsequent publication-design review appends three primary PDF/text pairs
+while preserving all 117 earlier registry records, for **120 source records**.
+Eleven selected pages were visually inspected, with adjacent extracted text;
+two read-only author interfaces are pinned. Hashes, retrieval and version
+qualifications are in [the review receipt](publication-system-design-review-20261004.json)
+and `/home/pete/yavor-projects/xtrace-work/research-data/paper-admission-design-review-20261004`.
+The preceding aggregate correctness gate is recorded separately: this planning
+review adds no HE, regression invocation, timing, formal proof or deployed
+attestation. It sharpens the plan, not a positive originality verdict.

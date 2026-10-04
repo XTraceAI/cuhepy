@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T18:29:53.887134+00:00",
+  "utc": "2026-10-04T18:51:11.997535+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -148,7 +148,9 @@
         "docs/research/native-shared-query-replay-return-20261004.json",
         "docs/research/native-shared-query-aggregate-registration-20261004.json",
         "docs/research/native-shared-query-aggregate-20261004.md",
-        "docs/research/native-shared-query-aggregate-return-20261004.json"
+        "docs/research/native-shared-query-aggregate-return-20261004.json",
+        "docs/research/publication-system-design-20261004.md",
+        "docs/research/publication-system-design-review-20261004.json"
       ],
       "implemented": false,
       "selected": {
@@ -227,7 +229,12 @@
         "retained_large_case_cap": 6,
         "timing_panels": 0,
         "randomized_admission_rounds": 0
-      }
+      },
+      "certificate_prior_counterconstruction": [
+        "ILA_valid_FHE_model",
+        "vFHE_or_Argos_full_protected_execution_and_input_validity",
+        "conversion_aware_compiler_and_FlowCert_validation_lifetime_reasoning"
+      ]
     },
     {
       "id": "Q77",
@@ -286,7 +293,15 @@
       ],
       "acceptance": "Original precise complete-system result, useful strongest-control comparison, limits/theorems/artifact and external review; otherwise supporting/negative return.",
       "evidence": [],
-      "implemented": false
+      "implemented": false,
+      "early_discriminator": {
+        "subtask": "Q79.1",
+        "during": "Q76.5_before_Q77",
+        "status": "design_scope_defined_not_priority_clearance",
+        "deliverable": "Precise claim-to-prior mapping and strongest compatible counterconstruction; close a contained claim rather than claiming novelty from a combined implementation",
+        "new_preliminary_HE_experiment": false,
+        "external_review_still_required": true
+      }
     },
     {
       "id": "P1",
@@ -405,19 +420,10 @@
   },
   "planning_review_baseline": "3ecef8eeb86bdc1e2c33ce568557debdea8949e9",
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
-  "current_closest_review": "docs/research/system-contribution-review-20261004.json",
+  "current_closest_review": "docs/research/closest-work-contract-matrix-20261004.md",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
   "next_subtask": "Q76.4c_permitted_authenticated_cache",
-  "latest_planning_review": {
-    "execution_branch": "experiment/native-shared-query-service-20261004",
-    "receipt": "docs/research/paper-system-reassessment-20261004.json",
-    "validation_receipt": "/home/pete/yavor-projects/xtrace-work/research-data/paper-system-reassessment-20261004/final-planning-validation.json",
-    "evidence_root": "/home/pete/yavor-projects/xtrace-work/research-data/paper-system-reassessment-20261004",
-    "new_source_records": 3,
-    "previous_source_records_unchanged": 114,
-    "new_HE_tests_or_experiments_or_timings": 0,
-    "originality_or_security_approval": false
-  },
+  "latest_planning_review": "docs/research/publication-system-design-review-20261004.json",
   "latest_execution_return": "docs/research/native-shared-query-aggregate-return-20261004.json",
   "Q76_execution_returns": [
     {
@@ -523,32 +529,33 @@
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
   "latest_plan_revision": {
-    "utc": "2026-10-04T15:59:26.933360+00:00",
-    "receipt": "docs/research/paper-system-reassessment-20261004.json",
-    "implementation_baseline": "9ccf11a5dda656b68a1664301093c891c49e0743",
-    "scope": "Source-correctness and closest-system reassessment; no new HE or timing",
-    "progress_classification": "planning_and_targeted_prior_reassessment_only",
+    "utc": "2026-10-04T18:51:11.997535+00:00",
+    "receipt": "docs/research/publication-system-design-review-20261004.json",
+    "implementation_baseline": "155d69f180f6e11a9a87734fdb6249699e9f0549",
+    "scope": "Closest-work/certificate/finite paper-build reassessment only; preceding aggregate control gate separately checkpointed",
+    "progress_classification": "planning_and_targeted_primary_review_only",
     "new_HE_key_contexts": 0,
     "new_HE_experiments": 0,
     "new_regression_invocations": 0,
     "new_timing_panels": 0,
     "new_source_records": 3,
     "author_artifacts_executed": 0,
-    "next_executable_subtask": "Q76.4a_prepared_replay",
-    "planned_task_completed_by": "docs/research/native-shared-query-replay-return-20261004.json",
-    "next_executable_subtask_after_return": "Q76.4c_permitted_authenticated_cache"
+    "next_executable_subtask": "Q76.4c_permitted_authenticated_cache",
+    "early_originality_discriminator": "Q76.5/Q79.1 prior counterconstruction before Q77; final external review still required",
+    "conditional_query_only_TEE_variant_registered_or_selected": false
   },
   "top_level_count_scope_note": "Top-level new_HE_experiments/tests describe the original Q74/Q75 return. Q76 milestone receipts and later planning revisions have separate non-additive units.",
   "preserved_latest_implementation_checkpoint": {
-    "commit": "abcb22a5f4de64bb4576e39f810a96d6e2b15739",
-    "implementation_commit": "e26050ad53e206e20fdfbf6873dec4a9b9b4b69f",
-    "tag": "checkpoint/native-shared-query-replay-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-replay-2026-10-04/manifest.json",
-    "manifest_sha256": "2faa9b8ef19f8dd8106e5ec13cdd96e8d477c9cd27a7a929628fcd415e1b5990",
-    "evidence_archive_members_verified": 109,
+    "commit": "155d69f180f6e11a9a87734fdb6249699e9f0549",
+    "implementation_commit": "10e2169b64775da832502113abcd94b9b4ce850a",
+    "test_followup_commit": "b4ab43d972c1664ced61686b1ae72f49b6027874",
+    "tag": "checkpoint/native-shared-query-aggregate-2026-10-04",
+    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/manifest.json",
+    "manifest_sha256": "7f128f3bf011cb46011491ed2f22ed98f51ac911504f256bdadda69600c88caf",
+    "evidence_archive_members_verified": 117,
     "company_archive_members_verified": 66,
     "branch_and_tag_remote_verified": true,
-    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-replay-2026-10-04/remote-verification.json"
+    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/remote-verification.json"
   },
   "Q76_control_design_return": {
     "card": "docs/research/native-shared-query-product-control-card-20261004.md",
@@ -567,13 +574,6 @@
     "all_unestablished": true
   },
   "current_originality_status": "Complete-system hypothesis, no accepted original main; component algebra/standard optimizer containment preserved",
-  "latest_implementation_checkpoint_pending_external_verification": {
-    "implementation_commit": "10e2169b64775da832502113abcd94b9b4ce850a",
-    "test_followup_commit": "b4ab43d972c1664ced61686b1ae72f49b6027874",
-    "tag": "checkpoint/native-shared-query-aggregate-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/manifest.json",
-    "verification_note": "External manifest and remote receipt are created/checked after this ledger commit; preceding verified checkpoint retained above"
-  },
   "historical_verified_implementation_checkpoints": [
     {
       "commit": "9ccf11a5dda656b68a1664301093c891c49e0743",
@@ -583,6 +583,52 @@
       "evidence_archive_members_verified": 54,
       "company_archive_members_verified": 66,
       "branch_and_tag_remote_verified": true
+    },
+    {
+      "commit": "abcb22a5f4de64bb4576e39f810a96d6e2b15739",
+      "implementation_commit": "e26050ad53e206e20fdfbf6873dec4a9b9b4b69f",
+      "tag": "checkpoint/native-shared-query-replay-2026-10-04",
+      "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-replay-2026-10-04/manifest.json",
+      "manifest_sha256": "2faa9b8ef19f8dd8106e5ec13cdd96e8d477c9cd27a7a929628fcd415e1b5990",
+      "evidence_archive_members_verified": 109,
+      "company_archive_members_verified": 66,
+      "branch_and_tag_remote_verified": true,
+      "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-replay-2026-10-04/remote-verification.json"
     }
-  ]
+  ],
+  "historical_plan_revisions": [
+    {
+      "utc": "2026-10-04T15:59:26.933360+00:00",
+      "receipt": "docs/research/paper-system-reassessment-20261004.json",
+      "implementation_baseline": "9ccf11a5dda656b68a1664301093c891c49e0743",
+      "scope": "Source-correctness and closest-system reassessment; no new HE or timing",
+      "progress_classification": "planning_and_targeted_prior_reassessment_only",
+      "new_HE_key_contexts": 0,
+      "new_HE_experiments": 0,
+      "new_regression_invocations": 0,
+      "new_timing_panels": 0,
+      "new_source_records": 3,
+      "author_artifacts_executed": 0,
+      "next_executable_subtask": "Q76.4a_prepared_replay",
+      "planned_task_completed_by": "docs/research/native-shared-query-replay-return-20261004.json",
+      "next_executable_subtask_after_return": "Q76.4c_permitted_authenticated_cache"
+    }
+  ],
+  "publication_design": "docs/research/publication-system-design-20261004.md",
+  "publication_plan_checkpoint_pending_external_verification": {
+    "tag": "checkpoint/publication-admission-design-2026-10-04",
+    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/publication-admission-design-2026-10-04/manifest.json",
+    "note": "Created and verified externally after this planning commit; current aggregate checkpoint retained above"
+  },
+  "paper_build_decision": {
+    "primary": "complete exact-search admission certificate plus paid verification-placement/state frontier",
+    "originality_status": "provisional_specific_result_not_accepted",
+    "immediate_native_milestones_remaining": [
+      "Q76.4c_permitted_authenticated_cache",
+      "Q76.5_certificate_resource_client_context_handoff_with_early_Q79.1"
+    ],
+    "remaining_broad_preliminary_gates": 0,
+    "new_parameter_grid_authorized_by_this_review": false,
+    "conditional_query_only_protected_variant": "new custody contract; register one feasibility task only after paid query-prefix/product bottleneck and justified deployment; compare Slalom/EMVP/linear HE first"
+  }
 }
