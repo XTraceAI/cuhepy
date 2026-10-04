@@ -266,9 +266,8 @@ struct Query {
         }
         return out;
     }
-    void produce(unsigned char* body,std::size_t length,bool include_sources=true) const {
-        const auto& c=*ctx;auto start=include_sources?c.sources:0;
-        if(!body || length!=(start+2*c.groups)*c.n*WIDTH)throw std::invalid_argument("Wrong producer buffer");
+    std::vector<Pair> expand(unsigned char* sources=nullptr) const {
+        const auto& c=*ctx;
         Pair query{c.zero(),c.zero()};
         for(std::size_t a=0;a<2;++a)for(std::size_t k=0;k<2;++k) {
             for(std::size_t i=0;i<c.n;++i)query[a][k][i]=original[a][i]%c.primes[k];
@@ -279,7 +278,7 @@ struct Query {
             std::vector<Pair> even,odd;even.reserve(work.size());odd.reserve(work.size());
             for(const auto& pair:work) {
                 Pair rotated{c.permute(pair[0],l),c.permute(pair[1],l)};
-                auto ds=digits(rotated[1],include_sources?body+slot*c.n*WIDTH:nullptr);++slot;auto sw=switching(ds,l+1);
+                auto ds=digits(rotated[1],sources?sources+slot*c.n*WIDTH:nullptr);++slot;auto sw=switching(ds,l+1);
                 c.add(rotated[0],sw[0]);rotated[1]=std::move(sw[1]);
                 Pair plus=pair,minus=pair;
                 for(std::size_t a=0;a<2;++a){c.add(plus[a],rotated[a]);c.add(minus[a],rotated[a],true);minus[a]=c.permute(minus[a],l,true);}
@@ -288,25 +287,41 @@ struct Query {
             for(auto& pair:odd)even.push_back(std::move(pair));
             work=std::move(even);
         }
-        for(std::size_t g=0;g<c.groups;++g) {
-            std::array<Rows,3> total{c.zero(),c.zero(),c.zero()};
-            for(std::size_t j=0;j<c.d;++j)for(std::size_t k=0;k<2;++k)for(std::size_t i=0;i<c.n;++i) {
-                const auto& idx=c.index_at[g*c.d+j];auto a=work[j][0][k][i],b=work[j][1][k][i],modulus=c.primes[k];
-                auto x=c.fft[k]->remainder(Wide(a)*c.constants[idx[0]][k][i]);
-                auto z=c.fft[k]->remainder(Wide(b)*c.constants[idx[1]][k][i]);
-                auto sum=a+b>=modulus?a+b-modulus:a+b;
-                auto y=c.fft[k]->remainder(Wide(sum)*c.constants[idx[2]][k][i]);
-                y=y>=x?y-x:y+modulus-x;y=y>=z?y-z:y+modulus-z;
-                std::array<Word,3> products{x,y,z};
-                for(std::size_t part=0;part<3;++part){auto value=total[part][k][i]+products[part];total[part][k][i]=value>=modulus?value-modulus:value;}
-            }
-            auto ds=digits(total[2],include_sources?body+slot*c.n*WIDTH:nullptr);++slot;auto sw=switching(ds,0);
-            for(std::size_t a=0;a<2;++a) {
-                c.add(total[a],sw[a]);for(std::size_t k=0;k<2;++k)c.fft[k]->inverse(total[a][k]);
-                for(std::size_t i=0;i<c.n;++i)write_common(c.compose(total[a][0][i],total[a][1][i]),body+((start+2*g+a)*c.n+i)*WIDTH);
-            }
+        if(slot!=c.padded-1)throw std::logic_error("Incomplete genuine query prefix");
+        return work;
+    }
+    std::array<Rows,3> aggregate(const std::vector<Pair>& work,std::size_t g) const {
+        const auto& c=*ctx;
+        if(work.size()!=c.padded || g>=c.groups)throw std::invalid_argument("Wrong aggregate group/prefix");
+        std::array<Rows,3> total{c.zero(),c.zero(),c.zero()};
+        for(std::size_t j=0;j<c.d;++j)for(std::size_t k=0;k<2;++k)for(std::size_t i=0;i<c.n;++i) {
+            const auto& idx=c.index_at[g*c.d+j];auto a=work[j][0][k][i],b=work[j][1][k][i],modulus=c.primes[k];
+            auto x=c.fft[k]->remainder(Wide(a)*c.constants[idx[0]][k][i]);
+            auto z=c.fft[k]->remainder(Wide(b)*c.constants[idx[1]][k][i]);
+            auto sum=a+b>=modulus?a+b-modulus:a+b;
+            auto y=c.fft[k]->remainder(Wide(sum)*c.constants[idx[2]][k][i]);
+            y=y>=x?y-x:y+modulus-x;y=y>=z?y-z:y+modulus-z;
+            std::array<Word,3> products{x,y,z};
+            for(std::size_t part=0;part<3;++part){auto value=total[part][k][i]+products[part];total[part][k][i]=value>=modulus?value-modulus:value;}
         }
-        if(slot!=c.sources)throw std::logic_error("Incomplete source producer");
+        return total;
+    }
+    void finish_aggregate(std::array<Rows,3> total,unsigned char* final,unsigned char* source=nullptr) const {
+        const auto& c=*ctx;
+        auto ds=digits(total[2],source);auto sw=switching(ds,0);
+        for(std::size_t a=0;a<2;++a) {
+            c.add(total[a],sw[a]);for(std::size_t k=0;k<2;++k)c.fft[k]->inverse(total[a][k]);
+            for(std::size_t i=0;i<c.n;++i)write_common(c.compose(total[a][0][i],total[a][1][i]),final+(a*c.n+i)*WIDTH);
+        }
+    }
+    void produce(unsigned char* body,std::size_t length,bool include_sources=true) const {
+        const auto& c=*ctx;auto start=include_sources?c.sources:0;
+        if(!body || length!=(start+2*c.groups)*c.n*WIDTH)throw std::invalid_argument("Wrong producer buffer");
+        auto work=expand(include_sources?body:nullptr);
+        for(std::size_t g=0;g<c.groups;++g) {
+            finish_aggregate(aggregate(work,g),body+(start+2*g)*c.n*WIDTH,
+                             include_sources?body+(c.padded-1+g)*c.n*WIDTH:nullptr);
+        }
     }
     void terminal(const unsigned char* body,std::size_t length,unsigned char* output,std::size_t output_size,bool include_sources=true) const {
         const auto& c=*ctx;unsigned bits=0;for(auto x=c.p;x;x/=2)++bits;
