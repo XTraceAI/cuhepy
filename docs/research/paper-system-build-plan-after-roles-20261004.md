@@ -1,9 +1,12 @@
 # Research system and paper plan
 
-Current review: **2026-10-05**, from remotely verified implementation commit
-`375348e113e63cc671b179b71a619dbe7efa62af`, tag
-`checkpoint/native-shared-query-cohort-relay-2026-10-05`. The subsequent
-native-clock/telemetry return awaits its separate implementation checkpoint. The original
+Current implementation baseline: **2026-10-05**, remotely verified commit
+`9d1dffa9143d031373bad6df1d44a2cfb35200ef`, tag
+`checkpoint/native-shared-query-native-clocks-2026-10-05`. The
+[current decision plan](research-system-decision-plan-20261005.md) narrows this
+detailed implementation plan, adds dynamic-index closest controls and one
+conditional authenticated row-overlay experiment. Its review adds no HE or
+timing observation and activates no new execution budget. The original
 post-role review and every intervening component remain in Git and their
 checkpoint archives. This is the current build plan; it updates the
 [roadmap](paper-system-roadmap-20261004.md) and makes the next components
@@ -167,7 +170,7 @@ has been executed, rather than evidence that a predecessor is incapable or slow.
 
 The strongest reference is the compatible composition of these methods, not
 the slowest published baseline. Reading and adapting ideas is separate from
-reproducing an author artifact. The literature registry remains at **123
+reproducing an author artifact. At that review the registry contained **123
 source records** with pinned versions, hashes and cached PDF/text locations;
 this does not mean 123 complete proof audits. No new paper is added by this
 revision. Primary online metadata/HTML was checked again, while detailed
@@ -176,7 +179,7 @@ exceeded its size limit. No author benchmark was rerun.
 
 The subsequent synthesis rechecks seven cached primary PDF/text pairs and
 refreshes the primary pages for HERS, Argos, vFHE, ILA, BioZKFHE, Silph,
-FlowCert and corrected Cascudo metadata. The 123 source records stay unchanged.
+FlowCert and corrected Cascudo metadata. That rereading preserved the 123 records.
 The [current comparison handoff](closest-work-contract-matrix-20261004.md#current-public-system-handoff-2026-10-05)
 records what each comparison must actually establish. The review is targeted;
 it does not reproduce author artifacts or establish publication priority.

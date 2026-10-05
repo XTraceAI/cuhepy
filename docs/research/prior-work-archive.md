@@ -1,5 +1,16 @@
 # Primary-paper archive
 
+Latest decision review, 2026-10-05: the [source registry](publication-literature-sources.json)
+now retains 128 source records, preserving all previous 123 records. Five
+additional versioned PDF/text pairs retain PPMI v1/v3, PRAG v1/v2 and Lin et al.'s TPDS2021
+dynamic similarity search are pinned under
+`research-data/research-system-decision-20261005/primary`. The
+[decision plan](research-system-decision-plan-20261005.md) and
+[comparison](closest-work-contract-matrix-20261004.md#dynamic-index-controls-added-in-the-decision-review)
+record their consequences. Reading is targeted text/HTML; no author code or
+published benchmark was reproduced. The older counts and readings below retain
+their historical scope.
+
 2026-10-02. **77 PDFs** plus extracted text are retained outside Git. All PDF hashes and recorded text hashes were rechecked for this index. The [source registry](publication-literature-sources.json) records versions, retrieval, text hashes, reading scope and artifact execution. Cached sources support comparison; availability does not mean a complete proof audit.
 
 Earlier caches/checkpoint archives remain intact. Each new download has PDF/text hashes and a retrieval receipt. No HE author protocol/performance artifact was executed during E82–E99. E96 does execute the separately pinned external lattice-estimator cost tool; its tracked source is archived and its limited scope disclosed.

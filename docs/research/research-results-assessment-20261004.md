@@ -6,6 +6,16 @@
 
 # What the accumulated results support
 
+Current decision review, 2026-10-05: the
+[decision plan](research-system-decision-plan-20261005.md) is the execution
+handoff from verified implementation `9d1dffa9143d031373bad6df1d44a2cfb35200ef`.
+The native-clock/public-telemetry gate retains 352 distinct public cases across
+separate invocations; actual Q77 HE/private/timing work remains zero. The new
+review rechecks the old panel, adds three archived dynamic-index comparators,
+and derives a conditional row-overlay layout and its increased reply cost.
+These are planning calculations, not a measured optimization or originality
+verdict. R2's owner coordinator and exact execution freeze remain next.
+
 2026-10-04. Review through `4bbd55056d14405b617ae0c251b1f2bacc71e74c`;
 no new HE tests or timings. Read the [closest comparison](closest-work-contribution-design-20261004.md)
 and [current plan](research-contribution-plan-20261004.md).

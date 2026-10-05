@@ -1,5 +1,13 @@
 # From the retained experiments to one defensible research system
 
+The [2026-10-05 decision plan](research-system-decision-plan-20261005.md) is
+the current handoff. It promotes the verified native-clock/telemetry checkpoint
+`9d1dffa9143d031373bad6df1d44a2cfb35200ef`, preserves the finite Q77 comparison,
+and adds a concrete conditional row-overlay experiment plus dynamic-index
+comparators. The owner runner and exact freeze remain the next implementation
+task; no new HE/timing cohort has run. Earlier roadmap returns below retain
+their original evidence scope.
+
 This is the short execution roadmap for the current research decision. The
 [detailed plan](system-contribution-execution-plan-20261004.md) fixes the
 methods, caps and stop rules; the [closest-work matrix](closest-work-contract-matrix-20261004.md)
@@ -21,7 +29,7 @@ passes 20 public cases, with six clean managers and four echo children. R2 still
 requires the actual owner trace/shared relay and exact state/budget freeze.
 Neither this gate nor the owner adapter executes a real HE cohort.
 
-The latest additive implementation is preserved at commit
+The additive implementation at that roadmap return was preserved at commit
 `1d5e6cc8475165f78e7e31177236016e1d7ddc2a`, tag
 `checkpoint/native-shared-query-public-network-2026-10-05`, with a verified Git
 bundle, 55 evidence members and 66 company members. All three remote branch/

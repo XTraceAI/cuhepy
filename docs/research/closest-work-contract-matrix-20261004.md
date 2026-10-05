@@ -1,5 +1,14 @@
 # Closest work for the selected exact-search system
 
+> Current decision review, 2026-10-05: [the decision plan](research-system-decision-plan-20261005.md)
+> uses verified implementation `9d1dffa9143d031373bad6df1d44a2cfb35200ef` and
+> adds the three dynamic-index comparators below. The source registry now has
+> 128 records, preserving its earlier 123 and retaining both initial/latest
+> inspected revisions of the two new arXiv papers. The row-overlay encoding is a
+> proposal with derived body counts, not measured performance or accepted
+> originality. Q77 still has zero actual complete-cost HE observations.
+> The older review headers and source counts below are historical.
+
 > Current post-role review: [the build plan](paper-system-build-plan-after-roles-20261004.md)
 > converts this matrix into exact comparator obligations and R0–R6 handoffs.
 > Six small public native role paths pass. The subsequent owner adapter adds
@@ -66,7 +75,8 @@ PDF pages were inspected; no author artifact or fresh timing was executed.
 
 ## Current public system handoff, 2026-10-05
 
-The [current build plan](paper-system-build-plan-after-roles-20261004.md) and
+The [current decision plan](research-system-decision-plan-20261005.md),
+[detailed build plan](paper-system-build-plan-after-roles-20261004.md) and
 [progress ledger](research-contribution-progress-20261004.json) control future
 execution. Q76's bounded local prototype is complete. Q77's plumbing and owner
 trace pass their public gates; its source/accounting subgate adds 23 cases,
@@ -145,6 +155,34 @@ There are three different comparison classes:
 
 Unknown capabilities or costs are marked unknown. We have not inferred
 absence from a prototype limitation or from the passages inspected here.
+
+## Dynamic-index controls added in the decision review
+
+These five versioned primary PDF/text pairs for three papers are retained under
+`research-data/research-system-decision-20261005/primary`, with version and hash
+records in [the registry](publication-literature-sources.json). The reading is
+targeted text/HTML, not a full proof audit, rendered-page review or author run.
+
+| Primary source / inspected scope | Prior result to grant | Consequence for the new experiment |
+| --- | --- | --- |
+| [PPMI, arXiv2506.17336v3](https://arxiv.org/html/2506.17336v3), §4.3 Algorithms1–5 and AppendixA.1/A.2; extracted pages8–9,20–21 | Query/key preparation, butterfly transforms, seeded/hoisted maintenance and insert/delete/cache refresh; query-side transform placement addresses a PIR cache-invalidation issue. | Grant compact uploads and selective refresh. Our proposed heterogeneous snapshot needs exact coefficient/noise/common-Q/release adaptation and a useful distinction. No runtime or incapability claim is made. |
+| [PRAG, arXiv2604.26525v2](https://arxiv.org/html/2604.26525v2), §§IV/V and update/leakage passages; extracted pages5,7–10 | Dynamic CKKS/HNSW retrieval with localized insertions, deletion marks and optional rebuild; semi-honest cloud and approximate/interactive retrieval variants. | Dynamic encrypted indexing is known. Matching plaintext HNSW does not imply global exact all-distance coverage. Treat malicious-admission adaptation and update leakage as explicit obligations, rather than numerically comparing its published runtime with ours. |
+| [Lin et al., TPDS2021](https://iqua.ece.utoronto.ca/papers/wlin-tpds21.pdf), introduction and §2.2; extracted pages1,3 | LSH/SSE distributed private similarity with efficient additions/deletions and garbled/homomorphic candidate refinement; semi-honest, noncolluding servers. | Credit dynamic private search and localized maintenance. Candidate coverage and trust differ from exact malicious-server search; no first dynamic encrypted-search claim follows from our overlay. |
+
+The earlier v1 PDFs are preserved. Official arXiv histories identify PPMI v3
+and PRAG v2 as the current revisions on this review date; retained extracted
+text diffs leave the inspected technical body unchanged. Mutable author URLs
+remain hash-pinned, not silently declared versioned publisher editions.
+
+The row-overlay candidate deliberately retains the current original query and
+uses a different fresh owner index layout only for changed rows. Its claimed
+input-body reduction is against direct feature-group replacement, not against
+PPMI or an equally optimized compact-upload control. Its literal terminal
+codec increases response bytes. The candidate's substantive question is whether
+complete admitted snapshot/update execution pays after these controls and
+tradeoffs. Guard-band packing, overlays and signatures remain inherited methods.
+The precise invariant, phase gate, ablations and selection rule are in the
+[decision plan](research-system-decision-plan-20261005.md#the-invariant-controls-and-bounded-decision).
 
 ## Most direct predecessors
 
