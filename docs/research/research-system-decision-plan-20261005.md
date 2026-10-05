@@ -82,6 +82,13 @@ one eligible creative extension, assurance and the paper package. No fresh
 encrypted action has started. A detached launcher changes observation lifetime;
 it does not prove or repair the unknown termination cause.
 
+The [unchanged storage preflight](native-shared-query-complete-cost-storage-preflight-20261005.json)
+checked the new committed grammar and pins, then refused at the existing 20 GiB
+headroom floor: about 17.8 GiB was available. No new key, worker, query, cohort
+root or scientific observer slot was created. A storage-route question is
+pending; preserve both earlier attempts and the guard. Launch only after the
+actual resource condition and unchanged pure preflight pass.
+
 The [pre-execution review](research-pre-execution-review-20261005.json) rechecks
 11 archived closest-work PDF/text pairs and current primary pages, preserving
 all 138 source records. It also fixes a concrete experiment-design mismatch:

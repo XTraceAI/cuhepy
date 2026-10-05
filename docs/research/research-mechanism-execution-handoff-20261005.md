@@ -65,6 +65,11 @@ are committed: 446 source pins, 716 dependencies and the unchanged scientific la
 Actual storage headroom and passing unchanged preflight remain unmet.
 External termination can still occur; its prior cause
 is not explained or claimed fixed.
+The [actual preflight return](native-shared-query-complete-cost-storage-preflight-20261005.json)
+refused at the unchanged 20 GiB floor (about 17.8 GiB available) after checking
+the exact new grammar/pins. No HE key, worker or scientific launch slot was
+created. The existing storage-route question remains pending; resume from this
+resource dependency without modifying the frozen workload or deleting failures.
 
 The [analysis preparation](native-shared-query-complete-cost-analysis-preparation-20261005.json)
 adds a read-only post-return auditor outside the frozen runtime. It checks
