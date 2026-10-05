@@ -54,6 +54,14 @@ or production case was added. Carry the recorded shared-provisioning attribution
 and cache-memory limitations into R3's actual analysis. Keep the scientific
 selector, held-out law and single-extension reservation unchanged.
 
+[R3a's actual return](native-shared-query-complete-cost-calibration-return-20261005.json)
+now completes all six calibration blocks, 288 measured queries and 354
+full-distance checks. All 36 calibration pins and selector choices were
+independently checked. Client latency freezes `m1` at each size; native projection
+freezes `m2`; the generic same-information selector agrees with the client
+selector. The twelve held-out blocks are running. No held-out advantage,
+mechanism choice or originality follows from these calibration choices.
+
 ## What to build, and what could justify a paper
 
 Build an exact owner-data search service around the homemade BGV arithmetic,
@@ -216,8 +224,8 @@ contained algorithm.
 | R2a, public gate complete | Honest provisioning in `experiments/bfv_search_lab/complete_cost_tenant.py`: pre-debit actual attempts, retain public inputs, independent cache contexts and recoverable partial failures. | Public fixture accounting/coverage passes; that public gate executed no actual HE. The separate actual R3 action is running. |
 | R2b, public gate complete | `benchmarks/complete_cost_owner_study.py` connects the coordinator, shared relay, clean supervisor, resource telemetry and public enrollment/cache assembly. | Full scheduling and actual cache-only TCP lifetimes pass the registered gate. This does not validate the actual encrypted cohort. |
 | R2c, complete in its stated scope | Exact corrective addendum/source/interpreter/library/fixture pins, order, budget, guards and retention law are committed; pure preflight passed. | The separately registered 702-query/72-signer corrective action is active. Its actual R3 return is next; this document changes no reservations. |
-| R3a | Run all six calibration blocks first, preserve complete observations and failures, and choose the allowed policy using only calibration. | Persist immutable selection before any held-out work. Then R3b. |
-| R3b | Run twelve held-out blocks with frozen choices; total 18 blocks/144 measured requests per trajectory, 864 across six trajectories. Warmups/update checks remain separate. | Complete owner costs, whole-output correctness, paired block analysis and contamination return. Then choose exactly one R4 route or close the scoped useful-region claim. |
+| R3a, complete | All six actual calibration blocks passed; the immutable choices were independently recomputed from the 36 pinned rows with no held-out input. | Client/generic freeze `m1`, native projection freezes `m2`; held-out prefetch uses `m1`. R3b is running. |
+| R3b, running | Twelve held-out blocks with frozen choices; total 18 blocks/144 measured requests per trajectory, 864 across six trajectories. Warmups/update checks remain separate. | Complete owner costs, whole-output correctness, paired block analysis and contamination return. Then choose exactly one R4 route or close the scoped useful-region claim. |
 | R4a | Produce the mechanism eligibility return above; first build the partial-owner/dynamic reference when refresh is the trigger. | One eligible mechanism, named reference and falsifier; contained template is not accepted. Then R4b. |
 | R4b | Implement its independent oracle/adversarial transitions and actual matched adapter. Register one separate extension cohort before HE. | Precise invariant, bound/codec gate and paid same-output ablation. Then R4c. |
 | R4c | Run the proposed two-key/two-block/eight-query extension cohort: 32 observations per surviving variant, with all auxiliary attempts separately fixed. | Held-out useful/losing regions and mechanism attribution, or preserve code and close the claim. Then Q78/Q79. |

@@ -1059,3 +1059,22 @@ Retain all blocks and actual gaps; a gap slightly over one second is not by
 itself grounds for exclusion. After this full return, choose the single R4
 route from attributable paid costs and its strong compatible reference. No
 extension or originality conclusion is selected from the partial prefix.
+
+## R3a actual calibration exit
+
+The [calibration return](native-shared-query-complete-cost-calibration-return-20261005.json)
+now completes all six actual calibration blocks: 36 trajectories, 288 measured
+queries and 354 full-distance oracle checks. The immutable policy contains all
+36 retained row pins and uses no held-out input. An independent read-only audit
+recomputed the arithmetic-mean objective and lexical tie rule from those exact
+rows. Policy selection itself cost 225.487 ms wall and 220.601 ms owner CPU;
+those are actual selector costs, not search times or a new timing panel.
+
+At each of 8,224, 16,384 and 32,768 rows, client completion latency selected
+`m1` (protected original-request replay), while the attributed native projection
+selected `m2` (exact aggregate admission). The generic selector with the same
+information selected `m1` as well. Held-out prefetch uses the frozen `m1` mode.
+These are calibration choices, not a held-out speedup or an originality result.
+The original failed attempt remains retained; no runtime, profile, workload,
+reservation, policy or block was replaced. **R3b's twelve held-out blocks are
+running and their complete return is now the first unmet dependency.**

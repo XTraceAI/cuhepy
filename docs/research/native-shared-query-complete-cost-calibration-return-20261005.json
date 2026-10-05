@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "task": "Q77_R3a_actual_calibration_return",
+  "utc": "2026-10-05T19:20:37.444538+00:00",
+  "branch": "experiment/native-shared-query-service-20261004",
+  "baseline_commit": "97c96b90847934cddfca75e723299a1cc9821e12",
+  "status": "six_actual_calibration_blocks_complete_immutable_policy_frozen_held_out_running",
+  "actual_calibration_audit": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-execution-review-20261005/corrective1/actual-calibration-policy-return01.json",
+    "bytes": 12138,
+    "sha256": "920c6436abd772469648848f3dcdfb8b297be4d9e39cc40f2c3ec2c451998d5c"
+  },
+  "policy": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-complete-owner-execution-20261005/cohort2-corrective/policy-freeze.json",
+    "bytes": 11152,
+    "sha256": "8dd1485f64aa8071fd6dc59f865a51218ee3a1325c834886146f7009bbbef339"
+  },
+  "policy_selection_cost": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-complete-owner-execution-20261005/cohort2-corrective/policy-selection-cost.json",
+    "bytes": 357,
+    "sha256": "1560afb39fda4c918a3060cddec7c6a2d68c4b66c5af9d3c25dab2d59003a516"
+  },
+  "calibration_rows": 36,
+  "calibration_blocks": 6,
+  "measured_queries": 288,
+  "complete_distance_oracle_checks": 354,
+  "client_remote_policy": {
+    "8224": "m1",
+    "16384": "m1",
+    "32768": "m1"
+  },
+  "native_projection_remote_policy": {
+    "8224": "m2",
+    "16384": "m2",
+    "32768": "m2"
+  },
+  "generic_same_information_remote_policy": {
+    "8224": "m1",
+    "16384": "m1",
+    "32768": "m1"
+  },
+  "prefetch_held_out_mode": {
+    "8224": "protected_original_request_only_replay",
+    "16384": "protected_original_request_only_replay",
+    "32768": "protected_original_request_only_replay"
+  },
+  "selector_recomputed_from_complete_pinned_calibration_rows": true,
+  "held_out_inputs_used_in_selection": 0,
+  "policy_selection_wall_ns": 225486544,
+  "policy_selection_cpu_ns": 220601317,
+  "new_HE_native_calls_or_timing_observations_from_audit": 0,
+  "runtime_source_library_contract_workload_or_reservation_change": false,
+  "new_distinct_production_test_cases": 0,
+  "complete_R3_return": false,
+  "held_out_speedup_or_originality_accepted": false,
+  "interpretation": "The whole-owner and native-projection objectives select different modes on calibration. Test their frozen choices on the held-out executions; do not derive a held-out speedup, novelty or production security from training data. Generic same-information selector agrees as required.",
+  "next_dependency": "R3b actual twelve held-out block return, then full cost/contamination analysis and one R4 eligibility"
+}
