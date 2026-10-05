@@ -1010,3 +1010,52 @@ and return here. **Next exit: return the running R3 calibration/held-out
 comparison, then
 specify and implement one eligible R4 extension.** The exact freeze is complete;
 no additional encrypted experiment is reserved by this plan update.
+
+## Analysis ready for the actual R3 return
+
+The [analysis preparation return](native-shared-query-complete-cost-analysis-preparation-20261005.json)
+records an independent read-only adapter, prepared outside the frozen runtime
+while corrective calibration was still running. It passed checks against closed
+data from each of the six trajectories and rejects a comparison before the
+terminal return exists. These are audits of retained data, not new HE executions,
+timing observations or production regression cases. The sources, libraries,
+exact execution contract, workload and reservations of the running cohort remain
+unchanged. Its live-prefix receipt is a dated progress snapshot, not a result.
+
+On a successful terminal return, use that adapter to check immutable trajectory
+and calibration pins, the complete ordered 108-row coverage, actual completion
+minus arrival, the independent public corpus/update law, and stable ordinal top3.
+Recompute the frozen selector from its 36 calibration inputs before comparing
+the twelve held-out process blocks. Report four paired key/process blocks per
+count and every retained query; repeated queries are not independent population
+replicates. The generic policy with identical information remains the same
+selector, not an originality control that we expect to beat by renaming it.
+
+The cost return keeps first answer, shared provisioning, setup, steady queries,
+update-to-next-answer, whole lifetime and both transfer directions separate.
+For a cache race, include the losing remote request, its traffic and CPU work,
+and settlement after the winner. Do not add overlapping parent and child
+intervals as latency or count both endpoints of a physical link twice. Native
+projection clocks remain projections of the actual admitted execution, not
+measurements of an independently executed bare evaluator.
+
+The source audit identified an instrumentation limitation to carry into the
+paper. Key creation logs are saved when a tenant is created; later initial
+cache/view event logs are not persisted. The overall shared pretrajectory
+interval and per-group encryption timers survive, but do not provide an exact
+cold per-stage breakdown. Those encryption timers also exclude guards, encoding,
+fsync and archive checks. The owner holds both HE contexts during the study,
+including cache trajectories, so its sampled RSS is not an isolated cache-only
+deployment's memory requirement. Do not reconstruct missing timings, treat
+shared two-tenant provisioning as cross-device secret provisioning, or silently
+rerun a panel to fill the gap. Correct instrumentation in a separately scoped
+final evaluation if cold attribution is material to the chosen claim.
+
+Telemetry supplies sampled RSS/PSS, owned swap, global VM counters and observed
+CPU activity over the actual intervals. Short cache queries can fall between
+samples. New or exited processes and counters read at different instants make
+unattributed CPU residuals diagnostic, not certified interference estimates.
+Retain all blocks and actual gaps; a gap slightly over one second is not by
+itself grounds for exclusion. After this full return, choose the single R4
+route from attributable paid costs and its strong compatible reference. No
+extension or originality conclusion is selected from the partial prefix.

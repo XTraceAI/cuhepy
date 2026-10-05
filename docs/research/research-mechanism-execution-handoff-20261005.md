@@ -20,8 +20,8 @@ separate confidential checker weights from Argos's secret-free evaluator
 architecture. This distinction changes comparison obligations, not the next
 implementation, task status or finite experiment reservations.
 The [launcher return](native-shared-query-owner-launcher-return-20261005.json)
-completes R2a/R2b in bounded public scope. R2c is now the first unmet ticket:
-commit and validate the exact pre-HE execution freeze and resource review.
+completed R2a/R2b in bounded public scope. R2c's exact execution freeze and
+preflight are now complete; the actual corrective R3 return is next.
 The latest gate passed 74 cases, including the eight remaining registered new
 cases; all actual HE/private/native work was replaced by public stubs.
 
@@ -30,9 +30,9 @@ the mean-objective correction, three 74-case public repeats with zero new cases,
 11 reverified closest-paper pairs and the explicit storage amendment. R2c now
 freezes a 10 GiB whole-cohort ceiling with the original 8 GiB public archive cap;
 the conservative prior resource bound exceeded the old whole-cohort cap.
-Neither fresh keys nor a measured cohort has run. Complete the exact addendum
-and preflight next, then R3; the conditional one-extension and paper gates below
-remain unchanged.
+That pre-execution receipt added no fresh keys or measured cohort. The original
+and corrective actual actions below followed it; the conditional one-extension
+and paper gates remain unchanged.
 
 ## Actual execution status
 
@@ -45,6 +45,14 @@ freeze precede the fresh corrective action, which is now running. Read the
 No complete query comparison is available yet. Prior unexecuted/pending text
 retains its historical scope. Keep frozen sources/contract fixed and retain
 failures without replacing blocks. Return R3 before choosing one R4 mechanism.
+
+The [analysis preparation](native-shared-query-complete-cost-analysis-preparation-20261005.json)
+adds a read-only post-return auditor outside the frozen runtime. It checks
+closed retained data from all six paths and refuses a premature comparison.
+Its coverage snapshot is partial; no new HE/native execution, timing observation
+or production case was added. Carry the recorded shared-provisioning attribution
+and cache-memory limitations into R3's actual analysis. Keep the scientific
+selector, held-out law and single-extension reservation unchanged.
 
 ## What to build, and what could justify a paper
 
@@ -87,7 +95,7 @@ cryptographic profiles remain separate.
 | The old BGV update took 7.2788 s, including 7.1466 s of resident re-preparation, after a compact 491,721-byte upload. | Attribute refresh in the new graph. A new compact upload alone would not explain a gain against the existing control. |
 | Full internal witness: 127,057,920 B; query-expansion sources: 125,583,360 B; aggregate claim: 1,474,560 B. | About 98.84% of that witness is query-expansion source data. The existing aggregate mode already removes that source transfer but still recomputes the products. Smaller witness is not a measured trusted-compute saving. |
 | At Mushroom/Semeion sizes, original gated EMVP means are 5.942/1.363 ms, with 1,471,264/205,100-byte replies. Unified verified BNTM means are 109.141/13.962 ms, with 63,968/11,720-byte replies. | These direct non-BGV controls rule out universal speed/smallest-reply claims. Strong recursive/preprocessed BNTM and safe dynamic adapters remain unmeasured. |
-| Q77 actual HE keys, complete-cost blocks and timing observations remain zero. | Finish the launcher and run the registered comparison before choosing the research mechanism from a guessed bottleneck. |
+| Q77's original action failed before queries; its independently registered corrective comparison is running. | Return the complete calibration/held-out cohort before choosing the research mechanism from a guessed bottleneck. |
 
 The old 32k panel is setup-swap-qualified and has one key/index/process block
 per variant. Its all-distance oracle passed, but it excludes WAN, complete
@@ -205,9 +213,9 @@ contained algorithm.
 
 | Ticket | Work and location | Exit and next ticket |
 | --- | --- | --- |
-| R2a, public gate complete | Honest provisioning in `experiments/bfv_search_lab/complete_cost_tenant.py`: pre-debit actual attempts, retain public inputs, independent cache contexts and recoverable partial failures. | Public fixture accounting/coverage passes; actual HE remains unexecuted. |
+| R2a, public gate complete | Honest provisioning in `experiments/bfv_search_lab/complete_cost_tenant.py`: pre-debit actual attempts, retain public inputs, independent cache contexts and recoverable partial failures. | Public fixture accounting/coverage passes; that public gate executed no actual HE. The separate actual R3 action is running. |
 | R2b, public gate complete | `benchmarks/complete_cost_owner_study.py` connects the coordinator, shared relay, clean supervisor, resource telemetry and public enrollment/cache assembly. | Full scheduling and actual cache-only TCP lifetimes pass the registered gate. This does not validate the actual encrypted cohort. |
-| R2c, next | Commit the exact execution addendum/source/interpreter/library/fixture pins, order, budget, deadline/storage/memory guards and retention law. Review complete retained and transient resource costs. | Exact pre-HE freeze; only then launch R3. The pending 702-query/72-signer proposal is not activated by this document. |
+| R2c, complete in its stated scope | Exact corrective addendum/source/interpreter/library/fixture pins, order, budget, guards and retention law are committed; pure preflight passed. | The separately registered 702-query/72-signer corrective action is active. Its actual R3 return is next; this document changes no reservations. |
 | R3a | Run all six calibration blocks first, preserve complete observations and failures, and choose the allowed policy using only calibration. | Persist immutable selection before any held-out work. Then R3b. |
 | R3b | Run twelve held-out blocks with frozen choices; total 18 blocks/144 measured requests per trajectory, 864 across six trajectories. Warmups/update checks remain separate. | Complete owner costs, whole-output correctness, paired block analysis and contamination return. Then choose exactly one R4 route or close the scoped useful-region claim. |
 | R4a | Produce the mechanism eligibility return above; first build the partial-owner/dynamic reference when refresh is the trigger. | One eligible mechanism, named reference and falsifier; contained template is not accepted. Then R4b. |
