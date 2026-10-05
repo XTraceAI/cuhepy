@@ -13,6 +13,11 @@ adds the three dynamic-authentication/incremental-verification predecessors
 below and explicit claim/experiment contracts in the plan. It adds no author execution,
 production approval or accepted originality. All dated headers below this
 addendum describe earlier reviews with their historical counts.
+The [publication handoff receipt](research-system-publication-handoff-20261005.json)
+rechecks the already reproduced original EMVP/unified BNTM/global BGV data,
+adds Wally v7 and a pinned official workload interface (136 source records),
+and makes alternate-scheme coverage explicit. It creates no new timings,
+author executions, keys or test cases. The selected Q77 cohort remains unrun.
 
 The conditional candidate is a **current authenticated snapshot assembled from
 an immutable dense encrypted base and current row replacements**. Its
@@ -24,6 +29,10 @@ intrinsic limitation of prior work.
 
 | Most direct comparison | Exact credited scope | Adapter/control we must build | Claim this comparison prevents |
 | --- | --- | --- | --- |
+| [EMVP](https://eprint.iacr.org/2025/858), original Go/C++ artifact; [our retained return](original-emvp-results.md) | Secret-dual-code matrix-vector search; our partial reproduction includes a separate pre-decode complete gate. | Charge original fast code, cached/regenerated client code, masking, full-response checks, transport and safe dynamic state. | No universal BGV speed advantage; the old original artifact beat our small-fixture CPU controls. Static-mask edits cannot be declared safe. |
+| [Braverman–Newman v3](https://arxiv.org/html/2502.13060v3), §§6–7; [unified reproduction](baseline-reproduction.md) | Trapdoored linear algebra, exact noise cancellation, recursive client reduction and distinct correctness/detection guarantees. | Strong applicable recursive/preprocessed verification, complete replies, client state and safe updates; our unified artifact does not supply all of these. | No smallest-reply or lowest-client-state claim from an incomplete comparator. Fractional dishonesty detection is not per-response release authorization. |
+| [Fast HE Linear Algebra with BLAS v2](https://arxiv.org/html/2503.16080v2), §§3–5 | Conversion and modular-matrix reductions for encrypted linear algebra. | Valid exact specialization with origin/noise/maintenance/release adaptation and all formats paid. | Gadget/external-product rewriting and using fast matrix hardware are known; prior E110 containment stays closed. |
+| [Unified Vector Search v1](https://arxiv.org/html/2608.01192v1), §§4.2–4.5 | Multiple backends, CPU/GPU effects and client/server/traffic accounting. | Exact full-distance, current-owner lifecycle and malicious-response acceptance, rather than recall-matched ANN throughput. | GPU gains disappearing in client work or nonresident state is not itself a new finding. |
 | [PPMI v3](https://arxiv.org/html/2506.17336v3), §4.3/A.1/A.2 | Query/key precomputation, dynamic vector operations and transform placement to avoid cache invalidation. | A compact-row, selectively refreshed exact binary specialization, with all key/noise/origin and currentness costs. | No first combination of decomposition, encrypted caching and updates. A new version split must change useful authenticated execution. |
 | [CSSC v1](https://arxiv.org/html/2603.04742v1), §§3.3/4/6 | Sparse encrypted matrix-vector layout; semi-honest protocol; static sparsity in its stated future-work limitation. | Treat changed rows/values as a sparse control where its structural leakage is permitted. Pay row/value encoding, rearrangement and malicious admission. Its N=8192/t=65537 SIMD profile differs from our N=16384/t=1031 coefficient ring. | No first sparse HE packing or inference that an open extension in one paper establishes our priority. |
 | [Authenticated incremental PIR](https://eprint.iacr.org/2026/1077), retained definitions/update construction | Authenticated entry retrieval, immediate updates and periodic aggregation. | Credit incremental authentication/recovery. Supply the separate complete-distance computation statement and digest/feedback adaptation. | No first authenticated incremental database or first row aggregation. |
@@ -35,6 +44,9 @@ intrinsic limitation of prior work.
 | [Inc-VDB, TC2016](https://www.cnsr.ictas.vt.edu/publication/07366556.pdf), introduction/§§3–4 | Incremental encrypted-record/token maintenance and rejection of obsolete records. Its incremental encoding includes bit-flip positions. | Align record retrieval with complete distances and changed-bit disclosure with our update leakage; grant compatible incremental authentication. | Old-record rejection and incremental encrypted-database authentication are prior work. No direct privacy or performance claim transfers. |
 | [Model-generic IVC, ITCS2026](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.6), introduction/Theorem1 | Incremental verification for reactive/distributed deterministic computation, including consistency between successive transitions. | A future proof adapter must instantiate actual transitions, common-Q maintenance and current release. Its cost is unmeasured. | Generic proof reuse, consistent state transitions and streamed verification are established; our signed process state is not such a proof. |
 | Permitted raw/partial cache / protected plaintext search | Exact local search, compact authenticated patches, client-side replacement distances and alternative trusted key custody. | Returning/fresh/racing full cache plus a changed-row-only owner layer with the same arrivals/link/update law. If permitting plaintext in a TEE, report that trust row separately. | No invented owner-cache prohibition, forced HE acquisition, local-popcount restriction or universal HE advantage. |
+| [Wally v7](https://arxiv.org/html/2406.06761v7), §§2.2/3/4 | Approximate batched cluster search, anonymous traffic, differential privacy and BFV/PIR improvements. | Different functionality/trust/leakage row; credit query-expansion and key-reuse costs without importing its throughput. | No first compact private search, nor a cross-contract speedup over a semi-honest public-database protocol. |
+| [Official fetch-by-similarity](https://github.com/fhe-benchmarking/fetch-by-similarity/tree/1c3cbca1c169fb5351adfcd51c74ca93cb0b7ebb), pinned README/cleartext/checker | Staged cosine threshold/count-or-payload application workload. | Separate compatible mode and unchanged harness if chosen for Q79; retain our complete independent oracle. | A harness PASS is not full-distance or malicious-response assurance. The pinned payload checker skips detailed comparison above 32 expected matches. |
+| [Company Paillier v1](https://arxiv.org/abs/2609.21364v1) | Encoding, lookup/CUDA arithmetic and persistent batching already in our lineage. | Match complete client/server search and acquisition costs, rather than warm-batch arithmetic throughput. | No republishing the established company optimizations as the new main contribution. |
 
 The strongest compatible reference combines known packed search/expansion with
 valid noise/origin reasoning, prepared native protected execution or properly
@@ -44,6 +56,13 @@ and incremental token/proof maintenance where their contracts apply.
 Applying ordinary base-plus-delta storage to it is a
 serious possible counterconstruction. Our proposed distinction has to survive
 that construction, not merely papers tested one at a time.
+
+The selected R3 native study chooses among deterministic BGV executions and
+permitted owner caches. It cannot establish an optimal scheme. Original EMVP
+and strong BNTM/vLHE adaptations remain publication controls, with separate
+registrations and unknown complete assured costs. Their incomplete adapters
+cannot be assigned infinite cost. The plan's retained-data table makes their
+already observed advantages and incompatible preprocessing explicit.
 
 One still stronger control follows directly from the owner's permissions:
 retain or authentically acquire only the changed plaintext rows. Verify/decrypt
@@ -115,6 +134,14 @@ PDF/text hashes live in `publication-literature-sources.json` and the external
 
 The source counts and headers in the retained reviews below are historical;
 the current plan and the opening section of this matrix control present claims.
+
+The current publication handoff appends two text-based records to the 134:
+Wally's exact v7 HTML and the official workload's commit-pinned README/source
+interface. Its archive also retains new HTML snapshots of already catalogued
+BNTM/unified work and the company paper. This does not add three more distinct
+papers or upgrade their earlier proof/reproduction scope. Existing PDF/text
+records remain intact; the new review inspected HTML and source text without
+building or executing them. No theorem or cryptanalytic estimate was rerun.
 
 
 > Current decision review, 2026-10-05: [the decision plan](research-system-decision-plan-20261005.md)

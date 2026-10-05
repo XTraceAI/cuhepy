@@ -13,6 +13,10 @@ public algebra calculation and retained measurements. The
 adds the closest dynamic-authentication and incremental-verification controls,
 the explicit experiment contracts below, and a check of retained evidence. It
 does not add encrypted execution or measured performance.
+The [publication handoff review](research-system-publication-handoff-20261005.json)
+also restores the reproduced EMVP/BNTM controls to the main decision, records
+Wally's current version and a pinned application-benchmark interface, and
+defines the reference coverage required before selecting a paper headline.
 
 ## Decision and prospective contribution
 
@@ -179,6 +183,66 @@ The strongest objection to the leading candidate is already concrete:
 **dynamic packed search plus cached representations is known**. The experiment
 must show that a particular authenticated version split changes paid execution
 after a strong specialization has the same upload and reuse opportunities.
+
+### Direct linear-search controls and publication coverage
+
+The main comparison must include alternatives to BFV/BGV. Two of the strongest
+are already in our evidence archive; their reproduction was partial and must
+not disappear behind a comparison only with Paillier or SEAL.
+
+| Work | What we grant it | What a final comparison must supply |
+| --- | --- | --- |
+| [EMVP, CCS2025 full version](https://eprint.iacr.org/2025/858), [original author implementation](https://github.com/SecretKeyCrypto/Encrypted-Matrix-Vector-Products) | Repeated encrypted matrix-vector products using secret dual codes and LPN/LSN assumptions. | Original fast code, compact owner state, exact binary specialization, all-response verification, transport and safe update/masking costs. |
+| [Braverman–Newman v3](https://arxiv.org/html/2502.13060v3), §§6–7 | Trapdoored matrices, exact cancellation, recursive client-work reduction and verification methods. | Strong applicable recursive/preprocessed control; distinguish per-response acceptance from detecting a fraction of dishonest executions. The current unified artifact is not the strongest protocol. |
+| [Fast HE Linear Algebra with BLAS v2](https://arxiv.org/html/2503.16080v2), §§3–5 | Encrypted linear algebra reduced to ordinary modular matrix operations, including format conversions. | Compatible exact BGV/BFV specialization with complete origin/noise/maintenance admission and paid formats. The previously contained external-product idea stays closed. |
+| [Unified Vector Search v1](https://arxiv.org/html/2608.01192v1), §§4.2–4.5 | CPU/GPU, communication and client/server accounting for multiple search backends. | Our exact full-distance/update/acceptance contract and owner lifecycle. Client decode or nonresident encrypted state can erase a server GPU gain; this is already a known systems issue. |
+| [Wally v7](https://arxiv.org/html/2406.06761v7), §§2.2/3/4 | Batched cluster search, anonymous traffic, differential privacy and BFV/PIR optimizations. | A separate contract row: approximate cluster search, semi-honest server and a noncolluding anonymization service. Credit its expansion/key-reuse tradeoffs; do not import its throughput into exact malicious-cloud owner search. |
+| [Our Paillier paper v1](https://arxiv.org/abs/2609.21364v1) | Carry-separated encoding, lookup/CUDA arithmetic and persistent batching. | Credit this company lineage explicitly. Its warm-batch client throughput is a different metric from complete verified search. |
+
+The current review recalculated **160 retained measured-query records** from
+six old JSON reports: 128 original-EMVP, eight unified-artifact BNTM and 24
+global-BGV records. This is reanalysis, not 160 new observations or independent
+key/index blocks. Every retained exact-score predicate passes. The following
+means use measured records only; old reports containing medians are not
+silently changed into means.
+
+| Earlier fixture | Retained control | Mean local online ms | Reply body B | Separately paid preprocessing |
+| --- | --- | ---: | ---: | --- |
+| Mushroom, 7996 × 126 | Original EMVP, cached code + our complete gate | 5.942 | 1,471,264 | Gate/code setup; not per-query fresh answer |
+| Same | Unified BNTM, actual full Freivalds | 109.141 | 63,968 | Setup and retained client matrix |
+| Same | Global affine BGV, N2048/Q32 | 25.996 | 65,536 | 17.949 ms mean fresh answer + check per token |
+| Semeion, 1465 × 256 | Original EMVP, cached code + our complete gate | 1.363 | 205,100 | Gate/code setup; not per-query fresh answer |
+| Same | Unified BNTM, actual full Freivalds | 13.962 | 11,720 | Setup and retained client matrix |
+| Same | Global raw BGV, N2048/Q32 | 9.838 | 16,384 | 5.166 ms mean fresh answer + check per token |
+
+EMVP/BGV values are old CPU stage sums; BNTM uses the adapter's elapsed time.
+The reply sizes are word/body accounting, not measured socket transfers.
+These use different unapproved assumptions, profiles, hidden verification
+state and preprocessing laws. The BGV rows use one-use preprocessing and are
+**not** the selected canonical Q120 graph. There is no cross-fixture ratio to
+the 32k panel or Q77. Nevertheless, they refute an unconditional choice of BGV
+on CPU speed or reply size. See the [original EMVP return](original-emvp-results.md),
+[unified reproduction](baseline-reproduction.md) and
+[global controls](global-representation-controls.md) for the retained limits.
+
+Keep R3's reserved six trajectories unchanged. Its purpose is selecting a complete
+deterministic BGV execution, not choosing the best possible cryptographic
+scheme. Before Q79 makes a broad fast-search claim, finish the strongest
+applicable alternate-scheme adapters on the final workload, or explicitly
+narrow the claim and state the missing comparison. Missing assurance or code
+does not prove a competitor cannot be adapted. For EMVP updates, the retained
+static-mask reuse counterexample requires fresh masking or an actual new
+privacy argument; it does not attack the static author protocol.
+
+The [official fetch-by-similarity workload](https://github.com/fhe-benchmarking/fetch-by-similarity/tree/1c3cbca1c169fb5351adfcd51c74ca93cb0b7ebb)
+is an external Q79 compatibility target, not another preliminary cohort.
+Its inspected reference uses cosine threshold/count-or-payload output. That
+differs from all exact Hamming distances and stable top3. Retain its unchanged
+harness for a separately declared compatible mode if selected; keep our complete
+independent oracle as well. At this pinned revision the payload checker skips
+detailed comparison when more than 32 matches are expected. A harness PASS
+therefore cannot replace full-score or malicious-response assurance. No
+external harness, library or accelerator was executed in this review.
 
 ## One conditional extension: authenticated composite snapshot reuse
 
@@ -402,6 +466,34 @@ it is not included in the partial-owner implementation by implication.
 
 ## Finite build and evaluation sequence
 
+The useful engineering system and the prospective research result have separate
+exit conditions. We can finish the former even if a candidate is contained.
+For the latter, the R4 eligibility return must identify **one actual change** to
+the strongest compatible execution, rather than naming a bundle of optimizations.
+
+| Bottleneck selected by R3 | The one eligible change | Specific research obligation |
+| --- | --- | --- |
+| Paid refresh/update-to-next-answer | Keep an immutable admitted base; authorize current replacements and paid compaction. Start with the partial-owner path. | Explain which admission/prepared state is safely preserved and which work the strong selective-refresh reference still needs. Base-plus-delta/local correction alone has no standalone new-algorithm claim. |
+| Paid construction/admission | Move one contiguous common-Q boundary and retain full original-source and terminal binding. | Exhibit the changed concrete relation, its all-witness refinement and the trusted work/traffic removed. Generic cut selection or smaller witness alone is insufficient. |
+| Protected-state capacity | Stream one complete snapshot with one reused query prefix and bounded live state. | Prove the actual group/lifetime bounds and complete coverage, then demonstrate a paid capacity consequence beyond equally streamed replay. Ordinary streaming/sharing alone is insufficient. |
+
+Before the extension cohort, its return must contain: the baseline and candidate
+source-to-release graphs; exact persistent, transient, transfer and setup
+resource changes; a canonical invariant and adversarial transition obligations;
+the best compatible prior construction with the same ordinary optimizations;
+one same-output causal ablation; the calibration-only crossover prediction;
+and a literal falsifier. A novelty card must say what remains after known
+ingredients are granted. If the two graphs/protocols coincide, record
+containment and keep only the useful engineering path. A new security theorem
+would need a substantive guarantee or refinement beyond routine signature and
+ADS composition; it is not an automatic fallback for a contained algorithm.
+
+There is no new preliminary search phase in this update. R2 is the immediate
+action, R3 supplies the missing bottleneck evidence, and R4 tests one surviving
+mechanism. Its artifacts are a mechanism specification, runnable adapter,
+independent whole-output oracle/fault gate, matched reference, paid ablation,
+frozen policy and held-out return. The existing proposed cohort is not enlarged.
+
 | Step | Deliverable and location | Exit condition / next decision |
 | --- | --- | --- |
 | R2, current implementation | Finish `complete_cost_tenant.py` and `complete_cost_owner_study.py` using the existing owner/coordinator/relay/supervisor modules; complete honest provisioning, independent sessions and guards. | One runnable cohort action, meaningful bounded public integration gate, exact execution addendum committed before HE work. |
@@ -575,6 +667,25 @@ is unestablished. Fill a claim card with the actual change,
 its invariant, prior construction extended, displaced work/bytes/state,
 held-out regions, ablation and strongest objection survived. Finding no
 identical paper in this targeted search is not an originality proof.
+
+The paper's main table must separate observed engineering gains, reference
+adapter status and research claims. Every comparison row identifies exact
+functionality, trust/adversary, leakage, assumptions/parameters, client state,
+setup/update/preprocessing, metric and reproduction scope. The complete baseline
+coverage return is mandatory before a broad optimal/fastest claim. A positive
+mechanism abstract waits for R4; a negative-result paper also needs a specific
+original theorem or generalizable finding, not only our implementation losing
+to a cache. External review can reject either framing.
+
+After the selected research path and Q78 assurance stabilize, package its
+homemade arithmetic under the existing `src/cuhepy` scheme organization and
+its exact-search client under `src/cuhepy/hamming`, with a separately named
+BGV module if that remains the chosen backend. Keep experimental adapters and
+benchmark orchestration in `experiments/bfv_search_lab` and `benchmarks`.
+The first full system may remain a research artifact; packaging is not
+production approval. Preserve the Paillier/BFV APIs and optional SEAL control.
+Provide one documented owner workflow for enrollment, query, update, current
+authorization and cleanup, and a reproducer that reports all complete costs.
 
 The final artifact needs multiple justified workloads/update distributions,
 real attested deployment, matched GPU evidence if claimed, all complete costs,
