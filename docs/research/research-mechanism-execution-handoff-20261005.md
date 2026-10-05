@@ -13,6 +13,12 @@ The [delegation-control handoff](research-delegation-control-handoff-20261005.md
 supplies concrete fixed-operator/quotient resource laws and a same-output wire
 conversion ablation. Its [receipt](research-delegation-frontier-review-20261005.json)
 adds no runtime, measurement, public case or registered cohort. R2 remains next.
+The [residency/assurance review](research-residency-assurance-plan-review-20261005.json)
+adds an explicit verification-state contract to the canonical plan and matrix.
+Grant Slalom-compatible reusable preprocessing, with its real lifetime argument;
+separate confidential checker weights from Argos's secret-free evaluator
+architecture. This distinction changes comparison obligations, not the next
+implementation, task status or finite experiment reservations.
 
 ## What to build, and what could justify a paper
 

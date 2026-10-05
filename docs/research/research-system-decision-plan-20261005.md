@@ -29,6 +29,42 @@ tradeoff, restores E70/E71's existing certificate controls, and gives a literal
 conversion ablation. Its [receipt](research-delegation-frontier-review-20261005.json)
 preserves all 138 source records and adds scalar planning counts, not HE
 measurements, a new mechanism verdict or additional experiment slots.
+The [residency and assurance review](research-residency-assurance-plan-review-20261005.json)
+adds the concise decision card and verification-state distinctions below. It
+preserves the evidence, task statuses and experiment reservations.
+
+## Decision card for the next implementation
+
+**Engineering decision:** build the complete exact-search service on homemade
+BGV. **Research decision:** demonstrate one useful change to the representation,
+admission or state lifetime, after the strongest compatible construction is
+given the same known optimizations. The promising scientific question is
+whether *complete integrity and currentness costs change which representation
+and retention policy is useful*. The answer is unmeasured for the selected
+service. This is a testable systems hypothesis, not a claimed new primitive.
+
+| What is known now | What it permits us to decide |
+| --- | --- |
+| The earlier unverified BGV CUDA path has small replies and good local arithmetic; its selected protected graph is different. | Reuse the engineering, then measure the actual admitted service. Do not extrapolate a secure speedup. |
+| The earlier compact BGV update spent most time rebuilding prepared state. | Keep physical-state reuse as the first conditional extension if R3 reproduces that bottleneck. Grant selective refresh and owner-held corrections to its reference. |
+| Internal expansion witnesses are large; aggregate mode already removes that transfer and reconstructs the prefix in the verifier. | A new cut must change a different literal segment or guarantee. Moving the entire prefix is already a baseline. |
+| Returning plaintext cache is much faster in the retained small panel, and the owner may retain its data. | Include cache acquisition, returning use and races. A useful HE result may have a limited fresh-client regime; never invent a cache restriction. |
+| Dense maintained checks have useful asymptotic state/work tradeoffs but may not save contraction work at one/two groups. | Compare actual verification architectures and their secret-state premises before selecting a delegation headline. |
+
+Execution remains finite: **finish R2; run R3 once; specify and test one eligible
+R4 extension; then complete Q78 assurance and Q79 evaluation/paper**. R2's four
+files and remaining eight public stub cases are already registered. R3 retains
+six trajectories, 18 blocks and 144 measured requests per trajectory, with
+calibration preceding held-out evaluation. This review authorizes no extra
+cases, keys, timings or scale sweep. After each exit, record the actual artifact
+and limits in the progress ledger and start the first unmet dependency.
+
+R4 must pass three separate tests: a useful complete-cost region; attribution
+to its actual execution change; and a surviving distinction from prior work.
+A same-output ablation establishes attribution, not originality. If a known
+composition reproduces the whole change, keep the useful company implementation
+and close that candidate paper claim. A formal result is eligible only if it
+supplies a substantive guarantee or refinement beyond routine composition.
 
 ## Decision and prospective contribution
 
@@ -281,6 +317,55 @@ independent oracle as well. At this pinned revision the payload checker skips
 detailed comparison when more than 32 matches are expected. A harness PASS
 therefore cannot replace full-score or malicious-response assurance. No
 external harness, library or accelerator was executed in this review.
+
+## Verification state is part of the comparison contract
+
+The full system comparison must name **which secrets and which prepared state
+each verifier retains**, rather than treating every protected check as the
+same hardware premise. No HE secret in the verifier does not mean no sensitive
+verification state.
+
+| Execution/reference | State and assurance that must be paid | Remaining implementation obligation |
+| --- | --- | --- |
+| Protected replay / current deterministic aggregate | Public ciphertext arithmetic and prepared index; authenticated release authority. Aggregate admission recomputes contraction. | Actual selected graph, code/native binding, currentness and signing-key custody. No random-check saving is credited. |
+| [Argos](https://petsymposium.org/popets/2025/popets-2025-0099.php) | Integrity-only execution with attestation secrets outside the evaluator CPU/memory hierarchy. | Our local signer is not that architecture. Supply its real isolation/custody adapter or state the different premise. |
+| [vFHE Appendix D](https://arxiv.org/html/2301.07041v2) product checking | Random evaluation after the actual claims are fixed; full ring-product checking and the maintained trusted suffix. | Implement the literal check, commitment/challenge order, both limbs, all coordinates, lifetime and complete state/transfer costs. It is distinct from the dense fixed-operator control. |
+| [Slalom §3.2](https://arxiv.org/html/1806.03287v2) fixed-operator checking | Hidden weights and index projections, including protected confidentiality and their actual preprocessing/maintenance. | Give it reusable preprocessing when its bounded-transcript argument applies. Supply uniform sampling, confidential storage, no unintended feedback and durable attempt accounting. |
+| E70/E71 point/quotient checking | Hidden evaluation state or committed-claim fresh challenges, actual quotients, domain adapters and maintenance. | Use its own protocol/cost law; tiny-profile results and a smaller hint body do not supply the packed native adapter. |
+
+Slalom explicitly credits reuse of secret randomness across inputs with an
+attempt-dependent soundness loss. Do not force a one-use hint pool on that
+reference simply because our prototype has not reviewed reuse. Conversely,
+the paper's statement does not automatically establish safe reuse in our
+implementation, under crashes, rollback, concurrency, timing leakage or
+exposed partial-check feedback. Specify and review that adapter. If a verifier
+secret leaks, an adversary may forge a computation that reaches private HE
+decoding; confidentiality of that state is consequently a security obligation.
+Arithmetic written for public ciphertexts is not automatically suitable for
+secret projection weights. Keep the Argos integrity-only reference separate
+from a verifier whose security requires confidential CPU/memory state.
+
+For the retained contraction count, `d=512` and `G` full groups. A dense check
+with `r` repetitions has the conditional multiplication ratio
+
+```text
+check / exact contraction = 2*r/(3*G) + r/d.
+```
+
+At the previously recorded illustrative target `r=3`, this is
+`2/G + 3/512`: 1.0059 at two groups. Its input projections remain 805,306,368 B
+per check set. These are known-control scalar counts, excluding prefix,
+maintenance, preparation, reductions, transport, private finish and whole RSS.
+They are neither a latency result nor permission for larger-scale runs. The
+candidate design finding must explain the *complete* crossover, including
+retained secret state and update costs. Faster contraction alone is insufficient.
+
+R4's eligibility card therefore records two resource vectors: costs under the
+same available hardware/security premises, and costs of any explicitly changed
+premise. Give known controls the same valid preprocessing and lifetime freedoms;
+do not describe a secret-state design as attaining Argos's secret-free evaluator
+assurance. A broad random-delegation headline still needs the actual vFHE
+adapter. R3's deterministic six-trajectory reservation is unchanged.
 
 ## One conditional extension: authenticated composite snapshot reuse
 
@@ -724,6 +809,18 @@ side-channel premise. Track multi-key and adaptive-attempt factors in each
 reduction. State separately what is assumed of hardware/currentness, what is
 proved in the model, and what is connected to native code. A sum of unnamed
 negligible terms is not a completed security reduction.
+
+Q78's proof return should expose a dependency table for four propositions:
+public failure cannot invoke the private callback; accepted ciphertexts refine
+the canonical authorized graph; decoding and permitted row replacement refine
+the pinned current snapshot; and the server view is simulatable under the
+declared leakage and augmented HE assumptions. Each proposition identifies
+its exact protocol state, native boundary and unresolved premise. In particular,
+neither successful oracle tests nor a process signature establishes the native
+refinement or privacy proposition. For a secret-state checker add its actual
+feedback/confidentiality and attempt-lifetime argument. These are concrete
+supporting proof deliverables; no completed reduction or new formal main is
+asserted by this planning review.
 
 AWS deployment must bind measured code and the result-signing key to an
 owner-verified attested channel with currentness/revocation and a nonrollback

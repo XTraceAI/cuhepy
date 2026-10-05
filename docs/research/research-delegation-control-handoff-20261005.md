@@ -140,10 +140,24 @@ stored input projections, one check set:    r*2*2*d*N*8 bytes.
 
 For three rounds the input projections occupy **805,306,368 bytes** before
 weights, keys, prefix state and scratch. If independent one-use check sets
-are provisioned in a pool, multiply their hint cost by the pool depth. Using
-reusable secret checks needs its reviewed lifetime argument instead of silently
-crediting either cost law. This is the standard Slalom-style control, not a
-new primitive or a claim that its whole BGV adapter is complete.
+are provisioned in a pool, multiply their hint cost by the pool depth. That is
+not a compulsory cost for the strongest reference: Slalom §3.2 explicitly
+permits reusing hidden randomness across inputs with an attempt-dependent loss.
+Give its compatible adapter that freedom when the actual bounded transcript
+argument applies. Review challenge confidentiality, feedback, crashes,
+concurrency and durable consumption; do not silently credit safe reuse in our
+implementation. This is the standard Slalom-style control, not a new primitive
+or a claim that its whole BGV adapter is complete.
+
+The ratio simplifies to `2*r/(3*G)+r/d`. This known count law is only an early
+resource screen; a complete execution may be limited by the shared prefix,
+maintenance, secret state, updates or transport. The fixed projection body is
+per check set, not necessarily per request. Its confidentiality is an explicit
+premise: leaking checking weights can allow false admission. Argos instead
+keeps attestation secrets out of the evaluator CPU/memory hierarchy. Our
+secret-state checker and local signing process cannot inherit that architecture's
+assurance by sharing its integrity-only HE goal. Public modular arithmetic
+used on private weights also needs its own side-channel review.
 
 | Full groups | Rows | Dense check / exact contraction count | Dense projection bytes, one check set |
 | --- | ---: | ---: | ---: |

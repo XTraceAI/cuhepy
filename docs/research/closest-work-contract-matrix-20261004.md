@@ -150,6 +150,38 @@ originality review. Broad delegation superiority additionally needs the actual
 randomized vFHE adapter. If a compatible prior specialization contains all of
 this, preserve the company implementation and close the positive headline.
 
+### Verification-state and lifetime comparison
+
+The [residency and assurance review](research-residency-assurance-plan-review-20261005.json)
+rechecks the same primary versions and retained measurements. It adds no source
+record, parameter approval, native execution or completed scientific cohort.
+The archive still contains 138 source records. The following distinction is
+necessary when comparing the strongest compatible constructions.
+
+| Control | Relevant difference | What the comparison must grant/pay |
+| --- | --- | --- |
+| [Argos](https://petsymposium.org/popets/2025/popets-2025-0099.php) | Keeps attestation secrets outside the evaluator's CPU and memory hierarchy; its integrity-only architecture avoids placing verification secrets there. | Real code/output binding and separate signing custody. Our local process signer does not inherit this property. |
+| [Slalom](https://arxiv.org/html/1806.03287v2), §3.2 | Keeps random projections hidden and explicitly permits reuse across inputs with an attempt-dependent loss. | Compatible reusable preprocessing, confidential checker state, bounded feedback and durable lifetime accounting. A compulsory one-use pool would weaken this reference unfairly. |
+| [vFHE](https://arxiv.org/html/2301.07041v2), Appendix D | Checks delegated tensor products by randomized ciphertext-component evaluation over the full coefficient ring. | Actual claim/challenge order, complete maintained suffix and both-prime coverage. This is not the same cost model as dense projection or off-root coefficient evaluation with a quotient. |
+| Current replay / exact aggregate | Does actual deterministic arithmetic; aggregate mode reduces internal witness transfer but recomputes contraction. | Same native preparation, prefix reuse, output codec, currentness and release. Smaller messages do not establish the randomized saving. |
+| E70/E71 | Different quotient/evaluation and feedback law, already screened on tiny controls. | Actual packed-source/native/maintenance/release adapter and all quotient/hint costs before a new service claim. |
+
+Inference for our build: “no HE key in the verifier” is insufficient to establish
+the same assurance premise for these rows. Leaking checking weights can permit
+false admission and consequently expose the owner's private-decode boundary.
+Public-ciphertext arithmetic is not automatically safe for secret weights.
+Record sensitive state, lifetime, side-channel premise and update/preparation
+cost beside performance. Credit reusable sketches when their actual transcript
+argument applies; do not silently borrow their proof for our implementation.
+
+The known count law `2*r/(3*G)+r/d` for dense checking versus exact contraction
+explains a conditional crossover, not an original algorithm or observed
+latency. At the recorded three-round example it is slightly above one for
+two groups, before the common prefix and all excluded costs. The scientific
+candidate is a *demonstrated complete execution consequence* that survives
+these controls. Neither an ordinary crossover calculation nor trust changes
+hidden in a comparison would establish that result.
+
 ### New source archive and limits of this review
 
 The earlier review preserved 128 records and added CSSC, Engorgio and Compact
