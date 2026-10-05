@@ -188,6 +188,9 @@ containment decisions. These branches are proposals, not registered or executed
 tasks. Each needs a changed premise, a justified deployment and its own finite
 acceptance/stop criteria before implementation. Q77 now has an
 [additive implementation registration](native-shared-query-complete-cost-registration-20261004.json).
-Next implement its local receipt/transport/coordinator and commit the exact
-execution addendum before consuming either HE key or running measurements.
+Its [public role/transport/receipt handoff](native-shared-query-complete-cost-handoff-20261004.md)
+passes 158 bounded tests, six retained small native paths and two native result
+fault controls. Next implement owner key custody/private finish and the whole
+cohort coordinator, then commit the exact execution addendum before consuming
+either HE key or running measurements.
 No branch bypasses the cohort cap or final originality decision.

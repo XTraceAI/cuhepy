@@ -414,6 +414,13 @@ cohort cap. It is not an execution freeze: exact role sources, event DAG,
 warmup/arrival/initial-state semantics and deadlines must be committed before
 either new HE key or timing. The current phase has consumed no cohort unit.
 
+The [bounded public role handoff](native-shared-query-complete-cost-handoff-20261004.md)
+now passes 158 standalone cases and the six retained small mode paths. Owner
+HE decoding, spawned-process coordinator, complete acquisition/update trace
+and execution addendum are still required. In that addendum, explicitly account
+for prefetch's remote component calls in addition to the initial 540 standalone
+query-encryption reservation; no new HE key or large measurement has run.
+
 Freeze methods, actual deployment budgets and the primary success metric
 before measurement. Use the existing three sizes and one selected profile,
 two independent key contexts, and three fresh process blocks **per key and
