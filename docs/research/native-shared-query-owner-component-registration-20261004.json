@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "task": "Q77/R1",
+  "status": "owner_component_registered_before_implementation",
+  "baseline_commit": "bdba1577c3ce4d3865ccd697c7855ac5ce3c46cc",
+  "plan": "docs/research/paper-system-build-plan-after-roles-20261004.md",
+  "parent_registration": "docs/research/native-shared-query-complete-cost-registration-20261004.json",
+  "evidence_directory": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004",
+  "planned_additive_files": [
+    "experiments/bfv_search_lab/complete_cost_owner.py",
+    "experiments/bfv_search_lab/test_complete_cost_owner.py"
+  ],
+  "implementation": {
+    "custody": "Trusted owner-local fixed profile and matching public fingerprint/ternary secret metadata. No key generation/export/serialization API. Reject use after fork, copying and closed contexts; share one custody handle across local client blocks without promoting a peer key.",
+    "key_pair_premise": "The honest owner creates a valid pk/sk pair. Matching fingerprint and key ID do not prove the secret corresponds algebraically to the public key. Actual key generation and complete HE correctness remain in the future frozen cohort.",
+    "decoder": "Reuse the existing homemade private_bgv.PrivateDecoder packed native backend. Initialize it only inside the current authenticated and consumed ResultClient callback; no raw public decrypt entry point, automatic fallback or received backend selection.",
+    "decoder_lifetime": "At most one lazy native decoder per owner key-custody handle. Serialize decode/close across clients; keep owner close separate from per-block client close. Charge actual private preparation and lifetime in the exact execution addendum.",
+    "private_scope": "Existing fixed-work native secret multiplication/centered reduction is supporting code, not assurance for Python import, secret copies, score handling, side channels, hardware or the complete new client. No secure-erasure promise for Python caller copies.",
+    "complete_finish": "Validate every decoded physical lane and canonical plaintext residue; enforce zero unused plaintext tails, signed-score range/parity, all distances and top3 by original ordinal with bound IDs. Use linear-sized complete output and O(records*log(3)) selection.",
+    "failure": "Malformed/foreign/stale/replayed receipts cannot initialize or invoke the private backend. Private callback failure remains coarse and consumed; no private exception/result is returned to a public role.",
+    "existing_sources": "Preserve all 425 runtime-source, 66 company-file and six isolated-library baseline pins. Record the existing private native extension/dependencies separately; build nothing new."
+  },
+  "bounded_public_gate": {
+    "new_distinct_unit_cases_max": 96,
+    "old_distinct_role_cases": 158,
+    "all_distinct_cases_max": 256,
+    "unit_Ed25519_contexts_max": 2,
+    "unit_signing_contexts": "Reuse Q77 public unit owner and Q77 public unit verifier labels; all keys are public deterministic test fixtures",
+    "unit_AES_contexts": 0,
+    "unit_HE_key_generation_encryption_decryption_native_private_creation_or_decode": 0,
+    "unit_private_inputs": "Explicit public grammar-only pk/ternary metadata, not a valid cryptographic pair or encrypted-search fixture. Replace the private decoder with a recorded public plaintext stub. Stub outputs test control/score semantics only.",
+    "native_private_guard": "Monitor main/future threads and forbid real PrivateDecoder creation/decode plus native private entry points; verify no real private calls. Pin exact executed sources/dependencies before each invocation.",
+    "public_compatibility": "Run the existing 158 role/transport cases once with the new owner units after focused cases pass; preserve duplicate invocations without adding them to distinct counts. Retained six small native public paths remain separate from private HE correctness.",
+    "no_broad_suite_or_parameter_grid": true,
+    "cohort_units_consumed": 0
+  },
+  "pending_cohort_obligations": [
+    "Complete separate-process owner/coordinator and public-worker custody boundary; unit fork rejection alone does not prove process isolation",
+    "Commit exact complete execution addendum before either HE key or any private/native HE work or large measurement",
+    "Resolve private decoder initialization/cold-versus-returning lifetime and the pinned native decoder dependency in that addendum",
+    "Resolve up to 180 prefetch remote calls in addition to the initial 540 query-encryption reservation without changing the 18-block/144-observation cap",
+    "Run actual complete HE plaintext oracle comparisons with the two registered independent keys after the freeze",
+    "Q78 actual attestation/nonrollback/freshness, private provisioning, parameters/samplers/evaluation-key assumptions, private side channels and native/semantic refinement",
+    "Q79 originality and paper decision"
+  ],
+  "next": "Implement and validate the additive public-gated owner client, return its exact scope to the ledger, then build the whole coordinator and execution addendum."
+}
