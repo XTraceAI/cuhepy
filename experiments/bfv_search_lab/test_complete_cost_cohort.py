@@ -13,11 +13,17 @@ import json
 import os
 from pathlib import Path
 import pickle
+import time
 
 import pytest
 
 from experiments.bfv_search_lab import authenticated_shared_query as auth
 from experiments.bfv_search_lab import complete_cost_cohort as cohort
+from experiments.bfv_search_lab import complete_cost_cohort_relay as cohort_relay
+from experiments.bfv_search_lab import complete_cost_network as network
+from experiments.bfv_search_lab import complete_cost_relay as relay
+from experiments.bfv_search_lab import complete_cost_supervisor as supervisor
+from experiments.bfv_search_lab import complete_cost_transport as transport
 from experiments.bfv_search_lab import native_shared_query as native
 from experiments.bfv_search_lab import shared_query_certificate as cert
 from experiments.bfv_search_lab import test_complete_cost_protocol as public
@@ -350,3 +356,218 @@ def test_readonly_recovery_reconstructs_public_inputs_without_private_material(d
     ):
         with pytest.raises(ValueError):
             cohort.EnrollmentRecord.from_fields(dict(fields, **change))
+
+
+@pytest.fixture
+def relay_files(tmp_path, owners):
+    """Pinned opaque public deliveries; the worker never receives a secret."""
+    freeze_path = os.environ.get("Q77_COHORT_RELAY_PUBLIC_FREEZE")
+    if not freeze_path:
+        raise RuntimeError("This separately registered public gate needs its source freeze")
+    namespace = public.token("cohort-relay-UNIT-ONLY-lifetime")
+    anchor = owners[0].public_key().public_bytes_raw()
+    snapshot, descriptor = tmp_path / "snapshot", tmp_path / "descriptor"
+    snapshot.write_bytes(b"opaque public authenticated-cache packet grammar")
+    descriptor.write_bytes(b"opaque public cache signature grammar")
+    routing = {
+        "role": "frontend",
+        "service": "shared-client-relay",
+        "search_port": None,
+        "cap": 8192,
+        "timeout_ns": 10_000_000_000,
+        "client_link": {"bytes_per_second": 100_000, "one_way_delay_ns": 100_000},
+        "upload": None,
+        "snapshot": {
+            "packet": supervisor.pinned(snapshot),
+            "descriptor": supervisor.pinned(descriptor),
+        },
+        "patch": None,
+    }
+    routing_path, config_path = tmp_path / "routing.json", tmp_path / "cohort.json"
+    routing_path.write_text(json.dumps(routing))
+    cfg = {
+        "role": "frontend",
+        "service": "owner-bound-cohort-relay",
+        "routing_config": str(routing_path),
+        "owner_anchor": anchor.hex(),
+        "namespace": namespace.hex(),
+        "uploads": [
+            {"phase": "initial", "file": str(tmp_path / "initial.packet"), "max_bytes": 4096},
+            {"phase": "update", "file": str(tmp_path / "update.packet"), "max_bytes": 4096},
+        ],
+    }
+    config_path.write_text(json.dumps(cfg))
+    return config_path, Path(freeze_path), cfg, namespace, anchor
+
+
+def test_cohort_relay_exact_two_phases_are_consumed_without_replacement(relay_files, owners):
+    config, freeze, cfg, namespace, _ = relay_files
+    service = cohort_relay.CohortRelay(config, freeze)
+    assert service.download_budget is service._base.download_budget
+    for phase, body in ((b"initial", b"public-initial-body"), (b"update", b"public-update-body")):
+        packet = cohort_relay.sign_upload(namespace, phase, body, owners[0])
+        answer = service.execute(packet, deadline_ns=time.perf_counter_ns() + service.timeout_ns)
+        assert auth._unpack(answer, limit=service.cap, array_cap=4) == [
+            relay.OK_TAG,
+            phase,
+            len(body),
+            hashlib.sha256(body).digest(),
+        ]
+        target = cfg["uploads"][cohort_relay.PHASES.index(phase)]["file"]
+        assert Path(target).read_bytes() == body
+        with pytest.raises(ValueError):
+            service.execute(packet, deadline_ns=time.perf_counter_ns() + service.timeout_ns)
+    inventory = service.inventory()
+    assert [p["status"] for p in inventory["upload_phases"]] == ["complete", "complete"]
+    assert not inventory["upload_failed"] and len(inventory["upload_stages"]) == 2
+    assert inventory["private_authorization_or_attestation"] is False
+
+
+def test_cohort_relay_rejects_foreign_roots_namespace_order_and_config(relay_files, owners):
+    config, freeze, cfg, namespace, _ = relay_files
+    service = cohort_relay.CohortRelay(config, freeze)
+    for packet in (
+        cohort_relay.sign_upload(namespace, b"initial", b"data", owners[1]),
+        cohort_relay.sign_upload(public.token("foreign-cohort"), b"initial", b"data", owners[0]),
+        cohort_relay.sign_upload(namespace, b"update", b"data", owners[0]),
+        auth._pack([b"upload", b"legacy unsigned input"]),
+        auth._pack([b"cohort-upload", {"file": "/tmp/not-an-upload-target"}]),
+    ):
+        with pytest.raises(ValueError):
+            service.execute(packet, deadline_ns=time.perf_counter_ns() + service.timeout_ns)
+    assert [p["status"] for p in service.inventory()["upload_phases"]] == ["unused", "unused"]
+    assert all(not Path(p["file"]).exists() for p in cfg["uploads"])
+    changed = dict(cfg, namespace=public.token("modified-root").hex())
+    config.write_text(json.dumps(changed))
+    with pytest.raises(ValueError):
+        service.execute(
+            cohort_relay.sign_upload(namespace, b"initial", b"data", owners[0]),
+            deadline_ns=time.perf_counter_ns() + service.timeout_ns,
+        )
+    config.write_text(json.dumps(cfg))
+    bad = dict(
+        cfg, uploads=[cfg["uploads"][0], dict(cfg["uploads"][1], file=cfg["uploads"][0]["file"])]
+    )
+    config.write_text(json.dumps(bad))
+    with pytest.raises(ValueError):
+        cohort_relay.CohortRelay(config, freeze)
+
+
+@pytest.mark.parametrize("failure", ["signed-digest", "fsync"])
+def test_cohort_relay_failed_owner_phase_is_consumed_and_partial_retained(
+    relay_files, owners, monkeypatch, failure
+):
+    config, freeze, cfg, namespace, _ = relay_files
+    service = cohort_relay.CohortRelay(config, freeze)
+    body = b"public body retained on disk failure"
+    if failure == "signed-digest":
+        payload = auth._pack([namespace, b"initial", len(body), bytes(32), body])
+        packet = auth._pack(
+            [b"cohort-upload", auth._sign(cohort_relay.UPLOAD_TAG, payload, owners[0])]
+        )
+    else:
+        packet = cohort_relay.sign_upload(namespace, b"initial", body, owners[0])
+        monkeypatch.setattr(
+            cohort_relay.os, "fsync", lambda _: (_ for _ in ()).throw(OSError("UNIT failure"))
+        )
+    with pytest.raises((ValueError, OSError)):
+        service.execute(packet, deadline_ns=time.perf_counter_ns() + service.timeout_ns)
+    inventory = service.inventory()
+    assert inventory["upload_failed"] and inventory["upload_phases"][0]["status"] == "failed"
+    if failure == "fsync":
+        assert Path(cfg["uploads"][0]["file"]).read_bytes() == body
+    else:
+        assert not Path(cfg["uploads"][0]["file"]).exists()
+    for phase in cohort_relay.PHASES:
+        with pytest.raises(ValueError):
+            service.execute(
+                cohort_relay.sign_upload(namespace, phase, body, owners[0]),
+                deadline_ns=time.perf_counter_ns() + service.timeout_ns,
+            )
+    assert not Path(cfg["uploads"][1]["file"]).exists()
+
+
+def test_cohort_relay_deadline_process_and_copy_guards_precede_writes(
+    relay_files, owners, monkeypatch
+):
+    config, freeze, cfg, namespace, _ = relay_files
+    service = cohort_relay.CohortRelay(config, freeze)
+    packet = cohort_relay.sign_upload(namespace, b"initial", b"data", owners[0])
+    with pytest.raises(transport.TransportError):
+        service.execute(packet, deadline_ns=time.perf_counter_ns() - 1)
+    for clone in (copy.copy, copy.deepcopy, pickle.dumps):
+        with pytest.raises(TypeError):
+            clone(service)
+    monkeypatch.setattr(service._base, "_pid", os.getpid() + 1)
+    with pytest.raises(RuntimeError):
+        service.execute(packet, deadline_ns=time.perf_counter_ns() + service.timeout_ns)
+    assert all(not Path(p["file"]).exists() for p in cfg["uploads"])
+
+
+def test_cohort_relay_supervised_worker_shares_setup_cache_update_download_lane(
+    relay_files, owners, tmp_path
+):
+    config, freeze, cfg, namespace, _ = relay_files
+    manager = supervisor.PublicSupervisor(
+        tmp_path / "manager-result.json",
+        source_pin=supervisor.pinned(supervisor.__file__),
+        python_pin=supervisor.pinned(os.sys.executable),
+        timeout_ns=30_000_000_000,
+    )
+    endpoint, done = None, tmp_path / "relay-result.json"
+    try:
+        spec = supervisor.WorkerSpec(
+            "cohort-public-relay",
+            supervisor.pinned(cohort_relay.__file__),
+            str(config),
+            str(freeze),
+            str(done),
+            min(os.sched_getaffinity(0)),
+        )
+        ready = manager.start((spec,))[spec.label]
+        assert ready["process"] != os.getpid() and ready["process"] != manager.process_id
+        assert ready["local_verifier_public_key"] is None
+        # Public process ancestry, not an attestation or a real HE custody claim.
+        stat = Path("/proc" + "/" + str(ready["process"]) + "/stat").read_text()
+        assert int(stat[stat.rfind(")") + 2 :].split()[1]) == manager.process_id
+        endpoint = relay.OwnerEndpoint(
+            ready["port"],
+            upload_budget=network.DirectionBudget(transport.Link(**cfg_link(config))),
+            cap=8192,
+            timeout_ns=10_000_000_000,
+        )
+        for phase, body in (
+            (b"initial", b"public-initial" * 40),
+            (b"update", b"public-update" * 40),
+        ):
+            response = endpoint.rpc(cohort_relay.sign_upload(namespace, phase, body, owners[0]))
+            assert auth._unpack(response, limit=8192, array_cap=4)[1] == phase
+            delivery = endpoint.rpc(auth._pack([b"snapshot"]))
+            assert len(auth._unpack(delivery, limit=8192, array_cap=2)) == 2
+        endpoint.close()
+        manager.stop((spec.label,))
+        report = json.loads(done.read_text())
+        assert report["owned_handlers_complete"]
+        assert [p["status"] for p in report["upload_phases"]] == ["complete", "complete"]
+        # Each small message reserves its actual frame header and body.
+        assert len(report["download_credits"]) == 10
+        uploads = endpoint.inventory()["upload_credits"]
+        assert len(uploads) == 8
+        assert sum(r["wire_bytes"] for r in report["download_credits"]) == sum(
+            r["wire_bytes"] for r in report["transfers"] if r["direction"] == "send"
+        )
+        assert all(r["completed"] for r in report["transfers"])
+    finally:
+        if endpoint is not None:
+            endpoint.close()
+        manager.close()
+    summary = json.loads((tmp_path / "manager-result.json").read_text())
+    assert len(summary["attempts"]) == 1
+    assert summary["attempts"][0]["status"] == "stopped"
+    assert summary["attempts"][0]["exit_code"] == 0
+    assert not Path("/proc" + "/" + str(ready["process"])).exists()
+
+
+def cfg_link(config):
+    fields = json.loads(Path(config).read_text())
+    return json.loads(Path(fields["routing_config"]).read_text())["client_link"]

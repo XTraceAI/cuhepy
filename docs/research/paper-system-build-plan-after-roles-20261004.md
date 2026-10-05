@@ -1,8 +1,9 @@
 # Research system and paper plan
 
 Current review: **2026-10-05**, from remotely verified implementation commit
-`ffac209f5826bdd1c8ac53d29cc3c30d385ce837`, tag
-`checkpoint/native-shared-query-owner-trace-2026-10-05`. The original
+`ed966297383c11babdf1047dc40e812f566ff69c`, tag
+`checkpoint/native-shared-query-cohort-sources-2026-10-05`. The current
+upload-relay return awaits its separate implementation checkpoint. The original
 post-role review and every intervening component remain in Git and their
 checkpoint archives. This is the current build plan; it updates the
 [roadmap](paper-system-roadmap-20261004.md) and makes the next components
@@ -31,8 +32,11 @@ proof. Subsequent bounded implementation gates are recorded below.
 > now passes 23 new public cases. The preceding 320 cases remain retained,
 > rather than rerun: 343 distinct cases across gates. Exact signed enrollment
 > recovery and mock attempt accounting are implemented; nine cases remain in
-> this component's registered 32-case ceiling. The cohort upload relay and
-> executable runner are still absent. No fresh HE/private/timing cohort has run.
+> this component's registered 32-case ceiling. The subsequent
+> [cohort upload relay](native-shared-query-cohort-relay-20261005.md) passes six
+> more cases, for 349 distinct retained cases and three remaining in the cap.
+> The executable owner runner is still absent. No fresh HE/private/timing
+> cohort has run.
 
 ## The result to pursue
 
@@ -69,6 +73,7 @@ established ingredients. Homemade implementations remain a company priority.
 | Shared network/supervisor: 20 additional public cases | Aggregate directional pacing, bounded TCP delivery and clean process supervision work in the retained public fixtures. | 256 distinct cases are retained across components; only the last 20 were rerun in that invocation. Real HE custody, the central relay and complete owner trace remain unexecuted. |
 | Subsequent shared relay/owner trace: 64 additional public cases | Fixed charged routing, actual owner event intervals, prefetch overlap, honest updates and stale receipt/cache rejection compose in public fixtures. | 320 distinct cases are retained; no combined 320-case invocation. Encryption/private decoding/native scan are stubs. Whole cohort orchestration, paid provisioning and actual HE correctness/custody/timing remain pending. |
 | Cohort public-source/accounting subgate: 23 additional cases | Deduplicated public inputs reconstruct the existing signed enrollment byte for byte; attempts are persisted before mock expensive work, without refunds or replacements. | 343 distinct cases are retained; only these 23 ran. This resolves a reproduction/artifact-budget prerequisite, not HE correctness, actual budget consumption or a novel cryptographic mechanism. |
+| Subsequent cohort upload relay: six additional cases | Owner-bound initial/update packets, fixed destinations, consumed failures and one shared traffic lane work through a supervised public worker. | 349 distinct cases are retained across gates. The executable owner runner and actual HE cohort remain absent; three cases remain in the coordinator registration. |
 
 At 32,768 rows the retained selected interfaces are: full internal witness
 127,057,920 B, exact aggregate body 1,474,560 B, compact client frame 204,895 B,
@@ -250,6 +255,33 @@ region; and the closest-work objection it survives. Keep predictions distinct
 from observations. An ordinary known composition may be excellent company
 engineering; originality needs a separate result.
 
+### What would turn the candidate into a paper contribution
+
+The candidate is not “BGV is faster” or “a TEE verifies HE.” Start with the
+concrete question: **which portions of canonical source construction should
+run in the protected role, which may be delegated, and what state must survive
+between requests and updates for that choice to pay off?** The signed original,
+all intermediate sources and the complete output must belong to one checked
+evaluation; a signature over an unchecked intermediate cannot establish that.
+
+Record one proposed execution change in this form before its experiment:
+
+| Item | Required content |
+| --- | --- |
+| Source relation | Name the exact producer/checker cut, its ancestors, common-Q integers, limb encodings, maintenance and terminal frame. State whether equality is deterministic or probabilistic. |
+| Mechanism prediction | Identify the actual protected construction, duplicate work, internal traffic or retained state removed. Account for newly introduced checks, buffers, rounds and update invalidation. |
+| Equal control | Give prepared replay and the strongest compatible delegated method the same source graph, packing, arithmetic, reuse and information. Name the prior technique being extended. |
+| Empirical discriminator | Predict the winning and losing state/link regimes using calibration only. Freeze the choice and validate on held-out whole executions. Stage projections explain costs; they do not replace owner-visible measurements. |
+| Mechanism ablation | Disable the selected reuse or move the selected cut while preserving the contract. Run an actual whole execution under its own bounded registration; a sum of old stage samples is not an ablation. |
+| Paper decision | Retain a main claim only if a substantive execution finding survives the prior specialization, permitted cache, losing-region explanation and external review. A good backend without that finding remains a company artifact. |
+
+This card makes a creative extension testable without opening another broad
+grid. The first cohort selects the bottleneck; it cannot already establish a
+mixed boundary that has not been implemented. A paper's final evidence must
+include the selected mechanism intervention and actual protected deployment,
+under separately frozen budgets. Do not consume those future runs as additional
+unregistered Q77 observations.
+
 ## Architecture to finish
 
 ```mermaid
@@ -279,7 +311,7 @@ interfaces and Paillier/BFV/BGV/CUDA fallbacks. The experimental branch remains
 | --- | --- | --- |
 | R0: public role handoff — complete within scope | Complete native predicate, durable local claimed signing, context-bound receipt, bounded transport and owner public callback. | 158 public tests, six small native paths and two bad native frames rejected; checkpoint and failed invocations retained. R1 public adapter gate now follows. |
 | R1: owner adapter/public control gate — complete within scope | Bind supplied key/profile to owner context; fixed lazy packed private path after whole-frame authorization/consumption; complete decoded score/tail checks, ordinal selection and fail-closed key lifetime. | 78 new public-stub cases and 236 final combined cases pass. Actual private HE correctness and process custody remain R2/R3; no cohort consumed. Next R2. |
-| R2: plumbing, owner trace and source/accounting subgate pass; cohort coordinator/freeze next | Shared pacing/supervisor pass 20 cases; relay/owner trace pass 64; public source/accounting passes 23. Finish tenant/device/process preparation, paid provisioning, independent policy lifetimes, actual 32-row/group refresh, arrivals and telemetry as one dependency graph in the cohort runner. | Nine public cases remain in the separately registered coordinator component. Actual HE process custody/private correctness are still unexecuted. Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and component budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
+| R2: plumbing, owner trace, source/accounting and cohort upload relay gates pass; owner runner/freeze next | Shared pacing/supervisor pass 20 cases; relay/owner trace pass 64; public source/accounting passes 23; cohort upload relay passes six. Finish tenant/device/process preparation, paid provisioning, independent policy lifetimes, actual 32-row/group refresh, arrivals and telemetry as one dependency graph in the cohort runner. | Three public cases remain in the separately registered coordinator component. Actual HE process custody/private correctness are still unexecuted. Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and component budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
 | R3: Q77 calibration and held-out cohort | Selected N=16,384, d=512, t=1031, owner-canonical Q120 profile; counts 8,224/16,384/32,768; two independent HE keys and one public corpus. | Six calibration blocks/48 query observations per implementation, freeze policy/data hashes, then twelve held-out blocks/96 observations. Total cap remains 18/144, with 18 excluded warmups and 18 separate post-update checks. Next decision. |
 | R4: decision and one justified refinement | Explain a paid placement reversal, state/link frontier and cache utility region, or close the failed hypothesis. Grant all controls equal arithmetic and information. | Keep the 20% remote-policy project gate separate from cache utility and originality. At most one changed-premise extension needs its own bounded registration. Next Q78 or scoped negative/engineering return. |
 | R5: Q78 selected deployment/security | One actual AWS protected path; attested code/key binding, authenticated channel, current owner pin, nonrollback/revocation and private leakage assurance. | Conditional exact-search reduction and concrete implementation review; relevant frozen comparison rerun on actual deployment. Q77 local results remain labelled local. Next Q79. |
@@ -319,15 +351,17 @@ below exist; the cohort runner still does not. Further necessary public
 integration needs a bounded registration before execution, since this
 component's 64-case ceiling is exhausted. The subsequent
 [coordinator registration](native-shared-query-owner-coordinator-registration-20261005.json)
-has a 32-case ceiling; its first two additive sources pass 23 cases. There
-are now 437 runtime sources, preserving all 435 earlier ones byte for byte.
+has a 32-case ceiling; its first two additive sources passed 23 cases with
+437 runtime sources. The subsequent six-case upload-relay subgate brings
+the count to 438, preserving all 436 other earlier files byte for byte and
+appending only to the archived test file. Its old function bodies are unchanged.
 
 | Deliverable | Proposed location | Required behavior / acceptance |
 | --- | --- | --- |
 | One charged public relay | `experiments/bfv_search_lab/complete_cost_relay.py` | Fixed trusted-local backend map and opaque descriptor/query/cache/update packets. One aggregate budget per client-link direction across search and background acquisition. Received data cannot select code, libraries or trust anchors. |
 | Actual owner event trace | `experiments/bfv_search_lab/complete_cost_trace.py` | Owner keys stay at the owner. Capture arrivals, setup, acquisition, private preparation, completion and updates as dependent real events; no stage-sum latency or fictitious overlap. |
 | Public source retention and attempt accounting — implemented/public gate passed | `experiments/bfv_search_lab/complete_cost_cohort.py` | Retain each fresh feature/query once. Recover exact existing signed enrollment from group/key references; consume limits before attempts. This is public reproduction/accounting, not honest-encryption proof or anti-rollback authority. |
-| Multi-phase cohort upload relay — not implemented | `experiments/bfv_search_lab/complete_cost_cohort_relay.py` | Fixed initial/update destinations, owner-bound phase/length/digest, shared setup/search/cache/update bandwidth and consumed failed phases; no peer-selected paths or unsigned refresh. |
+| Multi-phase cohort upload relay — implemented/public gate passed | `experiments/bfv_search_lab/complete_cost_cohort_relay.py` | Fixed initial/update destinations, owner-bound lifetime/phase/length/digest, shared setup/search/cache/update bandwidth and consumed failed phases; no peer-selected paths or unsigned refresh. Six appended public cases pass; actual HE and whole coordinator remain pending. |
 | Cohort orchestration | `benchmarks/complete_cost_owner_lab.py` | Start the clean supervisor before HE key generation. Public workers descend from it and receive pinned public specifications. Independent policy trajectories cannot inherit an accidentally warmed cache/private handle. |
 | Updates and release | Existing authenticated owner/cache APIs called by the new trace | Fresh affected-group encryption, complete snapshot/ID binding, genuine native refresh, compact cache patch and current consumed receipt before private decode. Retain failed attempts and owned-child cleanup. |
 | Integration and exact freeze | Separately registered tests and execution-addendum JSON | Bounded public fixtures first; actual HE correctness belongs to R3. Commit dependencies, sources/libraries, event order, initial states, hardware, deadlines, memory guard and retention before keys. |
@@ -370,6 +404,14 @@ records and the selected witness too. Retire only verified complete scratch
 enrollments; partial failures stay retained/consumed. The 8GiB bound applies
 to all additional artifacts, not just the blob store. Plan for one active full
 enrollment scratch at a time and verify total bytes, RSS and lifetime peaks.
+
+Native-stage instrumentation is also required. The current frontend's
+`produce-forward` wall interval includes protected verification and round-trip
+waiting. Do not use it as evaluator-only latency. Pin the exact actual native
+call intervals or computational projection used by the selector, its included
+representation/witness/terminal work, and its distinction from an independently
+executed unverified evaluator. The primary metric still ends at actual owner
+completion; projected stage costs do not replace any whole execution.
 
 The exact freeze must distinguish four clocks/states:
 
