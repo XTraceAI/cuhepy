@@ -40,11 +40,21 @@ R2c's exact committed freeze and preflight are complete. The original actual
 R3 failed at descriptor routing before queries; its consumed resources and public
 artifacts remain retained. The repair passed all 74 existing public cases,
 including actual TCP routing. A separate corrective registration and exact
-freeze precede the fresh corrective action, which is now running. Read the
+freeze preceded the fresh corrective action. Read the
 [corrective-start return](native-shared-query-complete-cost-corrective-start-return-20261005.json).
-No complete query comparison is available yet. Prior unexecuted/pending text
-retains its historical scope. Keep frozen sources/contract fixed and retain
-failures without replacing blocks. Return R3 before choosing one R4 mechanism.
+That action has now [interrupted without a terminal return](native-shared-query-complete-cost-interruption-return-20261005.json).
+Its tool handle and all owned host processes are absent; the termination cause
+is unknown. All completed rows, consumed attempts and partial inputs remain
+retained. No complete query comparison is available. Prior status text retains
+its historical scope; do not replace blocks or choose R4 from the partial return.
+
+The [separate action registration](native-shared-query-complete-cost-interruption-registration-20261005.json)
+requires a bounded additive launch gate, exact freeze and 20 GiB headroom before
+any additional HE. It fixes one fresh complete comparison and explicit additional
+resource ceilings, without using earlier inputs in its selection. Storage is
+currently below that existing guard. Complete the independent launch work while
+that resource precondition is unresolved; do not lower the guard or remove
+failures to fit. The scientific workload and one-extension reservation stay fixed.
 
 The [analysis preparation](native-shared-query-complete-cost-analysis-preparation-20261005.json)
 adds a read-only post-return auditor outside the frozen runtime. It checks
@@ -59,7 +69,7 @@ now completes all six calibration blocks, 288 measured queries and 354
 full-distance checks. All 36 calibration pins and selector choices were
 independently checked. Client latency freezes `m1` at each size; native projection
 freezes `m2`; the generic same-information selector agrees with the client
-selector. The twelve held-out blocks are running. No held-out advantage,
+selector. The later interruption leaves held-out comparison incomplete. No held-out advantage,
 mechanism choice or originality follows from these calibration choices.
 
 ## What to build, and what could justify a paper

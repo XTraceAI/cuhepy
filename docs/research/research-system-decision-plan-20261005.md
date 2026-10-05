@@ -54,11 +54,25 @@ The [separate corrective registration](native-shared-query-complete-cost-correct
 and exact corrective freeze were committed before a fresh action. Its
 [start return](native-shared-query-complete-cost-corrective-start-return-20261005.json)
 pins freeze `d3098ec`, 444 sources, 707 dependencies and passing preflight.
-The corrective R3 is now running; this is not a completed timing/correctness
-comparison. The scientific workload, calibration/held-out rule and one-extension
-reservation stay fixed. Runtime sources and frozen contracts stay fixed during
-the action. The first unmet dependency is **R3's actual return**, then exactly
-one eligible creative extension, assurance and the final paper package.
+That corrective R3 subsequently
+[interrupted without a terminal return](native-shared-query-complete-cost-interruption-return-20261005.json).
+Its tool handle and all seven registered host processes disappeared. The six
+complete calibration blocks and ten closed held-out trajectories remain
+retained; they do not make a completed comparison. The cause is unknown.
+All 1,859 public files, 4,290,845,075 logical bytes, consumed resources and the
+partial encryption prefix are preserved. No blocks were restarted or spliced.
+
+The [separate scientific registration](native-shared-query-complete-cost-interruption-registration-20261005.json)
+now specifies one fresh comparison after an additive detached-launch public
+gate, exact committed freeze and the existing 20 GiB headroom precondition.
+It explicitly adds two HE keys and the original full-cohort attempt maxima;
+earlier unused reservations are not refunded. Scientific workload, objective,
+order and one-extension reservation remain unchanged; earlier cohort data
+cannot enter its selection. **The launch gate, exact freeze and storage
+precondition are now the first unmet dependency**, then the complete comparison,
+one eligible creative extension, assurance and the paper package. No fresh
+encrypted action has started. A detached launcher changes observation lifetime;
+it does not prove or repair the unknown termination cause.
 
 The [pre-execution review](research-pre-execution-review-20261005.json) rechecks
 11 archived closest-work PDF/text pairs and current primary pages, preserving
@@ -79,7 +93,7 @@ immutable-base recipe are engineering foundations; neither is the new result.
 | Milestone | Concrete deliverable | Decision produced |
 | --- | --- | --- |
 | R2c: complete | Exact sources, dependencies, event/arrival law and guards committed; pure preflight passed. | Runnable frozen comparison; public stubs remain distinct from HE correctness. |
-| R3: running, result pending | Six calibration blocks, immutable choices, twelve held-out blocks; all distances, setup, transfers, private finish, updates, losers and memory accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
+| R3: interrupted; separate action registered, not started | Preserve both earlier attempts; complete launch gate/freeze/storage preconditions, then six new calibration blocks and twelve held-out blocks with every cost accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
 | R4a: choose one creative extension | Literal changed execution, necessary invariant, resource prediction and strongest compatible construction. | A distinction to test, or a documented containment finding. |
 | R4b/R4c: build and ablate it | Independent oracle, adversarial transitions, complete adapter and one registered matched extension cohort. | Attribution and useful/losing regions; a same-output gain alone does not establish originality. |
 | Q78: deployment and security | Native/model refinement, authorization/privacy games, parameter/sampler/private-leakage review, attestation and nonrollback authority. | Explicit discharged obligations and remaining assumptions. |
