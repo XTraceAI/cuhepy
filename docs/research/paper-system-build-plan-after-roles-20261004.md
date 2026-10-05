@@ -1,9 +1,9 @@
 # Research system and paper plan
 
 Current review: **2026-10-05**, from remotely verified implementation commit
-`ed966297383c11babdf1047dc40e812f566ff69c`, tag
-`checkpoint/native-shared-query-cohort-sources-2026-10-05`. The current
-upload-relay return awaits its separate implementation checkpoint. The original
+`375348e113e63cc671b179b71a619dbe7efa62af`, tag
+`checkpoint/native-shared-query-cohort-relay-2026-10-05`. The subsequent
+native-clock/telemetry return awaits its separate implementation checkpoint. The original
 post-role review and every intervening component remain in Git and their
 checkpoint archives. This is the current build plan; it updates the
 [roadmap](paper-system-roadmap-20261004.md) and makes the next components
@@ -37,6 +37,12 @@ proof. Subsequent bounded implementation gates are recorded below.
 > more cases, for 349 distinct retained cases and three remaining in the cap.
 > The executable owner runner is still absent. No fresh HE/private/timing
 > cohort has run.
+
+> The subsequent [native-clock/telemetry gate](native-shared-query-runtime-20261005.md)
+> passes three additional public cases, for 352 distinct retained cases.
+> The parent 32-case coordinator cap is exhausted. `complete_cost_owner_lab.py`
+> now supplies measured role and telemetry worker services; its owner cohort
+> run action is still absent. Actual native/private HE and timing remain pending.
 
 ## The result to pursue
 
@@ -74,6 +80,7 @@ established ingredients. Homemade implementations remain a company priority.
 | Subsequent shared relay/owner trace: 64 additional public cases | Fixed charged routing, actual owner event intervals, prefetch overlap, honest updates and stale receipt/cache rejection compose in public fixtures. | 320 distinct cases are retained; no combined 320-case invocation. Encryption/private decoding/native scan are stubs. Whole cohort orchestration, paid provisioning and actual HE correctness/custody/timing remain pending. |
 | Cohort public-source/accounting subgate: 23 additional cases | Deduplicated public inputs reconstruct the existing signed enrollment byte for byte; attempts are persisted before mock expensive work, without refunds or replacements. | 343 distinct cases are retained; only these 23 ran. This resolves a reproduction/artifact-budget prerequisite, not HE correctness, actual budget consumption or a novel cryptographic mechanism. |
 | Subsequent cohort upload relay: six additional cases | Owner-bound initial/update packets, fixed destinations, consumed failures and one shared traffic lane work through a supervised public worker. | 349 distinct cases are retained across gates. The executable owner runner and actual HE cohort remain absent; three cases remain in the coordinator registration. |
+| Native clocks and public telemetry: three additional cases | Configured direct/cached native-call proxies preserve public stub behavior; a clean supervisor-descended process records scoped kernel metadata and consumed resource failures. | 352 distinct cases are retained; the coordinator cap is exhausted. Actual native clocks, owner orchestration, guards/custody and complete HE timings remain unexecuted. |
 
 At 32,768 rows the retained selected interfaces are: full internal witness
 127,057,920 B, exact aggregate body 1,474,560 B, compact client frame 204,895 B,
@@ -311,7 +318,7 @@ interfaces and Paillier/BFV/BGV/CUDA fallbacks. The experimental branch remains
 | --- | --- | --- |
 | R0: public role handoff — complete within scope | Complete native predicate, durable local claimed signing, context-bound receipt, bounded transport and owner public callback. | 158 public tests, six small native paths and two bad native frames rejected; checkpoint and failed invocations retained. R1 public adapter gate now follows. |
 | R1: owner adapter/public control gate — complete within scope | Bind supplied key/profile to owner context; fixed lazy packed private path after whole-frame authorization/consumption; complete decoded score/tail checks, ordinal selection and fail-closed key lifetime. | 78 new public-stub cases and 236 final combined cases pass. Actual private HE correctness and process custody remain R2/R3; no cohort consumed. Next R2. |
-| R2: plumbing, owner trace, source/accounting and cohort upload relay gates pass; owner runner/freeze next | Shared pacing/supervisor pass 20 cases; relay/owner trace pass 64; public source/accounting passes 23; cohort upload relay passes six. Finish tenant/device/process preparation, paid provisioning, independent policy lifetimes, actual 32-row/group refresh, arrivals and telemetry as one dependency graph in the cohort runner. | Three public cases remain in the separately registered coordinator component. Actual HE process custody/private correctness are still unexecuted. Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and component budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
+| R2: all registered public plumbing/worker subgates pass; owner orchestration/freeze next | Shared pacing/supervisor pass 20 cases; relay/owner trace pass 64; public source/accounting passes 23; upload relay passes six; clocks/telemetry pass three. Finish tenant/device/process preparation, paid provisioning, independent policy lifetimes, actual 32-row/group refresh, arrivals and telemetry as one dependency graph in the owner coordinator. | The 32-case coordinator public cap is exhausted; necessary orchestration integration requires a separate bounded registration. Actual native/private correctness and HE process custody are still unexecuted. Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and component budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
 | R3: Q77 calibration and held-out cohort | Selected N=16,384, d=512, t=1031, owner-canonical Q120 profile; counts 8,224/16,384/32,768; two independent HE keys and one public corpus. | Six calibration blocks/48 query observations per implementation, freeze policy/data hashes, then twelve held-out blocks/96 observations. Total cap remains 18/144, with 18 excluded warmups and 18 separate post-update checks. Next decision. |
 | R4: decision and one justified refinement | Explain a paid placement reversal, state/link frontier and cache utility region, or close the failed hypothesis. Grant all controls equal arithmetic and information. | Keep the 20% remote-policy project gate separate from cache utility and originality. At most one changed-premise extension needs its own bounded registration. Next Q78 or scoped negative/engineering return. |
 | R5: Q78 selected deployment/security | One actual AWS protected path; attested code/key binding, authenticated channel, current owner pin, nonrollback/revocation and private leakage assurance. | Conditional exact-search reduction and concrete implementation review; relevant frozen comparison rerun on actual deployment. Q77 local results remain labelled local. Next Q79. |
@@ -355,6 +362,10 @@ has a 32-case ceiling; its first two additive sources passed 23 cases with
 437 runtime sources. The subsequent six-case upload-relay subgate brings
 the count to 438, preserving all 436 other earlier files byte for byte and
 appending only to the archived test file. Its old function bodies are unchanged.
+The subsequent three-case clock/telemetry gate adds the owner-lab worker entry,
+bringing the inventory to 439. All 437 other preceding files and 27 archived
+top-level function ASTs remain unchanged. This completes the parent public cap,
+not R2's full owner execution.
 
 | Deliverable | Proposed location | Required behavior / acceptance |
 | --- | --- | --- |
@@ -362,7 +373,8 @@ appending only to the archived test file. Its old function bodies are unchanged.
 | Actual owner event trace | `experiments/bfv_search_lab/complete_cost_trace.py` | Owner keys stay at the owner. Capture arrivals, setup, acquisition, private preparation, completion and updates as dependent real events; no stage-sum latency or fictitious overlap. |
 | Public source retention and attempt accounting — implemented/public gate passed | `experiments/bfv_search_lab/complete_cost_cohort.py` | Retain each fresh feature/query once. Recover exact existing signed enrollment from group/key references; consume limits before attempts. This is public reproduction/accounting, not honest-encryption proof or anti-rollback authority. |
 | Multi-phase cohort upload relay — implemented/public gate passed | `experiments/bfv_search_lab/complete_cost_cohort_relay.py` | Fixed initial/update destinations, owner-bound lifetime/phase/length/digest, shared setup/search/cache/update bandwidth and consumed failed phases; no peer-selected paths or unsigned refresh. Six appended public cases pass; actual HE and whole coordinator remain pending. |
-| Cohort orchestration | `benchmarks/complete_cost_owner_lab.py` | Start the clean supervisor before HE key generation. Public workers descend from it and receive pinned public specifications. Independent policy trajectories cannot inherit an accidentally warmed cache/private handle. |
+| Native clocks and public telemetry — implemented/public gate passed | `benchmarks/complete_cost_owner_lab.py` | Instrument direct and factory-cached native calls; keep their computational projection separate from verification wait. Read bounded kernel metadata in a clean worker using trusted PID/birth bindings. Guard failures are cooperative and persisted; actual HE integration is pending. |
+| Cohort orchestration — still pending in that entry | `benchmarks/complete_cost_owner_lab.py` | Start the clean supervisor before HE key generation. Public workers descend from it and receive pinned public specifications. Independent policy trajectories cannot inherit an accidentally warmed cache/private handle. Finish the actual owner run action; worker services alone do not provide it. |
 | Updates and release | Existing authenticated owner/cache APIs called by the new trace | Fresh affected-group encryption, complete snapshot/ID binding, genuine native refresh, compact cache patch and current consumed receipt before private decode. Retain failed attempts and owned-child cleanup. |
 | Integration and exact freeze | Separately registered tests and execution-addendum JSON | Bounded public fixtures first; actual HE correctness belongs to R3. Commit dependencies, sources/libraries, event order, initial states, hardware, deadlines, memory guard and retention before keys. |
 
@@ -405,13 +417,20 @@ enrollments; partial failures stay retained/consumed. The 8GiB bound applies
 to all additional artifacts, not just the blob store. Plan for one active full
 enrollment scratch at a time and verify total bytes, RSS and lifetime peaks.
 
-Native-stage instrumentation is also required. The current frontend's
+Native-stage instrumentation is implemented and its public-stub gate passes.
+Its actual native execution remains untested until the frozen cohort. The current frontend's
 `produce-forward` wall interval includes protected verification and round-trip
 waiting. Do not use it as evaluator-only latency. Pin the exact actual native
 call intervals or computational projection used by the selector, its included
 representation/witness/terminal work, and its distinction from an independently
 executed unverified evaluator. The primary metric still ends at actual owner
 completion; projected stage costs do not replace any whole execution.
+The new projection excludes Python framing/allocation, preparation and cleanup;
+it is not a separately executed unverified baseline. Returned calls do not imply
+admission success. Record native shutdown costs separately because the worker's
+final close follows its inventory. Check telemetry's failure/persistence fields
+and observed >1s gaps; a configured period does not prove uninterrupted sampling
+or a hard peak-memory limit.
 
 The exact freeze must distinguish four clocks/states:
 
@@ -434,6 +453,14 @@ lane and relay copies are paid. Keep a memory preflight, absolute deadlines,
 <=1s telemetry and the 8GiB additional-artifact ceiling. Retain external load,
 swap, timeouts and failures; qualify contaminated runs rather than replacing
 them with a selectively faster run.
+
+The current supervisor validates worker CPUs against its own current affinity
+during startup. A permanent CPU3 mask would reject later starts on other CPUs.
+Freeze either the wider startup mask or an actual captured-mask restoration
+around each start followed by repinning, and pay/record those intervals. Trusted
+registry/config updates must be atomic local writes. The owner must enforce
+telemetry guards and total artifact limits; supplying the sampler is not that
+whole integration.
 
 ### R3/R4 decision protocol
 

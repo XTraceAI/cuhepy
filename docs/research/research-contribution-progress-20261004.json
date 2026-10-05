@@ -354,7 +354,7 @@
     {
       "id": "Q77",
       "title": "Matched full-cost evaluation",
-      "status": "cohort_upload_relay_public_gate_complete_owner_runner_native_timing_and_exact_freeze_pending",
+      "status": "native_clocks_public_telemetry_gate_complete_owner_orchestration_guards_and_exact_freeze_pending",
       "dependencies": [
         "Q76"
       ],
@@ -383,7 +383,8 @@
         "docs/research/native-shared-query-owner-component-registration-20261004.json",
         "docs/research/native-shared-query-coordinator-component-return-20261004.json",
         "docs/research/native-shared-query-cohort-source-return-20261005.json",
-        "docs/research/native-shared-query-cohort-relay-return-20261005.json"
+        "docs/research/native-shared-query-cohort-relay-return-20261005.json",
+        "docs/research/native-shared-query-runtime-return-20261005.json"
       ],
       "implemented": "partial_owner_adapter_public_roles_shared_directional_stream_and_public_supervisor_whole_owner_trace_pending",
       "planned_matched_blocks_per_implementation": 18,
@@ -452,11 +453,12 @@
         },
         {
           "id": "R2",
-          "status": "cohort_upload_relay_public_gate_complete_owner_runner_native_timing_exact_freeze_next",
-          "deliverable": "Finish registered cohort upload relay and runner, then commit exact execution addendum before HE/private/timing; source recovery/accounting public gate is complete",
-          "evidence": "docs/research/native-shared-query-cohort-relay-return-20261005.json",
+          "status": "native_clocks_public_telemetry_gate_complete_owner_orchestration_guards_and_exact_freeze_pending",
+          "deliverable": "Finish actual owner orchestration/guard integration; worker services pass public gate, then exact pre-HE freeze",
+          "evidence": "docs/research/native-shared-query-runtime-return-20261005.json",
           "historical_evidence_before_source_gate": "docs/research/native-shared-query-owner-trace-return-20261005.json",
-          "historical_evidence_before_upload_relay": "docs/research/native-shared-query-cohort-source-return-20261005.json"
+          "historical_evidence_before_upload_relay": "docs/research/native-shared-query-cohort-source-return-20261005.json",
+          "historical_evidence_before_runtime_workers": "docs/research/native-shared-query-cohort-relay-return-20261005.json"
         },
         {
           "id": "R3",
@@ -522,6 +524,15 @@
         "remaining_registered_public_cases": 3,
         "actual_HE_or_timing_cohort": 0,
         "whole_coordinator_and_exact_freeze_pending": true
+      },
+      "runtime_workers_public_component": {
+        "file": "docs/research/native-shared-query-runtime-return-20261005.json",
+        "utc": "2026-10-05T09:53:54.949113+00:00",
+        "new_public_cases": 3,
+        "retained_distinct_public_cases": 352,
+        "remaining_registered_public_cases": 0,
+        "actual_HE_or_native_search_or_timing_cohort": 0,
+        "whole_owner_coordinator_and_exact_freeze_pending": true
       }
     },
     {
@@ -713,9 +724,9 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/closest-work-contract-matrix-20261004.md",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q77_owner_cohort_runner_native_timing_and_exact_execution_addendum",
+  "next_subtask": "Q77_owner_cohort_orchestration_guard_integration_and_exact_execution_addendum",
   "latest_planning_review": "docs/research/research-system-mechanism-handoff-review-20261005.json",
-  "latest_execution_return": "docs/research/native-shared-query-cohort-relay-return-20261005.json",
+  "latest_execution_return": "docs/research/native-shared-query-runtime-return-20261005.json",
   "Q76_execution_returns": [
     {
       "milestone": "Q76.1",
@@ -824,25 +835,25 @@
   "latest_plan_revision": "docs/research/paper-system-build-plan-after-roles-20261004.md",
   "top_level_count_scope_note": "Zero preliminary gates and zero immediate Q76 native milestones; three packages remain: paid Q77 evaluation, Q78 actual deployment/security, Q79 originality/paper. A completed local handoff is not a completed secure service.",
   "preserved_latest_implementation_checkpoint": {
-    "commit": "ed966297383c11babdf1047dc40e812f566ff69c",
-    "tag": "checkpoint/native-shared-query-cohort-sources-2026-10-05",
-    "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-sources-2026-10-05",
+    "commit": "375348e113e63cc671b179b71a619dbe7efa62af",
+    "tag": "checkpoint/native-shared-query-cohort-relay-2026-10-05",
+    "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-relay-2026-10-05",
     "manifest": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-sources-2026-10-05/manifest.json",
-      "bytes": 184240,
-      "sha256": "f775462298df139421cb43cf9962461f49ddaaf90877d8f975bb598594685d82"
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-relay-2026-10-05/manifest.json",
+      "bytes": 161641,
+      "sha256": "29b8b42d86b91180304bd627d388d16faa9cf9511bc9ac367ca6051e481bf7b4"
     },
     "remote_verification": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-sources-2026-10-05/remote-verification.json",
-      "bytes": 1731,
-      "sha256": "a7276c3bb1038e5c8d0edc2e1002088f2869cbe014ff1786a043d9608e97908f"
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-relay-2026-10-05/remote-verification.json",
+      "bytes": 1828,
+      "sha256": "a2cdda7b970f6f72d6fa2bc7a080c8bff4e8b90f409e37bd83240f6570f6b71f"
     },
     "all_three_remote_refs_verified": true,
     "verification_is_historical_not_new_remote_query": true,
-    "runtime_files": 437,
-    "evidence_members": 106,
+    "runtime_files": 438,
+    "evidence_members": 66,
     "company_members": 66,
-    "scope": "Verified public source/accounting checkpoint; new cohort relay publication pending"
+    "scope": "Verified public cohort upload relay checkpoint; new runtime publication pending"
   },
   "Q76_control_design_return": {
     "card": "docs/research/native-shared-query-product-control-card-20261004.md",
@@ -994,6 +1005,27 @@
       "evidence_members": 306,
       "company_members": 66,
       "scope": "Verified shared relay/owner trace; source/accounting checkpoint publication still pending"
+    },
+    {
+      "commit": "ed966297383c11babdf1047dc40e812f566ff69c",
+      "tag": "checkpoint/native-shared-query-cohort-sources-2026-10-05",
+      "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-sources-2026-10-05",
+      "manifest": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-sources-2026-10-05/manifest.json",
+        "bytes": 184240,
+        "sha256": "f775462298df139421cb43cf9962461f49ddaaf90877d8f975bb598594685d82"
+      },
+      "remote_verification": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cohort-sources-2026-10-05/remote-verification.json",
+        "bytes": 1731,
+        "sha256": "a7276c3bb1038e5c8d0edc2e1002088f2869cbe014ff1786a043d9608e97908f"
+      },
+      "all_three_remote_refs_verified": true,
+      "verification_is_historical_not_new_remote_query": true,
+      "runtime_files": 437,
+      "evidence_members": 106,
+      "company_members": 66,
+      "scope": "Verified public source/accounting checkpoint; new cohort relay publication pending"
     }
   ],
   "historical_plan_revisions": [
@@ -1137,7 +1169,7 @@
     "security_feasibility_card_before_Q77": true,
     "permitted_cache_correctness_complete_cost_unmeasured": true,
     "current_build_queue": "docs/research/paper-system-build-plan-after-roles-20261004.md",
-    "next_component": "Q77_owner_cohort_runner_native_timing_and_exact_execution_addendum",
+    "next_component": "Q77_owner_cohort_orchestration_guard_integration_and_exact_execution_addendum",
     "paper_framings_are_conditional_not_promised_contributions": true
   },
   "historical_planning_checkpoint_declarations": [
@@ -1315,7 +1347,7 @@
     "actual_owner_channel_host_rollback_HE_integrity_or_attestation": false,
     "known_method_not_original_main": true
   },
-  "last_milestone_return_utc": "2026-10-05T09:08:36.196691+00:00",
+  "last_milestone_return_utc": "2026-10-05T09:53:54.949113+00:00",
   "historical_implementation_checkpoint_declarations": [
     {
       "tag": "checkpoint/native-shared-query-cache-2026-10-04",
@@ -1367,6 +1399,10 @@
       "tag": "checkpoint/native-shared-query-cohort-sources-2026-10-05",
       "status": "Create/verify after source/planning return commit",
       "scope": "23 public cases and research synthesis; HE/cohort/security/originality pending"
+    },
+    {
+      "tag": "checkpoint/native-shared-query-cohort-relay-2026-10-05",
+      "status": "Create/verify after relay return commit; preceding source checkpoint remains verified"
     }
   ],
   "current_certificate_registration": "docs/research/native-shared-query-certificate-registration-20261004.json",
@@ -1476,7 +1512,7 @@
       "bytes": 59194,
       "sha256": "f88c09b19b70a334d0e9a056c3921e4951726d3a51c24905eadcd4afbd6ab02c"
     },
-    "status": "cohort_upload_relay_public_gate_complete_owner_runner_native_timing_and_exact_freeze_pending",
+    "status": "native_clocks_public_telemetry_gate_complete_owner_orchestration_guards_and_exact_freeze_pending",
     "fresh_HE_key_attempts_or_new_measurements": 0,
     "new_originality_security_parameter_or_deployment_approval": false,
     "remaining_system_packages": [
@@ -1538,7 +1574,7 @@
   "Q77_pending_coordinator_state_accounting": {
     "public_units": {
       "initial_distinct_ceiling": 256,
-      "retained_distinct_cases": 349,
+      "retained_distinct_cases": 352,
       "new_cases_this_component": 20,
       "additional_integration_requires_bounded_registration_before_execution": true,
       "additional_owner_trace_registered_ceiling": 64,
@@ -1546,8 +1582,9 @@
       "historical_initial_ceiling_remains_256": true,
       "additional_coordinator_registered_ceiling": 32,
       "additional_coordinator_source_cases": 23,
-      "remaining_coordinator_case_capacity": 3,
-      "additional_coordinator_upload_relay_cases": 6
+      "remaining_coordinator_case_capacity": 0,
+      "additional_coordinator_upload_relay_cases": 6,
+      "additional_coordinator_runtime_worker_cases": 3
     },
     "protected_signing_contexts": {
       "historical_initial_cap": 54,
@@ -1676,15 +1713,15 @@
     "actual_HE_or_timing_cohort": 0,
     "whole_coordinator_and_exact_freeze_pending": true
   },
-  "pending_cohort_relay_checkpoint": {
-    "tag": "checkpoint/native-shared-query-cohort-relay-2026-10-05",
-    "status": "Create/verify after relay return commit; preceding source checkpoint remains verified"
-  },
   "Q77_native_stage_instrumentation_obligation": {
     "current_frontend_produce_forward_wall_includes_verifier_wait": true,
     "not_a_bare_evaluator_latency_observation": true,
     "freeze_actual_native_intervals_projection_and_limitations_before_HE": true,
-    "whole_owner_completion_remains_primary_metric": true
+    "whole_owner_completion_remains_primary_metric": true,
+    "instrumentation_implemented_public_stub_gate_complete": true,
+    "actual_native_call_intervals_unexecuted": true,
+    "projection_excludes_python_preparation_cleanup_and_is_not_bare_baseline": true,
+    "worker_final_close_occurs_after_native_inventory_charge_separately": true
   },
   "historical_planning_review_before_mechanism_handoff": "docs/research/research-system-synthesis-review-20261005.json",
   "paper_mechanism_handoff": {
@@ -1692,5 +1729,27 @@
     "original_main_accepted": false,
     "exact_source_relation_mechanism_equal_control_held_out_ablation_required": true,
     "no_additional_Q77_observations_registered_or_consumed": true
+  },
+  "historical_execution_return_before_runtime_workers": "docs/research/native-shared-query-cohort-relay-return-20261005.json",
+  "Q77_runtime_workers_public_return": {
+    "file": "docs/research/native-shared-query-runtime-return-20261005.json",
+    "utc": "2026-10-05T09:53:54.949113+00:00",
+    "new_public_cases": 3,
+    "retained_distinct_public_cases": 352,
+    "remaining_registered_public_cases": 0,
+    "actual_HE_or_native_search_or_timing_cohort": 0,
+    "whole_owner_coordinator_and_exact_freeze_pending": true
+  },
+  "pending_native_clock_telemetry_checkpoint": {
+    "tag": "checkpoint/native-shared-query-native-clocks-2026-10-05",
+    "status": "Create/verify after runtime return commit; preceding relay checkpoint remains verified"
+  },
+  "Q77_public_telemetry_integration_obligation": {
+    "worker_implemented_public_gate_complete": true,
+    "owner_enforcement_and_HE_integration_pending": true,
+    "PID_birth_registry_updates_atomic_trusted_local_only": true,
+    "guard_cooperative_not_hard_instantaneous_memory_limit": true,
+    "check_guard_persistence_failures_and_observed_gaps": true,
+    "supervisor_current_mask_must_allow_worker_cpus_during_starts": true
   }
 }

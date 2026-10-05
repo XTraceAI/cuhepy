@@ -70,9 +70,11 @@ The [current build plan](paper-system-build-plan-after-roles-20261004.md) and
 [progress ledger](research-contribution-progress-20261004.json) control future
 execution. Q76's bounded local prototype is complete. Q77's plumbing and owner
 trace pass their public gates; its source/accounting subgate adds 23 cases,
-and the owner-bound cohort upload relay adds six, for 349 retained distinct
-cases across separate invocations. Three cases remain in the coordinator's
-32-case ceiling. The whole cohort
+the owner-bound cohort upload relay adds six, and native clocks/public
+telemetry add three, for 352 retained distinct cases across separate invocations.
+The coordinator's 32-case ceiling is exhausted. The owner-lab entry now
+implements measured role and telemetry services, but its owner cohort run action
+is absent. The whole cohort
 runner, actual HE/private process handoff and complete-cost timings remain
 unexecuted. These are implementation prerequisites, not a new scientific result.
 

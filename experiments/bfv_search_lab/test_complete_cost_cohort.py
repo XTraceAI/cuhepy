@@ -13,10 +13,13 @@ import json
 import os
 from pathlib import Path
 import pickle
+import sys
 import time
+from types import SimpleNamespace
 
 import pytest
 
+from benchmarks import complete_cost_owner_lab as runtime
 from experiments.bfv_search_lab import authenticated_shared_query as auth
 from experiments.bfv_search_lab import complete_cost_cohort as cohort
 from experiments.bfv_search_lab import complete_cost_cohort_relay as cohort_relay
@@ -571,3 +574,287 @@ def test_cohort_relay_supervised_worker_shares_setup_cache_update_download_lane(
 def cfg_link(config):
     fields = json.loads(Path(config).read_text())
     return json.loads(Path(fields["routing_config"]).read_text())["client_link"]
+
+
+def test_cohort_runtime_native_calls_preserve_cached_paths_and_separate_waits():
+    """Configured-call public stubs exercise proxies, not HE/native arithmetic."""
+
+    class PublicCall:
+        def __init__(self):
+            self.argtypes, self.restype = [object], object
+            self.returned, self.arguments = object(), []
+            self.error = None
+
+        def __call__(self, *args):
+            self.arguments.append(args)
+            time.sleep(0.002)
+            if self.error is not None:
+                raise self.error
+            return self.returned
+
+    for mode, role in (
+        (cert.MODES[0], "frontend"),
+        (cert.MODES[0], "protected"),
+        (cert.MODES[1], "protected"),
+        (cert.MODES[2], "frontend"),
+    ):
+        symbols = runtime.NATIVE_SYMBOLS + tuple(s for _, s in runtime.CACHED_SYMBOLS[mode])
+        originals = {symbol: PublicCall() for symbol in symbols}
+        dll = SimpleNamespace(**originals)
+        arithmetic = SimpleNamespace(**{a: originals[s] for a, s in runtime.CACHED_SYMBOLS[mode]})
+        factory, library = SimpleNamespace(_arithmetic=arithmetic), SimpleNamespace(_lib=dll)
+        clocks = runtime.NativeClocks(role, mode)
+        clocks.install(library, factory)
+        for attr, symbol in runtime.CACHED_SYMBOLS[mode]:
+            assert getattr(arithmetic, attr) is getattr(dll, symbol)
+        argument = object()
+        with clocks.phase("initial-preparation"):
+            assert dll.cuhepy_shared_create(argument) is originals["cuhepy_shared_create"].returned
+        with clocks.phase("run"):
+            assert dll.cuhepy_shared_query(argument) is originals["cuhepy_shared_query"].returned
+            if mode == cert.MODES[0]:
+                dll.cuhepy_shared_produce(argument)
+                dll.cuhepy_shared_terminal(argument)
+            elif mode == cert.MODES[1]:
+                assert arithmetic._run(argument) is originals["cuhepy_shared_replay"].returned
+            else:
+                assert (
+                    arithmetic._produce(argument)
+                    is originals["cuhepy_shared_aggregate_produce"].returned
+                )
+            dll.cuhepy_shared_check(argument)
+            time.sleep(0.03)  # Public simulated RPC wait, deliberately outside native calls.
+            dll.cuhepy_shared_query_destroy(argument)
+        report = clocks.inventory()
+        projection = report["computational_projection"]
+        run = next(p for p in report["phases"] if p["phase"] == "run")
+        assert run["end_ns"] - run["start_ns"] - projection["wall_ns"] >= 20_000_000
+        assert projection["not_independently_executed_unverified_evaluator"]
+        assert projection["not_whole_owner_completion_latency"]
+        assert all(originals[c["symbol"]].arguments for c in report["calls"])
+        assert all(
+            c["end_ns"] >= c["start_ns"] and c["thread_cpu_ns"] >= 0 for c in report["calls"]
+        )
+        assert not any(k in c for c in report["calls"] for k in ("arguments", "result", "pointer"))
+        dll.cuhepy_shared_query.argtypes = [int]
+        dll.cuhepy_shared_query.restype = int
+        assert originals["cuhepy_shared_query"].argtypes == [int]
+        assert originals["cuhepy_shared_query"].restype is int
+        failure = ValueError("UNIT-ONLY diagnostic message must not be logged")
+        originals["cuhepy_shared_check"].error = failure
+        with pytest.raises(ValueError) as caught, clocks.phase("run"):
+            dll.cuhepy_shared_check(argument)
+        assert caught.value is failure
+        assert clocks.inventory()["calls"][-1]["status"] == "raised"
+        assert clocks.inventory()["calls"][-1]["error_class"] == "ValueError"
+        assert "diagnostic message" not in json.dumps(clocks.inventory())
+        before = len(originals["cuhepy_shared_query"].arguments)
+        with pytest.raises(RuntimeError):
+            dll.cuhepy_shared_query(argument)  # Unscoped work is forbidden before delegation.
+        assert len(originals["cuhepy_shared_query"].arguments) == before
+        with pytest.raises(RuntimeError):
+            clocks.install(library, factory)
+        for item in (clocks, dll.cuhepy_shared_query):
+            with pytest.raises(TypeError):
+                copy.copy(item)
+            with pytest.raises(TypeError):
+                pickle.dumps(item)
+        clocks._pid += 1
+        try:
+            with pytest.raises(RuntimeError):
+                clocks.inventory()
+        finally:
+            clocks._pid -= 1
+    # A stale cached pointer fails before replacing any public function.
+    originals = {name: PublicCall() for name in runtime.NATIVE_SYMBOLS + ("cuhepy_shared_replay",)}
+    dll = SimpleNamespace(**originals)
+    bad = SimpleNamespace(_arithmetic=SimpleNamespace(_run=PublicCall()))
+    with pytest.raises(ValueError):
+        runtime.NativeClocks("protected", cert.MODES[1]).install(SimpleNamespace(_lib=dll), bad)
+    assert all(getattr(dll, name) is fn for name, fn in originals.items())
+
+
+@pytest.fixture
+def runtime_files(tmp_path):
+    freeze = os.environ.get("Q77_RUNTIME_PUBLIC_FREEZE")
+    if not freeze:
+        raise RuntimeError("The registered public runtime gate requires its source freeze")
+
+    def make(label, **changes):
+        root = tmp_path / label
+        root.mkdir()
+        identity = runtime.process_counters(os.getpid())
+        registry = root / "registry.json"
+        registry.write_text(
+            json.dumps(
+                [{"label": "owner", "pid": os.getpid(), "birth_ticks": identity["birth_ticks"]}]
+            )
+        )
+        cfg = {
+            "role": "frontend",
+            "service": "public-resource-telemetry",
+            "registry": str(registry),
+            "samples": str(root / "samples.jsonl"),
+            "guard": str(root / "guard.json"),
+            "interval_ns": 100_000_000,
+            "max_samples": 100,
+            "max_bytes": 131072,
+            "deadline_ns": time.perf_counter_ns() + 10_000_000_000,
+            "min_available_bytes": 0,
+        }
+        cfg.update(changes)
+        config = root / "config.json"
+        config.write_text(json.dumps(cfg))
+        return config, Path(freeze), cfg
+
+    return make
+
+
+def test_cohort_runtime_telemetry_birth_binding_limits_and_persistence_failure(
+    runtime_files, monkeypatch
+):
+    config, freeze, cfg = runtime_files("wrong-birth")
+    registry = json.loads(Path(cfg["registry"]).read_text())
+    registry[0]["birth_ticks"] += 1
+    Path(cfg["registry"]).write_text(json.dumps(registry))
+    service = runtime.PublicTelemetry(config, freeze)
+    try:
+        limit = time.perf_counter_ns() + 2_000_000_000
+        while service.inventory()["samples_consumed"] < 1 and time.perf_counter_ns() < limit:
+            time.sleep(0.01)
+        with pytest.raises(ValueError):
+            service.execute(
+                auth._pack([b"sample", {"pid": 1, "file": "/tmp/not-a-telemetry-target"}])
+            )
+        service.close()
+        rows = [json.loads(line) for line in Path(cfg["samples"]).read_text().splitlines()]
+        assert rows and all(
+            r["processes"][0]["observation"] == "birth_mismatch_no_process_followed" for r in rows
+        )
+        assert all("memory_bytes" not in r["processes"][0] for r in rows)
+        inv = service.inventory()
+        assert inv["closed"] and not inv["sampler_thread_alive"] and inv["failure"] is None
+        assert (
+            inv["no_processes_killed"] and not inv["process_memory_argv_environment_or_keys_read"]
+        )
+        consumed = inv["samples_consumed"]
+        with pytest.raises(RuntimeError):
+            service.sample()
+        assert service.inventory()["samples_consumed"] == consumed
+        with pytest.raises(TypeError):
+            copy.copy(service)
+        with pytest.raises(TypeError):
+            pickle.dumps(service)
+    finally:
+        service.close()
+    assert runtime.system_counters()["memory_bytes"]["MemAvailable"] < 1 << 40
+    config, freeze, cfg = runtime_files("memory-guard", min_available_bytes=1 << 40)
+    service = runtime.PublicTelemetry(config, freeze)
+    try:
+        service._thread.join(timeout=2)
+        service.close()
+        inv = service.inventory()
+        assert inv["failure"]["reason"] == "available_memory_below_frozen_minimum"
+        assert inv["guard_record_persistence_completed"] and service.stopping
+        assert json.loads(Path(cfg["guard"]).read_text())["samples_consumed"] == 1
+    finally:
+        service.close()
+    config, freeze, cfg = runtime_files("sample-cap", max_samples=1)
+    service = runtime.PublicTelemetry(config, freeze)
+    try:
+        service._thread.join(timeout=2)
+        service.close()
+        assert service.inventory()["failure"]["reason"] == "sample_attempt_cap_exhausted"
+        assert service.inventory()["samples_consumed"] == 1
+    finally:
+        service.close()
+    # The fixed host's real public CPU counters exceed this tiny artifact cap.
+    assert len(json.dumps(runtime.system_counters())) > 1024
+    config, freeze, cfg = runtime_files("byte-cap", max_bytes=1024)
+    service = runtime.PublicTelemetry(config, freeze)
+    try:
+        service._thread.join(timeout=2)
+        service.close()
+        assert service.inventory()["failure"]["reason"] == "sample_byte_cap_exhausted"
+        assert service.inventory()["sample_bytes"] == Path(cfg["samples"]).stat().st_size == 0
+    finally:
+        service.close()
+    config, freeze, cfg = runtime_files("guard-fsync-failure", min_available_bytes=1 << 40)
+    with monkeypatch.context() as patch:
+
+        def failed_fsync(_fd):
+            raise OSError("UNIT-ONLY simulated guard persistence failure")
+
+        patch.setattr(runtime.os, "fsync", failed_fsync)
+        service = runtime.PublicTelemetry(config, freeze)
+        service._thread.join(timeout=2)
+    try:
+        service.close()
+        inv = service.inventory()
+        assert service.stopping and inv["failure"] is not None
+        assert inv["guard_record_persistence_completed"] is False
+        assert Path(cfg["guard"]).exists()  # Partial failure is retained, never replaced.
+    finally:
+        service.close()
+
+
+def test_cohort_runtime_clean_supervised_telemetry_is_public_and_owned(runtime_files, tmp_path):
+    config, freeze, cfg = runtime_files("supervised")
+    manager = supervisor.PublicSupervisor(
+        tmp_path / "runtime-manager.json",
+        source_pin=supervisor.pinned(Path(supervisor.__file__)),
+        python_pin=supervisor.pinned(sys.executable),
+        timeout_ns=10_000_000_000,
+    )
+    done = tmp_path / "runtime-worker.json"
+    cpu = 7 if 7 in os.sched_getaffinity(0) else min(os.sched_getaffinity(0))
+    spec = supervisor.WorkerSpec(
+        "telemetry",
+        supervisor.pinned(Path(runtime.__file__)),
+        str(config),
+        str(freeze),
+        str(done),
+        cpu,
+    )
+    try:
+        ready = manager.start((spec,))[spec.label]
+        assert ready["local_verifier_public_key"] is None
+        assert runtime.process_counters(ready["process"])["parent"] == manager.process_id
+        entries = []
+        for label, pid in (
+            ("owner", os.getpid()),
+            ("manager", manager.process_id),
+            ("telemetry", ready["process"]),
+        ):
+            entries.append(
+                {
+                    "label": label,
+                    "pid": pid,
+                    "birth_ticks": runtime.process_counters(pid)["birth_ticks"],
+                }
+            )
+        pending_registry = tmp_path / "next-runtime-registry.json"
+        pending_registry.write_text(json.dumps(entries))
+        pending_registry.replace(Path(cfg["registry"]))
+        time.sleep(0.15)
+        manager.stop((spec.label,))
+        result = json.loads(done.read_text())
+        assert result["failure"] is None and result["closed"] and not result["sampler_thread_alive"]
+        assert (
+            result["no_processes_killed"]
+            and not result["process_memory_argv_environment_or_keys_read"]
+        )
+        rows = [json.loads(line) for line in Path(cfg["samples"]).read_text().splitlines()]
+        assert rows and all(row["sampler_cpu_affinity"] == [cpu] for row in rows)
+        assert any(
+            {p["label"] for p in row["processes"]} == {"owner", "manager", "telemetry"}
+            for row in rows
+        )
+        assert all(row["system"]["VM_counters"]["pswpin"] >= 0 for row in rows)
+        assert not Path("/proc/" + str(ready["process"])).exists()
+    finally:
+        manager.close()
+    summary = json.loads((tmp_path / "runtime-manager.json").read_text())
+    assert len(summary["attempts"]) == 1
+    assert summary["attempts"][0]["status"] == "stopped"
+    assert summary["attempts"][0]["exit_code"] == 0
