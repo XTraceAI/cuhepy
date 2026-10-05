@@ -1,11 +1,13 @@
 """Public orchestration gates; arithmetic uses the existing labelled stubs."""
 
 from dataclasses import replace
+import hashlib
 import json
 import os
 from pathlib import Path
 import threading
 import time
+from types import SimpleNamespace
 
 import pytest
 
@@ -19,6 +21,11 @@ from experiments.bfv_search_lab import test_complete_cost_cohort as public_cohor
 from experiments.bfv_search_lab import complete_cost_cohort as cohort
 from experiments.bfv_search_lab import authenticated_shared_query as auth
 from benchmarks import complete_cost_owner_cohort as assembly
+from benchmarks import complete_cost_owner_study as study
+from experiments.bfv_search_lab import complete_cost_tenant as tenant_module
+from experiments.bfv_search_lab import complete_cost_cohort_relay as cohort_relay
+from experiments.bfv_search_lab import shared_query_client_context as context
+from experiments.bfv_search_lab import test_complete_cost_owner as public_owner
 
 # Re-export the existing labelled fixtures for pytest discovery.
 make_trace, owners = public_trace.make_trace, public_trace.owners
@@ -449,3 +456,452 @@ def test_worker_preparation_is_inside_consumed_owner_attempt(make_trace, tmp_pat
     else:
         assert len(result["observations"]) == 8 and len(f.encrypted) == 9
         assert result["owner_inventory"]["closed"]
+
+
+def public_tenant(tmp_path, monkeypatch, owners):
+    """Existing public roots and invalid HE material; every HE operation is stubbed."""
+    g, pk, sk = public_owner.material(0)
+    ledger = cohort.ResourceLedger(tmp_path / "resources.jsonl", dict(study.LIMITS))
+    state = SimpleNamespace(ready=False, calls=[], encryptions=[], fail_feature=None, nonce=0)
+    key = hashlib.sha256(b"Q76.4c public unit AES fixture").digest()
+
+    def used(name):
+        return ledger.inventory()["used"][name]
+
+    def signing_stub():
+        assert used("owner_signing_keys") == 1
+        state.calls.append("owner-signing-key-predebited")
+        return owners[0]
+
+    def entropy_stub(size):
+        if size == 32:
+            assert used("cache_AES_keys") == 1
+            state.calls.append("cache-key-predebited")
+            return key
+        assert size == 12
+        state.nonce += 1
+        return state.nonce.to_bytes(12, "little")
+
+    def key_stub(n, t, bits, eta, *, rns_modulus):
+        assert (n, t, bits, eta, rns_modulus) == (g.n, g.t, 120, g.eta, True)
+        assert used("HE_keys") == 1
+        state.calls.append("HE-key-predebited-PUBLIC-STUB")
+        return pk, sk
+
+    def evaluation_stub(selected_pk, selected_sk, dimension):
+        assert (selected_pk, selected_sk, dimension) == (pk, sk, g.dimension)
+        state.calls.append("evaluation-keys-PUBLIC-STUB")
+        zero = (0,) * g.n
+        switch = ((zero, zero),) * 4
+        return tenant_module.shared.Keys(pk.key_id, 4, switch, ((9, switch), (5, switch)))
+
+    def encryption_stub(message, selected_pk, selected_sk):
+        assert (selected_pk, selected_sk) == (pk, sk)
+        assert len(message) == g.n and set(message) <= {-1, 0, 1}
+        attempt = used("feature_encryptions")
+        assert attempt == len(state.encryptions) + 1
+        state.encryptions.append(tuple(message))
+        if attempt == state.fail_feature:
+            raise OSError("UNIT-ONLY failed feature persistence boundary")
+        return b"UNIT-ONLY opaque feature packet " + str(attempt).encode()
+
+    monkeypatch.setattr(tenant_module.Ed25519PrivateKey, "generate", staticmethod(signing_stub))
+    monkeypatch.setattr(tenant_module.secrets, "token_bytes", entropy_stub)
+    monkeypatch.setattr(tenant_module.bgv, "key_gen", key_stub)
+    monkeypatch.setattr(tenant_module.shared, "evaluation_keys", evaluation_stub)
+    monkeypatch.setattr(tenant_module.seeded, "encrypt", encryption_stub)
+    p = tenant_module.TenantProvisioner(
+        tmp_path / "tenants",
+        ledger,
+        geometry=g,
+        guard=lambda: state.calls.append("public-guard"),
+        ready=lambda: state.ready,
+        byte_limit=300_000,
+    )
+
+    def builder(_anchor):
+        return (
+            tuple(hashlib.sha256(x.encode()).digest() for x in cert.MODES),
+            hashlib.sha256(b"UNIT-ONLY public code identity").digest(),
+        )
+
+    return SimpleNamespace(p=p, state=state, ledger=ledger, builder=builder, key=key)
+
+
+def test_honest_tenant_readiness_and_key_attempts_precede_stub_work(tmp_path, monkeypatch, owners):
+    f = public_tenant(tmp_path, monkeypatch, owners)
+    with pytest.raises(RuntimeError, match="telemetry"):
+        f.p.create(0, policy_builder=f.builder)
+    assert not any(f.ledger.inventory()["used"].values())
+    f.state.ready = True
+    tenant = f.p.create(0, policy_builder=f.builder)
+    assert [x for x in f.state.calls if x != "public-guard"] == [
+        "owner-signing-key-predebited",
+        "cache-key-predebited",
+        "HE-key-predebited-PUBLIC-STUB",
+        "evaluation-keys-PUBLIC-STUB",
+    ]
+    view = tenant.initial((0, 1, 3, 7, 0), (9, 8, 7, 6, 5))
+    assert len(view.records) == 3 and len(f.state.encryptions) == 3
+    assert all(len(word) == 16 for word in f.state.encryptions)
+    assert not list(f.p.root.glob("*.partial-group"))
+    assert not tenant.inventory()["private_keys_serialized"]
+    assert not tenant.inventory()["secure_zeroization_claim"]
+    with pytest.raises(RuntimeError):
+        f.p.create(0, policy_builder=f.builder)
+    f.p.close()
+    f.ledger.close()
+
+
+def test_honest_tenant_failed_feature_keeps_prefix_and_consumes_attempt(
+    tmp_path, monkeypatch, owners
+):
+    f = public_tenant(tmp_path, monkeypatch, owners)
+    f.state.ready, f.state.fail_feature = True, 2
+    tenant = f.p.create(0, policy_builder=f.builder)
+    with pytest.raises(OSError):
+        tenant.initial((0, 1, 3, 7, 0), (9, 8, 7, 6, 5))
+    prefix = next(f.p.root.glob("*.partial-group"))
+    retained = prefix.read_bytes()
+    assert b"UNIT-ONLY opaque feature packet 1" in retained
+    assert b"UNIT-ONLY opaque feature packet 2" not in retained
+    assert f.ledger.inventory()["used"]["feature_encryptions"] == 2
+    with pytest.raises(RuntimeError):
+        tenant.initial((0, 1, 3, 7, 0), (9, 8, 7, 6, 5))
+    assert prefix.read_bytes() == retained and len(f.state.encryptions) == 2
+    f.p.close()
+    f.ledger.close()
+
+
+def test_tenant_modes_share_rows_and_updates_reuse_keys_and_unaffected_group(
+    tmp_path,
+    monkeypatch,
+    owners,
+):
+    f = public_tenant(tmp_path, monkeypatch, owners)
+    f.state.ready = True
+    tenant = f.p.create(0, policy_builder=f.builder)
+    old = tenant.initial(tuple(i % 8 for i in range(17)), tuple(range(17)))
+    words = tuple(range(8))
+    new = tenant.update(old, words, label="remote-update", encrypted=True)
+    assert new.rows == tuple(words[i % 2] ^ 1 for i in range(17))
+    metadata = context.verify_descriptor(new.descriptor.packet, tenant.anchor, new.descriptor.pin)
+    for mode in cert.MODES:
+        before, after = old.record(mode), new.record(mode)
+        after.verify_owner(tenant.anchor)
+        assert after.keys == before.keys and after.groups[1:] == before.groups[1:]
+        assert after.groups[0] != before.groups[0] and after.epoch == 2
+        assert metadata.mode(mode).snapshot_id.hex() == after.snapshot_id
+    assert metadata.cache.snapshot_id == new.cache_delivery.context.snapshot_id
+    consumed = f.ledger.inventory()["used"]["feature_encryptions"]
+    delivery, rows = tenant.update(old, words, label="cache-update", encrypted=False)
+    assert type(delivery) is cache.PatchDelivery and rows == new.rows
+    assert f.ledger.inventory()["used"]["feature_encryptions"] == consumed == 9
+    assert delivery.previous_context == old.cache_delivery.context
+    with pytest.raises(RuntimeError):
+        tenant.update(old, words, label="cache-update", encrypted=False)
+    f.p.close()
+    f.ledger.close()
+
+
+def test_study_has_fixed_calibration_first_order_caps_and_rejects_uncommitted_execution(
+    tmp_path,
+    monkeypatch,
+):
+    order = study.cohort_order()
+    assert len(order) == 18 and all(x["phase"] == "calibration" for x in order[:6])
+    assert all(x["phase"] == "held-out" for x in order[6:])
+    assert len({(x["key"], x["count"], x["block"]) for x in order}) == 18
+    assert all(set(x["trajectories"]) == set(study.TRAJECTORIES) for x in order)
+    assert study.LIMITS["query_encryptions"] == 3 * 18 * 10 + 18 * 9 == 702
+    assert study.LIMITS["protected_signing_keys"] == (3 + 1) * 18 == 72
+    assert study.LIMITS["feature_encryptions"] == 2 * (512 + 512 + 1024) + 3 * 18 * 512
+    assert study.query_bytes()[:2] == (bytes.fromhex("55" * 64), bytes.fromhex("a3" * 64))
+    called = []
+    monkeypatch.setattr(study.OwnerStudy, "_bootstrap", lambda _self: called.append("forbidden"))
+    path = tmp_path / "uncommitted.json"
+    path.write_text("{}")
+    with pytest.raises(ValueError, match="committed"):
+        study.OwnerStudy(path, tmp_path / "output")
+    assert not called and not (tmp_path / "output").exists()
+
+
+def calibration_rows(tmp_path):
+    results = []
+    for key in range(2):
+        for count in study.SIZES:
+            for label in study.TRAJECTORIES:
+                packet = tmp_path / f"public-calibration-{key}-{count}-{label}.json"
+                packet.write_text(json.dumps({"UNIT-ONLY logical scheduler fixture": label}))
+                rank = {"m0": 3, "m1": 1, "m2": 2}.get(label, 4)
+                results.append(
+                    {
+                        "key": key,
+                        "count": count,
+                        "trajectory": label,
+                        "block": 0,
+                        "status": "complete",
+                        "result_pin": supervisor.pinned(packet),
+                        "observations": [{"owner_latency_ns": rank} for _ in range(8)],
+                        "evaluator_projection_ns": [4 - rank] * 8,
+                    }
+                )
+    return results
+
+
+def test_policy_freeze_uses_complete_calibration_only_and_cannot_be_replaced(tmp_path):
+    results = calibration_rows(tmp_path)
+    for bad in (results[:-1], [dict(x, block=1) for x in results], [results[0]] * 36):
+        with pytest.raises(ValueError):
+            study.select_policies(bad, tmp_path / "must-not-exist.json")
+        assert not (tmp_path / "must-not-exist.json").exists()
+    target = tmp_path / "policy.json"
+    selected = study.select_policies(results, target)
+    frozen = target.read_bytes()
+    assert set(selected["client_remote"].values()) == {"m1"}
+    assert set(selected["evaluator_projection_remote"].values()) == {"m0"}
+    assert selected["generic_same_information_remote"] == selected["client_remote"]
+    assert not selected["held_out_inputs"] and len(selected["calibration_inputs"]) == 36
+    with pytest.raises(FileExistsError):
+        study.select_policies(results, target)
+    assert target.read_bytes() == frozen
+
+
+def test_actual_cache_only_session_uses_shared_tcp_upload_update_without_HE_work(
+    tmp_path,
+    monkeypatch,
+    owners,
+):
+    f = public_tenant(tmp_path, monkeypatch, owners)
+    f.state.ready = True
+    tenant = f.p.create(0, policy_builder=f.builder)
+    view = tenant.initial((0, 1, 3, 7, 0), (9, 8, 7, 6, 5))
+    before = f.ledger.inventory()["used"]
+    native = object.__new__(cache.NativePopcount)
+    native._initialize_owner()
+
+    def scan_stub(_self, rows, count, dimension, query):
+        width, word = (dimension + 7) // 8, int.from_bytes(query, "little")
+        values = tuple(
+            (int.from_bytes(rows[i : i + width], "little") ^ word).bit_count()
+            for i in range(0, len(rows), width)
+        )
+        assert len(values) == count
+        return values, tuple(sorted(range(count), key=lambda i: (values[i], i))[:3])
+
+    monkeypatch.setattr(cache.NativePopcount, "scan", scan_stub)
+    monkeypatch.setattr(study, "CPUS", dict.fromkeys(study.CPUS, cpu()))
+    freeze = tmp_path / "public-session-freeze.json"
+    freeze.write_text(
+        json.dumps(
+            {
+                "new_sources": [
+                    supervisor.pinned(assembly.__file__),
+                    supervisor.pinned(cohort_relay.__file__),
+                ],
+                "preserved_runtime_sources": [],
+                "dependencies": [],
+            }
+        )
+    )
+    pool = echo.start(tmp_path, timeout=4_000_000_000)
+    holder = object.__new__(study.OwnerStudy)
+    holder.root, holder.addendum = tmp_path, freeze
+    holder.freeze = {
+        "guard": {"operation_timeout_ns": 1_500_000_000},
+        "client_link": study.asdict(study.roles.CLIENT_LINK),
+    }
+    holder.guard = SimpleNamespace(check=lambda: None)
+    holder.manager, holder.provisioner, holder.ledger = pool, f.p, f.ledger
+    holder.native_cache, holder.active, holder.history, holder.policy = native, {}, [], None
+    holder._pid, holder.registry = os.getpid(), tmp_path / "owned-pids.json"
+    try:
+        for label in ("returning", "fresh"):
+            result = holder._trajectory(
+                {"key": 0, "count": 5, "block": 0}, label, tenant, view, tuple(range(8))
+            )
+            assert result["status"] == "complete" and len(result["observations"]) == 8
+            assert len(result["complete_oracle_checks"]) == (9 if label == "fresh" else 10)
+            inv = result["owner_inventory"]
+            assert not inv["requires_HE_descriptor_key_index_or_certificate"]
+            assert not list((tmp_path / f"k0_n5_b0_{label}").glob("*.enrollment"))
+            uploads = [x for x in inv["endpoint"]["transfers"] if "send" in x["direction"]]
+            assert uploads  # Actual shaped sockets, not a modeled byte subtraction.
+        after = f.ledger.inventory()["used"]
+        for name in (
+            "HE_keys",
+            "feature_encryptions",
+            "query_encryptions",
+            "protected_signing_keys",
+        ):
+            assert after[name] == before[name]
+        assert holder.active == {}
+    finally:
+        pool.close()
+        f.p.close()
+        f.ledger.close()
+
+
+def test_combined_assembly_cache_update_preserves_HE_base_and_rejects_mismatched_coverage(
+    tmp_path,
+    data,
+    owners,
+    monkeypatch,
+):
+    nonce = [0]
+
+    def nonce_stub(size):
+        assert size == 12
+        nonce[0] += 1
+        return nonce[0].to_bytes(12, "little")
+
+    monkeypatch.setattr(cache.secrets, "token_bytes", nonce_stub)
+    arc, metadata, _keys, _batches, record = data(2)
+    key = hashlib.sha256(b"Q76.4c public unit AES fixture").digest()
+    rows = tuple(i % 8 for i in metadata.ids)
+    delivery = cache.seal_snapshot(
+        rows,
+        metadata.ids,
+        3,
+        key,
+        owners[0],
+        namespace=b"N" * 32,
+        key_id=b"K" * 32,
+        snapshot_id=b"S" * 32,
+        epoch=1,
+    )
+    full = b"".join(chunk for _, chunk in record.packet_chunks(arc))
+    freeze = tmp_path / "combined.freeze.json"
+    freeze.write_text(
+        json.dumps(
+            {
+                "new_sources": [supervisor.pinned(assembly.__file__)],
+                "preserved_runtime_sources": [],
+                "dependencies": [],
+            }
+        )
+    )
+
+    def prepare(name, value, extra=False):
+        root = tmp_path / name
+        root.mkdir()
+        packet = assembly.combined_body(record, b"UNIT-ONLY HE descriptor", full, value)
+        if extra:
+            packet = auth._pack([*auth._unpack(packet, limit=300_000, array_cap=4), b"trailing"])
+        upload = root / "initial.upload"
+        upload.write_bytes(packet)
+        cfg = {
+            "role": "frontend",
+            "service": "public-cohort-combined-assembly",
+            "owner_anchor": owners[0].public_key().public_bytes_raw().hex(),
+            "root": str(root),
+            "initial": supervisor.pinned(upload),
+            "update": None,
+            "cache_initial_context": assembly.context_fields(value.context),
+            "cache_update_context": None,
+        }
+        path = root / "config.json"
+        path.write_text(json.dumps(cfg))
+        return path, cfg
+
+    config, cfg = prepare("valid", delivery)
+    role = assembly.PublicEnrollmentAssembler(config, freeze)
+    old = dict(role.enrollment)
+    patch = cache.seal_update(((0, 1),), key, owners[0], delivery.context, snapshot_id=b"T" * 32)
+    upload = Path(cfg["root"]) / "update.upload"
+    upload.write_bytes(assembly.cache_body(patch))
+    cfg.update(
+        update=supervisor.pinned(upload),
+        cache_update_context=assembly.context_fields(patch.context),
+    )
+    config.write_text(json.dumps(cfg))
+    role.execute(auth._pack([b"refresh"]))
+    assert role.enrollment == old and role.record == record
+    assert Path(old["file"]).read_bytes() == full
+    assert role.cache_context == patch.context
+    assert not role.inventory()["stages"][-1]["HE_index_or_descriptor_updated"]
+    foreign = cache.seal_snapshot(
+        rows,
+        tuple(reversed(metadata.ids)),
+        3,
+        key,
+        owners[0],
+        namespace=b"N" * 32,
+        key_id=b"K" * 32,
+        snapshot_id=b"X" * 32,
+        epoch=1,
+    )
+    for name, value, extra in (("wrong-IDs", foreign, False), ("wrong-grammar", delivery, True)):
+        path, failed_cfg = prepare(name, value, extra)
+        with pytest.raises(ValueError):
+            assembly.PublicEnrollmentAssembler(path, freeze)
+        assert not (Path(failed_cfg["root"]) / "initial.enrollment").exists()
+
+
+def test_full_cohort_public_scheduler_freezes_once_before_held_out_and_stops_failures(
+    tmp_path,
+    monkeypatch,
+):
+    corpus = tmp_path / "public-zero-rows.bin"
+    corpus.write_bytes(bytes(32768 * 64))
+
+    def run_stub_cohort(root, fail_at=None):
+        root.mkdir()
+        holder = object.__new__(study.OwnerStudy)
+        holder.root, holder.addendum = root, corpus
+        holder.freeze = {"corpus": supervisor.pinned(corpus)}
+        holder._pid, holder._consumed = os.getpid(), False
+        holder.manager = holder.provisioner = holder.ledger = holder.native_cache = None
+        holder.active, holder.history, holder.results, holder.policy = {}, [], [], None
+        holder.guard = SimpleNamespace(check=lambda: None, inventory=lambda: {"public_stub": True})
+        events = []
+
+        def bootstrap():
+            assert (root / "attempt.json").exists()
+            events.append("UNIT-ONLY logical bootstrap; no actual manager/telemetry/key")
+
+            def create(slot, **_kwargs):
+                events.append(("public-key-slot-stub", slot))
+                return SimpleNamespace(initial=lambda rows, ids: (rows, ids))
+
+            holder.provisioner = SimpleNamespace(
+                create=create, close=lambda: events.append("closed")
+            )
+
+        def trajectory(block, label, _tenant, _view, _words):
+            index = len(holder.results)
+            assert (holder.policy is None) == (index < 36)
+            if index >= 36:
+                assert (root / "policy-freeze.json").exists()
+            packet = root / f"public-logical-row-{index}.json"
+            packet.write_text(json.dumps({"UNIT-ONLY scheduler stub": index}))
+            return {
+                "key": block["key"],
+                "count": block["count"],
+                "block": block["block"],
+                "trajectory": label,
+                "status": "failed" if index == fail_at else "complete",
+                "observations": [{"owner_latency_ns": 1} for _ in range(8)],
+                "evaluator_projection_ns": [1] * 8,
+                "result_pin": supervisor.pinned(packet),
+            }
+
+        holder._bootstrap, holder._trajectory, holder._stop = (
+            bootstrap,
+            trajectory,
+            lambda _labels: None,
+        )
+        result = holder.run()
+        with pytest.raises(RuntimeError):
+            holder.run()
+        assert events[-1] == "closed"
+        return result
+
+    success = run_stub_cohort(tmp_path / "public-complete")
+    assert success["status"] == "complete" and len(success["results"]) == 108
+    assert sum(x["block"] == 0 for x in success["results"]) == 36
+    assert len(success["policy"]["calibration_inputs"]) == 36
+    failed = run_stub_cohort(tmp_path / "public-failed", fail_at=36)
+    assert failed["status"] == "failed" and len(failed["results"]) == 37
+    assert failed["results"][-1]["status"] == "failed"
+    assert failed["keys_blocks_or_retries_not_replaced"]

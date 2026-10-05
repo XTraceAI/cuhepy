@@ -19,6 +19,11 @@ Grant Slalom-compatible reusable preprocessing, with its real lifetime argument;
 separate confidential checker weights from Argos's secret-free evaluator
 architecture. This distinction changes comparison obligations, not the next
 implementation, task status or finite experiment reservations.
+The [launcher return](native-shared-query-owner-launcher-return-20261005.json)
+completes R2a/R2b in bounded public scope. R2c is now the first unmet ticket:
+commit and validate the exact pre-HE execution freeze and resource review.
+The latest gate passed 74 cases, including the eight remaining registered new
+cases; all actual HE/private/native work was replaced by public stubs.
 
 ## What to build, and what could justify a paper
 
@@ -179,9 +184,9 @@ contained algorithm.
 
 | Ticket | Work and location | Exit and next ticket |
 | --- | --- | --- |
-| R2a, next | Implement honest provisioning in `experiments/bfv_search_lab/complete_cost_tenant.py`: pre-debit every actual attempt, retain public inputs, independent cache contexts and recoverable partial failures. | Provenance/accounting public gate; actual HE remains disabled. Then R2b. |
-| R2b | Implement `benchmarks/complete_cost_owner_study.py` with the existing coordinator, shared relay, clean supervisor, real resource telemetry and public enrollment assembly. | Runnable six-trajectory cohort action, eight reserved new public cases, no retries, no hidden shared traffic/state. Then R2c. |
-| R2c | Commit the exact execution addendum/source/interpreter/library/fixture pins, order, budget, deadline/storage/memory guards and retention law. | Exact pre-HE freeze; only then launch R3. The pending 702-query/72-signer proposal is not activated by this document. |
+| R2a, public gate complete | Honest provisioning in `experiments/bfv_search_lab/complete_cost_tenant.py`: pre-debit actual attempts, retain public inputs, independent cache contexts and recoverable partial failures. | Public fixture accounting/coverage passes; actual HE remains unexecuted. |
+| R2b, public gate complete | `benchmarks/complete_cost_owner_study.py` connects the coordinator, shared relay, clean supervisor, resource telemetry and public enrollment/cache assembly. | Full scheduling and actual cache-only TCP lifetimes pass the registered gate. This does not validate the actual encrypted cohort. |
+| R2c, next | Commit the exact execution addendum/source/interpreter/library/fixture pins, order, budget, deadline/storage/memory guards and retention law. Review complete retained and transient resource costs. | Exact pre-HE freeze; only then launch R3. The pending 702-query/72-signer proposal is not activated by this document. |
 | R3a | Run all six calibration blocks first, preserve complete observations and failures, and choose the allowed policy using only calibration. | Persist immutable selection before any held-out work. Then R3b. |
 | R3b | Run twelve held-out blocks with frozen choices; total 18 blocks/144 measured requests per trajectory, 864 across six trajectories. Warmups/update checks remain separate. | Complete owner costs, whole-output correctness, paired block analysis and contamination return. Then choose exactly one R4 route or close the scoped useful-region claim. |
 | R4a | Produce the mechanism eligibility return above; first build the partial-owner/dynamic reference when refresh is the trigger. | One eligible mechanism, named reference and falsifier; contained template is not accepted. Then R4b. |

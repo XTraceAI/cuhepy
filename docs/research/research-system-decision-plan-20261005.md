@@ -32,6 +32,11 @@ measurements, a new mechanism verdict or additional experiment slots.
 The [residency and assurance review](research-residency-assurance-plan-review-20261005.json)
 adds the concise decision card and verification-state distinctions below. It
 preserves the evidence, task statuses and experiment reservations.
+The [launcher return](native-shared-query-owner-launcher-return-20261005.json)
+now implements honest tenant provisioning and the full cohort action, with a
+74-case public gate: eight new cases and 66 preserved cases. Its source and
+failure receipts are retained. It adds no actual HE or selection-study timing;
+the exact committed execution addendum remains the next dependency.
 
 ## Decision card for the next implementation
 
@@ -53,7 +58,8 @@ service. This is a testable systems hypothesis, not a claimed new primitive.
 
 Execution remains finite: **finish R2; run R3 once; specify and test one eligible
 R4 extension; then complete Q78 assurance and Q79 evaluation/paper**. R2's four
-files and remaining eight public stub cases are already registered. R3 retains
+files now pass the registered eight-case public extension gate. R2's exact
+execution freeze and resource review remain pending. R3 retains
 six trajectories, 18 blocks and 144 measured requests per trajectory, with
 calibration preceding held-out evaluation. This review authorizes no extra
 cases, keys, timings or scale sweep. After each exit, record the actual artifact
@@ -65,6 +71,33 @@ A same-output ablation establishes attribution, not originality. If a known
 composition reproduces the whole change, keep the useful company implementation
 and close that candidate paper claim. A formal result is eligible only if it
 supplies a substantive guarantee or refinement beyond routine composition.
+
+### The paper claim to earn
+
+The target is an exact encrypted-search service whose computation identity,
+current data authority and verification-state lifetime can be separated safely
+enough to remove a measured cost. The test is whether that separation changes
+the complete execution after the compatible known construction has the same
+ordinary optimizations and owner permissions. A faster implementation of a
+known base-plus-delta recipe is useful engineering, but does not by itself
+establish this claim.
+
+The proposed paper package has four linked deliverables: one precisely changed
+execution; its necessary invariant and conditional assurance argument; a
+complete homemade implementation; and a measured crossover that explains
+where the mechanism wins and loses. The originality card identifies the
+additional execution or guarantee left after the known ingredients are
+credited. No result or conference acceptance is presumed.
+
+R3 selects the bottleneck; R4 supplies the mechanism evidence. For the leading
+refresh candidate, the expected saving is the prepared-state work actually
+avoided, less the additional query, local correction, transfer, recipe and
+compaction costs. For a construction cut, name the literal source/transform
+segment removed and all work that remains protected. For streaming, name the
+live-state bound and a capacity consequence beyond equally streamed replay.
+These are mutually conditional choices for one extension, not three new
+experiment queues. If an optimized prior construction reproduces the whole
+change, close that main claim before running its expensive panel.
 
 ## Decision and prospective contribution
 
@@ -179,10 +212,12 @@ not evidence that the new mechanism uniquely invents compact uploads.
 The selected canonical graph has separate bounded source correctness evidence:
 one key, six searches and 114,752 distances. Q76's prototype, replay, aggregate,
 mutable cache and static certificate gates are complete in their recorded
-scopes. Q77 retains **376 distinct public cases across component invocations**;
-the latest 66-case invocation comprised 24 new and 42 repeated cases. Private
-HE/native arithmetic was stubbed in that invocation. Honest tenant provisioning,
-the full cohort launch and the exact pre-HE freeze remain unfinished. Q77 has
+scopes. Q77 retains **384 distinct public cases across component invocations**;
+the latest 74-case invocation comprised eight new and 66 repeated cases. Private
+HE/native arithmetic and fresh key generation were stubbed in that invocation.
+Honest tenant provisioning and the full cohort action now pass their bounded
+public gate; actual provisioning/worker integration on the selected encrypted
+profile and the exact pre-HE freeze remain unexecuted. Q77 has
 consumed **zero** HE keys, complete-cost blocks or timing observations.
 
 At two groups/32k rows, retained interface accounting gives 127,057,920 bytes
@@ -664,11 +699,15 @@ unavailable adapters cannot supply the distinction.
 | Q78, assurance/deployment | Conditional reduction, native refinement, parameter/private-leakage review, real attested authority and rollback/revocation tests; matched GPU path if used in the final claim. | Complete premises and real deployment evidence before a secure-service or GPU-service performance claim. |
 | Q79, final paper/artifact | Additional justified workloads/deployment evaluation, strongest counterconstruction, external originality/security review, reproducible artifact and paper. | One precise defensible finding with winning and losing regimes. |
 
-R2 is partially implemented: actual trajectories, HE-independent cache/races
-and compact public update assembly pass their public gate. Honest tenant
-provisioning and the full launch are absent. Complete these rather than creating
-another instrumentation-only milestone. The new launcher registration reserves
-eight further public cases within the parent cap; no actual HE work has run.
+R2's provisioning and launch code is implemented. The new gate checks
+preconsumed setup/encryption attempts, failed-prefix retention, all three mode
+bindings, immutable calibration order, policy freezing, actual cache-only TCP
+setup/update lifetimes and full logical scheduling/failure stopping. It uses
+existing public UNIT keys and labelled arithmetic/scheduling stubs. Its eight
+new cases exhaust the parent registration's public extension allowance. The
+selected encrypted integration has not run: finish the exact execution
+addendum and whole-resource review before launching R3. Passing this gate is
+neither encrypted correctness nor a complete-cost measurement.
 
 R3 compares three independently prepared remote modes, returning/fresh cache
 and racing acquisition. For each mode, charge actual provisioning, setup,

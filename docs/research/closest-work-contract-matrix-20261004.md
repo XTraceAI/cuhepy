@@ -4,7 +4,7 @@
 
 2026-10-05, implementation `73b552f2cbcc7a4b0add092c41d0171d236a826a`.
 The [current plan](research-system-decision-plan-20261005.md) uses the latest
-remotely verified owner-trajectory checkpoint. Q77 retains 376 distinct public
+remotely verified owner-trajectory checkpoint. Q77 retains 384 distinct public
 cases and has zero complete-cost HE observations. The
 [earlier receipt](research-paper-design-audit-20261005.json) archives the
 public coefficient-support correction. The
@@ -31,6 +31,13 @@ dense fixed-operator checks from coefficient-field quotient checks, calculate
 their different repetition/state/work laws on the current profile, and specify
 the aggregate-wire conversion ablation. These are planning counts; no larger
 scale, random-checking service, new test or timing result has been executed.
+The [launcher return](native-shared-query-owner-launcher-return-20261005.json)
+implements the missing owner provisioning and cohort action. Its 74-case public
+gate includes eight new cases and 66 preserved cases; zero actual HE/private
+native work was performed. The same primary predecessors were rechecked online,
+and the old 25-sample panel was recalculated, without new source records or
+timing observations. The exact pre-HE execution freeze remains pending. This
+implementation milestone changes no originality verdict or comparator cost.
 
 The conditional candidate is a **current authenticated snapshot assembled from
 an immutable dense encrypted base and current row replacements**. Its
