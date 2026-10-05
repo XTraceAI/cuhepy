@@ -730,3 +730,30 @@ and `/home/pete/yavor-projects/xtrace-work/research-data/paper-admission-design-
 The preceding aggregate correctness gate is recorded separately: this planning
 review adds no HE, regression invocation, timing, formal proof or deployed
 attestation. It sharpens the plan, not a positive originality verdict.
+
+## One-use encrypted query preprocessing: targeted containment return
+
+The [query-mask containment note](query-mask-preprocessing-containment-20261005.md)
+adds a literal inherited control for any later construction/lifetime proposal:
+prepare an encrypted random query prefix, or its immutable-base common-Q score,
+and apply a plaintext offset online. [ZipPIR v1 §4.1](https://arxiv.org/html/2603.09190v1#S4.SS1)
+already moves the encrypted random component of linear evaluation offline.
+[Slalom v2 §2](https://arxiv.org/html/1806.03287v2#S2) already uses one-time masks
+and precomputed linear images. Encrypted weights, exact all-score release and
+malicious-server admission require paid adapters; the offset identity is known.
+
+Grant this compatible decomposition to the strongest reference. Charge each
+one-use mask, unused preparation, retained state, complete public relation,
+current base/replacement recipe and owner nonreuse before publishing an offset.
+Private-callback consumption happens too late to prevent mask-reuse disclosure.
+Do not add corrections after terminal rounding without a separate relation.
+No new privacy reduction, native implementation or performance result is claimed.
+
+The [scoped receipt](query-mask-preprocessing-review-20261005.json) preserves
+all 138 preceding source records and appends one version-specific primary HTML
+record, for **139 records**. The new 2026 ZipPIR record is distinct from the
+retained 2023/2024 *HE is all you need* paper. Its PDF acquisition is deferred
+until timing stops; this record is not a new locally archived paper. The
+running R3 action, its policy, and the existing single-extension gate are
+unchanged. Basic mask/precomputed-score hoisting is closed as a new-algorithm
+claim; a substantive surviving distinction remains necessary.

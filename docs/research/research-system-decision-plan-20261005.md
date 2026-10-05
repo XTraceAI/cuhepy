@@ -1141,3 +1141,29 @@ reservation, policy or block was replaced. That action subsequently interrupted;
 ten held-out trajectory rows survive, without a complete terminal return.
 The separate new comparison must calibrate and freeze from its own inputs;
 the earlier policy is retained evidence and cannot be substituted.
+
+## Known query-mask preprocessing control, reviewed during live R3
+
+The [targeted containment return](query-mask-preprocessing-review-20261005.json)
+and [literal adaptation note](query-mask-preprocessing-containment-20261005.md)
+close a further generic claim before implementation: encrypted random query
+masks and precomputed base scores with plaintext online corrections inherit
+known offline/online linear hoisting. The later ZipPIR v1 §4.1 makes this
+counterconstruction particularly explicit. Slalom's one-use masks and
+incremental offline/online PIR are also credited. Encrypted owner weights and
+complete malicious-server admission need an adapter, not an invented novelty
+claim for the offset algebra.
+
+If completed R3 costs make preprocessing relevant, grant this decomposition
+to the strongest compatible reference, and pay offline work, expired masks,
+retained state, exact common-Q correction/admission and owner nonreuse before
+public offset transmission. Do not amortize a one-use mask over distinct
+queries or commute corrections through terminal rounding. The prospective
+origin/noise/privacy/currentness argument must cover the actual changed graph.
+
+The review preserves 138 earlier source records and adds one targeted primary
+HTML record, for 139. New PDF acquisition waits for the timing window to end.
+It changes no 446-source/716-dependency execution pin, guard, scientific
+reservation or policy. It reads no partial timing values and implements no
+R4 mechanism. The next action remains complete R3 analysis followed by the
+existing single-extension eligibility gate, not a reopened experiment queue.
