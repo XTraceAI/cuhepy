@@ -1,5 +1,95 @@
 # Closest work for the selected exact-search system
 
+## Current system decision and strongest counterconstruction
+
+2026-10-05, implementation `73b552f2cbcc7a4b0add092c41d0171d236a826a`.
+The [current plan](research-system-decision-plan-20261005.md) uses the latest
+remotely verified owner-trajectory checkpoint. Q77 retains 376 distinct public
+cases and has zero complete-cost HE observations. The
+[review receipt](research-paper-design-audit-20261005.json) archives this reading
+and a public coefficient-support correction; it adds no author execution,
+production approval or accepted originality. All dated headers below this
+addendum describe earlier reviews with their historical counts.
+
+The conditional candidate is a **current authenticated snapshot assembled from
+an immutable dense encrypted base and current row replacements**. Its
+potential benefit is avoiding paid base re-preparation, not inventing compact
+uploads or encrypted inner products. The old CUDA BGV update already uploaded
+a compact 491,721-byte packet. Compare against selective resident refresh and
+unchanged-group reuse before attributing its 7.1466-second rebuild to an
+intrinsic limitation of prior work.
+
+| Most direct comparison | Exact credited scope | Adapter/control we must build | Claim this comparison prevents |
+| --- | --- | --- | --- |
+| [PPMI v3](https://arxiv.org/html/2506.17336v3), §4.3/A.1/A.2 | Query/key precomputation, dynamic vector operations and transform placement to avoid cache invalidation. | A compact-row, selectively refreshed exact binary specialization, with all key/noise/origin and currentness costs. | No first combination of decomposition, encrypted caching and updates. A new version split must change useful authenticated execution. |
+| [CSSC v1](https://arxiv.org/html/2603.04742v1), §§3.3/4/6 | Sparse encrypted matrix-vector layout; semi-honest protocol; static sparsity in its stated future-work limitation. | Treat changed rows/values as a sparse control where its structural leakage is permitted. Pay row/value encoding, rearrangement and malicious admission. Its N=8192/t=65537 SIMD profile differs from our N=16384/t=1031 coefficient ring. | No first sparse HE packing or inference that an open extension in one paper establishes our priority. |
+| [Authenticated incremental PIR](https://eprint.iacr.org/2026/1077), retained definitions/update construction | Authenticated entry retrieval, immediate updates and periodic aggregation. | Credit incremental authentication/recovery. Supply the separate complete-distance computation statement and digest/feedback adaptation. | No first authenticated incremental database or first row aggregation. |
+| [Argos](https://petsymposium.org/popets/2025/popets-2025-0099.php) and [vFHE](https://arxiv.org/html/2301.07041v2) | Integrity-only execution and malicious-server product delegation. | Same graph, native optimizations and prepared state; complete replay, paid deterministic admission and the unexecuted randomized maintained-graph adapter. | No first TEE/HE system, oracle defense or generalized accelerator checking. Smaller witness alone does not establish a faster service. |
+| [Engorgio](https://www.usenix.org/conference/usenixsecurity25/presentation/bian), §§3.3–3.5/4 | Quantized CKKS hybrid queries, encrypted ordering/permutation and top-k, under its semi-honest server model. | For an output-contract extension, align exact binary comparisons, tie order and malicious verification, then pay ordering and final release. | Server-side encrypted top-k and output selection are known. Its runtime/precision laws do not instantiate our all-distance contract. |
+| [Compact Storage for HE](https://eprint.iacr.org/2022/273), §1.1/model | Two-server compact storage, selective packing at retrieval and homomorphic reconstruction; noncollusion is an explicit premise. | Include an auxiliary service/trust row and reconstruction/network costs if used; do not import its compact storage under a single malicious-cloud contract. | Late HE representation construction and compact stored data are known. A different trust model cannot supply a free advantage. |
+| [Silph](https://eprint.iacr.org/2023/060)/[CirC](https://eprint.iacr.org/2020/1586), known packing and log-structured methods | Conversion-aware multiple representations and ordinary data-layout/version techniques. | Grant legal duplicate representations, identical cost information, horizon and reuse choices. | An optimal generic planner returning the same execution contains a superior-optimizer claim. A useful system finding needs its own distinct evidence. |
+| Permitted raw/partial cache / protected plaintext search | Exact local search, compact authenticated patches, client-side replacement distances and alternative trusted key custody. | Returning/fresh/racing full cache plus a changed-row-only owner layer with the same arrivals/link/update law. If permitting plaintext in a TEE, report that trust row separately. | No invented owner-cache prohibition, forced HE acquisition, local-popcount restriction or universal HE advantage. |
+
+The strongest compatible reference combines known packed search/expansion with
+valid noise/origin reasoning, prepared native protected execution or properly
+maintained delegation, independent schedule validation, compact updates and
+mutable owner caches. Applying ordinary base-plus-delta storage to it is a
+serious possible counterconstruction. Our proposed distinction has to survive
+that construction, not merely papers tested one at a time.
+
+One still stronger control follows directly from the owner's permissions:
+retain or authentically acquire only the changed plaintext rows. Verify/decrypt
+the encrypted base, substitute their locally computed exact Hamming distances,
+then select top3. A 32-row/512-bit value body is 2,048 bytes; no extra HE tile
+product or 102,400-byte terminal tile is needed. The current partial-layer
+delivery/recipe adapter is unimplemented and must be paid, especially for fresh
+devices. This is ordinary client correction, not a new cryptographic primitive.
+It may eliminate the encrypted overlay's useful region without requiring a
+full-index cache. [The analytical counterconstruction](research-system-decision-plan-20261005.md)
+is now a mandatory control. Do not invent a retention constraint to evade it.
+
+### Precise boundary between inherited techniques and a prospective finding
+
+The proposed invariant binds the base root, ordered IDs, latest-row map, overlay
+root, profile/key and current epoch as one authorized recipe. Complete base
+and overlay results must refer to the same original request before private
+decoding. Exactly one latest value supplies each row's score, and old base
+reuse cannot authorize an old or mixed-epoch complete response. This is the
+specific supporting refinement to implement. Signatures and an authenticated
+map alone do not prove the delegated arithmetic or establish an original
+security primitive.
+
+The public review improves the proposed layout: spacing 512 fits 32 rows in one
+tile. Wrapped degrees 0..510 miss the selected coefficients 511 modulo 512.
+This is known convolution packing, already present in our homemade reference.
+The predicted extra terminal body is 102,400 bytes, giving a 307,200-byte base-plus-
+overlay body at 32k; the direct feature-replacement body ratio is 512, not a
+measured speedup and not the gain against compact upload/transposition.
+The future native graph, decoder grammar, currentness protocol and full cost
+remain unimplemented. A passing public box bound does not approve them.
+
+An acceptable paper result requires the exact version/admission execution,
+complete invariant, a useful held-out region versus the strong dynamic
+reference, a same-output base-reuse ablation, losing regimes and an external
+originality review. Broad delegation superiority additionally needs the actual
+randomized vFHE adapter. If a compatible prior specialization contains all of
+this, preserve the company implementation and close the positive headline.
+
+### New source archive and limits of this review
+
+The registry preserves all 128 previous records and appends three PDF/text
+pairs, for 131 source records. The CSSC v1 official history has a single arXiv
+revision; its journal edition is not substituted. Engorgio is the USENIX 2025
+publisher PDF. Compact Storage uses a hash-pinned IACR mirror PDF after the
+official PDF endpoint returned 403; the official metadata and retrieval failure
+are retained. Targeted text/model/algorithm passages were inspected; no full
+proof audit, author implementation, parameter estimate or reproduced latency
+was executed. Metadata inconsistencies or uninspected proofs are not evidence
+that an author system is insecure or incapable. Reading records and exact
+PDF/text hashes live in `publication-literature-sources.json` and the external
+`research-data/research-paper-design-audit-20261005` archive.
+
+
 > Current decision review, 2026-10-05: [the decision plan](research-system-decision-plan-20261005.md)
 > uses verified implementation `9d1dffa9143d031373bad6df1d44a2cfb35200ef` and
 > adds the three dynamic-index comparators below. The source registry now has

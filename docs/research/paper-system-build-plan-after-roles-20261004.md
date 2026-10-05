@@ -1,5 +1,17 @@
 # Research system and paper plan
 
+> Latest handoff, 2026-10-05: the [current decision plan](research-system-decision-plan-20261005.md)
+> uses verified implementation `73b552f2cbcc7a4b0add092c41d0171d236a826a`.
+> Owner trajectories/public assembly now retain 376 distinct public cases;
+> honest tenant provisioning/full cohort launch/exact freeze are unfinished,
+> and Q77 has zero HE timing observations. The review corrects the conditional
+> row-overlay layout to 32 rows per ciphertext, adds three closest-work records
+> and defines partial-owner replacement plus compact-upload/selective-refresh
+> controls. The encrypted overlay is subordinate to those permitted controls. All dated
+> component statuses below are historical; the decision plan and progress
+> ledger give the current dependency. This handoff activates no HE budget.
+
+
 Current implementation baseline: **2026-10-05**, remotely verified commit
 `9d1dffa9143d031373bad6df1d44a2cfb35200ef`, tag
 `checkpoint/native-shared-query-native-clocks-2026-10-05`. The

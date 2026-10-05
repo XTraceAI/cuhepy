@@ -1,376 +1,414 @@
 # Build decision and research contribution plan
 
-2026-10-05. This is the current decision plan, based on preserved implementation
-`9d1dffa9143d031373bad6df1d44a2cfb35200ef`. It narrows the
-[detailed build plan](paper-system-build-plan-after-roles-20261004.md), rather
-than reopening the experiment portfolio. The [progress ledger](research-contribution-progress-20261004.json)
-controls task status; the [closest-work matrix](closest-work-contract-matrix-20261004.md)
-records primary sources and contract differences. The
-[review receipt](research-system-decision-review-20261005.json) distinguishes
-retained measurements, derived calculations and proposals. No new HE run,
-benchmark, author artifact or security approval was added by this review.
+2026-10-05. Current implementation: `73b552f2cbcc7a4b0add092c41d0171d236a826a`,
+branch `experiment/native-shared-query-service-20261004`. Its owner-trajectory
+checkpoint is remotely verified. This plan replaces the earlier decision text;
+the preceding version remains in Git and the planning evidence archive.
+The [progress ledger](research-contribution-progress-20261004.json) controls
+execution status. The [closest-work matrix](closest-work-contract-matrix-20261004.md)
+retains the detailed comparisons and version qualifications. The
+[current review receipt](research-paper-design-audit-20261005.json) pins this
+review, the public algebra calculation and retained measurements.
 
-## The system and the result worth pursuing
+## Decision and prospective contribution
 
-Finish one exact-search service using our homemade BGV arithmetic. The owner
-keeps the decryption key and may retain all plaintext. A malicious cloud
-stores encrypted data and evaluates requests. A protected role authenticates
-the authorized computation and complete result before the owner decrypts.
-The output remains every exact Hamming distance, plus top3 ordered by
-`(distance, original row ordinal)` with bound UInt64 IDs. Production Paillier,
-BFV/BGV/CUDA assets and optional SEAL examples remain available.
+Build one exact owner-data search service using our homemade BGV arithmetic.
+Reuse the existing native/RNS/CUDA engineering; retain Paillier, BFV and the
+optional SEAL sanity controls. The selected complete-admission graph currently
+has a CPU native prototype. The earlier fast CUDA graph is different; its
+timings cannot be advertised as the selected protected service's performance.
 
-The research target is a **specific useful execution of this service**:
-which representation is built where, which intermediate claims require
-checking, and which authenticated state can survive a query or update.
-The paper must identify an execution change, explain its invariant, measure
-the costs it displaces, and exhibit both its winning and losing regions.
-Homemade arithmetic, a smaller packet, a TEE, or a cost-aware planner alone
-does not establish originality.
+The **conditional system candidate** is an authenticated composite index:
+retain a densely packed base across updates, represent current replacements
+separately, and authorize their combination as one current answer. Because the
+owner may retain plaintext, its strongest update path may compute replacement
+distances locally. The encrypted row-tile variant below is subordinate to that
+mandatory control, not the expected winner. Study the useful verification/reuse
+execution and its crossover. If the complete-cost study identifies construction/
+admission or protected-state capacity as the limiting cost, select one of the
+two existing alternatives below.
 
-The default candidate remains the construction/admission boundary. This review
-adds a concrete candidate for update-heavy operation: an immutable packed base
-with authenticated encrypted row overlays. It is a proposed experiment, not
-an implemented system or an accepted novel algorithm. Select **one** creative
-extension after the existing comparison identifies its bottleneck. Do not
-execute a mixed boundary, row overlay and larger streaming system as three
-new exploration queues.
+The intended contribution is a specific useful execution with a necessary
+invariant, an actual mechanism ablation and an explained crossover. Packing,
+query expansion, cached representations, log-structured updates, TEEs and
+generic cost assignment are known. Their composition is not automatically
+original. **No original main result has yet been accepted.** The company
+implementation remains valuable if a stronger known construction contains the
+whole result.
 
-## What the evidence actually says
+## Contract and architecture
 
-The retained matched local panel used 32,768 vectors of 512 bits, one key/index
-block per variant, five measured queries and excluded warmups:
+The honest client owns its data and may retain all plaintext. The cloud is
+malicious and may change, omit, replay or substitute ciphertexts and observe
+public acceptance/rejection. The protected verifier is trusted for execution
+integrity and current authorization; it has no HE decryption key. Availability
+against a malicious cloud is not promised. The owner receives every exact
+Hamming distance and top3 ordered by `(distance, original row ordinal)` with
+authenticated UInt64 IDs. Content retrieval is outside this selected search
+measurement and must be separately paid if added to the final system.
+
+The owner signs the original encrypted query and pins the authorized snapshot.
+A public evaluator produces the ciphertexts and required intermediate claims.
+The protected role admits the complete computation and signs the bound result.
+The owner authenticates and consumes that result **before private decoding**.
+Authenticated plaintext acquisition and compact cache patches provide a
+separate permitted local-search path, including acquisition racing with remote
+search on the same client link.
+
+```mermaid
+flowchart LR
+    O[Owner: query, private key, current snapshot] --> L[Shared client link]
+    L --> E[Encrypted evaluator: native or future matched GPU]
+    E --> V[Protected computation admission]
+    V --> R[Bound complete result receipt]
+    R --> L
+    L --> D[Owner: verify, consume, decode, select]
+    L --> C[Authenticated cache and compact patches]
+    C --> S[Owner: publish current cache and scan]
+```
+
+The current process signer is a local prototype. It is not deployed attestation.
+The integrity-only HE contract above is the comparison contract, not a claim
+that customers forbid plaintext inside a TEE. A protected plaintext-search
+service is a separate useful control if its stronger key-custody trust is
+acceptable; report its assumptions and costs explicitly. Do not introduce a
+client memory restriction or forbid retention to create an HE advantage.
+
+## What the accumulated results support
+
+The retained matched local panel used 32,768 vectors of 512 bits, one
+process/key/index block per variant, five measured queries, one excluded warmup
+and one post-update check. This review recalculated its 25 measured samples;
+it did not generate new timing observations.
 
 | Variant | Local median ms | First reply B | One 32-row update s |
 | --- | ---: | ---: | ---: |
-| BGV CUDA, public-index graph | 117.298 | 204,895 | 7.2788 |
-| BFV CUDA, prepared | 892.813 | 409,770 | 0.7243 |
+| Earlier public-index BGV CUDA | 117.298 | 204,895 | 7.2788 |
+| Prepared BFV CUDA | 892.813 | 409,770 | 0.7243 |
 | Paillier lookup CUDA | 2,599.103 | 16,908,071 | 0.0052 |
 | Paillier lookup hybrid | 1,418.960 | 16,907,985 | 0.0055 |
 | Returning authenticated raw cache | 4.384 | 0 per returning query | 0.0269 |
 
-Those timings have the original swap/setup qualification, unequal unapproved
-profiles, and exclude networking and complete protected verification. They
-justify the engineering choice of BGV; they are not a measured secure-service
-speedup. All 35 searches, 1,146,880 distances and five post-update checks agreed
-within that panel. Its BGV update spent 7.1466 s rebuilding resident state.
-This motivates an update experiment, but does not establish the bottleneck
-of the new owner-canonical graph.
+These are swap/setup-qualified, unequal unapproved profiles and unverified
+local paths, excluding networking and complete protected admission. All 35
+searches, 1,146,880 distances and five update checks matched. Repetition within
+one key/index block does not provide population confidence. The earlier BGV
+update already used a compact 491,721-byte packet; 7.1466 seconds of its update
+was resident-state re-preparation. This is evidence to investigate refresh,
+not evidence that the new mechanism uniquely invents compact uploads.
 
-The selected native source graph has separate bounded correctness evidence:
-one key, six searches and 114,752 distances. Q76's local prototype, replay,
-aggregate, cache and static certificate gates are complete within their stated
-scopes. Q77 retains 352 distinct public cases across separate invocations;
-the latest invocation ran three public clock/telemetry cases. These are not
-352 independent encrypted experiments. The owner run action is still absent;
-Q77 has consumed **zero** HE keys, complete-cost blocks or timing observations.
+The selected canonical graph has separate bounded source correctness evidence:
+one key, six searches and 114,752 distances. Q76's prototype, replay, aggregate,
+mutable cache and static certificate gates are complete in their recorded
+scopes. Q77 retains **376 distinct public cases across component invocations**;
+the latest 66-case invocation comprised 24 new and 42 repeated cases. Private
+HE/native arithmetic was stubbed in that invocation. Honest tenant provisioning,
+the full cohort launch and the exact pre-HE freeze remain unfinished. Q77 has
+consumed **zero** HE keys, complete-cost blocks or timing observations.
 
-At two groups/32,768 rows, the selected interfaces have 127,057,920 B of full
-internal witness, 1,474,560 B of aggregate claim, an earlier 204,895 B client
-frame, a 263,206 B descriptor and 2,359,635 B authenticated cache acquisition.
-Query-expansion sources account for 125,583,360 B of that full witness. The
-roughly 86-fold aggregate reduction is on the internal link. It leaves the
-client frame unchanged and the deterministic checker still recomputes all
-three aggregate coefficients. Prepared RNS rows alone take 826,277,888 B;
-that is not full process RSS.
+At two groups/32k rows, retained interface accounting gives 127,057,920 bytes
+of full internal witness, 1,474,560 bytes of aggregate claim, an earlier
+204,895-byte client frame, a 263,206-byte descriptor and 2,359,635-byte cache
+acquisition. Query-expansion sources contribute 125,583,360 witness bytes.
+The approximately 86-fold aggregate reduction is on the internal link;
+deterministic aggregate admission still recomputes the products. Prepared RNS
+rows alone consume 826,277,888 bytes, not full process RSS. These counts motivate
+a placement question, not a secure-service speedup.
 
-Retain useful native/RNS/CUDA fusion, prepared transforms, compact replies and
-exact metadata/coverage controls. Retain the negative results too:
-unstructured/unequal-capacity low-rank controls, charged two-round refinement,
-literal answer polynomials, reusable masks, affine/operator-state containment,
-and insufficient phase/limb shortcuts are not reopened by renaming them.
-The [portfolio review](research-evidence-review-20261003.md) and individual
-reports preserve their narrower scopes. The 272 revalidation receipts,
-290 normalized observations and 297 historical/fresh pairs are different units.
-
-## Closest work: the comparison we must survive
-
-Credit a compatible composition of the strongest methods. Cross-paper timing
-ratios cannot compare different trust, approximation, origin or output laws.
-
-| Primary work | Established ingredient | Required matched control or distinction |
+| Experiment family | Carry into the system | Claim or task closed by its evidence |
 | --- | --- | --- |
-| [HERS](https://arxiv.org/abs/2003.12197v3), [SealPIR](https://eprint.iacr.org/2017/1142), [MulPIR](https://www.usenix.org/system/files/sec21-ali.pdf) | Packed encrypted search, expansion and communication/computation tradeoffs. | Same exact graph, once-per-request expansion and delayed maintenance. Our existing algebra is contained. |
-| [Argos](https://petsymposium.org/popets/2025/popets-2025-0099.php) | Hardware-backed FHE integrity and verification before decryption. | Equally optimized full protected execution; a local signature does not reproduce its hardware custody. |
-| [vFHE](https://arxiv.org/html/2301.07041v2) | Malicious-server analysis and TEE-assisted product delegation with polynomial checking. | Actual aggregate/ring adapter, committed claim, fresh challenges, maintenance and lifetime soundness. Its randomized adapter remains unexecuted here. |
-| [PEEV](https://doi.org/10.1109/ACCESS.2024.3424420), [WAHC vFHE](https://cknabs.github.io/assets/pdf/vfhe.pdf) | Program-to-HE-to-verification pipelines. | Complete common-Q, terminal and release adapter; no first verifiable compiler claim. |
-| [ILA](https://arxiv.org/html/2509.11559v1) | Functional correctness from valid quantitative models and trusted typed inputs. | Concrete malicious-intermediate admission/native refinement. Grant it the same honest-owner origin premise. |
-| [Silph](https://eprint.iacr.org/2023/060), [CirC](https://eprint.iacr.org/2020/1586), [FlowCert](https://www.contrib.andrew.cmu.edu/~bparno/papers/flowcert.pdf) | Conversion-aware assignment, multiple representations and schedule validation. | Same legal plans, retained state, information and objective. An exact generic solver should agree; that closes a superior generic optimizer claim. |
-| [Corrected Cascudo](https://eprint.iacr.org/2025/286) | Ring verification including maintenance and range checks. | Apply the corrected relation to exact BGV with all common-integer and noise premises. |
-| [BioZKFHE](https://arxiv.org/html/2607.22065v1), [corrected Laminate](https://eprint.iacr.org/2025/2285) | Verified encrypted matching or blind encrypted computation under different release/feedback contracts. | Align trust, field semantics, maintenance and visible verdicts before a numerical comparison. |
-| [PPMI v3](https://arxiv.org/html/2506.17336v3), §4/Appendix A | Query decomposition, cached key representations and dynamic vector operations. | Compact uploads, affected-cache refresh and equal reuse freedoms. Exact malicious-server adaptation is open. |
-| [PRAG v2](https://arxiv.org/html/2604.26525v2), §§IV–VI | Dynamic encrypted HNSW retrieval under a semi-honest CKKS contract. | Credit dynamic HE indexing; exact HNSW decisions do not certify every global Hamming distance. No imported runtime ratio. |
-| [Lin et al., TPDS2021](https://iqua.ece.utoronto.ca/papers/wlin-tpds21.pdf), §§2–4 | Efficient updates for private similarity search with LSH/SSE and a two-server protocol. | Credit dynamic private search. Its semi-honest, noncolluding and candidate-selection premises differ from ours. |
-| Allowed owner cache | Returning local search, compact authenticated acquisition, mutable patches and background acquisition. | Mandatory returning, fresh and racing controls. Forcing an HE descriptor or HE index download on plaintext search manufactures an advantage. |
+| Homemade BFV/BGV, native/RNS/CUDA, compact formats and prepared transforms | Arithmetic, codecs, resident workspaces, exact oracles and fallback schemes. | A language/backend optimization alone does not establish a new algorithm. |
+| CPU/GPU measurement revalidation and equal-capacity controls | Paired blocks, complete costs, actual setup and contamination records. | Large CPU gains do not imply equal GPU gains; some small complete GPU differences are ties. |
+| Low-rank, dictionaries, query spaces and correlation experiments | Data-specific and changed-preprocessing alternatives with their exact contracts. | Unstructured-data losses, reusable-mask leakage and unpaid token/state costs remain negative. |
+| Output summaries, filters and two-round refinement | Coverage/ID counterexamples and exact-selection oracles. | Top-k-only, approximate or candidate-only outputs cannot replace all-distance exact search. |
+| E101/E110, Q57/Q59 and Q74/Q75 | Exact relations and strong ordinary algebraic controls. | Contained affine sharing, gadget propagation, expansion and generic optimization claims stay closed. |
+| Q65–Q73 semantic cuts and bounds | Scoped feasibility/counterexamples, complete integer/noise obligations and useful implementation ideas. | Partial-body models and known semantic rewrites are not complete latency or accepted originality. |
+| Q76 and partial Q77 | Admission, lifecycle, independent metadata checks, owner path, shared traffic and public orchestration. | Local tests/model lemmas do not prove production security or replace the unexecuted cohort. |
 
-Three new primary papers are archived in five versioned PDF/text pairs,
-including PPMI v1/v3 and PRAG v1/v2. The registry now has 128 source records,
-preserving all previous 123 records. Official version histories were checked;
-the retained text differences do not change the inspected technical passages.
-This targeted
-reading does not audit every proof, reproduce an author implementation or
-clear priority. The most serious new objection is PPMI: a system combining
-expansion, cached representations and updates is already prior work. The
-prospective distinction must be its exact authenticated execution and a
-demonstrated consequence, not that combination's existence.
+The [portfolio review](research-evidence-review-20261003.md),
+[detailed build plan](paper-system-build-plan-after-roles-20261004.md) and raw
+reports preserve narrower qualifications. The 272 revalidation receipts,
+290 normalized observations and 297 historical/fresh pairs are different units;
+do not sum them into independent experiments.
 
-## Architecture and the immediate executable dependency
+## Closest work and the obligation it creates
 
-Execution update: the [owner trajectory and public assembly return](native-shared-query-owner-runner-20261005.md)
-passes 66 public cases, including 24 new cases. It implements actual trajectory
-control, an HE-independent cache path, in-flight races and compact update
-assembly. Honest tenant provisioning and the complete cohort `run` action
-remain absent, so R2 is unfinished and no HE/cohort slots are consumed. The
-[progress ledger](research-contribution-progress-20261004.json) names that next
-dependency. This update is not another measured result or originality decision.
+The comparison must survive a compatible composition of the strongest prior
+methods. A missing adapter has unknown cost; it is not an infinitely slow
+baseline. The detailed matrix and archived primary sources contain the passages.
 
-Keep an owner process for private provisioning, fresh query creation, current
-snapshot pins and authorized decoding. Spawn clean producer, protected and
-transport workers with public inputs only. Share the shaped client lane across
-remote search and cache acquisition; use a separate charged internal lane.
-The current ordinary protected-process signer is a local prototype. Connect it
-to real attestation only in the deployment package.
-
-The target roles and their admission order are:
-
-```mermaid
-flowchart LR
-    O["Owner: signed original query and private HE key"] --> L["Shared client lane"]
-    L --> E["Untrusted encrypted evaluator"]
-    E --> V["Protected admission: no HE secret"]
-    V --> R["Bound receipt and complete encrypted frame"]
-    R --> L
-    L --> F["Owner: authenticate, consume, decode, select"]
-    L --> C["Authenticated plaintext cache acquisition"]
-    C --> P["Owner: publish cache and scan locally"]
-```
-
-The local worker implementation does not yet establish real hardware protection.
-
-Finish the owner coordinator in `benchmarks/complete_cost_owner_lab.py` or an
-additive owner-run entry point using the existing modules below. Do not add
-another instrumentation-only milestone in place of its run action.
-
-| Subcomponent | Existing building block | Completion condition |
+| Work | Ingredient already established | Required control or remaining question |
 | --- | --- | --- |
-| Public source and attempt ledger | `complete_cost_cohort.py` | Persist attempts before expensive work; retain actual generated query bytes and all signed snapshot inputs; no refunds, replacement keys or secret serialization. |
-| Independent policy sessions | Owner, role and supervisor modules | Separate preparations/lifetimes for three remote modes and returning/fresh/racing cache. One key pair per tenant is reused within the declared cohort. |
-| Genuine racing acquisition | Shared relay and cache client | Separate cache publication handle; first valid actual answer may win while losing work/traffic and cleanup remain paid. Stop and join remote use before the prefetch update. Acquisition failure is a recorded failure. |
-| Honest refresh | Existing owner/context/cache APIs | Bind all HE views and cache to one revision; replace the affected 512-feature group and refresh actual native state; cache gets its compact 32-row patch. |
-| Timing and resource enforcement | Native call clocks and public telemetry | Measure actual completion, CPU, both link directions, custody and live state; enforce deadlines/artifact/memory failures and retain contamination. |
-| Exact execution freeze | Existing registration plus committed addendum | Pin executable sources, dependencies, libraries, event order, warmup/initial states, affinities and resolved budgets before HE/private/timing work. |
+| [HERS](https://arxiv.org/abs/2003.12197v3), [SealPIR](https://eprint.iacr.org/2017/1142), [MulPIR](https://www.usenix.org/system/files/sec21-ali.pdf) | Packed encrypted search, expansion and communication/computation tradeoffs. | Identical exact graph, once-per-request expansion, delayed maintenance and equal native/GPU optimizations. Our existing algebra is contained. |
+| [PPMI v3](https://arxiv.org/html/2506.17336v3), §4/Appendix A | Decomposed queries, cached encrypted key representations, dynamic operations and cache-invalidation-aware transform placement. | Strong compact row upload and selective cache refresh, including its exact binary specialization where valid. Freshness/admission adaptation and its actual cost must be supplied. |
+| [Argos](https://petsymposium.org/popets/2025/popets-2025-0099.php) | Hardware-backed integrity-only FHE and verification before decryption. | Equally optimized protected execution. Our CPU signer does not inherit its isolated attestation-secret custody or side-channel argument. |
+| [vFHE](https://arxiv.org/html/2301.07041v2), Appendix D | Malicious-server analysis and randomized ring-polynomial checking of delegated products. | Actual aggregate adapter with committed claims, fresh challenges, complete maintenance and adaptive lifetime soundness. Required before broad superiority over delegation. |
+| [ILA](https://arxiv.org/html/2509.11559v1), [PEEV](https://doi.org/10.1109/ACCESS.2024.3424420), [WAHC vFHE](https://cknabs.github.io/assets/pdf/vfhe.pdf) | Valid-model/noise reasoning and program-to-verification pipelines. | Concrete origin/common-Q/native/terminal/release refinement. No first compiler, typing or verifiable-HE claim. |
+| [Silph](https://eprint.iacr.org/2023/060), [CirC](https://eprint.iacr.org/2020/1586), [FlowCert](https://www.contrib.andrew.cmu.edu/~bparno/papers/flowcert.pdf) | Conversion-aware multiple representations, scheduling and validation. | Equal legal plans, reuse, information and horizons. Generic solver agreement is expected and closes a superior generic-optimizer claim. |
+| [Corrected Cascudo](https://eprint.iacr.org/2025/286), [corrected Laminate](https://eprint.iacr.org/2025/2285), [BioZKFHE](https://arxiv.org/html/2607.22065v1) | Ring verification or verified encrypted computation/matching under distinct contracts. | Pay well-formedness, common-integer/range, release and feedback adapters. No cross-contract runtime ratio. |
+| [Authenticated incremental PIR](https://eprint.iacr.org/2026/1077) | Authenticated retrieval with immediate updates and periodic row aggregation. | Credit incremental authenticated databases; entry retrieval does not directly instantiate complete encrypted distance evaluation. |
+| [CSSC](https://arxiv.org/html/2603.04742v1), §§3–4/6 | Sparse encrypted matrix-vector packing and a stated semi-honest model; static-pattern recompression is an open extension in that paper. | Compare compact changed-row/sparse-value controls with explicit structural leakage. Its BFV SIMD profile is not our coefficient ring, and that open extension is not priority clearance. |
+| [Engorgio](https://www.usenix.org/conference/usenixsecurity25/presentation/bian), §§3–4 | Quantized CKKS hybrid queries, encrypted ordering/permutation and top-k. | If changing output to encrypted top-k, pay comparisons, exactness/ties and malicious-result verification. This is not a free substitute for the current contract. |
+| [Compact Storage for HE](https://eprint.iacr.org/2022/273) | Two-server compact storage and dynamic retrieval packing. | Credit late construction of HE representations; state its extra trust/service and reconstruction costs if adopted. |
+| [PRAG v2](https://arxiv.org/html/2604.26525v2), [Lin et al.](https://iqua.ece.utoronto.ca/papers/wlin-tpds21.pdf) | Dynamic encrypted ANN or private similarity updates with different trust/search laws. | Approximate/candidate and semi-honest/two-server premises remain separate. No imported performance ratio. |
+| Permitted owner cache and protected plaintext search | Local scans, compact authenticated patches and acquisition overlap; alternative key-custody choices. | Returning/fresh/racing full cache and a partial owner replacement layer are mandatory. Trust-changing plaintext-in-TEE execution is reported separately. |
 
-Additional public integration tests need a separate bounded registration because
-the prior coordinator's 32-case cap is exhausted. That is an experiment-integrity
-dependency, not a need for another user approval. Restore/report the supervisor's
-captured startup affinity before starting workers on other CPUs; permanent CPU3
-affinity otherwise makes those starts invalid. Preserve the cooperative nature
-of telemetry guards and record gaps, failures and persistence errors honestly.
+Three further primary PDF/text pairs are retained by this review, bringing the
+registry from 128 to **131 source records**, preserving every earlier record.
+These are versioned reading records, not 131 fully audited distinct papers.
+The new PDFs are CSSC v1, the Engorgio publisher edition and a hash-pinned
+Compact Storage ePrint mirror copy; the official download's 403 is retained.
+No author implementation or published speedup was reproduced.
 
-## Finite execution sequence and decisions
+The strongest objection to the leading candidate is already concrete:
+**dynamic packed search plus cached representations is known**. The experiment
+must show that a particular authenticated version split changes paid execution
+after a strong specialization has the same upload and reuse opportunities.
 
-| Step | Deliverable | Decision and next step |
-| --- | --- | --- |
-| R2, current | One complete owner runner, meaningful public integration gate and exact pre-HE freeze. | On success execute R3. Fix correctness/measurement failures within recorded attempts; do not replace them with stage models. |
-| R3, already reserved | Two keys × three sizes × three process blocks × eight queries: 18 blocks/144 measured queries per implementation; six calibration blocks/48 queries then twelve held-out blocks/96 queries. Warmups and update checks are separate. | Freeze policies after calibration. Return the actual useful frontier or failure; no additional size/radix/backend grid. |
-| R4, one creative extension | One selected mechanism, public invariant/bound screen, implementation, strongest adaptation and actual whole-execution ablation under a new finite registration. | Require a useful held-out region and a concrete surviving prior-work distinction; otherwise close the proposed claim and preserve the artifact. |
-| Q78, assurance/deployment | Actual attested code/key/channel, trusted currentness, crash/revocation behavior, private leakage/parameters and conditional security argument. | No deployed secure-service claim before these premises are established. |
-| Q79, paper/artifact | One precise result, final workload/deployment evaluation, prior counterconstruction, external review, reproducible artifact and paper. | Engineering success is retained even if it does not earn a research main. |
+## One conditional extension: authenticated composite snapshot reuse
 
-No broad preliminary research gates remain. The three remaining packages are
-Q77 evaluation/one extension, Q78 assurance/deployment and Q79 paper. R2 is
-unfinished implementation, not completed measurement. The current local
-corpus/two-key cohort is a selection study; it cannot establish population
-confidence by treating its correlated queries as independent samples.
+**Trigger:** R3 attributes a limiting paid cost to refresh or update-to-next-answer,
+and calibration predicts a useful benefit after extra response/query costs.
+The old rebuild time does not satisfy this trigger for the selected graph.
 
-Use equally weighted paired block results and complete owner-visible
-completion-minus-arrival as the primary metric. Separate setup, first answer,
-updates, tail delay, work, traffic and peak live state. Actual overlap matters:
-do not sum stage medians to fabricate complete latency. Keep every failed,
-timed-out and contaminated block. Grant the generic selector the same legal
-plans, calibration information and horizon; any retrospective minimum is an
-oracle diagnostic. The 20% remote-policy project gate is separate from cache
-utility and paper originality.
+Keep the feature-major encrypted base immutable. Represent current values of
+changed rows in a separate owner-authenticated layer. A signed descriptor binds
+`(base root, ordered IDs, overlay root, latest-row map, key/profile, epoch)`.
+The latest map assigns each ordinal exactly one authoritative value: its current
+replacement row or its base row. Bind evaluation to the **same original query**
+and complete current recipe. Authorize the old base as its component; never
+relabel old ciphertexts as freshly encrypted current inputs.
 
-Historical Q77 caps are unchanged and unconsumed. The current prefetch proposal
-is 702 fresh remote queries, 72 protected signer contexts and 31,744 feature
-encryptions, with two HE keys. It requires the exact committed addendum before
-consumption; this plan does not activate it. Keep the 8 GiB additional-artifact
-ceiling, actual source retention, <=1 s telemetry and the granted idle-window
-measurement discipline. Existing local BGV/CUDA numbers do not fill these slots.
+### Mandatory partial-owner control, before choosing encrypted tiles
 
-## A concrete creative experiment: authenticated row overlays
+For a replacement map `U`, verify/decrypt the canonical base distances `h`,
+then set `h_current[r]=HD(q,U[r])` for replaced ordinals and leave all others
+unchanged. This is exactly the composite snapshot's full distance vector;
+compute stable top3 afterwards. Only changed rows need to be retained. For 32
+rows of 512 bits their value body is 2,048 bytes, plus actual authenticated
+delivery, mapping, version and framing. A returning owner already has its
+updates; a fresh device must acquire/provision this partial layer. Charge both.
 
-**Trigger:** R3 confirms that paid snapshot refresh or update-to-next-answer
-cost prevents a useful region, and a calibration-only prediction says this
-design can improve it after its extra query traffic. The earlier 7.1466 s
-rebuild is motivation, not satisfaction of that trigger. This experiment would
-replace the previously proposed streamed-scale refinement in that circumstance;
-it would not add a fourth preliminary queue or amend R3.
+This removes new HE products on the changed rows and the extra tile response.
+The current full-cache patch API cannot be assumed to implement a partial
+cache: build its actual adapter and complete recipe/frame binding. Both local
+and encrypted replacement variants require freshness, complete coverage and
+authorization before private base decoding. There is no reason under the
+current owner contract to prohibit local popcounts on those rows.
 
-Leave the dense feature-major base immutable. For a bounded set of changed
-row ordinals, upload fresh encryptions of a row-major overlay and an owner-bound
-latest-row map. Answer the base plus the overlay using the **same original
-encrypted query**, then overwrite precisely those base distances at the owner
-after authorizing the complete composite result. No secret enters the checker,
-no reusable query mask is introduced, and no old ciphertext is relabelled as a
-fresh encryption. Repeated changes replace the overlay's current row; compact
-it into a new base at a frozen, measured threshold.
+The encrypted-tile variant therefore must survive **partial-owner replacement**
+as well as selective server refresh and full-cache/prefetch controls. If it
+does not, choose the useful local layer for the company system and close the
+encrypted-update headline. Ordinary client correction/base-plus-delta storage
+is also known; its usefulness does not by itself establish a new paper main.
 
-### Exact coefficient layout to examine
+### Revised coefficient layout and public feasibility
 
-Write `u[j]=1-2*q[j]`, `v[r,j]=1-2*x[r,j]`, and `beta=512`.
-The existing original query plaintext is
-`A(X)=beta^-1 * sum_j u[j]*X^j` modulo `t=1031`.
-For an overlay row define
-`B_r(X)=sum_j v[r,j]*X^(511-j)`.
-
-Pack sixteen changed rows in one polynomial:
+Let `u[j]=1-2*q[j]`, `v[r,j]=1-2*x[r,j]`, `d=beta=512` and `t=1031`.
+The existing query is `A(X)=beta^-1*sum_j u[j]*X^j`. For at most 32 rows use
 
 ```text
-B(X) = sum_(r=0..15) X^(1024*r) * B_r(X)
-[X^(1024*r+511)] A(X)B(X) = beta^-1 * sum_j u[j]v[r,j]  (mod t)
+B(X) = sum_(r=0..31) sum_(j=0..511) v[r,j]*X^(512*r+511-j)
+[X^(512*r+511)] A(X)B(X) = beta^-1*sum_j u[j]*v[r,j] (mod t).
 ```
 
-Each row's product occupies degrees `1024*r .. 1024*r+1022`. Adjacent
-products do not overlap, and the highest degree is 16,382, below `N=16,384`.
-Thus plaintext negacyclic wrap does not occur. Multiplying the selected
-coefficient by beta modulo t and centering recovers the signed score uniquely
-in `[-512,512]`; distance is `(512-score)/2`. This is an elementary encoding
-derivation, not a security proof or a new packing identity.
+The preceding plan's spacing 1024 was sufficient but unnecessary. Spacing 512
+allows adjacent product supports to overlap, but they miss each other's
+selected middle coefficients. The maximum degree is 16,894; negacyclic wrap
+affects coefficients 0..510, whereas selected exponents are 511,1023,...,16383.
+The bounded public screen checks every basis contribution for both layouts
+and all 513 possible distances. Multiplying the selected coefficient by beta
+modulo t and centering recovers the unique score in `[-512,512]`, then distance
+`(512-score)/2`. This is known convolution packing, already present in our
+homemade shallow reference, not a new identity.
 
-For exactly 32 changed rows this layout proposes two fresh ciphertexts instead
-of 512 freshly encrypted feature columns in the direct group-rebuild protocol.
-At 120 bits/coefficient, their seeded coefficient bodies are 491,520 B versus
-125,829,120 B, excluding framing and metadata. The ratio is **256 in this body
-calculation**, not a speedup over the strongest update method. There are two
-additional aggregate ciphertext products/relinearizations, with no new query
-expansion required by this plaintext relation. Native cost is unmeasured.
+Using retained owner-sampler boxes and one canonical30 relinearization gives
+conditional Q/P bounds for the direct tile product; the public terminal bound
+is 8,446,469, below `P/2`. This does not admit a future native graph, establish
+its representation refinement or approve cryptographic parameters.
 
-Using the current 25-bit terminal codec literally adds 204,800 response-body
-bytes for the two overlays: the 32k base response body would grow from 204,800
-to 409,600 B. It does not directly reduce client download. Other coefficients
-encode auxiliary correlations rather than zero tails; the owner is authorized
-to see them, but this needs an explicit new frame/decoder grammar. Do not feed
-it through the current base-only tail predicate or claim free compression.
+| Exactly 32 changed rows | Seeded coefficient body B | Added terminal body B | Extra product/relinearization |
+| --- | ---: | ---: | ---: |
+| Direct replacement of 512 feature columns | 125,829,120 | 0 relative to base | Existing graph |
+| Earlier guarded proposal, two tiles | 491,520 | 204,800 | 2 |
+| Revised contiguous proposal, one tile | 245,760 | 102,400 | 1 |
 
-### The invariant, controls and bounded decision
+Headers, seeds, manifests and protocol traffic are additional. The 512-fold
+body ratio compares only the direct feature-replacement protocol. The strongest
+dynamic baseline already receives compact row uploads. No speedup follows
+from that ratio. With the literal terminal codec, the 32k base response body
+grows from 204,800 to **307,200 bytes**. The extension trades update/state work
+for more query/download work. Auxiliary plaintext correlations and wrap are
+authorized owner data; they require an explicit overlay decoder grammar,
+rather than the existing base-only zero-tail predicate. Selecting a few
+ciphertext coefficients before decryption is not a valid free response codec.
 
-The current snapshot must bind `(base root, ordered IDs, overlay root, latest
-row map, key/profile, epoch)`. For every row there is exactly one authoritative
-value: its latest overlay row if present, otherwise its base row. The complete
-receipt must bind both evaluations to the same original request and frozen
-current composite snapshot, before any owner private callback. A query never
-authorizes an arbitrary old base independently of that signed recipe.
+### Implementation, invariant and strongest control
 
-Prove support/no-wrap, modular score recovery, complete latest-row coverage,
-canonical common-Q maintenance and terminal bounds. Fresh row inputs have a
-different support/layout from the existing feature columns; a prior successful
-decryption or certificate does not admit this graph. Derive its public phase
-bounds first and stop if the selected profile fails. A new ring/modulus rescue
-would require its own paid justification, not a hidden parameter search.
+First specify the composite-snapshot authority and implement its partial-owner
+replacement adapter; leave the canonical baseline intact. Add the encrypted
+tile/native admission/owner decoder only if its public discriminator shows a
+credible benefit against that control. Reuse the existing relin key where its
+relation applies and add no query expansion for a tile. Bind actual common-Q
+sources, all maintenance, full terminal frames and latest-row coverage.
+Updates replace the current entry rather than adding unbounded delta chains.
+Freeze one cap and compaction law before timing; charge compaction.
 
-The strongest control receives compact row uploads and selective prepared-state
-refresh, including a PPMI-style cached representation/transposition specialization
-where valid. Do not compare only with the old full resident rebuild. If that
-adapter changes keys/noise/origin, document and pay it rather than declaring
-it impossible or free. The base implementation also receives unchanged-group
-reuse. All cache controls get the same compact owner patch and horizon.
+The server-refresh control gets compact row uploads, valid public transposition/
+cached refresh, unchanged-group reuse and the best applicable PPMI specialization. If it
+requires different evaluation keys, noise bounds or input origin, supply and
+pay that adapter; do not mark it impossible merely because our current code
+lacks it. The permitted owner cache gets the same compact patch.
 
-Before running, freeze one 32-row update geometry at the admitted profile,
-one overlay cap/compaction law and one selected remote policy. A proposed
-whole-execution study is two fresh large HE keys × two process blocks × eight
-post-update queries, or 32 measured queries per variant, with separately stated
-warmups and correctness checks. The actual variants and all expensive budgets
-must be registered after the public invariant gate. This is a future proposal,
-not 32 newly reserved or consumed Q77 observations.
+Freeze the new frame and public bounds, then register one future cohort. The
+existing proposal is two fresh keys × two process blocks × eight post-update
+queries, **32 observations per variant**, with separately budgeted warmups,
+update checks and every encryption/preparation/signing attempt. These are
+proposed slots, not current Q77 consumption. Fix actual variants after the
+public invariant gate: strong immediate refresh, partial-owner replacements,
+one surviving composite variant, its same-output base-rebuild ablation and the
+full-cache control. Do not reserve a timing row for a stopped encrypted variant.
+Use repeat-overwrite/stale-map/omission/swapped-ID/mixed-epoch/late-substitution/
+wrap/codec faults as correctness obligations under a separate bounded gate.
 
-The mechanism ablation rebuilds/copies the base preparation despite using the
-same overlay query path; another matched control immediately compacts into the
-best admitted feature representation. Charge actual update/encryption/upload,
-query/private/release and cleanup costs. Retain repeated overwrite, omitted
-row, swapped ID, stale map, mixed epoch, late substitution, guard overlap and
-noncanonical/tail faults. Predict the crossover using calibration; confirm it
-on held-out whole traces. A serial diagnostic is
-`saved refresh > queries * extra per-query cost + extra overlay preparation`;
-overlapping measured traces decide the actual result.
+The serial predictor is `saved refresh > queries*extra query cost + extra tile
+preparation`. Use calibration to freeze its crossover/compaction decision;
+held-out whole traces with actual overlap decide whether it is useful. Require
+a useful region against the strong dynamic and partial-owner controls, an
+explanation of the losing regimes, and the base-reuse ablation. If ordinary known
+specialization obtains the same result, close the proposed new-algorithm claim.
 
-Its possible contribution is a useful **admitted heterogeneous snapshot
-execution** and the invariant/crossover that makes it work. Guard-band packing,
-log-structured overlays, authenticated maps and dynamic indexing are known.
-If an ordinary strong specialization obtains the same result, close a new
-algorithm claim. Do not reopen Q59's contained affine-delta claim under a new name.
+### Alternatives selected by R3, not additional experiment queues
 
-### If a different bottleneck survives
+If construction/admission dominates, choose **one mixed common-Q boundary**:
+move one contiguous expansion or maintenance segment, bind its original-query
+ancestors and verify all downstream coordinates. Predict and then ablate the
+transforms, CRT/digit work, witness traffic and state removed. Grant the same
+boundary and reuse freedoms to replay/delegation. A generic cut or signed
+unchecked root is not the result.
 
-If construction/admission rather than refresh dominates, select the previously
-planned **one mixed common-Q cut** instead. Choose a contiguous expansion or
-maintenance segment from measured attribution, bind its ancestors to the
-original query and check every downstream source/coordinate. Predict removed
-inverse/forward transforms, CRT/digit work and witness bytes together with
-new checks/state. Give replay and delegation the same cut and run its actual
-ablation. A generic min-cut or a signed unchecked root is not a contribution.
+If protected-state capacity at a justified scale dominates, choose **one streamed
+snapshot** with the same streaming/prefix reuse for controls. Larger scale
+requires a separately frozen registration. The list does not authorize three
+parallel extensions, a parameter search or a proof-backend grid.
 
-If protected state at a justified larger corpus is the only credible bottleneck,
-one streamed snapshot remains an alternative, with registered new scale and
-equal streaming/prefix reuse for replay/cache. No larger corpus, second
-extension or proof backend is authorized merely by this list. The required
-randomized vFHE adapter remains a paper comparison obligation for any broad
-delegation advantage, regardless of which deterministic experiment wins.
+## Finite build and evaluation sequence
 
-## Supporting security argument and implementation assurance
+| Step | Deliverable and location | Exit condition / next decision |
+| --- | --- | --- |
+| R2, current implementation | Finish `complete_cost_tenant.py` and `complete_cost_owner_study.py` using the existing owner/coordinator/relay/supervisor modules; complete honest provisioning, independent sessions and guards. | One runnable cohort action, meaningful bounded public integration gate, exact execution addendum committed before HE work. |
+| R3, reserved selection study | Two keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: 18 blocks/144 observations per trajectory. First six blocks/48 queries calibrate; twelve/96 are held out. | Freeze policies before held-out. Return actual complete costs and bottleneck, including failures and cache utility. |
+| R4, one creative extension | The one mechanism selected above, admitted graph, strongest adaptation, whole-execution ablation and new finite registration. | Useful held-out region and surviving prior-work distinction, or close the claim and preserve the engineering artifact. |
+| Q78, assurance/deployment | Conditional reduction, native refinement, parameter/private-leakage review, real attested authority and rollback/revocation tests; matched GPU path if used in the final claim. | Complete premises and real deployment evidence before a secure-service or GPU-service performance claim. |
+| Q79, final paper/artifact | Additional justified workloads/deployment evaluation, strongest counterconstruction, external originality/security review, reproducible artifact and paper. | One precise defensible finding with winning and losing regimes. |
 
-Define an ideal functionality for an honest owner's current composite or
-ordinary snapshot, exact full distances and ordinal top3, with abort and
-explicit public shape/size/update/scheduling leakage. The target is:
+R2 is partially implemented: actual trajectories, HE-independent cache/races
+and compact public update assembly pass their public gate. Honest tenant
+provisioning and the full launch are absent. Complete these rather than creating
+another instrumentation-only milestone. The new launcher registration reserves
+eight further public cases within the parent cap; no actual HE work has run.
 
-`valid owner origin + valid graph + complete admission + current authority`
+R3 compares three independently prepared remote modes, returning/fresh cache
+and racing acquisition. For each mode, charge actual provisioning, setup,
+initial upload, query/receipt traffic, verification, private decoding, updates,
+retained state and cleanup. Shared client directions must account for contention
+between search and acquisition. Join/charge losing work. Prefetch closes remote
+use before its cache-only update. No forced HE download on a cache path.
 
-`=> authorized frame equals canonical evaluation => exact owner output`.
+Use equally weighted paired process-block results and actual owner
+completion-minus-arrival as the primary metric. Report cold/first answer,
+steady queries, update-to-next-answer, CPU/GPU work, both link directions and
+peak live state separately. Do not sum stage medians to fabricate overlap.
+Keep failures, timeouts and contaminated blocks without replacements. Native
+clock projections are attributed intervals, not a separately measured bare
+evaluator baseline. The two-key synthetic cohort is a selection study, not
+the paper's entire workload or population-confidence argument.
 
-Build four proof layers: graph/native representation refinement; plaintext,
-noise and Q-to-P correctness for every accepted source; snapshot/request/frame
-binding with at-most-once authorization; and privacy of the authorized/public
-feedback transcript. For an overlay add the latest-row selection/coverage
-lemma. Twelve existing Lean model lemmas do not prove the C++ implementation.
+Historical caps remain unchanged and unconsumed. The pending exact-addendum
+proposal is 702 fresh query encryptions, 72 protected signer contexts, 31,744
+feature encryptions and two HE keys; it does not activate those budgets here.
+Retain the 8 GiB additional-artifact ceiling, source/binary/dependency pins,
+attempt-before-work accounting, <=1 s public telemetry, owned process custody,
+deadline/memory guards and the granted idle-window discipline. Cooperative
+guards are not hard instantaneous memory limits.
 
-The reduction must condition on uncompromised attested execution, nonrollback
-authority and an explicit private-side-channel model. Then separate augmented
-RLWE/evaluation-key assumptions, seeded sampling, signatures/hashes, correctness
-and probabilistic admission failure. Derive the actual multi-key/adaptive
-lifetime bound; do not simply add unnamed "TEE security" terms. Full public
-rejects must be simulatable without the HE secret, and accepted private decoding
-must be restricted to the authorized canonical output. IND-CPA alone is not
-CCA security, and owner result checks after adversarial decryption are not the
-oracle defense.
+Policy selection gets only calibration information available to a deployable
+policy. Grant the generic selector the same legal choices, horizons and data;
+report a retrospective minimum as an oracle diagnostic. The 20% remote-policy
+project threshold is separate from cache utility and research originality.
+A complete randomized vFHE adapter remains mandatory before broad superiority
+over delegated verification; otherwise explicitly limit the claim to the
+deterministic paths actually run.
 
-Implement the final attestation adapter with a code-and-signing-key-bound
-authenticated channel, currentness/revocation and actual crash/rollback tests.
-Record private sampler/arithmetic assurance and concrete parameter evaluation.
-An AWS Nitro design needs those deployment premises; source hashes, ordinary
-SQLite and a local Ed25519 signer do not establish them. Supporting assurance
-may instantiate known methods. A formal main claim requires a separately
-substantive, reviewed result beyond that composition.
+## Supporting security and deployment work
 
-## Paper selection and execution handoff
+Specify an ideal functionality for the owner's current snapshot, exact full
+distances, stable ordinal top3 and abort. Declare public shape, sizes, changed
+ordinals, scheduling/compaction and feedback leakage. Overlay row identities
+must not silently be assumed private; hiding them would be a different paid
+protocol. No malicious client/data-origin claim is included in the honest-owner
+contract.
 
-Fill one claim card with the exact execution change, prior technique extended,
-necessary invariant, displaced work/bytes/state, held-out winning/losing regions,
-actual mechanism ablation and the strongest objection it survives. The final
-evaluation needs genuine deployment and additional justified workloads under
-separate frozen budgets; the current synthetic selection cohort is insufficient
-as the paper's entire evaluation.
+Build the argument in four layers:
 
-Use figures for complete latency/work/bytes/state, update-to-first-answer,
-cache acquisition/prefetch, the selected intervention and the assumption map.
-Do not present an unimplemented predecessor as a slower system. If cache/replay
-or the known composition contains the whole useful result, keep the company
-artifact and close the proposed positive headline. A negative paper would need
-a generalizable new finding of its own. External cryptography/systems review
-must assess originality before committing to a conference claim.
+1. **Refinement:** accepted complete common-Q arithmetic/maintenance equals the
+   authorized graph's canonical evaluation, including actual limbs and terminal
+   parsing. For overlays prove selected-coefficient correctness and one latest
+   value per ordinal, even though an older base is reused.
+2. **Correctness:** honest origin, exact encoding and public noise/terminal
+   bounds imply every accepted private decode is an exact permitted output.
+   Previously successful decryption and server metadata do not prove this.
+3. **Authorization:** snapshot/request/IDs/code/frame binding, freshness,
+   at-most-once consumption and crash/rollback behavior restrict private work to
+   the currently authorized result. The whole base-plus-overlay recipe advances
+   atomically; mixed epochs and delayed old replies cannot reach private work.
+4. **Privacy:** public rejection paths are independent of the HE secret and
+   accepted private operations only process authorized outputs. Condition the
+   hybrid/reduction on the actual augmented RLWE/evaluation-key assumptions,
+   seeded sampling, signature/hash security, admitted execution and leakage
+   model. Explicitly account for adaptive attempts and multi-key lifetimes.
 
-After each component, record actual inputs, commands, failures, scope and
-checkpoint in the existing ledger, then return to the next dependency.
-**Next action: finish R2's owner cohort runner and exact execution freeze.**
-The creative extension follows R3's evidence; another literature-only refresh
-or speculative grid does not satisfy that implementation dependency.
+This is a prospective conditional argument, not a finished reduction. IND-CPA
+alone is not CCA security, and post-decryption result checking is not the
+oracle defense. The twelve existing Lean model lemmas do not prove C++ or
+private side-channel behavior. Validate actual distributions/parameters and
+private sampler/arithmetic access before production use. For randomized
+admission derive its concrete actual-prime lifetime failure probability; do
+not transfer a single-check bound to an adaptive service unchanged.
+
+AWS deployment must bind measured code and the result-signing key to an
+owner-verified attested channel with currentness/revocation and a nonrollback
+authority. [Nitro's documented isolation and lack of persistent storage](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html)
+mean an ordinary parent SQLite file is not trusted durable enclave state.
+Owner-maintained monotone version/consumption state is one candidate; define
+multi-device synchronization and crash semantics before selecting it.
+Charge actual enclave transport/provisioning. A GPU producer may remain
+untrusted and have its outputs checked; trustworthy GPU attestation is a
+separate optional trust adapter, not assumed by the current prototype.
+
+## What will make the paper ready
+
+The prospective headline is a substantive authenticated version/reuse execution
+that improves complete exact search after compact upload, selective refresh and
+partial-owner correction are already granted to the baseline. This distinction
+is unestablished. Fill a claim card with the actual change,
+its invariant, prior construction extended, displaced work/bytes/state,
+held-out regions, ablation and strongest objection survived. Finding no
+identical paper in this targeted search is not an originality proof.
+
+The final artifact needs multiple justified workloads/update distributions,
+real attested deployment, matched GPU evidence if claimed, all complete costs,
+and an external cryptography/systems review. Avoid a new result for each
+kernel optimization. Use figures for the execution dependency graph,
+update/query crossover, first-answer/cache frontier, work/traffic/state and
+assumption map. If cache or the compatible prior composition absorbs the
+whole result, keep the company system and close the positive research headline.
+A negative paper needs a generalizable new explanation, not just a slow
+prototype. Do not promise conference acceptance from implementation success.
+
+The remaining packages are **Q77 evaluation/one extension, Q78 assurance and
+deployment, Q79 paper**. There is no remaining broad preliminary portfolio.
+After each task, preserve inputs/commands/failures/scope/checkpoint in the ledger
+and return here. **Next implementation: finish R2's honest tenant and full
+cohort launch, then commit its exact pre-HE freeze.** This planning review does
+not complete that dependency or reserve additional encrypted experiments.
