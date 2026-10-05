@@ -234,8 +234,13 @@ def _stop(process, ready, deadline):
         _terminate(process)
 
 
-def _supervise(sock, summary, timeout_ns):
+def _supervise(sock, summary, timeout_ns, manager_cpu=None):
     processes, attempts, seen = {}, [], set()
+    startup_cpus = os.sched_getaffinity(0)
+    if manager_cpu is not None:
+        if manager_cpu not in startup_cpus:
+            raise ValueError("Manager CPU is outside captured startup availability")
+        os.sched_setaffinity(0, {manager_cpu})
     stopping = False
     try:
         _send(sock, ["ready", os.getpid()], time.perf_counter_ns() + timeout_ns)
@@ -259,7 +264,7 @@ def _supervise(sock, summary, timeout_ns):
                         if type(fields) is not list or len(fields) != 6:
                             raise ValueError("Complete public worker specification required")
                         spec = WorkerSpec(*fields)
-                        role = spec.validate(available_cpus=os.sched_getaffinity(0))
+                        role = spec.validate(available_cpus=startup_cpus)
                         if spec.label in seen:
                             raise ValueError("Worker attempt already consumed")
                         seen.add(spec.label)
@@ -288,15 +293,22 @@ def _supervise(sock, summary, timeout_ns):
                                 "--cpu",
                                 str(spec.cpu),
                             ]
-                            process = subprocess.Popen(
-                                argv,
-                                cwd=ROOT,
-                                env=public_environment(),
-                                stdin=subprocess.DEVNULL,
-                                stdout=stdout,
-                                stderr=stderr,
-                                close_fds=True,
-                            )
+                            # A child must inherit the original allowed mask,
+                            # not the manager's CPU3 measurement affinity.
+                            os.sched_setaffinity(0, startup_cpus)
+                            try:
+                                process = subprocess.Popen(
+                                    argv,
+                                    cwd=ROOT,
+                                    env=public_environment(),
+                                    stdin=subprocess.DEVNULL,
+                                    stdout=stdout,
+                                    stderr=stderr,
+                                    close_fds=True,
+                                )
+                            finally:
+                                if manager_cpu is not None:
+                                    os.sched_setaffinity(0, {manager_cpu})
                         processes[spec.label] = (process, None, spec, attempt)
                         attempt["process"] = process.pid
                         ready = _ready(process, spec, role, deadline)
@@ -349,6 +361,8 @@ def _supervise(sock, summary, timeout_ns):
                 json.dumps(
                     {
                         "process": os.getpid(),
+                        "startup_available_cpus": sorted(startup_cpus),
+                        "manager_cpu": manager_cpu,
                         "attempts": attempts,
                         "public_specification_only_interface": True,
                         "actual_HE_custody_assurance_pending": True,
@@ -368,7 +382,7 @@ class PublicSupervisor:
     has no key already; real cohort order/custody must be inspected and frozen.
     """
 
-    def __init__(self, summary, *, source_pin, python_pin, timeout_ns):
+    def __init__(self, summary, *, source_pin, python_pin, timeout_ns, manager_cpu=None):
         check_pin(source_pin)
         check_pin(python_pin)
         if source_pin != pinned(__file__) or python_pin != pinned(sys.executable):
@@ -377,6 +391,10 @@ class PublicSupervisor:
             raise ValueError("Explicit public process deadline required")
         self._pid, self._closed = os.getpid(), False
         self._available_cpus = tuple(os.sched_getaffinity(0))
+        if manager_cpu is not None and (
+            type(manager_cpu) is not int or manager_cpu not in self._available_cpus
+        ):
+            raise ValueError("Explicit available manager CPU required")
         self._lock, self._timeout = threading.RLock(), timeout_ns
         self.summary = Path(summary).resolve()
         if self.summary.exists():
@@ -395,7 +413,8 @@ class PublicSupervisor:
                     str(self.summary),
                     "--timeout-ns",
                     str(timeout_ns),
-                ],
+                ]
+                + ([] if manager_cpu is None else ["--cpu", str(manager_cpu)]),
                 cwd=ROOT,
                 env=public_environment(),
                 pass_fds=(child.fileno(),),
@@ -405,6 +424,9 @@ class PublicSupervisor:
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
+            # Close our copy before waiting: otherwise a failed manager can
+            # leave the channel apparently open until the entire deadline.
+            child.close()
             ready = _receive(self._control, time.perf_counter_ns() + timeout_ns)
             if ready != ["ready", self._process.pid]:
                 raise RuntimeError("Public supervisor readiness differs from owned process")
@@ -510,7 +532,7 @@ def main():
             or type(args.timeout_ns) is not int
         ):
             raise ValueError("Explicit new supervisor control and result required")
-        _supervise(socket.socket(fileno=args.control_fd), args.summary, args.timeout_ns)
+        _supervise(socket.socket(fileno=args.control_fd), args.summary, args.timeout_ns, args.cpu)
     else:
         if (
             args.config is None

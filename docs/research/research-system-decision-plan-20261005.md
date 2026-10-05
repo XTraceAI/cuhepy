@@ -116,6 +116,14 @@ demonstrated consequence, not that combination's existence.
 
 ## Architecture and the immediate executable dependency
 
+Execution update: the [owner trajectory and public assembly return](native-shared-query-owner-runner-20261005.md)
+passes 66 public cases, including 24 new cases. It implements actual trajectory
+control, an HE-independent cache path, in-flight races and compact update
+assembly. Honest tenant provisioning and the complete cohort `run` action
+remain absent, so R2 is unfinished and no HE/cohort slots are consumed. The
+[progress ledger](research-contribution-progress-20261004.json) names that next
+dependency. This update is not another measured result or originality decision.
+
 Keep an owner process for private provisioning, fresh query creation, current
 snapshot pins and authorized decoding. Spawn clean producer, protected and
 transport workers with public inputs only. Share the shaped client lane across

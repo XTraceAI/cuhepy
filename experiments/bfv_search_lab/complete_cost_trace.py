@@ -141,7 +141,9 @@ class EventLog(owner._Owned):
                 "label": self.label,
                 "process": self._pid,
                 "events": [dict(e) for e in self._events],
-                "qualification": "Actual overlapping intervals; never sum parent and child durations as latency",
+                "qualification": (
+                    "Actual overlapping intervals; never sum parent and child durations as latency"
+                ),
             }
 
 
@@ -154,7 +156,16 @@ class OwnerQuerySource(owner._Owned):
     is consumed before encryption, including a failed call; no pool or retry exists.
     """
 
-    def __init__(self, keys, signing_owner, *, domain, encryption_limit):
+    def __init__(
+        self,
+        keys,
+        signing_owner,
+        *,
+        domain,
+        encryption_limit,
+        attempt_observer=None,
+        packet_observer=None,
+    ):
         if (
             type(keys) is not owner.OwnerKeyCustody
             or not isinstance(signing_owner, Ed25519PrivateKey)
@@ -162,6 +173,10 @@ class OwnerQuerySource(owner._Owned):
             or len(domain) != 32
             or type(encryption_limit) is not int
             or not 1 <= encryption_limit <= MAX_QUERIES
+            or attempt_observer is not None
+            and not callable(attempt_observer)
+            or packet_observer is not None
+            and not callable(packet_observer)
         ):
             raise ValueError("Fixed owner custody, signing key, domain and query budget required")
         keys._process()
@@ -171,6 +186,11 @@ class OwnerQuerySource(owner._Owned):
         self._keys, self._signing = keys, signing_owner
         self.owner_anchor = signing_owner.public_key().public_bytes_raw()
         self.domain, self.encryption_limit, self._issued = domain, encryption_limit, 0
+        # Trusted owner callbacks, never supplied by a response. Persist the
+        # global attempt before entropy/arithmetic and retain the actual public
+        # signed original before it can be sent or used to begin a receipt.
+        self._attempt_observer = attempt_observer
+        self._packet_observer = packet_observer
 
     def __repr__(self):
         return "OwnerQuerySource(<private owner context>)"
@@ -189,13 +209,15 @@ class OwnerQuerySource(owner._Owned):
                 raise RuntimeError("Registered owner query budget exhausted")
             index = self._issued
             self._issued += 1
+            if self._attempt_observer is not None:
+                self._attempt_observer(index)
             nonce = hashlib.sha256(
                 b"cuhepy/Q77/owner-query/v1\0" + self.domain + index.to_bytes(8, "little")
             ).digest()
             bits = tuple((word >> i) & 1 for i in range(metadata.geometry.dimension))
             plaintext = shared.encode_query(bits, metadata.geometry.n, metadata.geometry.t)
             packet = seeded.encrypt(plaintext, self._keys._pk, self._keys._secret)
-            return auth.sign_request(
+            original = auth.sign_request(
                 selected.snapshot_id,
                 selected.epoch,
                 selected.policy_digest,
@@ -203,6 +225,9 @@ class OwnerQuerySource(owner._Owned):
                 packet,
                 self._signing,
             )
+            if self._packet_observer is not None:
+                self._packet_observer(original, index)
+            return original
 
     def inventory(self):
         self._process()
@@ -213,12 +238,15 @@ class OwnerQuerySource(owner._Owned):
                 "domain": self.domain.hex(),
                 "process": self._pid,
                 "closed": self._closed,
+                "global_attempt_observer": self._attempt_observer is not None,
+                "actual_packet_observer": self._packet_observer is not None,
             }
 
     def close(self):
         self._process()
         with self._lock:
             self._closed, self._signing = True, None
+            self._attempt_observer = self._packet_observer = None
             # Caller owns key/signing references; this does not erase them.
 
 
@@ -343,6 +371,7 @@ class OwnerTrace(owner._Owned):
         self._failed, self._remote_enabled = False, mode is not None
         self._queries, self._results, self._job = set(), [], None
         self._acquisition_started = False
+        self._races = []
 
     def _ready(self):
         self._open()
@@ -455,6 +484,111 @@ class OwnerTrace(owner._Owned):
         except BaseException:
             self._fail()
             raise
+
+    def race_query(self, word, *, label, arrival_ns, deadline_ns, remote_cpu):
+        """Return the first actual valid answer while keeping losing work paid.
+
+        Cache publication may win after the remote query has started. The
+        remote thread remains owned until join_races; its RPC, verification,
+        private finish and any failure are retained. This is not cancellation
+        or a promise that a failed acquisition can silently become remote-only.
+        """
+        self._process()
+        _label(label)
+        self._deadline(deadline_ns)
+        if type(remote_cpu) is not int or not 0 <= remote_cpu < (os.cpu_count() or 1):
+            raise ValueError("Explicit owner remote-thread CPU required")
+        with self._lock:
+            self._ready()
+            if self._job is None or label in self._queries:
+                raise ValueError("One active acquisition and fresh race label required")
+            if len(self._races) >= 8:
+                raise RuntimeError("Eight-query racing trajectory cap exhausted")
+        if self.cache_ready():
+            return self.query(
+                word, label=label, policy="cache", arrival_ns=arrival_ns, deadline_ns=deadline_ns
+            )
+        done = threading.Event()
+        item = {
+            "label": label,
+            "winner": None,
+            "error_class": None,
+            "start_ns": time.perf_counter_ns(),
+            "end_ns": None,
+        }
+        answer = []
+
+        def remote():
+            try:
+                os.sched_setaffinity(0, {remote_cpu})
+                answer.append(
+                    self.query(
+                        word,
+                        label=label + "-remote",
+                        policy="remote",
+                        arrival_ns=arrival_ns,
+                        deadline_ns=deadline_ns,
+                    )
+                )
+            except BaseException as error:
+                item["error_class"] = type(error).__name__
+                self._fail()
+            finally:
+                item["remote_end_ns"] = time.perf_counter_ns()
+                done.set()
+
+        thread = threading.Thread(target=remote, name="Q77-owner-remote-race", daemon=False)
+        with self._lock:
+            self._queries.add(label)
+            self._races.append((thread, item))
+        try:
+            with self.log.event(label, arrival_ns=arrival_ns):
+                thread.start()
+                while True:
+                    self._deadline(deadline_ns)
+                    self._ready()  # Includes acquisition/loser failure.
+                    if done.is_set():
+                        if not answer:
+                            raise RuntimeError("Remote race failed")
+                        result, item["winner"] = answer[0], "remote"
+                        break
+                    if self.cache_ready():
+                        cached = self.query(
+                            word,
+                            label=label + "-cache",
+                            policy="cache",
+                            arrival_ns=arrival_ns,
+                            deadline_ns=deadline_ns,
+                        )
+                        # If both complete during the cache scan, use the one
+                        # that actually finished first, not the polling order.
+                        cache_end = time.perf_counter_ns()
+                        if done.is_set() and answer and item["remote_end_ns"] <= cache_end:
+                            result, item["winner"] = answer[0], "remote"
+                        else:
+                            result, item["winner"] = cached, "cache"
+                        break
+                    done.wait(min(0.01, max(0, (deadline_ns - time.perf_counter_ns()) / 1e9)))
+                self._ready()
+                item["end_ns"] = time.perf_counter_ns()
+                return result
+        except BaseException:
+            self._fail()
+            raise
+
+    def join_races(self, *, deadline_ns):
+        """Settle every owned loser before remote shutdown or an owner update."""
+        self._process()
+        for thread, item in self._races:
+            remaining = deadline_ns - time.perf_counter_ns()
+            if remaining <= 0:
+                raise RuntimeError("Owned race cleanup deadline exhausted")
+            if thread.ident is not None:
+                thread.join(remaining / 1e9)
+            if thread.is_alive():
+                raise RuntimeError("Owned remote race did not finish")
+            if item["error_class"] is not None:
+                raise RuntimeError("Paid losing remote work failed")
 
     def acquire(self, *, deadline_ns):
         self._process()
@@ -598,6 +732,10 @@ class OwnerTrace(owner._Owned):
                     dict(r, nearest=[dict(m) for m in r["nearest"]]) for r in self._results
                 ],
                 "background": None if self._job is None else self._job.inventory(),
+                "races": [
+                    dict(item, remote_thread_alive=thread.is_alive())
+                    for thread, item in self._races
+                ],
                 "query_budget": None
                 if self.query_source is None
                 else self.query_source.inventory(),
@@ -617,6 +755,11 @@ class OwnerTrace(owner._Owned):
             job._thread.join(self.endpoint.timeout_ns / 1e9)
             if job._thread.is_alive():
                 raise RuntimeError("Owned background thread did not stop")
+        for thread, _item in self._races:
+            if thread.ident is not None:
+                thread.join(self.endpoint.timeout_ns / 1e9)
+            if thread.is_alive():
+                raise RuntimeError("Owned remote race thread did not stop")
         # Caller explicitly closes cache, query source, descriptor and tenant
         # keys after their registered lifetimes; shared keys are never copied
         # into a public child. Python cannot forcibly preempt a native call.
