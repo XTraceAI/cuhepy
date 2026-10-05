@@ -10,12 +10,17 @@ closest objections. Cached/incremental verification and current database
 authentication must be credited as a compatible composition, not isolated
 weaker baselines. The exact R2c freeze was committed and preflight passed. The original actual
 cohort then failed at descriptor routing before any query; the fixed public TCP
-case passes. The separately registered corrective action is running under its
-own committed freeze. See the
+case passes. The separately registered corrective action interrupted after
+six calibration blocks and ten closed held-out trajectories, without a
+terminal return. See the
+[interruption return](native-shared-query-complete-cost-interruption-return-20261005.json)
+and [separate action registration](native-shared-query-complete-cost-interruption-registration-20261005.json), as well as the historical
 [corrective-start return](native-shared-query-complete-cost-corrective-start-return-20261005.json).
-No complete timing comparison or originality verdict has returned. Earlier
+The additive two-case detached-launch gate passes; exact new freeze and
+actual storage headroom are still required. No complete timing comparison or
+originality verdict has returned. Earlier
 zero-execution/pending-freeze statements below retain their dated review scopes,
-rather than describing the live run.
+rather than describing the current action.
 
 ## Current system decision and strongest counterconstruction
 

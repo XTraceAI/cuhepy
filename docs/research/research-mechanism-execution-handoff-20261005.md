@@ -55,6 +55,12 @@ resource ceilings, without using earlier inputs in its selection. Storage is
 currently below that existing guard. Complete the independent launch work while
 that resource precondition is unresolved; do not lower the guard or remove
 failures to fit. The scientific workload and one-extension reservation stay fixed.
+The [detached-launch return](native-shared-query-complete-cost-detached-launch-return-20261005.json)
+now closes the two-case public gate in its one registered invocation. It proves
+continuation after a public parent's exit and rejection before invalid launch,
+with no HE/private/project-native work. Exact new freeze and actual storage
+headroom remain unmet. External termination can still occur; its prior cause
+is not explained or claimed fixed.
 
 The [analysis preparation](native-shared-query-complete-cost-analysis-preparation-20261005.json)
 adds a read-only post-return auditor outside the frozen runtime. It checks
@@ -113,7 +119,7 @@ cryptographic profiles remain separate.
 | The old BGV update took 7.2788 s, including 7.1466 s of resident re-preparation, after a compact 491,721-byte upload. | Attribute refresh in the new graph. A new compact upload alone would not explain a gain against the existing control. |
 | Full internal witness: 127,057,920 B; query-expansion sources: 125,583,360 B; aggregate claim: 1,474,560 B. | About 98.84% of that witness is query-expansion source data. The existing aggregate mode already removes that source transfer but still recomputes the products. Smaller witness is not a measured trusted-compute saving. |
 | At Mushroom/Semeion sizes, original gated EMVP means are 5.942/1.363 ms, with 1,471,264/205,100-byte replies. Unified verified BNTM means are 109.141/13.962 ms, with 63,968/11,720-byte replies. | These direct non-BGV controls rule out universal speed/smallest-reply claims. Strong recursive/preprocessed BNTM and safe dynamic adapters remain unmeasured. |
-| Q77's original action failed before queries; its independently registered corrective comparison is running. | Return the complete calibration/held-out cohort before choosing the research mechanism from a guessed bottleneck. |
+| Q77's original action failed before queries; its corrective action interrupted after calibration and ten held-out trajectories. | Retain both attempts separately; return the independently registered complete new comparison before choosing a mechanism. |
 
 The old 32k panel is setup-swap-qualified and has one key/index/process block
 per variant. Its all-distance oracle passed, but it excludes WAN, complete
@@ -231,11 +237,11 @@ contained algorithm.
 
 | Ticket | Work and location | Exit and next ticket |
 | --- | --- | --- |
-| R2a, public gate complete | Honest provisioning in `experiments/bfv_search_lab/complete_cost_tenant.py`: pre-debit actual attempts, retain public inputs, independent cache contexts and recoverable partial failures. | Public fixture accounting/coverage passes; that public gate executed no actual HE. The separate actual R3 action is running. |
+| R2a, public gate complete | Honest provisioning in `experiments/bfv_search_lab/complete_cost_tenant.py`: pre-debit actual attempts, retain public inputs, independent cache contexts and recoverable partial failures. | Public fixture accounting/coverage passes; that public gate executed no actual HE. Both earlier actual attempts remain retained. |
 | R2b, public gate complete | `benchmarks/complete_cost_owner_study.py` connects the coordinator, shared relay, clean supervisor, resource telemetry and public enrollment/cache assembly. | Full scheduling and actual cache-only TCP lifetimes pass the registered gate. This does not validate the actual encrypted cohort. |
-| R2c, complete in its stated scope | Exact corrective addendum/source/interpreter/library/fixture pins, order, budget, guards and retention law are committed; pure preflight passed. | The separately registered 702-query/72-signer corrective action is active. Its actual R3 return is next; this document changes no reservations. |
-| R3a, complete | All six actual calibration blocks passed; the immutable choices were independently recomputed from the 36 pinned rows with no held-out input. | Client/generic freeze `m1`, native projection freezes `m2`; held-out prefetch uses `m1`. R3b is running. |
-| R3b, running | Twelve held-out blocks with frozen choices; total 18 blocks/144 measured requests per trajectory, 864 across six trajectories. Warmups/update checks remain separate. | Complete owner costs, whole-output correctness, paired block analysis and contamination return. Then choose exactly one R4 route or close the scoped useful-region claim. |
+| R2c, complete in its original scope; separate freeze next | Exact corrective pins/order/guards were committed and passed preflight. The additive detached launcher passes its separate two-case public gate. | Commit the new exact freeze and satisfy actual 20 GiB headroom before the independently registered action. No guard relaxation or block replacement. |
+| R3a, complete for interrupted action | All six calibration blocks passed; immutable choices were independently recomputed from 36 pinned rows. | Retain client/generic `m1` and native projection `m2` as historical evidence. New action calibrates independently; no old policy reuse. |
+| R3b, interrupted; separate action registered | Ten held-out trajectories survive, without complete terminal return. New action retains the same 18-block/864-query law and explicit additional ceilings. | Complete owner costs, whole-output correctness, paired block analysis and contamination return. Then choose exactly one eligible R4 route. |
 | R4a | Produce the mechanism eligibility return above; first build the partial-owner/dynamic reference when refresh is the trigger. | One eligible mechanism, named reference and falsifier; contained template is not accepted. Then R4b. |
 | R4b | Implement its independent oracle/adversarial transitions and actual matched adapter. Register one separate extension cohort before HE. | Precise invariant, bound/codec gate and paid same-output ablation. Then R4c. |
 | R4c | Run the proposed two-key/two-block/eight-query extension cohort: 32 observations per surviving variant, with all auxiliary attempts separately fixed. | Held-out useful/losing regions and mechanism attribution, or preserve code and close the claim. Then Q78/Q79. |

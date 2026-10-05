@@ -68,8 +68,13 @@ gate, exact committed freeze and the existing 20 GiB headroom precondition.
 It explicitly adds two HE keys and the original full-cohort attempt maxima;
 earlier unused reservations are not refunded. Scientific workload, objective,
 order and one-extension reservation remain unchanged; earlier cohort data
-cannot enter its selection. **The launch gate, exact freeze and storage
-precondition are now the first unmet dependency**, then the complete comparison,
+cannot enter its selection. The
+[detached-launch public return](native-shared-query-complete-cost-detached-launch-return-20261005.json)
+now passes exactly two new cases in one invocation, with no HE/private/native
+project operation. It demonstrates continuation after the public parent exits,
+not immunity to external process termination or a repair of the unknown cause.
+**The exact new freeze and storage precondition are now the first unmet
+dependency**, then the complete comparison,
 one eligible creative extension, assurance and the paper package. No fresh
 encrypted action has started. A detached launcher changes observation lifetime;
 it does not prove or repair the unknown termination cause.
@@ -143,7 +148,7 @@ service. This is a testable systems hypothesis, not a claimed new primitive.
 | Returning plaintext cache is much faster in the retained small panel, and the owner may retain its data. | Include cache acquisition, returning use and races. A useful HE result may have a limited fresh-client regime; never invent a cache restriction. |
 | Dense maintained checks have useful asymptotic state/work tradeoffs but may not save contraction work at one/two groups. | Compare actual verification architectures and their secret-state premises before selecting a delegation headline. |
 
-Execution remains finite: **finish the running R3 once; specify and test one
+Execution remains finite: **finish the separately registered complete R3 once; specify and test one
 eligible R4 extension; then complete Q78 assurance and Q79 evaluation/paper**.
 R2's public gate, resource review and exact committed freeze are complete within
 their stated scopes. R3 retains
@@ -305,8 +310,10 @@ cases; later 74-case repeats add zero distinct cases. Private
 HE/native arithmetic and fresh key generation were stubbed in that invocation.
 Honest tenant provisioning and the full cohort action pass their bounded
 public gate. Actual provisioning/native preparation has now run; the original
-action failed before queries and the separately frozen corrective action is
-running. Complete-cost query comparison evidence remains pending. Distinguish
+action failed before queries and the separately frozen corrective action
+interrupted after valid calibration and ten closed held-out trajectories.
+The additive detached-launch gate passes two further public cases; none of the
+384 preceding cases was rerun. Complete-cost comparison evidence remains pending. Distinguish
 consumed key/feature attempts from completed measured observations.
 
 At two groups/32k rows, retained interface accounting gives 127,057,920 bytes
@@ -756,8 +763,9 @@ containment and keep only the useful engineering path. A new security theorem
 would need a substantive guarantee or refinement beyond routine signature and
 ADS composition; it is not an automatic fallback for a contained algorithm.
 
-There is no new preliminary search phase in this update. R3 is running and
-supplies the missing bottleneck evidence; R4 tests one surviving
+There is no new preliminary search phase in this update. The separately
+registered fresh R3 must supply the missing complete bottleneck evidence;
+R4 tests one surviving
 mechanism. Its artifacts are a mechanism specification, runnable adapter,
 independent whole-output oracle/fault gate, matched reference, paid ablation,
 frozen policy and held-out return. The existing proposed cohort is not enlarged.
@@ -783,7 +791,7 @@ unavailable adapters cannot supply the distinction.
 | Step | Deliverable and location | Exit condition / next decision |
 | --- | --- | --- |
 | R2, complete public gate and freeze | `complete_cost_tenant.py` and `complete_cost_owner_study.py` connect honest provisioning, independent sessions and guards. | Exact addendum committed and preflight passed before HE work; actual encrypted integration is judged by R3. |
-| R3, running reserved selection study | Two keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: 18 blocks/144 observations per trajectory. First six blocks/48 queries calibrate; twelve/96 are held out. | Freeze policies before held-out. Return actual complete costs and bottleneck, including failures and cache utility. |
+| R3, interrupted; fresh comparison registered | Two new keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: 18 blocks/144 observations per trajectory. First six blocks/48 queries calibrate; twelve/96 are held out. | Meet exact freeze and storage preconditions; freeze new policies before held-out. Return complete costs and bottleneck, retaining both older attempts separately. |
 | R4, one creative extension | The one mechanism selected above, admitted graph, strongest adaptation, whole-execution ablation and new finite registration. | Useful held-out region and surviving prior-work distinction, or close the claim and preserve the engineering artifact. |
 | Q78, assurance/deployment | Conditional reduction, native refinement, parameter/private-leakage review, real attested authority and rollback/revocation tests; matched GPU path if used in the final claim. | Complete premises and real deployment evidence before a secure-service or GPU-service performance claim. |
 | Q79, final paper/artifact | Additional justified workloads/deployment evaluation, strongest counterconstruction, external originality/security review, reproducible artifact and paper. | One precise defensible finding with winning and losing regimes. |
@@ -794,8 +802,9 @@ bindings, immutable calibration order, policy freezing, actual cache-only TCP
 setup/update lifetimes and full logical scheduling/failure stopping. It uses
 existing public UNIT keys and labelled arithmetic/scheduling stubs. Its eight
 new cases exhaust the parent registration's public extension allowance. The
-selected encrypted integration is now running under the committed exact
-addendum and reviewed resource limits. Passing the public gate is neither
+selected encrypted integration was interrupted under its committed exact
+addendum and reviewed resource limits. The next separate action requires its
+own committed freeze and unchanged storage floor. Passing the public gate is neither
 encrypted correctness nor a complete-cost measurement.
 
 R3 compares three independently prepared remote modes, returning/fresh cache
@@ -884,8 +893,8 @@ uniform/random data alone cannot establish an application-wide advantage;
 justify dimensions, update locality, repeat overwrites, horizons and fresh
 device use from actual intended deployments.
 
-Do not create another open-ended preliminary queue. There is one running
-selection cohort, one conditional creative-extension cohort, and the
+Do not create another open-ended preliminary queue. There is one separately
+registered complete selection cohort, one conditional creative-extension cohort, and the
 assurance/final-evaluation packages. The randomized adapter is mandatory for
 a broad delegation headline but is not already covered by either cohort's
 budget. If every candidate is contained, make an explicit selection return;
@@ -1020,9 +1029,10 @@ retained evidence instead of starting a paper around an assumed speedup.
 The remaining packages are **Q77 evaluation/one extension, Q78 assurance and
 deployment, Q79 paper**. There is no remaining broad preliminary portfolio.
 After each task, preserve inputs/commands/failures/scope/checkpoint in the ledger
-and return here. **Next exit: return the running R3 calibration/held-out
+and return here. **Next exit: return the separately registered complete R3 calibration/held-out
 comparison, then
-specify and implement one eligible R4 extension.** The exact freeze is complete;
+specify and implement one eligible R4 extension.** The prior exact freeze is retained;
+the new freeze and storage preconditions remain pending. There is
 no additional encrypted experiment is reserved by this plan update.
 
 ## Analysis ready for the actual R3 return
@@ -1090,5 +1100,7 @@ selected `m2` (exact aggregate admission). The generic selector with the same
 information selected `m1` as well. Held-out prefetch uses the frozen `m1` mode.
 These are calibration choices, not a held-out speedup or an originality result.
 The original failed attempt remains retained; no runtime, profile, workload,
-reservation, policy or block was replaced. **R3b's twelve held-out blocks are
-running and their complete return is now the first unmet dependency.**
+reservation, policy or block was replaced. That action subsequently interrupted;
+ten held-out trajectory rows survive, without a complete terminal return.
+The separate new comparison must calibrate and freeze from its own inputs;
+the earlier policy is retained evidence and cannot be substituted.
