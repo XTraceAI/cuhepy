@@ -654,6 +654,12 @@ class Session:
         summary = auth._pack([inner[0], payload[:-1], inner[2]])
         self.study.provisioner.archive.put(summary, kind="record")
 
+    def _acquire_descriptor(self, descriptor, deadline):
+        """Route the backend command through the existing shared client lane."""
+        command = auth._pack([b"search", auth._pack([b"descriptor"])])
+        with self.log.event("actual-owner-descriptor-acquisition"):
+            return descriptor.acquire(self.endpoint.rpc(command, deadline_ns=deadline))
+
     def _upload(self, body, phase, deadline):
         with self.log.event(phase.decode() + "-signed-shared-upload"):
             packet = cohort_relay.sign_upload(
@@ -791,8 +797,7 @@ class Session:
         self._install_routing("search_port", frontend["port"])
         descriptor = context.DescriptorClient(self.tenant.anchor, self.view.descriptor.pin)
         self.handles.append(descriptor)
-        with self.log.event("actual-owner-descriptor-acquisition"):
-            descriptor.acquire(self.endpoint.rpc(auth._pack([b"descriptor"]), deadline_ns=deadline))
+        self._acquire_descriptor(descriptor, deadline)
         keys = self.tenant.custody()
         self.handles.append(keys)
         # Only the selected worker has cloud-release authority. Other modes use

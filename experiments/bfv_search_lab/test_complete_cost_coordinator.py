@@ -26,6 +26,7 @@ from experiments.bfv_search_lab import complete_cost_tenant as tenant_module
 from experiments.bfv_search_lab import complete_cost_cohort_relay as cohort_relay
 from experiments.bfv_search_lab import shared_query_client_context as context
 from experiments.bfv_search_lab import test_complete_cost_owner as public_owner
+from experiments.bfv_search_lab import test_complete_cost_relay as public_relay
 
 # Re-export the existing labelled fixtures for pytest discovery.
 make_trace, owners = public_trace.make_trace, public_trace.owners
@@ -639,6 +640,30 @@ def test_study_has_fixed_calibration_first_order_caps_and_rejects_uncommitted_ex
     with pytest.raises(ValueError, match="committed"):
         study.OwnerStudy(path, tmp_path / "output")
     assert not called and not (tmp_path / "output").exists()
+
+    # The real setup helper must use the relay's fixed backend envelope. The
+    # first encrypted cohort failed here; this public TCP fixture exercises
+    # routing only and makes no descriptor-authentication or HE claim.
+    public = tmp_path / "public-descriptor-route"
+    public.mkdir()
+    harness = public_relay.Harness(public)
+    try:
+        with pytest.raises(RuntimeError, match="relay rejected"):
+            harness.endpoint.rpc(auth._pack([b"descriptor"]))
+        received = []
+        descriptor = SimpleNamespace(acquire=lambda packet: received.append(packet))
+        session = object.__new__(study.Session)
+        trace_log = public_trace.trace.EventLog("UNIT-only-descriptor-route")
+        session.endpoint, session.log = harness.endpoint, trace_log
+        session._acquire_descriptor(descriptor, deadline())
+        assert harness.echo.requests == [auth._pack([b"descriptor"])]
+        assert auth._unpack(received[0], limit=public_relay.CAP, array_cap=2) == [
+            b"public-echo",
+            auth._pack([b"descriptor"]),
+        ]
+        assert trace_log.inventory()["events"][0]["status"] == "complete"
+    finally:
+        harness.close()
 
 
 def calibration_rows(tmp_path):
