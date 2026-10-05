@@ -408,6 +408,12 @@ another cohort is authorized by a revised registration.
 
 ## 5. Q77: decisive complete-cost evaluation
 
+The [Q77 implementation registration](native-shared-query-complete-cost-registration-20261004.json)
+freezes additive protocol/transport/coordinator scope and reserves the existing
+cohort cap. It is not an execution freeze: exact role sources, event DAG,
+warmup/arrival/initial-state semantics and deadlines must be committed before
+either new HE key or timing. The current phase has consumed no cohort unit.
+
 Freeze methods, actual deployment budgets and the primary success metric
 before measurement. Use the existing three sizes and one selected profile,
 two independent key contexts, and three fresh process blocks **per key and

@@ -186,5 +186,8 @@ cryptographic primitive. Venue selection follows the result.
 The detailed plan retains the other existing finite triggers and the earlier
 containment decisions. These branches are proposals, not registered or executed
 tasks. Each needs a changed premise, a justified deployment and its own finite
-acceptance/stop criteria before implementation. The current task is Q77
-registration; no branch bypasses its cap or the final originality decision.
+acceptance/stop criteria before implementation. Q77 now has an
+[additive implementation registration](native-shared-query-complete-cost-registration-20261004.json).
+Next implement its local receipt/transport/coordinator and commit the exact
+execution addendum before consuming either HE key or running measurements.
+No branch bypasses the cohort cap or final originality decision.

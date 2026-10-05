@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "task": "Q77",
+  "status": "implementation_registered_cohort_requires_execution_freeze",
+  "baseline_commit": "87d32d82df77fd90fe856fcf2e5b6433ae22ddbf",
+  "prerequisite": "docs/research/native-shared-query-security-feasibility-20261004.md",
+  "evidence_directory": "/home/pete/yavor-projects/xtrace-work/research-data/q77-complete-cost-20261004",
+  "purpose": "Measure one exact owner-search functionality and paid representation/admission placement against matched deterministic remote execution and permitted cache policies. No new generic optimizer, randomized-control defeat or secure-deployment claim.",
+  "implementation_stage": {
+    "register_before_new_code": true,
+    "planned_files": [
+      "experiments/bfv_search_lab/complete_cost_protocol.py",
+      "experiments/bfv_search_lab/complete_cost_transport.py",
+      "experiments/bfv_search_lab/test_complete_cost_protocol.py",
+      "experiments/bfv_search_lab/test_complete_cost_transport.py",
+      "benchmarks/complete_cost_shared_query_lab.py"
+    ],
+    "existing_420_runtime_sources_66_company_files_6_isolated_libraries": "Preserve exact registration-baseline.json pins; all new work is additive",
+    "private_operations": "Only the owner/client process retains HE keys. Spawned public producer/protected-verifier prototype workers receive public owner inputs and no HE secret. Public admission, at-most-once journal claim and a context-bound signed receipt must precede private finish.",
+    "transport": "Bounded length-framed actual loopback TCP. Explicit userspace pacing is experimental link shaping, not a measured AWS link or secure transport. Preserve per-link send/receive intervals, complete message lengths and digests.",
+    "receipt": "Protected worker signs only from the existing journal's admitted-and-claimed full-frame callback. Owner-provisioned local verifier anchor, exact request/snapshot/policy/nonce/ordered IDs, complete frame and current descriptor are checked before claiming a private callback. A local process/key/source digest supplies no attestation.",
+    "units_max": 256,
+    "unit_HE_key_generation_encryption_decryption_large_search_timing_or_CUDA": 0,
+    "unit_Ed25519_fixture_contexts_max": 2,
+    "unit_cache_AES_fixture_contexts_max": 2,
+    "unit_frame_scope": "Only public grammar/state/transport fixtures; no invented HE-validity assertion or ciphertext-to-plaintext proof",
+    "no_network_or_received_message_selects_code_graph_library_or_trust_anchor": true,
+    "cohort_preconditions": [
+      "Complete additive worker/coordinator implementation; no missing execution mode is silently replaced with a measured stage model",
+      "All public transport/receipt/control tests pass within the cap; retain failures, corrected sources and every invocation",
+      "Freeze/hash exact runner, executed sources/libraries/dependencies, complete event DAG, initial states, warmup placement, arrivals, budgets and artifact retention before any fresh HE key or measurement",
+      "Pin and commit execution addendum resolving the exact arrival/warmup/setup semantics; this implementation registration alone does not authorize running an underspecified cohort",
+      "Validate the existing owner-origin profile, both actual primes, public support guards and sampler/key basis; preserve the unresolved parameter/private/deployment assumptions"
+    ]
+  },
+  "functionality": {
+    "owner": "Honest owner querying its own data; may retain any plaintext",
+    "profile": {
+      "n": 16384,
+      "dimension": 512,
+      "t": 1031,
+      "eta": 21,
+      "p": 33548413,
+      "q": "1329227995784613643754746428306227201",
+      "primes": [
+        "1152921504606748673",
+        "1152921504606683137"
+      ],
+      "index_mode": "owner",
+      "policy": "canonical30"
+    },
+    "counts": [
+      8224,
+      16384,
+      32768
+    ],
+    "corpus": "One public deterministic binary corpus, retained Q76.3b row bytes. Declare correlation; two new keys do not create independent corpora.",
+    "queries": "Eight fixed binary words per block: the two retained source queries followed by six SHAKE256-derived words from domain cuhepy/Q77/public-query/v1 and indices 2..7. Identical plaintext queries and ordered-ID tie rule across every mode/policy.",
+    "ids": "UInt64 maximum minus original row ordinal; rank (distance, ordinal), then map to bound ID",
+    "update": "Exactly 32 ordinals 0..31 become alternating retained query0/query1 xor one, preserving shape/IDs; logical revision advances once. HE owner freshly re-encrypts all 512 feature packets in the affected group and re-signs full immutable enrollment, reuses unaffected group and evaluation keys. Native preparation is genuinely refreshed. Cache sends its canonical authenticated 32-row patch; never force it to download the HE index.",
+    "full_result": "All exact distances plus original-ordinal top3; independently compare complete owner plaintext distances outside timed private finish",
+    "private_finish": "Complete compact-P grammar and every physical plaintext lane; validate zero plaintext tails and score range/parity, select ordinal top3. Variable-time owner Python/GMP remains a local diagnostic implementation pending Q78."
+  },
+  "modes": [
+    {
+      "id": "full-common-Q",
+      "method": "Existing full native producer plus complete public common-Q/both-actual-prime admission and terminal frame equality"
+    },
+    {
+      "id": "prepared-replay",
+      "method": "Existing PreparedReplayAuthorizer computes once in protected prototype; no unnecessary producer witness"
+    },
+    {
+      "id": "exact-aggregate",
+      "method": "Existing aggregate producer plus all protected products and full suffix; negative control, not claimed arithmetic saving"
+    },
+    {
+      "id": "cache",
+      "policies": [
+        "returning retained cache",
+        "fresh authenticated acquisition",
+        "actual background acquisition while using frozen compatible remote policy"
+      ],
+      "method": "Existing authenticated cache/native popcount; actual overlap, duplicate work and update invalidation must be measured"
+    }
+  ],
+  "authority_boundary": {
+    "local": "Trusted owner/client and protected-worker runtime, fixed local verifier provisioning and local durable journals. Producer/store may be treated as adversarial by protocol tests. No host rollback resistance or attestation is enforced here.",
+    "Q78_unfinished": [
+      "actual attestation and owner policy",
+      "nonrollback freshness and revocation",
+      "secure private-context provisioning and transport",
+      "native/semantic refinement",
+      "sampler/seed/KDM and concrete parameter assurance",
+      "private side channels"
+    ],
+    "randomized_vFHE_adapter": "Unimplemented; numeric comparison limited to implemented deterministic modes",
+    "production_main_staging": "Untouched"
+  },
+  "hardware_and_links": {
+    "host": "Observed AMD Ryzen 7 5800X, 8 physical cores/16 logical CPUs, approximately 32 GiB RAM; verify again in execution freeze",
+    "prototype_roles": {
+      "owner_client_cpu": 4,
+      "public_producer_cpu": 0,
+      "protected_worker_cpu": 2,
+      "cache_background_cpu": 6,
+      "telemetry_cpu": 7
+    },
+    "role_affinity": "Use different physical cores; record sibling activity. Never terminate unrelated user programs or change global governor/swap settings.",
+    "client_link": {
+      "bytes_per_second": 12500000,
+      "one_way_delay_ns": 10000000
+    },
+    "producer_protected_link": {
+      "bytes_per_second": 1250000000,
+      "one_way_delay_ns": 100000
+    },
+    "basis": "Declared controlled prototype link conditions, not evidence of AWS performance; full duplex directions accounted separately",
+    "memory": "Measure per-role/process owned components, RSS/PSS high-water/sampled peaks and overlap. No invented client memory limit or cache prohibition. Freeze conservative aggregate guard from the measured host's available memory before execution.",
+    "artifacts": "At most 8 GiB additional cohort artifacts; retain public input/enrollment/patch/query bytes and all result/packet digests. Retain selected full witnesses, deterministic reconstruction inputs and every failure; do not duplicate every 127 MB witness or serialize any HE/AES/signing secret.",
+    "setup": "Separate owner tenant crypto, public upload, fresh-process preparation, device metadata/cache acquisition and returning state. A new physical device's secure private provisioning is not measured by local retained-key custody."
+  },
+  "cohort_caps": {
+    "fresh_HE_key_attempts": 2,
+    "sizes_per_key": 3,
+    "blocks_per_key_size": 3,
+    "total_matched_blocks": 18,
+    "measured_queries_per_block_per_implementation": 8,
+    "measured_observations_per_implementation": 144,
+    "excluded_warmups_per_implementation": 18,
+    "separate_post_update_correctness_queries_per_implementation": 18,
+    "calibration_blocks": 6,
+    "calibration_observations": 48,
+    "held_out_blocks": 12,
+    "held_out_observations": 96,
+    "fresh_index_feature_encryptions_max": 31744,
+    "fresh_remote_query_encryptions_max": 540,
+    "standard_owner_Ed25519_contexts_max": 2,
+    "standard_cache_AES256_contexts_max": 2,
+    "standard_protected_worker_Ed25519_contexts_max": 54,
+    "actual_32_row_refreshes_per_remote_mode": 18,
+    "CUDA_or_Nsight_runs": 0,
+    "parameter_sweep": false,
+    "extra_calibration_or_hidden_held_out": false,
+    "query_count_scope": "Cache policies are repeated trajectories of one cache implementation, not independent cryptosystems. Candidate/known-composition and selector aliases are not extra experiments.",
+    "consumed_in_this_registration": 0
+  },
+  "evaluation": {
+    "split": "First fresh process block per key/size calibrates; freeze and hash cost data, legal choices, policies and generic-selector implementation before the remaining two blocks per key/size",
+    "primary": "Mean client-visible completion minus declared arrival through current authenticated full distances and ordinal top3 over the frozen causal device/update trace. Exact setup/arrival/warmup initial state is an execution-addendum prerequisite, not deferred tuning after timing.",
+    "weights": "Uniform over the six key/size scenarios and eight measured queries; do not change weights in response to timings",
+    "horizon": "1/8/128 device-lifetime accounting derived from the same paid stages is explicitly a model, not 128 measured queries",
+    "policies": "Compare each whole deterministic remote path, allowed returning/acquired/prefetched cache, evaluator-only selector and complete-cost selector. Give the generic exact selector identical observations/choices and include selection/repreparation overhead. Retrospective per-instance minima are oracle lower bounds.",
+    "gate": "20 percent over best compatible frozen remote policy is only a project threshold. Cache utility and prior-separated originality are separate gates; agreement with generic selection does not establish new optimization.",
+    "telemetry": "Record monotonic clocks, CPU work, every link, startup/update stages, role memory, load, clocks/thermals, swap-in/out and per-process activity at <=1 second intervals; preserve failures/timeouts/contaminated runs without cherry-picking",
+    "timeout": "Freeze per-task and per-block deadlines before execution; no retry under a new key or replacement process after a consumed block without revised registration",
+    "pairing": "Rotate/reverse implementation order deterministically over key/size/block; preserve identical input and initial-state pairing",
+    "numerical_scope": "Local CPU prototype and explicitly shaped loopback paths only; no secure remote-service speedup, parameter approval, broad hardware generalization or author-artifact defeat",
+    "stop": "Return failures or dominance to the ledger. No new placement, changed sampler/noise law, extra key, workload retuning or new branch outside the frozen cap."
+  },
+  "acceptance": [
+    "Each role receives only its intended public or trusted-local inputs; every transport frame is bounded before allocation/parse",
+    "Malformed/foreign/stale/replayed/mismatched receipt and frame cannot reach a private callback; consume before callback and never invoke it twice",
+    "Producer modes, protected replay and cache return every exact independently checked distance, correct tails and ordinal ties after initial preparation and 32-row refresh",
+    "Full common-Q and exact aggregate actually execute complete runtime predicates; certificates and result signatures never replace runtime equality",
+    "Measured completion is a whole observed path, not a sum of stage medians; prefetch overlap and duplicate work are observed",
+    "Registration, implementation/execution freezes, calibration-policy freeze, every raw block and qualifications are retained; earlier evidence and source/library pins remain unchanged",
+    "Return pass/stop with exact counts to Q77 ledger; select Q78 deployment only if the useful system result survives; Q79 originality/paper remains required"
+  ],
+  "next": "Implement bounded local receipt/transport and complete coordinator, validate public controls, then commit the exact execution addendum before consuming either HE key."
+}
