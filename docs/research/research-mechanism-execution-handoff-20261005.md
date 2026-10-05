@@ -34,6 +34,16 @@ Neither fresh keys nor a measured cohort has run. Complete the exact addendum
 and preflight next, then R3; the conditional one-extension and paper gates below
 remain unchanged.
 
+## Actual execution status
+
+The [execution-start return](native-shared-query-complete-cost-execution-start-return-20261005.json)
+completes R2c's exact committed freeze and passing preflight. The one registered
+R3 action is running with actual owner provisioning and public telemetry; its
+complete-cost/correctness return is pending. Read prior unexecuted/pending
+statements above and in dated tables as historical scopes. Do not edit frozen
+runtime sources/contract or replace failed attempts. Return R3 before selecting
+one conditional R4 mechanism.
+
 ## What to build, and what could justify a paper
 
 Build an exact owner-data search service around the homemade BGV arithmetic,

@@ -40,6 +40,18 @@ the exact committed execution addendum remains the next dependency.
 
 ## Current decision and executable paper milestones
 
+R2c is now **complete in its public-integration and exact-freeze scope**. The
+[execution-start return](native-shared-query-complete-cost-execution-start-return-20261005.json)
+pins the committed addendum/contract at `34417f0`, 444 runtime sources, 700
+dependencies and the passing pure preflight. R3 has started actual owner HE
+provisioning into the one registered `cohort1`; its initial resource-prefix
+snapshot contains two consumed HE-key attempts. This is a running comparison,
+not returned timing/correctness evidence. A missing output parent stopped the
+earlier launch before an attempt existed; that pre-start failure is retained.
+Runtime sources and frozen contract stay fixed through the cohort. The first
+unmet dependency is **R3's actual calibration/held-out return**, then exactly
+one eligible creative extension, assurance and the final paper package.
+
 The [pre-execution review](research-pre-execution-review-20261005.json) rechecks
 11 archived closest-work PDF/text pairs and current primary pages, preserving
 all 138 source records. It also fixes a concrete experiment-design mismatch:
@@ -58,8 +70,8 @@ immutable-base recipe are engineering foundations; neither is the new result.
 
 | Milestone | Concrete deliverable | Decision produced |
 | --- | --- | --- |
-| R2c: finish the execution freeze | Exact committed sources, dependencies, event/arrival law, host/retention guards and explicit attempt ceilings. Public gates are complete. | A reproducible runnable comparison, without interpreting public stubs as HE correctness. |
-| R3: complete-cost selection | Six calibration blocks, immutable choices, twelve held-out blocks; all distances, setup, transfers, private finish, updates, losers and memory accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
+| R2c: complete | Exact sources, dependencies, event/arrival law and guards committed; pure preflight passed. | Runnable frozen comparison; public stubs remain distinct from HE correctness. |
+| R3: running, result pending | Six calibration blocks, immutable choices, twelve held-out blocks; all distances, setup, transfers, private finish, updates, losers and memory accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
 | R4a: choose one creative extension | Literal changed execution, necessary invariant, resource prediction and strongest compatible construction. | A distinction to test, or a documented containment finding. |
 | R4b/R4c: build and ablate it | Independent oracle, adversarial transitions, complete adapter and one registered matched extension cohort. | Attribution and useful/losing regions; a same-output gain alone does not establish originality. |
 | Q78: deployment and security | Native/model refinement, authorization/privacy games, parameter/sampler/private-leakage review, attestation and nonrollback authority. | Explicit discharged obligations and remaining assumptions. |
@@ -87,9 +99,9 @@ bound before other diagnostics. This exceeds the old 8 GiB whole-artifact cap.
 The [explicit resource registration](native-shared-query-execution-resource-registration-20261005.json)
 therefore prepares a **10 GiB whole-cohort** guard while retaining the **8 GiB
 immutable public-blob archive** cap and requiring 20 GiB initial filesystem
-headroom. It changes neither workload nor HE attempt reservations. Exact
-execution still requires its committed addendum; these scalar counts are not
-measured peaks or a resource-fit/security certificate.
+headroom. It changes neither workload nor HE attempt reservations. The exact
+committed addendum now activates these ceilings for R3; the scalar
+counts are not measured peaks or a resource-fit/security certificate.
 
 ## Decision card for the next implementation
 
@@ -109,10 +121,10 @@ service. This is a testable systems hypothesis, not a claimed new primitive.
 | Returning plaintext cache is much faster in the retained small panel, and the owner may retain its data. | Include cache acquisition, returning use and races. A useful HE result may have a limited fresh-client regime; never invent a cache restriction. |
 | Dense maintained checks have useful asymptotic state/work tradeoffs but may not save contraction work at one/two groups. | Compare actual verification architectures and their secret-state premises before selecting a delegation headline. |
 
-Execution remains finite: **finish R2; run R3 once; specify and test one eligible
-R4 extension; then complete Q78 assurance and Q79 evaluation/paper**. R2's four
-files now pass the registered eight-case public extension gate. R2's exact
-execution freeze and resource review remain pending. R3 retains
+Execution remains finite: **finish the running R3 once; specify and test one
+eligible R4 extension; then complete Q78 assurance and Q79 evaluation/paper**.
+R2's public gate, resource review and exact committed freeze are complete within
+their stated scopes. R3 retains
 six trajectories, 18 blocks and 144 measured requests per trajectory, with
 calibration preceding held-out evaluation. This review authorizes no extra
 cases, keys, timings or scale sweep. After each exit, record the actual artifact
@@ -720,8 +732,8 @@ containment and keep only the useful engineering path. A new security theorem
 would need a substantive guarantee or refinement beyond routine signature and
 ADS composition; it is not an automatic fallback for a contained algorithm.
 
-There is no new preliminary search phase in this update. R2 is the immediate
-action, R3 supplies the missing bottleneck evidence, and R4 tests one surviving
+There is no new preliminary search phase in this update. R3 is running and
+supplies the missing bottleneck evidence; R4 tests one surviving
 mechanism. Its artifacts are a mechanism specification, runnable adapter,
 independent whole-output oracle/fault gate, matched reference, paid ablation,
 frozen policy and held-out return. The existing proposed cohort is not enlarged.
@@ -746,8 +758,8 @@ unavailable adapters cannot supply the distinction.
 
 | Step | Deliverable and location | Exit condition / next decision |
 | --- | --- | --- |
-| R2, current implementation | Finish `complete_cost_tenant.py` and `complete_cost_owner_study.py` using the existing owner/coordinator/relay/supervisor modules; complete honest provisioning, independent sessions and guards. | One runnable cohort action, meaningful bounded public integration gate, exact execution addendum committed before HE work. |
-| R3, reserved selection study | Two keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: 18 blocks/144 observations per trajectory. First six blocks/48 queries calibrate; twelve/96 are held out. | Freeze policies before held-out. Return actual complete costs and bottleneck, including failures and cache utility. |
+| R2, complete public gate and freeze | `complete_cost_tenant.py` and `complete_cost_owner_study.py` connect honest provisioning, independent sessions and guards. | Exact addendum committed and preflight passed before HE work; actual encrypted integration is judged by R3. |
+| R3, running reserved selection study | Two keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: 18 blocks/144 observations per trajectory. First six blocks/48 queries calibrate; twelve/96 are held out. | Freeze policies before held-out. Return actual complete costs and bottleneck, including failures and cache utility. |
 | R4, one creative extension | The one mechanism selected above, admitted graph, strongest adaptation, whole-execution ablation and new finite registration. | Useful held-out region and surviving prior-work distinction, or close the claim and preserve the engineering artifact. |
 | Q78, assurance/deployment | Conditional reduction, native refinement, parameter/private-leakage review, real attested authority and rollback/revocation tests; matched GPU path if used in the final claim. | Complete premises and real deployment evidence before a secure-service or GPU-service performance claim. |
 | Q79, final paper/artifact | Additional justified workloads/deployment evaluation, strongest counterconstruction, external originality/security review, reproducible artifact and paper. | One precise defensible finding with winning and losing regimes. |
@@ -758,9 +770,9 @@ bindings, immutable calibration order, policy freezing, actual cache-only TCP
 setup/update lifetimes and full logical scheduling/failure stopping. It uses
 existing public UNIT keys and labelled arithmetic/scheduling stubs. Its eight
 new cases exhaust the parent registration's public extension allowance. The
-selected encrypted integration has not run: finish the exact execution
-addendum and whole-resource review before launching R3. Passing this gate is
-neither encrypted correctness nor a complete-cost measurement.
+selected encrypted integration is now running under the committed exact
+addendum and reviewed resource limits. Passing the public gate is neither
+encrypted correctness nor a complete-cost measurement.
 
 R3 compares three independently prepared remote modes, returning/fresh cache
 and racing acquisition. For each mode, charge actual provisioning, setup,
@@ -778,11 +790,12 @@ clock projections are attributed intervals, not a separately measured bare
 evaluator baseline. The two-key synthetic cohort is a selection study, not
 the paper's entire workload or population-confidence argument.
 
-Historical caps remain unchanged and unconsumed. The pending exact-addendum
-proposal is 702 fresh query encryptions, 72 protected signer contexts, 31,744
-feature encryptions and two HE keys; it does not activate those budgets here.
-The exact addendum will activate the registered 10 GiB whole-artifact guard
-and retain the 8 GiB immutable public-blob archive cap. Preserve source/binary/dependency pins,
+The historical registration and amendments are retained. The committed exact
+addendum activates ceilings of 702 query encryptions, 72 protected signer
+contexts, 31,744 feature encryptions and two HE keys. The actual prefix in the
+execution-start return records consumption; final totals wait for R3. The
+registered guard is 10 GiB for the whole artifact and 8 GiB for its immutable
+public-blob archive. Preserve source/binary/dependency pins,
 attempt-before-work accounting, <=1 s public telemetry, owned process custody,
 deadline/memory guards and the granted idle-window discipline. Cooperative
 guards are not hard instantaneous memory limits.
@@ -847,7 +860,7 @@ uniform/random data alone cannot establish an application-wide advantage;
 justify dimensions, update locality, repeat overwrites, horizons and fresh
 device use from actual intended deployments.
 
-Do not create another open-ended preliminary queue. There is one unexecuted
+Do not create another open-ended preliminary queue. There is one running
 selection cohort, one conditional creative-extension cohort, and the
 assurance/final-evaluation packages. The randomized adapter is mandatory for
 a broad delegation headline but is not already covered by either cohort's
@@ -983,6 +996,7 @@ retained evidence instead of starting a paper around an assumed speedup.
 The remaining packages are **Q77 evaluation/one extension, Q78 assurance and
 deployment, Q79 paper**. There is no remaining broad preliminary portfolio.
 After each task, preserve inputs/commands/failures/scope/checkpoint in the ledger
-and return here. **Next implementation: commit and validate R2c's exact pre-HE freeze,
-then execute R3.** This planning review does
-not complete that dependency or reserve additional encrypted experiments.
+and return here. **Next exit: return the running R3 calibration/held-out
+comparison, then
+specify and implement one eligible R4 extension.** The exact freeze is complete;
+no additional encrypted experiment is reserved by this plan update.

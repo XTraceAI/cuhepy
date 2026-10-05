@@ -354,7 +354,7 @@
     {
       "id": "Q77",
       "title": "Matched full-cost evaluation",
-      "status": "honest_tenant_and_full_cohort_action_public_gate_complete_exact_execution_freeze_pending",
+      "status": "exact_execution_freeze_complete_actual_complete_cost_cohort_running",
       "dependencies": [
         "Q76"
       ],
@@ -387,9 +387,12 @@
         "docs/research/native-shared-query-runtime-return-20261005.json",
         "docs/research/native-shared-query-owner-runner-return-20261005.json",
         "docs/research/native-shared-query-owner-launcher-return-20261005.json",
-        "docs/research/research-pre-execution-review-20261005.json"
+        "docs/research/research-pre-execution-review-20261005.json",
+        "docs/research/native-shared-query-complete-cost-execution-start-return-20261005.json",
+        "docs/research/native-shared-query-complete-cost-execution-20261005.json",
+        "docs/research/native-shared-query-complete-cost-execution-contract-20261005.md"
       ],
-      "implemented": "provisioning_owner_trajectories_full_cohort_action_and_public_cache_tcp_gate; actual_selected_HE_cohort_unexecuted",
+      "implemented": "full_owner_cohort_action_with_actual_HE_provisioning_running; complete_return_pending",
       "planned_matched_blocks_per_implementation": 18,
       "planned_measured_queries_per_implementation": 144,
       "identical_known_composition_alias_not_extra_method_or_experiment": true,
@@ -410,7 +413,7 @@
         "held_out_observations": 96,
         "warmups_excluded": 18,
         "partition": "First block per key/size calibration; freeze policies then remaining two blocks held out",
-        "unexecuted_future_registration": true,
+        "unexecuted_future_registration": false,
         "dependent_within_key_corpus": true,
         "additional_update_checks_not_added_to_query_observation_total": true
       },
@@ -434,7 +437,7 @@
       "security_scope": "Conditional local prototype under explicit owner/native premises; no deployed secure-service claim",
       "implementation_registration": "docs/research/native-shared-query-complete-cost-registration-20261004.json",
       "implementation_registration_scope": "Additive protocol/transport/coordinator; no HE key or timing until complete exact execution freeze",
-      "cohort_registered_and_executed": false,
+      "cohort_registered_and_executed": true,
       "local_public_role_handoff": {
         "final_distinct_tests": 158,
         "complete_retained_small_native_paths": 6,
@@ -456,18 +459,20 @@
         },
         {
           "id": "R2",
-          "status": "owner_trajectory_and_public_update_assembly_gate_complete_full_cohort_launch_and_exact_freeze_pending",
-          "deliverable": "Connect actual tenant provisioning/full cohort launch and exact freeze; real trajectory and compact update assembly pass public controls",
+          "status": "complete_public_integration_and_exact_committed_preflight_scope",
+          "deliverable": "Owner cohort action and exact source/dependency/event/resource freeze committed and preflight passed before actual HE",
           "evidence": "docs/research/native-shared-query-owner-runner-return-20261005.json",
           "historical_evidence_before_source_gate": "docs/research/native-shared-query-owner-trace-return-20261005.json",
           "historical_evidence_before_upload_relay": "docs/research/native-shared-query-cohort-source-return-20261005.json",
           "historical_evidence_before_runtime_workers": "docs/research/native-shared-query-cohort-relay-return-20261005.json",
-          "historical_evidence_before_owner_runner": "docs/research/native-shared-query-runtime-return-20261005.json"
+          "historical_evidence_before_owner_runner": "docs/research/native-shared-query-runtime-return-20261005.json",
+          "latest_evidence": "docs/research/native-shared-query-complete-cost-execution-start-return-20261005.json"
         },
         {
           "id": "R3",
-          "status": "unexecuted_reserved_existing_cap",
-          "deliverable": "6 calibration plus 12 held-out blocks per implementation, total 18/144"
+          "status": "actual_cohort_running_no_complete_return_yet",
+          "deliverable": "6 calibration plus 12 held-out blocks per implementation, total 18/144",
+          "evidence": "docs/research/native-shared-query-complete-cost-execution-start-return-20261005.json"
         },
         {
           "id": "R4",
@@ -561,7 +566,7 @@
         "exact_execution_addendum_committed": false,
         "file": "docs/research/native-shared-query-owner-launcher-return-20261005.json"
       },
-      "actual_HE_or_timing_cohort": 0,
+      "actual_HE_or_timing_cohort": 1,
       "pre_execution_design_review": {
         "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/research-pre-execution-review-20261005.json",
         "bytes": 6804,
@@ -573,7 +578,23 @@
         "initial_filesystem_free_bytes_min": 21474836480,
         "old_whole_artifact_bytes": 8589934592,
         "conservative_old_peak_before_other_diagnostics": 8902711764
-      }
+      },
+      "historical_status_before_actual_launch": "honest_tenant_and_full_cohort_action_public_gate_complete_exact_execution_freeze_pending",
+      "cohort_registered_and_started": true,
+      "cohort_complete": false,
+      "actual_cohort_count_scope": "one started cohort, zero completed cohorts at start receipt",
+      "execution_start_return": {
+        "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-complete-cost-execution-start-return-20261005.json",
+        "bytes": 3011,
+        "sha256": "41f801f3bd114bfcd3e93068b899270d165c443242dff74004158e6a176d2dd9"
+      },
+      "consumed_resources_at_execution_start_prefix": {
+        "owner_signing_keys": 2,
+        "cache_AES_keys": 2,
+        "HE_keys": 2,
+        "feature_encryptions": 2366
+      },
+      "cohort_execution_scope": "Started actual provisioning; no complete comparison returned at this receipt"
     },
     {
       "id": "Q78",
@@ -764,9 +785,13 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/research-mechanism-priority-20261005.json",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q77_R2c_commit_exact_execution_addendum_then_R3",
+  "next_subtask": "Q77_R3_actual_calibration_held_out_return_then_one_R4_eligibility",
   "latest_planning_review": "docs/research/research-mechanism-priority-20261005.json",
-  "latest_execution_return": "docs/research/native-shared-query-owner-runner-return-20261005.json",
+  "latest_execution_return": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-complete-cost-execution-start-return-20261005.json",
+    "bytes": 3011,
+    "sha256": "41f801f3bd114bfcd3e93068b899270d165c443242dff74004158e6a176d2dd9"
+  },
   "Q76_execution_returns": [
     {
       "milestone": "Q76.1",
@@ -2062,9 +2087,9 @@
     "file": "docs/research/native-shared-query-owner-launcher-return-20261005.json"
   },
   "current_research_plan_return": {
-    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/research-pre-execution-review-20261005.json",
-    "bytes": 6804,
-    "sha256": "2b57f2c99b5fe0636caf099a27fc26775cf12a47b0ed1dc3cb97840a4f420106"
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-complete-cost-execution-start-return-20261005.json",
+    "bytes": 3011,
+    "sha256": "41f801f3bd114bfcd3e93068b899270d165c443242dff74004158e6a176d2dd9"
   },
   "historical_current_research_plan_returns": [
     {
@@ -2084,11 +2109,28 @@
         "Q79_paper"
       ],
       "original_main_accepted": false
+    },
+    {
+      "utc": "2026-10-05T18:04:41.518080+00:00",
+      "receipt": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-complete-cost-execution-start-return-20261005.json",
+      "scope": "Exact freeze/preflight and actual R3 start; not completed HE measurement",
+      "first_unmet_dependency": "Q77_R3_actual_calibration_held_out_return_then_one_R4_eligibility",
+      "original_main_accepted": false
     }
   ],
   "Q77_pre_execution_design_review": {
     "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/research-pre-execution-review-20261005.json",
     "bytes": 6804,
     "sha256": "2b57f2c99b5fe0636caf099a27fc26775cf12a47b0ed1dc3cb97840a4f420106"
+  },
+  "historical_execution_return_before_actual_R3_launch": {
+    "next_subtask": "Q77_R2c_commit_exact_execution_addendum_then_R3",
+    "latest_execution_return": "docs/research/native-shared-query-owner-runner-return-20261005.json",
+    "all_experiment_tasks_are_unexecuted_proposals": false
+  },
+  "Q77_execution_start_return": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-complete-cost-execution-start-return-20261005.json",
+    "bytes": 3011,
+    "sha256": "41f801f3bd114bfcd3e93068b899270d165c443242dff74004158e6a176d2dd9"
   }
 }
