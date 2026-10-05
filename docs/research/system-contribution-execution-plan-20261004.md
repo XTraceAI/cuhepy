@@ -4,8 +4,10 @@
 > is the concise R0–R6 implementation/paper queue. The local public role
 > component is complete at remotely verified `51ed323557396c92e362e83c2e922985176f31f9`.
 > Q77 has an implementation registration; older “unregistered” pointers below
-> describe historical planning states. Owner HE custody/private finish,
-> coordinator and exact execution addendum are next. The 18-block/144-observation
+> describe historical planning states. The [owner adapter](native-shared-query-owner-component-20261004.md)
+> now passes its bounded public control gate: 78 new cases, 236 final combined.
+> Actual HE execution/process custody, coordinator and exact execution addendum
+> are next. The 18-block/144-observation
 > cap, strongest replay/cache controls and unapproved originality/security status
 > are unchanged.
 

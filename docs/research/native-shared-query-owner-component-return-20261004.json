@@ -1,0 +1,568 @@
+{
+  "schema_version": 1,
+  "task": "Q77/R1 owner component",
+  "utc": "2026-10-05T03:29:04.214411+00:00",
+  "scope": "Owner custody/receipt control and pure score validation with public decoder stub; actual private HE and spawned-role custody pending",
+  "helper": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/record-owner-return.py",
+    "bytes": 8276,
+    "sha256": "a21908f5450b5049b6eb3bed317b4f45bc3d2e93b6eadb5595b6be3168058fd8"
+  },
+  "baseline": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/baseline.json",
+    "bytes": 126323,
+    "sha256": "d8d75965cd4619c189de21b1b4be89fcf43cae57edce0f2abf1cbebc5417e87e"
+  },
+  "registration": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-owner-component-registration-20261004.json",
+    "bytes": 5101,
+    "sha256": "747c0e5fab83b76ee1aee402d07425721f8334d9521f951fb24fca8b4f3f7236"
+  },
+  "registration_commit": "f36f9e389d4a984e6fdeacc0505247f6488219af",
+  "final_freeze": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/owner-gate-freeze02.json",
+    "bytes": 109786,
+    "sha256": "0bce45c84bf5eb724096c3df1c48e94580599d34f56bbea16315b1a91c73448f"
+  },
+  "source_archives_verified": [
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/owner-gate-freeze01.json",
+      "bytes": 109782,
+      "sha256": "bfda78c01a400ba7b06909183f2ca587cd74e8bfe5ba106f01ccccbd90ab0bdd"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/owner-gate-freeze02.json",
+      "bytes": 109786,
+      "sha256": "0bce45c84bf5eb724096c3df1c48e94580599d34f56bbea16315b1a91c73448f"
+    }
+  ],
+  "final_new_owner_cases": 78,
+  "compatibility_cases": 158,
+  "final_distinct_cases": 236,
+  "final_passed": 236,
+  "collected_nodes": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/run02/collected-nodes.json",
+    "bytes": 32613,
+    "sha256": "fc69d81b2d0fc0788d87ebf04734c19fb4319554ab0e9b9eaa4359aca251955a"
+  },
+  "invocations_preserved_not_summed_as_distinct_experiments": [
+    {
+      "name": "run01",
+      "tests": 78,
+      "passed": 77,
+      "failed": 1,
+      "skipped": 0,
+      "junit": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/run01/junit.xml",
+        "bytes": 17144,
+        "sha256": "4954df9d3c5fd19bc1657aafe8ba937cc83207ee54623021ec525aa8dd3ad469"
+      },
+      "console": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/run01-console.txt",
+        "bytes": 4973,
+        "sha256": "74d15de916098b21355938cc183c3bcb14d53436470dfdd8783453350a072ff2"
+      },
+      "private_observation": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/run01/private-work-observation.json",
+        "bytes": 66,
+        "sha256": "b7e73ce74ccbe2c8e1c39f7b9c5e4bf5dbfc2df0e5caa895973894f0d374643a"
+      }
+    },
+    {
+      "name": "run02",
+      "tests": 236,
+      "passed": 236,
+      "failed": 0,
+      "skipped": 0,
+      "junit": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/run02/junit.xml",
+        "bytes": 40514,
+        "sha256": "3fcb0fe1be8e7077ac7262d7fb5f547b5ebb34545df9eeeb141453785b0345fe"
+      },
+      "console": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/run02-console.txt",
+        "bytes": 1124,
+        "sha256": "7d40e899fde563d101d7572ecca33db228dc5066bff6193d8855c03e8044726e"
+      },
+      "private_observation": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/run02/private-work-observation.json",
+        "bytes": 66,
+        "sha256": "b7e73ce74ccbe2c8e1c39f7b9c5e4bf5dbfc2df0e5caa895973894f0d374643a"
+      }
+    }
+  ],
+  "failure_explanation": "run01 stale-pin fixture advanced epoch without a new logical revision; corrected only the public fixture, not implementation or HE law",
+  "intentional_fork_negative_tests_emit_Python_deprecation_warnings": 3,
+  "two_PUBLIC_UNIT_ONLY_signing_contexts_reused": true,
+  "public_key_ternary_metadata_is_not_a_valid_HE_pair": true,
+  "private_native_backend_replaced_by_public_plaintext_stub": true,
+  "new_real_private_HE_key_encrypt_decrypt_native_prepare_or_decode_calls": 0,
+  "whole_private_HE_correctness_or_native_side_channel_assurance_established": false,
+  "separate_process_cohort_or_worker_HE_custody_established": false,
+  "native_private_binary_pinned_and_preserved_no_rebuild": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/preserved-private-binary/_bgv_private.cpython-312-x86_64-linux-gnu.so",
+    "bytes": 56616,
+    "sha256": "c51a396a4e28ca099ba6e994b4c75fb5b475fd057548ac8e2e9db6887aad17c4"
+  },
+  "public_small_native_compatibility_paths": 6,
+  "bad_native_result_compatibility_rejects": 2,
+  "public_role_files_preserved": [
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_0/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_0/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_0/protected.json",
+      "bytes": 1240,
+      "sha256": "a16c22a53ee7aa168a9542a2136dac131c129f677faf965f4b1804d809971ecc"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_0/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "50b8439450ff3ec64e9e203326fea2e0f6ac4018c409e53b3bff314eddb1084f"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_1/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_1/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "42287eea3e53520a4a253f0161ad9ccc5914605634dab98a3254a7cbfba54090"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_1/protected.json",
+      "bytes": 1264,
+      "sha256": "99257eb7018d4d0c8ad9375bef47395f01282e40d77a4c490ca7aa3571a52b48"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_1/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "5b85ec8a2bfdcc6e8c6837e5af6a1a136889a4b7b4911a1cb11897bad26b203e"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr0/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr0/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr0/frontend.json",
+      "bytes": 1242,
+      "sha256": "cc6234e21ff89d1667f68ffea8acbb29b6b406e4e3a3c878491ff8a4de4629ae"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr0/protected.json",
+      "bytes": 1240,
+      "sha256": "d75920ba3926b66e7326e25df00229980bdeee6c868051af49cfa7706c86331b"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr0/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "af35e237cea1e0b808819aea640e117a471530220d3c21692c53d023ca2c22b2"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr1/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr1/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "56acee641525e86bdd56e7861fdd25ef8ee3d93c2c4a67d5daa1b639d4b9f118"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr1/frontend.json",
+      "bytes": 1253,
+      "sha256": "7e61a0fc3958488449a5d4566a4894ca3aa30e40b9f60220579849dc964eca7c"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr1/protected.json",
+      "bytes": 1251,
+      "sha256": "a85150638d6b3b411142fb1beb1934ba1c5f852d6a9dc4f84389c0ba6b34e3bb"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr1/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "1bb7b0482cafa81e5d106d8fd4964f4a8839f84f97aef96f3ecb5c0a6b7df249"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr2/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr2/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "42287eea3e53520a4a253f0161ad9ccc5914605634dab98a3254a7cbfba54090"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr2/frontend.json",
+      "bytes": 1266,
+      "sha256": "ac43d47083f2b34cc0d6d2e611b567d10070112bfcd980b8b9720afb18f73e69"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr2/protected.json",
+      "bytes": 1264,
+      "sha256": "af6a8789279f0c40e8e68d8a3c9b4a79d2b32fb0d98212ccd131b0edcaccb3b5"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr2/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "b11fbd4fe3ad291fa7288a52932278e0d03946410b220166aeeedcba172d7899"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr3/descriptor.bin",
+      "bytes": 1314,
+      "sha256": "0d957f3dc4a8b23708e38d951e9c3cc1ae3ed49da3e2478ab9c5a8313cd50f79"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr3/enrollment.bin",
+      "bytes": 21762,
+      "sha256": "8b1e0113c2eab7a9206f982fc13ee69b341802ce8d9ed1529e7828e25106feda"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr3/frontend.json",
+      "bytes": 1243,
+      "sha256": "38811718ddd27cb6b0d6e1434ad8e7a32b5520b5c4a2200ec25fc2950b5a06be"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr3/protected.json",
+      "bytes": 1241,
+      "sha256": "1db9bbbae2849f3b74ee3b6e24dd0272844d38edac311f64a6a5c77035649d16"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr3/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "e5877709f8032a5ccc23c8df92543f0c9abcb3daf5a895cd0e318b4e05a4ae60"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr4/descriptor.bin",
+      "bytes": 1314,
+      "sha256": "0d957f3dc4a8b23708e38d951e9c3cc1ae3ed49da3e2478ab9c5a8313cd50f79"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr4/enrollment.bin",
+      "bytes": 21762,
+      "sha256": "26cee0d02325bf6261bc83f183b6eb06e476beee895c04008779054f8260d9d2"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr4/frontend.json",
+      "bytes": 1254,
+      "sha256": "a316afdf133ad76373da27a992c1b4388829be1d08b903f7ff12e73bb8590bf7"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr4/protected.json",
+      "bytes": 1252,
+      "sha256": "ccd7951afbb8dd3b35b0d7f9651959db68d94e8271aac64a7242f3e6b7bc5aaa"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr4/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "5dafbd5866a1ebf3a88d798ef81e5be24a83a1c9b16c4993568ca45c2be85d0b"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr5/descriptor.bin",
+      "bytes": 1314,
+      "sha256": "0d957f3dc4a8b23708e38d951e9c3cc1ae3ed49da3e2478ab9c5a8313cd50f79"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr5/enrollment.bin",
+      "bytes": 21762,
+      "sha256": "33294ea29c4db5fb5f53cc9ad6a818c118f582af5385de3521a62837dcc85ca8"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr5/frontend.json",
+      "bytes": 1267,
+      "sha256": "c13f2188f1543776b67fbf215d992861ed0a78ac392b35befdf70922674bf19b"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr5/protected.json",
+      "bytes": 1265,
+      "sha256": "79dfbd5502380f052bcccc91d78878085f304aa2ab5573a2665d5b7b7d2dbb05"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr5/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "036bda32265d124fd13f0463fde2c57901a5829894e77cab60ca05e324ff5cb7"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang0/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang0/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang0/protected.json",
+      "bytes": 1138,
+      "sha256": "5cb22293ade65fe0848a59f644dfc21db7495cf4f3535b781249cd8abf7b8503"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang0/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "21d57c8b760be9b8d2f3d5a476bbcc1e82ba25ec3253dbf75565a896c4bc7217"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang1/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang1/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang1/protected.json",
+      "bytes": 1096,
+      "sha256": "4674d9aefe107c1a93ed48fb365dd7a35cc7bdc63eade58961bcf481f83bbc10"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang1/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "24381faafaec6b2d447f0a8e84a51839235bd500c1b971f3b42bd6669b8e197f"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang2/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang2/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang2/protected.json",
+      "bytes": 1154,
+      "sha256": "bad1cd20c406c9ff776b1ebac6ab294821a88bdcccca11b04e92d91cce9fff37"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang2/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "a8bac3d7439449ebd6114e8d0d182b2b87ec6b79b211a1cac9e81b816a88c70c"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang3/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang3/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang3/protected.json",
+      "bytes": 947,
+      "sha256": "ded0c0bc5d132e7bcdb9c8b602972b4dd38402f3be076087e0692018e73da6c6"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang3/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "d85397c68503a81efd97b18e2c3d082c99a8d073781b8c2edefe09166dfb684a"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can0/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can0/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can0/protected.json",
+      "bytes": 1240,
+      "sha256": "7971ebcb09d8ecb1e15268265c6bd477b806fe03d86a3b8b6ff2ac58a3b5540d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can0/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "5a486b9fb617d356269bb00cdbc3cf705043249c03a259695f7502ca0c7a0501"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can1/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can1/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can1/protected.json",
+      "bytes": 1240,
+      "sha256": "a86a9370f5a21250295dd5cac7e61670a53d65f0ab071e108b1f8187006b52f0"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can1/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "ebdd0df2327466456b65d96860af697bdcacb7ad1f1e9d2639ffaa6d0ace75ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can2/descriptor.bin",
+      "bytes": 1185,
+      "sha256": "72862ae4d17fc7d1834d4501fdbe550230868f7d4dc87072c085ae77923910ec"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can2/enrollment.bin",
+      "bytes": 8239,
+      "sha256": "7b405ab044f13462f56f6630be6d8ed3c200fb62691661b0b68e22c77fba617d"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can2/protected.json",
+      "bytes": 1240,
+      "sha256": "d285d6c53e3614c33ee78f568433a89d0dd654ce7b55266b6871f1cbdbdab7a9"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can2/protected.sqlite",
+      "bytes": 20480,
+      "sha256": "bf39d5504d3e7fa69599dcf7262315baa963276e5e9dcb73cd86e708341dd4f8"
+    }
+  ],
+  "public_role_journals": [
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_0/protected.sqlite",
+      "states": [
+        [
+          "rejected",
+          1
+        ]
+      ]
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_bad_native_result_1/protected.sqlite",
+      "states": [
+        [
+          "rejected",
+          1
+        ]
+      ]
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr0/protected.sqlite",
+      "states": [
+        [
+          "delivered",
+          1
+        ]
+      ]
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr1/protected.sqlite",
+      "states": [
+        [
+          "delivered",
+          1
+        ]
+      ]
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr2/protected.sqlite",
+      "states": [
+        [
+          "delivered",
+          1
+        ]
+      ]
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr3/protected.sqlite",
+      "states": [
+        [
+          "delivered",
+          1
+        ]
+      ]
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr4/protected.sqlite",
+      "states": [
+        [
+          "delivered",
+          1
+        ]
+      ]
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_actual_native_frontend_pr5/protected.sqlite",
+      "states": [
+        [
+          "delivered",
+          1
+        ]
+      ]
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang0/protected.sqlite",
+      "states": []
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang1/protected.sqlite",
+      "states": []
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang2/protected.sqlite",
+      "states": []
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_role_refresh_cannot_chang3/protected.sqlite",
+      "states": []
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can0/protected.sqlite",
+      "states": []
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can1/protected.sqlite",
+      "states": []
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/retained-public-role-files/test_worker_role_ownership_can2/protected.sqlite",
+      "states": []
+    }
+  ],
+  "public_journal_totals": {
+    "rejected": 2,
+    "delivered": 6
+  },
+  "implemented": [
+    "Owner-local fixed geometry/public fingerprint/ternary metadata binding",
+    "Lazy packed native decoder path inside authenticated consumed callback",
+    "Complete score range/parity, canonical residues, zero plaintext tails and ordinal top3",
+    "Serialized private decode/close and shared per-key decoder lifetime",
+    "Any private finish failure disables key custody; no private retry or fallback"
+  ],
+  "existing_runtime_sources_unchanged": 425,
+  "new_additive_runtime_files": 2,
+  "company_files_unchanged": 66,
+  "isolated_libraries_unchanged": 6,
+  "new_cohort_HE_key_query_measurement_build_CUDA_Lean_or_author_runs": 0,
+  "Q77_full_cohort_Q78_Q79_or_originality_security_parameter_approval": false,
+  "next": "Q77 complete owner coordinator, spawned-process HE custody and exact execution addendum before either HE key or measurements",
+  "cohort_caps_unchanged": {
+    "blocks": 18,
+    "observations": 144,
+    "calibration": 48,
+    "held_out": 96
+  },
+  "pending_private_lifetime_and_query_budget": "Freeze lazy private preparation/cold-returning lifetime and account for 540 standalone plus up to 180 prefetch remote query encryptions before HE work"
+}

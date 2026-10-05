@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-05T02:52:56.976308+00:00",
+  "utc": "2026-10-05T03:47:29.445534+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -354,7 +354,7 @@
     {
       "id": "Q77",
       "title": "Matched full-cost evaluation",
-      "status": "public_role_handoff_complete_owner_coordinator_and_execution_addendum_pending",
+      "status": "owner_adapter_public_control_gate_complete_coordinator_and_execution_addendum_pending",
       "dependencies": [
         "Q76"
       ],
@@ -377,9 +377,12 @@
       "evidence": [
         "docs/research/native-shared-query-complete-cost-registration-20261004.json",
         "docs/research/native-shared-query-complete-cost-public-return-20261004.json",
-        "docs/research/native-shared-query-complete-cost-handoff-20261004.md"
+        "docs/research/native-shared-query-complete-cost-handoff-20261004.md",
+        "docs/research/native-shared-query-owner-component-return-20261004.json",
+        "docs/research/native-shared-query-owner-component-20261004.md",
+        "docs/research/native-shared-query-owner-component-registration-20261004.json"
       ],
-      "implemented": "partial_public_role_transport_receipt_only",
+      "implemented": "partial_owner_adapter_and_public_roles_actual_private_HE_process_custody_and_cohort_pending",
       "planned_matched_blocks_per_implementation": 18,
       "planned_measured_queries_per_implementation": 144,
       "identical_known_composition_alias_not_extra_method_or_experiment": true,
@@ -440,13 +443,14 @@
         },
         {
           "id": "R1",
-          "status": "next_unimplemented",
-          "deliverable": "Owner key custody and actual whole-frame private finish; no new HE work before exact execution addendum"
+          "status": "owner_adapter_public_control_gate_complete_actual_HE_and_process_isolation_pending",
+          "deliverable": "Fixed admitted private path and complete plaintext score validation implemented; actual HE and spawned-custody execution remain R2/R3",
+          "evidence": "docs/research/native-shared-query-owner-component-return-20261004.json"
         },
         {
           "id": "R2",
-          "status": "unimplemented_execution_addendum_pending",
-          "deliverable": "Spawned roles and complete setup/acquisition/update graph, exact committed freeze and component budgets"
+          "status": "next_coordinator_and_exact_execution_addendum_unimplemented",
+          "deliverable": "Independently spawned public roles, complete cost DAG and committed freeze including private preparation/lifetimes and encryption budgets before any real HE work"
         },
         {
           "id": "R3",
@@ -464,7 +468,21 @@
         "bytes": 2048,
         "sha256": "22369e2522f8baeb33719d5b6161de867c3bd9bc8f35619a0801f95114cb7afe"
       },
-      "current_build_plan": "docs/research/paper-system-build-plan-after-roles-20261004.md"
+      "current_build_plan": "docs/research/paper-system-build-plan-after-roles-20261004.md",
+      "owner_component_handoff": {
+        "file": "docs/research/native-shared-query-owner-component-return-20261004.json",
+        "utc": "2026-10-05T03:29:04.214411+00:00",
+        "final_new_public_owner_cases": 78,
+        "compatibility_cases": 158,
+        "final_distinct_cases": 236,
+        "actual_private_HE_native_calls": 0,
+        "real_private_correctness_and_spawned_custody_pending": true,
+        "existing_private_extension_pinned_without_execution_or_rebuild": {
+          "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/preserved-private-binary/_bgv_private.cpython-312-x86_64-linux-gnu.so",
+          "bytes": 56616,
+          "sha256": "c51a396a4e28ca099ba6e994b4c75fb5b475fd057548ac8e2e9db6887aad17c4"
+        }
+      }
     },
     {
       "id": "Q78",
@@ -646,9 +664,9 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/closest-work-contract-matrix-20261004.md",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q77_owner_key_custody_private_finish_complete_coordinator_then_exact_execution_addendum",
+  "next_subtask": "Q77_complete_owner_coordinator_process_custody_then_exact_execution_addendum",
   "latest_planning_review": "docs/research/paper-build-handoff-review-20261004.json",
-  "latest_execution_return": "docs/research/native-shared-query-certificate-return-20261004.json",
+  "latest_execution_return": "docs/research/native-shared-query-owner-component-return-20261004.json",
   "Q76_execution_returns": [
     {
       "milestone": "Q76.1",
@@ -755,16 +773,17 @@
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
   "latest_plan_revision": {
-    "utc": "2026-10-05T02:52:56.976308+00:00",
+    "utc": "2026-10-05T03:47:29.445534+00:00",
     "file": "docs/research/paper-system-build-plan-after-roles-20261004.md",
-    "review": "docs/research/paper-system-build-plan-after-roles-review-20261004.json",
-    "scope": "Post-role evidence/prior reassessment and R0-R6 implementation/paper handoff",
+    "review": "docs/research/native-shared-query-owner-handoff-review-20261004.json",
+    "scope": "Owner public adapter return and explicit main/alternative paper decision gates; R2 next",
     "no_new_registered_cohort_or_positive_originality_verdict": true,
-    "implementation_baseline": "51ed323557396c92e362e83c2e922985176f31f9",
+    "implementation_baseline": "bdba1577c3ce4d3865ccd697c7855ac5ce3c46cc",
+    "owner_registration_commit": "f36f9e389d4a984e6fdeacc0505247f6488219af",
     "previous_ledger_preserved": {
-      "file": "/home/pete/yavor-projects/xtrace-work/research-data/paper-system-plan-after-roles-20261004/prior-documents/research-contribution-progress-20261004.json",
-      "bytes": 61301,
-      "sha256": "f07c8101f821897f209d77acb91bc6c5b4b99dc9cd2ede437650b08914c90028"
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/prior-progress.json",
+      "bytes": 66879,
+      "sha256": "52e62fc1b984fd8f51986207978852badb09d7e175d74e197c16b09be3a7d6cc"
     }
   },
   "top_level_count_scope_note": "Zero preliminary gates and zero immediate Q76 native milestones; three packages remain: paid Q77 evaluation, Q78 actual deployment/security, Q79 originality/paper. A completed local handoff is not a completed secure service.",
@@ -919,6 +938,19 @@
       "review": "docs/research/paper-system-plan-review-20261004.json",
       "scope": "Post-prototype retained-result review, three adjacent primary search controls and finite system roadmap",
       "no_new_registered_experiment_or_positive_originality_verdict": true
+    },
+    {
+      "utc": "2026-10-05T02:52:56.976308+00:00",
+      "file": "docs/research/paper-system-build-plan-after-roles-20261004.md",
+      "review": "docs/research/paper-system-build-plan-after-roles-review-20261004.json",
+      "scope": "Post-role evidence/prior reassessment and R0-R6 implementation/paper handoff",
+      "no_new_registered_cohort_or_positive_originality_verdict": true,
+      "implementation_baseline": "51ed323557396c92e362e83c2e922985176f31f9",
+      "previous_ledger_preserved": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/paper-system-plan-after-roles-20261004/prior-documents/research-contribution-progress-20261004.json",
+        "bytes": 61301,
+        "sha256": "f07c8101f821897f209d77acb91bc6c5b4b99dc9cd2ede437650b08914c90028"
+      }
     }
   ],
   "publication_design": "docs/research/publication-system-design-20261004.md",
@@ -973,7 +1005,8 @@
     "security_feasibility_card_before_Q77": true,
     "permitted_cache_correctness_complete_cost_unmeasured": true,
     "current_build_queue": "docs/research/paper-system-build-plan-after-roles-20261004.md",
-    "next_component": "R1_owner_custody_private_finish_then_R2_coordinator_execution_freeze"
+    "next_component": "R2_complete_coordinator_process_custody_and_exact_execution_freeze_before_actual_HE",
+    "paper_framings_are_conditional_not_promised_contributions": true
   },
   "historical_planning_checkpoint_declarations": [
     {
@@ -993,22 +1026,22 @@
     }
   ],
   "preserved_latest_planning_checkpoint": {
-    "commit": "87d32d82df77fd90fe856fcf2e5b6433ae22ddbf",
-    "tag": "checkpoint/paper-system-plan-refresh-2026-10-04",
+    "commit": "bdba1577c3ce4d3865ccd697c7855ac5ce3c46cc",
+    "tag": "checkpoint/paper-system-build-plan-after-roles-2026-10-04",
     "manifest": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-system-plan-refresh-2026-10-04/manifest.json",
-      "bytes": 141710,
-      "sha256": "0f0c2c5ddb622d6011ab65bb487d845327369989a95fb1452bc17abc51f3ca6f"
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-system-build-plan-after-roles-2026-10-04/manifest.json",
+      "bytes": 136293,
+      "sha256": "c6d0e0609b5b119dd29f04640c82ebe2808482d0ac833ac9927720cb50b1d071"
     },
     "remote_verification": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-system-plan-refresh-2026-10-04/remote-verification.json",
-      "bytes": 3297,
-      "sha256": "2183a186de5a229ed42d04f1689ad6aba4139bf4e869e3062f6d25bcf1f0c2fb"
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-system-build-plan-after-roles-2026-10-04/remote-verification.json",
+      "bytes": 2006,
+      "sha256": "49248939dbff41d631d5efc12566a1b8c2572bda4c2f0c1f722be35a3bab5aea"
     },
     "branch_and_tag_remote_verified": true,
-    "evidence_archive_members_verified": 45,
+    "evidence_archive_members_verified": 18,
     "company_archive_members_verified": 66,
-    "scope": "Previous planning checkpoint; current post-role planning publication verified after commit"
+    "scope": "Verified preceding post-role plan; owner implementation publication receipts follow this commit"
   },
   "selected_top_k_contract": {
     "rank_key": [
@@ -1111,6 +1144,24 @@
       "evidence_archive_members_verified": 31,
       "company_archive_members_verified": 66,
       "prior_remote_verification_not_newly_network_repeated_for_this_promotion": true
+    },
+    {
+      "commit": "87d32d82df77fd90fe856fcf2e5b6433ae22ddbf",
+      "tag": "checkpoint/paper-system-plan-refresh-2026-10-04",
+      "manifest": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-system-plan-refresh-2026-10-04/manifest.json",
+        "bytes": 141710,
+        "sha256": "0f0c2c5ddb622d6011ab65bb487d845327369989a95fb1452bc17abc51f3ca6f"
+      },
+      "remote_verification": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-system-plan-refresh-2026-10-04/remote-verification.json",
+        "bytes": 3297,
+        "sha256": "2183a186de5a229ed42d04f1689ad6aba4139bf4e869e3062f6d25bcf1f0c2fb"
+      },
+      "branch_and_tag_remote_verified": true,
+      "evidence_archive_members_verified": 45,
+      "company_archive_members_verified": 66,
+      "scope": "Previous planning checkpoint; current post-role planning publication verified after commit"
     }
   ],
   "Q76_cache_return": {
@@ -1131,7 +1182,7 @@
     "actual_owner_channel_host_rollback_HE_integrity_or_attestation": false,
     "known_method_not_original_main": true
   },
-  "last_milestone_return_utc": "2026-10-04T23:58:00.309318+00:00",
+  "last_milestone_return_utc": "2026-10-05T03:29:04.214411+00:00",
   "historical_implementation_checkpoint_declarations": [
     {
       "tag": "checkpoint/native-shared-query-cache-2026-10-04",
@@ -1294,5 +1345,36 @@
     },
     "exact_execution_addendum_still_pending": true,
     "query_encryption_accounting_still_pending": "540 standalone remote fresh query encryptions plus up to 180 prefetch remote components; resolve explicitly in execution addendum before any new key or measurement, without changing 18-block/144-observation cap"
+  },
+  "historical_execution_return_before_owner_handoff": "docs/research/native-shared-query-certificate-return-20261004.json",
+  "Q77_owner_component_registration": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-owner-component-registration-20261004.json",
+    "bytes": 5101,
+    "sha256": "747c0e5fab83b76ee1aee402d07425721f8334d9521f951fb24fca8b4f3f7236"
+  },
+  "Q77_owner_component_return": {
+    "file": "docs/research/native-shared-query-owner-component-return-20261004.json",
+    "utc": "2026-10-05T03:29:04.214411+00:00",
+    "final_new_public_owner_cases": 78,
+    "compatibility_cases": 158,
+    "final_distinct_cases": 236,
+    "actual_private_HE_native_calls": 0,
+    "real_private_correctness_and_spawned_custody_pending": true,
+    "existing_private_extension_pinned_without_execution_or_rebuild": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-component-20261004/preserved-private-binary/_bgv_private.cpython-312-x86_64-linux-gnu.so",
+      "bytes": 56616,
+      "sha256": "c51a396a4e28ca099ba6e994b4c75fb5b475fd057548ac8e2e9db6887aad17c4"
+    }
+  },
+  "pending_owner_implementation_checkpoint": {
+    "parent_commit": "bdba1577c3ce4d3865ccd697c7855ac5ce3c46cc",
+    "registration_commit": "f36f9e389d4a984e6fdeacc0505247f6488219af",
+    "tag": "checkpoint/native-shared-query-owner-client-2026-10-04",
+    "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-owner-client-2026-10-04",
+    "runtime_files_expected": 427,
+    "company_files_unchanged": 66,
+    "isolated_libraries_unchanged": 6,
+    "additional_private_extension_preserved_separately": true,
+    "publication_verification_after_commit_not_claimed_here": true
   }
 }

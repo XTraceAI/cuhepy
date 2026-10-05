@@ -8,6 +8,12 @@ concrete; the [detailed execution plan](system-contribution-execution-plan-20261
 and [progress ledger](research-contribution-progress-20261004.json) retain
 their caps. This planning review adds no HE key, timing cohort or proof.
 
+> Subsequent owner component: [R1 adapter and public gate](native-shared-query-owner-component-20261004.md)
+> pass 78 new cases plus 158 compatibility cases. The native private path is
+> implemented but actual HE execution and independent process custody remain
+> pending. R2 coordinator and exact execution freeze are next; no Q77 cohort
+> has been consumed.
+
 ## The result to pursue
 
 Build one exact owner-data search system on the homemade native BGV backend.
@@ -39,6 +45,7 @@ established ingredients. Homemade implementations remain a company priority.
 | Selected source gate: one key, six searches, 114,752 distances and 50,626,560 coefficients | Bounded correctness of the selected owner-origin graph. | Successful decryption does not approve security parameters, all possible native executions or a public-key origin law. |
 | Q76 bounded prototype, controls and static handoff | Replay, exact aggregate and mutable cache controls exist; independent metadata checking and twelve scoped Lean lemmas support the design. | Concrete native/semantic refinement, private release and actual remote authority remain open. Test counts are not independent cryptographic experiments. |
 | New local role handoff: 158 final distinct tests, six retained small case/mode paths, two real bad-result rejects | Native producer/admission, signed receipt and owner callback compose in bounded public tests. | Tests use local threads and a public callback. Owner HE decoding, separate worker processes, setup/update trace and complete timings are unfinished. |
+| Subsequent owner adapter: 78 new public cases, 236 final combined cases | Fixed key/context custody, consumed-receipt private callback, complete score/tail validation and ordinal selection compose with the public control path. | Private arithmetic is stubbed in this gate. Actual HE output correctness, independently spawned workers and paid private preparation/lifetimes still need R2/R3. |
 
 At 32,768 rows the retained selected interfaces are: full internal witness
 127,057,920 B, exact aggregate body 1,474,560 B, compact client frame 204,895 B,
@@ -78,6 +85,42 @@ revision. Primary online metadata/HTML was checked again, while detailed
 Argos claims use the retained publisher PDF/text because the web PDF fetch
 exceeded its size limit. No author benchmark was rerun.
 
+### Candidate claim and paper decision
+
+The main candidate is **a complete exact-search execution in which the placement
+of canonical HE representations and admission yields a useful, reproducible
+operating region**. This is a hypothesis to establish. The new comparison must
+explain an actual reversal or useful frontier that survives the strongest
+compatible construction, rather than merely accelerating a weak baseline.
+
+| Proposed result | What the paper would need | What closes the claim |
+| --- | --- | --- |
+| Useful placement of common-Q construction/admission | Complete owner-visible timings, equal control arithmetic and information, paid state/updates/links, plus a concrete invariant explaining the winning execution. | Equally optimized replay or the known composition obtains the same useful result without a substantive difference. |
+| A mixed trusted/delegated boundary, if the measured bottleneck selects it | One registered split with a precise source relation, measured removal of trusted work or traffic, and the same split/reuse freedoms granted to controls. | An ordinary specialization of prior delegation contains the whole result, or complete cost does not improve. |
+| An assurance contribution beyond the supporting model | A reviewed native/common-integer/maintenance-to-release theorem with a specific obligation that the strongest applicable prior model does not already discharge. | Instantiating existing semantic typing and attested execution is the entire difference. |
+| A scoped negative systems finding | A robust explanation of why compact claims fail to improve complete search, or why cache/replay eliminates the outsourcing region under an explicit owner contract. | It is only one artifact's implementation deficiency or a known tradeoff without a new, generalizable finding. |
+
+These are alternative evidence-dependent framings, not four promised
+contributions. A useful system may combine a particular admission boundary,
+mutable snapshot lifetime and private release argument, while crediting the
+underlying ingredients. We should choose the main statement after R3/R4 and
+retain company engineering even if no paper claim survives.
+
+The targeted online reread confirms why the comparison must be strong:
+Argos already provides hardware-backed FHE integrity with attestation secrets
+outside ordinary CPU software; vFHE already delegates batched multiplication
+to untrusted hardware and checks it with a polynomial challenge.
+[Argos publisher record](https://petsymposium.org/popets/2025/popets-2025-0099.php),
+[vFHE §§V-B/AppendixD](https://arxiv.org/html/2301.07041v2).
+ILA already proves functional correctness for well-typed circuits under valid
+models and trusted, type-matching input sources. BioZKFHE already binds verified
+similarity results to complete snapshot coverage before committee-controlled
+recovery; its evaluated proof domain excludes rotations and modulus switching.
+[ILA §4/AppendixA](https://arxiv.org/html/2509.11559v1),
+[BioZKFHE §§III/V-C](https://arxiv.org/html/2607.22065v1).
+This targeted reread adds no new source record or author reproduction and cannot
+clear originality by absence of a matching phrase.
+
 ## Architecture to finish
 
 ```mermaid
@@ -105,9 +148,9 @@ interfaces and Paillier/BFV/BGV/CUDA fallbacks. The experimental branch remains
 
 | Handoff | Concrete deliverable | Completion evidence and next action |
 | --- | --- | --- |
-| R0: public role handoff — complete within scope | Complete native predicate, durable local claimed signing, context-bound receipt, bounded transport and owner public callback. | 158 final tests, six small native paths and two bad native frames rejected; checkpoint and all failed invocations retained. Next R1. |
-| R1: owner custody and private finish — next | Bind actual HE key/profile to owner context; decrypt only the admitted whole frame; validate every decoded distance/tail and ordinal selection. Spawn public workers without inherited HE secrets. Keep private keys and secret-dependent diagnostics out of artifacts and RPC. | Bounded context/error/race tests and inspection of process boundaries; real HE correctness only after the exact execution addendum. Next R2. |
-| R2: whole coordinator and execution freeze | Implement separate roles, acquisition/prefetch, setup, preparation, 32-row refresh/invalidation, request arrivals, completion and resource telemetry as one dependency graph. Record link contention and actual overlap. | Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and encryption budgets before either HE key or large timing. No new grid. Next R3. |
+| R0: public role handoff — complete within scope | Complete native predicate, durable local claimed signing, context-bound receipt, bounded transport and owner public callback. | 158 public tests, six small native paths and two bad native frames rejected; checkpoint and failed invocations retained. R1 public adapter gate now follows. |
+| R1: owner adapter/public control gate — complete within scope | Bind supplied key/profile to owner context; fixed lazy packed private path after whole-frame authorization/consumption; complete decoded score/tail checks, ordinal selection and fail-closed key lifetime. | 78 new public-stub cases and 236 final combined cases pass. Actual private HE correctness and process custody remain R2/R3; no cohort consumed. Next R2. |
+| R2: whole coordinator and execution freeze — next | Independently spawn public roles without inherited HE secrets; implement acquisition/prefetch, setup, private/native preparation and lifetimes, 32-row refresh/invalidation, arrivals, completion and telemetry as one dependency graph. Record link contention and actual overlap. | Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and encryption budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
 | R3: Q77 calibration and held-out cohort | Selected N=16,384, d=512, t=1031, owner-canonical Q120 profile; counts 8,224/16,384/32,768; two independent HE keys and one public corpus. | Six calibration blocks/48 query observations per implementation, freeze policy/data hashes, then twelve held-out blocks/96 observations. Total cap remains 18/144, with 18 excluded warmups and 18 separate post-update checks. Next decision. |
 | R4: decision and one justified refinement | Explain a paid placement reversal, state/link frontier and cache utility region, or close the failed hypothesis. Grant all controls equal arithmetic and information. | Keep the 20% remote-policy project gate separate from cache utility and originality. At most one changed-premise extension needs its own bounded registration. Next Q78 or scoped negative/engineering return. |
 | R5: Q78 selected deployment/security | One actual AWS protected path; attested code/key binding, authenticated channel, current owner pin, nonrollback/revocation and private leakage assurance. | Conditional exact-search reduction and concrete implementation review; relevant frozen comparison rerun on actual deployment. Q77 local results remain labelled local. Next Q79. |
@@ -203,5 +246,7 @@ After each handoff, append evidence to the existing ledger, preserve sources
 and failures, checkpoint, and read the next dependency. There are **zero
 broad preliminary gates and zero immediate Q76 milestones left**. Q77 is
 partly implemented; Q77 evaluation, Q78 deployment/security and Q79
-originality/paper are the three remaining packages. The next action is R1,
-not another broad exploratory benchmark grid.
+originality/paper are the three remaining packages. R1's bounded public adapter
+gate is now complete. The next executable action is R2 coordinator and exact
+execution freeze, followed by R3's finite paid
+evaluation; do not open another broad exploratory benchmark grid.

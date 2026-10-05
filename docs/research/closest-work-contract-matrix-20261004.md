@@ -2,8 +2,9 @@
 
 > Current post-role review: [the build plan](paper-system-build-plan-after-roles-20261004.md)
 > converts this matrix into exact comparator obligations and R0–R6 handoffs.
-> Six small public native role paths and the final 158-test suite pass; there
-> is no complete paid timing, private HE finish, deployed TEE or positive
+> Six small public native role paths pass. The subsequent owner adapter adds
+> 78 public-stub cases to the 158 compatibility cases, for 236 final cases;
+> there is no complete paid timing, actual private HE finish, deployed TEE or positive
 > originality verdict. This revision adds no source record or author-artifact
 > reproduction; the registry remains at 123 pinned records.
 

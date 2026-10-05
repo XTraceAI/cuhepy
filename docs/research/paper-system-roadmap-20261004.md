@@ -9,8 +9,10 @@ controls the next task. This roadmap does not register another experiment.
 
 The [post-role build plan](paper-system-build-plan-after-roles-20261004.md)
 now makes the closest-work obligations and R0–R6 handoffs explicit. R0 is
-complete within its public/local scope; R1 owner custody/private finish and
-R2 coordinator/execution freeze are next. Q77's 18-block/144-observation cap
+complete within its public/local scope. The subsequent
+[R1 owner adapter](native-shared-query-owner-component-20261004.md) passes its
+public control gate; actual HE finish/process custody remains pending.
+R2 coordinator/execution freeze is next. Q77's 18-block/144-observation cap
 is unchanged. Its implementation registration precedes the role code, but
 the exact execution addendum is still required before fresh HE work or timing.
 
@@ -59,6 +61,7 @@ costs remain unknown; none is numerically defeated by our existing timings.
 | Current certificate/client handoff: 252 tests, 247 distinct faults, 66 static case/modes and twelve scoped Lean lemmas | Static obligations and context binding have independent supporting checks. | Conditional model lemmas are separate from concrete BGV/NTT/CRT/native/security refinement. The descriptor grants no private authority. |
 | Prepared replay, exact aggregate and authenticated mutable cache gates pass | We have concrete strong controls for the next evaluation. | Their complete-cost timings and deployed protected paths remain unmeasured. |
 | Latest public role handoff: 158 final distinct tests, six retained small case/mode paths and two native bad-result rejects | Native admission, claimed signed receipt and owner public callback compose in bounded local tests. | Actual owner HE finish, separate-process cohort coordinator, complete-cost timings and hardware authority are unfinished. |
+| Subsequent owner component: 78 new public tests; 236 final combined cases | Owner key/context binding, fixed consumed private path and complete ordinal output checks are implemented. | Public decoder stub only; zero real private work. Native private correctness, process custody and complete costs are still unmeasured. |
 
 The new retained-result review recalculates all five old medians and the three
 selected geometries without fresh experiments. At 32,768 rows:
