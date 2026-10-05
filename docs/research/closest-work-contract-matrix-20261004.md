@@ -17,6 +17,12 @@
 > retains primary online checks and targeted searches; no new source record,
 > complete-cost HE result, author reproduction or positive originality verdict.
 
+> Subsequent [relay/owner trace public return](native-shared-query-owner-trace-20261005.md)
+> adds 64 distinct cases, for 320 retained public cases. Its private/HE/native
+> arithmetic is stubbed; whole-cohort orchestration and the exact freeze remain
+> pending. It adds no literature claim, author-artifact execution, HE timing or
+> positive originality/security verdict. The prior comparison below is unchanged.
+
 2026-10-04. Original comparison evidence baseline:
 `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
 The source-scale comparison checkpoint is `155d69f180f6e11a9a87734fdb6249699e9f0549`;

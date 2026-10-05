@@ -10,7 +10,8 @@ concrete; the [detailed execution plan](system-contribution-execution-plan-20261
 and [progress ledger](research-contribution-progress-20261004.json) retain
 historical registrations. The [current review receipt](research-system-focus-review-20261005.json)
 pins the retained evidence, primary-source checks and unchanged implementation.
-This planning review adds no HE key, timing cohort, test invocation or proof.
+The pinned planning review adds no HE key, timing cohort, test invocation or
+proof. Subsequent bounded implementation gates are recorded below.
 
 > Subsequent owner component: [R1 adapter and public gate](native-shared-query-owner-component-20261004.md)
 > pass 78 new cases plus 158 compatibility cases. The native private path is
@@ -19,8 +20,11 @@ This planning review adds no HE key, timing cohort, test invocation or proof.
 > has been consumed.
 
 > R2 public plumbing now passes its [20-case shared-link/supervisor gate](native-shared-query-coordinator-component-20261004.md).
-> The whole owner trace, shared relay and exact execution addendum remain next.
-> The 256 distinct retained public cases are unit evidence, not independent
+> That gate retains 256 distinct public cases. The
+> [subsequent shared relay and owner trace](native-shared-query-owner-trace-20261005.md)
+> pass 28 and 36 additional public cases, for 320 distinct retained cases;
+> only those new suites were executed. The cohort coordinator and exact
+> execution addendum remain next. These are unit evidence, not independent
 > cryptographic experiments or a completed HE custody/latency cohort.
 
 ## The result to pursue
@@ -56,6 +60,7 @@ established ingredients. Homemade implementations remain a company priority.
 | New local role handoff: 158 final distinct tests, six retained small case/mode paths, two real bad-result rejects | Native producer/admission, signed receipt and owner callback compose in bounded public tests. | Tests use local threads and a public callback. Owner HE decoding, separate worker processes, setup/update trace and complete timings are unfinished. |
 | Subsequent owner adapter: 78 new public cases, 236 final combined cases | Fixed key/context custody, consumed-receipt private callback, complete score/tail validation and ordinal selection compose with the public control path. | Private arithmetic is stubbed in this gate. Actual HE output correctness, independently spawned workers and paid private preparation/lifetimes still need R2/R3. |
 | Shared network/supervisor: 20 additional public cases | Aggregate directional pacing, bounded TCP delivery and clean process supervision work in the retained public fixtures. | 256 distinct cases are retained across components; only the last 20 were rerun in that invocation. Real HE custody, the central relay and complete owner trace remain unexecuted. |
+| Subsequent shared relay/owner trace: 64 additional public cases | Fixed charged routing, actual owner event intervals, prefetch overlap, honest updates and stale receipt/cache rejection compose in public fixtures. | 320 distinct cases are retained; no combined 320-case invocation. Encryption/private decoding/native scan are stubs. Whole cohort orchestration, paid provisioning and actual HE correctness/custody/timing remain pending. |
 
 At 32,768 rows the retained selected interfaces are: full internal witness
 127,057,920 B, exact aggregate body 1,474,560 B, compact client frame 204,895 B,
@@ -239,7 +244,7 @@ interfaces and Paillier/BFV/BGV/CUDA fallbacks. The experimental branch remains
 | --- | --- | --- |
 | R0: public role handoff — complete within scope | Complete native predicate, durable local claimed signing, context-bound receipt, bounded transport and owner public callback. | 158 public tests, six small native paths and two bad native frames rejected; checkpoint and failed invocations retained. R1 public adapter gate now follows. |
 | R1: owner adapter/public control gate — complete within scope | Bind supplied key/profile to owner context; fixed lazy packed private path after whole-frame authorization/consumption; complete decoded score/tail checks, ordinal selection and fail-closed key lifetime. | 78 new public-stub cases and 236 final combined cases pass. Actual private HE correctness and process custody remain R2/R3; no cohort consumed. Next R2. |
-| R2: public plumbing passes; whole coordinator/freeze next | Shared directional stream pacing and clean supervisor launch pass 20 public cases. Finish the shared relay and actual owner acquisition/prefetch, setup, private/native preparation/lifetimes, 32-row refresh, arrivals, completion and telemetry as one dependency graph. | Actual HE process custody is still unexecuted. Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and component budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
+| R2: public plumbing and owner trace pass; cohort coordinator/freeze next | Shared pacing/supervisor pass 20 cases; the subsequent relay/owner trace pass 64 new public cases. Finish tenant/device/process preparation, paid provisioning, independent policy lifetimes, actual 32-row/group refresh, arrivals and telemetry as one dependency graph in the cohort runner. | Actual HE process custody/private correctness are still unexecuted. Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and component budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
 | R3: Q77 calibration and held-out cohort | Selected N=16,384, d=512, t=1031, owner-canonical Q120 profile; counts 8,224/16,384/32,768; two independent HE keys and one public corpus. | Six calibration blocks/48 query observations per implementation, freeze policy/data hashes, then twelve held-out blocks/96 observations. Total cap remains 18/144, with 18 excluded warmups and 18 separate post-update checks. Next decision. |
 | R4: decision and one justified refinement | Explain a paid placement reversal, state/link frontier and cache utility region, or close the failed hypothesis. Grant all controls equal arithmetic and information. | Keep the 20% remote-policy project gate separate from cache utility and originality. At most one changed-premise extension needs its own bounded registration. Next Q78 or scoped negative/engineering return. |
 | R5: Q78 selected deployment/security | One actual AWS protected path; attested code/key binding, authenticated channel, current owner pin, nonrollback/revocation and private leakage assurance. | Conditional exact-search reduction and concrete implementation review; relevant frozen comparison rerun on actual deployment. Q77 local results remain labelled local. Next Q79. |
@@ -269,9 +274,13 @@ need a separately bounded registration, rather than silently exceeding it.
 
 Finish these components before any Q77 fresh HE key or private work. Register
 additive files and a bounded integration gate before implementing and executing
-that gate. Preserve all 431 runtime files, 66 company files, six isolated
-libraries and the owner private extension. Proposed filenames below are handoff
-targets; these files do not exist yet.
+that gate. The [registered relay/owner-trace component](native-shared-query-owner-trace-registration-20261005.json)
+now passes its 64-case public gate: 431 earlier runtime files, 66 company files,
+six isolated libraries and the owner private extension remain unchanged. Its
+four additive sources bring the inventory to 435. The relay and owner trace
+below exist; the cohort runner still does not. Further necessary public
+integration needs a bounded registration before execution, since this
+component's 64-case ceiling is exhausted.
 
 | Deliverable | Proposed location | Required behavior / acceptance |
 | --- | --- | --- |
@@ -446,7 +455,8 @@ After each handoff, append evidence to the existing ledger, preserve sources
 and failures, checkpoint, and read the next dependency. There are **zero
 broad preliminary gates and zero immediate Q76 milestones left**. Q77 is
 partly implemented; Q77 evaluation, Q78 deployment/security and Q79
-originality/paper are the three remaining packages. R1's bounded public adapter
-gate is now complete. The next executable action is R2 coordinator and exact
+originality/paper are the three remaining packages. R1's bounded public adapter,
+shared public plumbing and relay/owner trace gates are complete within scope.
+The next executable action is R2 cohort coordinator and exact
 execution freeze, followed by R3's finite paid
 evaluation; do not open another broad exploratory benchmark grid.
