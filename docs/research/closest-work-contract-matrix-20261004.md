@@ -8,11 +8,14 @@ integrity-only architecture, vFHE's actual delegated-product control, BioZKFHE's
 snapshot/coverage release contract, and ILA's valid-input premise remain the
 closest objections. Cached/incremental verification and current database
 authentication must be credited as a compatible composition, not isolated
-weaker baselines. The exact R2c freeze is committed and preflight has passed. R3 is now running
-actual owner provisioning; no returned complete comparison is available yet.
-See the [execution-start return](native-shared-query-complete-cost-execution-start-return-20261005.json).
-Earlier zero-execution/pending-freeze statements below retain their dated review
-scopes, rather than describing the live run.
+weaker baselines. The exact R2c freeze was committed and preflight passed. The original actual
+cohort then failed at descriptor routing before any query; the fixed public TCP
+case passes. The separately registered corrective action is running under its
+own committed freeze. See the
+[corrective-start return](native-shared-query-complete-cost-corrective-start-return-20261005.json).
+No complete timing comparison or originality verdict has returned. Earlier
+zero-execution/pending-freeze statements below retain their dated review scopes,
+rather than describing the live run.
 
 ## Current system decision and strongest counterconstruction
 

@@ -40,16 +40,24 @@ the exact committed execution addendum remains the next dependency.
 
 ## Current decision and executable paper milestones
 
-R2c is now **complete in its public-integration and exact-freeze scope**. The
-[execution-start return](native-shared-query-complete-cost-execution-start-return-20261005.json)
-pins the committed addendum/contract at `34417f0`, 444 runtime sources, 700
-dependencies and the passing pure preflight. R3 has started actual owner HE
-provisioning into the one registered `cohort1`; its initial resource-prefix
-snapshot contains two consumed HE-key attempts. This is a running comparison,
-not returned timing/correctness evidence. A missing output parent stopped the
-earlier launch before an attempt existed; that pre-start failure is retained.
-Runtime sources and frozen contract stay fixed through the cohort. The first
-unmet dependency is **R3's actual calibration/held-out return**, then exactly
+R2c is **complete in its public-integration and exact-freeze scope**. The
+[first execution-start return](native-shared-query-complete-cost-execution-start-return-20261005.json)
+retains the original committed freeze and passing preflight. That cohort then
+[failed during descriptor acquisition](native-shared-query-complete-cost-failed-return-20261005.json),
+before any measured query, because setup omitted the relay's backend envelope.
+Its two HE keys and 4,096 feature-encryption attempts remain consumed and its
+public artifacts remain retained. The fix passed a real public TCP regression
+within the same 74 existing cases; no new distinct case or private work was
+added.
+
+The [separate corrective registration](native-shared-query-complete-cost-corrective-registration-20261005.json)
+and exact corrective freeze were committed before a fresh action. Its
+[start return](native-shared-query-complete-cost-corrective-start-return-20261005.json)
+pins freeze `d3098ec`, 444 sources, 707 dependencies and passing preflight.
+The corrective R3 is now running; this is not a completed timing/correctness
+comparison. The scientific workload, calibration/held-out rule and one-extension
+reservation stay fixed. Runtime sources and frozen contracts stay fixed during
+the action. The first unmet dependency is **R3's actual return**, then exactly
 one eligible creative extension, assurance and the final paper package.
 
 The [pre-execution review](research-pre-execution-review-20261005.json) rechecks
@@ -278,12 +286,14 @@ The selected canonical graph has separate bounded source correctness evidence:
 one key, six searches and 114,752 distances. Q76's prototype, replay, aggregate,
 mutable cache and static certificate gates are complete in their recorded
 scopes. Q77 retains **384 distinct public cases across component invocations**;
-the latest 74-case invocation comprised eight new and 66 repeated cases. Private
+the launcher's initial 74-case invocation comprised eight new and 66 repeated
+cases; later 74-case repeats add zero distinct cases. Private
 HE/native arithmetic and fresh key generation were stubbed in that invocation.
-Honest tenant provisioning and the full cohort action now pass their bounded
-public gate; actual provisioning/worker integration on the selected encrypted
-profile and the exact pre-HE freeze remain unexecuted. Q77 has
-consumed **zero** HE keys, complete-cost blocks or timing observations.
+Honest tenant provisioning and the full cohort action pass their bounded
+public gate. Actual provisioning/native preparation has now run; the original
+action failed before queries and the separately frozen corrective action is
+running. Complete-cost query comparison evidence remains pending. Distinguish
+consumed key/feature attempts from completed measured observations.
 
 At two groups/32k rows, retained interface accounting gives 127,057,920 bytes
 of full internal witness, 1,474,560 bytes of aggregate claim, an earlier

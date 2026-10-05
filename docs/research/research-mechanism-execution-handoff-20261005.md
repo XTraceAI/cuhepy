@@ -36,13 +36,15 @@ remain unchanged.
 
 ## Actual execution status
 
-The [execution-start return](native-shared-query-complete-cost-execution-start-return-20261005.json)
-completes R2c's exact committed freeze and passing preflight. The one registered
-R3 action is running with actual owner provisioning and public telemetry; its
-complete-cost/correctness return is pending. Read prior unexecuted/pending
-statements above and in dated tables as historical scopes. Do not edit frozen
-runtime sources/contract or replace failed attempts. Return R3 before selecting
-one conditional R4 mechanism.
+R2c's exact committed freeze and preflight are complete. The original actual
+R3 failed at descriptor routing before queries; its consumed resources and public
+artifacts remain retained. The repair passed all 74 existing public cases,
+including actual TCP routing. A separate corrective registration and exact
+freeze precede the fresh corrective action, which is now running. Read the
+[corrective-start return](native-shared-query-complete-cost-corrective-start-return-20261005.json).
+No complete query comparison is available yet. Prior unexecuted/pending text
+retains its historical scope. Keep frozen sources/contract fixed and retain
+failures without replacing blocks. Return R3 before choosing one R4 mechanism.
 
 ## What to build, and what could justify a paper
 
