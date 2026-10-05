@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "utc": "2026-10-05T18:12:13.927553+00:00",
+  "task": "Q77_first_actual_R3_cohort_failure",
+  "run_output": "/home/pete/yavor-projects/xtrace-work/research-data/q77-complete-owner-execution-20261005/cohort1",
+  "addendum": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-complete-cost-execution-20261005.json",
+    "bytes": 277935,
+    "sha256": "871f23b6dc939dcb9772146f4a3fd0252dcbcafe0f9fac93bd6cc9635d35da85"
+  },
+  "cohort_result": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-complete-owner-execution-20261005/cohort1/cohort-result.json",
+    "bytes": 1609819,
+    "sha256": "5f24a8b63857d8790b5511eac5923eaab18214dcb833ad5e038bdf0d05c36a24"
+  },
+  "artifact_manifest": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-execution-review-20261005/failed-cohort1-public-artifact-manifest.json",
+    "bytes": 27549,
+    "sha256": "3789e1d6f0a38516a0c3771b89c5a7ec55c99f3485f0565f89a407a62755b00d"
+  },
+  "status": "failed",
+  "error_class": "RuntimeError",
+  "failed_stage": "actual-owner-descriptor-acquisition",
+  "measured_queries": 0,
+  "warmups": 0,
+  "post_update_checks": 0,
+  "trajectory_attempts": 1,
+  "complete_trajectory_rows": 0,
+  "calibration_or_policy_freeze_complete": false,
+  "consumed_resources": {
+    "HE_keys": 2,
+    "feature_encryptions": 4096,
+    "query_encryptions": 0,
+    "owner_signing_keys": 2,
+    "cache_AES_keys": 2,
+    "protected_signing_keys": 1
+  },
+  "cleanup_error_classes": [],
+  "resource_guard_failure": null,
+  "root_cause_static_evidence": "Session.setup sends [descriptor] to a relay whose fixed accepted verbs exclude descriptor. The frontend received no descriptor request; only cleanup stop. Wrap backend command in the existing [search, inner-command] dispatch envelope.",
+  "runtime_source_changed_during_run": false,
+  "failed_attempt_not_replaced_or_resumed": true,
+  "initial_HE_input_and_native_setup_are_not_query_timing_evidence": true,
+  "original_main_security_or_performance_result_accepted": false
+}
