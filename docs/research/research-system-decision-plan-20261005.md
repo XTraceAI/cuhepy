@@ -979,6 +979,13 @@ privacy, real attestation and nonrollback remain open. This is supporting
 assurance, not the required creative extension or a new cryptographic result;
 the next scientific task remains the separately frozen complete R3 comparison.
 
+The [conditional phase-bridge derivation](terminal-phase-bridge-20261005.md)
+now derives the same Q/P wrap from the exact rounding residual and existing
+complete public support formula. Its four-assertion Lean source is explicitly
+an unvalidated draft; compiler/toolchain work is deferred until the live R3
+timing action stops. The existing sixteen checked assertions remain distinct.
+This changes no runtime, parameter, extension choice or scientific reservation.
+
 Q78's proof return should expose a dependency table for four propositions:
 public failure cannot invoke the private callback; accepted ciphertexts refine
 the canonical authorized graph; decoding and permitted row replacement refine
