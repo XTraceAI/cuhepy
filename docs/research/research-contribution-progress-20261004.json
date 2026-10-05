@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T23:58:00.309318+00:00",
+  "utc": "2026-10-05T00:58:20.709154+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -494,6 +494,23 @@
         "docs/research/paper-build-handoff-review-20261004.json"
       ],
       "outcome": "Prioritize canonicalization placement; map prior interfaces; define latency and in-cap calibration/held-out split; preserve cache/certificate queue"
+    },
+    {
+      "id": "P4",
+      "title": "Post-prototype closest-work refresh and finite system roadmap",
+      "status": "complete_targeted_planning_scope",
+      "dependencies": [
+        "Q76",
+        "P3"
+      ],
+      "evidence": [
+        "docs/research/paper-system-roadmap-20261004.md",
+        "docs/research/paper-system-plan-review-20261004.json"
+      ],
+      "is_new_experiment": false,
+      "new_source_records": 3,
+      "complete_pages_inspected": 8,
+      "new_HE_tests_builds_timing_or_author_runs": 0
     }
   ],
   "next_task": "Q77",
@@ -691,44 +708,32 @@
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
   "latest_plan_revision": {
-    "utc": "2026-10-04T20:42:23.645330+00:00",
-    "receipt": "docs/research/paper-build-handoff-review-20261004.json",
-    "guide": "docs/research/paper-contribution-discriminator-20261004.md",
-    "planning_baseline": "09d2b15120ca8a18e1c94d832fc88ece25d74bb7",
-    "implementation_baseline": "155d69f180f6e11a9a87734fdb6249699e9f0549",
-    "scope": "Targeted prior mapping, saved-result audit and concrete finite paper build handoff",
-    "progress_classification": "planning_and_read_only_retained_result_audit",
-    "new_HE_key_contexts": 0,
-    "new_HE_experiments": 0,
-    "new_plaintext_control_probes": 0,
-    "new_regression_invocations": 0,
-    "new_timing_panels": 0,
-    "new_native_builds": 0,
-    "new_source_records": 0,
-    "author_artifacts_executed": 0,
-    "old_timing_medians_rederived": 5,
-    "selected_geometry_body_models_rederived": 3,
-    "next_executable_subtask": "Q76.4c_permitted_authenticated_cache",
-    "early_originality_discriminator": "local_prior_mapping_written_executable_certificate_and_external_priority_unfinished",
-    "original_main_accepted": false
+    "utc": "2026-10-05T00:58:20.709154+00:00",
+    "file": "docs/research/paper-system-roadmap-20261004.md",
+    "review": "docs/research/paper-system-plan-review-20261004.json",
+    "scope": "Post-prototype retained-result review, three adjacent primary search controls and finite system roadmap",
+    "no_new_registered_experiment_or_positive_originality_verdict": true
   },
   "top_level_count_scope_note": "Zero preliminary gates and zero immediate Q76 native milestones; three packages remain: paid Q77 evaluation, Q78 actual deployment/security, Q79 originality/paper. A completed local handoff is not a completed secure service.",
   "preserved_latest_implementation_checkpoint": {
-    "commit": "6cffed1548c8fe5b701d9d1a20f5b15a4709c54a",
-    "implementation_commit": "890b2810231540cbf2af4ead3b2ebe69cbdcd2c9",
-    "tag": "checkpoint/native-shared-query-cache-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/manifest.json",
-    "manifest_sha256": "731c36058c63a90a920d9fe7f896b9af8ab52c31adb509ec2e127dd3c11a4152",
-    "evidence_archive_members_verified": 78,
-    "company_archive_members_verified": 66,
-    "branch_and_tag_remote_verified": true,
-    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/remote-verification.json",
-    "remote_verification_receipt": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/remote-verification.json",
-      "bytes": 1949,
-      "sha256": "6096f3a85913d661e1577098350863deba650729ab30f58e93c9823d51c6e59f"
+    "commit": "51c5c82f33e80caa7c69ec45be10e35efc6e932e",
+    "tag": "checkpoint/native-shared-query-certificate-2026-10-04",
+    "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04",
+    "manifest": {
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04/manifest.json",
+      "bytes": 205950,
+      "sha256": "c6df502e2e9c5017b75f4719b74dd2102b08b7cac23a06c2d6887ef54f637558"
     },
-    "prior_remote_verification_not_newly_repeated_for_this_promotion": true
+    "remote_verification": {
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04/remote-verification.json",
+      "bytes": 3031,
+      "sha256": "fe4204ac69cdfa2babaf8af3f15c6fac6b443ea40d01aed488d3fdf83cc97d03"
+    },
+    "all_three_remote_refs_verified": true,
+    "runtime_files": 420,
+    "evidence_members": 203,
+    "company_members": 66,
+    "scope": "Completed bounded local Q76 prototype/control/static handoff; no Q77 timing or security/originality approval"
   },
   "Q76_control_design_return": {
     "card": "docs/research/native-shared-query-product-control-card-20261004.md",
@@ -1035,6 +1040,23 @@
       "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/manifest.json",
       "source_commit": "890b2810231540cbf2af4ead3b2ebe69cbdcd2c9",
       "note": "Create and verify after this cache return commit; preceding verified checkpoints stay preserved"
+    },
+    {
+      "commit": "6cffed1548c8fe5b701d9d1a20f5b15a4709c54a",
+      "implementation_commit": "890b2810231540cbf2af4ead3b2ebe69cbdcd2c9",
+      "tag": "checkpoint/native-shared-query-cache-2026-10-04",
+      "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/manifest.json",
+      "manifest_sha256": "731c36058c63a90a920d9fe7f896b9af8ab52c31adb509ec2e127dd3c11a4152",
+      "evidence_archive_members_verified": 78,
+      "company_archive_members_verified": 66,
+      "branch_and_tag_remote_verified": true,
+      "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/remote-verification.json",
+      "remote_verification_receipt": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-cache-2026-10-04/remote-verification.json",
+        "bytes": 1949,
+        "sha256": "6096f3a85913d661e1577098350863deba650729ab30f58e93c9823d51c6e59f"
+      },
+      "prior_remote_verification_not_newly_repeated_for_this_promotion": true
     }
   ],
   "current_certificate_registration": "docs/research/native-shared-query-certificate-registration-20261004.json",
@@ -1129,9 +1151,12 @@
     "company_members": 66,
     "official_toolchain_archive_members": 1
   },
-  "current_certificate_checkpoint_pending_external_verification": {
-    "tag": "checkpoint/native-shared-query-certificate-2026-10-04",
-    "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04",
-    "note": "Create archive/bundle/manifest after the final documentation commit; latest completed checkpoint remains the verified cache until external publication verification"
-  }
+  "historical_certificate_checkpoint_pending_declarations": [
+    {
+      "tag": "checkpoint/native-shared-query-certificate-2026-10-04",
+      "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04",
+      "note": "Create archive/bundle/manifest after the final documentation commit; latest completed checkpoint remains the verified cache until external publication verification"
+    }
+  ],
+  "current_literature_source_records": 123
 }

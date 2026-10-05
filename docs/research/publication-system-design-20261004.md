@@ -8,6 +8,10 @@ Read with the [execution plan](system-contribution-execution-plan-20261004.md),
 [progress ledger](research-contribution-progress-20261004.json).
 This memo refines those living documents. It does not approve a new primitive,
 production parameters, secure-service timing, or a main originality claim.
+The later [system roadmap](paper-system-roadmap-20261004.md) consolidates the
+verified completed Q76 checkpoint, remaining Q77/Q78/Q79 handoffs and creative
+branch triggers. Its [review receipt](paper-system-plan-review-20261004.json)
+records the adjacent search-system refresh separately from this original memo.
 The later [strongest reference construction and paper decision](paper-contribution-discriminator-20261004.md)
 uses planning checkpoint `8bfe630dbe49b064abbd601784fb4689ddde634f`. It
 turns the early comparison into a concrete counterconstruction, states the

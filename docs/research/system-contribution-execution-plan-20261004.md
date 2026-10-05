@@ -10,6 +10,10 @@ The [planning integrity receipt](system-contribution-plan-validation-20261004.js
 preserves the reviewed planning baseline. The [Q76.1 core return](native-shared-query-core-20261004.md)
 and [Q76.2 factory return](native-shared-query-auth-20261004.md)
 record subsequent bounded implementation gates; the ledger controls the next step.
+The [short system roadmap](paper-system-roadmap-20261004.md) gives the current
+verified checkpoint, concrete build components, three remaining packages and
+conditional creative branches. The [latest plan refresh](paper-system-plan-review-20261004.json)
+adds adjacent search controls and rechecks retained results without new timing.
 The [earlier derivation and plan](research-contribution-plan-20261004.md)
 remains intact as a technical reference. Registrations and negative results
 are preserved; this document changes priorities and clarifies acceptance.
@@ -30,7 +34,8 @@ The [exact aggregate return](native-shared-query-aggregate-20261004.md)
 subsequently completes Q76.4b: 22 retained cases, 394,944 aggregate coefficient
 comparisons, 5,568 small coefficient/isolated-NTT faults rejected and 360 selected tests
 including 51 new cases. No fresh HE, private operation, timing or randomized
-protocol is added. Next is the permitted authenticated cache control.
+protocol is added. At that point the next task was the permitted authenticated
+cache control; the later completed cache/certificate handoffs are linked below.
 
 The later [publication design and finite build decision](publication-system-design-20261004.md)
 uses preserved checkpoint `155d69f180f6e11a9a87734fdb6249699e9f0549`.
@@ -619,8 +624,15 @@ The [publication design memo](publication-system-design-20261004.md) adds a
 conditional query-only protected variant, not a newly authorized experiment
 queue. It changes query confidentiality custody and therefore cannot inherit
 Argos's no-secret-in-CPU argument. Keep its results, if later registered,
-in a separate trust-contract row. Current caps and the cache/certificate queue
-remain unchanged.
+in a separate trust-contract row. Current caps and the remaining Q77/Q78/Q79
+packages remain unchanged.
+
+The later [adjacent search comparison](closest-work-contract-matrix-20261004.md#adjacent-full-search-systems-added-after-the-q76-handoff)
+also constrains a confidential-query or graph-search extension. Credit its
+compatible protected/search/storage techniques before registering that branch;
+approximate retrieval and private plaintext custody cannot silently replace
+the selected exact public-admission contract. No additional experiment is
+selected by this reading.
 
 ## 7. Q78: proof and actual security closure
 

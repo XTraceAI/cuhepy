@@ -35,6 +35,12 @@ reproduce a proof backend or audit all earlier papers. Priority clearance is
 still open. Reading a paper is not evidence that its strongest applicable
 specialization is slower or incapable of supporting our contract.
 
+The later [system roadmap](paper-system-roadmap-20261004.md) and
+[refresh receipt](paper-system-plan-review-20261004.json) add three primary
+search comparators after the completed Q76 checkpoint. The registry now has
+123 records, retaining the preceding 120 unchanged. Eight complete relevant
+PDF pages were inspected; no author artifact or fresh timing was executed.
+
 ## The comparison contract
 
 Our selected experiment uses an owner-hidden binary index and query,
@@ -230,6 +236,21 @@ encryption; warm results exclude client/network work. It is useful for scope,
 acquisition and residency accounting, rather than a direct malicious exact
 all-distance benchmark. We have not reproduced its artifact or accepted its
 reported security estimates as assurance for our parameters.
+
+## Adjacent full search systems added after the Q76 handoff
+
+| Primary work / inspected scope | Contract and relevant result | Consequence for our claim |
+| --- | --- | --- |
+| [Atlas v1](https://arxiv.org/pdf/2609.11841v1), §§3-5.2.1,6.1-6.2; PDF pages4,5,9,12 | Provider-held committed index, clear query, zero-knowledge verification of fixed-budget HNSW over quantized vectors. Preprocessing and timestep-tagged batching reduce online proving. | Credit complete verified retrieval and these proof mechanisms. Its relation differs from our encrypted-query/full-distance contract; neither difference establishes originality or a speedup. |
+| [Compass, OSDI2025](https://www.usenix.org/system/files/osdi25-zhu-jinhao.pdf), §§2-3.1; PDF pages4,5 | Private owner-data ANN search: client executes graph traversal over ORAM-protected server storage, with integrity against a malicious server and no server hardware trust. Client retention is allowed. | Credit owner search and the storage/compute split. Exact all-distance adaptation and complete performance remain unknown; changing search semantics cannot manufacture a win. |
+| [Onyx v1](https://arxiv.org/pdf/2604.20401v1), §§3-3.2; PDF pages3,4 | Confidential TEE ANN search plus external-disk ORAM; compact hints/layout balance bandwidth and access count. Its model excludes enclave side channels and assumes separate rollback protection. | Credit protected search and resource co-design. The conditional confidential-query route needs this stronger comparison, explicit custody/leakage and a paid exact adapter. |
+
+These papers strengthen the counterconstruction without changing the selected
+exact-search contract, adding a benchmark grid or reopening contained packing/
+selector claims. A different trust or output contract belongs in a scope row,
+not a cross-paper speed ratio. Our primary question remains the specific
+common-Q construction/admission boundary under complete cost. Source versions,
+hashes and cached PDF/text paths are in the registry and refresh receipt.
 
 ## What remains plausibly original, and how to disprove it
 

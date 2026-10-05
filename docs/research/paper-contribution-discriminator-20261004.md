@@ -254,12 +254,13 @@ context gates must replace bodies with actual packets/state. These counts make
 a long returning-device outsourcing claim at this small scale demanding.
 Time prefetch as a competing dependency graph with shared-link/CPU contention.
 
-Q76.5 produces a specification/checker independent of the optimizer. Planned
-source locations are `experiments/bfv_search_lab/shared_query_certificate.py`,
-adjacent `test_shared_query_certificate.py`, a public runner in `benchmarks/`,
-and a small mechanized model under `proofs/shared_query/`. These are planned
-paths, not files claimed to exist. Freeze the proof assistant/toolchain before
-implementation. Reuse tested arithmetic and conservative public bounds.
+The completed Q76.5 static checker is
+`experiments/bfv_search_lab/shared_query_certificate.py`, with adjacent tests,
+public metadata in `shared_query_client_context.py`, a retained public runner in
+`benchmarks/` and the scoped model under `proofs/shared_query/`. The official
+toolchain was frozen before implementation. The [handoff](native-shared-query-certificate-20261004.md)
+records the passing bounded gates; the following concrete native/semantic/
+authority refinement obligations remain distinct from those static results.
 
 | Interface obligation | Reference premise or established method | Required deliverable / falsifying mutation |
 | --- | --- | --- |
@@ -336,3 +337,10 @@ HE, timing, tests, build, author execution, formal proof or production change.
 The later cache gate removes that implementation subtask from the remaining
 queue. Its known authentication/cache techniques are supporting controls,
 not a substantive new certificate, algorithm or original main result.
+
+The later [roadmap](paper-system-roadmap-20261004.md) records the verified
+completed Q76 checkpoint and the finite Q77/Q78/Q79 handoffs. The
+[closest-work refresh](closest-work-contract-matrix-20261004.md#adjacent-full-search-systems-added-after-the-q76-handoff)
+adds adjacent private/verifiable search systems to the counterconstruction.
+It supplies no positive originality verdict, new experiment or policy tuned
+from results. Q77 remains unregistered and is the next executable task.
