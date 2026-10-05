@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "utc": "2026-10-05T08:49:53.910150+00:00",
+  "task": "Q77_R2_owner_bound_cohort_upload_relay_subgate",
+  "baseline": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q77-owner-cohort-relay-20261005/baseline.json",
+    "bytes": 129114,
+    "sha256": "ca1124401874932c53e4acc613269a89c66b2b0fadda8b5a6b61ebd422f4a301"
+  },
+  "parent_coordinator_registration": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-owner-coordinator-registration-20261005.json",
+    "bytes": 3570,
+    "sha256": "9a5a65896524027a63a1ad0a8744eddbfcd6a678b48c35fe7916fab7dad9ee56"
+  },
+  "parent_registration_commit": "8f6c211185445a8df3d0119eea35474695dd657a",
+  "planned_additive_file": "experiments/bfv_search_lab/complete_cost_cohort_relay.py",
+  "test_file_to_append_only": "experiments/bfv_search_lab/test_complete_cost_cohort.py",
+  "public_cases_this_subgate": 6,
+  "parent_public_cap": 32,
+  "parent_cases_already_passed": 23,
+  "remaining_after_this_subgate": 3,
+  "earlier_distinct_cases_retained_not_rerun": 343,
+  "requirements": [
+    "Fixed initial/update destinations and phase order",
+    "Owner signature binds phase, whole body length/digest and original bytes",
+    "Consume valid owner phase before writes, including failure; never replace or retry",
+    "One shared download lane and owner upload lane across setup/query/cache/update",
+    "No received key, path, port, code, policy or epoch promotion"
+  ],
+  "fresh_HE_private_native_generated_key_contexts_or_large_timing_cohort": 0,
+  "fixtures": "Existing two UNIT-ONLY signing contexts and opaque bytes; actual public loopback transports only",
+  "freeze_before_execution": true,
+  "owner_cohort_runner_exact_freeze_and_timing_split_still_pending": true,
+  "historical_HE_budgets_not_amended_or_consumed": true
+}
