@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-04T20:42:23.645330+00:00",
+  "utc": "2026-10-04T23:58:00.309318+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -118,7 +118,7 @@
     {
       "id": "Q76",
       "title": "One complete authoritative native prototype",
-      "status": "partial_native_factory_lifecycle_source_replay_aggregate_cache_complete_certificate_unfinished",
+      "status": "complete_bounded_native_prototype_control_and_static_handoff",
       "dependencies": [
         "Q75"
       ],
@@ -150,9 +150,13 @@
         "docs/research/native-shared-query-aggregate-20261004.md",
         "docs/research/native-shared-query-aggregate-return-20261004.json",
         "docs/research/publication-system-design-20261004.md",
-        "docs/research/publication-system-design-review-20261004.json"
+        "docs/research/publication-system-design-review-20261004.json",
+        "docs/research/native-shared-query-certificate-return-20261004.json",
+        "docs/research/native-shared-query-resource-ledger-20261004.md",
+        "docs/research/native-shared-query-security-feasibility-20261004.md",
+        "proofs/shared_query/Model.lean"
       ],
-      "implemented": false,
+      "implemented": true,
       "selected": {
         "foundation": "homemade_BGV",
         "N": 16384,
@@ -188,7 +192,8 @@
         "Q76.3b_registered_one_key_six_source_searches_pass",
         "Q76.4a_16_small_6_saved_large_replay_local_public_gate",
         "Q76.4b_16_small_6_saved_large_exact_aggregate_local_public_gate",
-        "Q76.4c_authenticated_mutable_cache_bounded_public_gate"
+        "Q76.4c_authenticated_mutable_cache_bounded_public_gate",
+        "Q76.5_independent_static_certificate_client_scoped_model_and_resource_handoff"
       ],
       "native_draft_not_authoritative_release_or_HE_correctness_evidence": false,
       "local_lifecycle_contract": {
@@ -200,7 +205,6 @@
       "native_core_not_authenticated_service_or_source_scale_evidence": true,
       "remaining_control_obligations": [
         "actual_cache_acquisition_prefetch_latency_contention_in_Q77",
-        "independent_effect_certificate",
         "randomized_prior_adapter_card_before_broad_claim",
         "VERITAS_feedback_adapter_card_or_explicit_comparison_scope"
       ],
@@ -210,9 +214,7 @@
       "historical_superseded_milestone_labels": [
         "Q76.3b_independent_GMP_small_preflight_only_source_run_unexecuted"
       ],
-      "ordered_remaining_native_subtasks": [
-        "Q76.5_certificate_resource_client_context_handoff_with_early_Q79.1"
-      ],
+      "ordered_remaining_native_subtasks": [],
       "prepared_replay_control": {
         "complete_bounded_public_gate": true,
         "untrusted_source_witness_required": false,
@@ -248,14 +250,11 @@
         }
       ],
       "latest_control_registration": {
-        "file": "docs/research/native-shared-query-cache-registration-20261004.json",
-        "status": "complete_bounded_cache_correctness_authentication_local_state_gate",
-        "return": "docs/research/native-shared-query-cache-return-20261004.json",
+        "file": "docs/research/native-shared-query-certificate-registration-20261004.json",
+        "status": "complete_bounded_static_handoff",
+        "return": "docs/research/native-shared-query-certificate-return-20261004.json",
         "fresh_HE_keys": 0,
-        "timing_panels": 0,
-        "small_saved_cases": 16,
-        "large_saved_cases": 6,
-        "source_update_contexts": 3
+        "timing_panels": 0
       },
       "top_k_contract": {
         "rank_key": [
@@ -329,12 +328,33 @@
         "Q77_eligible": false,
         "formal_or_originality_or_security_approval": false,
         "next_component": "independent_checker_and_scoped_model_implementation"
-      }
+      },
+      "certificate_handoff": {
+        "return": "docs/research/native-shared-query-certificate-return-20261004.json",
+        "registration": "docs/research/native-shared-query-certificate-registration-20261004.json",
+        "reference": "docs/research/native-shared-query-certificate-spec-20261004.md",
+        "bounded_static_gate_complete": true,
+        "independent_checker_client_adapter_and_scoped_model_implemented": true,
+        "resource_security_prior_handoff_complete": true,
+        "normal_tests": 252,
+        "distinct_faults": 247,
+        "retained_static_case_modes": 66,
+        "Lean_invocations": 4,
+        "Lean_named_theorems": 12,
+        "maximum_compact_client_descriptor_bytes": 263206,
+        "new_HE_or_timing_work": 0,
+        "complete_Q76_5": true,
+        "Q77_eligible_for_separate_local_prototype_registration": true,
+        "Q77_executed_actual_attestation_private_release_security_parameter_or_originality_approval": false,
+        "remaining_proof_scope": "BGV model/native/NTT/CRT/sampler/security/private authority/deployment remain Q78",
+        "next": "Q77_register_complete_cost_calibration_held_out_local_prototype"
+      },
+      "bounded_local_package_not_secure_deployed_service": true
     },
     {
       "id": "Q77",
       "title": "Matched full-cost evaluation",
-      "status": "conditional_unexecuted",
+      "status": "ready_for_separate_local_prototype_registration_unexecuted",
       "dependencies": [
         "Q76"
       ],
@@ -395,7 +415,9 @@
         "background_contention_and_policy_repreparation_paid": true,
         "remote_policy_20_percent_gate_is_not_cache_or_paper_gate": true,
         "prototype_latency_is_not_deployed_protected_latency": true
-      }
+      },
+      "eligibility_evidence": "docs/research/native-shared-query-certificate-return-20261004.json",
+      "security_scope": "Conditional local prototype under explicit owner/native premises; no deployed secure-service claim"
     },
     {
       "id": "Q78",
@@ -474,7 +496,7 @@
       "outcome": "Prioritize canonicalization placement; map prior interfaces; define latency and in-cap calibration/held-out split; preserve cache/certificate queue"
     }
   ],
-  "next_task": "Q76",
+  "next_task": "Q77",
   "preliminary_research_gates_remaining": [],
   "post_selection_system_packages": [
     "Q76",
@@ -560,9 +582,9 @@
   "historical_derivation_plan": "docs/research/research-contribution-plan-20261004.md",
   "current_closest_review": "docs/research/closest-work-contract-matrix-20261004.md",
   "claim_cards_file": "docs/research/system-contribution-claim-cards-20261004.json",
-  "next_subtask": "Q76.5_certificate_resource_client_context_handoff_with_early_Q79.1",
+  "next_subtask": "Q77_register_complete_cost_calibration_held_out_local_prototype",
   "latest_planning_review": "docs/research/paper-build-handoff-review-20261004.json",
-  "latest_execution_return": "docs/research/native-shared-query-cache-return-20261004.json",
+  "latest_execution_return": "docs/research/native-shared-query-certificate-return-20261004.json",
   "Q76_execution_returns": [
     {
       "milestone": "Q76.1",
@@ -664,7 +686,8 @@
       "next": "Q76.4b_aggregate_prefix_suffix_then_cache_controls"
     },
     "docs/research/native-shared-query-aggregate-return-20261004.json",
-    "docs/research/native-shared-query-cache-return-20261004.json"
+    "docs/research/native-shared-query-cache-return-20261004.json",
+    "docs/research/native-shared-query-certificate-return-20261004.json"
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
   "latest_plan_revision": {
@@ -689,7 +712,7 @@
     "early_originality_discriminator": "local_prior_mapping_written_executable_certificate_and_external_priority_unfinished",
     "original_main_accepted": false
   },
-  "top_level_count_scope_note": "Top-level new_HE_experiments/tests describe the original Q74/Q75 return. Q76 milestone receipts and later planning revisions have separate non-additive units.",
+  "top_level_count_scope_note": "Zero preliminary gates and zero immediate Q76 native milestones; three packages remain: paid Q77 evaluation, Q78 actual deployment/security, Q79 originality/paper. A completed local handoff is not a completed secure service.",
   "preserved_latest_implementation_checkpoint": {
     "commit": "6cffed1548c8fe5b701d9d1a20f5b15a4709c54a",
     "implementation_commit": "890b2810231540cbf2af4ead3b2ebe69cbdcd2c9",
@@ -1005,7 +1028,7 @@
     "actual_owner_channel_host_rollback_HE_integrity_or_attestation": false,
     "known_method_not_original_main": true
   },
-  "last_milestone_return_utc": "2026-10-04T21:26:06.430331+00:00",
+  "last_milestone_return_utc": "2026-10-04T23:58:00.309318+00:00",
   "historical_implementation_checkpoint_declarations": [
     {
       "tag": "checkpoint/native-shared-query-cache-2026-10-04",
@@ -1033,9 +1056,82 @@
   },
   "latest_component_preparation_return": "docs/research/native-shared-query-certificate-preparation-return-20261004.json",
   "last_component_preparation_utc": "2026-10-04T22:06:58.172030+00:00",
-  "current_preparation_checkpoint_pending_external_verification": {
+  "historical_certificate_component_returns": [
+    {
+      "return": "docs/research/native-shared-query-certificate-preparation-return-20261004.json",
+      "registration": "docs/research/native-shared-query-certificate-registration-20261004.json",
+      "specification": "docs/research/native-shared-query-certificate-spec-20261004.md",
+      "reference_and_toolchain_frozen": true,
+      "Lean_version": "4.34.1",
+      "official_checksum_verified": true,
+      "toolchain_downloads": 1,
+      "Lean_model_invocations": 0,
+      "independent_checker_or_client_adapter_or_model_implemented": false,
+      "resource_security_prior_handoff_complete": false,
+      "complete_Q76_5": false,
+      "Q77_eligible": false,
+      "formal_or_originality_or_security_approval": false,
+      "next_component": "independent_checker_and_scoped_model_implementation"
+    }
+  ],
+  "Q76_certificate_handoff": {
+    "return": "docs/research/native-shared-query-certificate-return-20261004.json",
+    "registration": "docs/research/native-shared-query-certificate-registration-20261004.json",
+    "reference": "docs/research/native-shared-query-certificate-spec-20261004.md",
+    "bounded_static_gate_complete": true,
+    "independent_checker_client_adapter_and_scoped_model_implemented": true,
+    "resource_security_prior_handoff_complete": true,
+    "normal_tests": 252,
+    "distinct_faults": 247,
+    "retained_static_case_modes": 66,
+    "Lean_invocations": 4,
+    "Lean_named_theorems": 12,
+    "maximum_compact_client_descriptor_bytes": 263206,
+    "new_HE_or_timing_work": 0,
+    "complete_Q76_5": true,
+    "Q77_eligible_for_separate_local_prototype_registration": true,
+    "Q77_executed_actual_attestation_private_release_security_parameter_or_originality_approval": false,
+    "remaining_proof_scope": "BGV model/native/NTT/CRT/sampler/security/private authority/deployment remain Q78",
+    "next": "Q77_register_complete_cost_calibration_held_out_local_prototype"
+  },
+  "remaining_Q76_native_milestones": 0,
+  "remaining_system_packages": [
+    "Q77",
+    "Q78",
+    "Q79"
+  ],
+  "completed_system_packages_scoped": [
+    "Q76_bounded_local_prototype_and_controls_only"
+  ],
+  "historical_preparation_checkpoint_declarations": [
+    {
+      "tag": "checkpoint/native-shared-query-certificate-preparation-2026-10-04",
+      "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-preparation-2026-10-04/manifest.json",
+      "note": "Create and verify after this preparation commit; cache remains latest completed implementation gate"
+    }
+  ],
+  "preserved_certificate_preparation_checkpoint": {
+    "commit": "f7fa9e19a7d8c4925b2cef883111ce0f205edce1",
     "tag": "checkpoint/native-shared-query-certificate-preparation-2026-10-04",
-    "manifest": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-preparation-2026-10-04/manifest.json",
-    "note": "Create and verify after this preparation commit; cache remains latest completed implementation gate"
+    "manifest": {
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-preparation-2026-10-04/manifest.json",
+      "bytes": 26823,
+      "sha256": "60c7030bb57475f48dca84b3c1bcdb91921a3ea092541945db221498821a0852"
+    },
+    "remote_verification": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-certificate-20261004/checkpoint-verification-return.json",
+      "bytes": 3028,
+      "sha256": "f31ec1d1c086ca857a168a49772abda1419c7270a537f2d2fd92021eafe695f7"
+    },
+    "branch_and_tag_remote_verified_at_preparation_publication": true,
+    "verification_is_historical_not_a_new_remote_query": true,
+    "evidence_archive_members": 10,
+    "company_members": 66,
+    "official_toolchain_archive_members": 1
+  },
+  "current_certificate_checkpoint_pending_external_verification": {
+    "tag": "checkpoint/native-shared-query-certificate-2026-10-04",
+    "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04",
+    "note": "Create archive/bundle/manifest after the final documentation commit; latest completed checkpoint remains the verified cache until external publication verification"
   }
 }

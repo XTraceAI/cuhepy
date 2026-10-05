@@ -1,13 +1,22 @@
 # Strongest reference construction and paper decision
 
-2026-10-04. Planning baseline: `8bfe630dbe49b064abbd601784fb4689ddde634f`;
-latest implementation checkpoint: `155d69f180f6e11a9a87734fdb6249699e9f0549`.
+2026-10-04. Original planning baseline: `8bfe630dbe49b064abbd601784fb4689ddde634f`;
+source-scale comparison checkpoint: `155d69f180f6e11a9a87734fdb6249699e9f0549`.
 Read with the [publication design](publication-system-design-20261004.md),
 [closest-work matrix](closest-work-contract-matrix-20261004.md),
 [execution plan](system-contribution-execution-plan-20261004.md), and
 [progress ledger](research-contribution-progress-20261004.json).
 This is an executable research decision, not a new algorithm, completed proof,
 measurement, priority clearance or production approval.
+
+The later [Q76.5 handoff](native-shared-query-certificate-20261004.md) completes
+the bounded local prototype package: independent static checking, compact
+public client metadata, resource/security cards and twelve scoped Lean lemmas.
+The final suite passes 252 tests; 66 retained static case/mode checks pass.
+The [return](native-shared-query-certificate-return-20261004.json) separates
+this supporting evidence from actual native/BGV/security refinement and from
+a substantive research result. **Next is Q77's separate complete-cost
+registration.** Q78 deployment/security and Q79 originality/paper remain open.
 
 ## Choose one main result, with the other components supporting it
 
@@ -290,7 +299,7 @@ before committing to the large Q77 panel; external review remains required.
 | Next package | Concrete output | Decision |
 | --- | --- | --- |
 | Q76.4c — bounded correctness gate complete | Authenticated compact mutable cache, strict current owner pin, native all-score/ordinal-tie search with bound IDs and bounded 32-row update. Actual cold/prefetch latency remains paid later. | [Cache return](native-shared-query-cache-return-20261004.json): 93 new normal/UBSan cases, 16 compatibility cases and 28 searches/229,980 distances. Reversed/nonmonotonic ties, three updates and actual bytes pass. Zero new HE/private work or timings; return selects Q76.5. |
-| Q76.5 + early Q79.1 | Certificate/checker, reference/refinement specification, resource and client-context handoff, claim-to-prior counterconstruction | Select only invariant-supported methods for Q77. Close a contained certificate/algorithm claim explicitly. Keep company engineering even if its novelty claim closes. |
+| Q76.5 + early Q79.1 — bounded static handoff complete | Independent checker, public client descriptor, scoped model, component/lifetime ledger and early claim-to-prior card. | [Handoff](native-shared-query-certificate-return-20261004.json): 252 tests, 247 distinct faults, 66 static case/modes and twelve scoped lemmas. Supporting assurance uses known methods; actual native/model/security refinement and original main result remain open. |
 | Q77 | Frozen same-backend complete-cost cohort and held-out policy/representation/state ablations | Seek H1/H2/H3 with paid setup, acquisition, updates, both links and strong cache/replay/randomized scope. Retain 18 blocks/144 dependent queries: 6 blocks/48 calibration observations then 12 blocks/96 held-out observations. No workload tuning after results. |
 | Q78 | Selected real protected deployment, private release/freshness, parameter/sampler/side-channel assurance and relevant comparison rerun | Establish the actual trust contract before any secure-service latency statement. Optional kernels/cuts are selected by a paid bottleneck. |
 | Q79 | Claim/evidence table, artifact restoration and paper, with human external review | Choose a supported main result or retain an engineering-only outcome. No automatic publication promise. |
@@ -312,12 +321,12 @@ targets a measured bottleneck and requires a bounded registration. They are
 not new selected experiments, a reason to bypass current caps, or a revival
 of closed reusable-adjoint/expansion/gadget claims.
 
-There are **zero broad preliminary gates left**, **one immediate native
-milestone**, and then the three existing evaluation, deployment/security and
-paper packages. The planning revision alone executed no experiments; the
-later cache return separately records its completed bounded control gate.
-The next executable task is **Q76.5 certificate/resource/client handoff with
-early Q79.1**.
+There are **zero broad preliminary gates left** and **zero immediate Q76
+native milestones**. The three remaining packages are Q77 evaluation, Q78
+deployment/security and Q79 originality/paper. The original planning revision
+executed no experiments; the later cache and certificate returns record their
+separate bounded gates. The next executable task is **Q77's separately frozen
+local complete-cost cohort**, with calibration followed by held-out evaluation.
 
 The [build-handoff review](paper-build-handoff-review-20261004.json) records
 the later planning return at `09d2b15120ca8a18e1c94d832fc88ece25d74bb7`. It

@@ -73,7 +73,9 @@ this planning work from executed correctness gates.
 
 There are **zero remaining preliminary gates in the selected Q74/Q75 plan**.
 There are four system packages: Q76 implementation/control, Q77 evaluation,
-Q78 deployment/security, and Q79 final originality/paper decision. Optional
+Q78 deployment/security, and Q79 final originality/paper decision. The bounded
+Q76 local prototype and static handoff now pass; the latter three packages
+remain. Optional
 ideas below are conditional branches inside these packages, not a new
 unbounded experiment queue. Completing a prototype is distinct from obtaining
 a publishable result.
@@ -88,7 +90,7 @@ a publishable result.
 | Q74 source-profile public bounds | Owner canonical Q120 passes. Public-key-index canonical Q120 and both derived Q120 modes fail. One Q180 rescue passes its algebra screens. | Start owner canonical Q120. Do not silently substitute an input law, approve parameters from successful decryptions, or use the Q120 parser for three primes. |
 | Q75 finite resource screen | 60 cards, nine exact finite frontiers, zero compiler-cap failures; known composition has identical algebra/resources. | New expansion/gadget/asymptotic claims are closed. Models are sufficient schedules, not measured time, peaks or lower bounds. |
 | Q180 derived versus owner canonical Q120, one full group | Witness body 90.703125 versus 120.468750 MiB; modeled pointwise work about 2.81x, keys 2.25x, query/index about 1.5x. | Preserve the tradeoff, but select no larger-Q variant from bytes alone. Client response bodies remain 102,400 bytes/group. |
-| Current Q76 work | Public core/factory/local lifecycle gates pass. Q76.3b now passes one fresh key and six searches at 8224/16384/32768: all native/GMP source/output/frame bytes and 114,752 distances agree. Final selected suite 258 includes 197 existing cases; no timing. | Replay, exact aggregate and authenticated mutable-cache correctness controls now pass; Q76.5's certificate/handoff remains. The cache return separately records 93 new unit cases and 28 searches/229,980 distance comparisons. Complete-cost evaluation is unmeasured. Actual private production release, real attestation and the completed service remain unfinished. |
+| Current Q76 work | Public core/factory/local lifecycle and the one-key/six-search source gates pass. Replay, exact aggregate and cache controls also pass. Q76.5 adds 252 standalone tests, 247 distinct metadata/context faults, 66 retained static case/mode checks and twelve scoped Lean theorems; no new HE or timing. | The selected bounded local prototype/control/static handoff is complete. The cache separately records 93 new unit cases and 28 searches/229,980 distances. Q77 needs a separate registration; complete-cost timings, actual private release, real attestation and security/originality assurance remain unfinished. |
 
 The final Q74/Q75 regression invocation passed 157 cases; that is not 157
 independent encrypted experiments. Neither those tests nor the large earlier
@@ -295,10 +297,10 @@ No timing panel or CUDA port precedes this gate.
 | Q76.3a: local lifecycle — complete bounded gate | Trusted non-rollback SQLite controller consumes signed original requests before preparation and callback claims before dispatch. | 71 lifecycle unit cases and 16 retained cases/112 protocol requests pass; 80 bad replies rejected, 32 public hooks, replay/restart/process-exit gates. Final combined 197 includes 126 existing native/auth cases; overlapping first runs not added. No remote release or source-scale assurance. |
 | Q76.3b: source scale — complete registered correctness gate | Bounded independent GMP preflight, then the registered N16k d512 counts 8,224/16,384/32,768 with two queries. | One fresh key/six searches pass: all 50,626,560 source/output coefficients and full frames match; 114,752 distances and all Q/P phase positions/tails/stable ties checked after public acceptance and callback claim. No secret serialized, no timing or security approval. |
 | Q76.4: matched controls | Build prepared replay and checked-product/trusted-prefix/suffix in the same native backend, plus the permitted authenticated cache. Grant layout, expansion, lazy relinearization, Karatsuba, fusion, preparation and streaming equally. | Same source/terminal/snapshot contract and full correctness gates. Count protected work, duplicate work and transfers in both directions, not just the control's return packet. |
-| Q76.5: certificate and handoff | Validate the high-level certificate independently, publish owned/resident/scratch accounting and source/codec commands, and audit the boundary. Develop the reference-model lemmas and early Q79.1 mapping to ILA/vFHE/Argos. | No free input or approval-by-oracle path; full test/mutation/lifecycle report, explicit prior-contained versus proposed substantive obligations, honest limitations, ledger return selecting or stopping Q77. |
+| Q76.5: certificate and handoff — bounded static gate complete | Independent fixed-reference checker, compact public client descriptor, component/lifetime ledger, scoped Lean model and early claim-to-prior/security cards. | [Return](native-shared-query-certificate-return-20261004.json): 252 tests, 247 faults, 66 retained static case/modes, twelve scoped theorems. Actual BGV/native/NTT/security/deployment refinement remains explicit. Q77 local prototype eligibility requires a separate registration; no private authority or original main approval. |
 
-Preserve the completed controls and execute the remaining native work in this
-order. Every completion returns to the ledger; these are Q76 subtasks, not extra
+The bounded controls were developed in the following order; preserve their
+completed handoffs. Every completion returns to the ledger; these are Q76 subtasks, not extra
 HE parameter experiments.
 
 | Order | Artifact and implementation boundary | Bounded gate before proceeding |
@@ -306,7 +308,7 @@ HE parameter experiments.
 | Q76.4a: prepared replay - bounded gate complete | Isolated native entry point/adapter uses the same canonical expansion, paired products and terminal codec, but returns the full frame without serializing unused source witnesses. The trusted factory pins mode/code/profile; replies cannot select executables or a graph. Reuse the local lifecycle. | Register 16 retained small cases plus six saved large public transcripts before implementation. Compare complete frames to independently validated retained outputs; zero new HE keys/private decryptions/timing. Test strict packet/mode/context/epoch/full-tail grammar, ownership and direct C ABI bounds. Preserve the original ABI 1202 build. |
 | Q76.4b: aggregate seam - bounded gate complete | Same-backend untrusted producer emits three canonical common-Q pre-relinearization aggregates. Protected prefix derives the genuine query; exact aggregate admission and protected suffix complete the frame. | Test both actual prime vectors, all coordinates, one-limb and component-cancellation faults, original-query/ID/snapshot binding and the existing lifecycle. Choose the exact three-product control first. Randomized control requires its separate reviewed adaptive budget/challenge argument; an unimplemented adapter stays unknown. |
 | Q76.4c: permitted cache — bounded gate complete | Owner-authenticated compact binary backup and ordered-ID descriptor, returning search and bounded 32-row updates. Late-download/currentness correctness passes; actual prefetch overlap stays unmeasured until Q77. No HE index download is imposed on the cache. | [Cache return](native-shared-query-cache-return-20261004.json): 93 new normal/UBSan cases, 16 compatibility cases, 28 searches/229,980 complete distances, three 32-row updates and ordinal ties with reversed/nonmonotonic IDs. Actual snapshot/patch bytes and canonical retained-body accounting pass. Charge preparation, private context, mutable updates and prefetch later; no artificial cache prohibition. |
-| Q76.5: certificate/resource handoff | A checker separate from the optimizer validates graph effects, actual primes, common integers, origin/public phase bounds, complete coverage/terminal framing and mode-bound release assumptions. Publish a compact client provisioning descriptor and the exact owned/resident/scratch lifetime ledger. | Mutate each certificate obligation and reject before authority/private work. Document trusted-owner encoding and native/formal assurance boundaries. Freeze the complete methods and runtime budgets before Q77; stop any plan that lacks its invariant. |
+| Q76.5: certificate/resource handoff — bounded gate complete | The checker reconstructs every static obligation independently. The client binds complete IDs and all three modes to an exact trusted owner pin; its descriptor is 263,206 B at 32k. Resource accounting exposes unmeasured allocator/stage peaks and private/deployment premises. | [Handoff](native-shared-query-certificate-20261004.md) and [security card](native-shared-query-security-feasibility-20261004.md) separate model hypotheses, native correctness evidence and public metadata from private authority. Freeze the Q77 methods/workload/key budgets next; no timing, secure service or substantive originality is established here. |
 
 The replay files now exist alongside the experimental core:
 `_shared_query/shared_query_replay.cpp`, `replay_shared_query.py` and their
@@ -334,8 +336,10 @@ passes 59 producer tests and two public fixture tests; the later
 [source return](native-shared-query-source-20261004.md) records the separate
 fresh-key/six-search gate and private diagnostics. The later
 [cache gate](native-shared-query-cache-20261004.md) also passes.
-**Next executable task is Q76.5 certificate/resource/client-context handoff,
-with the early Q79.1 claim-to-prior discriminator.** Source belongs in
+The [Q76.5 handoff](native-shared-query-certificate-20261004.md) now completes
+the bounded native prototype package, including the local early claim mapping.
+**Next executable task is Q77's separate local complete-cost registration,
+with a genuine calibration/held-out split.** Source belongs in
 `experiments/bfv_search_lab/_shared_query/`; Python adapter/tests beside the
 other research implementations; reproducible runners in `benchmarks/`.
 Keep isolated libraries and outer evidence. Migrate a reviewed selected
@@ -351,7 +355,7 @@ real freshness/revocation and protected-release assumptions, including
 owner-side request/snapshot binding. Actual attestation remains unimplemented
 for this selected service.
 
-Each remaining Q76 milestone has a bounded handoff:
+Each Q76 milestone has a bounded handoff:
 
 1. **Lifecycle — bounded local gate complete:** the
    [state model](native-shared-query-lifecycle-model-20261004.md),
@@ -375,18 +379,23 @@ Each remaining Q76 milestone has a bounded handoff:
    contract passes its registered gate; the randomized-delegation comparison card
    preserves the prospective assurance scope. Credit cached and streamed
    inputs, shared expansion and paired Karatsuba to every compatible control.
-4. **Certificate:** separately validate graph/effect transitions and high-level
-   resources, document the native assurance boundary, and return a pass/stop
-   receipt to the ledger. Q77 becomes eligible only after this handoff.
+4. **Certificate — bounded static handoff complete:** separately validate
+   graph/effect transitions and resource components, expose unclosed native/
+   semantic/deployment premises, and return the local prototype pass to the
+   ledger. Q77 is now eligible for its own registration.
 
    Q76.5 is now [registered](native-shared-query-certificate-registration-20261004.json).
    Its [reference specification](native-shared-query-certificate-spec-20261004.md)
    and official workspace-local Lean 4.34.1 toolchain are frozen before
    implementation. The [preparation return](native-shared-query-certificate-preparation-return-20261004.json)
-   records this component only: no checker, client adapter or model exists,
-   and no proof/test/HE/timing gate ran. Implement the independent checker and
-   scoped model next, then finish client/resource/security/prior handoff.
-   The same one Q76.5 milestone remains open; Q77 is not yet eligible.
+   records the historical preparation component only: at that point no checker,
+   client adapter or model existed, and no proof/test/HE/timing gate ran.
+   The later [completed handoff](native-shared-query-certificate-return-20261004.json)
+   supplies 252 tests, 247 faults, 66 retained static checks and twelve scoped
+   theorems. [Resources](native-shared-query-resource-ledger-20261004.md) and
+   [security/prior feasibility](native-shared-query-security-feasibility-20261004.md)
+   are published. The immediate Q76 queue is empty. Q77 remains unregistered
+   and unexecuted; secure deployment/private release and originality remain open.
 
 Do not change the selected key/search budgets to obtain a more attractive
 result. A failed source gate returns here for a documented correction before
@@ -777,8 +786,9 @@ recorded in its [lifecycle return](native-shared-query-lifecycle-return-20261004
 The later [Q76.3b source return](native-shared-query-source-return-20261004.json)
 records its fresh-key/private-diagnostic scope separately. Later prepared
 replay, exact aggregate and permitted authenticated mutable-cache gates also
-pass. Next is Q76.5 independent certificate/resource/client-context handoff;
-Q76 remains incomplete and Q77 stays conditional.
+pass. The later Q76.5 static/resource/client/model handoff completes the bounded
+local prototype package. Next is Q77's separate registration; real Q78 deployment/
+security and Q79 originality/paper remain required.
 The source-scale implementation is additionally preserved by tag
 `checkpoint/native-shared-query-source-2026-10-04`, with verified incremental
 bundle, 54 evidence members and 66 preserved company members. The later

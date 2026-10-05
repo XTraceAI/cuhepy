@@ -2,7 +2,7 @@
 
 2026-10-04. Original comparison evidence baseline:
 `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
-The latest preserved implementation checkpoint is `155d69f180f6e11a9a87734fdb6249699e9f0549`;
+The source-scale comparison checkpoint is `155d69f180f6e11a9a87734fdb6249699e9f0549`;
 the [paper-facing rereading receipt](paper-contribution-review-20261004.json)
 records this later planning return separately from the original review.
 Read with the [execution plan](system-contribution-execution-plan-20261004.md),
@@ -23,8 +23,8 @@ The later [Q76.4c cache return](native-shared-query-cache-return-20261004.json)
 implements the permitted owner baseline with authenticated mutable delivery
 and ordinal ties. Its bounded correctness/accounting gate passes; it adds no
 new literature claim, HE work or timing evidence. Cache/provisioning/signature
-composition remains a known method. Q76.5 must still separate a substantive
-system or assurance result from the compatible prior construction.
+composition remains a known method. The later Q76.5 handoff below separates
+its supporting static assurance from an unestablished substantive result.
 
 The initial review added four cached primary papers and inspected ten rendered
 pages. The [source-scale reassessment](paper-system-reassessment-20261004.json)
@@ -52,8 +52,9 @@ owner-authenticated factory pass their bounded gates. The later
 adds tested durable state under trusted non-rollback storage. The later
 [Q76.3b source return](native-shared-query-source-20261004.md) passes its
 registered one-key/six-search large correctness gate. The matched prepared replay and exact aggregate local/public correctness gates
-now pass. Cache, complete-cost measurements, the independent certificate,
-remote freshness/private release and real attestation remain open.
+now pass. The later cache and independent static certificate gates also pass.
+Complete-cost measurements, native/model refinement, remote freshness/private
+release and real attestation remain open.
 
 There are three different comparison classes:
 
@@ -184,6 +185,14 @@ branch cannot yet be selected on a novel type-system/admission/composition
 claim. The systems branch remains eligible for a **specific** execution
 finding, but must demonstrate and distinguish it from applicable complete
 systems. Unknown predecessor adaptation cost remains unknown.
+
+The subsequent [Q76.5 bounded handoff](native-shared-query-certificate-20261004.md)
+implements the independent fixed-reference checker, compact public owner/client
+descriptor and twelve scoped Lean lemmas, with 252 tests and 66 retained static
+case/mode checks. Its [security/prior card](native-shared-query-security-feasibility-20261004.md)
+keeps every interface inherited/adapted and every native/model/deployment premise
+visible. These results supply supporting assurance; no substantive main claim or
+paid execution advantage follows. Q77's separate registration is next.
 
 Five existing primary PDF/text pairs were rehashed and copied for this return;
 six complete pages were inspected with adjacent text: ILA page9 (§5.1.2,
