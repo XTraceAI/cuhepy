@@ -58,8 +58,12 @@ failures to fit. The scientific workload and one-extension reservation stay fixe
 The [detached-launch return](native-shared-query-complete-cost-detached-launch-return-20261005.json)
 now closes the two-case public gate in its one registered invocation. It proves
 continuation after a public parent's exit and rejection before invalid launch,
-with no HE/private/project-native work. Exact new freeze and actual storage
-headroom remain unmet. External termination can still occur; its prior cause
+with no HE/private/project-native work. The
+[new exact freeze](native-shared-query-complete-cost-execution-interruption-20261005.json)
+and [contract](native-shared-query-complete-cost-execution-contract-interruption-20261005.md)
+are committed: 446 source pins, 716 dependencies and the unchanged scientific law.
+Actual storage headroom and passing unchanged preflight remain unmet.
+External termination can still occur; its prior cause
 is not explained or claimed fixed.
 
 The [analysis preparation](native-shared-query-complete-cost-analysis-preparation-20261005.json)
@@ -239,7 +243,7 @@ contained algorithm.
 | --- | --- | --- |
 | R2a, public gate complete | Honest provisioning in `experiments/bfv_search_lab/complete_cost_tenant.py`: pre-debit actual attempts, retain public inputs, independent cache contexts and recoverable partial failures. | Public fixture accounting/coverage passes; that public gate executed no actual HE. Both earlier actual attempts remain retained. |
 | R2b, public gate complete | `benchmarks/complete_cost_owner_study.py` connects the coordinator, shared relay, clean supervisor, resource telemetry and public enrollment/cache assembly. | Full scheduling and actual cache-only TCP lifetimes pass the registered gate. This does not validate the actual encrypted cohort. |
-| R2c, complete in its original scope; separate freeze next | Exact corrective pins/order/guards were committed and passed preflight. The additive detached launcher passes its separate two-case public gate. | Commit the new exact freeze and satisfy actual 20 GiB headroom before the independently registered action. No guard relaxation or block replacement. |
+| R2c, complete in its original scope; separate freeze committed | Exact corrective pins/order/guards were committed and passed preflight. The additive detached launcher passes its separate two-case public gate; new freeze is committed. | Satisfy actual 20 GiB headroom and unchanged pure preflight before the independently registered action. No guard relaxation or block replacement. |
 | R3a, complete for interrupted action | All six calibration blocks passed; immutable choices were independently recomputed from 36 pinned rows. | Retain client/generic `m1` and native projection `m2` as historical evidence. New action calibrates independently; no old policy reuse. |
 | R3b, interrupted; separate action registered | Ten held-out trajectories survive, without complete terminal return. New action retains the same 18-block/864-query law and explicit additional ceilings. | Complete owner costs, whole-output correctness, paired block analysis and contamination return. Then choose exactly one eligible R4 route. |
 | R4a | Produce the mechanism eligibility return above; first build the partial-owner/dynamic reference when refresh is the trigger. | One eligible mechanism, named reference and falsifier; contained template is not accepted. Then R4b. |

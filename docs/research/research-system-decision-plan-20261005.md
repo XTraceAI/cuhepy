@@ -73,8 +73,11 @@ cannot enter its selection. The
 now passes exactly two new cases in one invocation, with no HE/private/native
 project operation. It demonstrates continuation after the public parent exits,
 not immunity to external process termination or a repair of the unknown cause.
-**The exact new freeze and storage precondition are now the first unmet
-dependency**, then the complete comparison,
+The [new exact freeze](native-shared-query-complete-cost-execution-interruption-20261005.json)
+and [contract](native-shared-query-complete-cost-execution-contract-interruption-20261005.md)
+are now committed, with 446 source pins and 716 dependencies, including every
+earlier dependency. **Actual 20 GiB headroom and passing unchanged preflight
+are now the first unmet dependency**, then the complete comparison,
 one eligible creative extension, assurance and the paper package. No fresh
 encrypted action has started. A detached launcher changes observation lifetime;
 it does not prove or repair the unknown termination cause.
@@ -98,7 +101,7 @@ immutable-base recipe are engineering foundations; neither is the new result.
 | Milestone | Concrete deliverable | Decision produced |
 | --- | --- | --- |
 | R2c: complete | Exact sources, dependencies, event/arrival law and guards committed; pure preflight passed. | Runnable frozen comparison; public stubs remain distinct from HE correctness. |
-| R3: interrupted; separate action registered, not started | Preserve both earlier attempts; complete launch gate/freeze/storage preconditions, then six new calibration blocks and twelve held-out blocks with every cost accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
+| R3: interrupted; separate action frozen, not started | Preserve both earlier attempts; launch gate and exact freeze are complete. Meet actual storage floor/preflight, then six new calibration blocks and twelve held-out blocks with every cost accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
 | R4a: choose one creative extension | Literal changed execution, necessary invariant, resource prediction and strongest compatible construction. | A distinction to test, or a documented containment finding. |
 | R4b/R4c: build and ablate it | Independent oracle, adversarial transitions, complete adapter and one registered matched extension cohort. | Attribution and useful/losing regions; a same-output gain alone does not establish originality. |
 | Q78: deployment and security | Native/model refinement, authorization/privacy games, parameter/sampler/private-leakage review, attestation and nonrollback authority. | Explicit discharged obligations and remaining assumptions. |
@@ -1032,7 +1035,7 @@ After each task, preserve inputs/commands/failures/scope/checkpoint in the ledge
 and return here. **Next exit: return the separately registered complete R3 calibration/held-out
 comparison, then
 specify and implement one eligible R4 extension.** The prior exact freeze is retained;
-the new freeze and storage preconditions remain pending. There is
+the new freeze is committed, while actual storage headroom/preflight remain pending. There is
 no additional encrypted experiment is reserved by this plan update.
 
 ## Analysis ready for the actual R3 return
