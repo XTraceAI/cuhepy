@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "utc": "2026-10-05T20:26:42.322144+00:00",
+  "task": "Q78_independent_terminal_modswitch_model_refinement_support",
+  "baseline_commit": "25e4a4a81a54bf8cb08e4189177bf2e573e4ab49",
+  "independent_of_unreturned_Q77_timings_or_R4_mechanism_choice": true,
+  "reason": "Native terminal rounds to an unwrapped integer congruent modulo t, then reduces modulo P. A correct proof must track that additional wrap; canonical components do not automatically retain their old modulo-t residues. Audit this exact boundary without changing the frozen scientific action.",
+  "scope": [
+    "Trace public admission-to-callback ordering and actual seeded honest-owner origin by reading frozen sources.",
+    "One public scalar input x=t-1 under the fixed large Q/P profile, no key or ciphertext.",
+    "Add one standalone Lean file with at most four supporting modular/phase assertions, preserving the existing twelve-lemma model.",
+    "Pin and use the already installed Lean4.34.1 toolchain; at most three bounded validation invocations, retaining every failure and source version."
+  ],
+  "new_source_files_max": [
+    "proofs/shared_query/Terminal.lean"
+  ],
+  "new_source_native_HE_protocol_model_or_owner_runtime_edits": 0,
+  "new_HE_private_key_crypto_project_native_CUDA_or_search_timing": 0,
+  "extra_source_scale_parameter_policy_or_creative_extension_cohorts": 0,
+  "public_scalar_inputs_max": 1,
+  "supporting_formal_assertions_max": 4,
+  "Lean_validation_invocations_max": 3,
+  "per_invocation_deadline_seconds": 60,
+  "model_toolchain_network_install_or_mathlib_dependency": false,
+  "existing_model": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/proofs/shared_query/Model.lean",
+    "bytes": 5771,
+    "sha256": "08a4e2f312d30d2dc3bf30ca4bd753ef0c9edbea31aed14dff250755b8a82324"
+  },
+  "existing_scientific_addendum": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-complete-cost-execution-interruption-20261005.json",
+    "bytes": 282578,
+    "sha256": "8c31e00dd9ac34ddad2c5e36004314200a018f10f11983ab440d198446f01f19"
+  },
+  "toolchain_inventory": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q76-certificate-20261004/proof-toolchain-freeze.json",
+    "bytes": 4445225,
+    "sha256": "7ed8790885c5be409e1de537db2fbc9e1e80d053f228a218d27cdf8564ae1484"
+  },
+  "existing_compiler": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-tools/lean-4.34.1-linux/bin/lean",
+    "bytes": 9024,
+    "sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550"
+  },
+  "compiler_output_is_not_native_refinement_privacy_reduction_parameter_or_production_security_approval": true,
+  "public_model_lemmas_not_the_required_creative_extension": true,
+  "Q77_storage_precondition_and_full_cohort_requirement_unchanged": true,
+  "Q78_full_package_not_claimed_complete": true
+}
