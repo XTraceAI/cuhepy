@@ -64,6 +64,45 @@ search comparators after the completed Q76 checkpoint. The registry now has
 123 records, retaining the preceding 120 unchanged. Eight complete relevant
 PDF pages were inspected; no author artifact or fresh timing was executed.
 
+## Current public system handoff, 2026-10-05
+
+The [current build plan](paper-system-build-plan-after-roles-20261004.md) and
+[progress ledger](research-contribution-progress-20261004.json) control future
+execution. Q76's bounded local prototype is complete. Q77's plumbing and owner
+trace pass their public gates; its source/accounting subgate adds 23 cases,
+for 343 retained distinct cases across separate invocations. The whole cohort
+runner, actual HE/private process handoff and complete-cost timings remain
+unexecuted. These are implementation prerequisites, not a new scientific result.
+
+The latest review rehashed seven retained primary PDF/text pairs, refreshed
+eight primary pages, and preserved all 123 registry records. No author backend
+was executed. Detailed comparisons below retain their pinned editions;
+fresh metadata does not silently replace a cached mutable paper revision.
+
+| Research question | Closest strong result to grant | Discriminator required for our paper |
+| --- | --- | --- |
+| Can verified encrypted exact matching be practical? | [HERS](https://arxiv.org/abs/2003.12197v3) gives packed encrypted representation search; [Argos](https://petsymposium.org/popets/2025/popets-2025-0099.php) gives integrity-only attested FHE. | Complete exact owner search with a paid admission-to-owner path. No first packed-search, HE/TEE or verify-before-decrypt claim. Our ordinary process signer does not reproduce Argos's coprocessor key custody. |
+| Can work be delegated to an untrusted accelerator? | [vFHE Appendix D](https://arxiv.org/html/2301.07041v2) checks delegated tensor products through ring-valued polynomial evaluation. | Compare complete maintained graphs and pay challenge/commitment/lifetime costs. A deterministic product recomputation is not the strongest randomized control; its complete adapter is still unexecuted. |
+| Can correctness be certified across HE operations? | [ILA §5.1.2](https://arxiv.org/html/2509.11559v1) derives BGV correctness from valid input types and primitive premises. [FlowCert](https://www.contrib.andrew.cmu.edu/~bparno/papers/flowcert.pdf) validates asynchronous schedules. | Instantiate actual owner origin, common-Q/RNS/terminal and malicious admission/release effects. Routine type/model/schedule adaptation supplies assurance, not automatic theorem novelty. |
+| Can representation and placement improve cost? | [Silph](https://eprint.iacr.org/2023/060) gives conversion-aware hybrid assignment. Credit duplicated legal representations and equal cost/horizon information. | Demonstrate a specific useful execution boundary and its invariant. Equal generic frontiers are expected; evaluator-only policy losing does not establish a new optimizer. |
+| Does another verified similarity system already cover the result? | [BioZKFHE v1](https://arxiv.org/html/2607.22065v1) binds encrypted similarity to session/snapshot/complete block coverage, with committee opening. | Align metric, ring, maintenance, hardware/committee and feedback. Its current proof scope excludes rotations and modulus switching; adapted costs are unknown. This does not make it a defeated comparator. |
+| Does an owner need remote search at all? | Allowed returning, authenticated fresh and background-acquired plaintext caches. The owner may retain every vector. | Measure a justified useful outsourcing region after acquisition, updates and racing prefetch. If none survives, close that headline and review any negative result separately. |
+
+The main originality candidate is therefore a **specific useful execution
+finding** about common-Q construction/admission and retained state. It needs a
+held-out result, mechanism ablation, invariant and explicit closest-system
+distinction. An 86-fold internal witness reduction, a fast homemade GPU kernel
+or a new cost label alone does not establish it. The three candidate paper
+stories in the build plan share one finite evaluation, not new experiment grids.
+
+The current exact aggregate mode recomputes the protected prefix, products
+and suffix. This explains why its smaller witness need not outperform replay;
+it is a source-level containment observation, not a timing result or universal
+lower bound. Keep it as an honest control. If a deterministic placement result
+survives, either execute the strong randomized adapter under a separate finite
+registration before a broad delegation claim, or keep the claimed comparison
+explicitly deterministic.
+
 ## The comparison contract
 
 Our selected experiment uses an owner-hidden binary index and query,

@@ -2,6 +2,8 @@
 
 > Execution return, 2026-10-04: [Q74/Q75 results](shared-query-gates-20261004.md) and the [current ledger](research-contribution-progress-20261004.json) now complete the two bounded preliminary gates. Shared-query exact semantics passed; the Q120 derived/public-index variants failed their public bounds, and one paid Q180 rescue was screened. The strongest known composition contains the new algebra. The next selected build is owner canonical Q120 shared-query native admission versus equally prepared replay, with permitted cache/acquisition and all lifetime costs. No new service speedup, original main claim, security/parameter approval or production change is established. This supersedes earlier next-task/selection pointers for future work; the complete earlier document below is byte exact.
 
+> Current assessment, 2026-10-05: the [updated build plan](paper-system-build-plan-after-roles-20261004.md), [closest-work matrix](closest-work-contract-matrix-20261004.md) and [ledger](research-contribution-progress-20261004.json) supersede all older next-task pointers above and below. Q76's bounded prototype is complete. Q77's public plumbing, owner trace and source/accounting gate retain 343 distinct cases across separate runs; the last 23-case invocation passed without HE/private work. The complete coordinator, real HE/private process execution and complete-cost measurements remain pending. The three paper hypotheses remain unestablished. Existing local BGV/CUDA engineering measurements are not a secure-service speedup or originality approval.
+
 # What the accumulated results support
 
 2026-10-04. Review through `4bbd55056d14405b617ae0c251b1f2bacc71e74c`;
