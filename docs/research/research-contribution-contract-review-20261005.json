@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "utc": "2026-10-05T13:19:49.896134+00:00",
+  "baseline": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/baseline.json",
+    "bytes": 2466,
+    "sha256": "29fa6fb09033abaea9da80692119afd0f665f73139e3d51386f3c614c327e40f"
+  },
+  "baseline_commit": "ae5581284f0bd3c456e1daae6daf98b29b284378",
+  "implementation_commit": "73b552f2cbcc7a4b0add092c41d0171d236a826a",
+  "scope": "Planning/closest-control/evidence review only",
+  "helper": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/update-review.py",
+    "bytes": 11404,
+    "sha256": "e9126c9ee50f64e070adc3a1fdbe8e767c76d3a33f7d1cbbd1a5e2d1edf66a48"
+  },
+  "prior_implementation_source_pin_inventory": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-paper-design-audit-20261005/baseline.json",
+    "bytes": 126564,
+    "sha256": "201d328729dc5f2744e79d11df149510efcc4ce3ab2821ccdecc1ee6737575b1"
+  },
+  "runtime_sources_unchanged": 442,
+  "company_files_unchanged": 66,
+  "public_libraries_unchanged": 6,
+  "private_extension_unchanged": true,
+  "retained_panel": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/benchmarks/results/publication-system-selection-measurement-20261003.json",
+    "bytes": 110637,
+    "sha256": "599c5f2bd44b81a4622c2ab12ecb762ac23c12ec4872ad2085e24f76982373dc"
+  },
+  "retained_samples_recalculated_not_new_timings": 25,
+  "retained_medians": [
+    {
+      "variant": "bgv-public-index-cuda-workspace",
+      "retained_samples": 5,
+      "local_median_ms": 117.29835899313912,
+      "qualification": "One old process/key/index block; swap/profile/local-unverified qualification unchanged"
+    },
+    {
+      "variant": "bfv-cuda-prepared",
+      "retained_samples": 5,
+      "local_median_ms": 892.813355952967,
+      "qualification": "One old process/key/index block; swap/profile/local-unverified qualification unchanged"
+    },
+    {
+      "variant": "paillier-lookup-cuda",
+      "retained_samples": 5,
+      "local_median_ms": 2599.103402986657,
+      "qualification": "One old process/key/index block; swap/profile/local-unverified qualification unchanged"
+    },
+    {
+      "variant": "paillier-lookup-hybrid",
+      "retained_samples": 5,
+      "local_median_ms": 1418.9603000413626,
+      "qualification": "One old process/key/index block; swap/profile/local-unverified qualification unchanged"
+    },
+    {
+      "variant": "authenticated-raw-cache",
+      "retained_samples": 5,
+      "local_median_ms": 4.383596999105066,
+      "qualification": "One old process/key/index block; swap/profile/local-unverified qualification unchanged"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "integridb-ccs2015",
+      "title": "IntegriDB: Verifiable SQL for Outsourced Databases",
+      "authors": [
+        "Yupeng Zhang",
+        "Jonathan Katz",
+        "Charalampos Papamanthou"
+      ],
+      "year": 2015,
+      "inspected_pdf_pages_one_based": [
+        2,
+        7
+      ],
+      "version_note": "CCS2015 author-hosted paper, fixed retrieved hash; not an author-artifact reproduction",
+      "passages": [
+        "2.1 dynamic ADS and current digest premise",
+        "4.5 owner-assisted updates and row-wise general updates"
+      ],
+      "comparison_scope": "Known dynamic query authentication and freshness; exact encrypted-arithmetic/private-consumption adapter unexecuted",
+      "url": "https://integridb.github.io/IntegriDB.pdf",
+      "final_url": "https://integridb.github.io/IntegriDB.pdf",
+      "file": "integridb-ccs2015.pdf",
+      "text_file": "integridb-ccs2015.txt",
+      "bytes": 730330,
+      "sha256": "273f8b54c3131e30d23ee828f3c643d3b6f448d35a449564ddc4ffc5ca4f6fa3",
+      "text_sha256": "636679b0009d7d41d49663d3267958aeac989f5ac4ebe3812877dc08a4398b2d",
+      "retrieved_utc": "2026-10-05T13:03:21.659026+00:00",
+      "status": "downloaded_pdf_and_extracted_text",
+      "pdf_pages": 12,
+      "cache_directory": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary",
+      "reviewed_utc": "2026-10-05T13:19:49.896134+00:00",
+      "retrieval_receipt": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary/integridb-ccs2015.retrieval.json",
+        "bytes": 607,
+        "sha256": "8b6b25c023d409eb0b0ce7adf2e2658c63d923bd043e9d505455aa0a8ebb9ac7"
+      },
+      "reading_depth": "Targeted complete-page/model/interface reading, not full construction/proof/parameter audit",
+      "artifact_executed": false,
+      "performance_reproduced": false
+    },
+    {
+      "id": "inc-vdb-tc2016",
+      "title": "Verifiable Computation over Large Database with Incremental Updates",
+      "authors": [
+        "Xiaofeng Chen",
+        "Jin Li",
+        "Jian Weng",
+        "Jianfeng Ma",
+        "Wenjing Lou"
+      ],
+      "year": 2016,
+      "inspected_pdf_pages_one_based": [
+        1,
+        4,
+        5
+      ],
+      "doi": "10.1109/TC.2015.2512870",
+      "version_note": "Author-hosted IEEE TC65(10), October2016, pages3184-3195; first publication December2015",
+      "passages": [
+        "Introduction obsolete-record/backward-substitution problem",
+        "3.1/3.2 entry-retrieval and incremental authentication contract",
+        "4 ciphertext representation includes bit-flip positions"
+      ],
+      "comparison_scope": "Incremental authentication predecessor; record functionality and update-position leakage must be aligned before adaptation",
+      "url": "https://www.cnsr.ictas.vt.edu/publication/07366556.pdf",
+      "final_url": "https://www.cnsr.ictas.vt.edu/publication/07366556.pdf",
+      "file": "inc-vdb-tc2016.pdf",
+      "text_file": "inc-vdb-tc2016.txt",
+      "bytes": 563781,
+      "sha256": "eddbec432c04204fd8bdcf7e93f955debf709b8e7776b07d4e1c9797c4159500",
+      "text_sha256": "ca8fd0f1145aebd37040c0cb9ff4c8488ca3e46f4e00f5bc12d65f618d7ca332",
+      "retrieved_utc": "2026-10-05T13:03:22.210151+00:00",
+      "status": "downloaded_pdf_and_extracted_text",
+      "pdf_pages": 12,
+      "cache_directory": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary",
+      "reviewed_utc": "2026-10-05T13:19:49.896134+00:00",
+      "retrieval_receipt": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary/inc-vdb-tc2016.retrieval.json",
+        "bytes": 624,
+        "sha256": "54c2de518025b315455fa309781c716b9703a1dce7e80187e771edbd92876180"
+      },
+      "reading_depth": "Targeted complete-page/model/interface reading, not full construction/proof/parameter audit",
+      "artifact_executed": false,
+      "performance_reproduced": false
+    },
+    {
+      "id": "model-generic-ivc-itcs2026",
+      "title": "Model-Generic Incrementally Verifiable Computation from Updatable BARGs",
+      "authors": [
+        "Eden Aldema Tshuva",
+        "Rotem Oshman"
+      ],
+      "year": 2026,
+      "inspected_pdf_pages_one_based": [
+        2,
+        3,
+        4
+      ],
+      "doi": "10.4230/LIPIcs.ITCS.2026.6",
+      "metadata_url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.6",
+      "version_note": "ITCS2026 publisher edition, publication January23,2026; exact PDF hash retained",
+      "passages": [
+        "Introduction reactive inputs and trace reuse",
+        "UpBARG successive-transition consistency",
+        "Informal Theorem1 model-generic lifting and application scope"
+      ],
+      "comparison_scope": "Incremental proof/state reuse predecessor, not an implemented exact-BGV database-update adapter",
+      "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol362-itcs2026/LIPIcs.ITCS.2026.6/LIPIcs.ITCS.2026.6.pdf",
+      "final_url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol362-itcs2026/LIPIcs.ITCS.2026.6/LIPIcs.ITCS.2026.6.pdf",
+      "file": "model-generic-ivc-itcs2026.pdf",
+      "text_file": "model-generic-ivc-itcs2026.txt",
+      "bytes": 901905,
+      "sha256": "8baf1882fce46e1f6b63d9dae97f18b42e7d6c6401bc1c10f884b458ab9c245b",
+      "text_sha256": "bb2e5b2d46e6ca54f7157fe254f19c7fc043831c5ebde25937d813b91314a257",
+      "retrieved_utc": "2026-10-05T13:03:23.361790+00:00",
+      "status": "downloaded_pdf_and_extracted_text",
+      "pdf_pages": 22,
+      "cache_directory": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary",
+      "reviewed_utc": "2026-10-05T13:19:49.896134+00:00",
+      "retrieval_receipt": {
+        "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary/model-generic-ivc-itcs2026.retrieval.json",
+        "bytes": 766,
+        "sha256": "12a371a95e247da2fb40bf4fc156f3261de487dabf6646af38b78f6401b29a54"
+      },
+      "reading_depth": "Targeted complete-page/model/interface reading, not full construction/proof/parameter audit",
+      "artifact_executed": false,
+      "performance_reproduced": false
+    }
+  ],
+  "prior_sources_preserved_raw_JSON_and_semantic": 131,
+  "source_records": 134,
+  "new_primary_PDF_pages_visually_inspected": 8,
+  "web_reading": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/web/primary-reading01.json",
+    "bytes": 23725,
+    "sha256": "b552b5e26115d16654f32e77914b471eac4d23895047e3802a4b78df79aee7ba"
+  },
+  "retrieval_failures_retained": [
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary/inc-vdb-tc2016.retrieval-failed01.json",
+      "bytes": 292,
+      "sha256": "23e14bfa490b6a0fc97f23214593cc07895af86e32102e0db1d19613c438e5d3"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary/integridb-ccs2015.retrieval-failed01.json",
+      "bytes": 282,
+      "sha256": "fb429e7a5c6d3ed00ba532fbff171f42289528b91a3abf7d7d630268e758ffeb"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/research-contribution-contract-review-20261005/primary/model-generic-ivc-itcs2026.retrieval-failed01.json",
+      "bytes": 357,
+      "sha256": "024ba0d906273c3c984b0b5b471a79fbf1a883a7b841300f316e71ad8b2067b7"
+    }
+  ],
+  "approval_retry_note": "First escalation could not be reviewed due to reviewer capacity; same command retried and approved. No download bypassed approval.",
+  "retained_workflow_errors": [
+    "A documentation patch found no exact context and applied no changes; narrower corrected patch succeeded.",
+    "One read command used a relative venv path from the archive directory and failed; no experiment was executed."
+  ],
+  "handoff": {
+    "receipt": "docs/research/research-contribution-contract-review-20261005.json",
+    "baseline_commit": "ae5581284f0bd3c456e1daae6daf98b29b284378",
+    "plan": "docs/research/research-system-decision-plan-20261005.md",
+    "comparison": "docs/research/closest-work-contract-matrix-20261004.md",
+    "scope": "Planning/closest-control/evidence review only",
+    "new_source_records": 3,
+    "prior_source_records_preserved_raw_and_semantic": 131,
+    "current_source_records": 134,
+    "visually_inspected_new_primary_pages": 8,
+    "new_crypto_native_tests_timings_proofs_author_runs": 0,
+    "Q77_actual_keys_blocks_observations": 0,
+    "Q77_distinct_public_cases_unchanged": 376,
+    "mechanism": "Immutable computation identity separated from current recipe authority, with permitted owner replacements",
+    "originality": "Conditional; known dynamic authentication/state and proof reuse granted to reference",
+    "required_evidence": [
+      "specific non-contained execution or substantive assurance result",
+      "complete invariant",
+      "strong matched controls",
+      "causal same-output ablation",
+      "frozen held-out winning and losing regimes"
+    ],
+    "experiment_contracts_added_without_budget_amendment": true,
+    "encrypted_tile_requires_incremental_resource_discriminator_before_cohort": true,
+    "next_subtask_unchanged": "Q77_R2_honest_tenant_provisioning_full_cohort_launch_and_exact_HE_execution_freeze",
+    "remaining_packages": [
+      "Q77",
+      "Q78",
+      "Q79"
+    ],
+    "originality_security_parameter_or_attestation_approved": false
+  },
+  "documents": [
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/research-system-decision-plan-20261005.md",
+      "bytes": 46483,
+      "sha256": "d9356c6c5cadcd5094432676c7d4f8ab171cd56873a1dc7e85850ea36f112d17"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/closest-work-contract-matrix-20261004.md",
+      "bytes": 62077,
+      "sha256": "db926bb5608d0c46220b108bbd67917273f8807b3a6badc3cbec1ada22ac0d24"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/publication-literature-sources.json",
+      "bytes": 234182,
+      "sha256": "58e3cbe1840ecd5d9983d8abce809c5eca6fc02ca1442d9d8386457f93027a6a"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/research-contribution-progress-20261004.json",
+      "bytes": 102494,
+      "sha256": "e819fdfab72a7b8ca88fa5b748ef4a552df7eb290683808ce87729c2beb2edf7"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/system-contribution-claim-cards-20261004.json",
+      "bytes": 33352,
+      "sha256": "72a0c02a60996af4b7938ab34da83d7dac9987590caa80479d5f57d13f691793"
+    }
+  ],
+  "main_staging_unchanged": {
+    "main": "0f8522e449d00622e10f4111ac8eb89d52ca577b",
+    "staging": "eb96aa1f79a92d6b6f0c1f6389d3daadff5546be"
+  },
+  "all_task_statuses_and_execution_budgets_unchanged": true,
+  "whole_goal_not_completed_by_planning": true,
+  "final_protocol_review": "Composite owner request itself binds original encrypted query/nonce/base/current recipe/revision; a signer receipt cannot retrospectively add owner authorization."
+}

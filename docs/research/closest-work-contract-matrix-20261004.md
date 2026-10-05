@@ -6,8 +6,11 @@
 The [current plan](research-system-decision-plan-20261005.md) uses the latest
 remotely verified owner-trajectory checkpoint. Q77 retains 376 distinct public
 cases and has zero complete-cost HE observations. The
-[review receipt](research-paper-design-audit-20261005.json) archives this reading
-and a public coefficient-support correction; it adds no author execution,
+[earlier receipt](research-paper-design-audit-20261005.json) archives the
+public coefficient-support correction. The
+[current contract receipt](research-contribution-contract-review-20261005.json)
+adds the three dynamic-authentication/incremental-verification predecessors
+below and explicit claim/experiment contracts in the plan. It adds no author execution,
 production approval or accepted originality. All dated headers below this
 addendum describe earlier reviews with their historical counts.
 
@@ -28,12 +31,17 @@ intrinsic limitation of prior work.
 | [Engorgio](https://www.usenix.org/conference/usenixsecurity25/presentation/bian), §§3.3–3.5/4 | Quantized CKKS hybrid queries, encrypted ordering/permutation and top-k, under its semi-honest server model. | For an output-contract extension, align exact binary comparisons, tie order and malicious verification, then pay ordering and final release. | Server-side encrypted top-k and output selection are known. Its runtime/precision laws do not instantiate our all-distance contract. |
 | [Compact Storage for HE](https://eprint.iacr.org/2022/273), §1.1/model | Two-server compact storage, selective packing at retrieval and homomorphic reconstruction; noncollusion is an explicit premise. | Include an auxiliary service/trust row and reconstruction/network costs if used; do not import its compact storage under a single malicious-cloud contract. | Late HE representation construction and compact stored data are known. A different trust model cannot supply a free advantage. |
 | [Silph](https://eprint.iacr.org/2023/060)/[CirC](https://eprint.iacr.org/2020/1586), known packing and log-structured methods | Conversion-aware multiple representations and ordinary data-layout/version techniques. | Grant legal duplicate representations, identical cost information, horizon and reuse choices. | An optimal generic planner returning the same execution contains a superior-optimizer claim. A useful system finding needs its own distinct evidence. |
+| [IntegriDB, CCS2015](https://integridb.github.io/IntegriDB.pdf), §§2.1/4.5 | Dynamic authenticated query/update interfaces, with a fresh current digest required for result freshness. | Supply the actual exact encrypted-evaluation and private-consumption adapter; charge how fresh digests reach clients. | Current recipe authentication and version-aware query results are known. |
+| [Inc-VDB, TC2016](https://www.cnsr.ictas.vt.edu/publication/07366556.pdf), introduction/§§3–4 | Incremental encrypted-record/token maintenance and rejection of obsolete records. Its incremental encoding includes bit-flip positions. | Align record retrieval with complete distances and changed-bit disclosure with our update leakage; grant compatible incremental authentication. | Old-record rejection and incremental encrypted-database authentication are prior work. No direct privacy or performance claim transfers. |
+| [Model-generic IVC, ITCS2026](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.6), introduction/Theorem1 | Incremental verification for reactive/distributed deterministic computation, including consistency between successive transitions. | A future proof adapter must instantiate actual transitions, common-Q maintenance and current release. Its cost is unmeasured. | Generic proof reuse, consistent state transitions and streamed verification are established; our signed process state is not such a proof. |
 | Permitted raw/partial cache / protected plaintext search | Exact local search, compact authenticated patches, client-side replacement distances and alternative trusted key custody. | Returning/fresh/racing full cache plus a changed-row-only owner layer with the same arrivals/link/update law. If permitting plaintext in a TEE, report that trust row separately. | No invented owner-cache prohibition, forced HE acquisition, local-popcount restriction or universal HE advantage. |
 
 The strongest compatible reference combines known packed search/expansion with
 valid noise/origin reasoning, prepared native protected execution or properly
 maintained delegation, independent schedule validation, compact updates and
-mutable owner caches. Applying ordinary base-plus-delta storage to it is a
+mutable owner caches. Include known dynamic authenticated-database currentness
+and incremental token/proof maintenance where their contracts apply.
+Applying ordinary base-plus-delta storage to it is a
 serious possible counterconstruction. Our proposed distinction has to survive
 that construction, not merely papers tested one at a time.
 
@@ -65,8 +73,19 @@ This is known convolution packing, already present in our homemade reference.
 The predicted extra terminal body is 102,400 bytes, giving a 307,200-byte base-plus-
 overlay body at 32k; the direct feature-replacement body ratio is 512, not a
 measured speedup and not the gain against compact upload/transposition.
-The future native graph, decoder grammar, currentness protocol and full cost
+The future encrypted-tile native graph, decoder grammar, currentness protocol and full cost
 remain unimplemented. A passing public box bound does not approve them.
+
+The claim discriminator now compares **immutable computation identity** with
+**current logical authority** explicitly. A correct base computation may be
+reused only as a component of a current, complete owner-authorized recipe.
+Dynamic ADS and incremental verification already establish much of the general
+state/version reasoning. The HE-specific private-consumption refinement and a
+useful paid execution still have to be supplied. Grant the reference the same
+base reuse and partial-owner correction. If the complete graph/protocol/resource
+vectors coincide, record containment instead of calling the composition new.
+The [plan's experiment contracts](research-system-decision-plan-20261005.md#exact-questions-the-remaining-studies-must-answer)
+separate company usefulness, causal attribution and originality.
 
 An acceptable paper result requires the exact version/admission execution,
 complete invariant, a useful held-out region versus the strong dynamic
@@ -77,17 +96,25 @@ this, preserve the company implementation and close the positive headline.
 
 ### New source archive and limits of this review
 
-The registry preserves all 128 previous records and appends three PDF/text
-pairs, for 131 source records. The CSSC v1 official history has a single arXiv
-revision; its journal edition is not substituted. Engorgio is the USENIX 2025
-publisher PDF. Compact Storage uses a hash-pinned IACR mirror PDF after the
-official PDF endpoint returned 403; the official metadata and retrieval failure
-are retained. Targeted text/model/algorithm passages were inspected; no full
+The earlier review preserved 128 records and added CSSC, Engorgio and Compact
+Storage, reaching 131. The current review preserves all 131 and appends three
+author/publisher PDF/text pairs, reaching **134 source records**: IntegriDB,
+Inc-VDB and Model-generic IVC. Eight complete relevant PDF pages were visually
+inspected in addition to targeted surrounding text. The CSSC v1 official
+history has a single arXiv revision; its journal edition is not substituted.
+Engorgio is the USENIX 2025 publisher PDF. Compact Storage uses a hash-pinned
+IACR mirror PDF after the official PDF endpoint returned 403; the official
+metadata and retrieval failure are retained. Targeted text/model/algorithm
+passages were inspected; no full
 proof audit, author implementation, parameter estimate or reproduced latency
 was executed. Metadata inconsistencies or uninspected proofs are not evidence
 that an author system is insecure or incapable. Reading records and exact
 PDF/text hashes live in `publication-literature-sources.json` and the external
-`research-data/research-paper-design-audit-20261005` archive.
+`research-data/research-paper-design-audit-20261005` and
+`research-data/research-contribution-contract-review-20261005` archives.
+
+The source counts and headers in the retained reviews below are historical;
+the current plan and the opening section of this matrix control present claims.
 
 
 > Current decision review, 2026-10-05: [the decision plan](research-system-decision-plan-20261005.md)
@@ -272,7 +299,7 @@ codec increases response bytes. The candidate's substantive question is whether
 complete admitted snapshot/update execution pays after these controls and
 tradeoffs. Guard-band packing, overlays and signatures remain inherited methods.
 The precise invariant, phase gate, ablations and selection rule are in the
-[decision plan](research-system-decision-plan-20261005.md#the-invariant-controls-and-bounded-decision).
+[decision plan](research-system-decision-plan-20261005.md#implementation-invariant-and-strongest-control).
 
 ## Most direct predecessors
 

@@ -7,8 +7,12 @@ the preceding version remains in Git and the planning evidence archive.
 The [progress ledger](research-contribution-progress-20261004.json) controls
 execution status. The [closest-work matrix](closest-work-contract-matrix-20261004.md)
 retains the detailed comparisons and version qualifications. The
-[current review receipt](research-paper-design-audit-20261005.json) pins this
-review, the public algebra calculation and retained measurements.
+[earlier design receipt](research-paper-design-audit-20261005.json) pins the
+public algebra calculation and retained measurements. The
+[current contract review](research-contribution-contract-review-20261005.json)
+adds the closest dynamic-authentication and incremental-verification controls,
+the explicit experiment contracts below, and a check of retained evidence. It
+does not add encrypted execution or measured performance.
 
 ## Decision and prospective contribution
 
@@ -29,7 +33,14 @@ admission or protected-state capacity as the limiting cost, select one of the
 two existing alternatives below.
 
 The intended contribution is a specific useful execution with a necessary
-invariant, an actual mechanism ablation and an explained crossover. Packing,
+invariant, an actual mechanism ablation and an explained crossover. A stronger
+version of the candidate is to **separate immutable computation identity from
+current snapshot authority**: reuse an admitted base representation while
+binding the current replacement recipe before any private operation. The
+performance hypothesis is that this removes expensive refresh work without
+weakening currentness. It does not remove per-query arithmetic verification.
+This precise separation, its complete implementation and its distinction from
+the compatible prior construction remain to be demonstrated. Packing,
 query expansion, cached representations, log-structured updates, TEEs and
 generic cost assignment are known. Their composition is not automatically
 original. **No original main result has yet been accepted.** The company
@@ -147,18 +158,22 @@ baseline. The detailed matrix and archived primary sources contain the passages.
 | [Silph](https://eprint.iacr.org/2023/060), [CirC](https://eprint.iacr.org/2020/1586), [FlowCert](https://www.contrib.andrew.cmu.edu/~bparno/papers/flowcert.pdf) | Conversion-aware multiple representations, scheduling and validation. | Equal legal plans, reuse, information and horizons. Generic solver agreement is expected and closes a superior generic-optimizer claim. |
 | [Corrected Cascudo](https://eprint.iacr.org/2025/286), [corrected Laminate](https://eprint.iacr.org/2025/2285), [BioZKFHE](https://arxiv.org/html/2607.22065v1) | Ring verification or verified encrypted computation/matching under distinct contracts. | Pay well-formedness, common-integer/range, release and feedback adapters. No cross-contract runtime ratio. |
 | [Authenticated incremental PIR](https://eprint.iacr.org/2026/1077) | Authenticated retrieval with immediate updates and periodic row aggregation. | Credit incremental authenticated databases; entry retrieval does not directly instantiate complete encrypted distance evaluation. |
+| [IntegriDB](https://integridb.github.io/IntegriDB.pdf), §§2.1/4.5 | Dynamic query authentication and a required fresh digest; efficient insert/delete maintenance. | Current snapshot authentication and freshness are known. Our exact encrypted arithmetic and pre-decryption composition need their own adapter; no first authenticated dynamic-query claim. |
+| [Inc-VDB](https://www.cnsr.ictas.vt.edu/publication/07366556.pdf), introduction/§§3–4 | Incremental encrypted-record/token updates and rejection of previously valid records after replacement. | Grant compatible incremental authentication; align record retrieval and its bit-flip-position encoding with our functionality/leakage. Adapter cost is unknown. |
+| [Model-generic IVC](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.6), introduction/Theorem1 | Incremental certification of deterministic reactive/distributed computation, with consistency between transitions. | Proof/state reuse and streamed verification are known. A signed cached state is not an IVC proof, and database updates are not automatically a ready-made BGV protocol. |
 | [CSSC](https://arxiv.org/html/2603.04742v1), §§3–4/6 | Sparse encrypted matrix-vector packing and a stated semi-honest model; static-pattern recompression is an open extension in that paper. | Compare compact changed-row/sparse-value controls with explicit structural leakage. Its BFV SIMD profile is not our coefficient ring, and that open extension is not priority clearance. |
 | [Engorgio](https://www.usenix.org/conference/usenixsecurity25/presentation/bian), §§3–4 | Quantized CKKS hybrid queries, encrypted ordering/permutation and top-k. | If changing output to encrypted top-k, pay comparisons, exactness/ties and malicious-result verification. This is not a free substitute for the current contract. |
 | [Compact Storage for HE](https://eprint.iacr.org/2022/273) | Two-server compact storage and dynamic retrieval packing. | Credit late construction of HE representations; state its extra trust/service and reconstruction costs if adopted. |
 | [PRAG v2](https://arxiv.org/html/2604.26525v2), [Lin et al.](https://iqua.ece.utoronto.ca/papers/wlin-tpds21.pdf) | Dynamic encrypted ANN or private similarity updates with different trust/search laws. | Approximate/candidate and semi-honest/two-server premises remain separate. No imported performance ratio. |
 | Permitted owner cache and protected plaintext search | Local scans, compact authenticated patches and acquisition overlap; alternative key-custody choices. | Returning/fresh/racing full cache and a partial owner replacement layer are mandatory. Trust-changing plaintext-in-TEE execution is reported separately. |
 
-Three further primary PDF/text pairs are retained by this review, bringing the
-registry from 128 to **131 source records**, preserving every earlier record.
-These are versioned reading records, not 131 fully audited distinct papers.
-The new PDFs are CSSC v1, the Engorgio publisher edition and a hash-pinned
-Compact Storage ePrint mirror copy; the official download's 403 is retained.
-No author implementation or published speedup was reproduced.
+The earlier review added CSSC v1, Engorgio and Compact Storage, reaching 131
+source records. This contract review adds the three dynamic-authentication/IVC
+papers above, reaching **134 source records**, and preserves all 131 preceding
+records. These are versioned reading records, not 134 fully audited distinct
+papers. Author/publisher PDFs, extracted text, hashes and the inspected page
+numbers are archived. No author implementation or published speedup was
+reproduced by either review.
 
 The strongest objection to the leading candidate is already concrete:
 **dynamic packed search plus cached representations is known**. The experiment
@@ -292,6 +307,99 @@ snapshot** with the same streaming/prefix reuse for controls. Larger scale
 requires a separately frozen registration. The list does not authorize three
 parallel extensions, a parameter search or a proof-backend grid.
 
+## The actual research claim and its early discriminator
+
+The proposed question is: **when a small update changes the logical answer,
+which expensive encrypted representations and admission state really have to
+change?** A database version and a physical ciphertext version need not be the
+same object. That observation is familiar in storage systems. What we must
+establish here is the concrete exact-HE refinement, safe private-consumption
+boundary, displaced paid work and a useful regime that the strongest applicable
+specialization does not already obtain.
+
+Use one claim card, not a collection of new names for old techniques:
+
+| Required part | Concrete candidate | Evidence still missing |
+| --- | --- | --- |
+| Algorithm/execution | Keep the canonical encrypted base prepared; use the owner's current changed-row layer; rebuild at a fixed, paid compaction boundary. | Actual partial-layer adapter, selective-refresh reference and complete execution. |
+| Necessary invariant | A current recipe selects exactly one value per ordinal, binds complete IDs and the original request, and authorizes the exact base frame before private work. | Native/protocol refinement, adversarial transitions and currentness authority. |
+| Performance mechanism | Avoid re-encrypting/re-preparing unaffected base state and avoid extra encrypted products on owner-retained replacement rows. | Attribution and a same-output ablation; the strong reference gets identical reuse freedoms. |
+| Distinction from prior work | A particular safe representation/admission boundary with an experimentally explained cost or capacity consequence. | A direct containment comparison. No absence-of-title or first-combination argument suffices. |
+| Paper finding | A predicted useful region and an explained losing region, both evaluated after selection is frozen. | Held-out complete traces and subsequent justified deployment/workload evaluation. |
+
+Before implementing the expensive encrypted tile variant, write a comparison
+of its **incremental** resource vector with the partial-owner construction.
+Both start with the same admitted base answer. For 32 changed rows the local
+path needs 2,048 bytes of values plus real authentication/mapping/framing and
+32 ordinary popcounts; the proposed tile needs a 245,760-byte update coefficient
+body, another HE product/relinearization and a 102,400-byte terminal body on
+every query. These are counts, not measured latency. Pay symmetric-key
+provisioning and partial-layer acquisition rather than treating them as free.
+The comparison must also account for overlap, validation and persistent state.
+If the tile removes no necessary paid cost under our actual owner contract,
+stop it before a timing cohort. Do not retain it as the main candidate merely
+because its direct-feature upload ratio is large.
+
+Grant the reference the same base-plus-replacement split and authorizations.
+Compare its graph, protocol and resource vector with ours. If they coincide,
+record containment and keep the useful company implementation. The remaining
+mixed-boundary or streaming candidate is selected only by the measured
+bottleneck; it must pass the same test. A convenient implementation gap in the
+reference is a task to close, not scientific evidence for us.
+
+### Concrete composite protocol handoff if refresh is the bottleneck
+
+Keep two explicit identities: the immutable base's encryption/admission
+identity, and the logical owner's current revision. The current descriptor
+already distinguishes logical and HE-mode epochs, but it has no changed-row
+recipe. That interface is a starting point, not a completed composite protocol.
+
+1. The owner creates a bounded canonical replacement map keyed by original
+   ordinal, with the latest value only. Bind it to the base root, ordered-ID
+   digest, key/profile, namespace and current logical revision. Protect row
+   values in an authenticated encrypted owner delivery. Publish one signed
+   recipe; do not publish a plaintext-value hash that creates an unexamined
+   dictionary-testing channel.
+2. The owner authenticates/acquires the complete current layer and obtains
+   currentness from its trusted monotone authority. A server-selected version
+   or valid old signature cannot establish that it is current. Persist the
+   layer before allowing private base work that depends on it.
+   The owner signs a composite request binding the exact original encrypted
+   query, nonce, physical base identity, current recipe digest and logical
+   revision. The existing base-only request is insufficient for this new
+   authorization; supply and pay the explicit wrapper rather than relying
+   on a receipt to add owner authority retrospectively.
+3. The protected path checks the complete base computation for the original
+   signed query. Its receipt binds the exact canonical frame, physical base
+   identity, current recipe digest and logical revision, ordered IDs,
+   original-request digest/nonce and code/profile. Checking the recipe digest
+   does not verify untrusted HE arithmetic; retain the actual admission step.
+4. The owner checks this public authorization and consumes the request before
+   private base decoding. It then replaces the indicated distances locally,
+   validates complete output coverage and computes the ordinal-stable top3.
+   No partially corrected output becomes a current result.
+5. Updates, overwrite, compaction and crash recovery advance the whole recipe
+   atomically. A base authorized as a component is never accepted as the
+   complete current snapshot. On an in-flight update, pin one revision for the
+   request and define whether completion remains allowed or must abort;
+   do not silently switch versions midway.
+
+The honest owner provides the consistency between its two representations;
+signatures alone cannot prove that an encrypted patch contains the intended
+plaintext. All-distance output and the canonical base decoder remain intact.
+Historical base distances are private intermediate owner values under the
+owner-retention contract. Multi-user revocation, deleted-data erasure and a
+client forbidden to see historical owner data would require different
+functionality and are not assumed to manufacture a benefit here.
+
+Expected new research files, after the R3 trigger and a committed public-gate
+registration, are `experiments/bfv_search_lab/authenticated_replacement_layer.py`,
+its independent oracle/fault tests, and a dedicated owner-study adapter. Add
+the recipe schema/version explicitly alongside the baseline; do not weaken
+the existing complete-frame grammar or production Paillier fallback. An
+encrypted variant would additionally need its own native relation and decoder;
+it is not included in the partial-owner implementation by implication.
+
 ## Finite build and evaluation sequence
 
 | Step | Deliverable and location | Exit condition / next decision |
@@ -340,6 +448,65 @@ A complete randomized vFHE adapter remains mandatory before broad superiority
 over delegated verification; otherwise explicitly limit the claim to the
 deterministic paths actually run.
 
+### Exact questions the remaining studies must answer
+
+Separate **company usefulness**, **mechanism attribution** and **originality**.
+A win on one axis does not answer the other two. The existing 20% remote-policy
+threshold is a project selection rule, not a novelty test or statistical
+significance level.
+
+| Study/decision | Primary question and controls | Deliverable / stop rule |
+| --- | --- | --- |
+| R2 integration, not a scientific timing study | Does the actual owner action provision honest inputs, independently launch each lifetime, pay shared traffic and retain failures? | One working launcher with the registered bounded public gate and exact committed pre-HE freeze. Do not count scaffolding as a completed cohort. |
+| R3 selection cohort | Which complete deterministic admission path is useful versus returning/fresh/racing owner cache, under the frozen fixture, link and arrival laws? | Paid owner traces, calibration-selected policies and held-out comparisons. Attribute actual setup, transfers, protected work, private finish and refresh; do not claim broad delegated-verification superiority. |
+| R4 eligibility review | Does the selected bottleneck admit a new useful execution beyond the strongest compatible construction? | A complete source-to-release graph, invariant, predicted resource change and containment card. Stop a contained claim before an expensive new panel. |
+| R4 one extension cohort | Does that exact mechanism improve whole traces after matched selective refresh, partial-owner correction, cache and a same-output reuse ablation? | One separately registered two-key/two-block/eight-query cohort, 32 measured requests per retained variant; fix variants and all auxiliary attempts before execution. No timing slot for a stopped mechanism. |
+| Randomized adapter, conditional | If the paper claims useful delegation, does its benefit survive the actual vFHE product check and required lifetime assurance? | A real committed-claim/fresh-challenge/full-coordinate/maintenance adapter and paid comparison. Otherwise restrict the paper's claim to the deterministic paths run. |
+| Q78/Q79 final evaluation | Does the selected finding survive approved parameters, actual attestation and justified workloads/deployment conditions? | Reproducible complete-system evidence and external review. Selection-study results cannot substitute for this evaluation. |
+
+R3's six trajectories contain **144 measured owner requests each**, 864 in
+total, with warmups and post-update checks separate. These are clustered
+within two keys and 18 process blocks per trajectory; they are not 864
+independent key/index experiments. Report equally weighted paired block
+differences and all raw observations. Any interval describes this scoped
+cohort, not a population of customer datasets or machines. More independent
+replication belongs in a justified final evaluation, not a silent extension
+of the current reservation.
+
+Keep two lifecycle questions separate. A newly provisioned tenant must pay HE
+key/index preparation and publication. A fresh device querying an already
+enrolled tenant has a different acquisition bill. Report the actual bill for
+each and a clearly declared amortization horizon; never give the remote path
+a free pre-encrypted index while charging its competitor for that same
+tenant's entire setup. Likewise, do not force an HE index or key acquisition
+onto a cache-only path.
+
+For the update mechanism, the ablation disables base reuse while preserving
+the exact logical rows, IDs, query arrivals and output. It is a diagnostic
+intervention, not the strongest competitor. The competitor separately gets
+compact uploads, selective transformation/preparation and unchanged-group
+reuse. If the compatible reference and our proposed graph are identical,
+one implementation may serve both with that identity documented; duplicate
+timing rows cannot manufacture an originality distinction.
+
+The cost predictor should identify the actual removed work. For a serial
+update/query interval, compare saved refresh against additional local/remote
+query work, additional bytes and paid layer preparation/compaction. Use it
+only for a predeclared prediction and policy freeze. The primary result is
+the observed completion dependency graph with contention and overlap, not
+the sum of median stage times. Test the predicted crossover and at least one
+predeclared losing regime in the subsequent final evaluation. Synthetic
+uniform/random data alone cannot establish an application-wide advantage;
+justify dimensions, update locality, repeat overwrites, horizons and fresh
+device use from actual intended deployments.
+
+Do not create another open-ended preliminary queue. There is one unexecuted
+selection cohort, one conditional creative-extension cohort, and the
+assurance/final-evaluation packages. The randomized adapter is mandatory for
+a broad delegation headline but is not already covered by either cohort's
+budget. If every candidate is contained, make an explicit selection return;
+do not indefinitely relabel ordinary optimizations as new hypotheses.
+
 ## Supporting security and deployment work
 
 Specify an ideal functionality for the owner's current snapshot, exact full
@@ -376,6 +543,19 @@ private sampler/arithmetic access before production use. For randomized
 admission derive its concrete actual-prime lifetime failure probability; do
 not transfer a single-check bound to an adaptive service unchanged.
 
+The proof handoff should contain explicit games and bad events, not merely a
+list of assumptions. First prove that a public admission/recipe failure cannot
+invoke the private callback. Then prove that, outside signature/hash/admission/
+freshness failures, every callback receives only the canonical evaluation of
+an authorized honest-owner input. Relate that evaluation and subsequent local
+replacement to the ideal current output under the stated encoding/noise law.
+Finally reduce the remaining server view to the augmented HE and authenticated
+delivery assumptions, conditioned on the declared leakage and private
+side-channel premise. Track multi-key and adaptive-attempt factors in each
+reduction. State separately what is assumed of hardware/currentness, what is
+proved in the model, and what is connected to native code. A sum of unnamed
+negligible terms is not a completed security reduction.
+
 AWS deployment must bind measured code and the result-signing key to an
 owner-verified attested channel with currentness/revocation and a nonrollback
 authority. [Nitro's documented isolation and lack of persistent storage](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html)
@@ -405,6 +585,22 @@ assumption map. If cache or the compatible prior composition absorbs the
 whole result, keep the company system and close the positive research headline.
 A negative paper needs a generalizable new explanation, not just a slow
 prototype. Do not promise conference acceptance from implementation success.
+
+The minimum positive paper package is one non-contained mechanism or substantive
+new assurance result, a necessary invariant/proof obligation, a correct full
+system, a strong matched baseline, a causal ablation, and explained winning and
+losing regions. A systems-oriented paper can use known cryptography for its
+supporting argument; a formal/security headline needs a substantive theorem
+distinction beyond instantiating a known verify-before-decrypt composition.
+Choose the venue after that distinction is clear. A polished implementation,
+an unfamiliar acronym or a favorable comparison with production Paillier is
+not by itself this package.
+
+Maintain the paper outline while building: problem/contract and closest work;
+the one new mechanism and invariant; protocol/arithmetic implementation;
+security premises and conditional argument; complete-cost evaluation and
+ablations; limitations and reproducible artifact. Fill each section from
+retained evidence instead of starting a paper around an assumed speedup.
 
 The remaining packages are **Q77 evaluation/one extension, Q78 assurance and
 deployment, Q79 paper**. There is no remaining broad preliminary portfolio.
