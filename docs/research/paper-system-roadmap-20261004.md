@@ -16,6 +16,11 @@ R2 coordinator/execution freeze is next. Q77's 18-block/144-observation cap
 is unchanged. Its implementation registration precedes the role code, but
 the exact execution addendum is still required before fresh HE work or timing.
 
+The subsequent [shared-link/supervisor component](native-shared-query-coordinator-component-20261004.md)
+passes 20 public cases, with six clean managers and four echo children. R2 still
+requires the actual owner trace/shared relay and exact state/budget freeze.
+Neither this gate nor the owner adapter executes a real HE cohort.
+
 The latest additive role implementation is preserved at commit
 `51ed323557396c92e362e83c2e922985176f31f9`, tag
 `checkpoint/native-shared-query-local-roles-2026-10-04`, with a verified Git

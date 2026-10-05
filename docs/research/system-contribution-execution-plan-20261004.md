@@ -11,6 +11,11 @@
 > cap, strongest replay/cache controls and unapproved originality/security status
 > are unchanged.
 
+> Later R2 [public shared-link/supervisor gate](native-shared-query-coordinator-component-20261004.md):
+> 20 new public cases pass. Owner trace/shared relay and the exact execution
+> addendum, including warmup/private preparation and prefetch worker-context
+> budgets, remain pending. This adds no actual HE cohort or secure deployment.
+
 2026-10-04. Evidence baseline: `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
 This is the current execution plan. Read the
 [contract-level closest comparison](closest-work-contract-matrix-20261004.md),

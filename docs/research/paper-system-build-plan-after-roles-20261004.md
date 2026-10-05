@@ -14,6 +14,11 @@ their caps. This planning review adds no HE key, timing cohort or proof.
 > pending. R2 coordinator and exact execution freeze are next; no Q77 cohort
 > has been consumed.
 
+> R2 public plumbing now passes its [20-case shared-link/supervisor gate](native-shared-query-coordinator-component-20261004.md).
+> The whole owner trace, shared relay and exact execution addendum remain next.
+> The 256 distinct retained public cases are unit evidence, not independent
+> cryptographic experiments or a completed HE custody/latency cohort.
+
 ## The result to pursue
 
 Build one exact owner-data search system on the homemade native BGV backend.
@@ -150,7 +155,7 @@ interfaces and Paillier/BFV/BGV/CUDA fallbacks. The experimental branch remains
 | --- | --- | --- |
 | R0: public role handoff — complete within scope | Complete native predicate, durable local claimed signing, context-bound receipt, bounded transport and owner public callback. | 158 public tests, six small native paths and two bad native frames rejected; checkpoint and failed invocations retained. R1 public adapter gate now follows. |
 | R1: owner adapter/public control gate — complete within scope | Bind supplied key/profile to owner context; fixed lazy packed private path after whole-frame authorization/consumption; complete decoded score/tail checks, ordinal selection and fail-closed key lifetime. | 78 new public-stub cases and 236 final combined cases pass. Actual private HE correctness and process custody remain R2/R3; no cohort consumed. Next R2. |
-| R2: whole coordinator and execution freeze — next | Independently spawn public roles without inherited HE secrets; implement acquisition/prefetch, setup, private/native preparation and lifetimes, 32-row refresh/invalidation, arrivals, completion and telemetry as one dependency graph. Record link contention and actual overlap. | Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and encryption budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
+| R2: public plumbing passes; whole coordinator/freeze next | Shared directional stream pacing and clean supervisor launch pass 20 public cases. Finish the shared relay and actual owner acquisition/prefetch, setup, private/native preparation/lifetimes, 32-row refresh, arrivals, completion and telemetry as one dependency graph. | Actual HE process custody is still unexecuted. Commit exact sources, dependencies, warmup/initial-state/device semantics, trace, deadlines, memory guard and component budgets before either HE key, real private arithmetic or large timing. No new grid. Next R3. |
 | R3: Q77 calibration and held-out cohort | Selected N=16,384, d=512, t=1031, owner-canonical Q120 profile; counts 8,224/16,384/32,768; two independent HE keys and one public corpus. | Six calibration blocks/48 query observations per implementation, freeze policy/data hashes, then twelve held-out blocks/96 observations. Total cap remains 18/144, with 18 excluded warmups and 18 separate post-update checks. Next decision. |
 | R4: decision and one justified refinement | Explain a paid placement reversal, state/link frontier and cache utility region, or close the failed hypothesis. Grant all controls equal arithmetic and information. | Keep the 20% remote-policy project gate separate from cache utility and originality. At most one changed-premise extension needs its own bounded registration. Next Q78 or scoped negative/engineering return. |
 | R5: Q78 selected deployment/security | One actual AWS protected path; attested code/key binding, authenticated channel, current owner pin, nonrollback/revocation and private leakage assurance. | Conditional exact-search reduction and concrete implementation review; relevant frozen comparison rerun on actual deployment. Q77 local results remain labelled local. Next Q79. |
@@ -164,6 +169,17 @@ accounting issue, not permission to enlarge the 18-block/144-observation cap.
 Index-encryption cap remains 31,744, including whole affected-group refreshes.
 The implementation registration is historical; do not quietly edit it after
 seeing results. The owner coordinator and exact execution freeze are pending.
+
+The new supervisor also exposes a state-accounting obligation: the initial
+54 protected signing contexts cover three deterministic modes in 18 blocks.
+An independently cold prefetch remote trajectory may need 18 additional
+contexts; reusing existing workers changes its initial state and requires a
+precise paid reuse law. Resolve worker contexts, refresh ciphertext reuse and
+excluded warmup versus cold private preparation alongside the query budget.
+Any amendment must be explicit and committed before consumption. The new
+public plumbing gate changes none of these historical caps. Its 20 new cases
+exhaust the initial 256 public-unit ceiling; further necessary integration tests
+need a separately bounded registration, rather than silently exceeding it.
 
 The primary metric ends when the owner has authenticated, consumed and decoded
 the complete frame and produced the bound ordinal top3. Measure completion
