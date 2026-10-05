@@ -17,6 +17,12 @@ The [publication handoff review](research-system-publication-handoff-20261005.js
 also restores the reproduced EMVP/BNTM controls to the main decision, records
 Wally's current version and a pinned application-benchmark interface, and
 defines the reference coverage required before selecting a paper headline.
+The [mechanism-priority review](research-mechanism-priority-20261005.json)
+checks the retained 32k panel and the direct alternate-scheme controls, adds
+amortized verification predecessors, and supplies an
+[execution and claim-selection handoff](research-mechanism-execution-handoff-20261005.md).
+It changes the research prioritization below, not the reserved experiment
+contracts, execution budgets or completion status.
 
 ## Decision and prospective contribution
 
@@ -25,6 +31,13 @@ Reuse the existing native/RNS/CUDA engineering; retain Paillier, BFV and the
 optional SEAL sanity controls. The selected complete-admission graph currently
 has a CPU native prototype. The earlier fast CUDA graph is different; its
 timings cannot be advertised as the selected protected service's performance.
+
+**Separate the build decision from the paper decision.** BGV is the selected
+engineering foundation. The main research question is which *specific safe
+execution* removes necessary paid work once known methods have the same
+permissions. No scheme, packing identity or collection of optimizations is
+selected as the paper's original contribution. A candidate may be worth
+building for the company while failing that research test.
 
 The **conditional system candidate** is an authenticated composite index:
 retain a densely packed base across updates, represent current replacements
@@ -50,6 +63,15 @@ generic cost assignment are known. Their composition is not automatically
 original. **No original main result has yet been accepted.** The company
 implementation remains valuable if a stronger known construction contains the
 whole result.
+
+The plain base-plus-replacement template has a constructive containment
+objection, detailed in the handoff: grant an ordinary authenticated dynamic
+database the same immutable base, current recipe and owner correction, then
+instantiate its encrypted evaluator and release check with the same BGV graph.
+Its abstract source-to-answer execution is identical. This closes a claim that
+*the template itself* is a new algorithm; it does not reproduce a prior complete
+system or show equal measured cost. R4 must identify an additional concrete
+mechanism or substantive assurance result before selecting a paper headline.
 
 ## Contract and architecture
 
@@ -165,6 +187,7 @@ baseline. The detailed matrix and archived primary sources contain the passages.
 | [IntegriDB](https://integridb.github.io/IntegriDB.pdf), §§2.1/4.5 | Dynamic query authentication and a required fresh digest; efficient insert/delete maintenance. | Current snapshot authentication and freshness are known. Our exact encrypted arithmetic and pre-decryption composition need their own adapter; no first authenticated dynamic-query claim. |
 | [Inc-VDB](https://www.cnsr.ictas.vt.edu/publication/07366556.pdf), introduction/§§3–4 | Incremental encrypted-record/token updates and rejection of previously valid records after replacement. | Grant compatible incremental authentication; align record retrieval and its bit-flip-position encoding with our functionality/leakage. Adapter cost is unknown. |
 | [Model-generic IVC](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.6), introduction/Theorem1 | Incremental certification of deterministic reactive/distributed computation, with consistency between transitions. | Proof/state reuse and streamed verification are known. A signed cached state is not an IVC proof, and database updates are not automatically a ready-made BGV protocol. |
+| [Additive-homomorphic FCs](https://eprint.iacr.org/2022/1331), Definition8/Appendix A.4; [verification-efficient homomorphic signatures](https://eprint.iacr.org/2025/110), Definitions2.5/A.9 | Function-dependent verification preprocessing, updatable functional commitments and verified computations on signed data streams. | Credit amortized verification and dynamic function evaluation. A literal common-Q/rounding/origin/currentness adapter and its costs remain unknown; ordinary cached certificates are not a new primitive. |
 | [CSSC](https://arxiv.org/html/2603.04742v1), §§3–4/6 | Sparse encrypted matrix-vector packing and a stated semi-honest model; static-pattern recompression is an open extension in that paper. | Compare compact changed-row/sparse-value controls with explicit structural leakage. Its BFV SIMD profile is not our coefficient ring, and that open extension is not priority clearance. |
 | [Engorgio](https://www.usenix.org/conference/usenixsecurity25/presentation/bian), §§3–4 | Quantized CKKS hybrid queries, encrypted ordering/permutation and top-k. | If changing output to encrypted top-k, pay comparisons, exactness/ties and malicious-result verification. This is not a free substitute for the current contract. |
 | [Compact Storage for HE](https://eprint.iacr.org/2022/273) | Two-server compact storage and dynamic retrieval packing. | Credit late construction of HE representations; state its extra trust/service and reconstruction costs if adopted. |
@@ -183,6 +206,14 @@ The strongest objection to the leading candidate is already concrete:
 **dynamic packed search plus cached representations is known**. The experiment
 must show that a particular authenticated version split changes paid execution
 after a strong specialization has the same upload and reuse opportunities.
+
+The mechanism-priority review appends two retained primary PDF/text reading
+records, reaching **138 source records** and preserving all 136 preceding ones.
+It inspected six complete relevant PDF pages and adjacent text. These are
+targeted definition/application readings, not full proof audits or reproduced
+verification costs. Primary PDF endpoints returned HTTP403; hash-pinned IACR
+mirror copies and the official metadata/retrieval receipts are retained. The
+earlier source counts describe those earlier reviews.
 
 ### Direct linear-search controls and publication coverage
 
@@ -371,6 +402,14 @@ snapshot** with the same streaming/prefix reuse for controls. Larger scale
 requires a separately frozen registration. The list does not authorize three
 parallel extensions, a parameter search or a proof-backend grid.
 
+The existing aggregate control already constructs the *entire* query prefix in
+the protected role, checks all aggregate coordinates by recomputing their
+products, and constructs the terminal suffix there. Moving the whole prefix
+into that role is consequently not a new extension. Any mixed-boundary R4
+proposal must name a different literal segment and prove its remaining
+dependencies and complete terminal binding. Its benefit must survive the
+existing aggregate/replay controls and, for a broad delegation claim, vFHE.
+
 ## The actual research claim and its early discriminator
 
 The proposed question is: **when a small update changes the logical answer,
@@ -493,6 +532,13 @@ action, R3 supplies the missing bottleneck evidence, and R4 tests one surviving
 mechanism. Its artifacts are a mechanism specification, runnable adapter,
 independent whole-output oracle/fault gate, matched reference, paid ablation,
 frozen policy and held-out return. The existing proposed cohort is not enlarged.
+
+The [execution handoff](research-mechanism-execution-handoff-20261005.md) now
+maps these steps to runnable entry points, missing code and literal completion
+checks. A working launcher is R2; a returned held-out cohort is R3; an eligible
+mechanism with actual ablation is R4. Planning returns or public-stub cases
+cannot substitute for any of those execution exits. On completing a subtask,
+write its scoped evidence to the ledger and resume the first unmet dependency.
 
 | Step | Deliverable and location | Exit condition / next decision |
 | --- | --- | --- |

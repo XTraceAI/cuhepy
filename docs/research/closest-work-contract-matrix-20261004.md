@@ -18,6 +18,12 @@ rechecks the already reproduced original EMVP/unified BNTM/global BGV data,
 adds Wally v7 and a pinned official workload interface (136 source records),
 and makes alternate-scheme coverage explicit. It creates no new timings,
 author executions, keys or test cases. The selected Q77 cohort remains unrun.
+The [mechanism-priority review](research-mechanism-priority-20261005.json)
+recalculates 25 old matched-panel and 160 old direct-reference query records,
+adds two amortized-verification predecessors (138 retained source records),
+and makes the abstract base-plus-owner-correction counterconstruction explicit
+in the [execution handoff](research-mechanism-execution-handoff-20261005.md).
+It adds no HE execution, timing observation, cohort slot or accepted main result.
 
 The conditional candidate is a **current authenticated snapshot assembled from
 an immutable dense encrypted base and current row replacements**. Its
@@ -43,6 +49,8 @@ intrinsic limitation of prior work.
 | [IntegriDB, CCS2015](https://integridb.github.io/IntegriDB.pdf), §§2.1/4.5 | Dynamic authenticated query/update interfaces, with a fresh current digest required for result freshness. | Supply the actual exact encrypted-evaluation and private-consumption adapter; charge how fresh digests reach clients. | Current recipe authentication and version-aware query results are known. |
 | [Inc-VDB, TC2016](https://www.cnsr.ictas.vt.edu/publication/07366556.pdf), introduction/§§3–4 | Incremental encrypted-record/token maintenance and rejection of obsolete records. Its incremental encoding includes bit-flip positions. | Align record retrieval with complete distances and changed-bit disclosure with our update leakage; grant compatible incremental authentication. | Old-record rejection and incremental encrypted-database authentication are prior work. No direct privacy or performance claim transfers. |
 | [Model-generic IVC, ITCS2026](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.6), introduction/Theorem1 | Incremental verification for reactive/distributed deterministic computation, including consistency between successive transitions. | A future proof adapter must instantiate actual transitions, common-Q maintenance and current release. Its cost is unmeasured. | Generic proof reuse, consistent state transitions and streamed verification are established; our signed process state is not such a proof. |
+| [Additive-homomorphic FCs, ASIACRYPT2022 full version](https://eprint.iacr.org/2022/1331), Definition8/AppendixA.4 | Function-dependent efficient-verification preprocessing and updatable functional commitments for expressive verified database queries. | Supply literal common-Q/field conversion, maintained arithmetic, origin and current release; no runtime has been reproduced. | Cached function verification and updatable authenticated computations are known; a signed root is not a functional opening. |
+| [Verification-efficient homomorphic signatures, FC2025 full version](https://eprint.iacr.org/2025/110), Definitions2.5/A.9 and introduction | Relation-dependent verifier preprocessing and authenticated computation over ordered data streams. | Adapt its actual proof/signature/input grammar and trust assumptions, then pay setup, updates and verification if selected. | No first amortized verification or signed-stream computation claim; a cached compiler certificate is not this primitive. |
 | Permitted raw/partial cache / protected plaintext search | Exact local search, compact authenticated patches, client-side replacement distances and alternative trusted key custody. | Returning/fresh/racing full cache plus a changed-row-only owner layer with the same arrivals/link/update law. If permitting plaintext in a TEE, report that trust row separately. | No invented owner-cache prohibition, forced HE acquisition, local-popcount restriction or universal HE advantage. |
 | [Wally v7](https://arxiv.org/html/2406.06761v7), §§2.2/3/4 | Approximate batched cluster search, anonymous traffic, differential privacy and BFV/PIR improvements. | Different functionality/trust/leakage row; credit query-expansion and key-reuse costs without importing its throughput. | No first compact private search, nor a cross-contract speedup over a semi-honest public-database protocol. |
 | [Official fetch-by-similarity](https://github.com/fhe-benchmarking/fetch-by-similarity/tree/1c3cbca1c169fb5351adfcd51c74ca93cb0b7ebb), pinned README/cleartext/checker | Staged cosine threshold/count-or-payload application workload. | Separate compatible mode and unchanged harness if chosen for Q79; retain our complete independent oracle. | A harness PASS is not full-distance or malicious-response assurance. The pinned payload checker skips detailed comparison above 32 expected matches. |
@@ -105,6 +113,26 @@ base reuse and partial-owner correction. If the complete graph/protocol/resource
 vectors coincide, record containment instead of calling the composition new.
 The [plan's experiment contracts](research-system-decision-plan-20261005.md#exact-questions-the-remaining-studies-must-answer)
 separate company usefulness, causal attribution and originality.
+
+### Constructive containment and the remaining research distinction
+
+The execution handoff grants the reference the same immutable encrypted base,
+current authenticated latest-replacement map, complete original-query binding,
+admission-before-private-work, local changed-row correction and compaction law.
+That construction has the same abstract graph and output as the currently
+proposed plain composite template. A new label or version split does not make
+those executions different. The template remains useful company engineering;
+its standalone new-algorithm claim is closed by this construction. This is
+not a reproduced complete prior system, an empirical equal-cost finding, a
+universal lower bound or a claim that all proposed refinements are contained.
+
+R4 must name an additional concrete changed execution or substantive guarantee
+after these grants. The current aggregate control already performs the full
+query expansion and terminal maintenance inside the protected role and checks
+every aggregate coordinate. Moving that whole prefix into the verifier cannot
+be presented as an unimplemented new extension. Intermediate common-Q cuts,
+dependency-based reuse and streaming remain conditional candidates, subject
+to the same known-method and complete-cost tests.
 
 An acceptable paper result requires the exact version/admission execution,
 complete invariant, a useful held-out region versus the strong dynamic
