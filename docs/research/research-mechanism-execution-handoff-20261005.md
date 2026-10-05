@@ -25,6 +25,15 @@ commit and validate the exact pre-HE execution freeze and resource review.
 The latest gate passed 74 cases, including the eight remaining registered new
 cases; all actual HE/private/native work was replaced by public stubs.
 
+The [pre-execution return](research-pre-execution-review-20261005.json) records
+the mean-objective correction, three 74-case public repeats with zero new cases,
+11 reverified closest-paper pairs and the explicit storage amendment. R2c now
+freezes a 10 GiB whole-cohort ceiling with the original 8 GiB public archive cap;
+the conservative prior resource bound exceeded the old whole-cohort cap.
+Neither fresh keys nor a measured cohort has run. Complete the exact addendum
+and preflight next, then R3; the conditional one-extension and paper gates below
+remain unchanged.
+
 ## What to build, and what could justify a paper
 
 Build an exact owner-data search service around the homemade BGV arithmetic,

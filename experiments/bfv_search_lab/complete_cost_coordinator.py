@@ -56,7 +56,7 @@ class ResourceGuard:
         self.root, self.guard_file = Path(root).resolve(strict=True), Path(guard_file)
         if any(type(x) is not int for x in (artifact_limit, min_available_bytes, deadline_ns)):
             raise ValueError("Explicit integer resource limits required")
-        if not 1 <= artifact_limit <= 8 << 30 or not 0 <= min_available_bytes <= 1 << 40:
+        if not 1 <= artifact_limit <= 10 << 30 or not 0 <= min_available_bytes <= 1 << 40:
             raise ValueError("Bounded artifact and available-memory limits required")
         self.artifact_limit, self.minimum, self.deadline_ns = (
             artifact_limit,

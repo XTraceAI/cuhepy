@@ -19,6 +19,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import statistics
 import subprocess
 import sys
@@ -206,7 +207,7 @@ def validate_execution(path):
             "telemetry_interval_ns",
         }
         or any(type(x) is not int for x in guard.values())
-        or guard["artifact_limit"] != 8 << 30
+        or guard["artifact_limit"] != 10 << 30
         or not 1 <= guard["min_available_bytes"] <= 1 << 40
         or not 1 <= guard["wall_budget_ns"] <= 86_400_000_000_000
         or not 1 <= guard["operation_timeout_ns"] <= roles.TIMEOUT_NS
@@ -217,6 +218,8 @@ def validate_execution(path):
     # The addendum must follow the implementation, not merely name any SHA.
     ancestor = _git("rev-parse", freeze["implementation_commit"] + "^{commit}")
     subprocess.check_call(["git", "merge-base", "--is-ancestor", ancestor, "HEAD"], cwd=ROOT)
+    if shutil.disk_usage(ROOT).free < 20 << 30:
+        raise RuntimeError("At least 20 GiB filesystem headroom required before Q77 execution")
     return freeze
 
 
@@ -232,12 +235,20 @@ def select_policies(results, path):
         x["block"] != 0 or x["status"] != "complete" or len(x["observations"]) != 8 for x in results
     ):
         raise ValueError("Missing, duplicate, failed or held-out calibration inputs")
+    for result in results:
+        supervisor.check_pin(result["result_pin"])
+        retained = json.loads(Path(result["result_pin"]["file"]).read_text())
+        supplied = json.loads(json.dumps({k: v for k, v in result.items() if k != "result_pin"}))
+        if retained != supplied:
+            raise ValueError("Supplied calibration rows differ from their retained inputs")
     client, evaluator, input_pins = {}, {}, []
     for count in SIZES:
         paid, projected = {}, {}
         for label in TRAJECTORIES[:3]:
             chosen = [x for x in results if x["count"] == count and x["trajectory"] == label]
-            paid[label] = statistics.median(
+            # Optimize the registered arithmetic-mean objective. Each key
+            # supplies exactly eight requests, preserving equal key weights.
+            paid[label] = statistics.fmean(
                 o["owner_latency_ns"] for x in chosen for o in x["observations"]
             )
             if any(
@@ -246,7 +257,7 @@ def select_policies(results, path):
                 for x in chosen
             ):
                 raise ValueError("Actual attributed measured-query native projection required")
-            projected[label] = statistics.median(
+            projected[label] = statistics.fmean(
                 v for x in chosen for v in x["evaluator_projection_ns"]
             )
         client[str(count)] = min(paid, key=lambda x: (paid[x], x))
@@ -263,6 +274,7 @@ def select_policies(results, path):
         "selection_implementation": supervisor.pinned(__file__),
         "legal_choices": list(TRAJECTORIES[:3]),
         "weights": "equal key/size/query",
+        "selection_metric": "arithmetic mean of actual owner completion minus arrival",
         "tie_rule": "lexical trajectory label",
         "held_out_inputs": 0,
         "evaluator_projection_is_not_bare_evaluator_measurement": True,
@@ -430,7 +442,10 @@ class OwnerStudy:
             geometry=cert.geometry(2),
             guard=self.guard.check,
             ready=self._ready,
-            byte_limit=self.freeze["guard"]["artifact_limit"],
+            # Retained public inputs fit their historical 8 GiB archive cap.
+            # The separately registered 10 GiB guard also covers live uploads,
+            # assemblies, telemetry and diagnostics outside that archive.
+            byte_limit=8 << 30,
         )
         self.library = roles.native.NativeLibrary(self.freeze["native_library"]["file"])
         self.native_cache = cache.NativePopcount(self.freeze["cache_library"]["file"])
@@ -470,8 +485,18 @@ class OwnerStudy:
             for block in cohort_order():
                 self.guard.check()
                 if block["phase"] == "held-out" and self.policy is None:
+                    select_start, select_cpu = time.perf_counter_ns(), time.thread_time_ns()
                     self.policy = select_policies(self.results, self.root / "policy-freeze.json")
                     self.policy_pin = supervisor.pinned(self.root / "policy-freeze.json")
+                    coordinator.write_once(
+                        self.root / "policy-selection-cost.json",
+                        {
+                            "selection_wall_ns": time.perf_counter_ns() - select_start,
+                            "selection_cpu_ns": time.thread_time_ns() - select_cpu,
+                            "policy": self.policy_pin,
+                            "held_out_inputs": 0,
+                        },
+                    )
                 if self.policy is not None:
                     supervisor.check_pin(self.policy_pin)
                 for label in block["trajectories"]:

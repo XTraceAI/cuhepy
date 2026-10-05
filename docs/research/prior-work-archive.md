@@ -1,5 +1,13 @@
 # Primary-paper archive
 
+Latest pre-execution review, 2026-10-05: the registry contains **138 source
+records** (records and versions, not necessarily distinct papers). Eleven
+closest-work PDF/text pairs were hash-reverified; their existing full copies,
+reading scopes and current primary-page recheck are retained in the
+[review receipt](research-pre-execution-review-20261005.json). No new author
+implementation, performance reproduction or full proof audit was performed.
+The counts in the dated historical reviews below retain their earlier scope.
+
 Latest decision review, 2026-10-05: the [source registry](publication-literature-sources.json)
 now retains 128 source records, preserving all previous 123 records. Five
 additional versioned PDF/text pairs retain PPMI v1/v3, PRAG v1/v2 and Lin et al.'s TPDS2021

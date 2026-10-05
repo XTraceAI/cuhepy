@@ -285,6 +285,21 @@ def test_manager_affinity_does_not_remove_other_worker_CPUs(tmp_path):
 
 @pytest.mark.parametrize("fault", ("bytes", "sticky-telemetry", "deadline"))
 def test_whole_artifact_resource_guard_is_sticky(tmp_path, fault):
+    coordinator.ResourceGuard(
+        tmp_path,
+        tmp_path / "unused-guard.json",
+        artifact_limit=10 << 30,
+        min_available_bytes=0,
+        deadline_ns=time.perf_counter_ns() + 1_000_000_000,
+    )
+    with pytest.raises(ValueError, match="Bounded artifact"):
+        coordinator.ResourceGuard(
+            tmp_path,
+            tmp_path / "unused-guard.json",
+            artifact_limit=(10 << 30) + 1,
+            min_available_bytes=0,
+            deadline_ns=time.perf_counter_ns() + 1_000_000_000,
+        )
     guard_file = tmp_path / "guard.json"
     (tmp_path / "body").write_bytes(b"a" * 2048)
     if fault == "sticky-telemetry":
@@ -632,20 +647,20 @@ def calibration_rows(tmp_path):
         for count in study.SIZES:
             for label in study.TRAJECTORIES:
                 packet = tmp_path / f"public-calibration-{key}-{count}-{label}.json"
-                packet.write_text(json.dumps({"UNIT-ONLY logical scheduler fixture": label}))
                 rank = {"m0": 3, "m1": 1, "m2": 2}.get(label, 4)
-                results.append(
-                    {
-                        "key": key,
-                        "count": count,
-                        "trajectory": label,
-                        "block": 0,
-                        "status": "complete",
-                        "result_pin": supervisor.pinned(packet),
-                        "observations": [{"owner_latency_ns": rank} for _ in range(8)],
-                        "evaluator_projection_ns": [4 - rank] * 8,
-                    }
-                )
+                row = {
+                    "key": key,
+                    "count": count,
+                    "trajectory": label,
+                    "block": 0,
+                    "status": "complete",
+                    "public_fixture_scope": "UNIT-ONLY logical scheduler; not measured data",
+                    "observations": [{"owner_latency_ns": rank} for _ in range(8)],
+                    "evaluator_projection_ns": [4 - rank] * 8,
+                }
+                packet.write_text(json.dumps(row))
+                row["result_pin"] = supervisor.pinned(packet)
+                results.append(row)
     return results
 
 
@@ -665,6 +680,22 @@ def test_policy_freeze_uses_complete_calibration_only_and_cannot_be_replaced(tmp
     with pytest.raises(FileExistsError):
         study.select_policies(results, target)
     assert target.read_bytes() == frozen
+    # A single expensive request reverses the median's preferred mode. The
+    # frozen selector must optimize the registered mean, not silently change
+    # the objective after an outlier appears.
+    for row in results:
+        if row["trajectory"] == "m1":
+            row["observations"][-1]["owner_latency_ns"] = 100
+    with pytest.raises(ValueError, match="calibration rows differ"):
+        study.select_policies(results, tmp_path / "tampered-policy.json")
+    assert not (tmp_path / "tampered-policy.json").exists()
+    for row in results:
+        source = Path(row["result_pin"]["file"])
+        source.write_text(json.dumps({k: v for k, v in row.items() if k != "result_pin"}))
+        row["result_pin"] = supervisor.pinned(source)
+    selected = study.select_policies(results, tmp_path / "mean-objective-policy.json")
+    assert set(selected["client_remote"].values()) == {"m2"}
+    assert selected["selection_metric"].startswith("arithmetic mean")
 
 
 def test_actual_cache_only_session_uses_shared_tcp_upload_update_without_HE_work(
@@ -873,9 +904,9 @@ def test_full_cohort_public_scheduler_freezes_once_before_held_out_and_stops_fai
             assert (holder.policy is None) == (index < 36)
             if index >= 36:
                 assert (root / "policy-freeze.json").exists()
+                assert (root / "policy-selection-cost.json").exists()
             packet = root / f"public-logical-row-{index}.json"
-            packet.write_text(json.dumps({"UNIT-ONLY scheduler stub": index}))
-            return {
+            row = {
                 "key": block["key"],
                 "count": block["count"],
                 "block": block["block"],
@@ -883,8 +914,11 @@ def test_full_cohort_public_scheduler_freezes_once_before_held_out_and_stops_fai
                 "status": "failed" if index == fail_at else "complete",
                 "observations": [{"owner_latency_ns": 1} for _ in range(8)],
                 "evaluator_projection_ns": [1] * 8,
-                "result_pin": supervisor.pinned(packet),
+                "public_fixture_scope": f"UNIT-ONLY scheduler stub {index}; not measured data",
             }
+            packet.write_text(json.dumps(row))
+            row["result_pin"] = supervisor.pinned(packet)
+            return row
 
         holder._bootstrap, holder._trajectory, holder._stop = (
             bootstrap,

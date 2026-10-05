@@ -1,7 +1,7 @@
 # Build decision and research contribution plan
 
-2026-10-05. Current implementation: `73b552f2cbcc7a4b0add092c41d0171d236a826a`,
-branch `experiment/native-shared-query-service-20261004`. Its owner-trajectory
+2026-10-05. Preserved launcher checkpoint: `f4d2ed61d85f2ad945cdacb0f28538c5aaee87a6`,
+branch `experiment/native-shared-query-service-20261004`. Its launcher
 checkpoint is remotely verified. This plan replaces the earlier decision text;
 the preceding version remains in Git and the planning evidence archive.
 The [progress ledger](research-contribution-progress-20261004.json) controls
@@ -37,6 +37,59 @@ now implements honest tenant provisioning and the full cohort action, with a
 74-case public gate: eight new cases and 66 preserved cases. Its source and
 failure receipts are retained. It adds no actual HE or selection-study timing;
 the exact committed execution addendum remains the next dependency.
+
+## Current decision and executable paper milestones
+
+The [pre-execution review](research-pre-execution-review-20261005.json) rechecks
+11 archived closest-work PDF/text pairs and current primary pages, preserving
+all 138 source records. It also fixes a concrete experiment-design mismatch:
+the owner selector now minimizes the registered arithmetic mean, rather than
+the median. An outlier assertion in the existing public selector case checks
+the distinction. Complete supplied calibration rows now must match their pinned
+JSON inputs, and actual policy-selection cost is recorded. Three bounded repeat invocations each passed all 74 existing
+cases; no new distinct case, HE key, native search or timing observation was
+added. The retained distinct public-case count remains 384.
+
+**System to build:** homemade BGV exact search with complete response admission,
+current snapshot authorization, and permitted owner caches. **Paper thesis to
+test:** the lifetime and placement of verified encrypted representations can
+change the useful complete-cost frontier. BGV/CUDA arithmetic and the ordinary
+immutable-base recipe are engineering foundations; neither is the new result.
+
+| Milestone | Concrete deliverable | Decision produced |
+| --- | --- | --- |
+| R2c: finish the execution freeze | Exact committed sources, dependencies, event/arrival law, host/retention guards and explicit attempt ceilings. Public gates are complete. | A reproducible runnable comparison, without interpreting public stubs as HE correctness. |
+| R3: complete-cost selection | Six calibration blocks, immutable choices, twelve held-out blocks; all distances, setup, transfers, private finish, updates, losers and memory accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
+| R4a: choose one creative extension | Literal changed execution, necessary invariant, resource prediction and strongest compatible construction. | A distinction to test, or a documented containment finding. |
+| R4b/R4c: build and ablate it | Independent oracle, adversarial transitions, complete adapter and one registered matched extension cohort. | Attribution and useful/losing regions; a same-output gain alone does not establish originality. |
+| Q78: deployment and security | Native/model refinement, authorization/privacy games, parameter/sampler/private-leakage review, attestation and nonrollback authority. | Explicit discharged obligations and remaining assumptions. |
+| Q79: paper and artifact | Strong final controls/workloads, external review, complete costs and reproducible implementation. | One supported mechanism or substantive generalizable result, with its limitations. |
+
+The leading R4 route remains state reuse **only if** R3 confirms refresh as the
+limiting paid cost. Before an encrypted overlay, build the allowed changed-row
+owner correction and selectively refreshed dynamic-search reference. If those
+contain the whole proposal, preserve the company implementation and close that
+headline. A different construction boundary or capacity mechanism is selected
+only from the corresponding measured bottleneck; it is not an additional broad
+exploration phase. A novel guarantee requires a substantive theorem beyond
+routine composition of authentication, currentness and verify-before-decrypt.
+
+The retained 32k panel motivates this sequence: the earlier BGV reply was
+204,895 B versus 16,908,071 B for Paillier lookup CUDA, while BGV's update spent
+7.1466 s re-preparing resident state. Those local, unequal/unapproved-profile,
+unverified paths do not establish selected secure-service performance. The
+returning cache and partially reproduced EMVP/BNTM controls remain mandatory
+objections to a broad speed claim. Unknown adapted costs stay unknown.
+
+The scalar resource review found that retaining all inputs plus transient
+assemblies/uploads and the telemetry ceiling has a conservative 8,902,711,764 B
+bound before other diagnostics. This exceeds the old 8 GiB whole-artifact cap.
+The [explicit resource registration](native-shared-query-execution-resource-registration-20261005.json)
+therefore prepares a **10 GiB whole-cohort** guard while retaining the **8 GiB
+immutable public-blob archive** cap and requiring 20 GiB initial filesystem
+headroom. It changes neither workload nor HE attempt reservations. Exact
+execution still requires its committed addendum; these scalar counts are not
+measured peaks or a resource-fit/security certificate.
 
 ## Decision card for the next implementation
 
@@ -728,7 +781,8 @@ the paper's entire workload or population-confidence argument.
 Historical caps remain unchanged and unconsumed. The pending exact-addendum
 proposal is 702 fresh query encryptions, 72 protected signer contexts, 31,744
 feature encryptions and two HE keys; it does not activate those budgets here.
-Retain the 8 GiB additional-artifact ceiling, source/binary/dependency pins,
+The exact addendum will activate the registered 10 GiB whole-artifact guard
+and retain the 8 GiB immutable public-blob archive cap. Preserve source/binary/dependency pins,
 attempt-before-work accounting, <=1 s public telemetry, owned process custody,
 deadline/memory guards and the granted idle-window discipline. Cooperative
 guards are not hard instantaneous memory limits.
@@ -929,6 +983,6 @@ retained evidence instead of starting a paper around an assumed speedup.
 The remaining packages are **Q77 evaluation/one extension, Q78 assurance and
 deployment, Q79 paper**. There is no remaining broad preliminary portfolio.
 After each task, preserve inputs/commands/failures/scope/checkpoint in the ledger
-and return here. **Next implementation: finish R2's honest tenant and full
-cohort launch, then commit its exact pre-HE freeze.** This planning review does
+and return here. **Next implementation: commit and validate R2c's exact pre-HE freeze,
+then execute R3.** This planning review does
 not complete that dependency or reserve additional encrypted experiments.

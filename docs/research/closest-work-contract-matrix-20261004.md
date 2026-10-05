@@ -1,5 +1,16 @@
 # Closest work for the selected exact-search system
 
+The [current pre-execution return](research-pre-execution-review-20261005.json)
+rechecks 11 archived primary PDF/text pairs and current publisher/arXiv pages.
+It preserves all 138 records and adds no author-artifact reproduction or new
+originality conclusion. PPMI's update/cache-invalidation methods, Argos's
+integrity-only architecture, vFHE's actual delegated-product control, BioZKFHE's
+snapshot/coverage release contract, and ILA's valid-input premise remain the
+closest objections. Cached/incremental verification and current database
+authentication must be credited as a compatible composition, not isolated
+weaker baselines. The actual next dependency is the committed R2c execution
+freeze; R3 still has zero observations.
+
 ## Current system decision and strongest counterconstruction
 
 2026-10-05, implementation `73b552f2cbcc7a4b0add092c41d0171d236a826a`.
