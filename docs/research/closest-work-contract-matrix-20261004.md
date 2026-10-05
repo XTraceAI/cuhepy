@@ -17,7 +17,10 @@ terminal return. See the
 and [separate action registration](native-shared-query-complete-cost-interruption-registration-20261005.json), as well as the historical
 [corrective-start return](native-shared-query-complete-cost-corrective-start-return-20261005.json).
 The additive two-case detached-launch gate passes and the new exact freeze is
-committed; actual storage headroom and passing preflight are still required.
+committed; the user released space and unchanged storage/preflight now pass.
+The [separate comparison actually started](native-shared-query-complete-cost-separate-start-return-20261005.json).
+The [contribution build brief](research-contribution-build-brief-20261005.md)
+consolidates the strongest references and exact remaining mechanism/paper exits.
 No complete timing comparison or
 originality verdict has returned. Earlier
 zero-execution/pending-freeze statements below retain their dated review scopes,

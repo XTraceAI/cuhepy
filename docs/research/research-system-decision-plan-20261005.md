@@ -1,5 +1,7 @@
 # Build decision and research contribution plan
 
+Latest execution/build entry point: the [contribution build brief](research-contribution-build-brief-20261005.md) consolidates the evidence, primary comparison, conditional mechanism choices, finite tickets and security/paper exits. The storage condition is resolved and the fresh comparison is actually running; see its [start receipt](native-shared-query-complete-cost-separate-start-return-20261005.json). No original main result or complete comparison is asserted.
+
 2026-10-05. Preserved launcher checkpoint: `f4d2ed61d85f2ad945cdacb0f28538c5aaee87a6`,
 branch `experiment/native-shared-query-service-20261004`. Its launcher
 checkpoint is remotely verified. This plan replaces the earlier decision text;
@@ -76,18 +78,21 @@ not immunity to external process termination or a repair of the unknown cause.
 The [new exact freeze](native-shared-query-complete-cost-execution-interruption-20261005.json)
 and [contract](native-shared-query-complete-cost-execution-contract-interruption-20261005.md)
 are now committed, with 446 source pins and 716 dependencies, including every
-earlier dependency. **Actual 20 GiB headroom and passing unchanged preflight
-are now the first unmet dependency**, then the complete comparison,
-one eligible creative extension, assurance and the paper package. No fresh
-encrypted action has started. A detached launcher changes observation lifetime;
+earlier dependency. **The unchanged 20 GiB headroom/preflight dependency now
+passes**, after the user released workspace space. The separately registered
+action [actually launched](native-shared-query-complete-cost-separate-start-return-20261005.json)
+at 21:04:18 UTC with about 68 GiB available. Its complete comparison is now the
+first unmet exit, then one eligible creative extension, assurance and the paper
+package. A detached launcher changes observation lifetime;
 it does not prove or repair the unknown termination cause.
 
 The [unchanged storage preflight](native-shared-query-complete-cost-storage-preflight-20261005.json)
 checked the new committed grammar and pins, then refused at the existing 20 GiB
 headroom floor: about 17.8 GiB was available. No new key, worker, query, cohort
-root or scientific observer slot was created. A storage-route question is
-pending; preserve both earlier attempts and the guard. Launch only after the
-actual resource condition and unchanged pure preflight pass.
+root or scientific observer slot was created by that refusal. The user
+subsequently released storage; a new unchanged pure preflight passed before the
+separately registered action launched. Both earlier attempts and the 20 GiB
+guard remain preserved. The start receipt is not a completed timing return.
 
 The [pre-execution review](research-pre-execution-review-20261005.json) rechecks
 11 archived closest-work PDF/text pairs and current primary pages, preserving
@@ -108,7 +113,7 @@ immutable-base recipe are engineering foundations; neither is the new result.
 | Milestone | Concrete deliverable | Decision produced |
 | --- | --- | --- |
 | R2c: complete | Exact sources, dependencies, event/arrival law and guards committed; pure preflight passed. | Runnable frozen comparison; public stubs remain distinct from HE correctness. |
-| R3: interrupted; separate action frozen, not started | Preserve both earlier attempts; launch gate and exact freeze are complete. Meet actual storage floor/preflight, then six new calibration blocks and twelve held-out blocks with every cost accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
+| R3: earlier action interrupted; separate comparison running | Both earlier attempts remain retained; fresh action launched after passing headroom/preflight. Complete its six new calibration blocks and twelve held-out blocks with every cost accounted. | Which paid cost limits the actual selected graph, and where cache already wins. |
 | R4a: choose one creative extension | Literal changed execution, necessary invariant, resource prediction and strongest compatible construction. | A distinction to test, or a documented containment finding. |
 | R4b/R4c: build and ablate it | Independent oracle, adversarial transitions, complete adapter and one registered matched extension cohort. | Attribution and useful/losing regions; a same-output gain alone does not establish originality. |
 | Q78: deployment and security | Native/model refinement, authorization/privacy games, parameter/sampler/private-leakage review, attestation and nonrollback authority. | Explicit discharged obligations and remaining assumptions. |
@@ -801,7 +806,7 @@ unavailable adapters cannot supply the distinction.
 | Step | Deliverable and location | Exit condition / next decision |
 | --- | --- | --- |
 | R2, complete public gate and freeze | `complete_cost_tenant.py` and `complete_cost_owner_study.py` connect honest provisioning, independent sessions and guards. | Exact addendum committed and preflight passed before HE work; actual encrypted integration is judged by R3. |
-| R3, interrupted; fresh comparison registered | Two new keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: 18 blocks/144 observations per trajectory. First six blocks/48 queries calibrate; twelve/96 are held out. | Meet exact freeze and storage preconditions; freeze new policies before held-out. Return complete costs and bottleneck, retaining both older attempts separately. |
+| R3, earlier action interrupted; fresh comparison running | Two new keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: 18 blocks/144 observations per trajectory. First six blocks/48 queries calibrate; twelve/96 are held out. | Exact freeze/headroom/preflight passed and action launched; freeze new policies before held-out. Return complete costs and bottleneck, retaining both older attempts separately. |
 | R4, one creative extension | The one mechanism selected above, admitted graph, strongest adaptation, whole-execution ablation and new finite registration. | Useful held-out region and surviving prior-work distinction, or close the claim and preserve the engineering artifact. |
 | Q78, assurance/deployment | Conditional reduction, native refinement, parameter/private-leakage review, real attested authority and rollback/revocation tests; matched GPU path if used in the final claim. | Complete premises and real deployment evidence before a secure-service or GPU-service performance claim. |
 | Q79, final paper/artifact | Additional justified workloads/deployment evaluation, strongest counterconstruction, external originality/security review, reproducible artifact and paper. | One precise defensible finding with winning and losing regimes. |
@@ -1057,7 +1062,7 @@ After each task, preserve inputs/commands/failures/scope/checkpoint in the ledge
 and return here. **Next exit: return the separately registered complete R3 calibration/held-out
 comparison, then
 specify and implement one eligible R4 extension.** The prior exact freeze is retained;
-the new freeze is committed, while actual storage headroom/preflight remain pending. There is
+the new freeze is committed, actual headroom/preflight passed, and the separate comparison is running. There is
 no additional encrypted experiment is reserved by this plan update.
 
 ## Analysis ready for the actual R3 return
