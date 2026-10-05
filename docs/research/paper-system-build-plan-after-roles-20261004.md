@@ -1,12 +1,16 @@
-# Research system plan after the local role handoff
+# Research system and paper plan
 
-This revision starts from remotely verified commit
-`51ed323557396c92e362e83c2e922985176f31f9`, tag
-`checkpoint/native-shared-query-local-roles-2026-10-04`. It updates the
+Current review: **2026-10-05**, from remotely verified implementation commit
+`1d5e6cc8475165f78e7e31177236016e1d7ddc2a`, tag
+`checkpoint/native-shared-query-public-network-2026-10-05`. The original
+post-role review and every intervening component remain in Git and their
+checkpoint archives. This is the current build plan; it updates the
 [roadmap](paper-system-roadmap-20261004.md) and makes the next components
 concrete; the [detailed execution plan](system-contribution-execution-plan-20261004.md)
 and [progress ledger](research-contribution-progress-20261004.json) retain
-their caps. This planning review adds no HE key, timing cohort or proof.
+historical registrations. The [current review receipt](research-system-focus-review-20261005.json)
+pins the retained evidence, primary-source checks and unchanged implementation.
+This planning review adds no HE key, timing cohort, test invocation or proof.
 
 > Subsequent owner component: [R1 adapter and public gate](native-shared-query-owner-component-20261004.md)
 > pass 78 new cases plus 158 compatibility cases. The native private path is
@@ -51,6 +55,7 @@ established ingredients. Homemade implementations remain a company priority.
 | Q76 bounded prototype, controls and static handoff | Replay, exact aggregate and mutable cache controls exist; independent metadata checking and twelve scoped Lean lemmas support the design. | Concrete native/semantic refinement, private release and actual remote authority remain open. Test counts are not independent cryptographic experiments. |
 | New local role handoff: 158 final distinct tests, six retained small case/mode paths, two real bad-result rejects | Native producer/admission, signed receipt and owner callback compose in bounded public tests. | Tests use local threads and a public callback. Owner HE decoding, separate worker processes, setup/update trace and complete timings are unfinished. |
 | Subsequent owner adapter: 78 new public cases, 236 final combined cases | Fixed key/context custody, consumed-receipt private callback, complete score/tail validation and ordinal selection compose with the public control path. | Private arithmetic is stubbed in this gate. Actual HE output correctness, independently spawned workers and paid private preparation/lifetimes still need R2/R3. |
+| Shared network/supervisor: 20 additional public cases | Aggregate directional pacing, bounded TCP delivery and clean process supervision work in the retained public fixtures. | 256 distinct cases are retained across components; only the last 20 were rerun in that invocation. Real HE custody, the central relay and complete owner trace remain unexecuted. |
 
 At 32,768 rows the retained selected interfaces are: full internal witness
 127,057,920 B, exact aggregate body 1,474,560 B, compact client frame 204,895 B,
@@ -60,6 +65,60 @@ The roughly 86-fold internal witness reduction changes the producer-to-checker
 seam. It neither reduces the already compact client frame nor eliminates the
 aggregate control's product recomputation. Charge each link and lifetime
 separately. See the [resource ledger](native-shared-query-resource-ledger-20261004.md).
+
+### How the earlier experiments inform this system
+
+The [portfolio synthesis](research-synthesis-and-system-roadmap.md),
+[creative priorities/results](creative-experiment-priorities.md) and
+[claim cards](system-contribution-claim-cards-20261004.json) retain the individual
+measurements, failure cases and changed contracts. Grouping them below is a
+design synthesis, not a new combined benchmark or an exhaustive proof audit.
+
+| Experiment family | What is useful now | What it rules out or makes conditional |
+| --- | --- | --- |
+| E01–E08: response layouts, prepared transforms, native/CUDA work and BGV | Reuse compact scores, resident representations, persistent workspaces and measured fusion. BGV avoids this shallow BFV scale-and-round path. | Bare kernel gains cannot establish verified service performance. Grant the same rewrites to every compatible control. |
+| E09–E25: selection, exact filters, radix/layout, dictionaries and residuals | Preserve exact coverage and the distinction between all scores and top-k-only protocols. Index-specific compression is a possible data-dependent choice. | Literal answer polynomials and paid two-round refinement lose in their recorded scopes. Compressed client hints must compete with compressed full plaintext. |
+| E26–E28: affine/CRT maps, rank repair and matrix arithmetic | Favorable low-rank data can greatly reduce CPU work; equal-capacity controls and update cliffs are retained. | GPU totals benefit less, and dense maps/unstructured data can lose. Matrix-source/key costs did not justify a native matrix-CUDA project. |
+| E29–E40: one-use linear online execution, precision, verification and capacity | Keep the changed-preprocessing contract as a reference. Smaller fields and native verification can improve paid frontiers. | Fresh one-use state, unused tokens, adaptive correctness and authentication are essential. Public expansion of a reusable mask bank does not create independent private requests. |
+| Later gadget, decoder and optimizer discriminators: E101/E110, Q57_H1/Q59_H2, Q74/Q75 | Keep their exact algebra, negative originality returns and strong known-composition controls. | Rebranding gadget propagation, expansion or generic cost assignment does not reopen a closed novelty claim. |
+| Q76 and partial Q77 | We now have exact native replay/admission/aggregate, mutable cache, static metadata, owner adapter and public plumbing. | These are the foundation for one complete measurement, not another reason to start a broad idea search. |
+
+Prefer the general-data BGV path for the main system. Data-specific maps and
+one-use correlation paths are separate contract-qualified alternatives, not
+fallback numbers to splice into its performance table. The literature and
+negative results narrow the paper claim; they do not diminish the company value
+of the homemade implementations.
+
+### A quantitative reason to test the boundary, rather than assume it wins
+
+At the registered link rates, the retained 32k interfaces imply these **model
+serialization floors**, excluding propagation, framing, queues and computation:
+
+| Retained interface | Declared link rate | Serialization floor |
+| --- | ---: | ---: |
+| Full 127,057,920 B internal witness | 1,250,000,000 B/s | 101.646 ms |
+| Exact 1,474,560 B aggregate body | 1,250,000,000 B/s | 1.180 ms |
+| Earlier 204,895 B compact client frame | 12,500,000 B/s | 16.392 ms |
+| 263,206 B client descriptor | 12,500,000 B/s | 21.056 ms |
+| 2,359,635 B authenticated cache acquisition | 12,500,000 B/s | 188.771 ms |
+
+These are derived from bytes/rate, not new timing observations. The final Q77
+protocol adds its actual receipt/framing bytes. Internal witness traffic alone
+is substantial, and the entire plaintext cache is small at this scale.
+This makes a positive outsourcing/verification result uncertain; it is not
+evidence for forbidding retention or inventing a device limit.
+
+For intuition only, a serial placement model, with `R` requests sharing one
+preparation lifetime, has
+
+`delegation delta = producer + admission + internal transfer + extra preparation/R - displaced protected work`.
+
+Delegation helps in that model only if the delta is negative. Actual Q77 uses
+the measured dependency graph, since parallel work, backpressure and shared
+link contention invalidate simply adding medians. Likewise, a constant-cost
+serial cache crossover is `queries > acquisition/(remote - local)`, when the
+denominator is positive. This is a diagnostic, not a fitted policy, and must
+not substitute old circuit timings for the selected protected path.
 
 ## Closest work and the exact gap to test
 
@@ -126,6 +185,31 @@ recovery; its evaluated proof domain excludes rotations and modulus switching.
 This targeted reread adds no new source record or author reproduction and cannot
 clear originality by absence of a matching phrase.
 
+### What would make the result a research contribution
+
+The main statement must name a **specific execution boundary**, the invariant
+that makes it admissible, its paid advantage and its losing region. A paper
+claim can eventually take this form:
+
+> Under [explicit owner, trust and state contract], [concrete admitted execution]
+> changes [measured bottleneck] and improves [complete metric] over [strongest
+> matched policy] in [held-out operating region], while preserving exact
+> snapshot-bound output; [contrasting region] favors replay or the owner cache.
+
+Fill these brackets from R3/R4, not from anticipated speedups. To earn a systems
+main contribution, demonstrate the mechanism with an ablation and show why
+the strongest applicable complete system does not already demonstrate that
+same finding. Ordinary composition may implement a useful system without
+earning a conference-paper claim. An unknown predecessor adapter is an open
+comparison obligation, not evidence of originality.
+
+Keep exactly three main research questions: does the complete-cost winner
+differ from evaluator-only selection; does a concrete representation/state
+boundary explain it; and does any useful outsourcing region survive allowed
+cache/acquisition/prefetch? Answering all three negatively closes this proposed
+positive systems claim. A negative paper would then need a separately reviewed,
+generalizable result, rather than merely reporting that this prototype loses.
+
 ## Architecture to finish
 
 ```mermaid
@@ -181,6 +265,84 @@ public plumbing gate changes none of these historical caps. Its 20 new cases
 exhaust the initial 256 public-unit ceiling; further necessary integration tests
 need a separately bounded registration, rather than silently exceeding it.
 
+### R2 implementation specification and exact accounting handoff
+
+Finish these components before any Q77 fresh HE key or private work. Register
+additive files and a bounded integration gate before implementing and executing
+that gate. Preserve all 431 runtime files, 66 company files, six isolated
+libraries and the owner private extension. Proposed filenames below are handoff
+targets; these files do not exist yet.
+
+| Deliverable | Proposed location | Required behavior / acceptance |
+| --- | --- | --- |
+| One charged public relay | `experiments/bfv_search_lab/complete_cost_relay.py` | Fixed trusted-local backend map and opaque descriptor/query/cache/update packets. One aggregate budget per client-link direction across search and background acquisition. Received data cannot select code, libraries or trust anchors. |
+| Actual owner event trace | `experiments/bfv_search_lab/complete_cost_trace.py` | Owner keys stay at the owner. Capture arrivals, setup, acquisition, private preparation, completion and updates as dependent real events; no stage-sum latency or fictitious overlap. |
+| Cohort orchestration | `benchmarks/complete_cost_owner_lab.py` | Start the clean supervisor before HE key generation. Public workers descend from it and receive pinned public specifications. Independent policy trajectories cannot inherit an accidentally warmed cache/private handle. |
+| Updates and release | Existing authenticated owner/cache APIs called by the new trace | Fresh affected-group encryption, complete snapshot/ID binding, genuine native refresh, compact cache patch and current consumed receipt before private decode. Retain failed attempts and owned-child cleanup. |
+| Integration and exact freeze | Separately registered tests and execution-addendum JSON | Bounded public fixtures first; actual HE correctness belongs to R3. Commit dependencies, sources/libraries, event order, initial states, hardware, deadlines, memory guard and retention before keys. |
+
+Prefer independently executed policy trajectories over replaying stage samples
+as executions. The **proposed conservative accounting draft** is:
+
+| Item | Historical initial maximum | Draft maximum for an independently cold prefetch remote component |
+| --- | ---: | ---: |
+| Fresh HE key attempts | 2 | 2 |
+| Blocks / measured observations per implementation | 18 / 144 | 18 / 144 |
+| Remote query encryptions | 540 | 720 = 4 trajectories × 18 × (1 warmup + 8 measured + 1 update check) |
+| Protected-worker standard signing contexts | 54 | 72 = 4 independently spawned trajectories × 18 |
+| Index feature encryptions | 31,744 | 40,960 = 4,096 initial + 4 trajectories × 18 × 512 refreshed features |
+
+This is a **planning proposal, not an execution registration or consumed
+budget**. It pays repeated owner update work instead of assigning one
+precomputed update to independently timed owner executions. If prefetch
+permanently closes its remote component after acquisition, the freeze may
+specify that shorter lifetime and exact lower counts. A failed acquisition
+cannot silently become a new remote fallback. Any amendment must preserve the
+historical JSON and be explicitly committed before consumption; keys, sizes,
+blocks and measured observations do not increase. The existing 31,744 cap
+does not permit using 40,960 now.
+
+The exact freeze must distinguish four clocks/states:
+
+1. Tenant preparation: key/evaluation keys, feature encryption, authentication
+   and upload. Two HE key contexts are genuinely independent. Reused public
+   setup is labelled and paid separately.
+2. Process preparation: fresh native preparation and signer setup, with actual
+   residency/invalidation. A new process is not automatically a cold OS cache.
+3. Device preparation: metadata, private native-handle preparation and allowed
+   plaintext cache. Local retained-key custody does not measure secure key
+   provisioning to a new physical device.
+4. Warmup and arrivals: specify what the excluded first query warms. Retain
+   cold preparation/first-answer timing separately; do not call the subsequent
+   eight-query metric cold-service latency. Measured cache acquisition starts
+   from its declared absent/retained state despite any separate code warmup.
+
+Assign and charge supervisor/relay CPU and memory in addition to the existing
+roles. Freeze topology and per-thread affinity. Concurrent transfers share the
+lane and relay copies are paid. Keep a memory preflight, absolute deadlines,
+<=1s telemetry and the 8GiB additional-artifact ceiling. Retain external load,
+swap, timeouts and failures; qualify contaminated runs rather than replacing
+them with a selectively faster run.
+
+### R3/R4 decision protocol
+
+First blocks per key/size calibrate: six blocks/48 queries per implementation.
+Freeze cost inputs, legal choices, selector code and policy before twelve
+held-out blocks/96 queries. Aliases and cache policies are not independent
+cryptosystems; retrospective per-instance minima are oracle diagnostics.
+
+Report paired whole-trace delays, cold/setup/update/tail costs, both directions
+of both links, duplicate work and peak live state. Show raw block results and
+model sensitivity separately. Two keys on one correlated corpus cannot support
+population confidence claims by treating 144 requests as independent samples.
+
+Return one of: useful distinct boundary; useful known engineering; no useful
+remote region; or unresolved correctness/measurement. Only the first selects
+the default positive systems paper. R4 permits **at most one** triggered
+refinement with a new finite registration and prior comparison, not an entire
+menu. A surviving system still needs a separately frozen final deployment/
+workload evaluation before broad claims. Q77 is a local selection study.
+
 The primary metric ends when the owner has authenticated, consumed and decoded
 the complete frame and produced the bound ordinal top3. Measure completion
 minus arrival over the frozen trace, with equal key/size/query weights. Report
@@ -206,6 +368,13 @@ is whether it avoids real trusted construction or transfers without giving
 the replay control the same saving for free. An ordinary min-cut is not new;
 a useful complete execution and its invariant must be the result.
 
+Choose one contiguous expansion/maintenance segment from measured cost
+attribution, not a level/radix grid. Bind every admitted source back to the
+signed original through checked or protected ancestors; require unique
+common-Q digits and complete downstream branches/terminal output. An unchecked
+cut root cannot become a trusted input merely by signing it. Predict the
+displaced work/bytes, execute the whole path, and give controls the same cut.
+
 If actual protected state/prefix cost instead dominates at a justified larger
 corpus, test **one streamed authenticated multi-object snapshot**. Prove that
 per-group bounds do not grow with group count, bind complete ordered coverage
@@ -223,6 +392,13 @@ valid checking/attestation or complete proof adapter. No failed earlier
 reusable-adjoint, expansion or gadget originality claim is reopened here.
 
 ## Supporting security argument
+
+For exact binary matching, the plaintext identity is
+`s[i] = sum_j (1-2*q[j])*(1-2*x[i,j])`,
+`distance[i] = (512-s[i])/2`. A valid score is centered in `[-512,512]`
+with the correct parity; `t=1031` separates all these signed values.
+Preserve every row, ordered ID and physical zero tail before selection.
+This explains exactness; it is not a new matching formula or a security estimate.
 
 Define an exact-search ideal functionality for the honest owner's current
 snapshot/query, complete scores and ordinal top3, with abort allowed and
@@ -247,6 +423,14 @@ agenda. They do not prove the C++ binary, concrete parameters, private timing,
 rollback resistance or AWS deployment. Complete this argument alongside the
 selected system; promote it to a formal main result only if it has a substantive
 reviewed distinction beyond ILA plus established verifiable execution.
+
+| Proof layer | Deliverable and explicit premise |
+| --- | --- |
+| Native relation | Show complete accepted inputs/frame equal the selected reference evaluation, including canonical shared integers in both actual primes. Twelve model lemmas do not establish the C++ refinement. |
+| Exact plaintext semantics | Instantiate honest owner encoding, actual sampler/seed/evaluation-key law, every-source bounds and terminal Q-to-P codec; derive all scores/tails and ordinal output. No observed-noise substitution. |
+| Stateful authorization | Bind request, snapshot, IDs, mode/code and nonce; consume before one fixed private callback. Prove crash/rollback behavior against the declared durable authority, not process-local memory alone. |
+| Real protected deployment | Bind measured binary and response-signing key via AWS attestation and an authenticated channel; specify freshness, revocation and protected signer custody. A local signature is not this premise. |
+| Conditional confidentiality | Define permitted transcript/timing/update leakage, couple authorized outputs to ideal search and public rejects to the public gate. Account separately for augmented HE/evaluation-key security, signature/hash failures, correctness/admission failures, trusted state/TEE and private side channels. This is a reduction agenda, not a finished theorem. |
 
 ## Paper and progress handoff
 

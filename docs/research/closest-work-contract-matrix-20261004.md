@@ -8,6 +8,15 @@
 > originality verdict. This revision adds no source record or author-artifact
 > reproduction; the registry remains at 123 pinned records.
 
+> Current review, 2026-10-05: the latest implementation checkpoint is
+> `1d5e6cc8475165f78e7e31177236016e1d7ddc2a`. Its shared-link/supervisor gate
+> adds 20 public cases, for 256 distinct retained cases across Q77 components;
+> the last invocation ran only those 20. The [updated build plan](paper-system-build-plan-after-roles-20261004.md)
+> maps the experiment portfolio, comparison classes and conditional contribution
+> onto one finite evaluation. Its [review receipt](research-system-focus-review-20261005.json)
+> retains primary online checks and targeted searches; no new source record,
+> complete-cost HE result, author reproduction or positive originality verdict.
+
 2026-10-04. Original comparison evidence baseline:
 `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
 The source-scale comparison checkpoint is `155d69f180f6e11a9a87734fdb6249699e9f0549`;

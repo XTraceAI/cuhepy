@@ -21,16 +21,27 @@ passes 20 public cases, with six clean managers and four echo children. R2 still
 requires the actual owner trace/shared relay and exact state/budget freeze.
 Neither this gate nor the owner adapter executes a real HE cohort.
 
-The latest additive role implementation is preserved at commit
-`51ed323557396c92e362e83c2e922985176f31f9`, tag
-`checkpoint/native-shared-query-local-roles-2026-10-04`, with a verified Git
-bundle, 128 evidence members and 66 company members. All three remote branch/
-tag references matched; 425 runtime files and six isolated libraries were
-reverified. The preceding certificate/prototype checkpoint
+The latest additive implementation is preserved at commit
+`1d5e6cc8475165f78e7e31177236016e1d7ddc2a`, tag
+`checkpoint/native-shared-query-public-network-2026-10-05`, with a verified Git
+bundle, 55 evidence members and 66 company members. All three remote branch/
+tag references matched; 431 runtime files and six isolated libraries were
+reverified. Its explicit owner prerequisite is `3f074c77c1eed0149bd1c624a66f66bd65b51cd5`,
+with 103 evidence members and the preserved native private extension.
+The preceding certificate/prototype checkpoint
 `51c5c82f33e80caa7c69ec45be10e35efc6e932e` and official Lean prerequisite remain
 explicitly preserved through the dependency chain. Main and staging are
 unchanged. This is a recoverable local baseline, not a completed secure
 deployment or an accepted original main result.
+
+The [2026-10-05 review](research-system-focus-review-20261005.json) rechecks
+retained results and primary literature. The build plan now specifies the R2
+relay/owner-trace/cohort files, quantitative link floors, statistical limits
+and a **draft**, unconsumed prefetch accounting amendment. The historical
+registration remains byte exact; two HE key attempts, three sizes, 18 blocks
+and 144 observations per implementation remain unchanged. Finish this
+evaluation before selecting at most one conditional
+design refinement. There is no new broad preliminary experiment queue.
 
 ## 1. Select one scientific question
 

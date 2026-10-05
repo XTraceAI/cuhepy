@@ -1,5 +1,12 @@
 # Execution plan for an original, complete encrypted-search system
 
+> Current 2026-10-05 specification: [the living build plan](paper-system-build-plan-after-roles-20261004.md)
+> starts from verified checkpoint `1d5e6cc8475165f78e7e31177236016e1d7ddc2a`.
+> R2 owner trace/shared relay/exact freeze is next. The conservative prefetch
+> budget amendment there is a draft, not a consumed budget or a change to the
+> original registration. Q77 evaluation, Q78 deployment/security and Q79 final
+> originality/paper remain. Older pointers below retain their historical scope.
+
 > Current post-role handoff: the [build plan](paper-system-build-plan-after-roles-20261004.md)
 > is the concise R0–R6 implementation/paper queue. The local public role
 > component is complete at remotely verified `51ed323557396c92e362e83c2e922985176f31f9`.
