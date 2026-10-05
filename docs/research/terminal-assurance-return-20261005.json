@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "utc": "2026-10-05T20:48:27.067466+00:00",
+  "task": "Q78_independent_terminal_integer_assurance_return",
+  "status": "four_supporting_assertions_kernel_checked_native_noise_privacy_and_deployment_premises_open",
+  "registration": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/terminal-assurance-registration-20261005.json",
+    "bytes": 2921,
+    "sha256": "b01adf5b1479089f654384d70f9ed7567f8507e43072ec520363955f281d12e6"
+  },
+  "source": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/proofs/shared_query/Terminal.lean",
+    "bytes": 4358,
+    "sha256": "ca6a572175afede7390c778fc33d454dcd7ce4d8b31317807a7cc80b415c3f70"
+  },
+  "documentation": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/terminal-assurance-20261005.md",
+    "bytes": 7288,
+    "sha256": "18c322880823fefeaae119a4b46a44dfc806b0248ae28e79c6482f82039decfb"
+  },
+  "public_scalar": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q78-terminal-assurance-20261005/public-scalar-return01.json",
+    "bytes": 695,
+    "sha256": "a9beb3d2561fd2e13a959b0b4ce74efea61f3b7c9d1723628612a0c039e48bb8"
+  },
+  "failed_first_invocation": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q78-terminal-assurance-20261005/validation01/return.json",
+    "bytes": 964,
+    "sha256": "c703615b02e580dcbcb4e480c8cfdd8236a4bf83cd6e2c08b05baf2122fd3349"
+  },
+  "passing_second_invocation": {
+    "file": "/home/pete/yavor-projects/xtrace-work/research-data/q78-terminal-assurance-20261005/validation02/return.json",
+    "bytes": 964,
+    "sha256": "aeb662d46785ae14b313ae2dc04d05ebcdd099c474d86d2d77fb6ee0a51e0e76"
+  },
+  "invocations_consumed": 2,
+  "third_reserved_invocation_not_used_or_reassigned": true,
+  "supporting_assertions": [
+    "signed_dot_congr",
+    "unwrapped_rounding_congr",
+    "wrapped_terminal_preserves_message",
+    "canonical_component_counterexample"
+  ],
+  "axioms_report": [
+    "'SharedQueryTerminal.signed_dot_congr' depends on axioms: [propext]",
+    "'SharedQueryTerminal.unwrapped_rounding_congr' depends on axioms: [propext]",
+    "'SharedQueryTerminal.wrapped_terminal_preserves_message' depends on axioms: [propext, Quot.sound]",
+    "'SharedQueryTerminal.canonical_component_counterexample' does not depend on any axioms"
+  ],
+  "user_defined_axioms_admissions_native_decide_or_sorryAx_in_successful_module": false,
+  "standard_Lean_trusted_axioms": [
+    "propext",
+    "Quot.sound"
+  ],
+  "source_inspection_pins": [
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/complete_cost_tenant.py",
+      "bytes": 18522,
+      "sha256": "793cdc21664b33ef27f2919454d713e29ff8005234ca16a33343ce78ca93a983"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/seeded_bgv.py",
+      "bytes": 4069,
+      "sha256": "7e8631304dde122c4755f5f7391ef8ba6b9be213fd2c667a473b388175890272"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/complete_cost_protocol.py",
+      "bytes": 14621,
+      "sha256": "30faa22590dc80b0d9187269ca2f18775875c7d55327ca715b8586a0daa6b6c8"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/complete_cost_owner.py",
+      "bytes": 12473,
+      "sha256": "5fa432cf6ac786363c3c84020ecdc3f357ca6dc66f1239a9df9c3c0cd3121d10"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/_shared_query/shared_query.cpp",
+      "bytes": 21938,
+      "sha256": "a443017f32f259c5f86cafa3b4d2a4afdd792050ba275b3da1949de522da7665"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/_owner/bgv_private.h",
+      "bytes": 5827,
+      "sha256": "5bf9a72323eb8941f9bbd8de7f2d61b250b9352eda7dcc30abce7e6f20393332"
+    },
+    {
+      "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/experiments/bfv_search_lab/shared_query_certificate.py",
+      "bytes": 19594,
+      "sha256": "25c04ecb27ec18814f9db1886f8df0524e9a8e7ca18b735272fb443a2626e492"
+    }
+  ],
+  "source_inspection_is_not_a_native_or_protocol_execution_proof": true,
+  "actual_component_lift_finding": "R(x) preserves mod t before mod P; canonical P components need not. Full wrapped phase and centered decode, not individual wire residues modulo t, must justify the plaintext.",
+  "new_ciphertexts_HE_keys_private_operations_project_native_calls_GPU_searches_or_performance_observations": 0,
+  "known_integer_facts_not_new_cryptography_or_the_required_creative_extension": true,
+  "existing_twelve_model_lemmas_preserved": true,
+  "frozen_446_sources_716_dependencies_and_libraries_rehashed_unchanged": true,
+  "existing_scientific_addendum": {
+    "file": "/home/pete/yavor-projects/xtrace-work/cuhepy-bfv-research/docs/research/native-shared-query-complete-cost-execution-interruption-20261005.json",
+    "bytes": 282578,
+    "sha256": "8c31e00dd9ac34ddad2c5e36004314200a018f10f11983ab440d198446f01f19"
+  },
+  "main_staging_unchanged": {
+    "main": "0f8522e449d00622e10f4111ac8eb89d52ca577b",
+    "staging": "eb96aa1f79a92d6b6f0c1f6389d3daadff5546be"
+  },
+  "remaining_Q78_obligations": [
+    "Actual paired-phase bound induction and honest encoding/origin",
+    "Native complete arithmetic/indexing/CRT/NTT/terminal/refinement",
+    "Explicit augmented HE/signature/currentness/privacy games and reduction",
+    "Real attestation and nonrollback/multi-device/crash authority",
+    "Parameter/sampler and private side-channel assurance"
+  ],
+  "Q77_complete_comparison_R4_creative_extension_or_goal_complete": false,
+  "next_dependency": "actual 20 GiB workspace headroom then unchanged preflight and the separately frozen complete comparison",
+  "current_workspace_free_bytes": 73145626624
+}

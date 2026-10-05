@@ -940,8 +940,9 @@ Build the argument in four layers:
 
 This is a prospective conditional argument, not a finished reduction. IND-CPA
 alone is not CCA security, and post-decryption result checking is not the
-oracle defense. The twelve existing Lean model lemmas do not prove C++ or
-private side-channel behavior. Validate actual distributions/parameters and
+oracle defense. The twelve existing Lean model lemmas and the four new
+terminal integer assertions do not prove C++ or private side-channel behavior.
+Validate actual distributions/parameters and
 private sampler/arithmetic access before production use. For randomized
 admission derive its concrete actual-prime lifetime failure probability; do
 not transfer a single-check bound to an adaptive service unchanged.
@@ -958,6 +959,20 @@ side-channel premise. Track multi-key and adaptive-attempt factors in each
 reduction. State separately what is assumed of hardware/currentness, what is
 proved in the model, and what is connected to native code. A sum of unnamed
 negligible terms is not a completed security reduction.
+
+The [independent terminal assurance return](terminal-assurance-return-20261005.json)
+now supplies four kernel-checked integer assertions in
+[a separate module](../../proofs/shared_query/Terminal.lean), plus a pinned
+[source-to-model handoff](terminal-assurance-20261005.md). It was completed while
+the actual storage dependency remained unresolved, without changing Q77's
+446 sources/716 dependencies or creating a ciphertext. Its one public scalar
+counterexample prevents an overstrong component-residue shortcut: unwrapped
+rounding preserves modulo t, but the canonical P-component need not. Track the
+paired Q/P phase wrap and native centered decode instead. The original model
+and failed first compiler invocation are retained. Native lift/noise refinement,
+privacy, real attestation and nonrollback remain open. This is supporting
+assurance, not the required creative extension or a new cryptographic result;
+the next scientific task remains the separately frozen complete R3 comparison.
 
 Q78's proof return should expose a dependency table for four propositions:
 public failure cannot invoke the private callback; accepted ciphertexts refine

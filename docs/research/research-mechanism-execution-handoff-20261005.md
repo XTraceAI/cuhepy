@@ -87,6 +87,15 @@ freezes `m2`; the generic same-information selector agrees with the client
 selector. The later interruption leaves held-out comparison incomplete. No held-out advantage,
 mechanism choice or originality follows from these calibration choices.
 
+An [independent Q78 terminal subcomponent](terminal-assurance-return-20261005.json)
+now checks four integer assertions in a separate Lean module. Its
+[handoff](terminal-assurance-20261005.md) identifies the exact unwrapped-rounding,
+component-wrap and centered-phase obligations. It used one public scalar and
+two bounded compiler invocations, retaining the first failure, with zero HE or
+search work. It changes no frozen runtime or scientific reservation. This is
+not full native refinement, privacy/deployment assurance or the R4 creative
+extension; actual storage headroom remains the immediate dependency.
+
 ## What to build, and what could justify a paper
 
 Build an exact owner-data search service around the homemade BGV arithmetic,
