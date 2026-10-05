@@ -9,6 +9,10 @@ implementation `73b552f2cbcc7a4b0add092c41d0171d236a826a` on
 [review receipt](research-mechanism-priority-20261005.json).
 This handoff refines priorities; it does not authorize a larger experiment
 budget, new parameter grid or change to the current six-trajectory study.
+The [delegation-control handoff](research-delegation-control-handoff-20261005.md)
+supplies concrete fixed-operator/quotient resource laws and a same-output wire
+conversion ablation. Its [receipt](research-delegation-frontier-review-20261005.json)
+adds no runtime, measurement, public case or registered cohort. R2 remains next.
 
 ## What to build, and what could justify a paper
 
@@ -113,6 +117,12 @@ integrity-only hardware-backed FHE control. [vFHE](https://arxiv.org/html/2301.0
 Appendix D, supplies randomized checks for delegated batched products; our current
 deterministic aggregate checker does not implement its saving. A broader
 delegation claim needs that actual maintained-graph adapter.
+The fixed enrolled contraction is also a standard Slalom-style linear operator
+in the genuinely expanded query. Its dense preprocessed check is an additional
+strong reference, not a new algorithm. Our E70/E71 already supply the known
+quotient and tiny encrypted-query controls; their preparation, feedback and
+wire losses remain in the comparison. The concrete handoff separates those
+control costs instead of treating all “randomized checking” as the same model.
 
 [Additive-homomorphic functional commitments](https://eprint.iacr.org/2022/1331),
 Definition 8/Appendix A.4, establish function-dependent verifier preprocessing and

@@ -23,6 +23,12 @@ amortized verification predecessors, and supplies an
 [execution and claim-selection handoff](research-mechanism-execution-handoff-20261005.md).
 It changes the research prioritization below, not the reserved experiment
 contracts, execution budgets or completion status.
+The [concrete delegation-control handoff](research-delegation-control-handoff-20261005.md)
+now specifies the maintained contraction reference and its paid state/work/traffic
+tradeoff, restores E70/E71's existing certificate controls, and gives a literal
+conversion ablation. Its [receipt](research-delegation-frontier-review-20261005.json)
+preserves all 138 source records and adds scalar planning counts, not HE
+measurements, a new mechanism verdict or additional experiment slots.
 
 ## Decision and prospective contribution
 
@@ -180,6 +186,7 @@ baseline. The detailed matrix and archived primary sources contain the passages.
 | [PPMI v3](https://arxiv.org/html/2506.17336v3), §4/Appendix A | Decomposed queries, cached encrypted key representations, dynamic operations and cache-invalidation-aware transform placement. | Strong compact row upload and selective cache refresh, including its exact binary specialization where valid. Freshness/admission adaptation and its actual cost must be supplied. |
 | [Argos](https://petsymposium.org/popets/2025/popets-2025-0099.php) | Hardware-backed integrity-only FHE and verification before decryption. | Equally optimized protected execution. Our CPU signer does not inherit its isolated attestation-secret custody or side-channel argument. |
 | [vFHE](https://arxiv.org/html/2301.07041v2), Appendix D | Malicious-server analysis and randomized ring-polynomial checking of delegated products. | Actual aggregate adapter with committed claims, fresh challenges, complete maintenance and adaptive lifetime soundness. Required before broad superiority over delegation. |
+| [Slalom](https://arxiv.org/html/1806.03287v2), §3.2/Lemma3.1; our [E70](convolution-certificate-results.md)/[E71](encrypted-query-certificate-control.md) controls | Preprocessed linear-operator checking and known quotient certificates with explicit preparation/feedback costs. | Treat the genuine expanded-query contraction as a fixed linear operator; pay both prime limbs, attempt targets, hint lifetime and unchanged maintenance. Do not rebrand the already screened certificate recipe. |
 | [ILA](https://arxiv.org/html/2509.11559v1), [PEEV](https://doi.org/10.1109/ACCESS.2024.3424420), [WAHC vFHE](https://cknabs.github.io/assets/pdf/vfhe.pdf) | Valid-model/noise reasoning and program-to-verification pipelines. | Concrete origin/common-Q/native/terminal/release refinement. No first compiler, typing or verifiable-HE claim. |
 | [Silph](https://eprint.iacr.org/2023/060), [CirC](https://eprint.iacr.org/2020/1586), [FlowCert](https://www.contrib.andrew.cmu.edu/~bparno/papers/flowcert.pdf) | Conversion-aware multiple representations, scheduling and validation. | Equal legal plans, reuse, information and horizons. Generic solver agreement is expected and closes a superior generic-optimizer claim. |
 | [Corrected Cascudo](https://eprint.iacr.org/2025/286), [corrected Laminate](https://eprint.iacr.org/2025/2285), [BioZKFHE](https://arxiv.org/html/2607.22065v1) | Ring verification or verified encrypted computation/matching under distinct contracts. | Pay well-formedness, common-integer/range, release and feedback adapters. No cross-contract runtime ratio. |
@@ -276,6 +283,19 @@ therefore cannot replace full-score or malicious-response assurance. No
 external harness, library or accelerator was executed in this review.
 
 ## One conditional extension: authenticated composite snapshot reuse
+
+The [delegation handoff](research-delegation-control-handoff-20261005.md)
+also makes the construction/capacity alternatives below concrete. The expanded
+query is the variable input to a fixed enrolled contraction. Standard dense
+preprocessed checks need three rounds for the illustrative two-limb,
+1024-attempt, 128-bit algebraic target; their count at two groups is 1.0059
+times exact contraction and their input projections occupy 805,306,368 bytes.
+The known point/quotient alternative has much smaller index hints but adds
+quotient work/traffic and four rounds under its different degree bound.
+These are conditional counts, not latency, parameter assurance, a new protocol
+or a future-scale registration. They identify strong controls and explain why
+cheap-looking delegation cannot be assumed to win at 32k. R3's complete costs
+still select one R4 route; no new preliminary sweep is added.
 
 **Trigger:** R3 attributes a limiting paid cost to refresh or update-to-next-answer,
 and calibration predicts a useful benefit after extra response/query costs.
@@ -539,6 +559,17 @@ checks. A working launcher is R2; a returned held-out cohort is R3; an eligible
 mechanism with actual ablation is R4. Planning returns or public-stub cases
 cannot substitute for any of those execution exits. On completing a subtask,
 write its scoped evidence to the ledger and resume the first unmet dependency.
+
+The scientific exit is **one particular demonstrated design result**, which
+may use known cryptography. It need not invent a new scheme or a generic
+optimizer. It does need a precise execution or substantive assurance
+distinction, an explained complete-cost consequence and a generalizable
+finding beyond the already compatible construction. Pure adaptations remain
+useful company deliverables; their success does not guarantee a publishable
+original main. Do not grant a reference an alleged new mechanism merely to
+hide its distinction: first identify the new mechanism, then grant it all
+applicable *known* rewrites and compare. Conversely, implementation gaps and
+unavailable adapters cannot supply the distinction.
 
 | Step | Deliverable and location | Exit condition / next decision |
 | --- | --- | --- |
