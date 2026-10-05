@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-04",
-  "utc": "2026-10-05T00:58:20.709154+00:00",
+  "utc": "2026-10-05T02:52:56.976308+00:00",
   "parent_commit": "4bbd55056d14405b617ae0c251b1f2bacc71e74c",
   "branch": "experiment/native-shared-query-service-20261004",
   "plan": "docs/research/system-contribution-execution-plan-20261004.md",
@@ -431,7 +431,40 @@
         "native_faults_rejected": 2,
         "new_HE_keys_private_HE_operations_or_large_measurements": 0,
         "cohort_or_private_decoder_complete": false
-      }
+      },
+      "implementation_handoffs": [
+        {
+          "id": "R0",
+          "status": "complete_bounded_public_local_component",
+          "evidence": "docs/research/native-shared-query-complete-cost-public-return-20261004.json"
+        },
+        {
+          "id": "R1",
+          "status": "next_unimplemented",
+          "deliverable": "Owner key custody and actual whole-frame private finish; no new HE work before exact execution addendum"
+        },
+        {
+          "id": "R2",
+          "status": "unimplemented_execution_addendum_pending",
+          "deliverable": "Spawned roles and complete setup/acquisition/update graph, exact committed freeze and component budgets"
+        },
+        {
+          "id": "R3",
+          "status": "unexecuted_reserved_existing_cap",
+          "deliverable": "6 calibration plus 12 held-out blocks per implementation, total 18/144"
+        },
+        {
+          "id": "R4",
+          "status": "conditional_after_R3",
+          "deliverable": "Paid useful finding, one justified registered extension, or scoped negative/engineering decision"
+        }
+      ],
+      "local_public_role_checkpoint_remote_verified": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-local-roles-2026-10-04/remote-verification.json",
+        "bytes": 2048,
+        "sha256": "22369e2522f8baeb33719d5b6161de867c3bd9bc8f35619a0801f95114cb7afe"
+      },
+      "current_build_plan": "docs/research/paper-system-build-plan-after-roles-20261004.md"
     },
     {
       "id": "Q78",
@@ -722,32 +755,38 @@
   ],
   "historical_planning_branch": "experiment/shared-query-admission-20261004",
   "latest_plan_revision": {
-    "utc": "2026-10-05T00:58:20.709154+00:00",
-    "file": "docs/research/paper-system-roadmap-20261004.md",
-    "review": "docs/research/paper-system-plan-review-20261004.json",
-    "scope": "Post-prototype retained-result review, three adjacent primary search controls and finite system roadmap",
-    "no_new_registered_experiment_or_positive_originality_verdict": true
+    "utc": "2026-10-05T02:52:56.976308+00:00",
+    "file": "docs/research/paper-system-build-plan-after-roles-20261004.md",
+    "review": "docs/research/paper-system-build-plan-after-roles-review-20261004.json",
+    "scope": "Post-role evidence/prior reassessment and R0-R6 implementation/paper handoff",
+    "no_new_registered_cohort_or_positive_originality_verdict": true,
+    "implementation_baseline": "51ed323557396c92e362e83c2e922985176f31f9",
+    "previous_ledger_preserved": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/paper-system-plan-after-roles-20261004/prior-documents/research-contribution-progress-20261004.json",
+      "bytes": 61301,
+      "sha256": "f07c8101f821897f209d77acb91bc6c5b4b99dc9cd2ede437650b08914c90028"
+    }
   },
   "top_level_count_scope_note": "Zero preliminary gates and zero immediate Q76 native milestones; three packages remain: paid Q77 evaluation, Q78 actual deployment/security, Q79 originality/paper. A completed local handoff is not a completed secure service.",
   "preserved_latest_implementation_checkpoint": {
-    "commit": "51c5c82f33e80caa7c69ec45be10e35efc6e932e",
-    "tag": "checkpoint/native-shared-query-certificate-2026-10-04",
-    "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04",
+    "commit": "51ed323557396c92e362e83c2e922985176f31f9",
+    "tag": "checkpoint/native-shared-query-local-roles-2026-10-04",
+    "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-local-roles-2026-10-04",
     "manifest": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04/manifest.json",
-      "bytes": 205950,
-      "sha256": "c6df502e2e9c5017b75f4719b74dd2102b08b7cac23a06c2d6887ef54f637558"
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-local-roles-2026-10-04/manifest.json",
+      "bytes": 174311,
+      "sha256": "95080e6dd55586dfcfbe4de3f7fd06fddb81c14b60a87f11947dd597ca7917e6"
     },
     "remote_verification": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04/remote-verification.json",
-      "bytes": 3031,
-      "sha256": "fe4204ac69cdfa2babaf8af3f15c6fac6b443ea40d01aed488d3fdf83cc97d03"
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-local-roles-2026-10-04/remote-verification.json",
+      "bytes": 2048,
+      "sha256": "22369e2522f8baeb33719d5b6161de867c3bd9bc8f35619a0801f95114cb7afe"
     },
     "all_three_remote_refs_verified": true,
-    "runtime_files": 420,
-    "evidence_members": 203,
+    "runtime_files": 425,
+    "evidence_members": 128,
     "company_members": 66,
-    "scope": "Completed bounded local Q76 prototype/control/static handoff; no Q77 timing or security/originality approval"
+    "scope": "Additive Q77 local public role/receipt component; no owner HE finish/cohort/security/originality approval"
   },
   "Q76_control_design_return": {
     "card": "docs/research/native-shared-query-product-control-card-20261004.md",
@@ -798,6 +837,26 @@
       "company_archive_members_verified": 66,
       "branch_and_tag_remote_verified": true,
       "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-aggregate-2026-10-04/remote-verification.json"
+    },
+    {
+      "commit": "51c5c82f33e80caa7c69ec45be10e35efc6e932e",
+      "tag": "checkpoint/native-shared-query-certificate-2026-10-04",
+      "folder": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04",
+      "manifest": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04/manifest.json",
+        "bytes": 205950,
+        "sha256": "c6df502e2e9c5017b75f4719b74dd2102b08b7cac23a06c2d6887ef54f637558"
+      },
+      "remote_verification": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-certificate-2026-10-04/remote-verification.json",
+        "bytes": 3031,
+        "sha256": "fe4204ac69cdfa2babaf8af3f15c6fac6b443ea40d01aed488d3fdf83cc97d03"
+      },
+      "all_three_remote_refs_verified": true,
+      "runtime_files": 420,
+      "evidence_members": 203,
+      "company_members": 66,
+      "scope": "Completed bounded local Q76 prototype/control/static handoff; no Q77 timing or security/originality approval"
     }
   ],
   "historical_plan_revisions": [
@@ -853,15 +912,20 @@
       "next_executable_subtask": "Q76.4c_permitted_authenticated_cache",
       "early_originality_discriminator": "Q76.5/Q79.1 inherited/adapted/substantive interface mapping before Q77",
       "original_main_accepted": false
+    },
+    {
+      "utc": "2026-10-05T00:58:20.709154+00:00",
+      "file": "docs/research/paper-system-roadmap-20261004.md",
+      "review": "docs/research/paper-system-plan-review-20261004.json",
+      "scope": "Post-prototype retained-result review, three adjacent primary search controls and finite system roadmap",
+      "no_new_registered_experiment_or_positive_originality_verdict": true
     }
   ],
   "publication_design": "docs/research/publication-system-design-20261004.md",
   "paper_build_decision": {
     "primary": "complete exact-search admission certificate plus paid verification-placement/state frontier",
     "originality_status": "provisional_specific_result_not_accepted",
-    "immediate_native_milestones_remaining": [
-      "Q76.5_certificate_resource_client_context_handoff_with_early_Q79.1"
-    ],
+    "immediate_native_milestones_remaining": [],
     "remaining_broad_preliminary_gates": 0,
     "new_parameter_grid_authorized_by_this_review": false,
     "conditional_query_only_protected_variant": "new custody contract; register one feasibility task only after paid query-prefix/product bottleneck and justified deployment; compare Slalom/EMVP/linear HE first",
@@ -907,7 +971,9 @@
     },
     "local_prior_mapping": "Written; interfaces inherited/adapted, distinct main result not established",
     "security_feasibility_card_before_Q77": true,
-    "permitted_cache_correctness_complete_cost_unmeasured": true
+    "permitted_cache_correctness_complete_cost_unmeasured": true,
+    "current_build_queue": "docs/research/paper-system-build-plan-after-roles-20261004.md",
+    "next_component": "R1_owner_custody_private_finish_then_R2_coordinator_execution_freeze"
   },
   "historical_planning_checkpoint_declarations": [
     {
@@ -927,23 +993,22 @@
     }
   ],
   "preserved_latest_planning_checkpoint": {
-    "commit": "14243ead040eadbad4a29431c4bf8ef03378d666",
-    "tag": "checkpoint/paper-build-handoff-2026-10-04",
+    "commit": "87d32d82df77fd90fe856fcf2e5b6433ae22ddbf",
+    "tag": "checkpoint/paper-system-plan-refresh-2026-10-04",
     "manifest": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-build-handoff-2026-10-04/manifest.json",
-      "bytes": 21414,
-      "sha256": "6ad54eaa56a9d4eec333d851665ec058b96af413828dc1dcb5ca0b98e6364395"
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-system-plan-refresh-2026-10-04/manifest.json",
+      "bytes": 141710,
+      "sha256": "0f0c2c5ddb622d6011ab65bb487d845327369989a95fb1452bc17abc51f3ca6f"
+    },
+    "remote_verification": {
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-system-plan-refresh-2026-10-04/remote-verification.json",
+      "bytes": 3297,
+      "sha256": "2183a186de5a229ed42d04f1689ad6aba4139bf4e869e3062f6d25bcf1f0c2fb"
     },
     "branch_and_tag_remote_verified": true,
-    "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-build-handoff-2026-10-04/remote-verification.json",
-    "remote_verification_receipt": {
-      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-build-handoff-2026-10-04/remote-verification.json",
-      "bytes": 1712,
-      "sha256": "70f701c46e548c2aac2ba26c2f202237f976c5ecdec0ad517e167103a9b163b6"
-    },
-    "evidence_archive_members_verified": 31,
+    "evidence_archive_members_verified": 45,
     "company_archive_members_verified": 66,
-    "prior_remote_verification_not_newly_network_repeated_for_this_promotion": true
+    "scope": "Previous planning checkpoint; current post-role planning publication verified after commit"
   },
   "selected_top_k_contract": {
     "rank_key": [
@@ -1025,6 +1090,25 @@
         "sha256": "20f05e5c011d75efd4a5fab120ec27c73195e7b224b565b895b8ec484eaf6361"
       },
       "evidence_archive_members_verified": 48,
+      "company_archive_members_verified": 66,
+      "prior_remote_verification_not_newly_network_repeated_for_this_promotion": true
+    },
+    {
+      "commit": "14243ead040eadbad4a29431c4bf8ef03378d666",
+      "tag": "checkpoint/paper-build-handoff-2026-10-04",
+      "manifest": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-build-handoff-2026-10-04/manifest.json",
+        "bytes": 21414,
+        "sha256": "6ad54eaa56a9d4eec333d851665ec058b96af413828dc1dcb5ca0b98e6364395"
+      },
+      "branch_and_tag_remote_verified": true,
+      "remote_verification": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-build-handoff-2026-10-04/remote-verification.json",
+      "remote_verification_receipt": {
+        "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/paper-build-handoff-2026-10-04/remote-verification.json",
+        "bytes": 1712,
+        "sha256": "70f701c46e548c2aac2ba26c2f202237f976c5ecdec0ad517e167103a9b163b6"
+      },
+      "evidence_archive_members_verified": 31,
       "company_archive_members_verified": 66,
       "prior_remote_verification_not_newly_network_repeated_for_this_promotion": true
     }
@@ -1130,7 +1214,7 @@
     "remaining_proof_scope": "BGV model/native/NTT/CRT/sampler/security/private authority/deployment remain Q78",
     "next": "Q77_register_complete_cost_calibration_held_out_local_prototype"
   },
-  "remaining_Q76_native_milestones": 0,
+  "remaining_Q76_native_milestones": [],
   "remaining_system_packages": [
     "Q77",
     "Q78",
@@ -1191,5 +1275,24 @@
   },
   "Q77_public_role_handoff_return": "docs/research/native-shared-query-complete-cost-public-return-20261004.json",
   "Q77_public_role_handoff_utc": "2026-10-05T02:26:03.244503+00:00",
-  "Q77_pending_component_encryption_budget_resolution": "540 standalone remote fresh query encryptions plus up to 180 prefetch remote components; resolve explicitly in execution addendum before any new key or measurement, without changing 18-block/144-observation cap"
+  "Q77_pending_component_encryption_budget_resolution": "540 standalone remote fresh query encryptions plus up to 180 prefetch remote components; resolve explicitly in execution addendum before any new key or measurement, without changing 18-block/144-observation cap",
+  "post_role_planning_return": {
+    "utc": "2026-10-05T02:52:56.976308+00:00",
+    "baseline": {
+      "file": "/home/pete/yavor-projects/xtrace-work/research-data/paper-system-plan-after-roles-20261004/baseline.json",
+      "bytes": 131754,
+      "sha256": "d7e1f3fc60b19ae7850b3c473e4097aaaf2d5f03af7695f9253e3dbbad988181"
+    },
+    "review": "docs/research/paper-system-build-plan-after-roles-review-20261004.json",
+    "primary_question_unchanged": true,
+    "no_new_HE_keys_tests_builds_timings_or_author_runs": true,
+    "no_new_prior_records_or_originality_approval": true,
+    "R0_public_role_checkpoint": {
+      "file": "/home/pete/yavor-projects/xtrace-work/checkpoints/native-shared-query-local-roles-2026-10-04/remote-verification.json",
+      "bytes": 2048,
+      "sha256": "22369e2522f8baeb33719d5b6161de867c3bd9bc8f35619a0801f95114cb7afe"
+    },
+    "exact_execution_addendum_still_pending": true,
+    "query_encryption_accounting_still_pending": "540 standalone remote fresh query encryptions plus up to 180 prefetch remote components; resolve explicitly in execution addendum before any new key or measurement, without changing 18-block/144-observation cap"
+  }
 }

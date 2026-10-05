@@ -1,5 +1,12 @@
 # Closest work for the selected exact-search system
 
+> Current post-role review: [the build plan](paper-system-build-plan-after-roles-20261004.md)
+> converts this matrix into exact comparator obligations and R0–R6 handoffs.
+> Six small public native role paths and the final 158-test suite pass; there
+> is no complete paid timing, private HE finish, deployed TEE or positive
+> originality verdict. This revision adds no source record or author-artifact
+> reproduction; the registry remains at 123 pinned records.
+
 2026-10-04. Original comparison evidence baseline:
 `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
 The source-scale comparison checkpoint is `155d69f180f6e11a9a87734fdb6249699e9f0549`;
@@ -61,6 +68,13 @@ registered one-key/six-search large correctness gate. The matched prepared repla
 now pass. The later cache and independent static certificate gates also pass.
 Complete-cost measurements, native/model refinement, remote freshness/private
 release and real attestation remain open.
+
+The local role signer holds an Ed25519 secret in ordinary process memory.
+Keeping the HE decryption key at the owner does not reproduce Argos's isolated
+attestation-secret/no-secret-in-CPU design. A future Nitro signer must state
+its own private-key custody and side-channel assumptions. The local result
+receipt binds a deterministic admission record, but neither a signature nor
+an allowlisted code digest proves hardware execution or nonrollback freshness.
 
 There are three different comparison classes:
 

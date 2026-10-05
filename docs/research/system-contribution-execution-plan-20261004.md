@@ -1,5 +1,14 @@
 # Execution plan for an original, complete encrypted-search system
 
+> Current post-role handoff: the [build plan](paper-system-build-plan-after-roles-20261004.md)
+> is the concise R0–R6 implementation/paper queue. The local public role
+> component is complete at remotely verified `51ed323557396c92e362e83c2e922985176f31f9`.
+> Q77 has an implementation registration; older “unregistered” pointers below
+> describe historical planning states. Owner HE custody/private finish,
+> coordinator and exact execution addendum are next. The 18-block/144-observation
+> cap, strongest replay/cache controls and unapproved originality/security status
+> are unchanged.
+
 2026-10-04. Evidence baseline: `3ecef8eeb86bdc1e2c33ce568557debdea8949e9`.
 This is the current execution plan. Read the
 [contract-level closest comparison](closest-work-contract-matrix-20261004.md),

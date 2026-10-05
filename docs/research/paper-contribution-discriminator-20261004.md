@@ -1,5 +1,12 @@
 # Strongest reference construction and paper decision
 
+> Current execution pointer: the [post-role build plan](paper-system-build-plan-after-roles-20261004.md)
+> and ledger supersede older next-task pointers in this retained decision memo.
+> Q77's implementation registration and local public role handoff are complete
+> within their scope. R1 owner HE custody/private finish and R2 coordinator/
+> exact execution freeze are next. Q77 full cost, Q78 and Q79 remain unfinished;
+> no new algebraic, generic-optimizer or first-verifiable-search claim is accepted.
+
 2026-10-04. Original planning baseline: `8bfe630dbe49b064abbd601784fb4689ddde634f`;
 source-scale comparison checkpoint: `155d69f180f6e11a9a87734fdb6249699e9f0549`.
 Read with the [publication design](publication-system-design-20261004.md),
