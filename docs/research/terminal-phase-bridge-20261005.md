@@ -1,6 +1,6 @@
 # Conditional terminal phase bridge
 
-This independent Q78 component follows [its registration](phase-bridge-registration-20261005.json). The integer derivation below connects the existing conservative support formula to the paired Q/P phase lift. A four-assertion [Lean draft](../../../research-data/q78-phase-bridge-20261005/phase-bridge-draft.lean) is written but **not compiler/kernel checked**. Validation is deferred until the live Q77 timing action stops. No HE, native/private, GPU, test or performance operation is part of this derivation.
+This independent Q78 component follows [its registration](phase-bridge-registration-20261005.json). The integer derivation below connects the existing conservative support formula to the paired Q/P phase lift. Its four assertions are now kernel checked in [PhaseBridge.lean](../../proofs/shared_query/PhaseBridge.lean), after the Q77 timing action completed. The [actual return](terminal-phase-bridge-return-20261006.json) preserves the original draft and two failed compiler attempts as well as the successful third invocation. No HE, native/private, GPU or search-timing operation was added.
 
 The earlier [four checked integer facts](terminal-assurance-20261005.md) remain unchanged. This argument does not establish the native implementation, actual noise induction, currentness, privacy or side-channel assurance, and it is not the required creative extension.
 
@@ -56,7 +56,7 @@ The frozen profile has:
 | T | 8,450,122 |
 | 2T | 16,900,244 < P |
 
-The one [public closed calculation](../../../research-data/q78-phase-bridge-20261005/public-bound01.json) reproduces the existing formula. It is not sampled noise, an observed decryption, a timing, or parameter-security approval. The earlier `Model.lean` already kernel-checks the selected support value; the new draft has not yet been checked.
+The one [public closed calculation](../../../research-data/q78-phase-bridge-20261005/public-bound01.json) reproduces the existing formula. It is not sampled noise, an observed decryption, a timing, or parameter-security approval. The earlier `Model.lean` checks the selected support value; `PhaseBridge.lean` now checks the four selected-profile integer implications below.
 
 ## Canonical wire components and private decoding
 
@@ -74,7 +74,7 @@ phaseP mod t = (rawP-P*z) mod t
 
 Here both moduli have residue 704 modulo 1031. This proves a conditional message-preservation statement. Connecting phaseQ's message to the exact score/zero tail/all-ordinal output remains a separate origin/layout/refinement obligation. Post-decryption result validation cannot substitute for that argument in the malicious-server threat model.
 
-## What the draft must actually prove
+## Kernel-checked selected-profile statements
 
 | Assertion | Proposed precise scope | Still outside the assertion |
 | --- | --- | --- |
@@ -83,10 +83,12 @@ Here both moduli have residue 704 modulo 1031. This proves a conditional message
 | `centered_phase_recovers_lift` | A rawP whose proposed lift is in the strict centered interval decodes to that lift. | NTT/CRT/private reducer correctness. |
 | `admitted_phase_message` | The paired bound, unwrapped modulo-t agreement, and canonical wire modulo-P agreement imply identical final messages. | Actual complete signed sums, score semantics, authorization and privacy. |
 
-The draft contains no admissions or user axioms, but that source property is **not a successful Lean validation**. Retain any failed executed source and diagnostics; only promote a checked module after the bounded registered validation passes. Keep the existing sixteen checked assertions distinct from these four drafts.
+The successful invocation reports only `propext`, `Classical.choice` and `Quot.sound` across these four declarations, with no `sorryAx` or user axiom. The checked source is promoted byte-for-byte from the executed file. The existing sixteen assertions were not rerun in this action; these four add independent conditional integer support, not native or cryptographic assurance.
 
 ## Next concrete obligation
 
-After timing stops, freeze the actual draft/toolchain inputs and use at most three 60-second compiler invocations. Then connect the signed aggregate relation and existing source/noise induction to the native arrays. The whole source-to-admission-to-private-consumption argument, augmented HE reduction, real attestation/currentness/nonrollback and complete private leakage remain open.
+The registered three 60-second compiler invocations are exhausted: return codes 1/1/0. The first two failures came from splitting a conditional after reducing a semireducible modulus while its `Decidable` instance retained the old form. Branching before modulus normalization fixes that proof step. Every invocation rehashes all 17,738 regular toolchain files, ten host-library entries and twelve symlinks, and every failed executed source/log remains retained.
+
+Next connect the complete signed aggregate relation and honest source/noise induction to the actual native arrays. The whole source-to-admission-to-private-consumption refinement, augmented HE reduction, real attestation/currentness/nonrollback and complete private leakage remain open.
 
 The active scientific dependency remains the completed separately registered R3 comparison and its read-only analysis, followed by one eligible creative mechanism. This independent support component neither selects R4 from a partial prefix nor expands its experiment reservation.

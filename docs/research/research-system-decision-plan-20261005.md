@@ -806,7 +806,7 @@ unavailable adapters cannot supply the distinction.
 | Step | Deliverable and location | Exit condition / next decision |
 | --- | --- | --- |
 | R2, complete public gate and freeze | `complete_cost_tenant.py` and `complete_cost_owner_study.py` connect honest provisioning, independent sessions and guards. | Exact addendum committed and preflight passed before HE work; actual encrypted integration is judged by R3. |
-| R3, earlier action interrupted; fresh comparison running | Two new keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: 18 blocks/144 observations per trajectory. First six blocks/48 queries calibrate; twelve/96 are held out. | Exact freeze/headroom/preflight passed and action launched; freeze new policies before held-out. Return complete costs and bottleneck, retaining both older attempts separately. |
+| R3, complete in the separate local action | Two new keys × sizes 8224/16384/32768 × three fresh process blocks × eight queries: all 108 trajectories/864 requests and 1,062 full-output checks passed independent audit. Six calibration blocks precede twelve held-out blocks. | [Complete return](native-shared-query-complete-cost-return-20261006.json) retains both older attempts separately. Paid refresh triggers the partial-owner control and R4 eligibility. |
 | R4, one creative extension | The one mechanism selected above, admitted graph, strongest adaptation, whole-execution ablation and new finite registration. | Useful held-out region and surviving prior-work distinction, or close the claim and preserve the engineering artifact. |
 | Q78, assurance/deployment | Conditional reduction, native refinement, parameter/private-leakage review, real attested authority and rollback/revocation tests; matched GPU path if used in the final claim. | Complete premises and real deployment evidence before a secure-service or GPU-service performance claim. |
 | Q79, final paper/artifact | Additional justified workloads/deployment evaluation, strongest counterconstruction, external originality/security review, reproducible artifact and paper. | One precise defensible finding with winning and losing regimes. |
@@ -981,9 +981,11 @@ the next scientific task remains the separately frozen complete R3 comparison.
 
 The [conditional phase-bridge derivation](terminal-phase-bridge-20261005.md)
 now derives the same Q/P wrap from the exact rounding residual and existing
-complete public support formula. Its four-assertion Lean source is explicitly
-an unvalidated draft; compiler/toolchain work is deferred until the live R3
-timing action stops. The existing sixteen checked assertions remain distinct.
+complete public support formula. After R3 completed, its four-assertion
+[Lean source](../../proofs/shared_query/PhaseBridge.lean) passed the third bounded
+compiler invocation; both failures are retained in the
+[actual return](terminal-phase-bridge-return-20261006.json). The existing sixteen
+checked assertions remain distinct and were not rerun in this action.
 This changes no runtime, parameter, extension choice or scientific reservation.
 
 Q78's proof return should expose a dependency table for four propositions:
@@ -1066,11 +1068,11 @@ retained evidence instead of starting a paper around an assumed speedup.
 The remaining packages are **Q77 evaluation/one extension, Q78 assurance and
 deployment, Q79 paper**. There is no remaining broad preliminary portfolio.
 After each task, preserve inputs/commands/failures/scope/checkpoint in the ledger
-and return here. **Next exit: return the separately registered complete R3 calibration/held-out
-comparison, then
-specify and implement one eligible R4 extension.** The prior exact freeze is retained;
-the new freeze is committed, actual headroom/preflight passed, and the separate comparison is running. There is
-no additional encrypted experiment is reserved by this plan update.
+and return here. **Next exit: implement the measured-refresh partial-owner reference,
+then specify and implement one eligible R4 extension.** The [complete R3 analysis](native-shared-query-complete-cost-analysis-20261006.md)
+and exact freeze are retained. The local selection study is complete; no original
+main or secure deployed service is established. No additional encrypted experiment
+is reserved by this plan update.
 
 ## Analysis ready for the actual R3 return
 
@@ -1165,5 +1167,38 @@ The review preserves 138 earlier source records and adds one targeted primary
 HTML record, for 139. New PDF acquisition waits for the timing window to end.
 It changes no 446-source/716-dependency execution pin, guard, scientific
 reservation or policy. It reads no partial timing values and implements no
-R4 mechanism. The next action remains complete R3 analysis followed by the
-existing single-extension eligibility gate, not a reopened experiment queue.
+R4 mechanism. At that review, complete R3 analysis was still pending. Its
+subsequent return below supplies the measured trigger without reopening a
+preliminary experiment queue.
+
+## R3 complete selection exit (2026-10-06 UTC)
+
+The [full return](native-shared-query-complete-cost-return-20261006.json) and
+[analysis](native-shared-query-complete-cost-analysis-20261006.md) pass both
+retained read-only auditors: 108 trajectories, 864 measured requests, 1,062
+full-output checks, six calibration blocks and twelve held-out blocks. All
+363 distinct original process identities have retired. A final manifest pins
+4,204 public files and 8,441,057,098 logical bytes; neither earlier attempt is
+spliced into selection.
+
+Protected replay (`m1`) is the frozen client and same-information choice at
+every size. Its pooled owner-query mean is 1,947.462 ms versus 3,698.163 ms for
+delegated aggregates (`m2`). The native-projection choice reverses at 32,768
+rows, producing a 2,575.505 ms pooled complete-query mean. This supports a
+scoped placement-selection reversal; it does not beat the generic alias or
+establish a bare-evaluator, original-algorithm or randomized-vFHE claim.
+
+Returning/fresh/prefetch cache means are 30.907/48.287/54.542 ms, and every
+paired held-out block favors each cache state over selected outsourcing.
+Fresh-cache lifetime acquisition and paid racing losers remain in the separate
+first-answer/whole-trajectory costs. No outsourcing win against caches is
+observed at these three sizes. The fixture, link law and two shared keys do not
+establish a universal cache theorem or certify a contamination-free host.
+
+Paid 32-row updates take 75.867/78.292/91.425 s for replay at the three sizes.
+That is the lifecycle trigger for **R4a's mandatory partial-owner replacement
+control**, followed by the literal resource/containment eligibility return.
+The encrypted tile remains conditional on removing a necessary paid cost
+beyond that control. One actual creative extension and same-output ablation
+remain required. The full Q78 assurance/deployment and Q79 paper packages are
+still unfinished.

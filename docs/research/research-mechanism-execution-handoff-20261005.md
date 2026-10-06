@@ -1,6 +1,6 @@
 # Research mechanism and execution handoff
 
-Start with the [contribution build brief](research-contribution-build-brief-20261005.md) for the consolidated primary comparison, explicit mechanism falsifiers and finite build tickets. Latest actual action: the [separate comparison start](native-shared-query-complete-cost-separate-start-return-20261005.json), after storage/preflight passed. Completion and originality remain open.
+Start with the [contribution build brief](research-contribution-build-brief-20261005.md) for the consolidated primary comparison, explicit mechanism falsifiers and finite build tickets. Latest actual action: the [complete selection return](native-shared-query-complete-cost-return-20261006.json), independently audited after all owned processes retired. The creative extension, full service and originality remain open.
 
 2026-10-05. Review baseline `7dc52c6e37f1c03eff49a64dd209f6e7869d48e9`;
 implementation `73b552f2cbcc7a4b0add092c41d0171d236a826a` on
@@ -47,7 +47,7 @@ freeze preceded the fresh corrective action. Read the
 That action has now [interrupted without a terminal return](native-shared-query-complete-cost-interruption-return-20261005.json).
 Its tool handle and all owned host processes are absent; the termination cause
 is unknown. All completed rows, consumed attempts and partial inputs remain
-retained. No complete query comparison is available. Prior status text retains
+retained. That interrupted attempt supplied no complete query comparison. Prior status text retains
 its historical scope; do not replace blocks or choose R4 from the partial return.
 
 The [separate action registration](native-shared-query-complete-cost-interruption-registration-20261005.json)
@@ -265,7 +265,7 @@ contained algorithm.
 | R2b, public gate complete | `benchmarks/complete_cost_owner_study.py` connects the coordinator, shared relay, clean supervisor, resource telemetry and public enrollment/cache assembly. | Full scheduling and actual cache-only TCP lifetimes pass the registered gate. This does not validate the actual encrypted cohort. |
 | R2c, complete in its original scope; separate freeze committed | Exact corrective pins/order/guards were committed and passed preflight. The additive detached launcher passes its separate two-case public gate; new freeze is committed. | Actual 20 GiB headroom and unchanged pure preflight passed before the independent action launched. No guard relaxation or block replacement. |
 | R3a, complete for interrupted action | All six calibration blocks passed; immutable choices were independently recomputed from 36 pinned rows. | Retain client/generic `m1` and native projection `m2` as historical evidence. New action calibrates independently; no old policy reuse. |
-| R3b, prior action interrupted; separate comparison running | Ten held-out trajectories survive, without complete terminal return. New action retains the same 18-block/864-query law and explicit additional ceilings. | Complete owner costs, whole-output correctness, paired block analysis and contamination return. Then choose exactly one eligible R4 route. |
+| R3b, complete for the separate action | The new action passed 108 trajectories, 864 measured requests and 1,062 full-output checks; all twelve held-out blocks are independently audited. Both older attempts remain separate. | [Complete costs and qualified telemetry](native-shared-query-complete-cost-analysis-20261006.md) identify paid refresh and cache wins. Next: partial-owner control, then exactly one eligible R4 route. |
 | R4a | Produce the mechanism eligibility return above; first build the partial-owner/dynamic reference when refresh is the trigger. | One eligible mechanism, named reference and falsifier; contained template is not accepted. Then R4b. |
 | R4b | Implement its independent oracle/adversarial transitions and actual matched adapter. Register one separate extension cohort before HE. | Precise invariant, bound/codec gate and paid same-output ablation. Then R4c. |
 | R4c | Run the proposed two-key/two-block/eight-query extension cohort: 32 observations per surviving variant, with all auxiliary attempts separately fixed. | Held-out useful/losing regions and mechanism attribution, or preserve code and close the claim. Then Q78/Q79. |
